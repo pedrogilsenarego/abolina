@@ -5,6 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f6f7f8;
+  min-height: 100vh;
+  
+  font-size: calc(10px + 2vmin);
+  color: rgb(14, 13, 13);
+ 
 }
 
 code {
