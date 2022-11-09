@@ -1,15 +1,16 @@
-import Menu from "./modules/Menu";
-import TopBar from "./modules/TopBar"
+import Menu from "./presentational/Menu";
+import TopBar from "./presentational/TopBar"
 import AppRoutes from "./routes";
+import { BrowserRouter } from "react-router-dom"
 
 
 function App() {
   return (
-    <div>
+    <BrowserRouter>
       <TopBar />
       <Menu />
       <AppRoutes />
-    </div>
+    </BrowserRouter>
   );
 }
 
