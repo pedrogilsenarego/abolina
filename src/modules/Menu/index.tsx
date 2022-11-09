@@ -1,6 +1,7 @@
 import { Box, Grid, Container } from "@mui/material";
 import { Colors } from "../../constants/pallette";
 import Right from "./Right";
+import Middle from "./Middle";
 
 const Menu = () => {
   return (
@@ -8,7 +9,7 @@ const Menu = () => {
       <Container>
         <Grid container justifyContent="space-between" alignItems="center" style={{ height: "80px" }}>
           <Grid item>Teste</Grid>
-          <Grid item>Teste</Grid>
+          <Grid item><Middle /></Grid>
           <Grid item><Right /></Grid>
         </Grid>
       </Container>

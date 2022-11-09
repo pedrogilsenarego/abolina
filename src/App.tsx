@@ -1,5 +1,6 @@
 import Menu from "./modules/Menu";
 import TopBar from "./modules/TopBar"
+import AppRoutes from "./routes";
 
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <div>
       <TopBar />
       <Menu />
+      <AppRoutes />
     </div>
   );
 }
