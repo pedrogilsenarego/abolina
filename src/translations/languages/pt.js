@@ -6,6 +6,12 @@ export const content = {
         hope: "Esperança",
         audacity: "Audácia",
       },
+      menuBar: {
+        home: "Home",
+        books: "Livros",
+        about: "Sobre",
+        contacts: "Contactos",
+      },
     },
   },
 };

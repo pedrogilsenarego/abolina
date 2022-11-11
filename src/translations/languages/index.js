@@ -1,5 +1,7 @@
-import { content as englishContent } from "./en";
+import { content as en } from "./en";
+import { content as pt } from "./pt";
 
 export const content = {
-  ...englishContent,
+  ...en,
+  ...pt,
 };
