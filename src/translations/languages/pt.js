@@ -12,6 +12,12 @@ export const content = {
         about: "Sobre",
         contacts: "Contactos",
       },
+      footer: {
+        second: {
+          second: "Política de Privacidade",
+          third: "@ Àbolina 2023 | Todos os direitos reservados",
+        },
+      },
     },
   },
 };
