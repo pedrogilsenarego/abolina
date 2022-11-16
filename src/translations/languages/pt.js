@@ -21,6 +21,9 @@ export const content = {
           first: "Siga-nos",
           second: "Este site está de acordo com o novo acordo Ortográfico",
         },
+        forth: {
+          button: "Fale conosco",
+        },
       },
     },
   },

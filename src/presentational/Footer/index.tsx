@@ -1,6 +1,7 @@
 import { Box, Grid, Container } from "@mui/material";
 import Second from "./Second";
 import Third from "./Third"
+import Forth from "./Forth";
 
 const Footer = () => {
   return (
@@ -10,7 +11,7 @@ const Footer = () => {
           <Grid item  >Teste</Grid>
           <Grid item><Second /></Grid>
           <Grid item><Third /></Grid>
-          <Grid item>Teste</Grid>
+          <Grid item><Forth /></Grid>
         </Grid>
       </Container>
     </Box>
