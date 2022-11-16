@@ -1,5 +1,6 @@
 import { Box, Grid, Container } from "@mui/material";
 import Second from "./Second";
+import Third from "./Third"
 
 const Footer = () => {
   return (
@@ -8,7 +9,7 @@ const Footer = () => {
         <Grid container justifyContent="space-between" style={{ paddingTop: "30px", paddingBottom: "30px" }}>
           <Grid item  >Teste</Grid>
           <Grid item><Second /></Grid>
-          <Grid item>Teste</Grid>
+          <Grid item><Third /></Grid>
           <Grid item>Teste</Grid>
         </Grid>
       </Container>

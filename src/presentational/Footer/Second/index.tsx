@@ -1,12 +1,13 @@
-import { Typography, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { i18n } from "../../../translations/i18n";
+import * as Styled from "../styles"
 
 const Second = () => {
   return (
     <Grid container rowGap={3} direction="column">
-      <Typography>xxxx@gmail.com</Typography>
-      <Typography>{i18n.t("footer.second.second")}</Typography>
-      <Typography>{i18n.t("footer.second.third")}</Typography>
+      <Styled.STypography>xxxx@gmail.com</Styled.STypography>
+      <Styled.STypography>{i18n.t("footer.second.second")}</Styled.STypography>
+      <Styled.STypography>{i18n.t("footer.second.third")}</Styled.STypography>
     </Grid>
   );
 };

@@ -1,7 +1,7 @@
-import { Avatar, Box, Grid, Typography } from "@mui/material"
-import InstagramIcon from '@mui/icons-material/Instagram';
+import { Box, Grid, Typography } from "@mui/material"
 import { Colors } from "../../../constants/pallette";
 import { i18n } from "../../../translations/i18n";
+import InstaAvatar from "../../../components/InstaAvatar";
 
 const Right = () => {
 
@@ -13,7 +13,7 @@ const Right = () => {
     <Grid container>
       <Grid item>
         <Box style={{ borderRight: "solid 2px", paddingRight: "10px", borderColor: "white" }}>
-          <Avatar style={{ backgroundColor: "white" }}><InstagramIcon style={{ color: Colors.tealc }} /></Avatar>
+          <InstaAvatar backgroundColor="white" color={Colors.tealc} />
         </Box>
       </Grid>
       <Grid>
