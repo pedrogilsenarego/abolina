@@ -1,5 +1,6 @@
 export const ROUTE_PATHS = {
   HOME: '/',
-  BOOKS: '/books'
+  BOOKS: '/books',
+  ABOUT: '/about'
   
 }

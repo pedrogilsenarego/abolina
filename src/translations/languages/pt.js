@@ -9,7 +9,7 @@ export const content = {
       menuBar: {
         home: "Home",
         books: "Livros",
-        about: "Sobre",
+        about: "Sobre nós",
         contacts: "Contactos",
       },
       footer: {
