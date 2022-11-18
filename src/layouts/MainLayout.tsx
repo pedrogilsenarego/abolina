@@ -17,7 +17,16 @@ const HomepageLayout = (props: any) => {
           <TopBar />
           <Header />
         </Grid>
-        <Grid item xs={12} style={{ minHeight: "60vh", textAlign: "center" }}>
+        <Grid
+          item
+          xs={12}
+          style={{
+            minHeight: "60vh",
+            textAlign: "center",
+            marginTop: "6vh",
+            marginBottom: "15vh",
+          }}
+        >
           {props.children}
         </Grid>
 

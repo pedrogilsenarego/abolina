@@ -1,8 +1,12 @@
 import { styled, Typography } from "@mui/material"
 import { Colors } from "../constants/pallette"
 
-export const Title = styled(Typography)(() => ({
+interface TitleProps {
+  fontSize?: string
+}
+
+export const Title = styled(Typography)(({ fontSize }: TitleProps) => ({
   color: Colors.tealc,
-  fontSize: "28px",
+  fontSize: fontSize || "28px",
   fontWeigth: 700
 }))
