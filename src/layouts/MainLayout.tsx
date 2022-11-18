@@ -4,13 +4,9 @@ import Footer from "../presentational/Footer";
 import TopBar from "../presentational/TopBar";
 import { Grid } from "@mui/material";
 
-
-
 const HomepageLayout = (props: any) => {
-
   return (
     <>
-
       <Grid
         container
         direction='column'
@@ -20,14 +16,15 @@ const HomepageLayout = (props: any) => {
         <Grid item xs={12}>
           <TopBar />
           <Header />
-
         </Grid>
-        {props.children}
+        <Grid item xs={12} style={{ minHeight: "60vh", textAlign: "center" }}>
+          {props.children}
+        </Grid>
+
         <Grid item xs={12}>
           <Footer />
         </Grid>
       </Grid>
-
     </>
   );
 };
