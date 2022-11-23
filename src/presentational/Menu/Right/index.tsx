@@ -7,6 +7,7 @@ const Right = () => {
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
+    window.location.reload();
   }
 
   return (
