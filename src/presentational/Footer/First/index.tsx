@@ -1,7 +1,13 @@
 import { Box } from "@mui/material";
 import { ArrowDropUp } from "@mui/icons-material";
 
+
 const First = () => {
+
+  const moveTop = () => {
+    window.scrollTo(0, 0);
+  }
+
   return (
     <Box
       justifyContent="center"
@@ -15,7 +21,7 @@ const First = () => {
         cursor: "pointer"
       }}
     >
-      <ArrowDropUp />
+      <ArrowDropUp onClick={() => moveTop()} />
     </Box>
   );
 };
