@@ -1,0 +1,17 @@
+.prc-dotGroup {
+  text-align: center;
+ 
+  
+}
+.carousel__dot {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  margin-left: 4px;
+  margin-right: 4px;
+  background-color: rgb(252, 248, 248);
+  border: 2px solid rgba(0, 156, 166);
+}
+.carousel__dot--selected {
+  background-color: rgb(0, 156, 166, 0.5);
+}
