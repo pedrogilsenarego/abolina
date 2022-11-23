@@ -11,7 +11,7 @@ const Third = () => {
       justifyContent='space-between'
       style={{ minHeight: "100%" }}
     >
-      <Grid container alignContent="center" columnGap={2}>
+      <Grid container alignItems="center" columnGap={2}>
         <Styled.STypography>{i18n.t("footer.third.first")}</Styled.STypography>
         <InstaAvatar backgroundColor='black' color='white' />
       </Grid>

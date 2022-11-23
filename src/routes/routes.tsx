@@ -3,10 +3,12 @@ import { AppRoute } from "./types";
 import { ROUTE_PATHS } from "../constants/routes";
 import { lazyWithRetryAndLoader } from "../utils/lazyWithRetry";
 import MainLayout from "../layouts/MainLayout";
+import AdminLayout from "../layouts/AdminLayout";
 
 const Home = lazyWithRetryAndLoader(() => import("../modules/Home"));
 const Books = lazyWithRetryAndLoader(() => import("../modules/Books"));
 const About = lazyWithRetryAndLoader(() => import("../modules/About"));
+const Admin = lazyWithRetryAndLoader(() => import("../modules/Admin"));
 
 export const routes: AppRoute[] = [
   {
@@ -28,5 +30,11 @@ export const routes: AppRoute[] = [
     component: <MainLayout>
       <About />
     </MainLayout>,
+  },
+  {
+    path: ROUTE_PATHS.ADMIN,
+    component: <AdminLayout>
+      <Admin />
+    </AdminLayout>,
   },
 ];

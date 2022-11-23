@@ -47,7 +47,7 @@ const Carrousell = () => {
 
   return (
     <>
-      <Container maxWidth={"md"} style={{ minHeight: "60vh" }}>
+      <Container maxWidth={"lg"} style={{ minHeight: "60vh" }}>
         {!errorImage && (
           <CarouselProvider
             naturalSlideHeight={40}
@@ -98,7 +98,7 @@ const Carrousell = () => {
               >
                 <DotGroup
                   className='prc-dotGroup'
-
+                  style={{ transform: "scale(0.6)" }}
                 />
               </Box>
             </>
