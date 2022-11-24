@@ -2,5 +2,6 @@ export const ROUTE_PATHS = {
   HOME: '/',
   BOOKS: '/books',
   ABOUT: '/about',
-  ADMIN: '/admin'
+  ADMIN: '/admin',
+  CONTACTS: '/contacts'
 }

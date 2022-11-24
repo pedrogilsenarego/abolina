@@ -10,7 +10,7 @@ const Middle = () => {
         <Grid item><Button title={i18n.t('menuBar.home')} path={ROUTE_PATHS.HOME} /></Grid>
         <Grid item><Button title={i18n.t('menuBar.books')} path={ROUTE_PATHS.BOOKS} /></Grid>
         <Grid item><Button title={i18n.t('menuBar.about')} path={ROUTE_PATHS.ABOUT} /></Grid>
-        <Grid item><Button title={i18n.t('menuBar.contacts')} path={ROUTE_PATHS.HOME} /></Grid>
+        <Grid item><Button title={i18n.t('menuBar.contacts')} path={ROUTE_PATHS.CONTACTS} /></Grid>
       </Grid>
     </>
   );
