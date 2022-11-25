@@ -1,6 +1,6 @@
 import * as Styled from "./styles";
 import { useField } from "formik";
-import { Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 
 interface Props {
   placeholder?: string;
@@ -8,9 +8,11 @@ interface Props {
   name?: string;
   form?: boolean;
   label?: string;
+  multiline?: boolean
+  rows?: number
 }
 
-const Textfield = ({ placeholder, onChange, name, form, label }: Props) => {
+const Textfield = ({ placeholder, onChange, name, form, label, multiline, rows }: Props) => {
   const [field, meta] = useField(name ?? "");
 
   const configTextField = form
@@ -32,8 +34,12 @@ const Textfield = ({ placeholder, onChange, name, form, label }: Props) => {
 
   return (
     <>
-      <Typography>{label}</Typography>
+      <Box display="flex" justifyContent="start">
+        <Typography>{label}</Typography>
+      </Box>
       <Styled.TextField
+        multiline={multiline}
+        rows={rows || 0}
         size='small'
         placeholder={placeholder}
         {...configTextField}

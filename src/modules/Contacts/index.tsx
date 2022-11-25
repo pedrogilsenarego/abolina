@@ -15,15 +15,17 @@ const Contacts = () => {
 
   return (
     <Container maxWidth='md' style={{ justifyContent: "center" }}>
-      <GStyled.Title>{i18n.t("modules.home.contactsTitle")}</GStyled.Title>
+      <GStyled.Title>{i18n.t("modules.home.contacts.contactsTitle")}</GStyled.Title>
       <Formik
         initialValues={{ ...INITIAL_FORM_STATE }}
         onSubmit={() => { }}
         validationSchema={FORM_VALIDATION}>
         <Form>
           <Box sx={{ mt: "20px" }}>
-
-            <Textfield label="name" name="name" placeholder="Name" form />
+            <Textfield label={i18n.t("modules.home.contacts.form.name")} name="name" />
+            <Textfield label={i18n.t("modules.home.contacts.form.email")} name="email" />
+            <Textfield label={i18n.t("modules.home.contacts.form.subject")} name="subject" />
+            <Textfield label={i18n.t("modules.home.contacts.form.description")} name="description" multiline rows={6} />
           </Box>
         </Form>
       </Formik>

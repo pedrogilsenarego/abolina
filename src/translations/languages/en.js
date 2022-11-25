@@ -28,7 +28,15 @@ export const content = {
       modules: {
         home: {
           mainTextBtn: "Read More",
-          contactsTitle: "Contact us",
+          contacts: {
+            contactsTitle: "Contact us",
+            form: {
+              name: "Name",
+              email: "E-mail",
+              subject: "Subject",
+              description: "Description",
+            },
+          },
         },
         about: {
           mainText:

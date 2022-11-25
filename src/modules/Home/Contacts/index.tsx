@@ -22,7 +22,6 @@ const Contacts = () => {
         validationSchema={FORM_VALIDATION}>
         <Form>
           <Box sx={{ mt: "40px" }}>
-
             <Textfield label="name" name="name" placeholder="Name" form />
           </Box>
         </Form>
