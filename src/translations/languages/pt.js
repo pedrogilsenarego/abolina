@@ -26,6 +26,10 @@ export const content = {
         },
       },
       modules: {
+        home: {
+          mainTextBtn: "Leia Mais",
+        },
+
         about: {
           mainText:
             "A Editora ÀBolina nasce para contar histórias. Histórias que valorizam a memória. Histórias que estimulam a esperança. Histórias que motivam para a audácia, para a coragem e resiliência.\n Publicamos livros criativos e de boa qualidade de texto e imagem, que fortificam o desejo de um bem maior em crianças e adolescentes. Em especial, esperamos que as nossas histórias respondam à necessidade das famílias de educarem os seus filhos como pessoas auto-confiantes, equilibradas, capazes de escolhas responsáveis, de pensar e discernir a verdade e de agir com bondade.",
