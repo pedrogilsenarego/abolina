@@ -28,6 +28,7 @@ export const content = {
       modules: {
         home: {
           mainTextBtn: "Read More",
+          contactsTitle: "Contact us",
         },
         about: {
           mainText:

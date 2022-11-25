@@ -28,6 +28,7 @@ export const content = {
       modules: {
         home: {
           mainTextBtn: "Leia Mais",
+          contactsTitle: "Entre em contacto",
         },
 
         about: {
