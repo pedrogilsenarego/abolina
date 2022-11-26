@@ -6,7 +6,10 @@ import { useState } from "react";
 const UpScroller = () => {
 
   const moveTop = () => {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   }
   const [hover, setHover] = useState<boolean>(false)
 
