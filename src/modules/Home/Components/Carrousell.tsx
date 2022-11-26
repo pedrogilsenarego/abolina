@@ -3,19 +3,19 @@ import "pure-react-carousel/dist/react-carousel.es.css";
 import { useEffect, useState } from "react";
 import { Box, Container, useMediaQuery, useTheme } from "@mui/material";
 import "./styles.scss";
+import { Colors } from "../../../constants/pallette";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi"
 
 
 const Carrousell = () => {
   const NO_IMAGE =
     "https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png";
 
-  const images = [
-    NO_IMAGE, NO_IMAGE, NO_IMAGE
-  ]
+  const images = [NO_IMAGE, NO_IMAGE, NO_IMAGE];
   const [errorImage, setErrorImage] = useState(false);
   const [indexMini, setIndexMini] = useState(0);
   const [mainImage, setMainImage] = useState(images[0]);
-  const Theme = useTheme()
+  const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
 
   const IMAGE_HEIGHT_MOBILE = "80vh";
@@ -37,7 +37,6 @@ const Carrousell = () => {
   };
 
   const handleOnImgError = () => {
-
     setErrorImage(true);
   };
   useEffect(() => {
@@ -47,67 +46,72 @@ const Carrousell = () => {
 
   return (
     <>
+
       <Container maxWidth={"lg"} style={{ minHeight: "60vh" }}>
-        {!errorImage && (
-          <CarouselProvider
-            naturalSlideHeight={40}
-            naturalSlideWidth={100}
-            totalSlides={3}
-            currentSlide={indexMini}
-            lockOnWindowScroll
-            touchEnabled={mobile ? true : false}
-            dragEnabled={mobile ? true : false}
-          // style={{ position: "relative" }}
-          >
-
-            <Slider
-              onMouseDown={(e) => mouseDownCoords(e)}
-              onMouseUp={(e) => clickOrDrag(e)}
+        <Box display="flex" justifyContent="space-between" style={{}}>
+          <FiChevronLeft size="3em" color={Colors.tealc} />
+          <FiChevronRight size="3em" color={Colors.tealc} />
+        </Box>
+        <Box style={{ position: "relative" }}>
+          {!errorImage && (
+            <CarouselProvider
+              naturalSlideHeight={40}
+              naturalSlideWidth={100}
+              totalSlides={3}
+              currentSlide={indexMini}
+              lockOnWindowScroll
+              touchEnabled={mobile ? true : false}
+              dragEnabled={mobile ? true : false}
+            // style={{ position: "relative" }}
             >
-              {images.map((image, pos) => {
-                return (
-                  <Slide
-                    index={pos}
-                    style={{
-                      height: mobile
-                        ? IMAGE_HEIGHT_MOBILE
-                        : IMAGE_HEIGHT_LAPTOP,
-                    }}
-                  >
-                    <img
-                      onError={handleOnImgError}
-                      style={{
-                        width: "100%",
-                        objectFit: "cover",
-                        height: "100%",
-                        cursor: "Pointer",
-                      }}
-                      src={mainImage}
-                      alt=''
-                    />
-                  </Slide>
-                );
-              })}
-            </Slider>
-
-            <>
-              <Box
-                display='flex'
-                justifyContent='center'
-                style={{ marginTop: "5px" }}
+              <Slider
+                onMouseDown={(e) => mouseDownCoords(e)}
+                onMouseUp={(e) => clickOrDrag(e)}
               >
-                <DotGroup
-                  className='prc-dotGroup'
-                  style={{ transform: "scale(0.6)" }}
-                />
-              </Box>
-            </>
+                {images.map((image, pos) => {
+                  return (
+                    <Slide
+                      index={pos}
+                      style={{
+                        height: mobile
+                          ? IMAGE_HEIGHT_MOBILE
+                          : IMAGE_HEIGHT_LAPTOP,
+                      }}
+                    >
+                      <img
+                        onError={handleOnImgError}
+                        style={{
+                          width: "100%",
+                          objectFit: "cover",
+                          height: "100%",
+                          cursor: "Pointer",
+                        }}
+                        src={mainImage}
+                        alt=''
+                      />
+                    </Slide>
+                  );
+                })}
+              </Slider>
 
-          </CarouselProvider>
-        )}
+              <>
+                <Box
+                  display='flex'
+                  justifyContent='center'
+                  style={{ marginTop: "5px" }}
+                >
+                  <DotGroup
+                    className='prc-dotGroup'
+                    style={{ transform: "scale(0.6)" }}
+                  />
+                </Box>
+              </>
+            </CarouselProvider>
+          )}
+        </Box>
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default Carrousell
+export default Carrousell;
