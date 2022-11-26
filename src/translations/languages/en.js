@@ -31,10 +31,11 @@ export const content = {
           contacts: {
             contactsTitle: "Contact us",
             form: {
-              name: "Name",
-              email: "E-mail",
-              subject: "Subject",
-              description: "Description",
+              name: "Name*",
+              email: "E-mail*",
+              subject: "Subject*",
+              description: "Description*",
+              send: "Send",
             },
           },
         },

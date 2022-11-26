@@ -5,7 +5,7 @@ export const TextField = styled(MuiTextField)(() => ({
   width: "100%",
 
   "& .MuiInputBase-input": {
-    color: "whiteSmoke",
+    color: "black",
     
   },
   "& .MuiOutlinedInput-root": {

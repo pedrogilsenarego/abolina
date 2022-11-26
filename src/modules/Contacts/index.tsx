@@ -4,32 +4,67 @@ import { Container, Box } from "@mui/material";
 import Textfield from "../../components/Inputs/TextField";
 import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
+import ButtonForm from "../../components/Buttons/ButtonFormik";
 
 const Contacts = () => {
-
   const INITIAL_FORM_STATE = {
-    reference: "",
-
+    name: "",
+    email: "",
+    subject: "",
+    description: ""
   };
 
+  const handleSubmit = (values: any) => {
+    console.log("teste", values)
+  }
 
   return (
     <Container maxWidth='md' style={{ justifyContent: "center" }}>
-      <GStyled.Title>{i18n.t("modules.home.contacts.contactsTitle")}</GStyled.Title>
+      <GStyled.Title>
+        {i18n.t("modules.home.contacts.contactsTitle")}
+      </GStyled.Title>
       <Formik
         initialValues={{ ...INITIAL_FORM_STATE }}
-        onSubmit={() => { }}
-        validationSchema={FORM_VALIDATION}>
+        onSubmit={(values) => {
+          handleSubmit(values);
+        }}
+        validationSchema={FORM_VALIDATION}
+      >
         <Form>
-          <Box sx={{ mt: "20px" }}>
-            <Textfield label={i18n.t("modules.home.contacts.form.name")} name="name" />
-            <Textfield label={i18n.t("modules.home.contacts.form.email")} name="email" />
-            <Textfield label={i18n.t("modules.home.contacts.form.subject")} name="subject" />
-            <Textfield label={i18n.t("modules.home.contacts.form.description")} name="description" multiline rows={6} />
+          <Box rowGap={2} display="flex" flexDirection="column" sx={{ mt: "20px" }}>
+            <Box>
+              <Textfield
+                label={i18n.t("modules.home.contacts.form.name")}
+                name='name'
+              />
+            </Box>
+            <Box>
+              <Textfield
+                label={i18n.t("modules.home.contacts.form.email")}
+                name='email'
+              />
+            </Box>
+            <Box>
+              <Textfield
+                label={i18n.t("modules.home.contacts.form.subject")}
+                name='subject'
+              />
+            </Box>
+            <Box>
+              <Textfield
+                label={i18n.t("modules.home.contacts.form.description")}
+                name='description'
+                multiline
+                rows={6}
+              />
+            </Box>
+          </Box>
+          <Box display='flex' justifyContent='start' sx={{ mt: "20px" }}>
+            <ButtonForm label={i18n.t("modules.home.contacts.form.send")} />
           </Box>
         </Form>
       </Formik>
-    </Container>
+    </Container >
   );
 };
 
