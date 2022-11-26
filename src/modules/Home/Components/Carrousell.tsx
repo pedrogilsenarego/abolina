@@ -44,15 +44,19 @@ const Carrousell = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mainImage]);
 
+  const handleGoLeft = () => {
+    setIndexMini(0)
+  }
+
   return (
     <>
 
-      <Container maxWidth={"lg"} style={{ minHeight: "60vh" }}>
-        <Box display="flex" justifyContent="space-between" style={{}}>
-          <FiChevronLeft size="3em" color={Colors.tealc} />
-          <FiChevronRight size="3em" color={Colors.tealc} />
+      <Container maxWidth={"lg"} style={{ minHeight: "60vh", position: "relative" }}>
+        <Box display="flex" justifyContent="space-between" style={{ position: "absolute", zIndex: 1000 }}>
+          <FiChevronLeft size="3em" color={Colors.tealc} style={{ cursor: "pointer" }} onClick={handleGoLeft} />
+          <FiChevronRight size="3em" color={Colors.tealc} style={{ cursor: "pointer" }} />
         </Box>
-        <Box style={{ position: "relative" }}>
+        <Box >
           {!errorImage && (
             <CarouselProvider
               naturalSlideHeight={40}
