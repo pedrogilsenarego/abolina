@@ -5,8 +5,8 @@ import { Colors } from "../../constants/pallette";
 
 const About = () => {
   return (
-    <Container maxWidth='md' >
-      <Box display="flex" justifyContent="start">
+    <Container maxWidth='md'>
+      <Box display='flex' justifyContent='start'>
         <GStyled.Title>{i18n.t("menuBar.about")}</GStyled.Title>
       </Box>
       <Typography
@@ -15,9 +15,11 @@ const About = () => {
       >
         {i18n.t("modules.about.mainText")}
       </Typography>
-      <Grid container columnSpacing={4} style={{ marginTop: "40px" }}>
+      <Grid container columnSpacing={4} style={{ marginTop: "40px", }}>
         <Grid item xs={12} sm={4}>
-          <Card style={{ backgroundColor: Colors.roastedYellow, padding: "20px" }}>
+          <Card
+            style={{ backgroundColor: Colors.roastedYellow, padding: "20px" }}
+          >
             <GStyled.Title fontSize='16px'>
               {i18n.t("modules.about.secondTitle")}
             </GStyled.Title>
@@ -27,10 +29,13 @@ const About = () => {
             >
               {i18n.t("modules.about.second")}
             </Typography>
-          </Card></Grid>
+          </Card>
+        </Grid>
         <Grid item xs={12} sm={4}>
-          <Card style={{ backgroundColor: Colors.roastedYellow, padding: "20px" }}>
-            <GStyled.Title fontSize='16px' >
+          <Card
+            style={{ backgroundColor: Colors.roastedYellow, padding: "20px", }}
+          >
+            <GStyled.Title fontSize='16px'>
               {i18n.t("modules.about.thirdTitle")}
             </GStyled.Title>
             <Typography
@@ -42,8 +47,10 @@ const About = () => {
           </Card>
         </Grid>
         <Grid item xs={12} sm={4}>
-          <Card style={{ backgroundColor: Colors.roastedYellow, padding: "20px" }}>
-            <GStyled.Title fontSize='16px' >
+          <Card
+            style={{ backgroundColor: Colors.roastedYellow, padding: "20px" }}
+          >
+            <GStyled.Title fontSize='16px'>
               {i18n.t("modules.about.forthTitle")}
             </GStyled.Title>
             <Typography
