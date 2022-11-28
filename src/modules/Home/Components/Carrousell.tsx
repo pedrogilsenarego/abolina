@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import { Box, Container, useMediaQuery, useTheme } from "@mui/material";
 import "./styles.scss";
 import { Colors } from "../../../constants/pallette";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi"
-
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 const Carrousell = () => {
   const NO_IMAGE =
@@ -45,18 +44,50 @@ const Carrousell = () => {
   }, [mainImage]);
 
   const handleGoLeft = () => {
-    setIndexMini(0)
-  }
+    if (indexMini > 0) { setIndexMini(indexMini - 1); }
+    return
+
+  };
+  const handleGoRight = () => {
+    if (indexMini < images.length - 1) {
+      setIndexMini(indexMini + 1);
+    }
+    return
+  };
+
+  console.log(indexMini)
 
   return (
     <>
+      <Container
+        maxWidth={"lg"}
+        style={{ minHeight: "60vh", position: "relative" }}
+      >
+        <Box
+          display='flex'
+          justifyContent='space-between'
+          style={{
+            width: "100%",
+            position: "absolute",
 
-      <Container maxWidth={"lg"} style={{ minHeight: "60vh", position: "relative" }}>
-        <Box display="flex" justifyContent="space-between" style={{ position: "absolute", zIndex: 1000 }}>
-          <FiChevronLeft size="3em" color={Colors.tealc} style={{ cursor: "pointer" }} onClick={handleGoLeft} />
-          <FiChevronRight size="3em" color={Colors.tealc} style={{ cursor: "pointer" }} />
+            bottom: "53%",
+            zIndex: "1000",
+          }}
+        >
+          <FiChevronLeft
+            size='2.5em'
+            color={Colors.tealc}
+            style={{ cursor: "pointer" }}
+            onClick={handleGoLeft}
+          />
+          <FiChevronRight
+            size='2.5em'
+            color={Colors.tealc}
+            style={{ cursor: "pointer" }}
+            onClick={handleGoRight}
+          />
         </Box>
-        <Box >
+        <Box>
           {!errorImage && (
             <CarouselProvider
               naturalSlideHeight={40}
