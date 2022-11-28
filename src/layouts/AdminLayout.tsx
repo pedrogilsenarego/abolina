@@ -1,5 +1,3 @@
-import Footer from "../presentational/Footer";
-import TopBar from "../presentational/TopBar";
 import { Grid } from "@mui/material";
 
 const AdminLayout = (props: any) => {
