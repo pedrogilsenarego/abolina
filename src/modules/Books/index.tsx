@@ -1,7 +1,10 @@
-const Books = () => {
+import { useNavigate } from "react-router"
+import { ROUTE_PATHS } from "../../constants/routes"
 
+const Books = () => {
+  const Navigate = useNavigate()
   return (
-    <>Books</>
+    <div onClick={() => Navigate(ROUTE_PATHS.BOOKS_BOOK)}>Books</div>
   )
 }
 

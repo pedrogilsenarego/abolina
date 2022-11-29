@@ -15,12 +15,12 @@ const About = () => {
       >
         {i18n.t("modules.about.mainText")}
       </Typography>
-      <Grid container columnSpacing={4} style={{ marginTop: "40px", }}>
-        <Grid item xs={12} sm={4}>
+      <Grid container columnSpacing={4} rowSpacing={4} style={{ marginTop: "40px", }}>
+        <Grid item xs={12} md={4}>
           <Card
             style={{ backgroundColor: Colors.roastedYellow, padding: "20px" }}
           >
-            <GStyled.Title fontSize='16px'>
+            <GStyled.Title fontSize='16px' style={{ fontWeight: 700 }}>
               {i18n.t("modules.about.secondTitle")}
             </GStyled.Title>
             <Typography
@@ -31,11 +31,11 @@ const About = () => {
             </Typography>
           </Card>
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} md={4}>
           <Card
             style={{ backgroundColor: Colors.roastedYellow, padding: "20px", }}
           >
-            <GStyled.Title fontSize='16px'>
+            <GStyled.Title fontSize='16px' style={{ fontWeight: 700 }}>
               {i18n.t("modules.about.thirdTitle")}
             </GStyled.Title>
             <Typography
@@ -46,11 +46,11 @@ const About = () => {
             </Typography>
           </Card>
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} md={4}>
           <Card
             style={{ backgroundColor: Colors.roastedYellow, padding: "20px" }}
           >
-            <GStyled.Title fontSize='16px'>
+            <GStyled.Title fontSize='16px' style={{ fontWeight: 700 }}>
               {i18n.t("modules.about.forthTitle")}
             </GStyled.Title>
             <Typography
