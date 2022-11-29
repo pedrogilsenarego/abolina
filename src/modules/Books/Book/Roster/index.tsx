@@ -2,13 +2,17 @@ import { Grid, Container, Box, Typography } from "@mui/material";
 import * as GStyled from "../../../../styles";
 import { i18n } from "../../../../translations/i18n";
 import CollectionBrowser from "./CollectionBrowser";
+import CardMedia from "../../../../components/CardMedia";
 
 const Roster = () => {
+  const NO_IMAGE = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbh3GAPtK7QrdkExHGr4LIms8QEOrFJytFvA&usqp=CAU";
+
+
   return (
     <Container>
-      <Grid container>
+      <Grid container columnSpacing={2}>
         <Grid item xs={12} md={8}>
-          Teste
+          <CardMedia image={NO_IMAGE} height="auto" />
         </Grid>
         <Grid item xs={12} md={4} textAlign='start'>
           <GStyled.Title fontSize='18px' style={{ fontWeight: 700 }}>
