@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material"
+import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material"
 import { Colors } from "../../../constants/pallette";
 import { i18n } from "../../../translations/i18n";
 import InstaAvatar from "../../../components/InstaAvatar";
@@ -10,13 +10,16 @@ const Right = () => {
     window.location.reload();
   }
 
+  const Theme = useTheme()
+  const mobile = useMediaQuery(Theme.breakpoints.down("sm"))
+
   return (
     <Grid container>
-      <Grid item>
+      {!mobile && <Grid item>
         <Box style={{ borderRight: "solid 2px", paddingRight: "10px", borderColor: "white" }}>
           <InstaAvatar backgroundColor="white" color={Colors.tealc} />
         </Box>
-      </Grid>
+      </Grid>}
       <Grid>
         <Box style={{ paddingLeft: "10px", borderColor: "white" }}>
           <Typography color="white" onClick={() => changeLanguage('pt')} style={{ cursor: "pointer" }}>PT</Typography>

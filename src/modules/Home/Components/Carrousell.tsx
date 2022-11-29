@@ -8,7 +8,7 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 const Carrousell = () => {
   const NO_IMAGE =
-    "https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png";
+    "https://cdn.pixabay.com/photo/2015/04/19/08/33/flower-729512__340.jpg";
 
   const images = [NO_IMAGE, NO_IMAGE, NO_IMAGE];
   const [errorImage, setErrorImage] = useState(false);
@@ -68,9 +68,9 @@ const Carrousell = () => {
           display='flex'
           justifyContent='space-between'
           style={{
-            width: "100%",
+            width: "104%",
             position: "absolute",
-            left: 0,
+            left: "-2%",
 
             bottom: "53%",
             zIndex: 1000,
@@ -89,7 +89,7 @@ const Carrousell = () => {
             onClick={handleGoRight}
           />
         </Box>}
-        <Box>
+        <Box style={{}}>
           {!errorImage && (
             <CarouselProvider
               naturalSlideHeight={40}
@@ -104,20 +104,24 @@ const Carrousell = () => {
               <Slider
                 onMouseDown={(e) => mouseDownCoords(e)}
                 onMouseUp={(e) => clickOrDrag(e)}
+                style={{ boxShadow: "4px 4px 4px #00000066", borderRadius: "4px", }}
               >
                 {images.map((image, pos) => {
                   return (
                     <Slide
                       index={pos}
                       style={{
+
                         height: mobile
                           ? IMAGE_HEIGHT_MOBILE
                           : IMAGE_HEIGHT_LAPTOP,
                       }}
                     >
+
                       <img
                         onError={handleOnImgError}
                         style={{
+
                           width: "100%",
                           objectFit: "cover",
                           height: "100%",
@@ -126,6 +130,7 @@ const Carrousell = () => {
                         src={mainImage}
                         alt=''
                       />
+
                     </Slide>
                   );
                 })}
@@ -135,7 +140,7 @@ const Carrousell = () => {
                 <Box
                   display='flex'
                   justifyContent='center'
-                  style={{ marginTop: "5px" }}
+                  style={{ marginTop: "35px" }}
                 >
                   <DotGroup
                     className='prc-dotGroup'
