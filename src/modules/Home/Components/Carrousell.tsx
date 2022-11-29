@@ -61,32 +61,34 @@ const Carrousell = () => {
     <>
       <Container
         maxWidth={"lg"}
+
         style={{ minHeight: "60vh", position: "relative" }}
       >
-        <Box
+        {!mobile && <Box
           display='flex'
           justifyContent='space-between'
           style={{
             width: "100%",
             position: "absolute",
+            left: 0,
 
             bottom: "53%",
-            zIndex: "1000",
+            zIndex: 1000,
           }}
         >
           <FiChevronLeft
-            size='2.5em'
+            size='3em'
             color={Colors.tealc}
             style={{ cursor: "pointer" }}
             onClick={handleGoLeft}
           />
           <FiChevronRight
-            size='2.5em'
+            size='3em'
             color={Colors.tealc}
             style={{ cursor: "pointer" }}
             onClick={handleGoRight}
           />
-        </Box>
+        </Box>}
         <Box>
           {!errorImage && (
             <CarouselProvider

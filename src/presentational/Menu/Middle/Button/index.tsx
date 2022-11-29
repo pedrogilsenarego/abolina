@@ -1,5 +1,4 @@
 import { Typography } from "@mui/material";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 
 
@@ -11,13 +10,12 @@ interface Props {
 
 const Button = ({ title, path }: Props) => {
   const navigate = useNavigate()
-  const [hover, setHover] = useState<boolean>(false);
+
   return (
     <>
       <Typography
-        style={{ color: hover ? "yellow" : "whiteSmoke", cursor: "pointer" }}
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
+        style={{ color: "whiteSmoke", cursor: "pointer" }}
+
         onClick={() => navigate(path)}
       >
         {title}

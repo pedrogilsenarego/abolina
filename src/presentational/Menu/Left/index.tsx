@@ -12,8 +12,9 @@ const Left = ({ height }: Props) => {
   return (
     <CardMedia component="img"
       height={height || "35"}
-      onClick={() => navigate(ROUTE_PATHS.ADMIN)}
+      onClick={() => navigate(ROUTE_PATHS.HOME)}
       image={logo}
+      style={{ cursor: "pointer" }}
       alt="logo"></CardMedia>
   )
 }
