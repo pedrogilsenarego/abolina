@@ -3,16 +3,51 @@ import * as GStyled from "../../../../styles";
 import { i18n } from "../../../../translations/i18n";
 import CollectionBrowser from "./CollectionBrowser";
 import CardMedia from "../../../../components/CardMedia";
+import { Colors } from "../../../../constants/pallette";
 
 const Roster = () => {
-  const NO_IMAGE = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbh3GAPtK7QrdkExHGr4LIms8QEOrFJytFvA&usqp=CAU";
-
+  const NO_IMAGE =
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbh3GAPtK7QrdkExHGr4LIms8QEOrFJytFvA&usqp=CAU";
 
   return (
     <Container>
       <Grid container columnSpacing={2}>
-        <Grid item xs={12} md={8}>
-          <CardMedia image={NO_IMAGE} height="auto" />
+        <Grid item xs={12} md={8} style={{ position: "relative" }}>
+          <Box
+            style={{
+              position: "absolute",
+              zIndex: 1000,
+              backgroundColor: Colors.tealc,
+              top: 30,
+              left: -10,
+              padding: "10px",
+              borderRadius: "3px",
+              cursor: "pointer"
+            }}
+          >
+
+            <Typography style={{ color: "white", fontSize: "16px" }}>
+              {i18n.t("modules.books.book.bookBrowser")}
+            </Typography>
+          </Box>
+          <Box
+            style={{
+              position: "absolute",
+              zIndex: 1000,
+              backgroundColor: Colors.tealc,
+              top: 90,
+              left: -10,
+              padding: "5px",
+              borderRadius: "3px",
+
+            }}
+          >
+
+            <Typography style={{ color: "white", fontSize: "12px" }}>
+              {i18n.t("modules.books.book.new")}
+            </Typography>
+          </Box>
+          <CardMedia image={NO_IMAGE} height='auto' />
         </Grid>
         <Grid item xs={12} md={4} textAlign='start'>
           <GStyled.Title fontSize='18px' style={{ fontWeight: 700 }}>

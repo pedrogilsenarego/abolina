@@ -63,6 +63,8 @@ export const content = {
             weight: "Weight:",
             size: "Size",
             collectionBrowser: "More from Collection",
+            bookBrowser: "View the Book",
+            new: "New",
             title: "Resume",
             writer: "Writer",
             designer: "Designer",

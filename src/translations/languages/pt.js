@@ -64,6 +64,8 @@ export const content = {
             weight: "Peso:",
             size: "Dimensões:",
             collectionBrowser: "Mais da Coleção",
+            bookBrowser: "Folhear o Livro",
+            new: "Novo",
             title: "Descrição",
             writer: "Autor",
             designer: "Ilustrador",
