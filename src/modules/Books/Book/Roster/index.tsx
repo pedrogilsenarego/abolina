@@ -22,7 +22,8 @@ const Roster = () => {
               left: -10,
               padding: "10px",
               borderRadius: "3px",
-              cursor: "pointer"
+              cursor: "pointer",
+              boxShadow: "2px 2px 2px #00000066"
             }}
           >
 
@@ -39,7 +40,7 @@ const Roster = () => {
               left: -10,
               padding: "5px",
               borderRadius: "3px",
-
+              boxShadow: "1px 1px 1px #00000066"
             }}
           >
 
