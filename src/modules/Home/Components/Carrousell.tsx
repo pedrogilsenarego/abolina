@@ -14,6 +14,7 @@ const Carrousell = () => {
   const [errorImage, setErrorImage] = useState(false);
   const [indexMini, setIndexMini] = useState(0);
   const [mainImage, setMainImage] = useState(images[0]);
+  const [hover, setHover] = useState<boolean>(false);
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
 
@@ -44,51 +45,53 @@ const Carrousell = () => {
   }, [mainImage]);
 
   const handleGoLeft = () => {
-    if (indexMini > 0) { setIndexMini(indexMini - 1); }
-    return
-
+    if (indexMini > 0) {
+      setIndexMini(indexMini - 1);
+    }
+    return;
   };
   const handleGoRight = () => {
     if (indexMini < images.length - 1) {
       setIndexMini(indexMini + 1);
     }
-    return
+    return;
   };
 
-  console.log(indexMini)
+  console.log(indexMini);
 
   return (
     <>
       <Container
         maxWidth={"lg"}
-
         style={{ minHeight: "60vh", position: "relative" }}
       >
-        {!mobile && <Box
-          display='flex'
-          justifyContent='space-between'
-          style={{
-            width: "104%",
-            position: "absolute",
-            left: "-2%",
+        {!mobile && (
+          <Box
+            display='flex'
+            justifyContent='space-between'
+            style={{
+              width: "104%",
+              position: "absolute",
+              left: "-2%",
 
-            bottom: "53%",
-            zIndex: 1000,
-          }}
-        >
-          <FiChevronLeft
-            size='3em'
-            color={Colors.tealc}
-            style={{ cursor: "pointer" }}
-            onClick={handleGoLeft}
-          />
-          <FiChevronRight
-            size='3em'
-            color={Colors.tealc}
-            style={{ cursor: "pointer" }}
-            onClick={handleGoRight}
-          />
-        </Box>}
+              bottom: "56%",
+              zIndex: 1000,
+            }}
+          >
+            <FiChevronLeft
+              size='3em'
+              color={Colors.tealc}
+              style={{ cursor: "pointer" }}
+              onClick={handleGoLeft}
+            />
+            <FiChevronRight
+              size='3em'
+              color={Colors.tealc}
+              style={{ cursor: "pointer" }}
+              onClick={handleGoRight}
+            />
+          </Box>
+        )}
         <Box style={{}}>
           {!errorImage && (
             <CarouselProvider
@@ -104,24 +107,27 @@ const Carrousell = () => {
               <Slider
                 onMouseDown={(e) => mouseDownCoords(e)}
                 onMouseUp={(e) => clickOrDrag(e)}
-                style={{ boxShadow: "4px 4px 4px #00000066", borderRadius: "4px", }}
+                onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => setHover(false)}
+                style={{
+                  boxShadow: hover ? "14px 24px 14px #00000066" : "4px 4px 4px #00000066",
+                  borderRadius: "4px",
+                  transform: hover ? "translate(-10px,-20px)" : null
+                }}
               >
                 {images.map((image, pos) => {
                   return (
                     <Slide
                       index={pos}
                       style={{
-
                         height: mobile
                           ? IMAGE_HEIGHT_MOBILE
                           : IMAGE_HEIGHT_LAPTOP,
                       }}
                     >
-
                       <img
                         onError={handleOnImgError}
                         style={{
-
                           width: "100%",
                           objectFit: "cover",
                           height: "100%",
@@ -130,7 +136,6 @@ const Carrousell = () => {
                         src={mainImage}
                         alt=''
                       />
-
                     </Slide>
                   );
                 })}
