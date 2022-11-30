@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
 import { Colors } from "../../constants/pallette";
 import { useState } from "react";
-import { BsChevronCompactLeft } from "react-icons/bs"
+import { BsChevronCompactLeft } from "react-icons/bs";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 type Props = {
@@ -39,7 +39,7 @@ const DrawerMine = ({
         padding: noPadding ? "0px" : "10px",
         paddingTop: "6vh",
         overflowY: "auto",
-        borderRadius: topRadius ? "20px 20px 0 0" : "0 0 0 0",
+        borderRadius: "0 10px 10px 0",
       }}
       role='presentation'
     >
@@ -70,7 +70,9 @@ const DrawerMine = ({
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
     if (isLeftSwipe || isRightSwipe)
-      if (isLeftSwipe) { handleClose() }
+      if (isLeftSwipe) {
+        handleClose();
+      }
   };
 
   return (
@@ -93,7 +95,11 @@ const DrawerMine = ({
         open={openDrawer}
         onClose={handleClose}
       >
-        <BsChevronCompactLeft color="whiteSmoke" size="2em" style={{ position: "absolute", right: -8, top: "50%" }} />
+        <BsChevronCompactLeft
+          color='whiteSmoke'
+          size='2em'
+          style={{ position: "absolute", right: -8, top: "50%" }}
+        />
         {list()}
       </Drawer>
     </div>

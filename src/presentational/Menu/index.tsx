@@ -33,7 +33,6 @@ const Menu = () => {
           <Grid container columnSpacing={1} justifyContent="center" alignItems="center" style={{ height: "80px" }}>
             <Grid item xs={2}><FiMenu size="2em" color="white" onClick={() => setOpenDrawer(true)} /></Grid>
             <Grid item xs={9}><Left height="auto" /></Grid>
-
             <Grid item xs={1} textAlign="right"><Typography color="whitesmoke" fontSize="12px">PT</Typography></Grid>
           </Grid>
         </Container>

@@ -11,6 +11,7 @@ export const content = {
         books: "Books",
         about: "About",
         contacts: "Contacts",
+        instagram: "Instagram",
       },
       footer: {
         second: {
