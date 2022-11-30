@@ -61,8 +61,6 @@ const Carrousell = () => {
     return;
   };
 
-  console.log(indexMini);
-
   return (
     <>
       <Container
@@ -123,6 +121,7 @@ const Carrousell = () => {
                 {images.map((image, pos) => {
                   return (
                     <Slide
+                      key={pos}
                       index={pos}
                       style={{
                         height: mobile

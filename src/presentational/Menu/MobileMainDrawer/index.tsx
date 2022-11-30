@@ -9,10 +9,10 @@ import Right from "../Right"
 interface Props {
   openDrawer: boolean;
   setOpenDrawer: (openDrawer: boolean) => void;
-  setLang: (lang: string) => void
+
 }
 
-const MobileMainDrawer = ({ openDrawer, setOpenDrawer, setLang }: Props) => {
+const MobileMainDrawer = ({ openDrawer, setOpenDrawer }: Props) => {
   return (
     <>
       <DrawerMine
@@ -45,7 +45,7 @@ const MobileMainDrawer = ({ openDrawer, setOpenDrawer, setLang }: Props) => {
           </Box>
         </Box>
         <Box display="flex" justifyContent="center" style={{ marginTop: "220px" }}>
-          <Right setLang={setLang} />
+          <Right />
         </Box>
       </DrawerMine>
     </>

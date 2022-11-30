@@ -6,12 +6,17 @@ import Right from "./Right";
 import Middle from "./Middle";
 import MobileMainDrawer from "./MobileMainDrawer";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { State } from "../../slicer/types";
 
 const Menu = () => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
-  const [lang, setLang] = useState<string>("PT")
   const Theme = useTheme()
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"))
+
+  const lang = useSelector<State, string>(
+    (state) => state.general.lang || "PT"
+  )
 
   const laptopRender = () => {
     return (
@@ -20,7 +25,7 @@ const Menu = () => {
           <Grid container justifyContent="space-between" alignItems="center" style={{ height: "80px" }}>
             <Grid item><Left /></Grid>
             <Grid item><Middle setOpenDrawer={setOpenDrawer} /></Grid>
-            <Grid item><Right setLang={setLang} /></Grid>
+            <Grid item><Right /></Grid>
           </Grid>
         </Container>
       </Box>
@@ -44,7 +49,7 @@ const Menu = () => {
   return (
     <>
       {mobile ? mobileRender() : laptopRender()}
-      <MobileMainDrawer openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} setLang={setLang} /></>
+      <MobileMainDrawer openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} /></>
   );
 };
 

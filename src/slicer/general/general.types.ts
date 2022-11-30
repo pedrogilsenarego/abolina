@@ -13,4 +13,8 @@ const generalTypes = {
   UPDATE_LANG: "UPDATE_LANG"
 };
 
+export interface GeneralState {
+  lang: string
+}
+
 export default generalTypes;
