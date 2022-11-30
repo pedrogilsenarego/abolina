@@ -114,9 +114,9 @@ const Carrousell = () => {
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
                 style={{
-                  boxShadow: hover ? "10px 16px 10px #00000066" : "4px 4px 4px #00000066",
+                  boxShadow: hover && !mobile ? "10px 16px 10px #00000066" : "4px 4px 4px #00000066",
                   borderRadius: "4px",
-                  transform: hover ? "translate(-6px,-12px)" : null,
+                  transform: hover && !mobile ? "translate(-6px,-12px)" : null,
                   transition: "all 0.2s ease-in"
                 }}
               >

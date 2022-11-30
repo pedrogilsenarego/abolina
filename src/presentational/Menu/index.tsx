@@ -1,4 +1,4 @@
-import { Box, Grid, Container, useTheme, useMediaQuery } from "@mui/material";
+import { Box, Grid, Container, useTheme, useMediaQuery, Typography } from "@mui/material";
 import { FiMenu } from "react-icons/fi"
 import { Colors } from "../../constants/pallette";
 import Left from "./Left"
@@ -28,13 +28,13 @@ const Menu = () => {
 
   const mobileRender = () => {
     return (
-      <Box sx={{ flexGrow: 1, backgroundColor: Colors.tealc }}>
+      <Box sx={{ backgroundColor: Colors.tealc }}>
         <Container>
-          <Grid container justifyContent="space-between" alignItems="center" style={{ height: "80px" }}>
-            <Grid item><FiMenu size="2em" color="white" onClick={() => setOpenDrawer(true)} /></Grid>
-            <Grid item><Left height="45" /></Grid>
+          <Grid container columnSpacing={1} justifyContent="center" alignItems="center" style={{ height: "80px" }}>
+            <Grid item xs={2}><FiMenu size="2em" color="white" onClick={() => setOpenDrawer(true)} /></Grid>
+            <Grid item xs={9}><Left height="auto" /></Grid>
 
-            <Grid item><Right /></Grid>
+            <Grid item xs={1} textAlign="right"><Typography color="whitesmoke" fontSize="12px">PT</Typography></Grid>
           </Grid>
         </Container>
       </Box>
