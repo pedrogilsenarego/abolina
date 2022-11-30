@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom"
 
 
@@ -11,11 +11,13 @@ interface Props {
 
 const Button = ({ title, path, setOpenDrawer }: Props) => {
   const navigate = useNavigate()
+  const Theme = useTheme()
+  const mobile = useMediaQuery(Theme.breakpoints.down("sm"))
 
   return (
     <>
       <Typography
-        style={{ color: "whiteSmoke", cursor: "pointer" }}
+        style={{ color: "whiteSmoke", cursor: "pointer", fontSize: mobile ? "34px" : "18px" }}
 
         onClick={() => { navigate(path); setOpenDrawer(false) }}
       >

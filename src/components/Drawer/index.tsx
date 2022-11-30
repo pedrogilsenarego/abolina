@@ -37,6 +37,7 @@ const DrawerMine = ({
         height: fullHeight ? "100vh" : "auto",
         backgroundColor: Colors.tealc,
         padding: noPadding ? "0px" : "10px",
+        paddingTop: "6vh",
         overflowY: "auto",
         borderRadius: topRadius ? "20px 20px 0 0" : "0 0 0 0",
       }}
