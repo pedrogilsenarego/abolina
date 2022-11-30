@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
-import { ArrowDropUp } from "@mui/icons-material";
 import { useState } from "react";
+import { Colors } from "../../constants/pallette";
+import { BsCaretUpFill } from "react-icons/bs"
 
 
 const UpScroller = () => {
@@ -22,9 +23,10 @@ const UpScroller = () => {
       style={{
         marginLeft: "2%",
         marginTop: "90vh",
-        border: "solid 2px",
+        border: `solid 2px ${Colors.tealc}`,
         borderRadius: "4px",
         width: "30px",
+        zIndex: 2000,
         height: "30px",
         cursor: "pointer",
         backgroundColor: hover ? "#0000001A" : "transparent"
@@ -32,7 +34,7 @@ const UpScroller = () => {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <ArrowDropUp onClick={() => moveTop()} />
+      <BsCaretUpFill onClick={() => moveTop()} color={Colors.tealc} size="0.7em" />
     </Box>
   );
 };

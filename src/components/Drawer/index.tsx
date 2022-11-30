@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Box } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
+import { Colors } from "../../constants/pallette";
 
 
 type Anchor = "top" | "left" | "bottom" | "right";
@@ -34,7 +35,7 @@ const DrawerMine = ({
       sx={{
         width: fullWidth ? "100vw" : "auto",
         height: fullHeight ? "100vh" : "auto",
-        backgroundColor: "#18161E",
+        backgroundColor: Colors.tealc,
         padding: noPadding ? "0px" : "10px",
         overflowY: "auto",
         borderRadius: topRadius ? "20px 20px 0 0" : "0 0 0 0",

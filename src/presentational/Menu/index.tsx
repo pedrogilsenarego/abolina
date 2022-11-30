@@ -18,7 +18,7 @@ const Menu = () => {
         <Container>
           <Grid container justifyContent="space-between" alignItems="center" style={{ height: "80px" }}>
             <Grid item><Left /></Grid>
-            <Grid item><Middle /></Grid>
+            <Grid item><Middle setOpenDrawer={setOpenDrawer} /></Grid>
             <Grid item><Right /></Grid>
           </Grid>
         </Container>

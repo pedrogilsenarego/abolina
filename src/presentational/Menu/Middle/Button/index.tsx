@@ -6,9 +6,10 @@ import { useNavigate } from "react-router-dom"
 interface Props {
   title: string;
   path: string;
+  setOpenDrawer: (openDrawer: boolean) => void
 }
 
-const Button = ({ title, path }: Props) => {
+const Button = ({ title, path, setOpenDrawer }: Props) => {
   const navigate = useNavigate()
 
   return (
@@ -16,7 +17,7 @@ const Button = ({ title, path }: Props) => {
       <Typography
         style={{ color: "whiteSmoke", cursor: "pointer" }}
 
-        onClick={() => navigate(path)}
+        onClick={() => { navigate(path); setOpenDrawer(false) }}
       >
         {title}
       </Typography>

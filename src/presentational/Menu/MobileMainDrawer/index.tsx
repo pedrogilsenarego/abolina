@@ -1,4 +1,5 @@
 import DrawerMine from "../../../components/Drawer"
+import Middle from "../Middle"
 
 interface Props {
   openDrawer: boolean;
@@ -9,8 +10,8 @@ const MobileMainDrawer = ({ openDrawer, setOpenDrawer }: Props) => {
 
   return (
     <>
-      <DrawerMine position="left" openDrawer={openDrawer} setOpenDrawer={setOpenDrawer}>
-        Teste
+      <DrawerMine position="left" openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} fullHeight>
+        <Middle mobile setOpenDrawer={setOpenDrawer} />
       </DrawerMine>
     </>
   )
