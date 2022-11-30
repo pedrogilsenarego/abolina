@@ -1,14 +1,15 @@
-import { Grid } from "@mui/material";
+import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import { i18n } from "../../../translations/i18n";
 import Button from "./Button";
 import { ROUTE_PATHS } from "../../../constants/routes";
 
 interface Props {
-  mobile?: boolean;
   setOpenDrawer: (openDrawer: boolean) => void;
 }
 
-const Middle = ({ mobile, setOpenDrawer }: Props) => {
+const Middle = ({ setOpenDrawer }: Props) => {
+  const Theme = useTheme()
+  const mobile = useMediaQuery(Theme.breakpoints.down("sm"))
   return (
     <>
       <Grid
@@ -47,6 +48,8 @@ const Middle = ({ mobile, setOpenDrawer }: Props) => {
             setOpenDrawer={setOpenDrawer}
           />
         </Grid>
+
+
       </Grid>
     </>
   );

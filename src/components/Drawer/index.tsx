@@ -2,7 +2,8 @@ import * as React from "react";
 import { Box } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
 import { Colors } from "../../constants/pallette";
-
+import { useState } from "react";
+import { BsChevronCompactLeft } from "react-icons/bs"
 
 type Anchor = "top" | "left" | "bottom" | "right";
 type Props = {
@@ -28,7 +29,6 @@ const DrawerMine = ({
   clearBackground,
   topRadius,
 }: Props) => {
-
   const list = () => (
     <Box
       component='div'
@@ -41,7 +41,6 @@ const DrawerMine = ({
         overflowY: "auto",
         borderRadius: topRadius ? "20px 20px 0 0" : "0 0 0 0",
       }}
-
       role='presentation'
     >
       {children}
@@ -52,24 +51,49 @@ const DrawerMine = ({
     setOpenDrawer(false);
   };
 
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  // the required distance between touchStart and touchEnd to be detected as a swipe
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: any) => {
+    setTouchEnd(null); // otherwise the swipe is fired even with usual touch events
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: any) => setTouchEnd(e.targetTouches[0].clientX);
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    if (isLeftSwipe || isRightSwipe)
+      if (isLeftSwipe) { handleClose() }
+  };
+
   return (
     <div>
       <Drawer
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
         BackdropProps={{
           style: {
-
             backgroundColor: clearBackground ? "transparent" : "#00000066",
           },
         }}
         sx={{
           "& .MuiPaper-root": {
-            backgroundColor: "transparent"
-          }
+            backgroundColor: "transparent",
+          },
         }}
         anchor={position}
         open={openDrawer}
         onClose={handleClose}
       >
+        <BsChevronCompactLeft color="whiteSmoke" size="2em" style={{ position: "absolute", right: -8, top: "50%" }} />
         {list()}
       </Drawer>
     </div>

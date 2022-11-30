@@ -11,7 +11,7 @@ const MobileMainDrawer = ({ openDrawer, setOpenDrawer }: Props) => {
   return (
     <>
       <DrawerMine position="left" openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} fullHeight>
-        <Middle mobile setOpenDrawer={setOpenDrawer} />
+        <Middle setOpenDrawer={setOpenDrawer} />
       </DrawerMine>
     </>
   )
