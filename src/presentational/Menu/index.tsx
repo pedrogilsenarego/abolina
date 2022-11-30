@@ -9,6 +9,7 @@ import { useState } from "react";
 
 const Menu = () => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
+  const [lang, setLang] = useState<string>("PT")
   const Theme = useTheme()
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"))
 
@@ -19,7 +20,7 @@ const Menu = () => {
           <Grid container justifyContent="space-between" alignItems="center" style={{ height: "80px" }}>
             <Grid item><Left /></Grid>
             <Grid item><Middle setOpenDrawer={setOpenDrawer} /></Grid>
-            <Grid item><Right /></Grid>
+            <Grid item><Right setLang={setLang} /></Grid>
           </Grid>
         </Container>
       </Box>
@@ -33,7 +34,7 @@ const Menu = () => {
           <Grid container columnSpacing={1} justifyContent="center" alignItems="center" style={{ height: "80px" }}>
             <Grid item xs={2}><FiMenu size="2em" color="white" onClick={() => setOpenDrawer(true)} /></Grid>
             <Grid item xs={9}><Left height="auto" /></Grid>
-            <Grid item xs={1} textAlign="right"><Typography color="whitesmoke" fontSize="12px">PT</Typography></Grid>
+            <Grid item xs={1} textAlign="right"><Typography color="whitesmoke" fontSize="12px">{lang}</Typography></Grid>
           </Grid>
         </Container>
       </Box>
@@ -43,7 +44,7 @@ const Menu = () => {
   return (
     <>
       {mobile ? mobileRender() : laptopRender()}
-      <MobileMainDrawer openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} /></>
+      <MobileMainDrawer openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} setLang={setLang} /></>
   );
 };
 

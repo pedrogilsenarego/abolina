@@ -3,7 +3,11 @@ import { Colors } from "../../../constants/pallette";
 import { i18n } from "../../../translations/i18n";
 import InstaAvatar from "../../../components/InstaAvatar";
 
-const Right = () => {
+interface Props {
+  setLang: (lang: string) => void
+}
+
+const Right = ({ setLang }: Props) => {
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -22,11 +26,11 @@ const Right = () => {
       </Grid>}
       <Grid>
         <Box style={{ paddingLeft: "10px", borderColor: "white" }}>
-          <Typography fontSize={mobile ? "24px" : "auto"} color="white" onClick={() => changeLanguage('pt')} style={{ cursor: "pointer" }}>PT</Typography>
-          <Typography fontSize={mobile ? "24px" : "auto"} color="white" onClick={() => changeLanguage('en')} style={{ cursor: "pointer" }}>EN</Typography>
+          <Typography fontSize={mobile ? "24px" : "auto"} color="white" onClick={() => { changeLanguage('pt'); setLang("PT") }} style={{ cursor: "pointer" }}>PT</Typography>
+          <Typography fontSize={mobile ? "24px" : "auto"} color="white" onClick={() => { changeLanguage('en'); setLang("EN") }} style={{ cursor: "pointer" }}>EN</Typography>
         </Box>
       </Grid>
-    </Grid>
+    </Grid >
 
   )
 }
