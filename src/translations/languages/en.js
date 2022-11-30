@@ -14,11 +14,11 @@ export const content = {
       },
       footer: {
         second: {
-          second: "Política de Privacidade",
-          third: "@ Àbolina 2023 | Todos os direitos reservados",
+          second: "Privacy Policy",
+          third: "@ Àbolina 2023 | All rights reserved",
         },
         third: {
-          first: "Siga-nos",
+          first: "Follow us",
           second: "Este site está de acordo com o novo acordo Ortográfico",
         },
         forth: {

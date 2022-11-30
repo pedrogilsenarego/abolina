@@ -1,17 +1,16 @@
 import { Grid } from "@mui/material";
-
+import * as Styled from "../styles";
 import { i18n } from "../../../translations/i18n";
-import Button from "../../../components/Buttons/Button";
 
 const Forth = () => {
   return (
     <Grid
       container
-      direction='column'
-      justifyContent='space-between'
+      direction='row'
+      alignItems='end'
       style={{ minHeight: "100%" }}
     >
-      <Button label={i18n.t("footer.forth.button")} />
+      <Styled.STypography>{i18n.t("footer.second.third")}</Styled.STypography>
     </Grid>
   );
 };

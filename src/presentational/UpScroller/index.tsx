@@ -1,10 +1,12 @@
-import { Box } from "@mui/material";
+import { Box, useTheme, useMediaQuery } from "@mui/material";
 import { useState } from "react";
 import { Colors } from "../../constants/pallette";
 import { BsCaretUpFill } from "react-icons/bs"
 
 
 const UpScroller = () => {
+  const Theme = useTheme()
+  const mobile = useMediaQuery(Theme.breakpoints.down("sm"))
 
   const moveTop = () => {
     window.scrollTo({
@@ -21,8 +23,8 @@ const UpScroller = () => {
       display="flex"
       alignItems="center"
       style={{
-        marginLeft: "2%",
-        marginTop: "90vh",
+        marginLeft: mobile ? "86%" : "2%",
+        marginTop: mobile ? "92vh" : "90vh",
         border: `solid 2px ${Colors.tealc}`,
         borderRadius: "4px",
         width: "30px",
@@ -34,7 +36,7 @@ const UpScroller = () => {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <BsCaretUpFill onClick={() => moveTop()} color={Colors.tealc} size="0.7em" />
+      <BsCaretUpFill onClick={() => { moveTop(); setHover(false) }} color={Colors.tealc} size="0.7em" />
     </Box>
   );
 };

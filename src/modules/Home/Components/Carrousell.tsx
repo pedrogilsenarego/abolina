@@ -5,6 +5,9 @@ import { Box, Container, useMediaQuery, useTheme } from "@mui/material";
 import "./styles.scss";
 import { Colors } from "../../../constants/pallette";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { ROUTE_PATHS } from "../../../constants/routes";
+import { useNavigate } from "react-router"
+
 
 const Carrousell = () => {
   const NO_IMAGE =
@@ -17,6 +20,7 @@ const Carrousell = () => {
   const [hover, setHover] = useState<boolean>(false);
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
+  const Navigate = useNavigate()
 
   const IMAGE_HEIGHT_MOBILE = "80vh";
   const IMAGE_HEIGHT_LAPTOP = "20vh";
@@ -104,6 +108,7 @@ const Carrousell = () => {
             // style={{ position: "relative" }}
             >
               <Slider
+                onClick={() => Navigate(ROUTE_PATHS.BOOKS_BOOK)}
                 onMouseDown={(e) => mouseDownCoords(e)}
                 onMouseUp={(e) => clickOrDrag(e)}
                 onMouseEnter={() => setHover(true)}

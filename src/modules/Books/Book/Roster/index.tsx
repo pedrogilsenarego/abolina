@@ -1,4 +1,4 @@
-import { Grid, Container, Box, Typography } from "@mui/material";
+import { Grid, Container, Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import * as GStyled from "../../../../styles";
 import { i18n } from "../../../../translations/i18n";
 import CollectionBrowser from "./CollectionBrowser";
@@ -9,6 +9,9 @@ const Roster = () => {
   const NO_IMAGE =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbh3GAPtK7QrdkExHGr4LIms8QEOrFJytFvA&usqp=CAU";
 
+  const Theme = useTheme()
+  const mobile = useMediaQuery(Theme.breakpoints.down("sm"))
+
   return (
     <Container>
       <Grid container columnSpacing={2}>
@@ -18,9 +21,9 @@ const Roster = () => {
               position: "absolute",
               zIndex: 1000,
               backgroundColor: Colors.tealc,
-              top: 30,
-              left: -10,
-              padding: "10px",
+              top: mobile ? -20 : 30,
+              left: mobile ? 0 : -10,
+              padding: mobile ? "5px" : "10px",
               borderRadius: "3px",
               cursor: "pointer",
               boxShadow: "2px 2px 2px #00000066"
@@ -36,8 +39,8 @@ const Roster = () => {
               position: "absolute",
               zIndex: 1000,
               backgroundColor: Colors.tealc,
-              top: 90,
-              left: -10,
+              top: mobile ? 25 : 90,
+              left: mobile ? 0 : -10,
               padding: "5px",
               borderRadius: "3px",
               boxShadow: "1px 1px 1px #00000066"
@@ -139,7 +142,8 @@ const Roster = () => {
             flexDirection='row'
             columnGap={1}
             alignItems='center'
-            mt='80px'
+
+            mt={mobile ? "40px" : '80px'}
           >
             <CollectionBrowser />
           </Box>
