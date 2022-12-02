@@ -16,7 +16,7 @@ export const routes: AppRoute[] = [
   {
     path: ROUTE_PATHS.HOME,
     component: (
-      <MainLayout>
+      <MainLayout marginBottom="0vh">
         <Home />
       </MainLayout>
     ),
@@ -29,7 +29,7 @@ export const routes: AppRoute[] = [
   },
   {
     path: ROUTE_PATHS.BOOKS_BOOK,
-    component: <MainLayout>
+    component: <MainLayout marginBottom="0vh">
       <Book />
     </MainLayout>,
   },
