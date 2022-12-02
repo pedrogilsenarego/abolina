@@ -1,16 +1,27 @@
-import { Grid, Container, Box, Typography, useTheme, useMediaQuery } from "@mui/material";
+import {
+  Grid,
+  Container,
+  Box,
+  Typography,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import * as GStyled from "../../../../styles";
 import { i18n } from "../../../../translations/i18n";
 import CollectionBrowser from "./CollectionBrowser";
 import CardMedia from "../../../../components/CardMedia";
 import { Colors } from "../../../../constants/pallette";
 
-const Roster = () => {
+interface Props {
+  setOpenViewBook: (openViewBook: boolean) => void;
+}
+
+const Roster = ({ setOpenViewBook }: Props) => {
   const NO_IMAGE =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbh3GAPtK7QrdkExHGr4LIms8QEOrFJytFvA&usqp=CAU";
 
-  const Theme = useTheme()
-  const mobile = useMediaQuery(Theme.breakpoints.down("sm"))
+  const Theme = useTheme();
+  const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
 
   return (
     <Container>
@@ -26,11 +37,13 @@ const Roster = () => {
               padding: mobile ? "5px" : "10px",
               borderRadius: "3px",
               cursor: "pointer",
-              boxShadow: "2px 2px 2px #00000066"
+              boxShadow: "2px 2px 2px #00000066",
             }}
           >
-
-            <Typography style={{ color: "white", fontSize: "16px" }}>
+            <Typography
+              onClick={() => setOpenViewBook(true)}
+              style={{ color: "white", fontSize: "16px" }}
+            >
               {i18n.t("modules.books.book.bookBrowser")}
             </Typography>
           </Box>
@@ -43,10 +56,9 @@ const Roster = () => {
               left: mobile ? 0 : -10,
               padding: "5px",
               borderRadius: "3px",
-              boxShadow: "1px 1px 1px #00000066"
+              boxShadow: "1px 1px 1px #00000066",
             }}
           >
-
             <Typography style={{ color: "white", fontSize: "12px" }}>
               {i18n.t("modules.books.book.new")}
             </Typography>
@@ -142,10 +154,11 @@ const Roster = () => {
             flexDirection='row'
             columnGap={1}
             alignItems='center'
-
-            mt={mobile ? "40px" : '80px'}
+            mt={mobile ? "40px" : "80px"}
           >
-            <CollectionBrowser />
+            <CollectionBrowser
+              title={i18n.t("modules.books.book.collectionBrowser")}
+            />
           </Box>
         </Grid>
       </Grid>
