@@ -6,13 +6,8 @@ import sobreOndas from "../../assets/images/sobreOndas.svg"
 
 const About = () => {
   return (
-    <Box style={{ position: "relative", backgroundColor: "red" }}>
-      <Box style={{
+    <Box >
 
-        backgroundImage: `url(${sobreOndas})`,
-        backgroundSize: "cover",
-        minHeight: "30vh"
-      }} />
       <Container maxWidth='md' >
         <Box display='flex' justifyContent='start'>
           <GStyled.Title>{i18n.t("menuBar.about")}</GStyled.Title>
@@ -77,7 +72,12 @@ const About = () => {
           </Grid>
         </Grid>
       </Container>
+      <Box style={{
 
+        backgroundImage: `url(${sobreOndas})`,
+        backgroundSize: "cover",
+        minHeight: "30vh"
+      }} />
     </Box>
   );
 };
