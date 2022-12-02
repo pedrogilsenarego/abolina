@@ -4,7 +4,11 @@ import Footer from "../presentational/Footer";
 import TopBar from "../presentational/TopBar";
 import { Grid } from "@mui/material";
 
+
+
 const HomepageLayout = (props: any) => {
+
+
   return (
     <>
       <UpScroller />
@@ -25,7 +29,7 @@ const HomepageLayout = (props: any) => {
             minHeight: "60vh",
             textAlign: "center",
             marginTop: "6vh",
-            marginBottom: "15vh",
+            marginBottom: props.marginBottom || "15vh",
           }}
         >
           {props.children}

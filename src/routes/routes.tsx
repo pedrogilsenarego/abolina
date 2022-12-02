@@ -35,7 +35,7 @@ export const routes: AppRoute[] = [
   },
   {
     path: ROUTE_PATHS.ABOUT,
-    component: <MainLayout>
+    component: <MainLayout marginBottom="0vh">
       <About />
     </MainLayout>,
   },
