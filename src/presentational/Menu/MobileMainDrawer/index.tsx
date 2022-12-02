@@ -44,7 +44,7 @@ const MobileMainDrawer = ({ openDrawer, setOpenDrawer }: Props) => {
             />
           </Box>
         </Box>
-        <Box display="flex" justifyContent="center" style={{ marginTop: "220px" }}>
+        <Box display="flex" justifyContent="center" style={{ marginTop: "200px" }}>
           <Right />
         </Box>
       </DrawerMine>

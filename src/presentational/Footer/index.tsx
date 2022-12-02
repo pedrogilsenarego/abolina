@@ -6,6 +6,7 @@ import { Colors } from "../../constants/pallette";
 import * as Styled from "./styles";
 import { i18n } from "../../translations/i18n";
 import InstaAvatar from "../../components/InstaAvatar";
+import footer from "../../assets/images/footer.svg"
 
 const Footer = () => {
   const Theme = useTheme();
@@ -13,7 +14,11 @@ const Footer = () => {
 
   const renderLaptop = () => {
     return (
-      <Box style={{ backgroundColor: Colors.roastedYellow }}>
+      <Box style={{
+        backgroundImage: `url(${footer})`,
+        backgroundSize: "cover",
+
+      }}>
         <Container maxWidth='xl'>
           <Grid
             container
@@ -44,7 +49,8 @@ const Footer = () => {
         alignItems="center"
         rowGap={2}
         style={{
-          backgroundColor: Colors.roastedYellow,
+          backgroundImage: `url(${footer})`,
+          backgroundSize: "cover",
           paddingTop: "30px",
           paddingBottom: "30px",
         }}
