@@ -3,9 +3,9 @@ import { setBooks } from "./books.actions";
 import { handleFetchBooks } from "./books.helpers";
 import bookTypes from "./books.types";
 
-function* sagaFetchBooks() {
+function* sagaFetchBooks({ payload }) {
   try {
-    const books = yield handleFetchBooks();
+    const books = yield handleFetchBooks(payload);
     yield put(setBooks(books));
   } catch (err) {}
 }

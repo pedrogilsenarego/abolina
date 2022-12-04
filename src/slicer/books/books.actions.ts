@@ -1,7 +1,8 @@
 import bookTypes from "./books.types"
 
-export const fetchBooks = () => ({
+export const fetchBooks = (filters = {}) => ({
   type: bookTypes.FETCH_BOOKS,
+  payload: filters
 })
 
 export const setBooks = (books:any) => ({

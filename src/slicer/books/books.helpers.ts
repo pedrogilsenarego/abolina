@@ -6,7 +6,7 @@ export const handleFetchBooks = ({persistProducts = []}) => {
     const pageSize=10
 
     let ref = firestore
-      .collection("products")
+      .collection("books")
       .limit(pageSize);
     
     ref
