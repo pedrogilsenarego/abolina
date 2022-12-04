@@ -1,6 +1,10 @@
 import bookTypes from "./books.types"
 
-export const fetchBooks = (books:any) => ({
+export const fetchBooks = () => ({
   type: bookTypes.FETCH_BOOKS,
-  payload: books
 })
+
+export const setBooks = (books:any) => ({
+  type: bookTypes.SET_BOOKS,
+  payload: books,
+});

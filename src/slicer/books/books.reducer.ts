@@ -10,9 +10,9 @@ interface Action {
   payload: string;
 }
 
-const generalReducer = (state = INITIAL_STATE, action: Action) => {
+const booksReducer = (state = INITIAL_STATE, action: Action) => {
   switch (action.type) {
-    case bookTypes.FETCH_BOOKS:
+    case bookTypes.SET_BOOKS:
       return {
         ...state,
         books: action.payload,
@@ -23,4 +23,4 @@ const generalReducer = (state = INITIAL_STATE, action: Action) => {
   }
 };
 
-export default generalReducer;
+export default booksReducer;
