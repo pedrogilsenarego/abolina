@@ -1,8 +1,11 @@
 import { Grid } from "@mui/material";
+import AdminSideBar from "../presentational/AdminSideBar";
+
 
 const AdminLayout = (props: any) => {
   return (
     <>
+      <AdminSideBar />
       <Grid
         container
         direction='column'

@@ -1,9 +1,10 @@
-import AdminSideBar from "../../presentational/AdminSideBar"
+
+import SubmitBook from "./SubmitBook"
 
 const Admin = () => {
   return (
     <>
-      <AdminSideBar />
+      <SubmitBook />
     </>
   )
 }

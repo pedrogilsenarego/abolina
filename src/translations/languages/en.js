@@ -72,6 +72,11 @@ export const content = {
             translator: "Translator",
           },
         },
+        admin: {
+          submitBook: {
+            title: "Title",
+          },
+        },
       },
     },
   },
