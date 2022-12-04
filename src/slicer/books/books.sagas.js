@@ -14,6 +14,14 @@ export function* onFetchBooks() {
   yield takeLatest(bookTypes.FETCH_BOOKS, sagaFetchBooks);
 }
 
-export default function* booksSagas() {
+function* setBooksSagas() {
   yield all([call(onFetchBooks)]);
+}
+
+export function* onSetBooks() {
+  yield takeLatest(bookTypes.SET_BOOKS, setBooksSagas);
+}
+
+export default function* bookSagas() {
+  yield all([call(onSetBooks), call(onFetchBooks)]);
 }
