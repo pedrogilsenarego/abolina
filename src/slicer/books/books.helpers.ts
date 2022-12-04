@@ -35,3 +35,20 @@ export const handleFetchBooks = ({persistProducts = []}) => {
       });
   });
 };
+
+export const handleFetchBook = (documentID:string) => {
+  return new Promise((resolve, reject) => {
+    firestore
+      .collection("books")
+      .doc(documentID)
+      .get()
+      .then((snapshot) => {
+        if (snapshot.exists) {
+          resolve(snapshot.data());
+        }
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};

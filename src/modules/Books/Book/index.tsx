@@ -5,11 +5,25 @@ import Tile from "./Tile";
 import Roster from "./Roster";
 import livroOndas from "../../../assets/images/livroOndas.svg";
 import Popup from "../../../components/Popup";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ViewBook from "./ViewBook";
+import { useDispatch } from "react-redux";
+import { fetchBook } from "../../../slicer/books/books.actions";
+import { useParams } from "react-router";
 
-const Book = () => {
+
+const BookC = () => {
+  const dispatch = useDispatch()
   const [openViewBook, setOpenViewBook] = useState<boolean>(false);
+  const { id } = useParams()
+
+
+  useEffect(() => {
+    dispatch(fetchBook(id))
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
 
   return (
     <>
@@ -82,4 +96,4 @@ const Book = () => {
   );
 };
 
-export default Book;
+export default BookC;

@@ -11,17 +11,30 @@ import { i18n } from "../../../../translations/i18n";
 import CollectionBrowser from "./CollectionBrowser";
 import CardMedia from "../../../../components/CardMedia";
 import { Colors } from "../../../../constants/pallette";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Book } from "../../../../slicer/books/books.types";
+import { State } from "../../../../slicer/types";
 
 interface Props {
   setOpenViewBook: (openViewBook: boolean) => void;
 }
 
 const Roster = ({ setOpenViewBook }: Props) => {
-  const NO_IMAGE =
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbh3GAPtK7QrdkExHGr4LIms8QEOrFJytFvA&usqp=CAU";
+
+
+  const storeBook = useSelector<State, Book>(
+    (state) => state.books.book || {}
+  );
+  const [book, setBook] = useState<Book>();
 
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
+
+  useEffect(() => {
+    setBook(storeBook)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Container>
@@ -63,13 +76,13 @@ const Roster = ({ setOpenViewBook }: Props) => {
               {i18n.t("modules.books.book.new")}
             </Typography>
           </Box>
-          <CardMedia image={NO_IMAGE} height='auto' />
+          <CardMedia image={book?.coverPage} height='auto' />
         </Grid>
         <Grid item xs={12} md={4} textAlign='start'>
           <GStyled.Title fontSize='18px' style={{ fontWeight: 700 }}>
-            {i18n.t("modules.books.book.bookTitle")}
+            {book?.title}
           </GStyled.Title>
-          <Typography style={{ marginTop: "10px" }}>Custo $</Typography>
+          <Typography style={{ marginTop: "10px" }}>{book?.price} $</Typography>
           <Box
             display='flex'
             flexDirection='row'
@@ -80,7 +93,7 @@ const Roster = ({ setOpenViewBook }: Props) => {
             <GStyled.SubTitle style={{ fontWeight: 700 }}>
               {i18n.t("modules.books.book.text")}
             </GStyled.SubTitle>
-            <Typography>Texto</Typography>
+            <Typography>{book?.price}</Typography>
           </Box>
           <Box
             display='flex'
@@ -91,7 +104,7 @@ const Roster = ({ setOpenViewBook }: Props) => {
             <GStyled.SubTitle style={{ fontWeight: 700 }}>
               {i18n.t("modules.books.book.design")}
             </GStyled.SubTitle>
-            <Typography>Design</Typography>
+            <Typography>{book?.designer}</Typography>
           </Box>
           <Box
             display='flex'
@@ -102,7 +115,7 @@ const Roster = ({ setOpenViewBook }: Props) => {
             <GStyled.SubTitle style={{ fontWeight: 700 }}>
               {i18n.t("modules.books.book.translation")}
             </GStyled.SubTitle>
-            <Typography>Translation</Typography>
+            <Typography>{book?.translator}</Typography>
           </Box>
           <Box
             display='flex'
@@ -113,7 +126,7 @@ const Roster = ({ setOpenViewBook }: Props) => {
             <GStyled.SubTitle style={{ fontWeight: 700 }}>
               {i18n.t("modules.books.book.pages")}
             </GStyled.SubTitle>
-            <Typography>20</Typography>
+            <Typography>{book?.pages}</Typography>
           </Box>
           <Box
             display='flex'
@@ -124,7 +137,7 @@ const Roster = ({ setOpenViewBook }: Props) => {
             <GStyled.SubTitle style={{ fontWeight: 700 }}>
               {i18n.t("modules.books.book.language")}
             </GStyled.SubTitle>
-            <Typography>PT</Typography>
+            <Typography>{book?.lang}</Typography>
           </Box>
           <Box
             display='flex'
@@ -136,7 +149,7 @@ const Roster = ({ setOpenViewBook }: Props) => {
             <GStyled.SubTitle style={{ fontWeight: 700 }}>
               {i18n.t("modules.books.book.weight")}
             </GStyled.SubTitle>
-            <Typography>Peso</Typography>
+            <Typography>{book?.weight}</Typography>
           </Box>
           <Box
             display='flex'
@@ -147,7 +160,7 @@ const Roster = ({ setOpenViewBook }: Props) => {
             <GStyled.SubTitle style={{ fontWeight: 700 }}>
               {i18n.t("modules.books.book.size")}
             </GStyled.SubTitle>
-            <Typography>Dim</Typography>
+            <Typography>{book?.size}</Typography>
           </Box>
           <Box
             display='flex'

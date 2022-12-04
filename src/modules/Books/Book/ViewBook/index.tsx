@@ -1,15 +1,25 @@
 import { Box } from "@mui/material";
 import CardMedia from "../../../../components/CardMedia";
 import CollectionBrowser from "../Roster/CollectionBrowser";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { State } from "../../../../slicer/types";
+import { Book } from "../../../../slicer/books/books.types";
 
 const ViewBook = () => {
   const [page, setPage] = useState<number>(1);
-  const listImages = [
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe1k5wmbMaMZn0Iavojp73bttd5YGfu3c4sQ&usqp=CAU",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFpomfK96gWxeSSCV7VcbPd2bvDf8yhcdC_w&usqp=CAU",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9JInBuCGtKHKLNrm8hUE2RFppP6iGZzxhNg&usqp=CAU",
-  ];
+  const [book, setBook] = useState<Book>();
+
+  const listImages = book?.content || []
+
+  const storeBook = useSelector<State, Book>(
+    (state) => state.books.book || {}
+  );
+
+  useEffect(() => {
+    setBook(storeBook)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleRight = () => {
     if (page < listImages.length) {

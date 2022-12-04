@@ -2,7 +2,7 @@ import { useState } from "react";
 import { CardMedia as MuiCardMedia, Typography } from "@mui/material";
 
 interface Props {
-  image: string;
+  image: string | undefined;
   alt?: string;
   height?: string;
   onClick?: () => void

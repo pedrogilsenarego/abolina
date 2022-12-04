@@ -1,6 +1,6 @@
 import { takeLatest, put, all, call } from "redux-saga/effects";
-import { setBooks } from "./books.actions";
-import { handleFetchBooks } from "./books.helpers";
+import { setBooks, setBook } from "./books.actions";
+import { handleFetchBooks, handleFetchBook } from "./books.helpers";
 import bookTypes from "./books.types";
 
 function* sagaFetchBooks({ payload }) {
@@ -14,14 +14,19 @@ export function* onFetchBooks() {
   yield takeLatest(bookTypes.FETCH_BOOKS, sagaFetchBooks);
 }
 
-function* setBooksSagas() {
-  yield all([call(onFetchBooks)]);
+function* sagaFetchBook({ payload }) {
+  try {
+    const book = yield handleFetchBook(payload);
+    yield put(setBook(book));
+  } catch (err) {}
 }
 
-export function* onSetBooks() {
-  yield takeLatest(bookTypes.SET_BOOKS, setBooksSagas);
+export function* onFetchBook() {
+  yield takeLatest(bookTypes.FETCH_BOOK, sagaFetchBook);
 }
+
+//
 
 export default function* bookSagas() {
-  yield all([call(onSetBooks), call(onFetchBooks)]);
+  yield all([call(onFetchBooks), call(onFetchBook)]);
 }

@@ -1,8 +1,8 @@
 import bookTypes from "./books.types";
 
-
 const INITIAL_STATE = {
-  books: []
+  books: [],
+  book: {},
 };
 
 interface Action {
@@ -17,7 +17,12 @@ const booksReducer = (state = INITIAL_STATE, action: Action) => {
         ...state,
         books: action.payload,
       };
-    
+    case bookTypes.SET_BOOK:
+      return {
+        ...state,
+        book: action.payload,
+      };
+
     default:
       return state;
   }
