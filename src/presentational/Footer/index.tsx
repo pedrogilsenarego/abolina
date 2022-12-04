@@ -2,7 +2,6 @@ import { Box, Grid, Container, useTheme, useMediaQuery } from "@mui/material";
 import Second from "./Second";
 import Third from "./Third";
 import Forth from "./Forth";
-import { Colors } from "../../constants/pallette";
 import * as Styled from "./styles";
 import { i18n } from "../../translations/i18n";
 import InstaAvatar from "../../components/InstaAvatar";
