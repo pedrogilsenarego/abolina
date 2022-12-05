@@ -7,22 +7,36 @@ import livroOndas from "../../../assets/images/livroOndas.svg";
 import Popup from "../../../components/Popup";
 import { useState, useEffect } from "react";
 import ViewBook from "./ViewBook";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchBook } from "../../../slicer/books/books.actions";
 import { useParams } from "react-router";
+import { Book } from "../../../slicer/books/books.types";
+import { State } from "../../../slicer/types";
 
 
 const BookC = () => {
   const dispatch = useDispatch()
   const [openViewBook, setOpenViewBook] = useState<boolean>(false);
+  const [book, setBook] = useState<Book>();
   const { id } = useParams()
-
 
   useEffect(() => {
     dispatch(fetchBook(id))
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  const storeBook = useSelector<State, Book>(
+    (state) => state.books.book || {}
+  );
+
+
+  useEffect(() => {
+    setBook(storeBook)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+
+
 
 
   return (
@@ -48,21 +62,21 @@ const BookC = () => {
             <Grid item xs={12} md={4}>
               <Tile
                 title={i18n.t("modules.books.book.writer")}
-                name='Nome Autor'
+                name={book?.author || ""}
                 text={i18n.t("modules.about.third")}
               />
             </Grid>
             <Grid item xs={12} md={4}>
               <Tile
                 title={i18n.t("modules.books.book.designer")}
-                name='Nome Ilustrador'
+                name={book?.designer || ""}
                 text={i18n.t("modules.about.third")}
               />
             </Grid>
             <Grid item xs={12} md={4}>
               <Tile
                 title={i18n.t("modules.books.book.translator")}
-                name='Nome Tradutor'
+                name={book?.translator || ""}
                 text={i18n.t("modules.about.third")}
               />
             </Grid>

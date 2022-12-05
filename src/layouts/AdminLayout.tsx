@@ -22,7 +22,7 @@ const AdminLayout = (props: any) => {
           style={{
             minHeight: "60vh",
             textAlign: "center",
-            marginTop: "6vh",
+
             marginBottom: "15vh",
           }}
         >
