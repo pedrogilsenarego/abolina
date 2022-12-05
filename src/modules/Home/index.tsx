@@ -5,7 +5,7 @@ import { Typography, Container, Box } from "@mui/material";
 import Button from "../../components/Buttons/Button";
 import { useNavigate } from "react-router";
 import { ROUTE_PATHS } from "../../constants/routes";
-import Contacts from "../Contacts";
+import Contacts from "./Components/Contacts";
 import homeOndas1 from "../../assets/images/homeOndas1.svg"
 import homeOndas2 from "../../assets/images/homeOndas2.svg"
 

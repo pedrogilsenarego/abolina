@@ -10,7 +10,7 @@ export const content = {
         home: "Home",
         books: "Livros",
         about: "Sobre nós",
-        contacts: "Contactos",
+        contacts: "Contatos",
         instagram: "Instagram",
       },
       footer: {
