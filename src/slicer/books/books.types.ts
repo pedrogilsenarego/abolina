@@ -2,7 +2,8 @@ const bookTypes = {
   FETCH_BOOKS: "FETCH_BOOKS",
   SET_BOOKS: "SET_BOOKS",
   FETCH_BOOK: "FETCH_BOOK",
-  SET_BOOK:"SET_BOOK"
+  SET_BOOK:"SET_BOOK",
+  ADD_BOOK: "ADD_BOOK"
 }
 
 export interface Books {

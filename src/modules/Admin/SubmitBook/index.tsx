@@ -5,23 +5,25 @@ import Textfield from "../../../components/Inputs/TextField";
 import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
 import ButtonForm from "../../../components/Buttons/ButtonFormik";
+import { useDispatch } from "react-redux";
+import { addBook } from "../../../slicer/books/books.actions";
 
 const SubmitBook = () => {
   const INITIAL_FORM_STATE = {
     title: "",
-    email: "",
-    subject: "",
-    description: ""
+    author: "",
   };
 
+  const dispatch = useDispatch()
+
   const handleSubmit = (values: any) => {
-    console.log("teste", values)
+    dispatch(addBook(values))
   }
 
   return (
     <Container maxWidth='md' style={{ justifyContent: "center" }}>
       <GStyled.Title>
-        {i18n.t("modules.home.contacts.contactsTitle")}
+        {i18n.t("modules.admin.submitBook.submitTitle")}
       </GStyled.Title>
       <Formik
         initialValues={{ ...INITIAL_FORM_STATE }}
@@ -40,24 +42,11 @@ const SubmitBook = () => {
             </Box>
             <Box>
               <Textfield
-                label={i18n.t("modules.home.contacts.form.email")}
-                name='email'
+                label={i18n.t("modules.admin.submitBook.author")}
+                name='author'
               />
             </Box>
-            <Box>
-              <Textfield
-                label={i18n.t("modules.home.contacts.form.subject")}
-                name='subject'
-              />
-            </Box>
-            <Box>
-              <Textfield
-                label={i18n.t("modules.home.contacts.form.description")}
-                name='description'
-                multiline
-                rows={6}
-              />
-            </Box>
+
           </Box>
           <Box display='flex' justifyContent='start' sx={{ mt: "20px" }}>
             <ButtonForm label={i18n.t("modules.home.contacts.form.send")} />

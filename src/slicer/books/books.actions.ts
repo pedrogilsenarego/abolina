@@ -19,3 +19,8 @@ export const setBook = (book:Book) => ({
   type: bookTypes.SET_BOOK,
   payload: book,
 });
+
+export const addBook = (book:any) => ({
+  type: bookTypes.ADD_BOOK,
+  payload: book,
+});

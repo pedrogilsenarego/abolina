@@ -75,8 +75,18 @@ export const content = {
         },
         admin: {
           submitBook: {
+            submitTitle: "Submeter Livro",
             title: "Titulo",
+            author: "Escritor",
           },
+        },
+      },
+      notifications: {
+        success: {
+          newBook: "Livro adicionado com sucesso",
+        },
+        fail: {
+          newBook: "Livro não foi adicionado, algum erro ocorreu",
         },
       },
     },

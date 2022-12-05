@@ -74,8 +74,18 @@ export const content = {
         },
         admin: {
           submitBook: {
+            submitTitle: "Submit Book",
             title: "Title",
+            author: "Author",
           },
+        },
+      },
+      notifications: {
+        success: {
+          newBook: "Book added with success",
+        },
+        fail: {
+          newBook: "Somethng went wrong, the book was not added",
         },
       },
     },
