@@ -78,6 +78,7 @@ export const content = {
             submitTitle: "Submeter Livro",
             title: "Titulo",
             author: "Escritor",
+            authorResume: "Resumo do Escritor",
             designer: "Ilustrador",
             translator: "Tradutor",
             language: "Idioma",

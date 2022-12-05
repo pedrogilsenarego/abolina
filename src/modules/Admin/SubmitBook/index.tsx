@@ -1,6 +1,6 @@
 import * as GStyled from "../../../styles";
 import { i18n } from "../../../translations/i18n";
-import { Container, Box } from "@mui/material";
+import { Container, Box, Typography } from "@mui/material";
 import Textfield from "../../../components/Inputs/TextField";
 import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
@@ -14,6 +14,7 @@ const SubmitBook = () => {
   const INITIAL_FORM_STATE = {
     title: "",
     author: "",
+    authorResume: "",
     designer: "",
     translator: "",
     language: "",
@@ -25,16 +26,20 @@ const SubmitBook = () => {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (values: any) => {
-    dispatch(addBook(values));
-  };
+
   const [imageUpload, setImageUpload] = useState<any>(null);
   const [progress, setProgress] = useState(0)
+  const [title, setTitle] = useState("")
+  const [coverPage, setCoverPage] = useState("")
 
-  const uploadImage = () => {
+  const handleSubmit = (values: any) => {
+    dispatch(addBook({ ...values, coverPage }));
+  };
+
+  const uploadImage = (title: string) => {
     if (imageUpload == null) return;
     const storageRef = storage
-      .ref(`files/${imageUpload.name}`)
+      .ref(`books/${title}/${imageUpload.name}`)
       .put(imageUpload);
     storageRef.on(
       "state_changed",
@@ -44,8 +49,8 @@ const SubmitBook = () => {
       },
       (error) => console.log(error),
       () => {
-        storage.ref("files").child(imageUpload.name).getDownloadURL().then(url => {
-          console.log(url)
+        storage.ref("books").child(title).child(imageUpload.name).getDownloadURL().then(url => {
+          setCoverPage(url)
         });
       }
     );
@@ -74,12 +79,30 @@ const SubmitBook = () => {
               <Textfield
                 label={i18n.t("modules.admin.submitBook.title")}
                 name='title'
+                getValue={setTitle}
               />
+            </Box>
+            <Box>
+              <Typography>Cover Image</Typography>
+              <input
+                type='file'
+                onChange={(e: any) => setImageUpload(e?.target?.files[0])}
+              />
+              <button disabled={!title} onClick={() => uploadImage(title)}>Upload Image</button>
+              <h2>Upload: {progress}%</h2>
             </Box>
             <Box>
               <Textfield
                 label={i18n.t("modules.admin.submitBook.author")}
                 name='author'
+              />
+            </Box>
+            <Box>
+              <Textfield
+                label={i18n.t("modules.admin.submitBook.authorResume")}
+                name='authorResume'
+                multiline
+                rows={6}
               />
             </Box>
             <Box>
@@ -127,17 +150,13 @@ const SubmitBook = () => {
               />
             </Box>
           </Box>
+
           <Box display='flex' justifyContent='start' sx={{ mt: "20px" }}>
             <ButtonForm label={i18n.t("modules.home.contacts.form.send")} />
           </Box>
         </Form>
       </Formik>
-      <input
-        type='file'
-        onChange={(e: any) => setImageUpload(e?.target?.files[0])}
-      />
-      <button onClick={uploadImage}>Upload Image</button>
-      <h2>Upload: {progress}%</h2>
+
     </Container>
   );
 };

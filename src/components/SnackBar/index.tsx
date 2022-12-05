@@ -94,7 +94,7 @@ const DirectionSnackbar = () => {
         onClose={handleClose}
         autoHideDuration={4000}
       >
-        <Styled.Box bgColor={snackbar.bgcolor}>
+        <Styled.Box bgcolor={snackbar.bgcolor}>
           {snackbar.icon} {snackbar.message}
         </Styled.Box>
       </Snackbar>

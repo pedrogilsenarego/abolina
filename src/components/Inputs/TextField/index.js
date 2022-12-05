@@ -25,6 +25,10 @@ const Textfield = ({
     configTextField.helperText = mata.error;
   }
 
+  if (otherProps.getValue) {
+    otherProps.getValue(mata.value);
+  }
+
   return (
     <>
       <Box display='flex' justifyContent='start'>
