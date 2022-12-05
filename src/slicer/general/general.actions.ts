@@ -57,3 +57,9 @@ export const updateLang = (lang:string) => ({
   type: generalTypes.UPDATE_LANG,
   payload: lang
 })
+
+
+export const scrollToContacts = (signal:boolean) => ({
+  type: generalTypes.SCROLL_CONTACTS,
+  payload: signal
+})

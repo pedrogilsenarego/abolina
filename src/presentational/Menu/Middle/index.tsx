@@ -2,6 +2,8 @@ import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import { i18n } from "../../../translations/i18n";
 import Button from "./Button";
 import { ROUTE_PATHS } from "../../../constants/routes";
+import { useDispatch } from "react-redux"
+import { scrollToContacts } from "../../../slicer/general/general.actions";
 
 interface Props {
   setOpenDrawer: (openDrawer: boolean) => void;
@@ -10,6 +12,12 @@ interface Props {
 const Middle = ({ setOpenDrawer }: Props) => {
   const Theme = useTheme()
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"))
+  const dispatch = useDispatch()
+
+  const handleContacts = () => {
+    dispatch(scrollToContacts(true))
+  }
+
   return (
     <>
       <Grid
@@ -44,7 +52,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
         <Grid item>
           <Button
             title={i18n.t("menuBar.contacts")}
-            path={ROUTE_PATHS.CONTACTS}
+            onClick={handleContacts}
             setOpenDrawer={setOpenDrawer}
           />
         </Grid>

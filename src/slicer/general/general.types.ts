@@ -10,11 +10,13 @@ const generalTypes = {
   CLEAR_API_REQUEST: "CLEAR_API_REQUEST",
   SAVE_LAST_ENDPOINT: "SAVE_LAST_ENDPOINT",
   REMOVE_LAST_ENDPOINT: "REMOVE_LAST_ENDPOINT",
-  UPDATE_LANG: "UPDATE_LANG"
+  UPDATE_LANG: "UPDATE_LANG",
+  SCROLL_CONTACTS: "SCROLL_CONTACTS"
 };
 
 export interface GeneralState {
-  lang: string
+  lang: string,
+  scrollToContacts: boolean
 }
 
 export default generalTypes;

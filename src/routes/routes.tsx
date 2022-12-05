@@ -10,7 +10,6 @@ const Books = lazyWithRetryAndLoader(() => import("../modules/Books"));
 const Book = lazyWithRetryAndLoader(() => import("../modules/Books/Book"));
 const About = lazyWithRetryAndLoader(() => import("../modules/About"));
 const Admin = lazyWithRetryAndLoader(() => import("../modules/Admin"));
-const Contacts = lazyWithRetryAndLoader(() => import("../modules/Home/Components/Contacts"));
 
 export const routes: AppRoute[] = [
   {
@@ -37,12 +36,6 @@ export const routes: AppRoute[] = [
     path: ROUTE_PATHS.ABOUT,
     component: <MainLayout marginBottom="0vh">
       <About />
-    </MainLayout>,
-  },
-  {
-    path: ROUTE_PATHS.CONTACTS,
-    component: <MainLayout>
-      <Contacts />
     </MainLayout>,
   },
   {

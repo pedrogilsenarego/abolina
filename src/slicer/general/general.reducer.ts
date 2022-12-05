@@ -8,7 +8,8 @@ const INITIAL_STATE = {
   apiRequestMessage: "",
   apiRequestType: null,
   history: ["/"],
-  lang: "PT"
+  lang: "PT",
+  scrollToContacts: false,
 };
 
 interface Action {
@@ -73,19 +74,24 @@ const generalReducer = (state = INITIAL_STATE, action: Action) => {
     case generalTypes.SAVE_LAST_ENDPOINT:
       return {
         ...state,
-        history: handleBuildHistory(state.history,action.payload)
-      }
-      case generalTypes.REMOVE_LAST_ENDPOINT:
-        return {
-          ...state,
-          history: handleRemoveLastEndpoint(state.history)
-        }
-        case generalTypes.UPDATE_LANG:
-          return {
-            ...state,
-            lang: action.payload,
-          };
-    
+        history: handleBuildHistory(state.history, action.payload),
+      };
+    case generalTypes.REMOVE_LAST_ENDPOINT:
+      return {
+        ...state,
+        history: handleRemoveLastEndpoint(state.history),
+      };
+    case generalTypes.UPDATE_LANG:
+      return {
+        ...state,
+        lang: action.payload,
+      };
+    case generalTypes.SCROLL_CONTACTS:
+      return {
+        ...state,
+        scrollToContacts: action.payload,
+      };
+
     default:
       return state;
   }

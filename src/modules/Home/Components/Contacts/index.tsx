@@ -5,7 +5,10 @@ import Textfield from "../../../../components/Inputs/TextField";
 import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
 import ButtonForm from "../../../../components/Buttons/ButtonFormik";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { State } from "../../../../slicer/types";
+import { scrollToContacts } from "../../../../slicer/general/general.actions";
 
 const Contacts = () => {
   const INITIAL_FORM_STATE = {
@@ -14,16 +17,27 @@ const Contacts = () => {
     subject: "",
     description: ""
   };
-
+  const dispatch = useDispatch()
   const contactsRef = useRef<HTMLDivElement>(null)
-
-  const handleSubmit = (values: any) => {
+  const scrollToContactsL = useSelector<State>(
+    (state) => state.general.scrollToContacts
+  );
+  const handleScrollToContacts = () => {
     if (null !== contactsRef.current) {
       window.scrollTo({ top: contactsRef.current.offsetTop, behavior: "smooth" });
     }
   }
 
-  console.log(contactsRef.current)
+  useEffect(() => {
+    if (scrollToContactsL) {
+      handleScrollToContacts();
+      dispatch(scrollToContacts(false))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scrollToContactsL])
+
+  const handleSubmit = (values: any) => {
+  }
 
   return (
 

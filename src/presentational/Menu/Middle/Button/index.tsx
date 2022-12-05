@@ -5,11 +5,12 @@ import { useNavigate } from "react-router-dom"
 
 interface Props {
   title: string;
-  path: string;
+  path?: string;
   setOpenDrawer: (openDrawer: boolean) => void
+  onClick?: () => void
 }
 
-const Button = ({ title, path, setOpenDrawer }: Props) => {
+const Button = ({ title, path, setOpenDrawer, onClick }: Props) => {
   const navigate = useNavigate()
   const Theme = useTheme()
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"))
@@ -19,7 +20,10 @@ const Button = ({ title, path, setOpenDrawer }: Props) => {
       <Typography
         style={{ color: "whiteSmoke", cursor: "pointer", fontSize: mobile ? "34px" : "18px" }}
 
-        onClick={() => { navigate(path); setOpenDrawer(false) }}
+        onClick={() => {
+          if (path) { navigate(path); setOpenDrawer(false) };
+          if (onClick) { onClick() }
+        }}
       >
         {title}
       </Typography>
