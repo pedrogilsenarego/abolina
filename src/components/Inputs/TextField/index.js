@@ -25,8 +25,8 @@ const Textfield = ({
     configTextField.helperText = mata.error;
   }
 
-  if (otherProps.getValue) {
-    otherProps.getValue(mata.value);
+  if (otherProps.getvalue) {
+    otherProps.getvalue(mata.value);
   }
 
   return (

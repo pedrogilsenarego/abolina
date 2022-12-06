@@ -24,7 +24,8 @@ const SubmitBook = () => {
     weight: "",
     size: "",
     resume: "",
-    price: null
+    price: null,
+    coverPage2: null
   };
 
   const dispatch = useDispatch();
@@ -82,7 +83,7 @@ const SubmitBook = () => {
               <Textfield
                 label={i18n.t("modules.admin.submitBook.title")}
                 name='title'
-                getValue={setTitle}
+                getvalue={setTitle}
               />
             </Box>
             <Box>
@@ -94,7 +95,7 @@ const SubmitBook = () => {
               <button disabled={!title} onClick={() => uploadImage(title)}>Upload Image</button>
               <h2>Upload: {progress}%</h2>
             </Box>
-            <FileUploader title={title} setImage={setCoverPage} fieldTitle={i18n.t("modules.admin.submitBook.coverPage")} />
+            <FileUploader name="coverPage2" title={title} setImage={setCoverPage} fieldTitle={i18n.t("modules.admin.submitBook.coverPage")} />
             <Box>
               <Textfield
                 label={i18n.t("modules.admin.submitBook.author")}
