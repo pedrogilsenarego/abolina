@@ -1,6 +1,7 @@
 import { Box, Grid, Typography } from "@mui/material";
 import { useState } from "react";
 import { Colors } from "../../../constants/pallette";
+import CardMedia from "../../CardMedia";
 import useFileUploader from "./useFileUploader";
 
 interface Props {
@@ -26,7 +27,7 @@ const FileUploader = ({ title, setImage, fieldTitle }: Props) => {
           padding: "10px",
         }}
       >
-        <Grid container>
+        <Grid container columnSpacing={2}>
           <Grid
             item
             xs={6}
@@ -47,7 +48,7 @@ const FileUploader = ({ title, setImage, fieldTitle }: Props) => {
 
           </Grid>
           <Grid item xs={6}>
-            Teste
+            <CardMedia height="100" image={URL.createObjectURL(imageUpload)} />
           </Grid>
         </Grid>
       </Box>
