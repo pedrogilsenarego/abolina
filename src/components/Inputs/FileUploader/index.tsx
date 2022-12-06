@@ -3,22 +3,24 @@ import { useState } from "react";
 import { Colors } from "../../../constants/pallette";
 import CardMedia from "../../CardMedia";
 import useFileUploader from "./useFileUploader";
-import { RiDeleteBinLine } from "react-icons/ri";
+import { RiDeleteBinLine } from "react-icons/ri"
 import { useField } from "formik";
 
-const FileUploader = ({ title, setImage, fieldTitle, name }) => {
-  const [imageUpload, setImageUpload] = useState();
+interface Props {
+  fieldTitle: string;
+  title: string;
+  setImage: (image: string) => void;
+  name: string
+}
+
+const FileUploader = ({ title, setImage, fieldTitle, name }: Props) => {
+  const [imageUpload, setImageUpload] = useState<any>();
   const { uploadImage, progress } = useFileUploader({ imageUpload, setImage });
-  const [field, mata] = useField(name);
+  const [field, mata, helpers] = useField(name);
 
-  const configTextField = {
-    ...field,
-  };
+  console.log(mata.value)
 
-  if (mata && mata.touched && mata.error) {
-    configTextField.error = true;
-    configTextField.helperText = mata.error;
-  }
+
 
   return (
     <Box>
@@ -41,31 +43,21 @@ const FileUploader = ({ title, setImage, fieldTitle, name }) => {
               border: `solid 2px ${Colors.tealc}`,
               borderRadius: "4px",
               borderStyle: "dashed",
-              padding: "10px",
+              padding: "10px"
             }}
           >
             <input
               type='file'
-              onChange={(e) => setImageUpload(e?.target?.files[0])}
+              onChange={(e: any) => { setImageUpload(e?.target?.files[0]); helpers.setValue(e?.target?.files[0]) }}
             />
 
             <button disabled={!title} onClick={() => uploadImage(title)}>
               Upload Image
             </button>
-            {imageUpload && (
-              <RiDeleteBinLine
-                onClick={() => setImageUpload(null)}
-                size='2em'
-                color='black'
-                style={{ cursor: "pointer" }}
-              />
-            )}
+            {imageUpload && (<RiDeleteBinLine onClick={() => { setImageUpload(null); helpers.setValue(null) }} size="2em" color="black" />)}
           </Grid>
           <Grid item xs={6}>
-            <CardMedia
-              height='100'
-              image={imageUpload ? URL.createObjectURL(imageUpload) : undefined}
-            />
+            <CardMedia height="100" image={imageUpload ? URL.createObjectURL(imageUpload) : undefined} />
           </Grid>
         </Grid>
       </Box>
