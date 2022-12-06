@@ -76,9 +76,12 @@ export const content = {
           submitBook: {
             submitTitle: "Submit Book",
             title: "Title",
+            coverPage: "Cover Page",
             author: "Author",
             authorResume: "Author Resume",
             designer: "Designer",
+            designerResume: "Designer Resume",
+            translatorResume: "Translator Resume",
             translator: "Translator",
             language: "Language",
             weight: "Weight",

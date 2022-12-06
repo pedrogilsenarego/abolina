@@ -77,10 +77,13 @@ export const content = {
           submitBook: {
             submitTitle: "Submeter Livro",
             title: "Titulo",
+            coverPage: "Imagem Rosto",
             author: "Escritor",
             authorResume: "Resumo do Escritor",
             designer: "Ilustrador",
+            designerResume: "Resumo do Designer",
             translator: "Tradutor",
+            translatorResume: "Resumo do Tradutor",
             language: "Idioma",
             weight: "Peso",
             size: "Tamanho",

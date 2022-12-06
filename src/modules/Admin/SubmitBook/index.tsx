@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { addBook } from "../../../slicer/books/books.actions";
 import { useState } from "react";
 import { storage } from "../../../firebase/utils";
+import FileUploader from "../../../components/Inputs/FileUploader";
 
 const SubmitBook = () => {
   const INITIAL_FORM_STATE = {
@@ -16,7 +17,9 @@ const SubmitBook = () => {
     author: "",
     authorResume: "",
     designer: "",
+    designerResume: "",
     translator: "",
+    translatorResume: "",
     language: "",
     weight: "",
     size: "",
@@ -91,6 +94,7 @@ const SubmitBook = () => {
               <button disabled={!title} onClick={() => uploadImage(title)}>Upload Image</button>
               <h2>Upload: {progress}%</h2>
             </Box>
+            <FileUploader title={title} setImage={setCoverPage} fieldTitle={i18n.t("modules.admin.submitBook.coverPage")} />
             <Box>
               <Textfield
                 label={i18n.t("modules.admin.submitBook.author")}
@@ -113,8 +117,24 @@ const SubmitBook = () => {
             </Box>
             <Box>
               <Textfield
+                label={i18n.t("modules.admin.submitBook.designerResume")}
+                name='designerResume'
+                multiline
+                rows={6}
+              />
+            </Box>
+            <Box>
+              <Textfield
                 label={i18n.t("modules.admin.submitBook.translator")}
                 name='translator'
+              />
+            </Box>
+            <Box>
+              <Textfield
+                label={i18n.t("modules.admin.submitBook.translatorResume")}
+                name='translatorResume'
+                multiline
+                rows={6}
               />
             </Box>
             <Box>
