@@ -1,14 +1,12 @@
 import * as GStyled from "../../../styles";
 import { i18n } from "../../../translations/i18n";
-import { Container, Box, Typography } from "@mui/material";
+import { Container, Box } from "@mui/material";
 import Textfield from "../../../components/Inputs/TextField";
 import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
 import ButtonForm from "../../../components/Buttons/ButtonFormik";
 import { useDispatch } from "react-redux";
 import { addBook } from "../../../slicer/books/books.actions";
-import { useState } from "react";
-import { storage } from "../../../firebase/utils";
 import FileUploader from "../../../components/Inputs/FileUploader";
 
 const SubmitBook = () => {
@@ -25,40 +23,16 @@ const SubmitBook = () => {
     size: "",
     resume: "",
     price: null,
-    coverPage2: null
+    coverPage2: undefined
   };
 
   const dispatch = useDispatch();
 
-
-  const [imageUpload, setImageUpload] = useState<any>(null);
-  const [progress, setProgress] = useState(0)
-  const [title, setTitle] = useState("")
-  const [coverPage, setCoverPage] = useState("")
-
   const handleSubmit = (values: any) => {
-    dispatch(addBook({ ...values, coverPage }));
+    dispatch(addBook({ ...values }));
   };
 
-  const uploadImage = (title: string) => {
-    if (imageUpload == null) return;
-    const storageRef = storage
-      .ref(`books/${title}/${imageUpload.name}`)
-      .put(imageUpload);
-    storageRef.on(
-      "state_changed",
-      (snapshot) => {
-        const progressD = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
-        setProgress(progressD)
-      },
-      (error) => console.log(error),
-      () => {
-        storage.ref("books").child(title).child(imageUpload.name).getDownloadURL().then(url => {
-          setCoverPage(url)
-        });
-      }
-    );
-  };
+
 
   return (
     <Container maxWidth='md' style={{ justifyContent: "center" }}>
@@ -83,19 +57,10 @@ const SubmitBook = () => {
               <Textfield
                 label={i18n.t("modules.admin.submitBook.title")}
                 name='title'
-                getvalue={setTitle}
               />
             </Box>
-            <Box>
-              <Typography>Cover Image</Typography>
-              <input
-                type='file'
-                onChange={(e: any) => setImageUpload(e?.target?.files[0])}
-              />
-              <button disabled={!title} onClick={() => uploadImage(title)}>Upload Image</button>
-              <h2>Upload: {progress}%</h2>
-            </Box>
-            <FileUploader name="coverPage2" title={title} setImage={setCoverPage} fieldTitle={i18n.t("modules.admin.submitBook.coverPage")} />
+
+            <FileUploader name="coverPage2" fieldTitle={i18n.t("modules.admin.submitBook.coverPage")} />
             <Box>
               <Textfield
                 label={i18n.t("modules.admin.submitBook.author")}

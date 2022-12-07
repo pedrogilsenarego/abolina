@@ -1,6 +1,10 @@
 export const content = {
   en: {
     translations: {
+      forms: {
+        required: "Required",
+        fileSize: "File to big",
+      },
       topBar: {
         memory: "Memory",
         hope: "Hope",

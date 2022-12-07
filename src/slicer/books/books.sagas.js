@@ -4,6 +4,7 @@ import {
   handleFetchBooks,
   handleFetchBook,
   handleAddBook,
+  handleAddCoverPage,
 } from "./books.helpers";
 import bookTypes from "./books.types";
 import {
@@ -37,8 +38,12 @@ export function* onFetchBook() {
 function* sagaAddBook({ payload }) {
   try {
     const timestamp = new Date();
+    const { title, coverPage2 } = payload;
+    const coverPage = yield handleAddCoverPage({ title, coverPage2 });
+    delete payload.coverPage2;
     yield handleAddBook({
       ...payload,
+      coverPage,
       createdDate: timestamp,
     });
     yield put(

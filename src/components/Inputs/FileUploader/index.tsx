@@ -2,25 +2,18 @@ import { Box, Grid, Typography } from "@mui/material";
 import { useState } from "react";
 import { Colors } from "../../../constants/pallette";
 import CardMedia from "../../CardMedia";
-import useFileUploader from "./useFileUploader";
-import { RiDeleteBinLine } from "react-icons/ri"
+import { RiDeleteBinLine } from "react-icons/ri";
 import { useField } from "formik";
 
 interface Props {
   fieldTitle: string;
-  title: string;
-  setImage: (image: string) => void;
-  name: string
+
+  name: string;
 }
 
-const FileUploader = ({ title, setImage, fieldTitle, name }: Props) => {
+const FileUploader = ({ fieldTitle, name }: Props) => {
   const [imageUpload, setImageUpload] = useState<any>();
-  const { uploadImage, progress } = useFileUploader({ imageUpload, setImage });
-  const [field, mata, helpers] = useField(name);
-
-  console.log(mata.value)
-
-
+  const [, mata, helpers] = useField(name);
 
   return (
     <Box>
@@ -38,30 +31,65 @@ const FileUploader = ({ title, setImage, fieldTitle, name }: Props) => {
         <Grid container columnSpacing={2}>
           <Grid
             item
+            container
+            flexDirection="row"
+            alignItems="center"
+
             xs={6}
             style={{
               border: `solid 2px ${Colors.tealc}`,
               borderRadius: "4px",
               borderStyle: "dashed",
-              padding: "10px"
+              padding: "10px",
             }}
           >
-            <input
-              type='file'
-              onChange={(e: any) => { setImageUpload(e?.target?.files[0]); helpers.setValue(e?.target?.files[0]) }}
-            />
+            <Grid item textAlign="start">
+              <input
+                type='file'
+                onChange={(e: any) => {
+                  setImageUpload(e?.target?.files[0]);
+                  helpers.setValue(e?.target?.files[0]);
+                  helpers.setError(undefined)
+                }}
+              />
+            </Grid>
 
-            <button disabled={!title} onClick={() => uploadImage(title)}>
-              Upload Image
-            </button>
-            {imageUpload && (<RiDeleteBinLine onClick={() => { setImageUpload(null); helpers.setValue(null) }} size="2em" color="black" />)}
+            <Grid item textAlign="start">
+              {imageUpload && (
+                <RiDeleteBinLine
+                  onClick={() => {
+                    setImageUpload(undefined);
+                    helpers.setValue(null);
+                  }}
+                  size='1.5em'
+                  color={Colors.tealc}
+                />
+              )}
+            </Grid>
           </Grid>
           <Grid item xs={6}>
-            <CardMedia height="100" image={imageUpload ? URL.createObjectURL(imageUpload) : undefined} />
+            <CardMedia
+              height='100'
+              image={imageUpload ? URL.createObjectURL(imageUpload) : undefined}
+            />
           </Grid>
         </Grid>
       </Box>
-    </Box>
+      <Box display='flex' justifyContent='start'>
+        {mata.error && (
+          <Typography
+            style={{
+              color: "red",
+              fontSize: "12px",
+              marginLeft: "15px",
+              marginTop: "5px",
+            }}
+          >
+            {mata.error}
+          </Typography>
+        )}
+      </Box>
+    </Box >
   );
 };
 

@@ -25,7 +25,7 @@ const Books = () => {
   return (
     <>
       <Container>
-        <Grid container justifyContent='center' columnGap={2}>
+        <Grid container justifyContent='center' columnSpacing={2}>
           {books?.map((book, pos) => {
             return (
               <Grid item key={pos} xs={12} sm={4}>

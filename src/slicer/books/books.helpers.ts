@@ -1,14 +1,12 @@
 import { firestore } from "./../../firebase/utils";
+import { storage } from "./../../firebase/utils";
 
-export const handleFetchBooks = ({persistProducts = []}) => {
+export const handleFetchBooks = ({ persistProducts = [] }) => {
   return new Promise((resolve, reject) => {
-    
-    const pageSize=10
+    const pageSize = 10;
 
-    let ref = firestore
-      .collection("books")
-      .limit(pageSize);
-    
+    let ref = firestore.collection("books").limit(pageSize);
+
     ref
       .get()
       .then((snapshot: any) => {
@@ -30,13 +28,13 @@ export const handleFetchBooks = ({persistProducts = []}) => {
           isLastPage: totalCount < 1,
         });
       })
-      .catch((err:any) => {
+      .catch((err: any) => {
         reject(err);
       });
   });
 };
 
-export const handleFetchBook = (documentID:string) => {
+export const handleFetchBook = (documentID: string) => {
   return new Promise((resolve, reject) => {
     firestore
       .collection("books")
@@ -53,7 +51,41 @@ export const handleFetchBook = (documentID:string) => {
   });
 };
 
-export const handleAddBook = (payload:any) => {
+interface AddCoverPage {
+  title: string;
+  coverPage2: any;
+}
+
+export const handleAddCoverPage = ({ title, coverPage2 }: AddCoverPage) => {
+  return new Promise<void>((resolve, reject) => {
+    storage
+      .ref(`books/${title}/${coverPage2.name}`)
+      .put(coverPage2)
+      .then(() => {
+        storage
+          .ref("books")
+          .child(title)
+          .child(coverPage2.name)
+          .getDownloadURL()
+          .then((url) => {
+            resolve(url)
+            console.log(url);
+            
+          });
+      })
+      .catch((err) => {
+        reject(err);
+      });
+    // storageRef.on(
+    //   "state_changed",
+    //   (snapshot) => {
+    //     // const progressD = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+    //     // setProgress(progressD)
+    //   },
+  });
+};
+
+export const handleAddBook = (payload: any) => {
   return new Promise<void>((resolve, reject) => {
     firestore
       .collection("books")
