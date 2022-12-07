@@ -23,7 +23,7 @@ const BookC = () => {
   useEffect(() => {
     dispatch(fetchBook(id))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [id])
 
   const storeBook = useSelector<State, Book>(
     (state) => state.books.book || {}
@@ -51,7 +51,7 @@ const BookC = () => {
             align='justify'
             style={{ marginTop: "20px", whiteSpace: "pre-line" }}
           >
-            {i18n.t("modules.about.mainText")}
+            {book?.resume || ""}
           </Typography>
           <Grid
             container
@@ -63,21 +63,21 @@ const BookC = () => {
               <Tile
                 title={i18n.t("modules.books.book.writer")}
                 name={book?.author || ""}
-                text={i18n.t("modules.about.third")}
+                text={book?.authorResume || ""}
               />
             </Grid>
             <Grid item xs={12} md={4}>
               <Tile
                 title={i18n.t("modules.books.book.designer")}
                 name={book?.designer || ""}
-                text={i18n.t("modules.about.third")}
+                text={book?.designerResume || ""}
               />
             </Grid>
             <Grid item xs={12} md={4}>
               <Tile
                 title={i18n.t("modules.books.book.translator")}
                 name={book?.translator || ""}
-                text={i18n.t("modules.about.third")}
+                text={book?.translatorResume || ""}
               />
             </Grid>
           </Grid>

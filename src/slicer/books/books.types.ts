@@ -22,9 +22,13 @@ export interface Book {
   price: number
   weight: string
   designer: string
+  designerResume: string
   translator: string
+  translatorResume: string
   author: string
-  lang: string
+  authorResume: string
+  resume: string
+  language: string
   size: string
   pages:number
   content: string[]

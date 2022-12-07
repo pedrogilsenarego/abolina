@@ -137,7 +137,7 @@ const Roster = ({ setOpenViewBook }: Props) => {
             <GStyled.SubTitle style={{ fontWeight: 700 }}>
               {i18n.t("modules.books.book.language")}
             </GStyled.SubTitle>
-            <Typography>{book?.lang}</Typography>
+            <Typography>{book?.language}</Typography>
           </Box>
           <Box
             display='flex'
