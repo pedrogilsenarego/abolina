@@ -4,23 +4,24 @@ import { Colors } from "../../../constants/pallette";
 import CardMedia from "../../CardMedia";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { useField } from "formik";
+import { useRef } from "react"
 
 interface Props {
   fieldTitle: string;
-
+  acceptType?: string
   name: string;
 }
 
-const FileUploader = ({ fieldTitle, name }: Props) => {
+const FileUploader = ({ fieldTitle, name, acceptType }: Props) => {
   const [imageUpload, setImageUpload] = useState<any>();
   const [, mata, helpers] = useField(name);
+  const inputRef = useRef<any>()
 
   return (
     <Box>
       <Box display='flex' justifyContent='start'>
         <Typography>{fieldTitle}</Typography>
       </Box>
-
       <Box
         style={{
           border: `solid 2px ${Colors.tealc}`,
@@ -28,7 +29,7 @@ const FileUploader = ({ fieldTitle, name }: Props) => {
           padding: "10px",
         }}
       >
-        <Grid container columnSpacing={2}>
+        <Grid container columnSpacing={1}>
           <Grid
             item
             container
@@ -46,6 +47,8 @@ const FileUploader = ({ fieldTitle, name }: Props) => {
             <Grid item textAlign="start">
               <input
                 type='file'
+                ref={inputRef}
+                accept={acceptType || 'image/*'}
                 onChange={(e: any) => {
                   setImageUpload(e?.target?.files[0]);
                   helpers.setValue(e?.target?.files[0]);
@@ -60,7 +63,9 @@ const FileUploader = ({ fieldTitle, name }: Props) => {
                   onClick={() => {
                     setImageUpload(undefined);
                     helpers.setValue(null);
+                    inputRef.current.value = ""
                   }}
+                  style={{ cursor: "pointer", marginLeft: "10px" }}
                   size='1.5em'
                   color={Colors.tealc}
                 />

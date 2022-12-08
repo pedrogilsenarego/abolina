@@ -23,7 +23,7 @@ const SubmitBook = () => {
     size: "",
     resume: "",
     price: null,
-    coverPage2: undefined
+    coverPage2: undefined,
   };
 
   const dispatch = useDispatch();
@@ -31,8 +31,6 @@ const SubmitBook = () => {
   const handleSubmit = (values: any) => {
     dispatch(addBook({ ...values }));
   };
-
-
 
   return (
     <Container maxWidth='md' style={{ justifyContent: "center" }}>
@@ -60,7 +58,11 @@ const SubmitBook = () => {
               />
             </Box>
 
-            <FileUploader name="coverPage2" fieldTitle={i18n.t("modules.admin.submitBook.coverPage")} />
+            <FileUploader
+              name='coverPage2'
+              fieldTitle={i18n.t("modules.admin.submitBook.coverPage")}
+              acceptType='image/jpeg,image/jpg'
+            />
             <Box>
               <Textfield
                 label={i18n.t("modules.admin.submitBook.author")}
@@ -142,7 +144,6 @@ const SubmitBook = () => {
           </Box>
         </Form>
       </Formik>
-
     </Container>
   );
 };

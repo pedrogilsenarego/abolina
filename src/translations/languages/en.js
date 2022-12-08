@@ -3,7 +3,7 @@ export const content = {
     translations: {
       forms: {
         required: "Required",
-        fileSize: "File to big",
+        fileSize: "The file must be under ",
       },
       topBar: {
         memory: "Memory",
