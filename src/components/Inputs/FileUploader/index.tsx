@@ -4,18 +4,18 @@ import { Colors } from "../../../constants/pallette";
 import CardMedia from "../../CardMedia";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { useField } from "formik";
-import { useRef } from "react"
+import { useRef } from "react";
 
 interface Props {
   fieldTitle: string;
-  acceptType?: string
+  acceptType?: string;
   name: string;
 }
 
 const FileUploader = ({ fieldTitle, name, acceptType }: Props) => {
   const [imageUpload, setImageUpload] = useState<any>();
   const [, mata, helpers] = useField(name);
-  const inputRef = useRef<any>()
+  const inputRef = useRef<any>();
 
   return (
     <Box>
@@ -33,9 +33,8 @@ const FileUploader = ({ fieldTitle, name, acceptType }: Props) => {
           <Grid
             item
             container
-            flexDirection="row"
-            alignItems="center"
-
+            flexDirection='row'
+            alignItems='center'
             xs={6}
             style={{
               border: `solid 2px ${Colors.tealc}`,
@@ -44,26 +43,26 @@ const FileUploader = ({ fieldTitle, name, acceptType }: Props) => {
               padding: "10px",
             }}
           >
-            <Grid item textAlign="start">
+            <Grid item textAlign='start'>
               <input
                 type='file'
                 ref={inputRef}
-                accept={acceptType || 'image/*'}
+                accept={acceptType || "image/*"}
                 onChange={(e: any) => {
                   setImageUpload(e?.target?.files[0]);
                   helpers.setValue(e?.target?.files[0]);
-                  helpers.setError(undefined)
+                  helpers.setError(undefined);
                 }}
               />
             </Grid>
 
-            <Grid item textAlign="start">
+            <Grid item textAlign='start'>
               {imageUpload && (
                 <RiDeleteBinLine
                   onClick={() => {
                     setImageUpload(undefined);
                     helpers.setValue(null);
-                    inputRef.current.value = ""
+                    inputRef.current.value = "";
                   }}
                   style={{ cursor: "pointer", marginLeft: "10px" }}
                   size='1.5em'
@@ -73,10 +72,12 @@ const FileUploader = ({ fieldTitle, name, acceptType }: Props) => {
             </Grid>
           </Grid>
           <Grid item xs={6}>
-            <CardMedia
-              height='100'
-              image={imageUpload ? URL.createObjectURL(imageUpload) : undefined}
-            />
+            {imageUpload && (
+              <CardMedia
+                height='100'
+                image={URL.createObjectURL(imageUpload)}
+              />
+            )}
           </Grid>
         </Grid>
       </Box>
@@ -94,7 +95,7 @@ const FileUploader = ({ fieldTitle, name, acceptType }: Props) => {
           </Typography>
         )}
       </Box>
-    </Box >
+    </Box>
   );
 };
 
