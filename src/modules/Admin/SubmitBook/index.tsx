@@ -24,11 +24,13 @@ const SubmitBook = () => {
     resume: "",
     price: null,
     coverPage2: undefined,
+    content: []
   };
 
   const dispatch = useDispatch();
 
   const handleSubmit = (values: any) => {
+    console.log(values)
     dispatch(addBook({ ...values }));
   };
 
@@ -137,6 +139,12 @@ const SubmitBook = () => {
                 rows={6}
               />
             </Box>
+            <FileUploader
+              name='content'
+              multiple
+              fieldTitle={i18n.t("modules.admin.submitBook.content")}
+              acceptType='image/jpeg,image/jpg'
+            />
           </Box>
 
           <Box display='flex' justifyContent='start' sx={{ mt: "20px" }}>

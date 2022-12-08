@@ -40,7 +40,9 @@ function* sagaAddBook({ payload }) {
     const timestamp = new Date();
     const { title, coverPage2 } = payload;
     const coverPage = yield handleAddCoverPage({ title, coverPage2 });
+
     delete payload.coverPage2;
+
     yield handleAddBook({
       ...payload,
       coverPage,

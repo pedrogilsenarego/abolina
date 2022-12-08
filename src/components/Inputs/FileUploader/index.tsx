@@ -10,12 +10,15 @@ interface Props {
   fieldTitle: string;
   acceptType?: string;
   name: string;
+  multiple?: boolean;
 }
 
-const FileUploader = ({ fieldTitle, name, acceptType }: Props) => {
-  const [imageUpload, setImageUpload] = useState<any>();
+const FileUploader = ({ fieldTitle, name, acceptType, multiple }: Props) => {
+  const [imageUpload, setImageUpload] = useState<any>({});
   const [, mata, helpers] = useField(name);
   const inputRef = useRef<any>();
+
+  const a = Array.prototype.slice.call(imageUpload);
 
   return (
     <Box>
@@ -45,11 +48,12 @@ const FileUploader = ({ fieldTitle, name, acceptType }: Props) => {
           >
             <Grid item textAlign='start'>
               <input
-                type='file'
+                type={"file"}
+                multiple={multiple}
                 ref={inputRef}
                 accept={acceptType || "image/*"}
                 onChange={(e: any) => {
-                  setImageUpload(e?.target?.files[0]);
+                  setImageUpload(e?.target?.files);
                   helpers.setValue(e?.target?.files[0]);
                   helpers.setError(undefined);
                 }}
@@ -60,7 +64,7 @@ const FileUploader = ({ fieldTitle, name, acceptType }: Props) => {
               {imageUpload && (
                 <RiDeleteBinLine
                   onClick={() => {
-                    setImageUpload(undefined);
+                    setImageUpload({});
                     helpers.setValue(null);
                     inputRef.current.value = "";
                   }}
@@ -71,13 +75,17 @@ const FileUploader = ({ fieldTitle, name, acceptType }: Props) => {
               )}
             </Grid>
           </Grid>
-          <Grid item xs={6}>
-            {imageUpload && (
-              <CardMedia
-                height='100'
-                image={URL.createObjectURL(imageUpload)}
-              />
-            )}
+          <Grid item container xs={6}>
+            {imageUpload &&
+              a.map((image: any, pos: number) => {
+                return (
+                  <CardMedia
+                    height='100'
+                    key={pos}
+                    image={URL.createObjectURL(image)}
+                  />
+                );
+              })}
           </Grid>
         </Grid>
       </Box>

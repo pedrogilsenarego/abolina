@@ -82,6 +82,7 @@ export const content = {
             submitTitle: "Submeter Livro",
             title: "Titulo",
             coverPage: "Imagem Rosto",
+            content: "Conteudo",
             author: "Escritor",
             authorResume: "Resumo do Escritor",
             designer: "Ilustrador",
