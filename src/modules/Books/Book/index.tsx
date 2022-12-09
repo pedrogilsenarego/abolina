@@ -17,23 +17,26 @@ import { State } from "../../../slicer/types";
 const BookC = () => {
   const dispatch = useDispatch()
   const [openViewBook, setOpenViewBook] = useState<boolean>(false);
-  const [book, setBook] = useState<Book>();
+  const [book, setBook] = useState<any>({})
   const { id } = useParams()
+
 
   useEffect(() => {
     dispatch(fetchBook(id))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
 
-  const storeBook = useSelector<State, Book>(
+  const bookData = useSelector<State, Book>(
     (state) => state.books.book || {}
   );
 
-
   useEffect(() => {
-    setBook(storeBook)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    setBook(bookData)
+  }, [bookData])
+
+  console.log(book.title)
+
+
 
 
 

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import { ROUTE_PATHS } from "../../constants/routes";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBooks } from "../../slicer/books/books.actions";
 import { State } from "../../slicer/types";
@@ -11,14 +11,12 @@ import CardMedia from "../../components/CardMedia";
 const Books = () => {
   const dispatch = useDispatch();
   const Navigate = useNavigate();
-  const storeBooks = useSelector<State, Book[]>(
+  const books = useSelector<State, Book[]>(
     (state) => state.books.books.data || []
   );
-  const [books, setBooks] = useState<Book[]>([]);
 
   useEffect(() => {
     dispatch(fetchBooks());
-    setBooks(storeBooks);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

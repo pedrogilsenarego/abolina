@@ -24,3 +24,15 @@ export const addBook = (book:any) => ({
   type: bookTypes.ADD_BOOK,
   payload: book,
 });
+
+//
+
+export const fetchCarroussell = () => ({
+  type: bookTypes.FETCH_CARROUSSELL,
+  
+})
+
+export const setCarroussell = (content:string[]) => ({
+  type: bookTypes.SET_CARROUSSELL,
+  payload: content,
+});

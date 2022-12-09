@@ -30,6 +30,11 @@ export const content = {
           button: "Fale conosco",
         },
       },
+      adminSideBar: {
+        submitBook: "Submeter Livro",
+        manageCarroussel: "Gerir Carrousel",
+        back: "Voltar",
+      },
       modules: {
         home: {
           mainTextBtn: "Leia Mais",
@@ -94,6 +99,9 @@ export const content = {
             size: "Tamanho",
             resume: "Resumo",
             price: "Preço",
+          },
+          manageCarroussell: {
+            submitTitle: "Gerir Carrousel",
           },
         },
       },

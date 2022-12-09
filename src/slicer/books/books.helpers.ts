@@ -108,3 +108,22 @@ export const handleAddBook = (payload: any) => {
       });
   });
 };
+
+//
+
+export const handleFetchCarroussell = () => {
+  return new Promise((resolve, reject) => {
+    firestore
+      .collection("general")
+      .doc("carrousell")
+      .get()
+      .then((snapshot) => {
+        if (snapshot.exists) {
+          resolve(snapshot.data());
+        }
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};

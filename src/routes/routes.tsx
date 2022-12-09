@@ -10,6 +10,7 @@ const Books = lazyWithRetryAndLoader(() => import("../modules/Books"));
 const Book = lazyWithRetryAndLoader(() => import("../modules/Books/Book"));
 const About = lazyWithRetryAndLoader(() => import("../modules/About"));
 const Admin = lazyWithRetryAndLoader(() => import("../modules/Admin"));
+const AdminCarroussel = lazyWithRetryAndLoader(() => import("../modules/Admin/ManageCarroussel"))
 
 export const routes: AppRoute[] = [
   {
@@ -42,6 +43,12 @@ export const routes: AppRoute[] = [
     path: ROUTE_PATHS.ADMIN,
     component: <AdminLayout>
       <Admin />
+    </AdminLayout>,
+  },
+  {
+    path: ROUTE_PATHS.ADMIN_CARROUSEL,
+    component: <AdminLayout>
+      <AdminCarroussel />
     </AdminLayout>,
   },
 ];

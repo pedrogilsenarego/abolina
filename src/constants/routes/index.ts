@@ -4,4 +4,5 @@ export const ROUTE_PATHS = {
   BOOKS_BOOK: '/books/:id',
   ABOUT: '/about',
   ADMIN: '/admin',
+  ADMIN_CARROUSEL: "/admin/manage-carrousell"
 }

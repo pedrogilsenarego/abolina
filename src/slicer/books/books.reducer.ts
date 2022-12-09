@@ -3,11 +3,12 @@ import bookTypes from "./books.types";
 const INITIAL_STATE = {
   books: [],
   book: {},
+  carroussell: []
 };
 
 interface Action {
   type: string;
-  payload: string;
+  payload: any;
 }
 
 const booksReducer = (state = INITIAL_STATE, action: Action) => {
@@ -22,6 +23,11 @@ const booksReducer = (state = INITIAL_STATE, action: Action) => {
         ...state,
         book: action.payload,
       };
+      case bookTypes.SET_CARROUSSELL:
+        return {
+          ...state,
+          carroussell: action.payload.content,
+        };
 
     default:
       return state;

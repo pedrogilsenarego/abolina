@@ -20,31 +20,46 @@ const fileSize = (max: number, unit = "MB"): Yup.TestConfig<FileList> => ({
 
 
 export const FORM_VALIDATION = Yup.object().shape({
-  // title: Yup.string().required(`${i18n.t("forms.required")}`),
-  // author: Yup.string().required(`${i18n.t("forms.required")}`),
-  // authorResume: Yup.string().required(`${i18n.t("forms.required")}`),
-  // designer: Yup.string().required(`${i18n.t("forms.required")}`),
-  // designerResume: Yup.string().required(`${i18n.t("forms.required")}`),
-  // translator: Yup.string().required(`${i18n.t("forms.required")}`),
-  // translatorResume: Yup.string().required(`${i18n.t("forms.required")}`),
-  // language: Yup.string().required(`${i18n.t("forms.required")}`),
-  // weight: Yup.string().required(`${i18n.t("forms.required")}`),
-  // size: Yup.string().required(`${i18n.t("forms.required")}`),
-  // price: Yup.number().required(`${i18n.t("forms.required")}`),
-  // resume: Yup.string().required(`${i18n.t("forms.required")}`),
-  // coverPage2: Yup
-  // .mixed()
-  // .required(`${i18n.t("forms.required")}`)
-  // .test(fileSize(0.5))
-  // .test(
-  //   onlySpecifiTypes(
-  //      [
-  //       'image/jpeg',
-  //       'image/jpg',
-  //       'image/gif',
-  //       'image/png',
-  //       'image/pdf',
-  //     ]
-  //   )
-  // ),
+  title: Yup.string().required(`${i18n.t("forms.required")}`),
+  author: Yup.string().required(`${i18n.t("forms.required")}`),
+  authorResume: Yup.string().required(`${i18n.t("forms.required")}`),
+  designer: Yup.string().required(`${i18n.t("forms.required")}`),
+  designerResume: Yup.string().required(`${i18n.t("forms.required")}`),
+  translator: Yup.string().required(`${i18n.t("forms.required")}`),
+  translatorResume: Yup.string().required(`${i18n.t("forms.required")}`),
+  language: Yup.string().required(`${i18n.t("forms.required")}`),
+  weight: Yup.string().required(`${i18n.t("forms.required")}`),
+  size: Yup.string().required(`${i18n.t("forms.required")}`),
+  price: Yup.number().required(`${i18n.t("forms.required")}`),
+  resume: Yup.string().required(`${i18n.t("forms.required")}`),
+  coverPage2: Yup
+  .mixed()
+  .required(`${i18n.t("forms.required")}`)
+  .test(fileSize(0.5))
+  .test(
+    onlySpecifiTypes(
+       [
+        'image/jpeg',
+        'image/jpg',
+        'image/gif',
+        'image/png',
+        'image/pdf',
+      ]
+    )
+  ),
+  content: Yup
+  .mixed()
+  .required(`${i18n.t("forms.required")}`)
+  .test(fileSize(0.5))
+  .test(
+    onlySpecifiTypes(
+       [
+        'image/jpeg',
+        'image/jpg',
+        'image/gif',
+        'image/png',
+        'image/pdf',
+      ]
+    )
+  ),
 });

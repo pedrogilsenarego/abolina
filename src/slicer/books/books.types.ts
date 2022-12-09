@@ -3,7 +3,10 @@ const bookTypes = {
   SET_BOOKS: "SET_BOOKS",
   FETCH_BOOK: "FETCH_BOOK",
   SET_BOOK:"SET_BOOK",
-  ADD_BOOK: "ADD_BOOK"
+  ADD_BOOK: "ADD_BOOK",
+  //
+  FETCH_CARROUSSELL: "FETCH_CARROUSSELL",
+  SET_CARROUSSELL: "SET_CARROUSSELL"
 }
 
 export interface Books {
@@ -11,8 +14,7 @@ export interface Books {
     data:Book[]
   }
   book: Book
-  
-  
+  carroussell: string[]
 }
 
 export interface Book {

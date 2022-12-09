@@ -1,10 +1,11 @@
 import { takeLatest, put, all, call } from "redux-saga/effects";
-import { setBooks, setBook } from "./books.actions";
+import { setBooks, setBook, setCarroussell } from "./books.actions";
 import {
   handleFetchBooks,
   handleFetchBook,
   handleAddBook,
   handleAddCoverPage,
+  handleFetchCarroussell,
 } from "./books.helpers";
 import bookTypes from "./books.types";
 import {
@@ -16,7 +17,7 @@ import { i18n } from "../../translations/i18n";
 function* sagaFetchBooks({ payload }) {
   try {
     const books = yield handleFetchBooks(payload);
-    yield put(setBooks(books));
+    yield put(setBooks({ ...books }));
   } catch (err) {}
 }
 
@@ -27,7 +28,7 @@ export function* onFetchBooks() {
 function* sagaFetchBook({ payload }) {
   try {
     const book = yield handleFetchBook(payload);
-    yield put(setBook(book));
+    yield put(setBook({ ...book }));
   } catch (err) {}
 }
 
@@ -64,6 +65,24 @@ export function* onAddBook() {
 
 //
 
+function* sagaFetchCarroussell() {
+  try {
+    const content = yield handleFetchCarroussell();
+    yield put(setCarroussell(content));
+  } catch (err) {}
+}
+
+export function* onFetchCarroussell() {
+  yield takeLatest(bookTypes.FETCH_CARROUSSELL, sagaFetchCarroussell);
+}
+
+//
+
 export default function* bookSagas() {
-  yield all([call(onFetchBooks), call(onFetchBook), call(onAddBook)]);
+  yield all([
+    call(onFetchBooks),
+    call(onFetchBook),
+    call(onAddBook),
+    call(onFetchCarroussell),
+  ]);
 }
