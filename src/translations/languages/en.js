@@ -101,15 +101,19 @@ export const content = {
           },
           manageCarroussell: {
             submitTitle: "Manage Carroussell",
+            imagesKeep: "Images to keep",
+            imagesDelete: "Images to Delete",
           },
         },
       },
       notifications: {
         success: {
           newBook: "Book added with success",
+          updateCarroussell: "The carroussell was updated",
         },
         fail: {
           newBook: "Somethng went wrong, the book was not added",
+          updateCarroussell: "The carroussell was not updated",
         },
       },
     },

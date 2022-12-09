@@ -14,7 +14,7 @@ import { State } from "../../../slicer/types";
 
 const Carrousell = () => {
 
-  const images = useSelector<State, string[]>(state => state.books.carroussell)
+  const images = useSelector<State, string[]>(state => state.books.carroussell || [])
   const [errorImage, setErrorImage] = useState(false);
   const [indexMini, setIndexMini] = useState(0);
   const [mainImage, setMainImage] = useState(images[0]);
@@ -107,7 +107,7 @@ const Carrousell = () => {
             <CarouselProvider
               naturalSlideHeight={40}
               naturalSlideWidth={100}
-              totalSlides={3}
+              totalSlides={images.length}
               currentSlide={indexMini}
               lockOnWindowScroll
               touchEnabled={mobile ? true : false}

@@ -36,3 +36,8 @@ export const setCarroussell = (content:string[]) => ({
   type: bookTypes.SET_CARROUSSELL,
   payload: content,
 });
+
+export const updateCarroussell = (list:string[]) => ({
+  type: bookTypes.UPDATE_CARROUSELL,
+  payload: list,
+})

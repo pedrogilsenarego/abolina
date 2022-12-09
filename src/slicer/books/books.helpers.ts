@@ -127,3 +127,20 @@ export const handleFetchCarroussell = () => {
       });
   });
 };
+
+export const handleUpdateCarroussell = (content:string[]) => {
+  return new Promise<void>((resolve, reject) => {
+    firestore
+      .collection("general")
+      .doc("carrousell")
+      .update({
+        content
+      })
+      .then(() => {
+        resolve();
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};

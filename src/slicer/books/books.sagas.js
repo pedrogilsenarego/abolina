@@ -6,6 +6,7 @@ import {
   handleAddBook,
   handleAddCoverPage,
   handleFetchCarroussell,
+  handleUpdateCarroussell,
 } from "./books.helpers";
 import bookTypes from "./books.types";
 import {
@@ -76,6 +77,26 @@ export function* onFetchCarroussell() {
   yield takeLatest(bookTypes.FETCH_CARROUSSELL, sagaFetchCarroussell);
 }
 
+function* sagaUpdateCarroussell({ payload }) {
+  try {
+    yield handleUpdateCarroussell(payload);
+    yield put(setCarroussell(payload));
+    yield put(
+      updateSuccessNotification(
+        i18n.t("notifications.success.updateCarroussell")
+      )
+    );
+  } catch (err) {
+    yield put(
+      updateFailNotification(i18n.t("notifications.fail.updateCarroussell"))
+    );
+  }
+}
+
+export function* onUpdateCarroussell() {
+  yield takeLatest(bookTypes.UPDATE_CARROUSELL, sagaUpdateCarroussell);
+}
+
 //
 
 export default function* bookSagas() {
@@ -84,5 +105,6 @@ export default function* bookSagas() {
     call(onFetchBook),
     call(onAddBook),
     call(onFetchCarroussell),
+    call(onUpdateCarroussell),
   ]);
 }

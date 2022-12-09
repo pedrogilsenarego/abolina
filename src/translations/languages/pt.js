@@ -102,15 +102,19 @@ export const content = {
           },
           manageCarroussell: {
             submitTitle: "Gerir Carrousel",
+            imagesKeep: "Imagens a manter",
+            imagesDelete: "Imagens para apagar",
           },
         },
       },
       notifications: {
         success: {
           newBook: "Livro adicionado com sucesso",
+          updateCarroussell: "O carrousel foi actualizado",
         },
         fail: {
           newBook: "Livro não foi adicionado, algum erro ocorreu",
+          updateCarroussell: "O carrousel não foi actualizado",
         },
       },
     },
