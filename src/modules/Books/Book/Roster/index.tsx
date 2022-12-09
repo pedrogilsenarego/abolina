@@ -11,30 +11,20 @@ import { i18n } from "../../../../translations/i18n";
 import CollectionBrowser from "./CollectionBrowser";
 import CardMedia from "../../../../components/CardMedia";
 import { Colors } from "../../../../constants/pallette";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { Book } from "../../../../slicer/books/books.types";
-import { State } from "../../../../slicer/types";
 
 interface Props {
   setOpenViewBook: (openViewBook: boolean) => void;
+  book: any
 }
 
-const Roster = ({ setOpenViewBook }: Props) => {
+const Roster = ({ setOpenViewBook, book }: Props) => {
 
 
-  const storeBook = useSelector<State, Book>(
-    (state) => state.books.book || {}
-  );
-  const [book, setBook] = useState<Book>();
+
 
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
 
-  useEffect(() => {
-    setBook(storeBook)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   return (
     <Container>

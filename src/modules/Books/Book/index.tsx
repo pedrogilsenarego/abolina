@@ -17,7 +17,6 @@ import { State } from "../../../slicer/types";
 const BookC = () => {
   const dispatch = useDispatch()
   const [openViewBook, setOpenViewBook] = useState<boolean>(false);
-  const [book, setBook] = useState<any>({})
   const { id } = useParams()
 
 
@@ -26,27 +25,15 @@ const BookC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
 
-  const bookData = useSelector<State, Book>(
+  const book = useSelector<State, Book>(
     (state) => state.books.book || {}
   );
-
-  useEffect(() => {
-    setBook(bookData)
-  }, [bookData])
-
-  console.log(book.title)
-
-
-
-
-
-
 
   return (
     <>
       <Box>
         <Container maxWidth='md'>
-          <Roster setOpenViewBook={setOpenViewBook} />
+          <Roster book={book} setOpenViewBook={setOpenViewBook} />
           <Box display='flex' justifyContent='start' mt='40px'>
             <GStyled.Title>{i18n.t("modules.books.book.title")}</GStyled.Title>
           </Box>
