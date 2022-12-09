@@ -184,3 +184,29 @@ return c
 
   
 };
+
+export const handleDeleteCarroussellStorage = async (list:string[]) => {
+  if(list.length<=1) return
+  const uploadImageAsPromise = (fileRef:any) => {
+    return new Promise<void>((resolve, reject) => {
+      fileRef
+      .delete()
+        .then(() => {
+         resolve()
+        })
+        .catch((err:any) => {
+          reject(err);
+        });
+     
+    });}
+  
+  for (var i = 1; i < list.length; i++) {
+    var imageFile = list[i];
+    var fileRef = storage.refFromURL(imageFile);
+    await uploadImageAsPromise(fileRef);
+}
+
+  
+};
+
+

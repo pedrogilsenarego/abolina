@@ -8,6 +8,7 @@ import {
   handleFetchCarroussell,
   handleUpdateCarroussell,
   handleAddCarroussellImage,
+  handleDeleteCarroussellStorage,
 } from "./books.helpers";
 import bookTypes from "./books.types";
 import {
@@ -80,8 +81,11 @@ export function* onFetchCarroussell() {
 
 function* sagaUpdateCarroussell({ payload }) {
   try {
-    yield handleUpdateCarroussell(payload);
-    yield put(setCarroussell(payload));
+    const freshData = payload[0].data; // imagens que ficam no carrousel
+    yield handleUpdateCarroussell(freshData);
+    yield put(setCarroussell({ content: freshData }));
+    const deleteData = payload[1].data;
+    yield handleDeleteCarroussellStorage(deleteData);
     yield put(
       updateSuccessNotification(
         i18n.t("notifications.success.updateCarroussell")

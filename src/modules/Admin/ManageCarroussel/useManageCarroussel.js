@@ -28,7 +28,9 @@ const useManageCarroussel = () => {
         },
         {
           title: `${i18n.t("modules.admin.manageCarroussell.imagesDelete")}`,
-          data: carroussell,
+          data: [
+            "https://tse2.mm.bing.net/th?id=OIP.QzyAIlQNT1x6uFTv6SYlewHaHa&pid=Api&P=0",
+          ],
         },
       ] || [];
     setList(data2);
@@ -74,7 +76,7 @@ const useManageCarroussel = () => {
   };
 
   const handleSubmit = () => {
-    dispatch(updateCarroussell(list[0].data));
+    dispatch(updateCarroussell(list));
   };
 
   return {

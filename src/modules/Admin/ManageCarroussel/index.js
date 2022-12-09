@@ -21,14 +21,8 @@ const ManageCarrousell = () => {
     newImage: "",
   };
 
-  const {
-    handleDragEnter,
-    dragging,
-    list,
-
-    handleDragStart,
-    handleSubmit,
-  } = useManageCarroussel();
+  const { handleDragEnter, dragging, list, handleDragStart, handleSubmit } =
+    useManageCarroussel();
 
   useEffect(() => {
     dispatch(fetchCarroussell());
@@ -46,81 +40,102 @@ const ManageCarrousell = () => {
       <GStyled.Title>
         {i18n.t("modules.admin.manageCarroussell.submitTitle")}
       </GStyled.Title>
-      <Grid container>
-        {list.map((grp, grpI) => (
-          <Grid item xs={12}>
-            <Paper style={{ marginTop: "5px", minHeight: "200px" }}>
-              <Typography>{grp.title}</Typography>
-              <Box
-                key={grpI}
-                onDragEnter={
-                  dragging && !grp.data.length
-                    ? (e) => handleDragEnter(e, { grpI, itemI: 0 })
-                    : null
-                }
+      <Paper style={{ padding: "15px" }}>
+        <Grid container rowSpacing={2}>
+          {list?.map((grp, grpI) => (
+            <Grid item xs={12}>
+              <Paper
+                style={{
+                  marginTop: "5px",
+                  minHeight: grpI === 0 ? "200px" : "100px",
+                }}
               >
-                <Grid container>
-                  <Grid xs={12} style={{ display: "flex" }}>
-                    {grp.data.map((item, itemI) => (
-                      <Box
-                        onDragStart={(e) => {
-                          handleDragStart(e, { grpI, itemI });
-                        }}
-                        onDragEnter={
-                          dragging
-                            ? (e) => handleDragEnter(e, { grpI, itemI })
-                            : null
-                        }
-                        draggable={true}
-                        key={itemI}
-                        style={{
-                          cursor: "pointer",
-                          width: "200px",
-                          margin: "5px",
-                          padding: "0px",
-                          borderRadius: "8px",
-                          display: "flex",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <img
-                          src={item}
-                          style={{
-                            maxWidth: "100%",
-                            maxHeight: "100%",
-                            padding: "5px",
+                <Typography>{grp?.title}</Typography>
+                <Box
+                  key={grpI}
+                  onDragEnter={
+                    dragging && !grp?.data?.length
+                      ? (e) => handleDragEnter(e, { grpI, itemI: 0 })
+                      : null
+                  }
+                >
+                  <Grid container>
+                    <Grid xs={12} style={{ display: "flex" }}>
+                      {grp?.data?.map((item, itemI) => (
+                        <Box
+                          onDragStart={(e) => {
+                            handleDragStart(e, { grpI, itemI });
                           }}
-                          alt=''
-                        />
-                      </Box>
-                    ))}
+                          onDragEnter={
+                            dragging
+                              ? (e) => handleDragEnter(e, { grpI, itemI })
+                              : null
+                          }
+                          key={itemI}
+                          style={{
+                            cursor: "pointer",
+                            maxWidth: "100px",
+                            margin: "5px",
+                            padding: "0px",
+                            borderRadius: "8px",
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <img
+                            src={item}
+                            style={{
+                              maxWidth: "100%",
+                              maxHeight: "100%",
+                              padding: "5px",
+                            }}
+                            alt=''
+                          />
+                        </Box>
+                      ))}
+                    </Grid>
                   </Grid>
-                </Grid>
-              </Box>
-            </Paper>
-          </Grid>
-        ))}
-      </Grid>
-      <Formik
-        initialValues={{ ...INITIAL_FORM_STATE }}
-        onSubmit={(values) => {
-          handleNewImage(values);
+                </Box>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+        <Box
+          display='flex'
+          justifyContent='start'
+          style={{ marginTop: "30px" }}
+        >
+          <Button label='Submit' onClick={handleSubmit} />
+        </Box>
+      </Paper>
+
+      <Paper
+        style={{
+          padding: "15px",
+          borderRadius: "6px",
+          marginTop: "50px",
         }}
-        validationSchema={FORM_VALIDATION}
       >
-        <Form>
-          <FileUploader
-            fieldTitle='New image'
-            name='newImage'
-            multiple
-            acceptType='image/jpeg,image/jpg'
-          />
-          <Box display='flex' justifyContent='start' sx={{ mt: "20px" }}>
-            <ButtonForm label={i18n.t("modules.home.contacts.form.send")} />
-          </Box>
-        </Form>
-      </Formik>
-      <Button label='Submit' onClick={handleSubmit} />
+        <Formik
+          initialValues={{ ...INITIAL_FORM_STATE }}
+          onSubmit={(values) => {
+            handleNewImage(values);
+          }}
+          validationSchema={FORM_VALIDATION}
+        >
+          <Form>
+            <FileUploader
+              fieldTitle='New image'
+              name='newImage'
+              multiple
+              acceptType='image/jpeg,image/jpg'
+            />
+            <Box display='flex' justifyContent='start' sx={{ mt: "20px" }}>
+              <ButtonForm label={i18n.t("modules.home.contacts.form.send")} />
+            </Box>
+          </Form>
+        </Formik>
+      </Paper>
     </Container>
   );
 };
