@@ -38,14 +38,16 @@ export function* onFetchBook() {
 function* sagaAddBook({ payload }) {
   try {
     const timestamp = new Date();
-    const { title, coverPage2 } = payload;
-    const coverPage = yield handleAddCoverPage({ title, coverPage2 });
-
+    const { title, coverPage2, content } = payload;
+    const coverPage = yield handleAddCoverPage(title, coverPage2);
+    const content2 = yield handleAddCoverPage(title, content);
     delete payload.coverPage2;
+    delete payload.content;
 
     yield handleAddBook({
       ...payload,
       coverPage,
+      content: content2,
       createdDate: timestamp,
     });
     yield put(

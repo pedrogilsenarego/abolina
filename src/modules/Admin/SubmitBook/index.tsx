@@ -30,7 +30,6 @@ const SubmitBook = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values: any) => {
-    console.log(values)
     dispatch(addBook({ ...values }));
   };
 

@@ -54,7 +54,7 @@ const FileUploader = ({ fieldTitle, name, acceptType, multiple }: Props) => {
                 accept={acceptType || "image/*"}
                 onChange={(e: any) => {
                   setImageUpload(e?.target?.files);
-                  helpers.setValue(e?.target?.files[0]);
+                  helpers.setValue(e?.target?.files);
                   helpers.setError(undefined);
                 }}
               />

@@ -51,38 +51,47 @@ export const handleFetchBook = (documentID: string) => {
   });
 };
 
-interface AddCoverPage {
-  title: string;
-  coverPage2: any;
-}
 
-export const handleAddCoverPage = ({ title, coverPage2 }: AddCoverPage) => {
-  return new Promise<void>((resolve, reject) => {
-    storage
-      .ref(`books/${title}/${coverPage2.name}`)
-      .put(coverPage2)
-      .then(() => {
-        storage
-          .ref("books")
-          .child(title)
-          .child(coverPage2.name)
-          .getDownloadURL()
-          .then((url) => {
-            resolve(url)
-            console.log(url);
-            
-          });
-      })
-      .catch((err) => {
-        reject(err);
-      });
-    // storageRef.on(
-    //   "state_changed",
-    //   (snapshot) => {
-    //     // const progressD = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
-    //     // setProgress(progressD)
-    //   },
-  });
+
+export const handleAddCoverPage = async (title:string, files:any) => {
+  const a = Array.prototype.slice.call(files);
+  const c:any = []
+  const uploadImageAsPromise = (imageFile:any) => {
+    return new Promise<void>((resolve, reject) => {
+      storage
+        .ref(`books/${title}/${imageFile.name}`)
+        .put(imageFile)
+        .then(() => {
+          storage
+            .ref("books")
+            .child(title)
+            .child(imageFile.name)
+            .getDownloadURL()
+            .then((url) => {
+              resolve(url)
+              console.log(url)
+              c.push(url);
+              
+            });
+        })
+        .catch((err) => {
+          reject(err);
+        });
+      // storageRef.on(
+      //   "state_changed",
+      //   (snapshot) => {
+      //     // const progressD = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+      //     // setProgress(progressD)
+      //   },
+    });}
+  
+  for (var i = 0; i < a.length; i++) {
+    var imageFile = a[i];
+    await uploadImageAsPromise(imageFile);
+}
+return c
+
+  
 };
 
 export const handleAddBook = (payload: any) => {
