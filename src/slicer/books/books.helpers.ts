@@ -144,3 +144,43 @@ export const handleUpdateCarroussell = (content:string[]) => {
       });
   });
 };
+
+export const handleAddCarroussellImage = async (files:any) => {
+  const a = Array.prototype.slice.call(files);
+  const c:any = []
+  const uploadImageAsPromise = (imageFile:any) => {
+    return new Promise<void>((resolve, reject) => {
+      storage
+        .ref(`carroussell/${imageFile.name}`)
+        .put(imageFile)
+        .then(() => {
+          storage
+            .ref("carroussell")
+            .child(imageFile.name)
+            .getDownloadURL()
+            .then((url) => {
+              resolve(url)
+              console.log(url)
+              c.push(url);
+              
+            });
+        })
+        .catch((err) => {
+          reject(err);
+        });
+      // storageRef.on(
+      //   "state_changed",
+      //   (snapshot) => {
+      //     // const progressD = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+      //     // setProgress(progressD)
+      //   },
+    });}
+  
+  for (var i = 0; i < a.length; i++) {
+    var imageFile = a[i];
+    await uploadImageAsPromise(imageFile);
+}
+return c
+
+  
+};

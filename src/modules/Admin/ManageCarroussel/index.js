@@ -1,23 +1,45 @@
 import { Container, Grid, Typography, Paper, Box } from "@mui/material";
 import * as GStyled from "../../../styles";
 import { i18n } from "../../../translations/i18n";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { fetchCarroussell } from "../../../slicer/books/books.actions";
+import {
+  addNewCarroussell,
+  fetchCarroussell,
+} from "../../../slicer/books/books.actions";
 import useManageCarroussel from "./useManageCarroussel";
 import Button from "../../../components/Buttons/Button";
+import FileUploader from "../../../components/Inputs/FileUploader";
+import { Formik, Form } from "formik";
+import { FORM_VALIDATION } from "./validation";
+import ButtonForm from "../../../components/Buttons/ButtonFormik";
 
 const ManageCarrousell = () => {
   const dispatch = useDispatch();
-  const carroussell = useSelector((state) => state.books.carroussell || []);
 
-  const { handleDragEnter, dragging, list, handleDragStart, handleSubmit } =
-    useManageCarroussel(carroussell);
+  const INITIAL_FORM_STATE = {
+    newImage: "",
+  };
+
+  const {
+    handleDragEnter,
+    dragging,
+    list,
+
+    handleDragStart,
+    handleSubmit,
+  } = useManageCarroussel();
 
   useEffect(() => {
     dispatch(fetchCarroussell());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleNewImage = (values) => {
+    const newValues = { ...values, list };
+    dispatch(addNewCarroussell(newValues));
+    // setList([...list], list[0].data.push() );
+  };
 
   return (
     <Container maxWidth='md' style={{ justifyContent: "center" }}>
@@ -79,9 +101,25 @@ const ManageCarrousell = () => {
           </Grid>
         ))}
       </Grid>
-      {list[0].data.map((string, pos) => {
-        return <Typography key={pos}>{string}</Typography>;
-      })}
+      <Formik
+        initialValues={{ ...INITIAL_FORM_STATE }}
+        onSubmit={(values) => {
+          handleNewImage(values);
+        }}
+        validationSchema={FORM_VALIDATION}
+      >
+        <Form>
+          <FileUploader
+            fieldTitle='New image'
+            name='newImage'
+            multiple
+            acceptType='image/jpeg,image/jpg'
+          />
+          <Box display='flex' justifyContent='start' sx={{ mt: "20px" }}>
+            <ButtonForm label={i18n.t("modules.home.contacts.form.send")} />
+          </Box>
+        </Form>
+      </Formik>
       <Button label='Submit' onClick={handleSubmit} />
     </Container>
   );

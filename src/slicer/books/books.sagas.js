@@ -7,6 +7,7 @@ import {
   handleAddCoverPage,
   handleFetchCarroussell,
   handleUpdateCarroussell,
+  handleAddCarroussellImage,
 } from "./books.helpers";
 import bookTypes from "./books.types";
 import {
@@ -97,6 +98,28 @@ export function* onUpdateCarroussell() {
   yield takeLatest(bookTypes.UPDATE_CARROUSELL, sagaUpdateCarroussell);
 }
 
+function* sagaNewImageCarroussell({ payload }) {
+  try {
+    const { newImage, list } = payload;
+    const url = yield handleAddCarroussellImage(newImage);
+    const newArray = list[0].data.concat(url);
+    yield handleUpdateCarroussell(newArray);
+    yield put(setCarroussell({ content: newArray }));
+    // yield put(
+    //   updateSuccessNotification(i18n.t("notifications.success.newBook"))
+    // );
+  } catch (err) {
+    // yield put(updateFailNotification(i18n.t("notifications.fail.newBook")));
+  }
+}
+
+export function* onNewImageCarroussell() {
+  yield takeLatest(
+    bookTypes.ADD_NEW_IMAGE_CARROUSSELL,
+    sagaNewImageCarroussell
+  );
+}
+
 //
 
 export default function* bookSagas() {
@@ -106,5 +129,6 @@ export default function* bookSagas() {
     call(onAddBook),
     call(onFetchCarroussell),
     call(onUpdateCarroussell),
+    call(onNewImageCarroussell),
   ]);
 }

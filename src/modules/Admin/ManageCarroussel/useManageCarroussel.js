@@ -1,23 +1,38 @@
-import { useState, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useRef, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { updateCarroussell } from "../../../slicer/books/books.actions";
 import { i18n } from "../../../translations/i18n";
 
-const useManageCarroussel = (data) => {
+const useManageCarroussel = () => {
   const dispatch = useDispatch();
   const [dragging, setDragging] = useState(false);
-  const data2 =
-    [
-      {
-        title: `${i18n.t("modules.admin.manageCarroussell.imagesKeep")}`,
-        data,
-      },
-      {
-        title: `${i18n.t("modules.admin.manageCarroussell.imagesDelete")}`,
-        data,
-      },
-    ] || [];
-  const [list, setList] = useState(data2);
+  const carroussell = useSelector((state) => state.books.carroussell);
+
+  const [list, setList] = useState([
+    {
+      title: `${i18n.t("modules.admin.manageCarroussell.imagesKeep")}`,
+      data: [],
+    },
+    {
+      title: `${i18n.t("modules.admin.manageCarroussell.imagesDelete")}`,
+      data: [],
+    },
+  ]);
+
+  useEffect(() => {
+    const data2 =
+      [
+        {
+          title: `${i18n.t("modules.admin.manageCarroussell.imagesKeep")}`,
+          data: carroussell,
+        },
+        {
+          title: `${i18n.t("modules.admin.manageCarroussell.imagesDelete")}`,
+          data: carroussell,
+        },
+      ] || [];
+    setList(data2);
+  }, [carroussell]);
 
   const dragItem = useRef();
   const dragItemNode = useRef();
@@ -62,7 +77,14 @@ const useManageCarroussel = (data) => {
     dispatch(updateCarroussell(list[0].data));
   };
 
-  return { handleDragEnter, dragging, list, handleDragStart, handleSubmit };
+  return {
+    handleDragEnter,
+    dragging,
+    list,
+    setList,
+    handleDragStart,
+    handleSubmit,
+  };
 };
 
 export default useManageCarroussel;
