@@ -23,7 +23,7 @@ export const FORM_VALIDATION = Yup.object().shape({
   newImage: Yup
   .mixed()
   .required(`${i18n.t("forms.required")}`)
-  .test(fileSize(0.5))
+  .test(fileSize(5))
   .test(
     onlySpecifiTypes(
        [

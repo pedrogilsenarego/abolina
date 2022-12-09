@@ -111,10 +111,12 @@ export const content = {
         success: {
           newBook: "Livro adicionado com sucesso",
           updateCarroussell: "O carrousel foi actualizado",
+          newCarrousselImage: "Foi adicionada uma nova imagem ao carrousel",
         },
         fail: {
           newBook: "Livro não foi adicionado, algum erro ocorreu",
           updateCarroussell: "O carrousel não foi actualizado",
+          newCarrousselImage: "Não foi adicionada uma nova imagem ao carrousel",
         },
       },
     },

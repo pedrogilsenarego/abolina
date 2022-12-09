@@ -105,11 +105,15 @@ function* sagaNewImageCarroussell({ payload }) {
     const newArray = list[0].data.concat(url);
     yield handleUpdateCarroussell(newArray);
     yield put(setCarroussell({ content: newArray }));
-    // yield put(
-    //   updateSuccessNotification(i18n.t("notifications.success.newBook"))
-    // );
+    yield put(
+      updateSuccessNotification(
+        i18n.t("notifications.success.newCarrousselImage")
+      )
+    );
   } catch (err) {
-    // yield put(updateFailNotification(i18n.t("notifications.fail.newBook")));
+    yield put(
+      updateFailNotification(i18n.t("notifications.fail.newCarrousselImage"))
+    );
   }
 }
 
