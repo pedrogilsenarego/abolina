@@ -7,13 +7,14 @@ import { Colors } from "../../../constants/pallette";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { ROUTE_PATHS } from "../../../constants/routes";
 import { useNavigate } from "react-router"
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCarroussell } from "../../../slicer/books/books.actions";
+import { State } from "../../../slicer/types";
 
 
 const Carrousell = () => {
-  const NO_IMAGE =
-    "https://cdn.pixabay.com/photo/2015/04/19/08/33/flower-729512__340.jpg";
 
-  const images = [NO_IMAGE, NO_IMAGE, NO_IMAGE];
+  const images = useSelector<State, string[]>(state => state.books.carroussell)
   const [errorImage, setErrorImage] = useState(false);
   const [indexMini, setIndexMini] = useState(0);
   const [mainImage, setMainImage] = useState(images[0]);
@@ -21,9 +22,15 @@ const Carrousell = () => {
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
   const Navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const IMAGE_HEIGHT_MOBILE = "80vh";
   const IMAGE_HEIGHT_LAPTOP = "20vh";
+
+  useEffect(() => {
+    dispatch(fetchCarroussell())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const mouseDownCoords = (e: any) => {
     // @ts-ignore
@@ -51,12 +58,14 @@ const Carrousell = () => {
   const handleGoLeft = () => {
     if (indexMini > 0) {
       setIndexMini(indexMini - 1);
+      setMainImage(images[indexMini]);
     }
     return;
   };
   const handleGoRight = () => {
     if (indexMini < images.length - 1) {
       setIndexMini(indexMini + 1);
+      setMainImage(images[indexMini]);
     }
     return;
   };
@@ -137,7 +146,7 @@ const Carrousell = () => {
                           height: "100%",
                           cursor: "Pointer",
                         }}
-                        src={mainImage}
+                        src={image}
                         alt=''
                       />
                     </Slide>
