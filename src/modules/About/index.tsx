@@ -6,7 +6,7 @@ import sobreOndas from "../../assets/images/sobreOndas.svg"
 
 const About = () => {
   return (
-    <Box >
+    <Box style={{ position: "relative", paddingBottom: "15vh" }}>
 
       <Container maxWidth='md' >
         <Box display='flex' justifyContent='start'>
@@ -73,7 +73,10 @@ const About = () => {
         </Grid>
       </Container>
       <Box style={{
-
+        position: "absolute",
+        zIndex: -10,
+        bottom: 0,
+        width: "100%",
         backgroundImage: `url(${sobreOndas})`,
         backgroundSize: "cover",
         minHeight: "30vh"

@@ -14,39 +14,48 @@ const Home = () => {
 
   return (
     <>
-      <Carrousell />
-      <Box style={{
+      <Box style={{ position: "relative" }}>
+        <Carrousell />
+        <Box style={{
+          position: "absolute",
+          zIndex: -10,
+          width: "100%",
+          bottom: "-13%",
+          backgroundImage: `url(${homeOndas1})`,
+          backgroundSize: "cover",
+          minHeight: "25%"
+        }} />
+      </Box>
+      <Box >
+        <Container maxWidth='lg' style={{ justifyContent: "center" }}>
+          <Box sx={{ mt: "60px" }} >
+            <GStyled.Title>{i18n.t("menuBar.about")}</GStyled.Title>
+            <Typography
+              align='justify'
+              style={{ marginTop: "10px", whiteSpace: "pre-line" }}
+            >
+              {i18n.t("modules.about.mainText")}
+            </Typography>
+          </Box>
+          <Box sx={{ mt: "20px" }} display='flex' justifyContent='start'>
+            <Button
+              label={i18n.t("modules.home.mainTextBtn")}
+              onClick={() => navigate(ROUTE_PATHS.ABOUT)}
+            />
+          </Box>
+          <Box sx={{ mt: "60px" }} >
+            <Contacts />
+          </Box>
+        </Container>
+        <Box style={{
 
-        backgroundImage: `url(${homeOndas1})`,
-        backgroundSize: "cover",
-        minHeight: "30vh"
-      }} />
-      <Container maxWidth='lg' style={{ justifyContent: "center" }}>
-        <Box sx={{ mt: "60px" }} >
-          <GStyled.Title>{i18n.t("menuBar.about")}</GStyled.Title>
-          <Typography
-            align='justify'
-            style={{ marginTop: "10px", whiteSpace: "pre-line" }}
-          >
-            {i18n.t("modules.about.mainText")}
-          </Typography>
-        </Box>
-        <Box sx={{ mt: "20px" }} display='flex' justifyContent='start'>
-          <Button
-            label={i18n.t("modules.home.mainTextBtn")}
-            onClick={() => navigate(ROUTE_PATHS.ABOUT)}
-          />
-        </Box>
-        <Box sx={{ mt: "60px" }} >
-          <Contacts />
-        </Box>
-      </Container>
-      <Box style={{
-
-        backgroundImage: `url(${homeOndas2})`,
-        backgroundSize: "cover",
-        minHeight: "30vh"
-      }} />
+          bottom: 0,
+          zIndex: -10,
+          backgroundImage: `url(${homeOndas2})`,
+          backgroundSize: "cover",
+          minHeight: "30vh"
+        }} />
+      </Box>
     </>
   );
 };

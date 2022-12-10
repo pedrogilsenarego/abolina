@@ -83,6 +83,7 @@ const ManageCarrousell = () => {
                           }}
                         >
                           <img
+                            draggable={itemI === 0 && grpI === 1 ? false : true}
                             src={item}
                             style={{
                               maxWidth: "100%",
