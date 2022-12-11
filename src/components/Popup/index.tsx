@@ -19,6 +19,7 @@ interface Props {
   setOpenPopup?: (openPopup: boolean) => void;
   clickToClose?: boolean;
   actions?: Actions[]
+  onClose?: () => void
 }
 
 const Popup = ({
@@ -27,7 +28,8 @@ const Popup = ({
   openPopup,
   setOpenPopup,
   clickToClose,
-  actions
+  actions,
+  onClose
 }: Props) => {
 
   const theme = useTheme();

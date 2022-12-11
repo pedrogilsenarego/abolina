@@ -10,6 +10,13 @@ const INITIAL_STATE = {
   history: ["/"],
   lang: "PT",
   scrollToContacts: false,
+  paginationManageBooks: {
+    page: 1,
+    perPage: 10,
+    sortBy: "createdAt",
+    orderBy: "desc",
+    type: generalTypes.PAGINATION_MANAGE_BOOKS,
+  },
 };
 
 interface Action {
@@ -90,6 +97,11 @@ const generalReducer = (state = INITIAL_STATE, action: Action) => {
       return {
         ...state,
         scrollToContacts: action.payload,
+      };
+    case generalTypes.PAGINATION_MANAGE_BOOKS:
+      return {
+        ...state,
+        paginationManageBooks: action.payload,
       };
 
     default:

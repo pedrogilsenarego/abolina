@@ -63,3 +63,8 @@ export const scrollToContacts = (signal:boolean) => ({
   type: generalTypes.SCROLL_CONTACTS,
   payload: signal
 })
+
+export const updatePaginationManageBooks = (filters:any) => ({
+  type: generalTypes.PAGINATION_MANAGE_BOOKS,
+  payload: filters
+})
