@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import { i18n } from "../../../../translations/i18n";
+import { i18n } from "../../../../../translations/i18n";
 
 const IMAGE_FORMATS_MESSAGE = (fileFormats: string[]) =>
   fileFormats.map((i) => i.split("/")[1]).join(", ");

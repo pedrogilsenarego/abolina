@@ -31,9 +31,9 @@ export const content = {
         },
       },
       adminSideBar: {
-        submitBook: "Submit Book",
+        submitBook: "Manage Books",
         manageCarroussel: "Manage Carroussell",
-        back: "Back",
+        back: "Home",
       },
       modules: {
         home: {
@@ -82,23 +82,27 @@ export const content = {
           },
         },
         admin: {
-          submitBook: {
-            submitTitle: "Submit Book",
-            title: "Title",
-            coverPage: "Cover Page",
-            content: "Content",
-            author: "Author",
-            authorResume: "Author Resume",
-            designer: "Designer",
-            designerResume: "Designer Resume",
-            translatorResume: "Translator Resume",
-            translator: "Translator",
-            language: "Language",
-            weight: "Weight",
-            size: "Size",
-            resume: "Resume",
-            price: "Price",
+          manageBooks: {
+            createButton: "Add new book",
+            submitBook: {
+              submitTitle: "Submit Book",
+              title: "Title",
+              coverPage: "Cover Page",
+              content: "Content",
+              author: "Author",
+              authorResume: "Author Resume",
+              designer: "Designer",
+              designerResume: "Designer Resume",
+              translatorResume: "Translator Resume",
+              translator: "Translator",
+              language: "Language",
+              weight: "Weight",
+              size: "Size",
+              resume: "Resume",
+              price: "Price",
+            },
           },
+
           manageCarroussell: {
             submitTitle: "Manage Carroussell",
             imagesKeep: "Images to keep",

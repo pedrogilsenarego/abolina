@@ -1,13 +1,13 @@
-import * as GStyled from "../../../styles";
-import { i18n } from "../../../translations/i18n";
+import * as GStyled from "../../../../styles";
+import { i18n } from "../../../../translations/i18n";
 import { Container, Box } from "@mui/material";
-import Textfield from "../../../components/Inputs/TextField";
+import Textfield from "../../../../components/Inputs/TextField";
 import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
-import ButtonForm from "../../../components/Buttons/ButtonFormik";
+import ButtonForm from "../../../../components/Buttons/ButtonFormik";
 import { useDispatch } from "react-redux";
-import { addBook } from "../../../slicer/books/books.actions";
-import FileUploader from "../../../components/Inputs/FileUploader";
+import { addBook } from "../../../../slicer/books/books.actions";
+import FileUploader from "../../../../components/Inputs/FileUploader";
 
 const SubmitBook = () => {
   const INITIAL_FORM_STATE = {
