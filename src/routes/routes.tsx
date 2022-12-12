@@ -9,7 +9,7 @@ const Home = lazyWithRetryAndLoader(() => import("../modules/Home"));
 const Books = lazyWithRetryAndLoader(() => import("../modules/Books"));
 const Book = lazyWithRetryAndLoader(() => import("../modules/Books/Book"));
 const About = lazyWithRetryAndLoader(() => import("../modules/About"));
-const Admin = lazyWithRetryAndLoader(() => import("../modules/Admin"));
+const AdminManageBooks = lazyWithRetryAndLoader(() => import("../modules/Admin/ManageBooks"));
 const AdminBooksCreate = lazyWithRetryAndLoader(() => import("../modules/Admin/ManageBooks/SubmitBook"));
 const AdminCarroussel = lazyWithRetryAndLoader(() => import("../modules/Admin/ManageCarroussel"))
 
@@ -43,7 +43,7 @@ export const routes: AppRoute[] = [
   {
     path: ROUTE_PATHS.ADMIN,
     component: <AdminLayout>
-      <Admin />
+      <AdminManageBooks />
     </AdminLayout>,
   },
   {

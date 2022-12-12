@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from 'react'
+import { FunctionComponent, useState, useEffect } from 'react'
 import {
   Tooltip,
   Dialog,
@@ -7,21 +7,19 @@ import {
   DialogContentText,
   DialogActions,
   Button,
-  Icon,
   Box,
 } from '@mui/material'
 import { TableListAction } from '../types'
 import * as Styled from './styles'
-import Toggle from '../../../components/Inputs/Toggle'
+import Toggle from '../../Inputs/Toggle'
 
 interface ActionProps extends TableListAction {
-  onClick: () => void
+  onClick: () => void;
 }
 
 export const Action: FunctionComponent<ActionProps> = ({
   label,
   buttonType = 'icon',
-  dimColor,
   confirmationDescription,
   confirmationRequired,
   confirmationTitle,
@@ -32,12 +30,14 @@ export const Action: FunctionComponent<ActionProps> = ({
   declineButtonLabel = 'Decline',
 }: ActionProps) => {
   const [openConfirmation, setOpenConfirmation] = useState(false)
+  const [toggleDisabled, setToggleDisabled] = useState(false)
 
   const handleCloseConfirmation = () => {
     setOpenConfirmation(false)
   }
 
   const handleClick = () => {
+    if (disabled) { console.log("disabled"); return }
     if (confirmationRequired) {
       if (openConfirmation) {
         handleCloseConfirmation()
@@ -48,40 +48,24 @@ export const Action: FunctionComponent<ActionProps> = ({
       return
     }
     onClick()
+    setToggleDisabled(!toggleDisabled)
   }
 
-  const renderToggle = () =>
-    buttonType === 'isDimmed' ? (
-      <>
-        <Box
-          sx={{
-            backgroundColor: dimColor || 'orange',
-            minWidth: '10px',
-            minHeight: '10px',
-            borderRadius: '50%',
-          }}
-        />
-      </>
-    ) : (
-      <Box>
-        <Toggle
-          isActive={!disabled}
-          // todo create isActive prop and use disabled for disabled prop
-          disabled={buttonType === 'disabledToggle'}
-          onClick={handleClick}
-        />
-      </Box>
-    )
+  useEffect(() => {
+    if (disabled) setToggleDisabled(disabled)
+  }, [disabled])
 
   return (
     <>
       <Tooltip arrow placement="top" title={label}>
         {buttonType === 'icon' ? (
-          <Styled.IconButton onClick={handleClick} disabled={disabled}>
-            {icon && <Icon>{icon}</Icon>}
+          <Styled.IconButton onClick={handleClick}>
+            {icon ?? null}
           </Styled.IconButton>
         ) : (
-          renderToggle()
+          <Box component="div">
+            <Toggle isActive={!toggleDisabled} onClick={handleClick} />
+          </Box>
         )}
       </Tooltip>
 

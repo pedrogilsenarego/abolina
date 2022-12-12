@@ -18,8 +18,28 @@ const generalTypes = {
 export interface GeneralState {
   lang: string,
   scrollToContacts: boolean
+  paginationManageBooks: Pagination
+
 }
 
+export interface Pagination {
+  page: number
+  perPage: number
+  sortBy: string
+  orderBy: 'asc' | 'desc'
+  type: PaginationTypes
+  searchQuery?: string
+  searchBy?: string | undefined
+  quickFilters?: any
+  startDate?: Date | string | undefined | null
+  endDate?: Date | string | undefined | null
+  filters?: any
+  loaded?: boolean
+}
+
+export enum PaginationTypes {
+  PAGINATION_MANAGE_BOOKS= "PAGINATION_MANAGE_BOOKS"
+}
 
 
 export default generalTypes;

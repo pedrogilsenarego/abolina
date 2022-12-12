@@ -14,7 +14,7 @@ const CanAccess: FunctionComponent<UsePermissionParams> = ({
   children,
   permissions,
 }) => {
-  const hasPermission = usePermission({ permissions })
+  const hasPermission = usePermission()
   if (as === ROLES.VENDOR) {
     const hasAllPermissions = permissions?.every((permission) =>
       getPermissions.vendor.includes(permission)
