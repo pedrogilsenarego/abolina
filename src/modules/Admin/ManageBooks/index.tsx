@@ -5,11 +5,18 @@ import { i18n } from "../../../translations/i18n";
 import { useNavigate } from "react-router";
 import TableList from "../../../components/TableList";
 import { tableColumns } from "./Constants";
+import { useSelector } from "react-redux";
+import { State } from "../../../slicer/types";
+import { mapBooksItems } from "./mapper";
 
 
 const ManageBooks = () => {
   const navigate = useNavigate();
+  const tableData = useSelector<State, any>(
+    (state) => state.books.books.data || []
+  );
 
+  console.log(tableData)
 
   return (
     <>
@@ -19,7 +26,7 @@ const ManageBooks = () => {
           onClick={() => navigate(ROUTE_PATHS.ADMIN_BOOKS_CREATE)}
         />
       </Box>
-      <TableList columns={tableColumns} rows={[]} onAction={() => null} />
+      <TableList columns={tableColumns} rows={mapBooksItems(tableData).rows} onAction={() => null} />
     </>
   );
 };

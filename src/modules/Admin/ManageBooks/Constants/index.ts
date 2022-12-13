@@ -8,15 +8,9 @@ export const tableColumns =
   [
   
   {
-    id: "description",
-    label: "Description",
+    id: "title",
+    label: "Title",
     type: ColumnType.Text,
-    sortable: false,
-  },
-  {
-    id: "show",
-    label: "Show",
-    type: ColumnType.ActionComponent,
     sortable: false,
   },
   {

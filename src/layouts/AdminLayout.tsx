@@ -1,10 +1,10 @@
-import { Grid } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 import AdminSideBar from "../presentational/AdminSideBar";
 
 
 const AdminLayout = (props: any) => {
   return (
-    <>
+    <Grid container>
       <AdminSideBar />
       <Grid
         container
@@ -33,7 +33,7 @@ const AdminLayout = (props: any) => {
 
         </Grid>
       </Grid>
-    </>
+    </Grid>
   );
 };
 
