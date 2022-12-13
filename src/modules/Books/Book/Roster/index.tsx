@@ -116,7 +116,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
             <GStyled.SubTitle style={{ fontWeight: 700 }}>
               {i18n.t("modules.books.book.pages")}
             </GStyled.SubTitle>
-            <Typography>{book?.pages}</Typography>
+            <Typography>{book?.content?.length}</Typography>
           </Box>
           <Box
             display='flex'

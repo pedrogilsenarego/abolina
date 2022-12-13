@@ -37,7 +37,7 @@ const UpScroller = () => {
       onMouseLeave={() => setHover(false)}
       onClick={() => { moveTop(); setHover(false) }}
     >
-      <BsCaretUpFill color={Colors.tealc} size="1em" />
+      <BsCaretUpFill color={Colors.tealc} size="0.8em" />
     </Box>
   );
 };

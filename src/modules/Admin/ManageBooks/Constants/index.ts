@@ -14,6 +14,12 @@ export const tableColumns =
     sortable: false,
   },
   {
+    id: "newBook",
+    label: "New Book",
+    type: ColumnType.ActionComponent,
+    sortable: false,
+  },
+  {
     id: 'delete',
     label: 'Remove',
     type: ColumnType.ActionComponent,

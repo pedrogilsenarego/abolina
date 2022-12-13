@@ -8,6 +8,18 @@ const mapBookItem = (cartItems: any, pos: number) => {
   return {
     id: pos,
     title: cartItems.title,
+    newBook: [{
+      buttonType: 'toggle',
+      confirmationButtonLabel: 'Yes',
+      declineButtonLabel: 'No',
+      confirmationDescription:
+        'Are you sure you want to disable this package?',
+      confirmationRequired: true,
+      confirmationTitle: 'Disable Package',
+      disabled: false,
+      event: 'disable',
+      label: 'Disable Package',
+    }],
     delete: [
       {
         buttonType: "icon",
