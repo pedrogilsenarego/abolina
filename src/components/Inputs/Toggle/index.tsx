@@ -25,7 +25,7 @@ export type ToggleProps = {
 
 const Toggle = ({
   label,
-  isActive,
+  isActive = false,
   onClick,
   disabled = false,
   confirmationRequired = false,

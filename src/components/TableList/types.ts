@@ -44,4 +44,5 @@ export interface TableListAction {
   confirmationButtonLabel?: string;
   declineButtonLabel?: string;
   disabled?: boolean;
+  isActive?: boolean
 }

@@ -1,13 +1,14 @@
 import { ImCross } from "react-icons/im";
+import { Book } from "../../../slicer/books/books.types";
 
 const deleteIcon = (
   <ImCross fontSize='1em' color='black' style={{ cursor: "pointer" }} />
 );
 
-const mapBookItem = (cartItems: any, pos: number) => {
+const mapBookItem = (book: Book, pos: number) => {
   return {
     id: pos,
-    title: cartItems.title,
+    title: book.title,
     newBook: [{
       buttonType: 'toggle',
       confirmationButtonLabel: 'Yes',
@@ -16,7 +17,7 @@ const mapBookItem = (cartItems: any, pos: number) => {
         'Are you sure you want to disable this package?',
       confirmationRequired: true,
       confirmationTitle: 'Disable Package',
-      isActive: false,
+      isActive: book.newBook ?? true,
       disabled: false,
       event: 'newBook',
       label: 'Disable Package',

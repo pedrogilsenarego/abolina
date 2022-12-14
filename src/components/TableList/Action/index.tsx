@@ -24,16 +24,18 @@ export const Action: FunctionComponent<ActionProps> = ({
   confirmationRequired,
   confirmationTitle,
   disabled,
+  isActive,
   icon,
   onClick,
   confirmationButtonLabel = 'Accept',
   declineButtonLabel = 'Decline',
 }: ActionProps) => {
   const [openConfirmation, setOpenConfirmation] = useState(false)
-  const [toggleDisabled, setToggleDisabled] = useState(false)
+  const [toggleDisabled, setToggleDisabled] = useState(true)
 
   const handleCloseConfirmation = () => {
     setOpenConfirmation(false)
+    setToggleDisabled(!toggleDisabled)
   }
 
   const handleClick = () => {
@@ -52,8 +54,8 @@ export const Action: FunctionComponent<ActionProps> = ({
   }
 
   useEffect(() => {
-    if (disabled) setToggleDisabled(disabled)
-  }, [disabled])
+    if (disabled || !isActive) setToggleDisabled(false)
+  }, [disabled, isActive])
 
   return (
     <>
@@ -64,7 +66,7 @@ export const Action: FunctionComponent<ActionProps> = ({
           </Styled.IconButton>
         ) : (
           <Box component="div">
-            <Toggle isActive={!toggleDisabled} onClick={handleClick} />
+            <Toggle isActive={toggleDisabled} onClick={handleClick} />
           </Box>
         )}
       </Tooltip>
