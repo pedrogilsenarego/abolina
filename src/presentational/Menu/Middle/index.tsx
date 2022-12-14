@@ -4,6 +4,7 @@ import Button from "./Button";
 import { ROUTE_PATHS } from "../../../constants/routes";
 import { useDispatch } from "react-redux"
 import { scrollToContacts } from "../../../slicer/general/general.actions";
+import { useNavigate, useLocation } from "react-router";
 
 interface Props {
   setOpenDrawer: (openDrawer: boolean) => void;
@@ -13,8 +14,11 @@ const Middle = ({ setOpenDrawer }: Props) => {
   const Theme = useTheme()
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"))
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const loc = useLocation()
 
   const handleContacts = () => {
+    if (loc.pathname !== ROUTE_PATHS.HOME) { navigate(ROUTE_PATHS.HOME) }
     dispatch(scrollToContacts(true))
   }
 

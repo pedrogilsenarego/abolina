@@ -16,6 +16,7 @@ const mapBookItem = (cartItems: any, pos: number) => {
         'Are you sure you want to disable this package?',
       confirmationRequired: true,
       confirmationTitle: 'Disable Package',
+      isActive: false,
       disabled: false,
       event: 'newBook',
       label: 'Disable Package',

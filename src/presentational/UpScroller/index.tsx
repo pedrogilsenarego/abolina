@@ -27,9 +27,9 @@ const UpScroller = () => {
         marginTop: mobile ? "92vh" : "93vh",
         border: `solid 2px ${Colors.tealc}`,
         borderRadius: "4px",
-        width: "40px",
+        width: "35px",
         zIndex: 2000,
-        height: "40px",
+        height: "35px",
         cursor: "pointer",
         backgroundColor: hover ? "#0000001A" : "transparent"
       }}

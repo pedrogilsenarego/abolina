@@ -19,6 +19,7 @@ export interface GeneralState {
   lang: string,
   scrollToContacts: boolean
   paginationManageBooks: Pagination
+  lastEndpoint: string
 
 }
 

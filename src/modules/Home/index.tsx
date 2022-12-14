@@ -20,7 +20,7 @@ const Home = () => {
           position: "absolute",
           zIndex: -10,
           width: "100%",
-          bottom: "-13%",
+          bottom: "-15%",
           backgroundImage: `url(${homeOndas1})`,
           backgroundSize: "cover",
           minHeight: "25%"
