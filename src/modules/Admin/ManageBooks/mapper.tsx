@@ -17,7 +17,7 @@ const mapBookItem = (cartItems: any, pos: number) => {
       confirmationRequired: true,
       confirmationTitle: 'Disable Package',
       disabled: false,
-      event: 'disable',
+      event: 'newBook',
       label: 'Disable Package',
     }],
     delete: [

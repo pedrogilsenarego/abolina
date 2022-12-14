@@ -8,6 +8,7 @@ import { tableColumns } from "./Constants";
 import { useSelector } from "react-redux";
 import { State } from "../../../slicer/types";
 import { mapBooksItems } from "./mapper";
+import useList from "./useList";
 
 
 const ManageBooks = () => {
@@ -16,7 +17,7 @@ const ManageBooks = () => {
     (state) => state.books.books.data || []
   );
 
-  console.log(tableData)
+  const { handleAction } = useList({ tableData })
 
   return (
     <>
@@ -26,7 +27,7 @@ const ManageBooks = () => {
           onClick={() => navigate(ROUTE_PATHS.ADMIN_BOOKS_CREATE)}
         />
       </Box>
-      <TableList columns={tableColumns} rows={mapBooksItems(tableData).rows} onAction={() => null} />
+      <TableList columns={tableColumns} rows={mapBooksItems(tableData).rows} onAction={handleAction} />
     </>
   );
 };

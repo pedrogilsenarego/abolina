@@ -50,7 +50,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
               {i18n.t("modules.books.book.bookBrowser")}
             </Typography>
           </Box>
-          <Box
+          {(book?.newBook ?? true) && (<Box
             style={{
               position: "absolute",
               zIndex: 1000,
@@ -65,7 +65,8 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
             <Typography style={{ color: "white", fontSize: "12px" }}>
               {i18n.t("modules.books.book.new")}
             </Typography>
-          </Box>
+          </Box>)}
+
           <CardMedia image={book?.coverPage} height='auto' />
         </Grid>
         <Grid item xs={12} md={4} textAlign='start'>

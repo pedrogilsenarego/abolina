@@ -11,4 +11,5 @@ export const Box = styled(MuiBox)(({ bgcolor }: Props) => ({
   borderRadius: "4px",
   justifyContent: "center",
   alignItems: "center",
+  color: "white"
 }));

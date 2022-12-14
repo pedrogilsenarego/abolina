@@ -115,11 +115,13 @@ export const content = {
           newBook: "Book added with success",
           updateCarroussell: "The carroussell was updated",
           newCarrousselImage: "New image was added to the carroussell",
+          newBookStatusChanged: "Book status changed",
         },
         fail: {
           newBook: "Somethng went wrong, the book was not added",
           updateCarroussell: "The carroussell was not updated",
           newCarrousselImage: "New image failed to be added to the carroussell",
+          newBookStatusChanged: "Book status failed to change",
         },
       },
     },

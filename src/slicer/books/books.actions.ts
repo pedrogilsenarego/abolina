@@ -26,6 +26,11 @@ export const addBook = (book:any) => ({
 });
 
 //
+export const updateNewBookStatus = (payload:{signal:boolean, documentID:number | string}) => ({
+  type: bookTypes.UPDATE_NEW_BOOK_STATUS,
+  payload
+});
+//
 
 export const fetchCarroussell = () => ({
   type: bookTypes.FETCH_CARROUSSELL,

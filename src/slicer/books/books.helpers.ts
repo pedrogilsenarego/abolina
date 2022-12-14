@@ -110,6 +110,24 @@ export const handleAddBook = (payload: any) => {
 };
 
 //
+export const handleUpdateNewBookStatus = (payload:{signal:boolean, documentID:string}) => {
+  const { documentID, signal } = payload;
+  return new Promise<void>((resolve, reject) => {
+    firestore
+      .collection("books")
+      .doc(documentID)
+      .update({
+        newBook: signal
+      })
+      .then(() => {
+        resolve();
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+//
 
 export const handleFetchCarroussell = () => {
   return new Promise((resolve, reject) => {

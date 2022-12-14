@@ -5,6 +5,8 @@ const bookTypes = {
   SET_BOOK:"SET_BOOK",
   ADD_BOOK: "ADD_BOOK",
   //
+  UPDATE_NEW_BOOK_STATUS: "UPDATE_NEW_BOOK_STATUS",
+  //
   FETCH_CARROUSSELL: "FETCH_CARROUSSELL",
   SET_CARROUSSELL: "SET_CARROUSSELL",
   UPDATE_CARROUSELL: "UPDATE_CARROUSSELL",
@@ -36,6 +38,7 @@ export interface Book {
   size: string
   pages:number
   content: string[]
+  newBook?: boolean
 }
 
 export default bookTypes

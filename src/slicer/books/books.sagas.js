@@ -1,5 +1,5 @@
 import { takeLatest, put, all, call } from "redux-saga/effects";
-import { setBooks, setBook, setCarroussell } from "./books.actions";
+import { setBooks, setBook, setCarroussell, fetchBooks } from "./books.actions";
 import {
   handleFetchBooks,
   handleFetchBook,
@@ -9,6 +9,7 @@ import {
   handleUpdateCarroussell,
   handleAddCarroussellImage,
   handleDeleteCarroussellStorage,
+  handleUpdateNewBookStatus,
 } from "./books.helpers";
 import bookTypes from "./books.types";
 import {
@@ -64,6 +65,27 @@ function* sagaAddBook({ payload }) {
 
 export function* onAddBook() {
   yield takeLatest(bookTypes.ADD_BOOK, sagaAddBook);
+}
+
+//
+function* sagaUpdateNewBookStatus({ payload }) {
+  try {
+    yield handleUpdateNewBookStatus(payload);
+    yield put(fetchBooks());
+    yield put(
+      updateSuccessNotification(
+        i18n.t("notifications.success.newBookStatusChanged")
+      )
+    );
+  } catch (err) {
+    yield put(
+      updateFailNotification(i18n.t("notifications.fail.newBookStatusChanged"))
+    );
+  }
+}
+
+export function* onUpdateNewBookStatus() {
+  yield takeLatest(bookTypes.UPDATE_NEW_BOOK_STATUS, sagaUpdateNewBookStatus);
 }
 
 //
@@ -135,6 +157,7 @@ export default function* bookSagas() {
     call(onFetchBooks),
     call(onFetchBook),
     call(onAddBook),
+    call(onUpdateNewBookStatus),
     call(onFetchCarroussell),
     call(onUpdateCarroussell),
     call(onNewImageCarroussell),
