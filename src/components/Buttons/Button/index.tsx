@@ -1,19 +1,21 @@
 import { Button as MuiButton, Typography } from "@mui/material";
+import { borderRadius } from "@mui/system";
 import { Colors } from "../../../constants/pallette";
 
 interface Props {
   label: string;
   onClick?: () => void
+  borderRadius?: string
 }
 
-const Button = ({ label, onClick }: Props) => {
+const Button = ({ label, onClick, borderRadius }: Props) => {
   return (
     <>
       <MuiButton
         style={{
           backgroundColor: Colors.tealc,
           color: "white",
-          borderRadius: "40px",
+          borderRadius: borderRadius || "40px",
           paddingLeft: "20px",
           paddingRight: "20px",
         }}

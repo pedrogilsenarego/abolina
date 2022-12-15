@@ -1,4 +1,5 @@
-import { Grid, Box } from "@mui/material";
+import { Grid } from "@mui/material";
+import { Colors } from "../constants/pallette";
 import AdminSideBar from "../presentational/AdminSideBar";
 
 
@@ -10,7 +11,7 @@ const AdminLayout = (props: any) => {
         container
         direction='column'
         justifyContent='space-between'
-        style={{ minHeight: "100vh" }}
+        style={{ minHeight: "100vh", backgroundColor: Colors.dirtyWhite }}
       >
         <Grid item xs={12}>
 
@@ -22,8 +23,9 @@ const AdminLayout = (props: any) => {
           style={{
             minHeight: "60vh",
             textAlign: "center",
-
+            marginTop: "10vh",
             marginBottom: "15vh",
+
           }}
         >
           {props.children}

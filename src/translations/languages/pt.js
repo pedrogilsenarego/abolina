@@ -102,11 +102,23 @@ export const content = {
               resume: "Resumo",
               price: "Preço",
             },
-            manageCarroussell: {
-              submitTitle: "Gerir Carrousel",
-              imagesKeep: "Imagens a manter",
-              imagesDelete: "Imagens para apagar",
+            tableList: {
+              title: "Título Livro",
+              newBook: {
+                title: "Novo Livro?",
+                accept: "Prosseguir",
+                deny: "Cancelar",
+                confirmationDescription:
+                  "Tem a certeza que quer mudar o estado deste livro?",
+                confirmationTitle: "Mudar o estado do livro",
+                tooltip: "Novo Livro (estado)",
+              },
             },
+          },
+          manageCarroussell: {
+            submitTitle: "Gerir Carrousel",
+            imagesKeep: "Imagens a manter",
+            imagesDelete: "Imagens para apagar",
           },
         },
       },

@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Card, Divider } from "@mui/material";
 import Button from "../../../components/Buttons/Button";
 import { ROUTE_PATHS } from "../../../constants/routes";
 import { i18n } from "../../../translations/i18n";
@@ -21,15 +21,21 @@ const ManageBooks = () => {
 
   return (
     <>
-      <Box display='flex' justifyContent='center'>
-        <Button
-          label={i18n.t("modules.admin.manageBooks.createButton")}
-          onClick={() => navigate(ROUTE_PATHS.ADMIN_BOOKS_CREATE)}
-        />
-      </Box>
-      <TableList columns={tableColumns} rows={mapBooksItems(tableData).rows} onAction={handleAction} />
+      <Card style={{ padding: "40px" }}>
+        <Box display='flex' justifyContent='end'>
+          <Button
+            borderRadius="6px"
+            label={i18n.t("modules.admin.manageBooks.createButton")}
+            onClick={() => navigate(ROUTE_PATHS.ADMIN_BOOKS_CREATE)}
+          />
+        </Box>
+        <Divider style={{ marginTop: "50px", marginBottom: "50px" }} />
+
+        <TableList columns={tableColumns} rows={mapBooksItems(tableData).rows} onAction={handleAction} />
+
+      </Card >
     </>
   );
-};
+}
 
 export default ManageBooks;

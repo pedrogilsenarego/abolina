@@ -35,13 +35,14 @@ export const Action: FunctionComponent<ActionProps> = ({
 
   const handleCloseConfirmation = () => {
     setOpenConfirmation(false)
-    setToggleDisabled(!toggleDisabled)
+
   }
 
   const handleClick = () => {
     if (disabled) { console.log("disabled"); return }
     if (confirmationRequired) {
       if (openConfirmation) {
+        setToggleDisabled(!toggleDisabled)
         handleCloseConfirmation()
         onClick()
       } else {

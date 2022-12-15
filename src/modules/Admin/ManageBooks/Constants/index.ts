@@ -9,22 +9,26 @@ export const tableColumns =
   
   {
     id: "title",
-    label: "Title",
+    label: i18n.t(
+      "modules.admin.manageBooks.tableList.title"
+    ),
     type: ColumnType.Text,
     sortable: false,
   },
   {
     id: "newBook",
-    label: "New Book",
+    label: i18n.t(
+      "modules.admin.manageBooks.tableList.newBook.title"
+    ),
     type: ColumnType.ActionComponent,
     sortable: false,
   },
-  {
-    id: 'delete',
-    label: 'Remove',
-    type: ColumnType.ActionComponent,
-    minWidth: 70,
-    sortable: false,
-  },
+  // {
+  //   id: 'delete',
+  //   label: 'Remove',
+  //   type: ColumnType.ActionComponent,
+  //   minWidth: 70,
+  //   sortable: false,
+  // },
 
 ]

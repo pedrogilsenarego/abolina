@@ -101,6 +101,18 @@ export const content = {
               resume: "Resume",
               price: "Price",
             },
+            tableList: {
+              title: "Title Book",
+              newBook: {
+                title: "New Book?",
+                accept: "Yes",
+                deny: "Cancel",
+                confirmationDescription:
+                  "Are you sure you want to change the status of this book?",
+                confirmationTitle: "Change status of new Book",
+                tooltip: "New Book status",
+              },
+            },
           },
 
           manageCarroussell: {

@@ -5,9 +5,11 @@ export const CheckboxContainer = styled(Checkbox)({
 })
 
 export const TableContainer = styled(MuiTableContainer)(() => ({
+  
   position: 'relative',
-  maxHeight: '65vh',
-  borderRadius: '5px',
+  maxHeight: '90%',
+  padding: "10px",
+  
 }))
 
 interface TableRowProps {
