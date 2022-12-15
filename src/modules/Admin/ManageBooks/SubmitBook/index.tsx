@@ -1,4 +1,4 @@
-import * as GStyled from "../../../../styles";
+import { Title } from "../../../../styles";
 import { i18n } from "../../../../translations/i18n";
 import { Container, Box } from "@mui/material";
 import Textfield from "../../../../components/Inputs/TextField";
@@ -34,10 +34,8 @@ const SubmitBook = () => {
   };
 
   return (
-    <Container maxWidth='md' style={{ justifyContent: "center" }}>
-      <GStyled.Title>
-        {i18n.t("modules.admin.submitBook.submitTitle")}
-      </GStyled.Title>
+    <>
+      <Title fontSize="24px">{i18n.t("adminSideBar.submitBook")}</Title>
       <Formik
         initialValues={{ ...INITIAL_FORM_STATE }}
         onSubmit={(values) => {
@@ -151,7 +149,7 @@ const SubmitBook = () => {
           </Box>
         </Form>
       </Formik>
-    </Container>
+    </>
   );
 };
 

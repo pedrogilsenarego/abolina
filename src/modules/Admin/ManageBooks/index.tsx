@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { State } from "../../../slicer/types";
 import { mapBooksItems } from "./mapper";
 import useList from "./useList";
+import { Title } from "../../../styles";
 
 
 const ManageBooks = () => {
@@ -21,7 +22,10 @@ const ManageBooks = () => {
 
   return (
     <>
-      <Card style={{ padding: "40px" }}>
+
+      <Title fontSize="24px">{i18n.t("adminSideBar.submitBook")}</Title>
+
+      <Card style={{ padding: "40px", marginTop: "60px" }}>
         <Box display='flex' justifyContent='end'>
           <Button
             borderRadius="6px"

@@ -7,6 +7,7 @@ export const CheckboxContainer = styled(Checkbox)({
 export const TableContainer = styled(MuiTableContainer)(() => ({
   
   position: 'relative',
+  minWidth: "60vw",
   maxHeight: '90%',
   padding: "10px",
   

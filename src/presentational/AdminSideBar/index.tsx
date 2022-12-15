@@ -16,6 +16,7 @@ const AdminSideBar = () => {
         height: "100vh",
         backgroundColor: Colors.tealc,
         padding: "10px",
+
       }}
     >
       <Box

@@ -84,7 +84,7 @@ const Carrousell = () => {
               width: "104%",
               position: "absolute",
               left: "-2%",
-              bottom: "56%",
+              bottom: "50%",
               zIndex: 1000,
             }}
           >
