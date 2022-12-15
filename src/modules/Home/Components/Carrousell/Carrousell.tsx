@@ -1,15 +1,15 @@
-import { CarouselProvider, Slider, Slide, DotGroup } from "pure-react-carousel";
+import { CarouselProvider, Slider, Slide } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { useEffect, useState } from "react";
 import { Box, Container, useMediaQuery, useTheme } from "@mui/material";
-import "./styles.scss";
-import { Colors } from "../../../constants/pallette";
+import { Colors } from "../../../../constants/pallette";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import { ROUTE_PATHS } from "../../../constants/routes";
+import { ROUTE_PATHS } from "../../../../constants/routes";
 import { useNavigate } from "react-router"
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCarroussell } from "../../../slicer/books/books.actions";
-import { State } from "../../../slicer/types";
+import { fetchCarroussell } from "../../../../slicer/books/books.actions";
+import { State } from "../../../../slicer/types";
+import DotGroups from "./Components/DotGroups";
 
 
 const Carrousell = () => {
@@ -84,7 +84,7 @@ const Carrousell = () => {
               width: "104%",
               position: "absolute",
               left: "-2%",
-              bottom: "50%",
+              bottom: "54%",
               zIndex: 1000,
             }}
           >
@@ -153,17 +153,13 @@ const Carrousell = () => {
                   );
                 })}
               </Slider>
-
               <>
                 <Box
                   display='flex'
                   justifyContent='center'
                   style={{ marginTop: "35px" }}
                 >
-                  <DotGroup
-                    className='prc-dotGroup'
-                    style={{ transform: "scale(0.6)" }}
-                  />
+                  <DotGroups numberDots={images.length} index={indexMini} setIndex={setIndexMini} />
                 </Box>
               </>
             </CarouselProvider>

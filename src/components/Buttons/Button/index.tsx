@@ -1,5 +1,4 @@
 import { Button as MuiButton, Typography } from "@mui/material";
-import { borderRadius } from "@mui/system";
 import { Colors } from "../../../constants/pallette";
 
 interface Props {
