@@ -2,7 +2,7 @@ import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import { i18n } from "../../../translations/i18n";
 import Button from "./Button";
 import { ROUTE_PATHS } from "../../../constants/routes";
-import { useDispatch } from "react-redux"
+import { useDispatch } from "react-redux";
 import { scrollToContacts } from "../../../slicer/general/general.actions";
 import { useNavigate, useLocation } from "react-router";
 
@@ -11,16 +11,20 @@ interface Props {
 }
 
 const Middle = ({ setOpenDrawer }: Props) => {
-  const Theme = useTheme()
-  const mobile = useMediaQuery(Theme.breakpoints.down("sm"))
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const loc = useLocation()
+  const Theme = useTheme();
+  const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const loc = useLocation();
 
   const handleContacts = () => {
-    if (loc.pathname !== ROUTE_PATHS.HOME) { navigate(ROUTE_PATHS.HOME) }
-    dispatch(scrollToContacts(true))
-  }
+    if (loc.pathname !== ROUTE_PATHS.HOME) {
+      navigate(ROUTE_PATHS.HOME);
+      setOpenDrawer(false);
+    }
+    else setOpenDrawer(false)
+    dispatch(scrollToContacts(true));
+  };
 
   return (
     <>
@@ -60,8 +64,6 @@ const Middle = ({ setOpenDrawer }: Props) => {
             setOpenDrawer={setOpenDrawer}
           />
         </Grid>
-
-
       </Grid>
     </>
   );
