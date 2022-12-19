@@ -1,7 +1,7 @@
 import Carrousell from "./Components/Carrousell/Carrousell";
 import * as GStyled from "../../styles";
 import { i18n } from "../../translations/i18n";
-import { Typography, Container, Box } from "@mui/material";
+import { Typography, Container, Box, useTheme, useMediaQuery } from "@mui/material";
 import Button from "../../components/Buttons/Button";
 import { useNavigate } from "react-router";
 import { ROUTE_PATHS } from "../../constants/routes";
@@ -11,6 +11,8 @@ import homeOndas2 from "../../assets/images/homeOndas2.svg";
 
 const Home = () => {
   const navigate = useNavigate();
+  const Theme = useTheme()
+  const mobile = useMediaQuery(Theme.breakpoints.down("md"))
 
   return (
     <>
@@ -21,7 +23,7 @@ const Home = () => {
             position: "absolute",
             zIndex: -10,
             width: "100%",
-            bottom: "-15%",
+            bottom: mobile ? "-20%" : "-15%",
             backgroundImage: `url(${homeOndas1})`,
             backgroundSize: "contain",
             backgroundPosition: "center center",

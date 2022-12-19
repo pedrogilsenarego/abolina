@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCarroussell } from "../../../../slicer/books/books.actions";
 import { State } from "../../../../slicer/types";
 import DotGroups from "./Components/DotGroups";
+import Teste from "./Components/teste";
 
 
 const Carrousell = () => {
@@ -23,9 +24,10 @@ const Carrousell = () => {
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
   const Navigate = useNavigate()
   const dispatch = useDispatch()
-
   const IMAGE_HEIGHT_MOBILE = "80vh";
   const IMAGE_HEIGHT_LAPTOP = "20vh";
+
+
 
   useEffect(() => {
     dispatch(fetchCarroussell())
@@ -37,6 +39,7 @@ const Carrousell = () => {
     window.checkForDrag = e.clientX;
   };
   const clickOrDrag = (e: any) => {
+    console.log("here")
     const mouseUp = e.clientX;
     if (
       // @ts-ignore
@@ -44,8 +47,10 @@ const Carrousell = () => {
       // @ts-ignore
       mouseUp > window.checkForDrag - 5
     ) {
+
     }
   };
+
 
   const handleOnImgError = () => {
     setErrorImage(true);
@@ -112,10 +117,12 @@ const Carrousell = () => {
               lockOnWindowScroll
               touchEnabled={mobile ? true : false}
               dragEnabled={mobile ? true : false}
-            // style={{ position: "relative" }}
+
             >
+              <Teste setIndexMini={setIndexMini} />
               <Slider
                 onClick={() => Navigate(ROUTE_PATHS.BOOKS_BOOK)}
+
                 onMouseDown={(e) => mouseDownCoords(e)}
                 onMouseUp={(e) => clickOrDrag(e)}
                 onMouseEnter={() => setHover(true)}

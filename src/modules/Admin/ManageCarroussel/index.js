@@ -1,4 +1,4 @@
-import { Container, Grid, Typography, Paper, Box } from "@mui/material";
+import { Divider, Grid, Typography, Paper, Box, Card } from "@mui/material";
 import * as GStyled from "../../../styles";
 import { i18n } from "../../../translations/i18n";
 import { useDispatch } from "react-redux";
@@ -36,11 +36,12 @@ const ManageCarrousell = () => {
   };
 
   return (
-    <Container maxWidth='md' style={{ justifyContent: "center" }}>
-      <GStyled.Title>
+    <>
+      <GStyled.Title fontSize='16px'>
         {i18n.t("modules.admin.manageCarroussell.submitTitle")}
       </GStyled.Title>
-      <Paper style={{ padding: "15px" }}>
+      <Divider />
+      <Card style={{ padding: "20px", marginTop: "60px" }}>
         <Grid container rowSpacing={2}>
           {list?.map((grp, grpI) => (
             <Grid item xs={12}>
@@ -108,7 +109,7 @@ const ManageCarrousell = () => {
         >
           <Button label='Submit' onClick={handleSubmit} />
         </Box>
-      </Paper>
+      </Card>
 
       <Paper
         style={{
@@ -137,7 +138,7 @@ const ManageCarrousell = () => {
           </Form>
         </Formik>
       </Paper>
-    </Container>
+    </>
   );
 };
 

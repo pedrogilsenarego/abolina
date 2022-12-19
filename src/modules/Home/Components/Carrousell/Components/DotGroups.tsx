@@ -27,8 +27,8 @@ const DotGroups = ({ numberDots, index, setIndex }: Props) => {
               key={pos}
               style={{
                 cursor: "pointer",
-                height: pos === index ? "12px" : "7px",
-                width: pos === index ? "12px" : "7px",
+                height: pos === index ? "10px" : "7px",
+                width: pos === index ? "10px" : "7px",
                 backgroundColor: pos === index ? Colors.tealc : Colors.tealcTransparent,
                 borderRadius: "50%",
 
