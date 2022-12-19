@@ -1,6 +1,6 @@
 import { Title } from "../../../../styles";
 import { i18n } from "../../../../translations/i18n";
-import { Box, Container } from "@mui/material";
+import { Box, Container, Divider } from "@mui/material";
 import Textfield from "../../../../components/Inputs/TextField";
 import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
@@ -35,7 +35,8 @@ const SubmitBook = () => {
 
   return (
     <>
-      <Title fontSize="24px">{i18n.t("adminSideBar.submitBook")}</Title>
+      <Title fontSize="16px">{i18n.t("modules.admin.manageBooks.submitBook.breadCrumbs")}</Title>
+      <Divider />
       <Container maxWidth={"md"} style={{ marginTop: "60px" }}>
         <Formik
           initialValues={{ ...INITIAL_FORM_STATE }}

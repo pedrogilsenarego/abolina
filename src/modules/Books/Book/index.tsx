@@ -74,10 +74,12 @@ const BookC = () => {
         </Container>
         <Box
           style={{
-            marginTop: "100px",
+            marginTop: "20px",
             backgroundImage: `url(${livroOndas})`,
-            backgroundSize: "cover",
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
             minHeight: "30vh",
+            backgroundPosition: "center center",
           }}
         />
       </Box>

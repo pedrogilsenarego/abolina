@@ -85,6 +85,7 @@ export const content = {
           manageBooks: {
             createButton: "Add new book",
             submitBook: {
+              breadCrumbs: "Manage Books - Submit Book",
               submitTitle: "Submit Book",
               title: "Title",
               coverPage: "Cover Page",

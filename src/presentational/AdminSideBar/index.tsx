@@ -10,22 +10,21 @@ const AdminSideBar = () => {
     <Box
       display='flex'
       flexDirection='column'
+
       rowGap={2}
       style={{
+        width: "200px",
         position: "fixed",
         height: "100vh",
         backgroundColor: Colors.tealc,
         padding: "10px",
 
+
       }}
     >
       <Box
         onClick={() => navigate(ROUTE_PATHS.ADMIN)}
-        style={{
-          border: "solid 2px whitesmoke",
-          padding: "10px",
-          borderRadius: "4px",
-        }}
+        style={{ marginTop: "10px" }}
       >
         <Typography style={{ color: "white", cursor: "pointer" }}>
           {i18n.t("adminSideBar.submitBook")}
@@ -33,11 +32,7 @@ const AdminSideBar = () => {
       </Box>
       <Box
         onClick={() => navigate(ROUTE_PATHS.ADMIN_CARROUSEL)}
-        style={{
-          border: "solid 2px whitesmoke",
-          padding: "10px",
-          borderRadius: "4px",
-        }}
+
       >
         <Typography style={{ color: "white", cursor: "pointer" }}>
           {i18n.t("adminSideBar.manageCarroussel")}
@@ -45,11 +40,7 @@ const AdminSideBar = () => {
       </Box>
       <Box
         onClick={() => navigate(ROUTE_PATHS.HOME)}
-        style={{
-          border: "solid 2px whitesmoke",
-          padding: "10px",
-          borderRadius: "4px",
-        }}
+
       >
         <Typography style={{ color: "white", cursor: "pointer" }}>
           {i18n.t("adminSideBar.back")}

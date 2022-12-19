@@ -23,21 +23,22 @@ const ManageBooks = () => {
   return (
     <>
 
-      <Title fontSize="24px">{i18n.t("adminSideBar.submitBook")}</Title>
+      <Title fontSize="16px">{i18n.t("adminSideBar.submitBook")}</Title>
+      <Divider />
 
-      <Card style={{ padding: "40px", marginTop: "60px" }}>
-        <Box display='flex' justifyContent='end'>
+      <Box style={{ marginTop: "60px" }}>
+        <Box display='flex' justifyContent='start' style={{ marginBottom: "40px" }}>
           <Button
             borderRadius="6px"
             label={i18n.t("modules.admin.manageBooks.createButton")}
             onClick={() => navigate(ROUTE_PATHS.ADMIN_BOOKS_CREATE)}
           />
         </Box>
-        <Divider style={{ marginTop: "50px", marginBottom: "50px" }} />
 
-        <TableList columns={tableColumns} rows={mapBooksItems(tableData).rows} onAction={handleAction} />
-
-      </Card >
+        <Card style={{ padding: "20px" }}>
+          <TableList columns={tableColumns} rows={mapBooksItems(tableData).rows} onAction={handleAction} />
+        </Card>
+      </Box >
     </>
   );
 }
