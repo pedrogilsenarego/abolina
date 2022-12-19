@@ -1,9 +1,13 @@
 import { styled, TextField as MuiTextField } from "@mui/material";
 import { Colors } from "../../../constants/pallette";
 
-export const TextField = styled(MuiTextField)(() => ({
-  width: "100%",
+interface Props {
+  maxWidth: string
+}
 
+export const TextField = styled(MuiTextField)(({maxWidth}:Props) => ({
+  width: "100%",
+  maxWidth: maxWidth || "auto",
   "& .MuiInputBase-input": {
     color: "black",
     

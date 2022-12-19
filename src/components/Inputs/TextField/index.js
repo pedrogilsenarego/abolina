@@ -3,6 +3,7 @@ import { useField } from "formik";
 import { Typography, Box } from "@mui/material";
 
 const Textfield = ({
+  maxWidth = "auto",
   placeholder = "",
   name,
   label,
@@ -35,6 +36,7 @@ const Textfield = ({
         <Typography>{label}</Typography>
       </Box>
       <Styled.TextField
+        maxWidth
         multiline={multiline ? multiline : null}
         rows={rows ? rows : null}
         size='small'
