@@ -31,13 +31,13 @@ const UpScroller = () => {
         zIndex: 2000,
         height: "35px",
         cursor: "pointer",
-        backgroundColor: hover ? "#0000001A" : "transparent"
+        backgroundColor: hover ? "#ffffff" : Colors.tealc
       }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onClick={() => { moveTop(); setHover(false) }}
     >
-      <BsCaretUpFill color={Colors.tealc} size="0.8em" />
+      <BsCaretUpFill color={!hover ? "white" : Colors.tealc} size="0.8em" />
     </Box>
   );
 };
