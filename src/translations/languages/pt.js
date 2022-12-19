@@ -33,7 +33,7 @@ export const content = {
       adminSideBar: {
         submitBook: "Gerir Livros",
         manageCarroussel: "Gerir Carrousel",
-        back: "Home",
+        back: "Voltar",
       },
       modules: {
         home: {
@@ -86,6 +86,7 @@ export const content = {
           manageBooks: {
             createButton: "Adicionar novo livro",
             submitBook: {
+              breadCrumbs: "Gerir Livros - Submeter Livro",
               submitTitle: "Submeter Livro",
               title: "Titulo",
               coverPage: "Imagem Rosto",

@@ -33,7 +33,7 @@ export const content = {
       adminSideBar: {
         submitBook: "Manage Books",
         manageCarroussel: "Manage Carroussell",
-        back: "Home",
+        back: "Back",
       },
       modules: {
         home: {
