@@ -42,9 +42,10 @@ const Popup = ({
         style={{ color: "white" }}
         PaperProps={{
           style: {
+
             backgroundColor: "white",
-            minWidth: mobile ? "90vw" : "40vw",
-            border: `solid 10px ${Colors.tealc}`,
+            minWidth: mobile ? "90vw" : "50vw",
+
 
           },
         }}

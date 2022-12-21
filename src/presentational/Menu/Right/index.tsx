@@ -28,7 +28,7 @@ const Right = () => {
               borderColor: "white",
             }}
           >
-            <InstaAvatar backgroundColor='white' color={Colors.tealc} />
+            <InstaAvatar size="1.5em" backgroundColor='white' color={Colors.tealc} />
           </Box>
         </Grid>
       )}

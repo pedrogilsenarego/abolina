@@ -20,7 +20,7 @@ const Menu = () => {
 
   const laptopRender = () => {
     return (
-      <Box sx={{ flexGrow: 1, backgroundColor: Colors.tealc, boxShadow: `0px 5px 5px ${Colors.tealcTransparent}` }}>
+      <Box sx={{ flexGrow: 1, backgroundColor: Colors.tealc, boxShadow: `0px 5px 5px #00000033` }}>
         <Container>
           <Grid container justifyContent="space-between" alignItems="center" style={{ height: "80px" }}>
             <Grid item><Left /></Grid>
@@ -34,7 +34,7 @@ const Menu = () => {
 
   const mobileRender = () => {
     return (
-      <Box sx={{ backgroundColor: Colors.tealc, boxShadow: `0px 5px 5px ${Colors.tealcTransparent}` }}>
+      <Box sx={{ backgroundColor: Colors.tealc, boxShadow: `0px 5px 5px #00000033` }}>
         <Container>
           <Grid container columnSpacing={1} justifyContent="center" alignItems="center" style={{ height: "80px" }}>
             <Grid item xs={2}><FiMenu size="2em" color="white" onClick={() => setOpenDrawer(true)} /></Grid>

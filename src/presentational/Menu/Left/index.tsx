@@ -1,5 +1,5 @@
 import { CardMedia } from "@mui/material";
-import logo from "../../../assets/images/logo.jpg";
+import logo from "../../../assets/images/logoSite.svg";
 import { useNavigate } from "react-router-dom";
 import { ROUTE_PATHS } from "../../../constants/routes";
 
@@ -12,7 +12,7 @@ const Left = ({ height }: Props) => {
   return (
     <CardMedia
       component='img'
-      height={height || "35"}
+      height={height || "55"}
       onClick={() => navigate(ROUTE_PATHS.HOME)}
       image={logo}
       style={{ cursor: "pointer" }}

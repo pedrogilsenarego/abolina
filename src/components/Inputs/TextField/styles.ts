@@ -14,15 +14,15 @@ export const TextField = styled(MuiTextField)(({maxWidth}:Props) => ({
   },
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
-      borderColor: Colors.tealc,
+      borderColor: Colors.darkGrey,
       borderRadius: "4px",
       borderWidth: "2px",
     },
     "&:hover fieldset": {
-      borderColor: "orange",
+      borderColor: Colors.tealc,
     },
     "&.Mui-focused fieldset": {
-      borderColor: "orange",
+      borderColor: Colors.tealc,
     },
   },
 }));

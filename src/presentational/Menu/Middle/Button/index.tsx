@@ -18,8 +18,8 @@ const Button = ({ title, path, setOpenDrawer, onClick }: Props) => {
   return (
     <>
       <Typography
-        style={{ color: "whiteSmoke", cursor: "pointer", fontSize: mobile ? "34px" : "18px" }}
-
+        style={{ color: "whiteSmoke", cursor: "pointer", fontSize: mobile ? "20px" : "15px", fontWeight: 700 }}
+        variant="caption"
         onClick={() => {
           if (path) { navigate(path); setOpenDrawer(false) };
           if (onClick) { onClick() }

@@ -27,7 +27,7 @@ const About = () => {
         >
           <Grid item xs={12} md={4}>
             <Card
-              style={{ backgroundColor: Colors.roastedYellow, padding: "20px", height: "100%" }}
+              style={{ backgroundColor: Colors.champagne, padding: "20px", height: "100%" }}
             >
               <GStyled.Title fontSize='16px' style={{ fontWeight: 700 }}>
                 {i18n.t("modules.about.secondTitle")}
@@ -42,7 +42,7 @@ const About = () => {
           </Grid>
           <Grid item xs={12} md={4}>
             <Card
-              style={{ backgroundColor: Colors.roastedYellow, padding: "20px", height: "100%" }}
+              style={{ backgroundColor: Colors.champagne, padding: "20px", height: "100%" }}
             >
               <GStyled.Title fontSize='16px' style={{ fontWeight: 700 }}>
                 {i18n.t("modules.about.thirdTitle")}
@@ -57,7 +57,7 @@ const About = () => {
           </Grid>
           <Grid item xs={12} md={4}>
             <Card
-              style={{ backgroundColor: Colors.roastedYellow, padding: "20px", height: "100%" }}
+              style={{ backgroundColor: Colors.champagne, padding: "20px", height: "100%" }}
             >
               <GStyled.Title fontSize='16px' style={{ fontWeight: 700 }}>
                 {i18n.t("modules.about.forthTitle")}

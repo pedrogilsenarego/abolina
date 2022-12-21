@@ -11,10 +11,10 @@ export const content = {
         audacity: "Audácia",
       },
       menuBar: {
-        home: "Home",
-        books: "Livros",
-        about: "Sobre nós",
-        contacts: "Contatos",
+        home: "HOME",
+        books: "LIVROS",
+        about: "SOBRE NÓS",
+        contacts: "CONTACTO",
         instagram: "Instagram",
       },
       footer: {
@@ -52,7 +52,7 @@ export const content = {
 
         about: {
           mainText:
-            "A Editora ÀBolina nasce para contar histórias. Histórias que valorizam a memória. Histórias que estimulam a esperança. Histórias que motivam para a audácia, para a coragem e resiliência.\n Publicamos livros criativos e de boa qualidade de texto e imagem, que fortificam o desejo de um bem maior em crianças e adolescentes. Em especial, esperamos que as nossas histórias respondam à necessidade das famílias de educarem os seus filhos como pessoas auto-confiantes, equilibradas, capazes de escolhas responsáveis, de pensar e discernir a verdade e de agir com bondade.",
+            "A Editora ÀBolina nasce para contar histórias. Histórias que valorizam a memória. Histórias que estimulam a esperança. Histórias que motivam para a audácia, para a coragem e resiliência.\n\n Publicamos livros criativos e de boa qualidade de texto e imagem, que fortificam o desejo de um bem maior em crianças e adolescentes. Em especial, esperamos que as nossas histórias respondam à necessidade das famílias de educarem os seus filhos como pessoas auto-confiantes, equilibradas, capazes de escolhas responsáveis, de pensar e discernir a verdade e de agir com bondade.",
           secondTitle: "Porquê a memória?",
           second:
             "A memória, verdadeiro tesouro da Humanidade, atravessa os tempos, enriquecendo o pensamento, os valores e as ideias de cada uma das gerações.",

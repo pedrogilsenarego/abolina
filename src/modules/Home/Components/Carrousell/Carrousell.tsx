@@ -86,9 +86,9 @@ const Carrousell = () => {
             display='flex'
             justifyContent='space-between'
             style={{
-              width: "104%",
+              width: "114%",
               position: "absolute",
-              left: "-2%",
+              left: "-7%",
               bottom: "54%",
               zIndex: 1000,
             }}

@@ -23,7 +23,7 @@ const Home = () => {
             position: "absolute",
             zIndex: -10,
             width: "100%",
-            bottom: mobile ? "-20%" : "-15%",
+            bottom: mobile ? "-20%" : "-20%",
             backgroundImage: `url(${homeOndas1})`,
             backgroundSize: "contain",
             backgroundPosition: "center center",
@@ -38,7 +38,7 @@ const Home = () => {
             <GStyled.Title>{i18n.t("menuBar.about")}</GStyled.Title>
             <Typography
               align='justify'
-              style={{ marginTop: "10px", whiteSpace: "pre-line" }}
+              style={{ marginTop: "30px", whiteSpace: "pre-line" }}
             >
               {i18n.t("modules.about.mainText")}
             </Typography>
@@ -49,7 +49,7 @@ const Home = () => {
               onClick={() => navigate(ROUTE_PATHS.ABOUT)}
             />
           </Box>
-          <Box sx={{ mt: "60px" }}>
+          <Box sx={{ mt: "120px" }}>
             <Contacts />
           </Box>
         </Container>
