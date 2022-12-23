@@ -1,6 +1,5 @@
 import {
   Grid,
-  Container,
   Box,
   Typography,
   useTheme,
@@ -73,7 +72,19 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
         <GStyled.Title fontSize='18px' style={{ fontWeight: 700 }}>
           {book?.title}
         </GStyled.Title>
-        <Typography style={{ marginTop: "10px" }}>{book?.price} $</Typography>
+
+        <Box
+          display='flex'
+          flexDirection='row'
+          columnGap={1}
+          alignItems='center'
+          mt='10px'
+        >
+          <GStyled.SubTitle style={{ fontWeight: 700 }}>
+            {i18n.t("modules.books.book.price")}
+          </GStyled.SubTitle>
+          <Typography>{book?.price} €</Typography>
+        </Box>
         <Box
           display='flex'
           flexDirection='row'
@@ -84,7 +95,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
           <GStyled.SubTitle style={{ fontWeight: 700 }}>
             {i18n.t("modules.books.book.text")}
           </GStyled.SubTitle>
-          <Typography>{book?.price}</Typography>
+          <Typography>{book?.author}</Typography>
         </Box>
         <Box
           display='flex'

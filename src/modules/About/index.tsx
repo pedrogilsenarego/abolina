@@ -34,7 +34,7 @@ const About = () => {
               </GStyled.Title>
               <Typography
                 align='justify'
-                style={{ marginTop: "10px", whiteSpace: "pre-line" }}
+                style={{ marginTop: "10px" }}
               >
                 {i18n.t("modules.about.second")}
               </Typography>

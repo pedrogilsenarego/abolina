@@ -32,8 +32,8 @@ const Home = () => {
           }}
         />
       </Box>
-      <Box>
-        <Container maxWidth='lg' style={{ justifyContent: "center" }}>
+      <Box style={{ position: "relative" }}>
+        <Container maxWidth='lg' style={{ justifyContent: "center", paddingBottom: "170px" }}>
           <Box sx={{ mt: "60px" }}>
             <GStyled.Title>{i18n.t("menuBar.about")}</GStyled.Title>
             <Typography
@@ -55,7 +55,9 @@ const Home = () => {
         </Container>
         <Box
           style={{
+            position: "absolute",
             bottom: 0,
+            width: "100%",
             zIndex: -10,
             backgroundImage: `url(${homeOndas2})`,
             backgroundSize: "cover",
