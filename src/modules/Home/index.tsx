@@ -23,18 +23,19 @@ const Home = () => {
             position: "absolute",
             zIndex: -10,
             width: "100%",
-            bottom: mobile ? "-20%" : "-20%",
+            bottom: mobile ? 0 : "-10%",
             backgroundImage: `url(${homeOndas1})`,
-            backgroundSize: "contain",
+            backgroundSize: mobile ? "170%" : "contain",
             backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",
             minHeight: "25%",
+
           }}
         />
       </Box>
       <Box style={{ position: "relative" }}>
-        <Container maxWidth='lg' style={{ justifyContent: "center", paddingBottom: "170px" }}>
-          <Box sx={{ mt: "60px" }}>
+        <Container maxWidth='lg' style={{ justifyContent: "center" }}>
+          <Box sx={{ mt: mobile ? "0px" : "60px" }}>
             <GStyled.Title>{i18n.t("menuBar.about")}</GStyled.Title>
             <Typography
               align='justify'

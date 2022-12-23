@@ -24,7 +24,7 @@ const Carrousell = () => {
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
   const Navigate = useNavigate()
   const dispatch = useDispatch()
-  const IMAGE_HEIGHT_MOBILE = "80vh";
+  const IMAGE_HEIGHT_MOBILE = "25vh";
   const IMAGE_HEIGHT_LAPTOP = "20vh";
 
 
@@ -96,7 +96,7 @@ const Carrousell = () => {
     <>
       <Container
         maxWidth={"lg"}
-        style={{ minHeight: "60vh", position: "relative" }}
+        style={{ minHeight: mobile ? "45vh" : "60vh", position: "relative" }}
       >
         {!mobile && (
           <Box
