@@ -1,19 +1,14 @@
 import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Colors } from "../../../constants/pallette";
-import { i18n } from "../../../translations/i18n";
 import InstaAvatar from "../../../components/InstaAvatar";
-import { useDispatch } from "react-redux";
-import { updateLang } from "../../../slicer/general/general.actions";
+import useChangeLang from "../../../hooks/usechangeLang";
+import { LANG } from "../../../constants/lang";
 
 const Right = () => {
-  const changeLanguage = (lng: string) => {
-    dispatch(updateLang(lng.toUpperCase()));
-    i18n.changeLanguage(lng);
-    setTimeout(() => { window.location.reload(); }, 200)
 
-  };
+  const { changeLanguage } = useChangeLang()
 
-  const dispatch = useDispatch();
+
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
 
@@ -38,7 +33,7 @@ const Right = () => {
             fontSize={mobile ? "24px" : "12px"}
             color='white'
             onClick={() => {
-              changeLanguage("pt");
+              changeLanguage(LANG.pt);
 
             }}
             style={{ cursor: "pointer" }}
@@ -49,7 +44,7 @@ const Right = () => {
             fontSize={mobile ? "24px" : "12px"}
             color='white'
             onClick={() => {
-              changeLanguage("en");
+              changeLanguage(LANG.en);
             }}
             style={{ cursor: "pointer" }}
           >

@@ -6,13 +6,18 @@ import Right from "./Right";
 import Middle from "./Middle";
 import MobileMainDrawer from "./MobileMainDrawer";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { State } from "../../slicer/types";
+import { updateLang } from "../../slicer/general/general.actions";
+import { LANG } from "../../constants/lang";
+import useChangeLang from "../../hooks/usechangeLang";
 
 const Menu = () => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
   const Theme = useTheme()
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"))
+  const dispatch = useDispatch()
+  const { changeLanguage } = useChangeLang()
 
   const lang = useSelector<State, string>(
     (state) => state.general.lang || "PT"
@@ -32,6 +37,11 @@ const Menu = () => {
     )
   }
 
+  const handleChangeLang = () => {
+    if (lang === LANG.pt.toUpperCase()) { changeLanguage(LANG.en) }
+    else changeLanguage(LANG.pt)
+  }
+
   const mobileRender = () => {
     return (
       <Box sx={{ backgroundColor: Colors.tealc, boxShadow: `0px 5px 5px #00000033` }}>
@@ -39,7 +49,7 @@ const Menu = () => {
           <Grid container columnSpacing={1} justifyContent="center" alignItems="center" style={{ height: "80px" }}>
             <Grid item xs={2}><FiMenu size="2em" color="white" onClick={() => setOpenDrawer(true)} /></Grid>
             <Grid item xs={9}><Left height="auto" /></Grid>
-            <Grid item xs={1} textAlign="right"><Typography color="whitesmoke" fontSize="12px">{lang}</Typography></Grid>
+            <Grid item xs={1} textAlign="right" onClick={handleChangeLang}><Typography color="whitesmoke" fontSize="18px">{lang}</Typography></Grid>
           </Grid>
         </Container>
       </Box>

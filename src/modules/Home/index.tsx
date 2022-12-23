@@ -33,7 +33,7 @@ const Home = () => {
           }}
         />
       </Box>
-      <Box style={{ position: "relative" }}>
+      <Box style={{ position: "relative", paddingBottom: "180px" }}>
         <Container maxWidth='lg' style={{ justifyContent: "center" }}>
           <Box sx={{ mt: mobile ? "0px" : "60px" }}>
             <GStyled.Title>{i18n.t("menuBar.about")}</GStyled.Title>
