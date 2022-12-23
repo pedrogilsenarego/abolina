@@ -1,4 +1,4 @@
-import { Container, Box, Typography, Grid } from "@mui/material";
+import { Container, Box, Typography, Grid, useTheme, useMediaQuery } from "@mui/material";
 import * as GStyled from "../../../styles";
 import { i18n } from "../../../translations/i18n";
 import Tile from "./Tile";
@@ -18,6 +18,8 @@ const BookC = () => {
   const dispatch = useDispatch()
   const [openViewBook, setOpenViewBook] = useState<boolean>(false);
   const { id } = useParams()
+  const Theme = useTheme()
+  const mobile = useMediaQuery(Theme.breakpoints.down("md"))
 
 
   useEffect(() => {
@@ -76,9 +78,9 @@ const BookC = () => {
         </Container>
         <Box
           style={{
-            marginTop: "20px",
+            marginTop: mobile ? "0px" : "20px",
             backgroundImage: `url(${livroOndas})`,
-            backgroundSize: "contain",
+            backgroundSize: mobile ? "200%" : "contain",
             backgroundRepeat: "no-repeat",
             minHeight: "30vh",
             backgroundPosition: "center center",

@@ -20,6 +20,7 @@
     "firebase-functions": "3.20.0",
     "firebase-tools": "10.7.1",
     "formik": "^2.2.9",
+    "framer-motion": "^8.0.2",
     "i18next": "^22.0.4",
     "i18next-browser-languagedetector": "^7.0.1",
     "i18next-http-backend": "^2.0.1",
