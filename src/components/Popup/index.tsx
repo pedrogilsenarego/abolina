@@ -6,10 +6,10 @@ import {
   Divider,
   useTheme,
   useMediaQuery,
-  Grid
+  Grid,
 } from "@mui/material";
-import { Actions } from "./types"
-import Button from "./ButtonPopup"
+import { Actions } from "./types";
+import Button from "./ButtonPopup";
 import { Colors } from "../../constants/pallette";
 
 interface Props {
@@ -17,9 +17,9 @@ interface Props {
   title: string;
   openPopup: boolean;
   setOpenPopup?: (openPopup: boolean) => void;
-  clickToClose?: boolean;
-  actions?: Actions[]
-  onClose?: () => void
+
+  actions?: Actions[];
+  onClose?: () => void;
 }
 
 const Popup = ({
@@ -27,11 +27,9 @@ const Popup = ({
   children,
   openPopup,
   setOpenPopup,
-  clickToClose,
   actions,
-  onClose
+  onClose,
 }: Props) => {
-
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -42,23 +40,23 @@ const Popup = ({
         style={{ color: "white" }}
         PaperProps={{
           style: {
-
             backgroundColor: "white",
             minWidth: mobile ? "90vw" : "50vw",
-
-
           },
         }}
-        onClick={() => {
-          if (clickToClose && setOpenPopup) setOpenPopup(false);
-        }}
+        onClose={onClose}
+
       >
         <DialogTitle>
           <div style={{ textAlign: "center" }}>
             <Typography
               variant='h6'
               component='div'
-              style={{ color: Colors.tealc, fontWeight: 700, letterSpacing: "3px" }}
+              style={{
+                color: Colors.tealc,
+                fontWeight: 700,
+                letterSpacing: "3px",
+              }}
             >
               {title}
             </Typography>
@@ -73,16 +71,25 @@ const Popup = ({
               marginTop: "10px",
             }}
           />
-          <Grid container justifyContent="flex-end" style={{ marginTop: "10px" }}>
+          <Grid
+            container
+            justifyContent='flex-end'
+            style={{ marginTop: "10px" }}
+          >
             {actions?.map((item, pos) => {
               return (
-                <Button disabled={item.disabled} title={item.title} key={pos} onClick={item.onClick} />
-              )
+                <Button
+                  disabled={item.disabled}
+                  title={item.title}
+                  key={pos}
+                  onClick={item.onClick}
+                />
+              );
             })}
           </Grid>
         </DialogContent>
       </Dialog>
-    </div>
+    </div >
   );
 };
 export default Popup;
