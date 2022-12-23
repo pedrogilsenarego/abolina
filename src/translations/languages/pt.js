@@ -90,6 +90,7 @@ export const content = {
               breadCrumbs: "Gerir Livros - Submeter Livro",
               submitTitle: "Submeter Livro",
               title: "Titulo",
+              pages: "Número de paginas",
               coverPage: "Imagem Rosto",
               content: "Conteudo",
               author: "Escritor",

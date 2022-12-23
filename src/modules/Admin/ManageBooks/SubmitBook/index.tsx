@@ -24,7 +24,8 @@ const SubmitBook = () => {
     resume: "",
     price: null,
     coverPage2: undefined,
-    content: []
+    content: [],
+    pages: null
   };
 
   const dispatch = useDispatch();
@@ -140,6 +141,15 @@ const SubmitBook = () => {
                   <Textfield
                     label={i18n.t("modules.admin.manageBooks.submitBook.price")}
                     name='price'
+                  />
+                </Box>
+
+              </Grid>
+              <Grid item xs={3}>
+                <Box>
+                  <Textfield
+                    label={i18n.t("modules.admin.manageBooks.submitBook.pages")}
+                    name='pages'
                   />
                 </Box>
 

@@ -8,19 +8,19 @@ const TopBar = () => {
   return (
     <Container>
       <Grid container justifyContent={mobile ? "center" : "flex-end"} columnGap={1} style={{ padding: "10px 0px 10px 0px" }}>
-        <Grid item><Typography color={Colors.tealc}>{i18n.t("topBar.memory")}</Typography></Grid>
+        <Grid item><Typography fontSize={mobile ? "12px" : "auto"} color={Colors.tealc}>{i18n.t("topBar.memory")}</Typography></Grid>
         <Divider orientation="vertical" style={{
           backgroundColor: '#00000003',
-          height: '25px',
+          height: mobile ? "17px" : '25px',
           width: '1px'
         }} />
-        <Grid item><Typography color={Colors.tealc}>{i18n.t("topBar.hope")}</Typography></Grid>
+        <Grid item><Typography fontSize={mobile ? "12px" : "auto"} color={Colors.tealc}>{i18n.t("topBar.hope")}</Typography></Grid>
         <Divider orientation="vertical" style={{
           backgroundColor: '#00000003',
-          height: '25px',
+          height: mobile ? "17px" : '25px',
           width: '1px'
         }} />
-        <Grid item><Typography color={Colors.tealc}>{i18n.t("topBar.audacity")}</Typography></Grid>
+        <Grid item><Typography fontSize={mobile ? "12px" : "auto"} color={Colors.tealc}>{i18n.t("topBar.audacity")}</Typography></Grid>
       </Grid>
     </Container>
   );

@@ -89,6 +89,7 @@ export const content = {
               breadCrumbs: "Manage Books - Submit Book",
               submitTitle: "Submit Book",
               title: "Title",
+              pages: "Number Pages",
               coverPage: "Cover Page",
               content: "Content",
               author: "Author",
