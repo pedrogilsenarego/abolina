@@ -18,24 +18,24 @@ const Right = () => {
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
 
   return (
-    <Grid container justifyContent={mobile ? "center" : "start"}>
+    <Grid container alignItems="center" justifyContent={mobile ? "center" : "start"}>
       {!mobile && (
         <Grid item>
           <Box
             style={{
-              borderRight: "solid 2px",
+              borderRight: "solid 1px #ffffffB3",
               paddingRight: "10px",
-              borderColor: "white",
+
             }}
           >
-            <InstaAvatar size="1.5em" backgroundColor='white' color={Colors.tealc} />
+            <InstaAvatar size="1em" backgroundColor='white' color={Colors.tealc} />
           </Box>
         </Grid>
       )}
-      <Grid>
-        <Box style={{ paddingLeft: "10px", borderColor: "white" }}>
+      <Grid item>
+        <Box style={{ paddingLeft: "10px" }}>
           <Typography
-            fontSize={mobile ? "24px" : "auto"}
+            fontSize={mobile ? "24px" : "12px"}
             color='white'
             onClick={() => {
               changeLanguage("pt");
@@ -46,7 +46,7 @@ const Right = () => {
             PT
           </Typography>
           <Typography
-            fontSize={mobile ? "24px" : "auto"}
+            fontSize={mobile ? "24px" : "12px"}
             color='white'
             onClick={() => {
               changeLanguage("en");

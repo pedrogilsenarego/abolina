@@ -55,6 +55,7 @@ const Carrousell = () => {
   const handleOnImgError = () => {
     setErrorImage(true);
   };
+
   useEffect(() => {
     if (errorImage) setErrorImage(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -74,6 +75,22 @@ const Carrousell = () => {
     }
     return;
   };
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (indexMini < images.length - 1) {
+        setIndexMini(indexMini + 1);
+        setMainImage(images[indexMini]);
+      }
+      else {
+        setIndexMini(0);
+        setMainImage(images[0]);
+      }
+    }, 10000);
+
+    return () => clearTimeout(timeoutId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [indexMini]);
 
   return (
     <>
@@ -121,7 +138,7 @@ const Carrousell = () => {
             >
               <Teste setIndexMini={setIndexMini} />
               <Slider
-                onClick={() => Navigate(ROUTE_PATHS.BOOKS_BOOK)}
+                // onClick={() => Navigate(ROUTE_PATHS.BOOKS_BOOK)}
 
                 onMouseDown={(e) => mouseDownCoords(e)}
                 onMouseUp={(e) => clickOrDrag(e)}

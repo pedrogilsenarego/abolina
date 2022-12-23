@@ -39,12 +39,12 @@ export const content = {
         home: {
           mainTextBtn: "Leia Mais",
           contacts: {
-            contactsTitle: "Entre em contacto",
+            contactsTitle: "ENTRE EM CONTACTO",
             form: {
-              name: "Nome*",
-              email: "E-mail*",
-              subject: "Assunto*",
-              description: "Descrição*",
+              name: "Nome",
+              email: "E-mail",
+              subject: "Assunto",
+              description: "Descrição",
               send: "Enviar",
             },
           },
@@ -76,7 +76,7 @@ export const content = {
             collectionBrowser: "Mais da Coleção",
             bookBrowser: "Folhear o Livro",
             new: "Novo",
-            title: "Descrição",
+            title: "DESCRIÇÃO",
             writer: "Autor",
             designer: "Ilustrador",
             translator: "Tradutor",

@@ -9,7 +9,7 @@ interface Props {
 
 const InstaAvatar = ({ backgroundColor, color, size }: Props) => {
   return (
-    <Avatar style={{ backgroundColor: backgroundColor }}>
+    <Avatar sx={{ height: "30px", width: "30px" }} style={{ backgroundColor: backgroundColor }}>
       <InstagramIcon style={{ color: color || backgroundColor, fontSize: size || "auto" }} />
     </Avatar>
   );
