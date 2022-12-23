@@ -56,20 +56,22 @@ const BookC = () => {
                 text={book?.authorResume || ""}
               />
             </Grid>
-            <Grid item xs={12} md={4}>
-              <Tile
-                title={i18n.t("modules.books.book.designer")}
-                name={book?.designer || ""}
-                text={book?.designerResume || ""}
-              />
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Tile
-                title={i18n.t("modules.books.book.translator")}
-                name={book?.translator || ""}
-                text={book?.translatorResume || ""}
-              />
-            </Grid>
+            {book?.designer && (
+              <Grid item xs={12} md={4}>
+                <Tile
+                  title={i18n.t("modules.books.book.designer")}
+                  name={book?.designer || ""}
+                  text={book?.designerResume || ""}
+                />
+              </Grid>)}
+            {book?.translator && (
+              <Grid item xs={12} md={4}>
+                <Tile
+                  title={i18n.t("modules.books.book.translator")}
+                  name={book?.translator || ""}
+                  text={book?.translatorResume || ""}
+                />
+              </Grid>)}
           </Grid>
         </Container>
         <Box

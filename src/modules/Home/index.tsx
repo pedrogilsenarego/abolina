@@ -8,6 +8,7 @@ import { ROUTE_PATHS } from "../../constants/routes";
 import Contacts from "./Components/Contacts";
 import homeOndas1 from "../../assets/images/homeOndas1.svg";
 import homeOndas2 from "../../assets/images/homeOndas2.svg";
+import { motion } from "framer-motion"
 
 const Home = () => {
   const navigate = useNavigate();
@@ -17,13 +18,19 @@ const Home = () => {
   return (
     <>
       <Box style={{ position: "relative" }}>
-        <Carrousell />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          <Carrousell />
+        </motion.div>
         <Box
           style={{
             position: "absolute",
             zIndex: -10,
             width: "100%",
-            bottom: mobile ? 0 : "-10%",
+            bottom: mobile ? 0 : "-12%",
             backgroundImage: `url(${homeOndas1})`,
             backgroundSize: mobile ? "170%" : "contain",
             backgroundPosition: "center center",

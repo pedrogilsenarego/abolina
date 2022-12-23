@@ -5,41 +5,39 @@ import { Box, Container, useMediaQuery, useTheme } from "@mui/material";
 import { Colors } from "../../../../constants/pallette";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { ROUTE_PATHS } from "../../../../constants/routes";
-import { useNavigate } from "react-router"
+import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCarroussell } from "../../../../slicer/books/books.actions";
 import { State } from "../../../../slicer/types";
 import DotGroups from "./Components/DotGroups";
 import Teste from "./Components/teste";
 
-
 const Carrousell = () => {
-
-  const images = useSelector<State, string[]>(state => state.books.carroussell || [])
+  const images = useSelector<State, string[]>(
+    (state) => state.books.carroussell || []
+  );
   const [errorImage, setErrorImage] = useState(false);
   const [indexMini, setIndexMini] = useState(0);
   const [mainImage, setMainImage] = useState(images[0]);
   const [hover, setHover] = useState<boolean>(false);
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
-  const Navigate = useNavigate()
-  const dispatch = useDispatch()
+  const Navigate = useNavigate();
+  const dispatch = useDispatch();
   const IMAGE_HEIGHT_MOBILE = "25vh";
   const IMAGE_HEIGHT_LAPTOP = "20vh";
 
-
-
   useEffect(() => {
-    dispatch(fetchCarroussell())
+    dispatch(fetchCarroussell());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   const mouseDownCoords = (e: any) => {
     // @ts-ignore
     window.checkForDrag = e.clientX;
   };
   const clickOrDrag = (e: any) => {
-    console.log("here")
+    console.log("here");
     const mouseUp = e.clientX;
     if (
       // @ts-ignore
@@ -47,10 +45,8 @@ const Carrousell = () => {
       // @ts-ignore
       mouseUp > window.checkForDrag - 5
     ) {
-
     }
   };
-
 
   const handleOnImgError = () => {
     setErrorImage(true);
@@ -81,8 +77,7 @@ const Carrousell = () => {
       if (indexMini < images.length - 1) {
         setIndexMini(indexMini + 1);
         setMainImage(images[indexMini]);
-      }
-      else {
+      } else {
         setIndexMini(0);
         setMainImage(images[0]);
       }
@@ -96,7 +91,7 @@ const Carrousell = () => {
     <>
       <Container
         maxWidth={"lg"}
-        style={{ minHeight: mobile ? "45vh" : "60vh", position: "relative" }}
+        style={{ minHeight: mobile ? "45vh" : "60vh", position: "relative", transition: "opacity 2s ease-in-out" }}
       >
         {!mobile && (
           <Box
@@ -134,7 +129,6 @@ const Carrousell = () => {
               lockOnWindowScroll
               touchEnabled={mobile ? true : false}
               dragEnabled={mobile ? true : false}
-
             >
               <Teste setIndexMini={setIndexMini} />
               <Slider
@@ -145,10 +139,13 @@ const Carrousell = () => {
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
                 style={{
-                  boxShadow: hover && !mobile ? "10px 16px 10px #00000066" : "4px 4px 4px #00000066",
+                  boxShadow:
+                    hover && !mobile
+                      ? "10px 16px 10px #00000066"
+                      : "4px 4px 4px #00000066",
                   borderRadius: "4px",
                   transform: hover && !mobile ? "translate(-6px,-12px)" : null,
-                  transition: "all 0.2s ease-in"
+                  transition: "all 0.2s ease-in",
                 }}
               >
                 {images.map((image, pos) => {
@@ -183,7 +180,11 @@ const Carrousell = () => {
                   justifyContent='center'
                   style={{ marginTop: "35px" }}
                 >
-                  <DotGroups numberDots={images.length} index={indexMini} setIndex={setIndexMini} />
+                  <DotGroups
+                    numberDots={images.length}
+                    index={indexMini}
+                    setIndex={setIndexMini}
+                  />
                 </Box>
               </>
             </CarouselProvider>
