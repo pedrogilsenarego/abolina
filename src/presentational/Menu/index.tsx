@@ -6,9 +6,8 @@ import Right from "./Right";
 import Middle from "./Middle";
 import MobileMainDrawer from "./MobileMainDrawer";
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { State } from "../../slicer/types";
-import { updateLang } from "../../slicer/general/general.actions";
 import { LANG } from "../../constants/lang";
 import useChangeLang from "../../hooks/usechangeLang";
 
@@ -16,7 +15,6 @@ const Menu = () => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
   const Theme = useTheme()
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"))
-  const dispatch = useDispatch()
   const { changeLanguage } = useChangeLang()
 
   const lang = useSelector<State, string>(
@@ -25,7 +23,7 @@ const Menu = () => {
 
   const laptopRender = () => {
     return (
-      <Box sx={{ flexGrow: 1, backgroundColor: Colors.tealc, boxShadow: `0px 5px 5px #00000033` }}>
+      <Box sx={{ flexGrow: 1, backgroundColor: Colors.tealc, boxShadow: `0px 8px 8px #00000033` }}>
         <Container>
           <Grid container justifyContent="space-between" alignItems="center" style={{ height: "80px" }}>
             <Grid item><Left /></Grid>

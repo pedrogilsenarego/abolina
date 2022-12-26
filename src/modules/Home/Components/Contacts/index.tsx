@@ -9,40 +9,46 @@ import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { State } from "../../../../slicer/types";
 import { scrollToContacts } from "../../../../slicer/general/general.actions";
+import { Colors } from "../../../../constants/pallette";
 
 const Contacts = () => {
   const INITIAL_FORM_STATE = {
     name: "",
     email: "",
     subject: "",
-    description: ""
+    description: "",
   };
-  const dispatch = useDispatch()
-  const contactsRef = useRef<HTMLDivElement>(null)
+  const dispatch = useDispatch();
+  const contactsRef = useRef<HTMLDivElement>(null);
   const scrollToContactsL = useSelector<State>(
     (state) => state.general.scrollToContacts
   );
   const handleScrollToContacts = () => {
     if (null !== contactsRef.current) {
-      window.scrollTo({ top: contactsRef.current.offsetTop, behavior: "smooth" });
+      window.scrollTo({
+        top: contactsRef.current.offsetTop,
+        behavior: "smooth",
+      });
     }
-  }
+  };
 
   useEffect(() => {
     if (scrollToContactsL) {
       handleScrollToContacts();
-      dispatch(scrollToContacts(false))
+      dispatch(scrollToContacts(false));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [scrollToContactsL])
+  }, [scrollToContactsL]);
 
-  const handleSubmit = (values: any) => {
-  }
+  const handleSubmit = (values: any) => { };
 
   return (
-
-    <Container maxWidth='md' style={{ justifyContent: "center" }} ref={contactsRef}>
-      <GStyled.Title >
+    <Container
+      maxWidth='md'
+      style={{ justifyContent: "center" }}
+      ref={contactsRef}
+    >
+      <GStyled.Title>
         {i18n.t("modules.home.contacts.contactsTitle")}
       </GStyled.Title>
       <Formik
@@ -52,8 +58,13 @@ const Contacts = () => {
         }}
         validationSchema={FORM_VALIDATION}
       >
-        <Form >
-          <Box rowGap={2} display="flex" flexDirection="column" sx={{ mt: "20px" }} >
+        <Form>
+          <Box
+            rowGap={2}
+            display='flex'
+            flexDirection='column'
+            sx={{ mt: "20px" }}
+          >
             <Box>
               <Textfield
                 label={i18n.t("modules.home.contacts.form.name")}
@@ -82,12 +93,16 @@ const Contacts = () => {
             </Box>
           </Box>
           <Box display='flex' justifyContent='start' sx={{ mt: "20px" }}>
-            <ButtonForm label={i18n.t("modules.home.contacts.form.send")} />
+            <ButtonForm
+              backgroundColor='white'
+              borderColor={Colors.darkGrey}
+              color={Colors.tealc}
+              label={i18n.t("modules.home.contacts.form.send")}
+            />
           </Box>
         </Form>
       </Formik>
-    </Container >
-
+    </Container>
   );
 };
 

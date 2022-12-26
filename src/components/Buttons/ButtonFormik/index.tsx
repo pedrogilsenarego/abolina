@@ -4,17 +4,21 @@ import { useFormikContext } from "formik";
 
 interface Props {
   label: string;
+  backgroundColor?: string;
+  borderColor?: string;
+  color?: string;
 
 }
 
-const Button = ({ label }: Props) => {
+const Button = ({ label, backgroundColor, borderColor, color }: Props) => {
   const { submitForm } = useFormikContext();
   return (
     <>
       <MuiButton
         style={{
-          backgroundColor: Colors.tealc,
-          color: "white",
+          backgroundColor: backgroundColor || Colors.tealc,
+          color: color || "white",
+          border: borderColor ? `solid 1px ${borderColor}` : "auto",
           borderRadius: "40px",
           paddingLeft: "20px",
           paddingRight: "20px",
