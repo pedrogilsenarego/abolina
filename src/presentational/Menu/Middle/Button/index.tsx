@@ -1,32 +1,47 @@
 import { Typography, useMediaQuery, useTheme } from "@mui/material";
-import { useNavigate } from "react-router-dom"
-
-
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import "./styles.css"
 
 interface Props {
   title: string;
   path?: string;
-  setOpenDrawer: (openDrawer: boolean) => void
-  onClick?: () => void
+  setOpenDrawer: (openDrawer: boolean) => void;
+  onClick?: () => void;
 }
 
 const Button = ({ title, path, setOpenDrawer, onClick }: Props) => {
-  const navigate = useNavigate()
-  const Theme = useTheme()
-  const mobile = useMediaQuery(Theme.breakpoints.down("sm"))
+  const navigate = useNavigate();
+  const Theme = useTheme();
+  const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
+
+
 
   return (
     <>
-      <Typography
-        style={{ color: "whiteSmoke", cursor: "pointer", fontSize: mobile ? "20px" : "15px", fontWeight: 700 }}
-        variant="caption"
+      <p
+        className="menu-text"
+        style={{
+          color: "whiteSmoke",
+          cursor: "pointer",
+          fontSize: mobile ? "20px" : "15px",
+          fontWeight: 700,
+          paddingBottom: "5px",
+
+        }}
+
         onClick={() => {
-          if (path) { navigate(path); setOpenDrawer(false) };
-          if (onClick) { onClick() }
+          if (path) {
+            navigate(path);
+            setOpenDrawer(false);
+          }
+          if (onClick) {
+            onClick();
+          }
         }}
       >
         {title}
-      </Typography>
+      </p>
     </>
   );
 };
