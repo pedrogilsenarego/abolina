@@ -24,46 +24,78 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
 
   return (
 
-    <Grid container columnSpacing={2} >
+    <Grid container columnSpacing={4} >
       <Grid item xs={12} md={8} style={{ position: "relative" }}>
-        <Box
-          style={{
-            position: "absolute",
-            zIndex: 1000,
-            backgroundColor: Colors.tealc,
-            top: mobile ? -20 : 30,
-            left: mobile ? "30px" : "2px",
-            padding: mobile ? "5px" : "10px",
-            borderRadius: "3px",
-            cursor: "pointer",
-            boxShadow: "2px 2px 2px #00000066",
-          }}
-        >
-          <Typography
-            onClick={() => setOpenViewBook(true)}
-            style={{ color: "white", fontSize: "16px" }}
-          >
-            {i18n.t("modules.books.book.bookBrowser")}
-          </Typography>
-        </Box>
-        {(book?.newBook ?? true) && (<Box
-          style={{
-            position: "absolute",
-            zIndex: 1000,
-            backgroundColor: Colors.tealc,
-            top: mobile ? 35 : 90,
-            left: mobile ? "12px" : "5px",
-            padding: "5px",
-            borderRadius: "3px",
-            boxShadow: "1px 1px 1px #00000066",
-          }}
-        >
-          <Typography style={{ color: "white", fontSize: "12px" }}>
-            {i18n.t("modules.books.book.new")}
-          </Typography>
-        </Box>)}
 
-        <CardMedia image={book?.coverPage} height='auto' />
+
+        <Box display="flex" justifyContent="end">
+          {!mobile && (<Box width="20%">
+            <Box
+              style={{
+
+                zIndex: 1000,
+                backgroundColor: Colors.tealc,
+                marginTop: "20px",
+                padding: "5px",
+                borderRadius: "3px",
+                cursor: "pointer",
+                boxShadow: "2px 2px 2px #00000066",
+              }}
+            >
+              <Typography
+                onClick={() => setOpenViewBook(true)}
+                style={{ color: "white", fontSize: "16px" }}
+              >
+                {i18n.t("modules.books.book.bookBrowser")}
+              </Typography>
+            </Box>
+
+          </Box>)}
+
+          <Box width={mobile ? "100%" : "80%"} style={{ position: "relative" }}>
+            {mobile && (<Box width="20%">
+              <Box
+                style={{
+                  position: "absolute",
+                  zIndex: 1000,
+                  backgroundColor: Colors.tealc,
+                  top: -24,
+                  left: 16,
+                  padding: "5px",
+                  borderRadius: "3px",
+                  cursor: "pointer",
+                  boxShadow: "2px 2px 2px #00000066",
+                }}
+              >
+                <Typography
+                  onClick={() => setOpenViewBook(true)}
+                  style={{ color: "white", fontSize: "16px" }}
+                >
+                  {i18n.t("modules.books.book.bookBrowser")}
+                </Typography>
+              </Box>
+
+            </Box>)}
+
+            {(book?.newBook ?? true) && (<Box
+              style={{
+                position: "absolute",
+                zIndex: 1000,
+                backgroundColor: Colors.tealc,
+                top: mobile ? 40 : 90,
+                left: "0px",
+                padding: "5px",
+                borderRadius: "3px",
+                boxShadow: "1px 1px 1px #00000066",
+              }}
+            >
+              <Typography style={{ color: "white", fontSize: "12px" }}>
+                {i18n.t("modules.books.book.new")}
+              </Typography>
+            </Box>)}
+            <CardMedia image={book?.coverPage} height='auto' />
+          </Box>
+        </Box>
       </Grid>
       <Grid item xs={12} md={4} textAlign='start'>
         <GStyled.Title fontSize='18px' style={{ fontWeight: 700 }}>

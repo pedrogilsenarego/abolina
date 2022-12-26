@@ -33,8 +33,8 @@ const BookC = () => {
 
   return (
     <>
-      <Box>
-        <Container maxWidth='md'>
+      <Box mt="20px">
+        <Container maxWidth='md' >
           <Roster book={book} setOpenViewBook={setOpenViewBook} />
           <Box display='flex' justifyContent='start' mt='40px'>
             <GStyled.Title>{i18n.t("modules.books.book.title")}</GStyled.Title>
