@@ -20,33 +20,33 @@ const MobileMainDrawer = ({ openDrawer, setOpenDrawer }: Props) => {
         openDrawer={openDrawer}
         setOpenDrawer={setOpenDrawer}
         fullHeight
+        width="70vw"
+        paddingLeft="30px"
       >
         <Middle setOpenDrawer={setOpenDrawer} />
         <Box display='flex'
 
-          justifyContent='center'
+          justifyContent='start'
           alignItems='center'>
           <Box
             display='flex'
             columnGap={1}
-            justifyContent='center'
+            justifyContent='start'
             alignItems='center'
-            mt='40px'
-            style={{ border: "solid 2px #ffffff66", borderRadius: "6px", width: "50vw" }}
+            mt='60px'
+
           >
             <Typography color='white' fontSize='20px' fontWeight={700}>
               {i18n.t("menuBar.instagram")}
             </Typography>
             <InstaAvatar
-              size='40px'
-              backgroundColor={Colors.tealc}
-              color='white'
+              size='25px'
+              backgroundColor="white"
+              color={Colors.tealc}
             />
           </Box>
         </Box>
-        <Box display="flex" justifyContent="center" style={{ marginTop: "200px" }}>
-          <Right />
-        </Box>
+
       </DrawerMine>
     </>
   );

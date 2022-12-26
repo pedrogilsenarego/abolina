@@ -18,9 +18,6 @@ interface Props {
 
 const Roster = ({ setOpenViewBook, book }: Props) => {
 
-
-
-
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
 

@@ -16,6 +16,8 @@ type Props = {
   noPadding?: boolean;
   clearBackground?: boolean;
   topRadius?: boolean;
+  width?: string;
+  paddingLeft?: string;
 };
 
 const DrawerMine = ({
@@ -28,16 +30,19 @@ const DrawerMine = ({
   children,
   clearBackground,
   topRadius,
+  width,
+  paddingLeft
 }: Props) => {
   const list = () => (
     <Box
       component='div'
       sx={{
-        width: fullWidth ? "100vw" : "auto",
+        width: fullWidth ? "100vw" : width,
         height: fullHeight ? "100vh" : "auto",
         backgroundColor: Colors.tealc,
         padding: noPadding ? "0px" : "10px",
         paddingTop: "6vh",
+        paddingLeft: paddingLeft || "auto",
         overflowY: "auto",
         borderRadius: "0 10px 10px 0",
       }}

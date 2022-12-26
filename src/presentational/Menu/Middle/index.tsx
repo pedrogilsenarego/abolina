@@ -30,11 +30,11 @@ const Middle = ({ setOpenDrawer }: Props) => {
     <>
       <Grid
         container
-        rowSpacing={3}
+        rowSpacing={mobile ? 4 : 3}
         columnGap={"26px"}
         flexDirection={mobile ? "column" : "row"}
         justifyContent={mobile ? "center" : "space-between"}
-        alignItems='center'
+        alignItems={mobile ? 'start' : "center"}
 
       >
         <Grid item>

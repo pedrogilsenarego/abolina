@@ -15,7 +15,7 @@ export const content = {
         books: "LIVROS",
         about: "SOBRE NÓS",
         contacts: "CONTACTO",
-        instagram: "Instagram",
+        instagram: "Siga-nos",
       },
       footer: {
         second: {
