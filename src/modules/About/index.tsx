@@ -9,7 +9,7 @@ const About = () => {
   return (
     <Box style={{ position: "relative", paddingBottom: "15vh" }}>
 
-      <Container maxWidth='md' >
+      <Container >
         <Box display='flex' justifyContent='start'>
           <GStyled.Title>{i18n.t("menuBar.about")}</GStyled.Title>
         </Box>
@@ -19,69 +19,71 @@ const About = () => {
         >
           {i18n.t("modules.about.mainText")}
         </Typography>
-        <motion.div
-          initial={{ opacity: 0, y: "30px" }}
-          animate={{ opacity: 1, y: "0px" }}
-          transition={{ duration: 0.7 }}
-        >
-          <Grid
-            container
-            columnSpacing={4}
-            alignItems='top'
-            rowSpacing={4}
-            style={{ marginTop: "40px" }}
+        <Container maxWidth="lg">
+          <motion.div
+            initial={{ opacity: 0, y: "30px" }}
+            animate={{ opacity: 1, y: "0px" }}
+            transition={{ duration: 0.7 }}
           >
+            <Grid
+              container
+              columnSpacing={8}
+              alignItems='top'
+              rowSpacing={4}
+              style={{ marginTop: "40px" }}
+            >
 
-            <Grid item xs={12} md={4}>
+              <Grid item xs={12} md={4}>
 
-              <Card
-                style={{ backgroundColor: Colors.champagne, padding: "20px", height: "100%" }}
-              >
-                <GStyled.Title fontSize='16px' style={{ fontWeight: 700 }}>
-                  {i18n.t("modules.about.secondTitle")}
-                </GStyled.Title>
-                <Typography
-                  align='justify'
-                  style={{ marginTop: "10px" }}
+                <Card
+                  style={{ backgroundColor: Colors.champagne, padding: "20px", height: "100%" }}
                 >
-                  {i18n.t("modules.about.second")}
-                </Typography>
-              </Card>
+                  <GStyled.Title fontSize='16px' style={{ fontWeight: 700 }}>
+                    {i18n.t("modules.about.secondTitle")}
+                  </GStyled.Title>
+                  <Typography
+                    align='justify'
+                    style={{ marginTop: "10px" }}
+                  >
+                    {i18n.t("modules.about.second")}
+                  </Typography>
+                </Card>
 
-            </Grid>
+              </Grid>
 
-            <Grid item xs={12} md={4}>
-              <Card
-                style={{ backgroundColor: Colors.champagne, padding: "20px", height: "100%" }}
-              >
-                <GStyled.Title fontSize='16px' style={{ fontWeight: 700 }}>
-                  {i18n.t("modules.about.thirdTitle")}
-                </GStyled.Title>
-                <Typography
-                  align='justify'
-                  style={{ marginTop: "10px", whiteSpace: "pre-line" }}
+              <Grid item xs={12} md={4}>
+                <Card
+                  style={{ backgroundColor: Colors.champagne, padding: "20px", height: "100%" }}
                 >
-                  {i18n.t("modules.about.third")}
-                </Typography>
-              </Card>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Card
-                style={{ backgroundColor: Colors.champagne, padding: "20px", height: "100%" }}
-              >
-                <GStyled.Title fontSize='16px' style={{ fontWeight: 700 }}>
-                  {i18n.t("modules.about.forthTitle")}
-                </GStyled.Title>
-                <Typography
-                  align='justify'
-                  style={{ marginTop: "10px", whiteSpace: "pre-line" }}
+                  <GStyled.Title fontSize='16px' style={{ fontWeight: 700 }}>
+                    {i18n.t("modules.about.thirdTitle")}
+                  </GStyled.Title>
+                  <Typography
+                    align='justify'
+                    style={{ marginTop: "10px", whiteSpace: "pre-line" }}
+                  >
+                    {i18n.t("modules.about.third")}
+                  </Typography>
+                </Card>
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <Card
+                  style={{ backgroundColor: Colors.champagne, padding: "20px", height: "100%" }}
                 >
-                  {i18n.t("modules.about.forth")}
-                </Typography>
-              </Card>
+                  <GStyled.Title fontSize='16px' style={{ fontWeight: 700 }}>
+                    {i18n.t("modules.about.forthTitle")}
+                  </GStyled.Title>
+                  <Typography
+                    align='justify'
+                    style={{ marginTop: "10px", whiteSpace: "pre-line" }}
+                  >
+                    {i18n.t("modules.about.forth")}
+                  </Typography>
+                </Card>
+              </Grid>
             </Grid>
-          </Grid>
-        </motion.div>
+          </motion.div>
+        </Container>
       </Container>
       <Box style={{
         position: "absolute",
