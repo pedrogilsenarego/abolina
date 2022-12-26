@@ -16,7 +16,7 @@ const UpScroller = () => {
   }
   const [hover, setHover] = useState<boolean>(false)
 
-  return (
+  if (!mobile) return (
     <Box
       position="fixed"
       justifyContent="center"
@@ -40,6 +40,7 @@ const UpScroller = () => {
       <BsCaretUpFill color={!hover ? "white" : Colors.tealc} size="0.8em" />
     </Box>
   );
+  else return (<></>)
 };
 
 export default UpScroller;
