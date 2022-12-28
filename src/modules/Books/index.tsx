@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchBooks } from "../../slicer/books/books.actions";
 import { State } from "../../slicer/types";
 import { Book } from "../../slicer/books/books.types";
-import { Card, Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
 import CardMedia from "../../components/CardMedia";
 
 const Books = () => {
@@ -24,25 +24,31 @@ const Books = () => {
     <>
       <Container>
         <Grid container justifyContent='center' columnSpacing={2}>
-          {books?.map((book, pos) => {
-            return (
-              <Grid item key={pos} xs={12} sm={4}>
-                <Card
-                  onClick={() =>
-                    Navigate(
-                      ROUTE_PATHS.BOOKS_BOOK.replace(
-                        ":id",
-                        book?.documentID.toString()
+          <Grid container item xs={3}></Grid>
+          <Grid container columnSpacing="1px" rowSpacing="1px" item xs={9}>
+            {books?.map((book, pos) => {
+              return (
+                <Grid item key={pos} xs={12} sm={4}>
+                  <Box
+                    style={{ backgroundColor: "lightGrey", padding: "10px" }}
+                    onClick={() =>
+                      Navigate(
+                        ROUTE_PATHS.BOOKS_BOOK.replace(
+                          ":id",
+                          book?.documentID.toString()
+                        )
                       )
-                    )
-                  }
-                >
-                  <CardMedia image={book?.coverPage} />
-                  <Typography>{book?.title}</Typography>
-                </Card>
-              </Grid>
-            );
-          })}
+                    }
+                  >
+                    <CardMedia height="300" borderRadius="0px" image={book?.coverPage} />
+                    <Box style={{ backgroundColor: "white" }}>
+                      <Typography>{book?.title}</Typography>
+                    </Box>
+                  </Box>
+                </Grid>
+              );
+            })}
+          </Grid>
         </Grid>
       </Container>
     </>

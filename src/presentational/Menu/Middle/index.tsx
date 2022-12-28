@@ -39,6 +39,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
       >
         <Grid item>
           <Button
+            selected={loc.pathname === ROUTE_PATHS.HOME}
             title={i18n.t("menuBar.home")}
             path={ROUTE_PATHS.HOME}
             setOpenDrawer={setOpenDrawer}
@@ -46,6 +47,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
         </Grid>
         <Grid item>
           <Button
+            selected={loc.pathname === ROUTE_PATHS.BOOKS}
             title={i18n.t("menuBar.books")}
             path={ROUTE_PATHS.BOOKS}
             setOpenDrawer={setOpenDrawer}
@@ -53,6 +55,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
         </Grid>
         <Grid item>
           <Button
+            selected={loc.pathname === ROUTE_PATHS.ABOUT}
             title={i18n.t("menuBar.about")}
             path={ROUTE_PATHS.ABOUT}
             setOpenDrawer={setOpenDrawer}

@@ -1,6 +1,5 @@
-import { Typography, useMediaQuery, useTheme } from "@mui/material";
+import { useMediaQuery, useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import "./styles.css"
 
 interface Props {
@@ -8,9 +7,10 @@ interface Props {
   path?: string;
   setOpenDrawer: (openDrawer: boolean) => void;
   onClick?: () => void;
+  selected?: boolean
 }
 
-const Button = ({ title, path, setOpenDrawer, onClick }: Props) => {
+const Button = ({ title, path, setOpenDrawer, onClick, selected }: Props) => {
   const navigate = useNavigate();
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
@@ -20,7 +20,7 @@ const Button = ({ title, path, setOpenDrawer, onClick }: Props) => {
   return (
     <>
       <p
-        className="menu-text"
+        className={selected ? "menu-text-selected" : "menu-text"}
         style={{
           color: "whiteSmoke",
           cursor: "pointer",

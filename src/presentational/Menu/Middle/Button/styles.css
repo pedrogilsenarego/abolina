@@ -7,6 +7,14 @@
   height: 2px;
   width: 0;
 }
+.menu-text-selected:after {
+  transition: all ease-in-out .2s;
+  background: none repeat scroll 0 0 #ffffffCC;
+  content: "";
+  display: block;
+  height: 2px;
+  width: 100%;
+}
 .menu-text:hover:after {
   width: 100%;
 }
