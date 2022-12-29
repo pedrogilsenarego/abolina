@@ -18,11 +18,7 @@ const About = () => {
           {i18n.t("modules.about.mainText")}
         </Typography>
         <Container maxWidth='lg'>
-          {/* <motion.div
-            initial={{ opacity: 0, y: "30px" }}
-            animate={{ opacity: 1, y: "0px" }}
-            transition={{ duration: 0.7 }}
-          > */}
+
           <Grid
             container
             columnSpacing={8}
@@ -31,7 +27,7 @@ const About = () => {
             style={{ marginTop: "70px" }}
           >
             <Grid item xs={12} md={4}>
-              <CardMine duration={0.4}>
+              <CardMine duration={0.3}>
                 <GStyled.Title fontSize='16px' style={{ fontWeight: 700 }}>
                   {i18n.t("modules.about.secondTitle")}
                 </GStyled.Title>
@@ -42,7 +38,7 @@ const About = () => {
             </Grid>
 
             <Grid item xs={12} md={4}>
-              <CardMine duration={0.6}>
+              <CardMine duration={0.5}>
                 <GStyled.Title fontSize='16px' style={{ fontWeight: 700 }}>
                   {i18n.t("modules.about.thirdTitle")}
                 </GStyled.Title>
@@ -55,7 +51,7 @@ const About = () => {
               </CardMine>
             </Grid>
             <Grid item xs={12} md={4}>
-              <CardMine duration={0.8} >
+              <CardMine duration={0.7} >
                 <GStyled.Title fontSize='16px' style={{ fontWeight: 700 }}>
                   {i18n.t("modules.about.forthTitle")}
                 </GStyled.Title>
@@ -68,7 +64,7 @@ const About = () => {
               </CardMine>
             </Grid>
           </Grid>
-          {/* </motion.div> */}
+
         </Container>
       </Container>
       <Box

@@ -5,6 +5,7 @@ import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { Colors } from "../../../../constants/pallette";
 import Image from "./Components/Image";
+import DotGroups from "./Components/DotGroups";
 
 const Carousel = () => {
   const images = useSelector<State, string[]>(
@@ -18,7 +19,7 @@ const Carousel = () => {
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
 
-  const slides = [...images];
+  const slides = [images[images.length - 1], ...images, images[0]];
 
   const value = images.length % 2 === 0 ? 108 : 72;
 
@@ -37,10 +38,21 @@ const Carousel = () => {
 
     setTranslateX(value * (current + 1));
     setCurrent((prev) => ++prev);
+    // const newSlider = [...slider]
+
+    // newSlider.push(images[0])
+    // newSlider.shift()
+    // setSlider(newSlider)
+
+
+
+
 
 
     return;
   };
+
+  console.log(slider)
 
   return (
     <>
@@ -66,26 +78,28 @@ const Carousel = () => {
         >
           <FiChevronLeft
             size='3em'
-            color={
-              current >= Math.floor(-slider.length / 2) + 2
-                ? Colors.tealc
-                : "transparent"
-            }
+            // color={
+            //   current >= Math.floor(-slider.length / 2) + 2
+            //     ? Colors.tealc
+            //     : "transparent"
+            // }
+            color={Colors.tealc}
             style={{ cursor: "pointer" }}
-            onClick={() =>
-              current >= Math.floor(-slider.length / 2) + 2
-                ? handleMove("left")
-                : null
-            }
+            // onClick={() =>
+            //   current >= Math.floor(-slider.length / 2) + 2
+            //     ? handleMove("left")
+            //     : null
+            // }
+            onClick={() => handleMove("left")}
           />
-          {current < Math.floor(slider.length / 2) && (
-            <FiChevronRight
-              size='3em'
-              color={Colors.tealc}
-              style={{ cursor: "pointer" }}
-              onClick={() => handleMove("right")}
-            />
-          )}
+          {/* {current < Math.floor(slider.length / 2) && ( */}
+          <FiChevronRight
+            size='3em'
+            color={Colors.tealc}
+            style={{ cursor: "pointer" }}
+            onClick={() => handleMove("right")}
+          />
+          {/* )} */}
         </Box>
         <Box
           display='flex'
@@ -98,11 +112,24 @@ const Carousel = () => {
           }}
         >
           {slider.map((item: any, pos: number) =>
-            <Image item={item} pos={pos} mobile={mobile} />
+            <Image key={pos} item={item} pos={pos} mobile={mobile} />
 
           )}
         </Box>
       </div>
+      <>
+        <Box
+          display='flex'
+          justifyContent='center'
+          style={{ marginTop: "35px" }}
+        >
+          <DotGroups
+            numberDots={images.length}
+            index={current}
+            setIndex={setCurrent}
+          />
+        </Box>
+      </>
     </>
   );
 };

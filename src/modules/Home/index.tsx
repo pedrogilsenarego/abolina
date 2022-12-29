@@ -9,6 +9,9 @@ import Contacts from "./Components/Contacts";
 import homeOndas1 from "../../assets/images/homeOndas1.svg";
 import homeOndas2 from "../../assets/images/homeOndas2.svg";
 import { motion } from "framer-motion"
+import Carousel from "./Components/Carousel";
+//import Carousel from "./Components/Carousel";
+
 
 
 const Home = () => {
@@ -25,7 +28,7 @@ const Home = () => {
           transition={{ duration: 0.8 }}
         >
 
-          <Carrousell />
+          <Carousel />
         </motion.div>
         <Box
           style={{
