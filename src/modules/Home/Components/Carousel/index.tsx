@@ -11,46 +11,35 @@ const Carousel = () => {
   );
   const [current, setCurrent] = useState<number>(0);
   const [translateX, setTranslateX] = useState<number>(0);
-  const [slider, setSlider] = useState<any>([])
+  const [slider, setSlider] = useState<any>([]);
 
-  const slides = [
-    ...images
-  ]
+  const slides = [...images];
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => { setSlider(slides) }, [])
+  useEffect(() => {
+    setSlider(slides);
+  }, []);
 
-  console.log(slider.length)
 
   const handleMove = (direction: "left" | "right") => {
-
     if (direction === "left") {
       setTranslateX(72 * (current - 1));
-      setCurrent((prev) => --prev)
+      setCurrent((prev) => --prev);
 
-      return
+      return;
     }
 
-
-
     setTranslateX(72 * (current + 1));
-    setCurrent((prev) => ++prev)
-    const newArray = [...slider]
-    newArray.shift()
-    newArray.push(images[0])
-    setTimeout(() => { setSlider(newArray) }, 1000)
+    setCurrent((prev) => ++prev);
+    // const newArray = [...slider];
+    // newArray.shift();
+    // newArray.push(images[0]);
+    // setTimeout(() => {
+    //   setSlider(newArray);
+    // }, 1000);
 
-
-
-    return
-
+    return;
   };
-
-
-
-
-
-
 
   return (
     <>
@@ -60,7 +49,6 @@ const Carousel = () => {
           display: "flex",
           justifyContent: "center",
           position: "relative",
-
         }}
       >
         <Box
@@ -75,21 +63,23 @@ const Carousel = () => {
             zIndex: 1000,
           }}
         >
+
           <FiChevronLeft
             size='3em'
-            color={Colors.tealc}
+            color={(current >= (Math.floor(-slider.length / 2) + 2)) ? Colors.tealc : "transparent"}
             style={{ cursor: "pointer" }}
-            onClick={() => handleMove("left")}
+            onClick={() => (current >= (Math.floor(-slider.length / 2) + 2)) ? handleMove("left") : null}
           />
-          <FiChevronRight
-            size='3em'
-            color={Colors.tealc}
-            style={{ cursor: "pointer" }}
-            onClick={() => handleMove("right")}
-          />
+          {current < Math.floor(slider.length / 2) && (
+            <FiChevronRight
+              size='3em'
+              color={Colors.tealc}
+              style={{ cursor: "pointer" }}
+              onClick={() => handleMove("right")}
+            />
+          )}
         </Box>
         <Box
-
           display='flex'
           columnGap='10vw'
           justifyContent='center'
@@ -107,7 +97,7 @@ const Carousel = () => {
                 src={item}
                 alt={item}
               />
-            )
+            );
           })}
         </Box>
       </div>
