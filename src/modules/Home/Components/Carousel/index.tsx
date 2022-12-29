@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, useRef, useLayoutEffect } from "react";
+import { useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import { State } from "../../../../slicer/types";
 import { Box } from "@mui/material";
@@ -13,36 +13,11 @@ const Carousel = () => {
   const [translateX, setTranslateX] = useState<number>(0);
   const containerRef = useRef<any>()
 
-  const slides = useMemo(() => {
-    if (images.length > 1) {
-      const items = images.map((child, pos) => (
-        <img
-          style={{ width: "62vw", objectFit: "cover" }}
-          key={pos}
-          src={child}
-          alt={child}
-        />
-      ));
+  const slides = [
+    ...images
+  ]
 
-      return [
-        <img
-          style={{ width: "62vw", objectFit: "cover" }}
-          key={images.length + 1}
-          src={images[images.length - 1]}
-          alt={images[images.length - 1]}
-        />,
-        ...items,
-        <img
-          style={{ width: "62vw", objectFit: "cover" }}
-          key={images.length + 2}
-          src={images[0]}
-          alt={images[0]}
-        />,
-      ];
-    }
-
-    return <li>{images[0]}</li>;
-  }, [images]);
+  console.log(slides.length)
 
   const handleMove = (direction: "left" | "right") => {
 
@@ -57,30 +32,16 @@ const Carousel = () => {
 
     setTranslateX(72 * (current + 1));
     setCurrent((prev) => ++prev)
+    slides.push(images[0])
+
+
     return
 
   };
 
-  // useEffect(() => {
-  //   const transitionEnd = () => {
-  //     if (current <= 1) {
-  //       containerRef.current.style.transition = "all 0s ease-in-out"
-  //       setTranslateX(72 * current)
-  //     }
-  //     if (current >= images.length) {
-  //       containerRef.current.style.transition = "all 0s ease-in-out"
-  //       setTranslateX(72 * images.length)
-  //     }
 
-  //   }
 
-  //   document.addEventListener("transitionend", transitionEnd)
 
-  //   return () => {
-  //     document.removeEventListener("transitionend", transitionEnd)
-  //   }
-
-  // }, [current, images])
 
 
 
@@ -131,7 +92,16 @@ const Carousel = () => {
             transform: `translateX(${-translateX}vw)`,
           }}
         >
-          {slides}
+          {slides.map((item, pos) => {
+            return (
+              <img
+                style={{ width: "62vw", objectFit: "cover" }}
+                key={pos}
+                src={item}
+                alt={item}
+              />
+            )
+          })}
         </Box>
       </div>
     </>
