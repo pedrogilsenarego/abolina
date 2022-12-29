@@ -9,13 +9,15 @@ import DotGroups from "./Components/DotGroups";
 import { fetchCarroussell } from "../../../../slicer/books/books.actions";
 
 const Carousel = () => {
+
   const images = useSelector<State, string[]>(
     (state) => state.books.carroussell || []
   );
+  const value = 72;
+  const initialTranslateXValue = ((images.length / 2 * value) - value / 2) * -1
+
   const [current, setCurrent] = useState<number>(0);
-  const [translateX, setTranslateX] = useState<number>(
-    images.length % 2 === 0 ? 36 : 0
-  );
+  const [translateX, setTranslateX] = useState<number>(initialTranslateXValue);
   const [slider, setSlider] = useState<any>([]);
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
@@ -23,7 +25,7 @@ const Carousel = () => {
 
   const slides = [images[images.length - 1], ...images, images[0]];
 
-  const value = images.length % 2 === 0 ? 108 : 72;
+
 
   useEffect(() => {
     setSlider(slides);
@@ -37,31 +39,33 @@ const Carousel = () => {
 
   const handleMove = (direction: "left" | "right") => {
     if (direction === "left") {
-      if (current <= -Math.floor(images.length / 2)) {
+      if (current <= 0) {
 
-        setTranslateX(-value * (current))
-        setCurrent(Math.floor(images.length / 2))
+        setTranslateX(translateX + value * (images.length - 1))
+        setCurrent(images.length - 1)
       } else {
-        setTranslateX(value * (current - 1));
+        setTranslateX(translateX - value);
         setCurrent(current - 1);
       }
-
-
       return;
     }
 
-    if (current >= Math.floor(images.length / 2)) {
-      setTranslateX(-value * (current));
-      setCurrent(-Math.floor(images.length / 2));
+    if (current >= images.length - 1) {
+      setTranslateX(initialTranslateXValue);
+      setCurrent(0);
     } else {
-      setTranslateX(value * (current + 1));
+      setTranslateX(translateX + value);
       setCurrent((prev) => ++prev);
     }
-
     return;
   };
 
-  console.log(current)
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     handleMove("right")
+  //   }, 10000)
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [current])
 
   return (
     <>
@@ -87,28 +91,20 @@ const Carousel = () => {
         >
           <FiChevronLeft
             size='3em'
-            // color={
-            //   current >= Math.floor(-slider.length / 2) + 2
-            //     ? Colors.tealc
-            //     : "transparent"
-            // }
+
             color={Colors.tealc}
             style={{ cursor: "pointer" }}
-            // onClick={() =>
-            //   current >= Math.floor(-slider.length / 2) + 2
-            //     ? handleMove("left")
-            //     : null
-            // }
+
             onClick={() => handleMove("left")}
           />
-          {/* {current < Math.floor(slider.length / 2) && ( */}
+
           <FiChevronRight
             size='3em'
             color={Colors.tealc}
             style={{ cursor: "pointer" }}
             onClick={() => handleMove("right")}
           />
-          {/* )} */}
+
         </Box>
         <Box
           display='flex'
