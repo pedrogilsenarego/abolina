@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { State } from "../../../../slicer/types";
 import { Box } from "@mui/material";
@@ -11,13 +11,16 @@ const Carousel = () => {
   );
   const [current, setCurrent] = useState<number>(0);
   const [translateX, setTranslateX] = useState<number>(0);
-  const containerRef = useRef<any>()
+  const [slider, setSlider] = useState<any>([])
 
   const slides = [
     ...images
   ]
 
-  console.log(slides.length)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { setSlider(slides) }, [])
+
+  console.log(slider.length)
 
   const handleMove = (direction: "left" | "right") => {
 
@@ -32,7 +35,11 @@ const Carousel = () => {
 
     setTranslateX(72 * (current + 1));
     setCurrent((prev) => ++prev)
-    slides.push(images[0])
+    const newArray = [...slider]
+    newArray.shift()
+    newArray.push(images[0])
+    setTimeout(() => { setSlider(newArray) }, 1000)
+
 
 
     return
@@ -82,7 +89,7 @@ const Carousel = () => {
           />
         </Box>
         <Box
-          ref={containerRef}
+
           display='flex'
           columnGap='10vw'
           justifyContent='center'
@@ -92,7 +99,7 @@ const Carousel = () => {
             transform: `translateX(${-translateX}vw)`,
           }}
         >
-          {slides.map((item, pos) => {
+          {slider.map((item: any, pos: number) => {
             return (
               <img
                 style={{ width: "62vw", objectFit: "cover" }}
