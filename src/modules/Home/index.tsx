@@ -66,7 +66,6 @@ const Home = () => {
         <Box
           style={{
             marginTop: "-100px",
-
             width: "100%",
             zIndex: -10,
             backgroundImage: `url(${homeOndas2})`,
