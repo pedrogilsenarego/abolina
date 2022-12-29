@@ -26,7 +26,7 @@ const Contacts = () => {
   const handleScrollToContacts = () => {
     if (null !== contactsRef.current) {
       window.scrollTo({
-        top: contactsRef.current.offsetTop,
+        top: contactsRef.current.offsetTop - 50,
         behavior: "smooth",
       });
     }

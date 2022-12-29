@@ -9,7 +9,7 @@ import Contacts from "./Components/Contacts";
 import homeOndas1 from "../../assets/images/homeOndas1.svg";
 import homeOndas2 from "../../assets/images/homeOndas2.svg";
 import { motion } from "framer-motion"
-import Carousel from "./Components/Carousel";
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const Home = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
         >
-          <Carousel />
+
           <Carrousell />
         </motion.div>
         <Box
@@ -32,7 +32,7 @@ const Home = () => {
             position: "absolute",
             zIndex: -10,
             width: "100%",
-            bottom: mobile ? 0 : "-12%",
+            bottom: mobile ? 0 : "-15%",
             backgroundImage: `url(${homeOndas1})`,
             backgroundSize: mobile ? "170%" : "contain",
             backgroundPosition: "center center",
@@ -42,7 +42,7 @@ const Home = () => {
           }}
         />
       </Box>
-      <Box style={{ position: "relative", paddingBottom: "180px" }}>
+      <Box >
         <Container maxWidth='lg' style={{ justifyContent: "center" }}>
           <Box sx={{ mt: mobile ? "0px" : "60px" }}>
             <GStyled.Title>{i18n.t("menuBar.about")}</GStyled.Title>
@@ -65,8 +65,8 @@ const Home = () => {
         </Container>
         <Box
           style={{
-            position: "absolute",
-            bottom: 0,
+            marginTop: "-100px",
+
             width: "100%",
             zIndex: -10,
             backgroundImage: `url(${homeOndas2})`,

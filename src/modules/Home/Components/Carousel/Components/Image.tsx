@@ -16,6 +16,7 @@ const Image = ({ item, pos, mobile }: Props) => {
         style={{
           cursor: "pointer",
           width: "62vw",
+
           objectFit: "cover",
           boxShadow:
             hover && !mobile
