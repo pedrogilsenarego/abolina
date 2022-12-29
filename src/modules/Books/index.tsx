@@ -23,7 +23,7 @@ const Books = () => {
   return (
     <>
       <Container>
-        <Grid container justifyContent='center' columnSpacing={2}>
+        <Grid container justifyContent='center' columnSpacing={2} style={{ marginTop: "60px" }}>
           <Grid container item xs={3}></Grid>
           <Grid container columnSpacing="1px" rowSpacing="1px" item xs={9}>
             {books?.map((book, pos) => {
