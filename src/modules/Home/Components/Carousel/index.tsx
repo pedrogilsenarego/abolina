@@ -117,7 +117,7 @@ const Carousel = () => {
           }}
         >
           {slider.map((item: any, pos: number) =>
-            <Image key={pos} item={item} pos={pos} mobile={mobile} />
+            <Image key={pos} item={item} pos={pos} mobile={mobile} current={current} />
 
           )}
         </Box>
