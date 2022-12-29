@@ -36,8 +36,17 @@ const Carousel = () => {
       return;
     }
 
-    setTranslateX(value * (current + 1));
-    setCurrent((prev) => ++prev);
+    if (current >= images.length - (images.length - 1)) {
+      setTranslateX(-value * (current));
+      setCurrent(-Math.floor(images.length / 2));
+    } else {
+      setTranslateX(value * (current + 1));
+      setCurrent((prev) => ++prev);
+    }
+
+
+
+
     // const newSlider = [...slider]
 
     // newSlider.push(images[0])
@@ -52,7 +61,7 @@ const Carousel = () => {
     return;
   };
 
-  console.log(slider)
+  console.log(current)
 
   return (
     <>
