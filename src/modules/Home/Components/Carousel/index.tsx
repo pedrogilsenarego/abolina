@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { State } from "../../../../slicer/types";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { Colors } from "../../../../constants/pallette";
 import Image from "./Components/Image";
 import DotGroups from "./Components/DotGroups";
+import { fetchCarroussell } from "../../../../slicer/books/books.actions";
 
 const Carousel = () => {
   const images = useSelector<State, string[]>(
@@ -18,6 +19,7 @@ const Carousel = () => {
   const [slider, setSlider] = useState<any>([]);
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
+  const dispatch = useDispatch()
 
   const slides = [images[images.length - 1], ...images, images[0]];
 
@@ -28,35 +30,33 @@ const Carousel = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    dispatch(fetchCarroussell());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleMove = (direction: "left" | "right") => {
     if (direction === "left") {
-      setTranslateX(value * (current - 1));
-      setCurrent((prev) => --prev);
+      if (current <= -Math.floor(images.length / 2)) {
+
+        setTranslateX(-value * (current))
+        setCurrent(Math.floor(images.length / 2))
+      } else {
+        setTranslateX(value * (current - 1));
+        setCurrent(current - 1);
+      }
+
 
       return;
     }
 
-    if (current >= images.length - (images.length - 1)) {
+    if (current >= Math.floor(images.length / 2)) {
       setTranslateX(-value * (current));
       setCurrent(-Math.floor(images.length / 2));
     } else {
       setTranslateX(value * (current + 1));
       setCurrent((prev) => ++prev);
     }
-
-
-
-
-    // const newSlider = [...slider]
-
-    // newSlider.push(images[0])
-    // newSlider.shift()
-    // setSlider(newSlider)
-
-
-
-
-
 
     return;
   };
