@@ -27,27 +27,27 @@ const Home = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
         >
+          {mobile ? <Carrousell /> : <Carousel />}
 
-          <Carousel />
         </motion.div>
         <Box
           style={{
             position: "absolute",
             zIndex: -10,
             width: "100%",
-            bottom: mobile ? 0 : "-15%",
+            bottom: mobile ? 0 : "-40%",
             backgroundImage: `url(${homeOndas1})`,
-            backgroundSize: mobile ? "170%" : "contain",
+            backgroundSize: mobile ? "170%" : "100%",
             backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",
-            minHeight: "25%",
+            minHeight: "30%",
 
           }}
         />
       </Box>
       <Box >
         <Container maxWidth='lg' style={{ justifyContent: "center" }}>
-          <Box sx={{ mt: mobile ? "0px" : "60px" }}>
+          <Box sx={{ mt: mobile ? "0px" : "140px" }}>
             <GStyled.Title>{i18n.t("menuBar.about")}</GStyled.Title>
             <Typography
               align='justify'

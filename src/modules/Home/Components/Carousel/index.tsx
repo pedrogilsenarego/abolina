@@ -17,6 +17,7 @@ const Carousel = () => {
   const initialTranslateXValue = ((images.length / 2 * value) - value / 2) * -1
 
   const [current, setCurrent] = useState<number>(0);
+  const [miniIndex, setMiniIndex] = useState<number>(0)
   const [translateX, setTranslateX] = useState<number>(initialTranslateXValue);
   const [slider, setSlider] = useState<any>([]);
   const Theme = useTheme();
@@ -43,29 +44,44 @@ const Carousel = () => {
 
         setTranslateX(translateX + value * (images.length - 1))
         setCurrent(images.length - 1)
+        setMiniIndex(images.length - 1)
       } else {
         setTranslateX(translateX - value);
         setCurrent(current - 1);
+        setMiniIndex(current - 1)
       }
+
       return;
     }
 
     if (current >= images.length - 1) {
       setTranslateX(initialTranslateXValue);
       setCurrent(0);
+      setMiniIndex(0)
     } else {
       setTranslateX(translateX + value);
       setCurrent((prev) => ++prev);
+      setMiniIndex((prev) => ++prev)
     }
     return;
   };
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     handleMove("right")
-  //   }, 10000)
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [current])
+  useEffect(() => {
+    if (miniIndex !== current) {
+      setTranslateX(translateX + value * (current - miniIndex) * -1)
+      setCurrent(miniIndex)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [miniIndex])
+
+  useEffect(() => {
+    setTimeout(() => {
+      handleMove("right")
+    }, 10000)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [current])
+
+  console.log(current, miniIndex)
 
   return (
     <>
@@ -111,7 +127,7 @@ const Carousel = () => {
           columnGap='10vw'
           justifyContent='center'
           style={{
-            height: "45vh",
+            height: "40vh",
             transition: "all 1s ease-in-out",
             transform: `translateX(${-translateX}vw)`,
           }}
@@ -130,8 +146,8 @@ const Carousel = () => {
         >
           <DotGroups
             numberDots={images.length}
-            index={current}
-            setIndex={setCurrent}
+            index={miniIndex}
+            setIndex={setMiniIndex}
           />
         </Box>
       </>
