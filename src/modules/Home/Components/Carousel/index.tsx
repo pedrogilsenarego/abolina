@@ -24,7 +24,7 @@ const Carousel = () => {
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
   const dispatch = useDispatch()
 
-  const slides = [images[images.length - 1], ...images, images[0]];
+  const slides = images.length > 1 ? [images[images.length - 1], ...images, images[0]] : [...images];
 
 
 
@@ -75,13 +75,13 @@ const Carousel = () => {
   }, [miniIndex])
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       handleMove("right")
-    }, 10000)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [current])
+    }, 10000);
 
-  console.log(current, miniIndex)
+    return () => clearTimeout(timeoutId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [current]);
 
   return (
     <>
@@ -93,35 +93,37 @@ const Carousel = () => {
           position: "relative",
         }}
       >
-        <Box
-          display='flex'
-          justifyContent='space-between'
-          style={{
-            width: "90vw",
-            position: "absolute",
-            left: "5vw",
+        {images.length > 1 && (
+          <Box
+            display='flex'
+            justifyContent='space-between'
+            style={{
+              width: "90vw",
+              position: "absolute",
+              left: "5vw",
 
-            bottom: "45%",
-            zIndex: 1000,
-          }}
-        >
-          <FiChevronLeft
-            size='3em'
+              bottom: "45%",
+              zIndex: 1000,
+            }}
+          >
+            <FiChevronLeft
+              size='3em'
 
-            color={Colors.tealc}
-            style={{ cursor: "pointer" }}
+              color={Colors.tealc}
+              style={{ cursor: "pointer" }}
 
-            onClick={() => handleMove("left")}
-          />
+              onClick={() => handleMove("left")}
+            />
 
-          <FiChevronRight
-            size='3em'
-            color={Colors.tealc}
-            style={{ cursor: "pointer" }}
-            onClick={() => handleMove("right")}
-          />
+            <FiChevronRight
+              size='3em'
+              color={Colors.tealc}
+              style={{ cursor: "pointer" }}
+              onClick={() => handleMove("right")}
+            />
 
-        </Box>
+          </Box>
+        )}
         <Box
           display='flex'
           columnGap='10vw'
@@ -139,6 +141,7 @@ const Carousel = () => {
         </Box>
       </div>
       <>
+
         <Box
           display='flex'
           justifyContent='center'
