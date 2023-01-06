@@ -11,6 +11,7 @@ const Third = () => {
       container
       direction='row'
       alignItems='flex-end'
+      justifyContent="center"
       style={{ minHeight: "100%" }}
     >
       <Styled.STypography onClick={() => navigate(ROUTE_PATHS.ADMIN)}>{i18n.t("footer.second.second")}</Styled.STypography>

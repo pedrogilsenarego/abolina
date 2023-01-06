@@ -39,7 +39,7 @@ export const content = {
         home: {
           mainTextBtn: "Read More",
           contacts: {
-            contactsTitle: "CONTACT US",
+            contactsTitle: "Contact Us",
             form: {
               name: "Name",
               email: "E-mail",

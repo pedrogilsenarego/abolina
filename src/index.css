@@ -9,7 +9,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   font-size: calc(10px + 2vmin);
-  color: rgb(14, 13, 13);
+  color: #3b3b3b !important;
 }
 
 code {

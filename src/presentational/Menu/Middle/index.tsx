@@ -35,6 +35,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
         flexDirection={mobile ? "column" : "row"}
         justifyContent={mobile ? "center" : "space-between"}
         alignItems={mobile ? 'start' : "center"}
+        style={{ paddingTop: mobile ? "0px" : "10px" }}
 
       >
         <Grid item>

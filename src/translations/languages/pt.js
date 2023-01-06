@@ -11,7 +11,7 @@ export const content = {
         audacity: "Audácia",
       },
       menuBar: {
-        home: "HOME",
+        home: "INÍCIO",
         books: "LIVROS",
         about: "SOBRE NÓS",
         contacts: "CONTACTO",
@@ -39,7 +39,7 @@ export const content = {
         home: {
           mainTextBtn: "Leia Mais",
           contacts: {
-            contactsTitle: "ENTRE EM CONTACTO",
+            contactsTitle: "Entre em Contacto",
             form: {
               name: "Nome",
               email: "E-mail",

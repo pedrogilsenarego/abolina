@@ -1,4 +1,4 @@
-import { Box, Grid, Container, useTheme, useMediaQuery } from "@mui/material";
+import { Box, Grid, Container, useTheme, useMediaQuery, Typography } from "@mui/material";
 import Second from "./Second";
 import Third from "./Third";
 import Forth from "./Forth";
@@ -6,6 +6,7 @@ import * as Styled from "./styles";
 import { i18n } from "../../translations/i18n";
 import InstaAvatar from "../../components/InstaAvatar";
 import footer from "../../assets/images/footer.svg"
+import { Colors } from "../../constants/pallette";
 
 const Footer = () => {
   const Theme = useTheme();
@@ -13,58 +14,71 @@ const Footer = () => {
 
   const renderLaptop = () => {
     return (
-      <Box style={{
-        backgroundImage: `url(${footer})`,
-        backgroundSize: "cover",
+      <>
+        <Box style={{
+          backgroundImage: `url(${footer})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          backgroundRepeat: "no-repeat",
 
-      }}>
-        <Container maxWidth='xl'>
-          <Grid
-            container
-            justifyContent='space-between'
-            style={{ paddingTop: "30px", paddingBottom: "30px" }}
-          >
-            <Grid item>
-              <Second />
+        }}>
+          <Container maxWidth='lg'>
+            <Grid
+              container
+              justifyContent='space-between'
+              style={{ paddingTop: "20px", paddingBottom: "20px" }}
+            >
+              <Grid item>
+                <Second />
+              </Grid>
+              <Grid item>
+                <Third />
+              </Grid>
+              <Grid item>
+                <Forth />
+              </Grid>
             </Grid>
-            <Grid item>
-              <Third />
-            </Grid>
-            <Grid item>
-              <Forth />
-            </Grid>
-          </Grid>
-        </Container>
-      </Box>
+          </Container>
+        </Box>
+        <Box display="flex" justifyContent="center" style={{ padding: "10px 0px 10px 0px", backgroundColor: Colors.darkGrey, color: "white" }}>
+          <Typography fontSize="14px">Copyright Business Connect</Typography>
+        </Box>
+
+      </>
     );
   };
 
   const renderMobile = () => {
     return (
-      <Box
-        display='flex'
-        flexDirection="column"
-        justifyContent='center'
-        alignItems="center"
-        rowGap={2}
-        style={{
-          backgroundImage: `url(${footer})`,
-          backgroundSize: "cover",
-          paddingTop: "30px",
-          paddingBottom: "30px",
-        }}
-      >
-        <Styled.STypography>xxxx@gmail.com</Styled.STypography>
-        <Box display='flex' alignItems='center' columnGap={2}>
-          <Styled.STypography>
-            {i18n.t("footer.third.first")}
-          </Styled.STypography>
-          <InstaAvatar backgroundColor='black' color='white' />
+      <>
+        <Box
+          display='flex'
+          flexDirection="column"
+          justifyContent='center'
+          alignItems="center"
+          rowGap={2}
+          style={{
+            backgroundImage: `url(${footer})`,
+            backgroundSize: "cover",
+            paddingTop: "30px",
+            paddingBottom: "30px",
+          }}
+        >
+          <Styled.STypography>xxxx@gmail.com</Styled.STypography>
+          <Box display='flex' alignItems='center' columnGap={2}>
+            <Styled.STypography>
+              {i18n.t("footer.third.first")}
+            </Styled.STypography>
+            <InstaAvatar backgroundColor='black' color='white' />
+          </Box>
+          <Styled.STypography>{i18n.t("footer.second.second")}</Styled.STypography>
+          <Styled.STypography>{i18n.t("footer.third.second")}</Styled.STypography>
+          <Styled.STypography>{i18n.t("footer.second.third")}</Styled.STypography>
         </Box>
-        <Styled.STypography>{i18n.t("footer.second.second")}</Styled.STypography>
-        <Styled.STypography>{i18n.t("footer.third.second")}</Styled.STypography>
-        <Styled.STypography>{i18n.t("footer.second.third")}</Styled.STypography>
-      </Box>
+        <Box display="flex" justifyContent="center" style={{ padding: "10px 0px 10px 0px", backgroundColor: Colors.darkGrey, color: "white" }}>
+          <Typography fontSize="14px">Copyright Business Connect</Typography>
+        </Box>
+      </>
     );
   };
 

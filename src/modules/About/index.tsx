@@ -3,13 +3,14 @@ import { i18n } from "../../translations/i18n";
 import { Typography, Container, Box, Grid } from "@mui/material";
 import sobreOndas from "../../assets/images/sobreOndas.svg";
 import CardMine from "./CardMine";
+import { Colors } from "../../constants/pallette";
 
 const About = () => {
   return (
     <Box style={{ position: "relative", paddingBottom: "15vh" }}>
       <Container>
         <Box display='flex' justifyContent='start'>
-          <GStyled.Title>{i18n.t("menuBar.about")}</GStyled.Title>
+          <Typography color={Colors.tealc} fontSize="28px" fontWeight={800}>{i18n.t("menuBar.about")}</Typography>
         </Box>
         <Typography
           align='justify'

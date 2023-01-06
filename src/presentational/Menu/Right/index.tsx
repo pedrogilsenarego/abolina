@@ -18,7 +18,7 @@ const Right = () => {
         <Grid item>
           <Box
             style={{
-              borderRight: "solid 1px #ffffffB3",
+              borderRight: "solid 2px #ffffffB3",
               paddingRight: "10px",
 
             }}
@@ -32,6 +32,7 @@ const Right = () => {
           <Typography
             fontSize={mobile ? "24px" : "12px"}
             color='white'
+            fontWeight={800}
             onClick={() => {
               changeLanguage(LANG.pt);
 
@@ -43,6 +44,7 @@ const Right = () => {
           <Typography
             fontSize={mobile ? "24px" : "12px"}
             color='white'
+            fontWeight={800}
             onClick={() => {
               changeLanguage(LANG.en);
             }}

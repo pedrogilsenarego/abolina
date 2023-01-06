@@ -22,11 +22,11 @@ const Image = ({ item, pos, mobile, current }: Props) => {
           objectFit: "cover",
           boxShadow:
             hover && !mobile && !mobile && current + 1 === pos
-              ? "10px 16px 10px #00000066"
-              : "4px 4px 4px #00000066",
+              ? "0 24px 30px 0px #00000026"
+              : "0 4px 16px 0px #00000040",
           borderRadius: "4px",
           transition: "all 0.2s ease-in-out",
-          transform: hover && !mobile && current + 1 === pos ? "translate(-6px,-12px)" : "translate(0,0",
+          transform: hover && !mobile && current + 1 === pos ? "translate(0px,-12px)" : "translate(0,0",
         }}
         key={pos}
         src={item}

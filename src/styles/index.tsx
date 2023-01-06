@@ -8,8 +8,8 @@ interface TitleProps {
 
 export const Title = styled(Typography)(({ fontSize }: TitleProps) => ({
   color: Colors.tealc,
-  fontSize: fontSize || "30px",
-  fontWeigth: 700
+  fontSize: fontSize || "28px",
+  fontWeigth: 800
 }))
 
 export const SubTitle = styled(Typography)(() => ({

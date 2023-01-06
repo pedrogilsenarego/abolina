@@ -77,7 +77,7 @@ const Carousel = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       handleMove("right")
-    }, 10000);
+    }, 4000);
 
     return () => clearTimeout(timeoutId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
