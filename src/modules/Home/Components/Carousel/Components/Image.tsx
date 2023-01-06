@@ -17,7 +17,7 @@ const Image = ({ item, pos, mobile, current }: Props) => {
         onMouseLeave={() => setHover(false)}
         style={{
           cursor: "pointer",
-          width: "62vw",
+          width: "55vw",
 
           objectFit: "cover",
           boxShadow:
@@ -25,15 +25,20 @@ const Image = ({ item, pos, mobile, current }: Props) => {
               ? "0 24px 30px 0px #00000026"
               : "0 4px 16px 0px #00000040",
           borderRadius: "4px",
+
           transition: "all 0.2s ease-in-out",
-          transform: hover && !mobile && current + 1 === pos ? "translate(0px,-12px)" : "translate(0,0",
+          opacity: current + 1 === pos ? 1 : 0.5,
+          transform:
+            hover && !mobile && current + 1 === pos
+              ? "translate(0px,-12px) scale(1.0)"
+              : current + 1 === pos ? "translate(0px,0px) scale(1)" : "translate(0px,0px) scale(0.9)",
         }}
         key={pos}
         src={item}
         alt={item}
       />
     </>
-  )
-}
+  );
+};
 
-export default Image
+export default Image;

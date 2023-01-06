@@ -13,7 +13,7 @@ const Carousel = () => {
   const images = useSelector<State, string[]>(
     (state) => state.books.carroussell || []
   );
-  const value = 72;
+  const value = 60;
   const initialTranslateXValue = ((images.length / 2 * value) - value / 2) * -1
 
   const [current, setCurrent] = useState<number>(0);
@@ -98,9 +98,9 @@ const Carousel = () => {
             display='flex'
             justifyContent='space-between'
             style={{
-              width: "90vw",
+              width: "62vw",
               position: "absolute",
-              left: "5vw",
+              left: "19vw",
 
               bottom: "45%",
               zIndex: 1000,
@@ -126,7 +126,7 @@ const Carousel = () => {
         )}
         <Box
           display='flex'
-          columnGap='10vw'
+          columnGap='5vw'
           justifyContent='center'
           style={{
             height: "40vh",
