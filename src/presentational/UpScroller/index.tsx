@@ -23,21 +23,21 @@ const UpScroller = () => {
       display="flex"
       alignItems="center"
       style={{
-        marginLeft: mobile ? "86%" : "1%",
-        marginTop: mobile ? "92vh" : "93vh",
+        marginLeft: "1%",
+        marginTop: "93vh",
         border: `solid 2px ${Colors.tealc}`,
         borderRadius: "4px",
         width: "35px",
         zIndex: 2000,
         height: "35px",
         cursor: "pointer",
-        backgroundColor: hover ? "#ffffff" : Colors.tealc
+        backgroundColor: !hover ? "#ffffff" : Colors.tealc
       }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onClick={() => { moveTop(); setHover(false) }}
     >
-      <BsCaretUpFill color={!hover ? "white" : Colors.tealc} size="0.8em" />
+      <BsCaretUpFill color={hover ? "white" : Colors.tealc} size="0.8em" />
     </Box>
   );
   else return (<></>)

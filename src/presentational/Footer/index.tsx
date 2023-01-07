@@ -41,7 +41,7 @@ const Footer = () => {
           </Container>
         </Box>
         <Box display="flex" justifyContent="center" style={{ padding: "10px 0px 10px 0px", backgroundColor: Colors.darkGrey, color: "white" }}>
-          <Typography fontSize="14px">Copyright Business Connect</Typography>
+          <Typography fontSize="14px">&copy; Copyright Business Connect</Typography>
         </Box>
 
       </>
@@ -76,7 +76,7 @@ const Footer = () => {
           <Styled.STypography>{i18n.t("footer.second.third")}</Styled.STypography>
         </Box>
         <Box display="flex" justifyContent="center" style={{ padding: "10px 0px 10px 0px", backgroundColor: Colors.darkGrey, color: "white" }}>
-          <Typography fontSize="14px">Copyright Business Connect</Typography>
+          <Typography fontSize="14px">&copy; Copyright Business Connect</Typography>
         </Box>
       </>
     );

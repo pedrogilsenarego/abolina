@@ -69,7 +69,7 @@ const Home = () => {
         </Container>
         <Box
           style={{
-            marginTop: "-100px",
+            marginTop: "-200px",
             width: "100%",
             zIndex: -10,
             backgroundImage: `url(${homeOndas2})`,

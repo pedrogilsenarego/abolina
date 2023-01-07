@@ -11,7 +11,7 @@ const Tile = ({ title, name, text }: Props) => {
   return (
     <>
       <Box display='flex' justifyContent='start'>
-        <GStyled.Title fontSize='16px' style={{ fontWeight: 700 }}>
+        <GStyled.Title fontSize='24px' style={{ fontWeight: 700 }}>
           {title}
         </GStyled.Title>
       </Box>

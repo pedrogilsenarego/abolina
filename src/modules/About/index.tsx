@@ -18,14 +18,15 @@ const About = () => {
         >
           {i18n.t("modules.about.mainText")}
         </Typography>
-        <Container maxWidth='lg'>
+        <Container maxWidth='lg' style={{ paddingLeft: "80px", paddingRight: "80px" }}>
 
           <Grid
             container
             columnSpacing={8}
             alignItems='top'
             rowSpacing={4}
-            style={{ marginTop: "70px" }}
+
+            style={{ marginTop: "40px" }}
           >
             <Grid item xs={12} md={4}>
               <CardMine duration={0.3}>

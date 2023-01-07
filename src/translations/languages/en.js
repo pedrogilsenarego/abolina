@@ -74,7 +74,7 @@ export const content = {
             weight: "Weight:",
             size: "Size",
             collectionBrowser: "More from Collection",
-            bookBrowser: "View the Book",
+            bookBrowser: "VIEW THE BOOK",
             new: "New",
             title: "RESUME",
             writer: "WRITER",

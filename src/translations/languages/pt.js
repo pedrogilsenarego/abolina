@@ -67,7 +67,7 @@ export const content = {
           book: {
             bookTitle: "Título",
             text: "Texto:",
-            price: "Preco:",
+            price: "Preço:",
             design: "Ilustração:",
             translation: "Tradução:",
             pages: "Número de páginas:",
@@ -75,7 +75,7 @@ export const content = {
             weight: "Peso:",
             size: "Dimensões:",
             collectionBrowser: "Mais da Coleção",
-            bookBrowser: "Folhear o Livro",
+            bookBrowser: "FOLHEAR O LIVRO",
             new: "Novo",
             title: "DESCRIÇÃO",
             writer: "AUTOR",

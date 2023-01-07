@@ -16,15 +16,15 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
 
   return (
     <Grid container columnSpacing={4}>
-      <Grid item xs={12} md={8} style={{ position: "relative" }}>
+      <Grid item xs={12} md={8}>
         <Box display='flex' justifyContent='end'>
           {!mobile && (
             <Box width='20%'>
               <Box
                 style={{
-                  zIndex: 1000,
                   backgroundColor: Colors.tealc,
                   marginTop: "20px",
+
                   padding: "5px",
                   borderRadius: "3px",
                   cursor: "pointer",
@@ -33,7 +33,11 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
               >
                 <Typography
                   onClick={() => setOpenViewBook(true)}
-                  style={{ color: "white", fontSize: "16px" }}
+                  style={{
+                    color: "white",
+                    fontSize: "14px",
+                    lineHeight: "14px",
+                  }}
                 >
                   {i18n.t("modules.books.book.bookBrowser")}
                 </Typography>
@@ -74,8 +78,8 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                   zIndex: 1000,
                   backgroundColor: Colors.tealc,
                   top: mobile ? 40 : 90,
-                  left: "0px",
-                  padding: "5px",
+                  left: "-5px",
+                  padding: "3px 20px 3px 20px",
                   borderRadius: "3px",
                   boxShadow: "1px 1px 1px #00000066",
                 }}
@@ -90,7 +94,10 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
         </Box>
       </Grid>
       <Grid item xs={12} md={4} textAlign='start'>
-        <GStyled.Title fontSize='18px' style={{ fontWeight: 700 }}>
+        <GStyled.Title
+          fontSize='18px'
+          style={{ fontWeight: 700, marginTop: mobile ? "20px" : "0px" }}
+        >
           {book?.title}
         </GStyled.Title>
 
@@ -99,7 +106,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
           flexDirection='row'
           columnGap={1}
           alignItems='center'
-          mt='10px'
+          mt='30px'
         >
           <GStyled.SubTitle style={{ fontWeight: 700 }}>
             {i18n.t("modules.books.book.price")}

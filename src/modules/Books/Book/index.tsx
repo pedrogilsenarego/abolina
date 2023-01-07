@@ -38,7 +38,7 @@ const BookC = () => {
         <Container maxWidth='md' >
           <Roster book={book} setOpenViewBook={setOpenViewBook} />
           <Box display='flex' justifyContent='start' mt='40px'>
-            <GStyled.Title>{i18n.t("modules.books.book.title")}</GStyled.Title>
+            <GStyled.Title fontSize="24px" style={{ fontWeight: 700 }}>{i18n.t("modules.books.book.title")}</GStyled.Title>
           </Box>
           <Typography
             align='justify'
