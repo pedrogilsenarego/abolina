@@ -1,4 +1,4 @@
-import { Card } from "@mui/material";
+import { Card, useMediaQuery, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import { Colors } from "../../../constants/pallette";
 
@@ -8,6 +8,8 @@ interface Props {
 }
 
 export default function CardMine({ children, duration }: Props) {
+  const Theme = useTheme()
+  const mobile = useMediaQuery(Theme.breakpoints.down("sm"))
   const CardMotion = motion(Card);
   return (
     <CardMotion
@@ -18,7 +20,7 @@ export default function CardMine({ children, duration }: Props) {
         borderRadius: "20px",
         boxShadow: "3px 3px 10px  #00000066",
         backgroundColor: Colors.champagne,
-        padding: "35px",
+        padding: mobile ? "20px" : "35px",
         height: "100%",
       }}
     >

@@ -46,8 +46,8 @@ const Menu = () => {
         <Container>
           <Grid container columnSpacing={1} justifyContent="center" alignItems="center" style={{ height: "80px" }}>
             <Grid item xs={2}><FiMenu size="2em" color="white" onClick={() => setOpenDrawer(true)} /></Grid>
-            <Grid item xs={9}><Left height="auto" /></Grid>
-            <Grid item xs={1} textAlign="right" onClick={handleChangeLang}><Typography color="whitesmoke" fontSize="18px">{lang}</Typography></Grid>
+            <Grid item xs={8}><Left height="auto" /></Grid>
+            <Grid item xs={2} textAlign="right" onClick={handleChangeLang}><Typography color="whitesmoke" fontSize="18px">{lang}</Typography></Grid>
           </Grid>
         </Container>
       </Box>

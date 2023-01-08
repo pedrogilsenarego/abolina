@@ -1,11 +1,15 @@
 import * as GStyled from "../../styles";
 import { i18n } from "../../translations/i18n";
-import { Typography, Container, Box, Grid } from "@mui/material";
+import { Typography, Container, Box, Grid, useTheme, useMediaQuery } from "@mui/material";
 import sobreOndas from "../../assets/images/sobreOndas.svg";
 import CardMine from "./CardMine";
 import { Colors } from "../../constants/pallette";
 
 const About = () => {
+
+  const Theme = useTheme()
+  const mobile = useMediaQuery(Theme.breakpoints.down("sm"))
+
   return (
     <Box style={{ position: "relative", paddingBottom: "15vh" }}>
       <Container>
@@ -18,7 +22,7 @@ const About = () => {
         >
           {i18n.t("modules.about.mainText")}
         </Typography>
-        <Container maxWidth='lg' style={{ paddingLeft: "80px", paddingRight: "80px" }}>
+        <Container maxWidth='lg' style={{ paddingLeft: mobile ? "0px" : "80px", paddingRight: mobile ? "0px" : "80px" }}>
 
           <Grid
             container
