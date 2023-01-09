@@ -37,6 +37,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                     color: "white",
                     fontSize: "14px",
                     lineHeight: "14px",
+                    whiteSpace: "pre-line"
                   }}
                 >
                   {i18n.t("modules.books.book.bookBrowser")}
@@ -63,7 +64,8 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                 >
                   <Typography
                     onClick={() => setOpenViewBook(true)}
-                    style={{ color: "white", fontSize: "16px" }}
+
+                    style={{ color: "white", fontSize: "16px", }}
                   >
                     {i18n.t("modules.books.book.bookBrowser")}
                   </Typography>

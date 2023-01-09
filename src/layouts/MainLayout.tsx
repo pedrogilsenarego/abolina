@@ -35,7 +35,7 @@ const HomepageLayout = (props: any) => {
           {props.children}
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid item xs={12} >
           <Footer />
         </Grid>
       </Grid>

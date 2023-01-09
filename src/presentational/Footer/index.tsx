@@ -23,6 +23,8 @@ const Footer = () => {
     return (
       <>
         <Box
+          display="flex"
+          justifyContent="center"
           style={{
             backgroundImage: `url(${footer})`,
             backgroundSize: "cover",
@@ -30,23 +32,24 @@ const Footer = () => {
             backgroundRepeat: "no-repeat",
           }}
         >
-          <Container maxWidth='lg'>
-            <Grid
-              container
-              justifyContent='center'
-              style={{ paddingTop: "20px", paddingBottom: "20px", }}
-            >
-              <Grid item xs={4}>
-                <Second />
-              </Grid>
-              <Grid item xs={4}>
-                <Third />
-              </Grid>
-              <Grid item xs={4}>
-                <Forth />
-              </Grid>
+
+          <Grid
+            maxWidth='lg'
+            container
+            justifyContent="center"
+            style={{ paddingTop: "20px", paddingBottom: "20px" }}
+          >
+            <Grid item xs={4} >
+              <Second />
             </Grid>
-          </Container>
+            <Grid item xs={4}>
+              <Third />
+            </Grid>
+            <Grid item xs={4} >
+              <Forth />
+            </Grid>
+          </Grid>
+
         </Box>
         <Box
           display='flex'
