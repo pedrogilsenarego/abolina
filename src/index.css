@@ -1,4 +1,15 @@
-
+@font-face {
+  font-family: "Calibri";
+  src: local("Calibri"),
+   url("./assets/fonts/Calibri_Regular.ttf") format("truetype");
+  font-weight: normal;
+  }
+@font-face {
+    font-family: "Calibri";
+    src: local("Calibri"),
+     url("./assets/fonts/Calibri_Bold.TTF") format("truetype");
+    font-weight: bold;
+    }
 
 body {
   margin: 0;

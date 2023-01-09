@@ -24,7 +24,7 @@ const Button = ({ title, path, setOpenDrawer, onClick, selected }: Props) => {
         style={{
           color: "whiteSmoke",
           cursor: "pointer",
-          fontSize: mobile ? "20px" : "15px",
+          fontSize: mobile ? "20px" : "18px",
           fontWeight: 700,
           paddingBottom: "5px",
 
