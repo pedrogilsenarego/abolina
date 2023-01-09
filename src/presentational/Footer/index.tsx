@@ -1,11 +1,18 @@
-import { Box, Grid, Container, useTheme, useMediaQuery, Typography } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Container,
+  useTheme,
+  useMediaQuery,
+  Typography,
+} from "@mui/material";
 import Second from "./Second";
 import Third from "./Third";
 import Forth from "./Forth";
 import * as Styled from "./styles";
 import { i18n } from "../../translations/i18n";
 import InstaAvatar from "../../components/InstaAvatar";
-import footer from "../../assets/images/footer.svg"
+import footer from "../../assets/images/footer.svg";
 import { Colors } from "../../constants/pallette";
 
 const Footer = () => {
@@ -15,35 +22,45 @@ const Footer = () => {
   const renderLaptop = () => {
     return (
       <>
-        <Box style={{
-          backgroundImage: `url(${footer})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center center",
-          backgroundRepeat: "no-repeat",
-
-        }}>
+        <Box
+          style={{
+            backgroundImage: `url(${footer})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center center",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
           <Container maxWidth='lg'>
             <Grid
               container
-              justifyContent='space-between'
-              style={{ paddingTop: "20px", paddingBottom: "20px" }}
+              justifyContent='center'
+              style={{ paddingTop: "20px", paddingBottom: "20px", }}
             >
-              <Grid item>
+              <Grid item xs={4}>
                 <Second />
               </Grid>
-              <Grid item>
+              <Grid item xs={4}>
                 <Third />
               </Grid>
-              <Grid item>
+              <Grid item xs={4}>
                 <Forth />
               </Grid>
             </Grid>
           </Container>
         </Box>
-        <Box display="flex" justifyContent="center" style={{ padding: "10px 0px 10px 0px", backgroundColor: Colors.darkGrey, color: "white" }}>
-          <Typography fontSize="14px">&copy; Copyright Business Connect</Typography>
+        <Box
+          display='flex'
+          justifyContent='center'
+          style={{
+            padding: "10px 0px 10px 0px",
+            backgroundColor: Colors.darkGrey,
+            color: "white",
+          }}
+        >
+          <Typography fontSize='14px'>
+            &copy; Copyright Business Connect
+          </Typography>
         </Box>
-
       </>
     );
   };
@@ -53,9 +70,9 @@ const Footer = () => {
       <>
         <Box
           display='flex'
-          flexDirection="column"
+          flexDirection='column'
           justifyContent='center'
-          alignItems="center"
+          alignItems='center'
           rowGap={2}
           style={{
             backgroundImage: `url(${footer})`,
@@ -71,12 +88,28 @@ const Footer = () => {
             </Styled.STypography>
             <InstaAvatar backgroundColor='black' color='white' />
           </Box>
-          <Styled.STypography>{i18n.t("footer.second.second")}</Styled.STypography>
-          <Styled.STypography>{i18n.t("footer.third.second")}</Styled.STypography>
-          <Styled.STypography>{i18n.t("footer.second.third")}</Styled.STypography>
+          <Styled.STypography>
+            {i18n.t("footer.second.second")}
+          </Styled.STypography>
+          <Styled.STypography>
+            {i18n.t("footer.third.second")}
+          </Styled.STypography>
+          <Styled.STypography>
+            {i18n.t("footer.second.third")}
+          </Styled.STypography>
         </Box>
-        <Box display="flex" justifyContent="center" style={{ padding: "10px 0px 10px 0px", backgroundColor: Colors.darkGrey, color: "white" }}>
-          <Typography fontSize="14px">&copy; Copyright Business Connect</Typography>
+        <Box
+          display='flex'
+          justifyContent='center'
+          style={{
+            padding: "10px 0px 10px 0px",
+            backgroundColor: Colors.darkGrey,
+            color: "white",
+          }}
+        >
+          <Typography fontSize='14px'>
+            &copy; Copyright Business Connect
+          </Typography>
         </Box>
       </>
     );

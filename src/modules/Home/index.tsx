@@ -1,5 +1,4 @@
 import Carrousell from "./Components/Carrousell/Carrousell";
-import * as GStyled from "../../styles";
 import { i18n } from "../../translations/i18n";
 import { Typography, Container, Box, useTheme, useMediaQuery } from "@mui/material";
 import Button from "../../components/Buttons/Button";
@@ -59,6 +58,7 @@ const Home = () => {
           </Box>
           <Box sx={{ mt: "20px" }} display='flex' justifyContent='start'>
             <Button
+
               label={i18n.t("modules.home.mainTextBtn")}
               onClick={() => navigate(ROUTE_PATHS.ABOUT)}
             />
