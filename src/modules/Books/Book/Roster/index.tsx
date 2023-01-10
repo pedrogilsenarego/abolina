@@ -19,14 +19,17 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
       <Grid item xs={12} md={8}>
         <Box display='flex' justifyContent='end'>
           {!mobile && (
-            <Box width='20%'>
+            <Box width='20%' style={{ position: "relative" }}>
               <Box
                 style={{
                   backgroundColor: Colors.tealc,
                   marginTop: "20px",
-
-                  padding: "5px",
+                  position: "absolute",
+                  padding: "5px 15px 5px 15px",
                   borderRadius: "3px",
+                  right: "-5px",
+                  width: "calc(100% + 5px)",
+                  zIndex: 1000,
                   cursor: "pointer",
                   boxShadow: "2px 2px 2px #00000066",
                 }}
