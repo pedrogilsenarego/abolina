@@ -1,7 +1,6 @@
 import {
   Box,
   Grid,
-  Container,
   useTheme,
   useMediaQuery,
   Typography,
@@ -36,8 +35,10 @@ const Footer = () => {
           <Grid
             maxWidth='lg'
             container
-            justifyContent="center"
+
+
             style={{ paddingTop: "20px", paddingBottom: "20px" }}
+
           >
             <Grid item xs={4} >
               <Second />
