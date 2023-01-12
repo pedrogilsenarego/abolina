@@ -203,6 +203,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
           columnGap={1}
           alignItems='center'
           mt={mobile ? "40px" : "80px"}
+
         >
           <CollectionBrowser
             title={i18n.t("modules.books.book.collectionBrowser")}

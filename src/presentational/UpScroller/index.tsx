@@ -24,7 +24,7 @@ const UpScroller = () => {
       alignItems="center"
       style={{
         marginLeft: "1%",
-        marginTop: "93vh",
+        marginTop: "90vh",
         border: `solid 2px ${Colors.tealc}`,
         borderRadius: "4px",
         width: "35px",

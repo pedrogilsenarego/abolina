@@ -11,7 +11,7 @@ interface Props {
 
 const CollectionBrowser = ({ title, handleRight, handleLeft }: Props) => {
   return (
-    <Box display='flex' columnGap={1} alignItems='center'>
+    <Box display='flex' columnGap={1} alignItems='center' >
       <Box
         style={{
           backgroundColor: Colors.tealc,
