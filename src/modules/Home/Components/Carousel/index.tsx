@@ -78,19 +78,28 @@ const Carousel = () => {
     const timeoutId = setTimeout(() => {
       handleMove("right")
     }, 4000);
-
     return () => clearTimeout(timeoutId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current]);
+
+  function setVw() {
+    let vw = document.documentElement.clientWidth / 100;
+    document.documentElement.style.setProperty('--vw', `${vw}px`);
+  }
+
+  setVw();
+  window.addEventListener('resize', setVw);
 
   return (
     <>
       <div
         style={{
-          width: "100vw",
+          width: "calc(var(--vw, 1vw) * 100)",
           display: "flex",
           justifyContent: "center",
           position: "relative",
+
+
         }}
       >
         {images.length > 1 && (
@@ -100,7 +109,7 @@ const Carousel = () => {
             style={{
               width: "62vw",
               position: "absolute",
-              left: "19vw",
+              left: "18.5vw",
 
               bottom: "45%",
               zIndex: 1000,

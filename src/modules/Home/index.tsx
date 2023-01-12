@@ -40,7 +40,7 @@ const Home = () => {
             backgroundSize: mobile ? "400%" : "100%",
             backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",
-            minHeight: mobile ? "45%" : "30%",
+            minHeight: mobile ? "45%" : "40%",
 
           }}
         />
