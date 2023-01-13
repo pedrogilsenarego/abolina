@@ -17,7 +17,7 @@ const About = () => {
           <Typography color={Colors.tealc} fontSize="28px" fontWeight={800}>{i18n.t("menuBar.about")}</Typography>
         </Box>
         <Typography
-          align='justify'
+
           style={{ marginTop: "20px", whiteSpace: "pre-line" }}
         >
           {i18n.t("modules.about.mainText")}
@@ -37,7 +37,7 @@ const About = () => {
                 <GStyled.Title fontSize='16px' style={{ fontWeight: 700 }}>
                   {i18n.t("modules.about.secondTitle")}
                 </GStyled.Title>
-                <Typography align='justify' style={{ marginTop: "10px" }}>
+                <Typography style={{ marginTop: "10px" }}>
                   {i18n.t("modules.about.second")}
                 </Typography>
               </CardMine>
@@ -49,7 +49,7 @@ const About = () => {
                   {i18n.t("modules.about.thirdTitle")}
                 </GStyled.Title>
                 <Typography
-                  align='justify'
+
                   style={{ marginTop: "10px", whiteSpace: "pre-line" }}
                 >
                   {i18n.t("modules.about.third")}
@@ -62,7 +62,7 @@ const About = () => {
                   {i18n.t("modules.about.forthTitle")}
                 </GStyled.Title>
                 <Typography
-                  align='justify'
+
                   style={{ marginTop: "10px", whiteSpace: "pre-line" }}
                 >
                   {i18n.t("modules.about.forth")}

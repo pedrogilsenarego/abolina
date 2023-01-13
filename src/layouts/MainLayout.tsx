@@ -35,7 +35,7 @@ const HomepageLayout = (props: any) => {
           {props.children}
         </Grid>
 
-        <Grid item xs={12} style={{ backgroundColor: "red", width: "100%" }}>
+        <Grid item xs={12} style={{ width: "100%" }}>
           <Footer />
         </Grid>
       </Grid>

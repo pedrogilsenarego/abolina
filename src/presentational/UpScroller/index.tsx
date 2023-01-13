@@ -25,7 +25,7 @@ const UpScroller = () => {
       style={{
         marginLeft: "1%",
         marginTop: "90vh",
-        border: `solid 2px ${Colors.tealc}`,
+        border: hover ? `solid 2px white` : `solid 2px ${Colors.tealc}`,
         borderRadius: "4px",
         width: "35px",
         zIndex: 2000,

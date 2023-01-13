@@ -37,7 +37,7 @@ export const content = {
       },
       modules: {
         home: {
-          mainTextBtn: "Leia Mais",
+          mainTextBtn: "LEIA MAIS",
           contacts: {
             contactsTitle: "Entre em Contacto",
             form: {
