@@ -74,6 +74,7 @@ const Home = () => {
             zIndex: -10,
             backgroundImage: `url(${homeOndas2})`,
             backgroundSize: "cover",
+            backgroundPosition: mobile ? "center center" : "0% 0%",
             minHeight: "30vh",
           }}
         />
