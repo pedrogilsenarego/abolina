@@ -37,7 +37,7 @@ const Footer = () => {
             container
 
 
-            style={{ paddingTop: "20px", paddingBottom: "20px" }}
+            style={{ paddingTop: "16px", paddingBottom: "16px" }}
 
           >
             <Grid item xs={4} >
