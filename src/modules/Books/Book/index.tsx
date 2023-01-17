@@ -12,7 +12,7 @@ import { fetchBook } from "../../../slicer/books/books.actions";
 import { useParams } from "react-router";
 import { Book } from "../../../slicer/books/books.types";
 import { State } from "../../../slicer/types";
-import { Colors } from "../../../constants/pallette";
+import LeafThrough from "./LeafThrough";
 
 
 const BookC = () => {
@@ -102,7 +102,7 @@ const BookC = () => {
           ]
         }
       >
-        <ViewBook />
+        <LeafThrough />
       </Popup>
     </>
   );
