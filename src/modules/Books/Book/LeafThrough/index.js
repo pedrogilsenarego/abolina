@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import HTMLFlipBook from "react-pageflip";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -17,36 +17,34 @@ const MyBook = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  console.log(book);
+
   return (
-    <HTMLFlipBook
-      width={300}
-      height={500}
-      size='stretch'
-      minWidth={315}
-      maxWidth={1000}
-      minHeight={400}
-      maxHeight={1533}
-      maxShadowOpacity={0.5}
-      // showCover={true}
-      mobileScrollSupport={true}
-    >
-      <div className='demoPage'>
-        <Typography style={{ color: "black" }}>Page 1</Typography>
-        <CardMedia image={listImages[page - 1]} height='auto' />
-      </div>
-      <div className='demoPage'>
-        <Typography style={{ color: "black" }}>Page 1</Typography>
-        <CardMedia image={listImages[page - 1]} height='auto' />
-      </div>
-      <div className='demoPage'>
-        <Typography style={{ color: "black" }}>Page 1</Typography>
-        <CardMedia image={listImages[page - 1]} height='auto' />
-      </div>
-      <div className='demoPage'>
-        <Typography style={{ color: "black" }}>Page 1</Typography>
-        <CardMedia image={listImages[page - 1]} height='auto' />
-      </div>
-    </HTMLFlipBook>
+    <>
+      <HTMLFlipBook
+        width={300}
+        height={500}
+        size='stretch'
+        minWidth={315}
+        maxWidth={1000}
+        minHeight={400}
+        maxHeight={1533}
+        maxShadowOpacity={0.5}
+        // showCover={true}
+        mobileScrollSupport={true}
+      >
+        {listImages.map((item, index) => {
+          return (
+            <div className='demoPage'>
+              <Typography style={{ color: "black" }}>
+                Page {index + 1}
+              </Typography>
+              <CardMedia image={item} height='100%' />
+            </div>
+          );
+        })}
+      </HTMLFlipBook>
+    </>
   );
 };
 
