@@ -56,6 +56,7 @@ const Footer = () => {
           display='flex'
           justifyContent='center'
           style={{
+            marginTop: "-2px",
             padding: "10px 0px 10px 0px",
             backgroundColor: Colors.darkGrey,
             color: "white",
@@ -79,6 +80,7 @@ const Footer = () => {
           alignItems='center'
           rowGap={2}
           style={{
+            marginLeft: "-2px",
             backgroundImage: `url(${footer})`,
             backgroundSize: "cover",
             paddingTop: "30px",
@@ -109,6 +111,7 @@ const Footer = () => {
             padding: "10px 0px 10px 0px",
             backgroundColor: Colors.darkGrey,
             color: "white",
+            marginTop: "-2px",
           }}
         >
           <Typography fontSize='14px'>

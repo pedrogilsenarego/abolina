@@ -22,13 +22,17 @@ const Button = ({ label, backgroundColor, borderColor, color }: Props) => {
           borderRadius: "40px",
           paddingLeft: "20px",
           paddingRight: "20px",
+          paddingTop: "10px"
+
         }}
         onClick={() => {
 
           submitForm()
         }}
       >
-        <Typography style={{ fontSize: "12px", fontWeight: 700 }}>
+        <Typography style={{
+          fontSize: "16px", fontWeight: 700,
+        }}>
           {label}
         </Typography>
       </MuiButton>

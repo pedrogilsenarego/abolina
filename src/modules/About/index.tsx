@@ -87,7 +87,7 @@ const About = () => {
           width: "100%",
           backgroundImage: `url(${sobreOndas})`,
           backgroundSize: "cover",
-          backgroundPosition: "center center",
+          backgroundPosition: mobile ? "center center" : "0% 0%",
           minHeight: "30vh",
         }}
       />
