@@ -6,7 +6,6 @@ import Roster from "./Roster";
 import livroOndas from "../../../assets/images/livroOndas.svg";
 import Popup from "../../../components/Popup";
 import { useState, useEffect } from "react";
-import ViewBook from "./ViewBook";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBook } from "../../../slicer/books/books.actions";
 import { useParams } from "react-router";
@@ -95,14 +94,15 @@ const BookC = () => {
         setOpenPopup={setOpenViewBook}
         title={book?.title}
         onClose={() => setOpenViewBook(false)}
-        actions={
-          [
-            {
-              title: "Close Book",
-              onClick: () => setOpenViewBook(false)
-            }
-          ]
-        }
+
+      // actions={
+      //   [
+      //     {
+      //       title: "Close Book",
+      //       onClick: () => setOpenViewBook(false)
+      //     }
+      //   ]
+      // }
       >
         <LeafThrough />
       </Popup>

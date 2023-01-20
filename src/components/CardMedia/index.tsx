@@ -16,7 +16,7 @@ const CardMedia = ({ image, alt, onClick, height, borderRadius }: Props) => {
     if (onClick) onClick()
   }
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative", }}>
       {imageLoading && (
         <Typography
 
@@ -40,6 +40,7 @@ const CardMedia = ({ image, alt, onClick, height, borderRadius }: Props) => {
           borderRadius: borderRadius ?? "4px",
           cursor: "pointer",
           opacity: imageLoading ? 0 : 1,
+
         }}
         component='img'
         height={height || '120'}

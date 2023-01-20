@@ -7,6 +7,7 @@ import {
   useTheme,
   useMediaQuery,
   Grid,
+  Box,
 } from "@mui/material";
 import { Actions } from "./types";
 import Button from "./ButtonPopup";
@@ -20,6 +21,7 @@ interface Props {
 
   actions?: Actions[];
   onClose?: () => void;
+
 }
 
 const Popup = ({
@@ -29,6 +31,7 @@ const Popup = ({
   setOpenPopup,
   actions,
   onClose,
+
 }: Props) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -41,7 +44,10 @@ const Popup = ({
         PaperProps={{
           style: {
             backgroundColor: "white",
-            minWidth: mobile ? "90vw" : "50vw",
+            minWidth: mobile ? "90vw" : "80vw",
+            minHeight: mobile ? "auto" : "89vh",
+            boxShadow: "0 -60px 40px 0px #00000066 inset"
+
           },
         }}
         onClose={onClose}
@@ -50,9 +56,10 @@ const Popup = ({
         <DialogTitle>
           <div style={{ textAlign: "center" }}>
             <Typography
-              variant='h6'
+
               component='div'
               style={{
+                fontSize: "28px",
                 color: Colors.tealc,
                 fontWeight: 700,
                 letterSpacing: "3px",
@@ -62,31 +69,37 @@ const Popup = ({
             </Typography>
           </div>
         </DialogTitle>
-        <DialogContent dividers style={{ color: "white" }}>
-          {children}
-          <Divider
-            style={{
-              width: "100%",
-              background: "#ffffff66",
-              marginTop: "10px",
-            }}
-          />
-          <Grid
-            container
-            justifyContent='flex-end'
-            style={{ marginTop: "10px" }}
-          >
-            {actions?.map((item, pos) => {
-              return (
-                <Button
-                  disabled={item.disabled}
-                  title={item.title}
-                  key={pos}
-                  onClick={item.onClick}
-                />
-              );
-            })}
-          </Grid>
+        <DialogContent dividers style={{ color: "white", }}>
+          <Box style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+            {children}
+          </Box>
+          {actions && (
+            <>
+              <Divider
+                style={{
+                  width: "100%",
+                  background: "#ffffff66",
+                  marginTop: "10px",
+                }}
+              />
+              <Grid
+                container
+                justifyContent='flex-end'
+                style={{ marginTop: "10px" }}
+              >
+                {actions?.map((item, pos) => {
+                  return (
+                    <Button
+                      disabled={item.disabled}
+                      title={item.title}
+                      key={pos}
+                      onClick={item.onClick}
+                    />
+                  );
+                })}
+              </Grid>
+            </>)}
+
         </DialogContent>
       </Dialog>
     </div >
