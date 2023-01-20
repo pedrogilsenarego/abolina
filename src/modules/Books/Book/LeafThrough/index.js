@@ -1,4 +1,3 @@
-import { Typography, Box } from "@mui/material";
 import HTMLFlipBook from "react-pageflip";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -36,9 +35,6 @@ const MyBook = () => {
         {listImages.map((item, index) => {
           return (
             <div className='demoPage'>
-              <Typography style={{ color: "black" }}>
-                Page {index + 1}
-              </Typography>
               <CardMedia image={item} height='100%' />
             </div>
           );
