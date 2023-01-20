@@ -79,11 +79,13 @@ const BookC = () => {
         </Container>
         <Box
           style={{
-            marginTop: mobile ? "0px" : "20px",
+            marginTop: mobile ? "-60px" : "20px",
+            marginBottom: mobile ? "-20px" : "0px",
             backgroundImage: `url(${livroOndas})`,
-            backgroundSize: mobile ? "200%" : "contain",
+            backgroundSize: mobile ? "150%" : "contain",
             backgroundRepeat: "no-repeat",
             minHeight: "30vh",
+            transform: mobile ? "scaleY(2)" : "scaleY(1)",
             backgroundPosition: "center center",
           }}
         />

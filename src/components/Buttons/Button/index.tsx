@@ -20,7 +20,7 @@ const Button = ({ label, onClick, borderRadius }: Props) => {
         }}
         onClick={onClick}
       >
-        <Typography style={{ fontSize: "16px", fontWeight: 700 }}>
+        <Typography style={{ fontSize: "12px", fontWeight: 700 }}>
           {label}
         </Typography>
       </MuiButton>

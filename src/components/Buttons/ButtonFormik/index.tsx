@@ -31,7 +31,7 @@ const Button = ({ label, backgroundColor, borderColor, color }: Props) => {
         }}
       >
         <Typography style={{
-          fontSize: "16px", fontWeight: 700,
+          fontSize: "12px", fontWeight: 700,
         }}>
           {label}
         </Typography>
