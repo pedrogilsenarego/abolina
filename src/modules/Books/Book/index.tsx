@@ -92,7 +92,7 @@ const BookC = () => {
       <Popup
         openPopup={openViewBook}
         setOpenPopup={setOpenViewBook}
-        title={book?.title}
+
         onClose={() => setOpenViewBook(false)}
 
       // actions={

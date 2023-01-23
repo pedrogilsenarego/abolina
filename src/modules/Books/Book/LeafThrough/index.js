@@ -69,9 +69,30 @@ const MyBook = () => {
           />
         </Box>
       )}
+      <Box style={{ position: "absolute" }}>
+        <Typography
+          textAlign='center'
+          style={{
+            fontSize: "28px",
+            color: Colors.tealc,
+            fontWeight: 700,
+            letterSpacing: "3px",
+          }}
+        >
+          {book?.title}
+        </Typography>
+        <Box
+          style={{
+            height: "3px",
+            width: width,
+            background:
+              "linear-gradient(90deg, rgba(249,249,252,1) 0%, rgba(0,156,166,1) 50%, rgba(244,246,246,1) 100%)",
+          }}
+        />
+      </Box>
       <Box
         ref={mainBox}
-        mt='60px'
+        mt='110px'
         width='80%'
         display='flex'
         justifyContent='center'
@@ -84,7 +105,7 @@ const MyBook = () => {
         <HTMLFlipBook
           width={width / 2}
           height={600}
-          size='fixed'
+          size='stretch'
           maxShadowOpacity={0.5}
           drawShadow
           flippingTime={1500}
@@ -109,9 +130,9 @@ const MyBook = () => {
         </HTMLFlipBook>
       </Box>
       <Box
-        style={{ position: "absolute", width: "70vw", left: 30, bottom: 20 }}
+        style={{ position: "absolute", width: "70vw", left: 50, bottom: 20 }}
       >
-        <Typography color='white' fontSize='24px' fontWeight={700}>
+        <Typography color='white' fontSize='28px' fontWeight={700}>
           {i18n.t("modules.books.viewBook.page")} {page + 1}-{page + 2} /{" "}
           {listImages.length}
         </Typography>

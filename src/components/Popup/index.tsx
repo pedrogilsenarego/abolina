@@ -15,7 +15,7 @@ import { Colors } from "../../constants/pallette";
 
 interface Props {
   children: JSX.Element;
-  title: string;
+  title?: string;
   openPopup: boolean;
   setOpenPopup?: (openPopup: boolean) => void;
 
@@ -53,7 +53,7 @@ const Popup = ({
         onClose={onClose}
 
       >
-        <DialogTitle>
+        {title && (<DialogTitle>
           <div style={{ textAlign: "center" }}>
             <Typography
 
@@ -68,7 +68,7 @@ const Popup = ({
               {title}
             </Typography>
           </div>
-        </DialogTitle>
+        </DialogTitle>)}
         <DialogContent dividers style={{ color: "white", }}>
           <Box style={{ width: "100%", display: "flex", justifyContent: "center" }}>
             {children}
