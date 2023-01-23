@@ -81,6 +81,9 @@ export const content = {
             designer: "DESIGNER",
             translator: "TRANSLATOR",
           },
+          viewBook: {
+            page: "Pages",
+          },
         },
         admin: {
           manageBooks: {

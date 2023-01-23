@@ -1,26 +1,34 @@
 import { useState } from "react";
-import { CardMedia as MuiCardMedia, Typography } from "@mui/material";
+import { Box, CardMedia as MuiCardMedia, Typography } from "@mui/material";
 
 interface Props {
   image: string | undefined;
   alt?: string;
   height?: string;
-  onClick?: () => void
+  onClick?: () => void;
   borderRadius?: string;
+  leafThrough?: boolean;
+  leafShadowPosition?: "left" | "right";
 }
 
-
-const CardMedia = ({ image, alt, onClick, height, borderRadius }: Props) => {
+const CardMedia = ({
+  image,
+  alt,
+  onClick,
+  height,
+  borderRadius,
+  leafThrough,
+  leafShadowPosition,
+}: Props) => {
   const [imageLoading, setImageLoading] = useState(true);
   const handleClick = () => {
-    if (onClick) onClick()
-  }
+    if (onClick) onClick();
+  };
   return (
-    <div style={{ position: "relative", }}>
+    <div style={{ position: "relative" }}>
       {imageLoading && (
         <Typography
-
-          color='white'
+          color='black'
           style={{
             position: "absolute",
             top: 0,
@@ -32,10 +40,29 @@ const CardMedia = ({ image, alt, onClick, height, borderRadius }: Props) => {
             marginLeft: "auto",
             marginRight: "auto",
           }}
-        >Loading...</Typography>
+        >
+          Loading...
+        </Typography>
       )}
+      {leafThrough && leafShadowPosition && (
+        <Box
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: "100%",
+
+            backgroundColor: "transparent",
+            boxShadow:
+              leafShadowPosition === "right"
+                ? "inset 9px 0 30px -7px rgb(0 0 0 / 50%)"
+                : "inset -9px 0 30px -7px rgb(0 0 0 / 50%)",
+          }}
+        ></Box>
+      )}
+
       <MuiCardMedia
         onLoad={() => setImageLoading(false)}
+
         style={{
           borderRadius: borderRadius ?? "4px",
           cursor: "pointer",
@@ -43,13 +70,13 @@ const CardMedia = ({ image, alt, onClick, height, borderRadius }: Props) => {
 
         }}
         component='img'
-        height={height || '120'}
+        height={height || "120"}
         image={image}
         alt={alt || ""}
         onClick={handleClick}
       />
     </div>
-  )
-}
+  );
+};
 
-export default CardMedia
+export default CardMedia;

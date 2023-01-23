@@ -3,14 +3,19 @@ import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { useSelector } from "react-redux";
 import CardMedia from "../../../../components/CardMedia";
 import { Box, Typography } from "@mui/material";
+import { isEven } from "../../../../utils/math";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { Colors } from "../../../../constants/pallette";
+import { i18n } from "../../../../translations/i18n";
 
 const MyBook = () => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [book, setBook] = useState();
   const mainBox = useRef(null);
   const listImages = book?.content || [];
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
+  const bookRef = useRef();
 
   useLayoutEffect(() => {
     setWidth(mainBox.current.offsetWidth);
@@ -24,10 +29,46 @@ const MyBook = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(book);
+  const handleMove = (direction) => {
+    if (direction === "left") {
+      bookRef.current.pageFlip().flipPrev();
+      return;
+    }
+    bookRef.current.pageFlip().flipNext();
+    return;
+  };
+
+  console.log(bookRef?.current?.pageFlip()?.getCurrentPageIndex() || "");
 
   return (
     <>
+      {listImages.length > 1 && (
+        <Box
+          display='flex'
+          justifyContent='space-between'
+          style={{
+            width: "77vw",
+            position: "absolute",
+
+            bottom: "43vh",
+            zIndex: 1000,
+          }}
+        >
+          <FiChevronLeft
+            size='3em'
+            color={Colors.tealc}
+            style={{ cursor: "pointer" }}
+            onClick={() => handleMove("left")}
+          />
+
+          <FiChevronRight
+            size='3em'
+            color={Colors.tealc}
+            style={{ cursor: "pointer" }}
+            onClick={() => handleMove("right")}
+          />
+        </Box>
+      )}
       <Box
         ref={mainBox}
         mt='60px'
@@ -48,17 +89,32 @@ const MyBook = () => {
           drawShadow
           flippingTime={1500}
           autoSize
+          ref={bookRef}
+          onFlip={(e) => setPage(e.data)}
           // showCover={true}
           mobileScrollSupport={true}
         >
           {listImages.map((item, index) => {
             return (
-              <div className='demoPage'>
-                <CardMedia image={item} height='100%' />
+              <div>
+                <CardMedia
+                  leafThrough
+                  leafShadowPosition={isEven(index) ? "left" : "right"}
+                  image={item}
+                  height='100%'
+                />
               </div>
             );
           })}
         </HTMLFlipBook>
+      </Box>
+      <Box
+        style={{ position: "absolute", width: "70vw", left: 30, bottom: 20 }}
+      >
+        <Typography color='white' fontSize='24px' fontWeight={700}>
+          {i18n.t("modules.books.viewBook.page")} {page + 1}-{page + 2} /{" "}
+          {listImages.length}
+        </Typography>
       </Box>
     </>
   );

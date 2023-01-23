@@ -110,7 +110,6 @@ const Carousel = () => {
               width: "62vw",
               position: "absolute",
               left: "18.5vw",
-
               bottom: "45%",
               zIndex: 1000,
             }}
