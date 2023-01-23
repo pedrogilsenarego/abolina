@@ -122,7 +122,7 @@ const MyBook = () => {
                   leafThrough
                   leafShadowPosition={isEven(index) ? "left" : "right"}
                   image={item}
-                  height='100%'
+                  height={600}
                 />
               </div>
             );
