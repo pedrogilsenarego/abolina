@@ -97,7 +97,6 @@ const MyBook = () => {
         display='flex'
         justifyContent='center'
         style={{
-          overflow: "hidden",
           boxShadow: "0px 10px 30px 10px #00000066",
           borderRadius: "6px",
         }}
@@ -112,7 +111,6 @@ const MyBook = () => {
           autoSize
           ref={bookRef}
           onFlip={(e) => setPage(e.data)}
-          // showCover={true}
           mobileScrollSupport={true}
         >
           {listImages.map((item, index) => {

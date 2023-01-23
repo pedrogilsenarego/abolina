@@ -28,7 +28,7 @@ const UpScroller = () => {
         border: hover ? `solid 2px white` : `solid 2px ${Colors.tealc}`,
         borderRadius: "4px",
         width: "35px",
-        zIndex: 2000,
+        zIndex: 1000,
         height: "35px",
         cursor: "pointer",
         backgroundColor: !hover ? "#ffffff" : Colors.tealc

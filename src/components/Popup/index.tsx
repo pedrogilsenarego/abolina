@@ -37,10 +37,10 @@ const Popup = ({
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <div>
+    <div >
       <Dialog
         open={openPopup}
-        style={{ color: "white" }}
+        style={{ color: "white", }}
         PaperProps={{
           style: {
             backgroundColor: "white",
@@ -69,7 +69,7 @@ const Popup = ({
             </Typography>
           </div>
         </DialogTitle>)}
-        <DialogContent dividers style={{ color: "white", }}>
+        <DialogContent dividers style={{ color: "white", overflow: "hidden", msOverflowStyle: "none", scrollbarWidth: "none" }}>
           <Box style={{ width: "100%", display: "flex", justifyContent: "center" }}>
             {children}
           </Box>
