@@ -5,6 +5,7 @@ interface Props {
   image: string | undefined;
   alt?: string;
   height?: string;
+  width?: string;
   onClick?: () => void;
   borderRadius?: string;
   leafThrough?: boolean;
@@ -16,6 +17,7 @@ const CardMedia = ({
   alt,
   onClick,
   height,
+  width,
   borderRadius,
   leafThrough,
   leafShadowPosition,
@@ -54,8 +56,8 @@ const CardMedia = ({
             backgroundColor: "transparent",
             boxShadow:
               leafShadowPosition === "right"
-                ? "inset 9px 0 30px -7px rgb(0 0 0 / 50%)"
-                : "inset -9px 0 30px -7px rgb(0 0 0 / 50%)",
+                ? "inset 9px 0 30px -7px rgb(0 0 0 / 70%)"
+                : "inset -9px 0 30px -7px rgb(0 0 0 / 70%)",
           }}
         ></Box>
       )}
@@ -67,10 +69,12 @@ const CardMedia = ({
           borderRadius: borderRadius ?? "4px",
           cursor: "pointer",
           opacity: imageLoading ? 0 : 1,
-
+          objectFit: "cover"
         }}
         component='img'
         height={height || "120"}
+
+        width={width || "auto"}
         image={image}
         alt={alt || ""}
         onClick={handleClick}

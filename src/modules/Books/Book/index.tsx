@@ -1,4 +1,11 @@
-import { Container, Box, Typography, Grid, useTheme, useMediaQuery } from "@mui/material";
+import {
+  Container,
+  Box,
+  Typography,
+  Grid,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import * as GStyled from "../../../styles";
 import { i18n } from "../../../translations/i18n";
 import Tile from "./Tile";
@@ -13,31 +20,51 @@ import { Book } from "../../../slicer/books/books.types";
 import { State } from "../../../slicer/types";
 import LeafThrough from "./LeafThrough";
 
-
 const BookC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [openViewBook, setOpenViewBook] = useState<boolean>(false);
-  const { id } = useParams()
-  const Theme = useTheme()
-  const mobile = useMediaQuery(Theme.breakpoints.down("md"))
-
+  const { id } = useParams();
+  const Theme = useTheme();
+  const mobile = useMediaQuery(Theme.breakpoints.down("md"));
 
   useEffect(() => {
-    dispatch(fetchBook(id))
+    dispatch(fetchBook(id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id])
+  }, [id]);
 
-  const book = useSelector<State, Book>(
-    (state) => state.books.book || {}
-  );
+  const book = useSelector<State, Book>((state) => state.books.book || {});
+
+  const renderPopup = () => {
+    return (
+      <Popup
+        openPopup={openViewBook}
+        setOpenPopup={setOpenViewBook}
+        onClose={() => setOpenViewBook(false)}
+
+      // actions={
+      //   [
+      //     {
+      //       title: "Close Book",
+      //       onClick: () => setOpenViewBook(false)
+      //     }
+      //   ]
+      // }
+      >
+
+        <LeafThrough />
+      </Popup>
+    )
+  }
 
   return (
     <>
-      <Box mt="20px">
-        <Container maxWidth='md' >
+      <Box mt='20px'>
+        <Container maxWidth='md'>
           <Roster book={book} setOpenViewBook={setOpenViewBook} />
           <Box display='flex' justifyContent='start' mt='40px'>
-            <GStyled.Title fontSize="24px" style={{ fontWeight: 700 }}>{i18n.t("modules.books.book.title")}</GStyled.Title>
+            <GStyled.Title fontSize='24px' style={{ fontWeight: 700 }}>
+              {i18n.t("modules.books.book.title")}
+            </GStyled.Title>
           </Box>
           <Typography
             align='justify'
@@ -65,7 +92,8 @@ const BookC = () => {
                   name={book?.designer || ""}
                   text={book?.designerResume || ""}
                 />
-              </Grid>)}
+              </Grid>
+            )}
             {book?.translator && (
               <Grid item xs={12} md={4}>
                 <Tile
@@ -73,7 +101,8 @@ const BookC = () => {
                   name={book?.translator || ""}
                   text={book?.translatorResume || ""}
                 />
-              </Grid>)}
+              </Grid>
+            )}
           </Grid>
         </Container>
         <Box
@@ -89,23 +118,10 @@ const BookC = () => {
           }}
         />
       </Box>
-      <Popup
-        openPopup={openViewBook}
-        setOpenPopup={setOpenViewBook}
 
-        onClose={() => setOpenViewBook(false)}
+      {renderPopup()}
 
-      // actions={
-      //   [
-      //     {
-      //       title: "Close Book",
-      //       onClick: () => setOpenViewBook(false)
-      //     }
-      //   ]
-      // }
-      >
-        <LeafThrough />
-      </Popup>
+
     </>
   );
 };

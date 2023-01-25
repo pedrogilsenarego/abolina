@@ -118,6 +118,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
           </GStyled.SubTitle>
           <Typography>{book?.price} €</Typography>
         </Box>
+
         <Box
           display='flex'
           flexDirection='row'
