@@ -7,6 +7,7 @@ import { isEven } from "../../../../utils/math";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { Colors } from "../../../../constants/pallette";
 import { i18n } from "../../../../translations/i18n";
+import { useKeyPress } from "../../../../hooks/useKeyPress";
 
 const MyBook = () => {
   const [page, setPage] = useState(0);
@@ -15,7 +16,10 @@ const MyBook = () => {
   const listImages = book?.content || [];
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
+  const [keyPressed, setKeyPressed] = useState(false);
   const bookRef = useRef();
+  const leftButton = useKeyPress("ArrowLeft");
+  const rightButton = useKeyPress("ArrowRight");
 
   useLayoutEffect(() => {
     setWidth(mainBox.current.offsetWidth);
@@ -29,6 +33,15 @@ const MyBook = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (leftButton) {
+      handleMove("left");
+    }
+    if (rightButton) {
+      handleMove("right");
+    }
+  }, [leftButton, rightButton]);
+
   const handleMove = (direction) => {
     if (direction === "left") {
       bookRef.current.pageFlip().flipPrev();
@@ -37,8 +50,6 @@ const MyBook = () => {
     bookRef.current.pageFlip().flipNext();
     return;
   };
-
-  console.log(bookRef?.current?.pageFlip()?.getCurrentPageIndex() || "");
 
   return (
     <>
@@ -103,7 +114,7 @@ const MyBook = () => {
       >
         <HTMLFlipBook
           width={width / 2}
-          height={600}
+          height={500}
           size='stretch'
           maxShadowOpacity={0.5}
           drawShadow
@@ -120,7 +131,7 @@ const MyBook = () => {
                   leafThrough
                   leafShadowPosition={isEven(index) ? "left" : "right"}
                   image={item}
-                  height={600}
+                  height={500}
                 />
               </div>
             );
