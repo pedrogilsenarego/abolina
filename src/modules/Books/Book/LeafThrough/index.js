@@ -9,7 +9,7 @@ import { MdFullscreen } from "react-icons/md";
 import { Colors } from "../../../../constants/pallette";
 import { i18n } from "../../../../translations/i18n";
 import { useKeyPress } from "../../../../hooks/useKeyPress";
-import Fullscreen from "../../../../components/FullScreen/FullScreen";
+import FullScreenWrapper from "../../../../components/FullScreen/chatgtp";
 
 const MyBook = () => {
   const [page, setPage] = useState(0);
@@ -53,7 +53,7 @@ const MyBook = () => {
 
   const renderContent = () => {
     return (
-      <Fullscreen openFullScreen={fullScreen} setOpenFullScreen={setFullScreen}>
+      <FullScreenWrapper fullScreen={fullScreen} setFullScreen={setFullScreen}>
         <Box>
           <Typography
             textAlign='center'
@@ -78,9 +78,9 @@ const MyBook = () => {
 
         <Box
           ref={mainBox}
-          mt={mobileRotated ? "20px" : "100px"}
+          mt={mobileRotated ? "20px" : "60px"}
           width={windowSize.current[0] * (mobile ? 0.8 : 0.6)}
-          height={windowSize.current[1] * (mobile ? 0.3 : 0.5)}
+          height={windowSize.current[1] * (mobile ? 0.3 : 0.6)}
           display='flex'
           justifyContent='center'
           style={{
@@ -90,7 +90,7 @@ const MyBook = () => {
         >
           <HTMLFlipBook
             width={windowSize.current[0] * (mobile ? 0.4 : 0.3)}
-            height={windowSize.current[1] * (mobile ? 0.3 : 0.5)}
+            height={windowSize.current[1] * (mobile ? 0.3 : 0.6)}
             size='stretch'
             maxShadowOpacity={0.5}
             drawShadow
@@ -107,7 +107,7 @@ const MyBook = () => {
                     leafThrough
                     leafShadowPosition={isEven(index) ? "left" : "right"}
                     image={item}
-                    height={windowSize.current[1] * (mobile ? 0.3 : 0.5)}
+                    height={windowSize.current[1] * (mobile ? 0.3 : 0.6)}
                   />
                 </div>
               );
@@ -133,20 +133,23 @@ const MyBook = () => {
             {listImages.length}
           </Typography>
         </Box>
-      </Fullscreen>
+      </FullScreenWrapper>
     );
   };
 
   return (
     <>
-      <Box style={{ position: "absolute", right: 10, top: 10 }}>
-        <MdFullscreen
-          size={mobileRotated ? "2em" : "3em"}
-          color={Colors.tealc}
-          style={{ cursor: "pointer" }}
-          onClick={() => setFullScreen(true)}
-        />
-      </Box>
+      {!fullScreen && !mobileRotated && (
+        <Box style={{ position: "absolute", right: 10, top: 10 }}>
+          <MdFullscreen
+            size={mobileRotated ? "2em" : "2.5em"}
+            color={Colors.tealc}
+            style={{ cursor: "pointer" }}
+            onClick={() => setFullScreen(true)}
+          />
+        </Box>
+      )}
+
       {listImages.length > 1 && !mobileRotated && (
         <Box
           display='flex'

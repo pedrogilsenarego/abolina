@@ -1,23 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 interface Props {
   children: React.ReactNode;
+  fullScreen: boolean;
+  setFullScreen: (fullScreen: boolean) => void
 }
 
-const FullScreenWrapper: React.FC<Props> = ({ children }) => {
-  const [isFullScreen, setIsFullScreen] = useState(false);
+const FullScreenWrapper: React.FC<Props> = ({ children, fullScreen, setFullScreen }) => {
+
 
   useEffect(() => {
-    if (isFullScreen) {
+    if (fullScreen) {
       document.documentElement.requestFullscreen();
     } else {
       document.exitFullscreen();
     }
-  }, [isFullScreen]);
+  }, [fullScreen]);
 
   return (
     <div className="full-screen-wrapper">
-      <button onClick={() => setIsFullScreen(!isFullScreen)}>Toggle Full Screen</button>
+
       {children}
     </div>
   );
