@@ -5,6 +5,7 @@ import CollectionBrowser from "./CollectionBrowser";
 import CardMedia from "../../../../components/CardMedia";
 import { Colors } from "../../../../constants/pallette";
 
+
 interface Props {
   setOpenViewBook: (openViewBook: boolean) => void;
   book: any;
@@ -13,6 +14,7 @@ interface Props {
 const Roster = ({ setOpenViewBook, book }: Props) => {
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
+
 
   return (
     <Grid container columnSpacing={4}>

@@ -28,6 +28,8 @@ const MyBook = () => {
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
   const mobileRotated = useMediaQuery(theme.breakpoints.down(800));
 
+  console.log(fullScreen);
+
   useEffect(() => {
     setBook(storeBook);
     // eslint-disable-next-line react-hooks/exhaustive-deps
