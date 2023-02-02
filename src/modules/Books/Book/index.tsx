@@ -23,6 +23,7 @@ import LeafThrough from "./LeafThrough";
 const BookC = () => {
   const dispatch = useDispatch();
   const [openViewBook, setOpenViewBook] = useState<boolean>(false);
+  const [fullScreen, setFullScreen] = useState(false);
   const { id } = useParams();
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("md"));
@@ -40,7 +41,7 @@ const BookC = () => {
         openPopup={openViewBook}
         setOpenPopup={setOpenViewBook}
         onClose={() => setOpenViewBook(false)}
-
+        fullScreen={fullScreen}
       // actions={
       //   [
       //     {
@@ -51,7 +52,7 @@ const BookC = () => {
       // }
       >
 
-        <LeafThrough />
+        <LeafThrough fullScreen={fullScreen} setFullScreen={setFullScreen} />
       </Popup>
     )
   }

@@ -11,10 +11,10 @@ import { i18n } from "../../../../translations/i18n";
 import { useKeyPress } from "../../../../hooks/useKeyPress";
 import FullScreenWrapper from "../../../../components/FullScreen/chatgtp";
 
-const MyBook = () => {
+const MyBook = ({ fullScreen, setFullScreen }) => {
   const [page, setPage] = useState(0);
   const [book, setBook] = useState();
-  const [fullScreen, setFullScreen] = useState(false);
+
   const mainBox = useRef(null);
   const listImages = book?.content || [];
 
@@ -53,6 +53,14 @@ const MyBook = () => {
     return;
   };
 
+  const ratioWidth = fullScreen ? 0.9 : mobile ? 0.8 : 0.6;
+  const ratioHeight = fullScreen ? 0.9 : mobile ? 0.3 : 0.6;
+  const ratioWidthPage = fullScreen ? 0.45 : mobile ? 0.4 : 0.3;
+
+  const width = windowSize.current[0] * ratioWidth;
+  const height = windowSize.current[1] * ratioHeight;
+  const widthPage = windowSize.current[0] * ratioWidthPage;
+
   const renderContent = () => {
     return (
       <FullScreenWrapper fullScreen={fullScreen} setFullScreen={setFullScreen}>
@@ -71,7 +79,7 @@ const MyBook = () => {
           <Box
             style={{
               height: mobileRotated ? "2px" : "3px",
-              width: windowSize.current[0] * (mobile ? 0.8 : 0.6),
+              width: width,
               background:
                 "linear-gradient(90deg, rgba(249,249,252,1) 0%, rgba(0,156,166,1) 50%, rgba(244,246,246,1) 100%)",
             }}
@@ -80,9 +88,9 @@ const MyBook = () => {
 
         <Box
           ref={mainBox}
-          mt={mobileRotated ? "20px" : "60px"}
-          width={windowSize.current[0] * (mobile ? 0.8 : 0.6)}
-          height={windowSize.current[1] * (mobile ? 0.3 : 0.6)}
+          mt={mobileRotated ? "20px" : fullScreen ? "30px" : "60px"}
+          width={width}
+          height={height}
           display='flex'
           justifyContent='center'
           style={{
@@ -91,8 +99,8 @@ const MyBook = () => {
           }}
         >
           <HTMLFlipBook
-            width={windowSize.current[0] * (mobile ? 0.4 : 0.3)}
-            height={windowSize.current[1] * (mobile ? 0.3 : 0.6)}
+            width={widthPage}
+            height={height}
             size='stretch'
             maxShadowOpacity={0.5}
             drawShadow
@@ -109,7 +117,7 @@ const MyBook = () => {
                     leafThrough
                     leafShadowPosition={isEven(index) ? "left" : "right"}
                     image={item}
-                    height={windowSize.current[1] * (mobile ? 0.3 : 0.6)}
+                    height={height}
                   />
                 </div>
               );
@@ -159,7 +167,7 @@ const MyBook = () => {
           style={{
             position: "absolute",
             top: "45%",
-            width: "67vw",
+            width: fullScreen ? "93vw" : "67vw",
 
             zIndex: 1000,
           }}

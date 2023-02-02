@@ -21,7 +21,7 @@ interface Props {
 
   actions?: Actions[];
   onClose?: () => void;
-
+  fullScreen?: boolean
 }
 
 const Popup = ({
@@ -31,7 +31,7 @@ const Popup = ({
   setOpenPopup,
   actions,
   onClose,
-
+  fullScreen
 }: Props) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -44,8 +44,8 @@ const Popup = ({
         PaperProps={{
           style: {
             backgroundColor: "white",
-            minWidth: mobile ? "90vw" : "80vw",
-            minHeight: mobile ? "auto" : "89vh",
+            minWidth: fullScreen ? "100vw" : mobile ? "90vw" : "80vw",
+            minHeight: fullScreen ? "100vh" : mobile ? "auto" : "89vh",
             boxShadow: "0 -60px 40px 0px #00000066 inset"
 
           },
