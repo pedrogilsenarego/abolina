@@ -2,7 +2,13 @@ import HTMLFlipBook from "react-pageflip";
 import { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import CardMedia from "../../../../components/CardMedia";
-import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Typography,
+  useTheme,
+  useMediaQuery,
+  Slider,
+} from "@mui/material";
 import { isEven } from "../../../../utils/math";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { ImEyePlus, ImEyeMinus } from "react-icons/im";
@@ -17,6 +23,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
   const [page, setPage] = useState(0);
   const [book, setBook] = useState();
   const [zoom, setZoom] = useState(true);
+  const [zoomRatio, setZoomRatio] = useState(1);
 
   const mainBox = useRef(null);
   const listImages = book?.content || [];
@@ -55,8 +62,6 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fullScreen]);
 
-  console.log(zoom);
-
   const handleMove = (direction) => {
     if (direction === "left") {
       bookRef.current.pageFlip().flipPrev();
@@ -90,6 +95,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
           >
             {book?.title}
           </Typography>
+
           <Box
             style={{
               height: mobileRotated ? "2px" : "3px",
@@ -145,13 +151,20 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
             style={{
               boxShadow: "0px 10px 30px 10px #00000066",
               borderRadius: "6px",
+              cursor: "grabbing",
             }}
           >
-            <ZoomC image={listImages[page]} width={widthPage} height={height} />
+            <ZoomC
+              image={listImages[page]}
+              width={widthPage}
+              height={height}
+              zoomScale={zoomRatio}
+            />
             <ZoomC
               image={listImages[page + 1]}
               width={widthPage}
               height={height}
+              zoomScale={zoomRatio}
             />
           </Box>
         )}
@@ -200,17 +213,28 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
               onClick={() => setZoom(!zoom)}
             />
           ) : (
-            <ImEyeMinus
-              size={mobileRotated ? "1em" : "1.5em"}
-              color={Colors.tealcDark}
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                setZoom(!zoom);
-                setTimeout(() => {
-                  bookRef.current.pageFlip().turnToPage(page);
-                }, [10]);
-              }}
-            />
+            <>
+              <Box width={100}>
+                <Typography>{zoomRatio}</Typography>
+                <Slider
+                  size='small'
+                  defaultValue={0}
+                  aria-label='Small'
+                  onChange={(e) => setZoomRatio(e.target.value / 20 + 1)}
+                />
+              </Box>
+              <ImEyeMinus
+                size={mobileRotated ? "1em" : "1.5em"}
+                color={Colors.tealcDark}
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  setZoom(!zoom);
+                  setTimeout(() => {
+                    bookRef.current.pageFlip().turnToPage(page);
+                  }, [10]);
+                }}
+              />
+            </>
           )}
         </Box>
       )}
