@@ -81,7 +81,8 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
           <Typography
             textAlign='center'
             style={{
-              fontSize: mobileRotated ? "20px" : "28px",
+              textTransform: "uppercase",
+              fontSize: mobileRotated ? "60px" : "28px",
               color: Colors.tealc,
               fontWeight: 700,
               letterSpacing: "3px",
@@ -94,14 +95,14 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
               height: mobileRotated ? "2px" : "3px",
               width: width,
               background:
-                "linear-gradient(90deg, rgba(249,249,252,1) 0%, rgba(0,156,166,1) 50%, rgba(244,246,246,1) 100%)",
+                "linear-gradient(90deg, #e4e4e4 0%, rgba(0,156,166,1) 50%, #e4e4e4 100%)",
             }}
           />
         </Box>
         {!zoom ? (
           <Box
             ref={mainBox}
-            mt={mobileRotated ? "20px" : fullScreen ? "30px" : "60px"}
+            mt={mobileRotated ? "60px" : fullScreen ? "30px" : "60px"}
             width={width}
             height={height}
             display='flex'
@@ -140,7 +141,11 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
         ) : (
           <Box
             display='flex'
-            mt={mobileRotated ? "20px" : fullScreen ? "30px" : "60px"}
+            mt={mobileRotated ? "60px" : fullScreen ? "30px" : "60px"}
+            style={{
+              boxShadow: "0px 10px 30px 10px #00000066",
+              borderRadius: "6px",
+            }}
           >
             <ZoomC image={listImages[page]} width={widthPage} height={height} />
             <ZoomC
@@ -162,7 +167,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
         >
           <Typography
             color='white'
-            fontSize={mobileRotated ? "20px" : "28px"}
+            fontSize={mobileRotated ? "60px" : "28px"}
             fontWeight={700}
           >
             {i18n.t("modules.books.viewBook.page")} {page + 1}-{page + 2} /{" "}
@@ -179,7 +184,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
         <Box style={{ position: "absolute", right: 10, top: 10 }}>
           <MdFullscreen
             size={mobileRotated ? "2em" : "2.5em"}
-            color={Colors.tealc}
+            color={Colors.tealcDark}
             style={{ cursor: "pointer" }}
             onClick={() => setFullScreen(true)}
           />
@@ -190,14 +195,14 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
           {!zoom ? (
             <ImEyePlus
               size={mobileRotated ? "1em" : "1.5em"}
-              color={Colors.tealc}
+              color={Colors.tealcDark}
               style={{ cursor: "pointer" }}
               onClick={() => setZoom(!zoom)}
             />
           ) : (
             <ImEyeMinus
               size={mobileRotated ? "1em" : "1.5em"}
-              color={Colors.tealc}
+              color={Colors.tealcDark}
               style={{ cursor: "pointer" }}
               onClick={() => {
                 setZoom(!zoom);
@@ -217,20 +222,20 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
           style={{
             position: "absolute",
             top: "45%",
-            width: fullScreen ? "93vw" : "67vw",
+            width: fullScreen ? "96vw" : "75vw",
 
             zIndex: 1000,
           }}
         >
           <FiChevronLeft
-            size='3em'
+            size='80px'
             color={Colors.tealc}
             style={{ cursor: "pointer" }}
             onClick={() => handleMove("left")}
           />
 
           <FiChevronRight
-            size='3em'
+            size='80px'
             color={Colors.tealc}
             style={{ cursor: "pointer" }}
             onClick={() => handleMove("right")}

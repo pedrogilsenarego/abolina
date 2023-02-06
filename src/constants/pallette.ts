@@ -1,6 +1,7 @@
 export const Colors = {
   tealcTransparent: "#009ca666",
   tealc: "#009ca6 ",
+  tealcDark: "#7f7f7f",
   turqouise: "#4dbecd",
   roastedYellow: "#e1d4ac",
   champagne: "#ece1c6",
