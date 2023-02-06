@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
 // interface Props {
 //   children: React.ReactNode;
@@ -6,43 +6,43 @@ import React, { useEffect } from 'react';
 //   setFullScreen: (fullScreen: boolean) => void
 // }
 
-const FullScreenWrapper= ({ children, fullScreen, setFullScreen }) => {
-
-
-
-
-
+const FullScreenWrapper = ({ children, fullScreen, setFullScreen }) => {
   useEffect(() => {
     if (fullScreen) {
       document.documentElement.requestFullscreen();
 
       const exitHandler = () => {
-        if (!document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) setFullScreen(false)
-      }
+        if (
+          !document.webkitIsFullScreen &&
+          !document.mozFullScreen &&
+          !document.msFullscreenElement
+        )
+          setFullScreen(false);
+      };
 
-
-      document.addEventListener('webkitfullscreenchange', exitHandler, false);
-      document.addEventListener('mozfullscreenchange', exitHandler, false);
-      document.addEventListener('fullscreenchange', exitHandler, false);
-      document.addEventListener('MSFullscreenChange', exitHandler, false);
+      document.addEventListener("webkitfullscreenchange", exitHandler, false);
+      document.addEventListener("mozfullscreenchange", exitHandler, false);
+      document.addEventListener("fullscreenchange", exitHandler, false);
+      document.addEventListener("MSFullscreenChange", exitHandler, false);
 
       return () => {
-        document.removeEventListener('webkitfullscreenchange', exitHandler, false);
-        document.removeEventListener('mozfullscreenchange', exitHandler, false);
-        document.removeEventListener('fullscreenchange', exitHandler, false);
-        document.removeEventListener('MSFullscreenChange', exitHandler, false);
+        document.removeEventListener(
+          "webkitfullscreenchange",
+          exitHandler,
+          false
+        );
+        document.removeEventListener("mozfullscreenchange", exitHandler, false);
+        document.removeEventListener("fullscreenchange", exitHandler, false);
+        document.removeEventListener("MSFullscreenChange", exitHandler, false);
       };
     } else {
-      document.exitFullscreen();
+      if (fullScreen)
+        document.exitFullscreen();
+      else return;
     }
   }, [fullScreen, setFullScreen]);
 
-  return (
-    <div className="full-screen-wrapper">
-
-      {children}
-    </div>
-  );
+  return <div className='full-screen-wrapper'>{children}</div>;
 };
 
 export default FullScreenWrapper;
