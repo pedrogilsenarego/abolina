@@ -2,13 +2,7 @@ import HTMLFlipBook from "react-pageflip";
 import { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import CardMedia from "../../../../components/CardMedia";
-import {
-  Box,
-  Typography,
-  useTheme,
-  useMediaQuery,
-  Slider,
-} from "@mui/material";
+import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import { isEven } from "../../../../utils/math";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { ImEyePlus, ImEyeMinus } from "react-icons/im";
@@ -18,6 +12,7 @@ import { i18n } from "../../../../translations/i18n";
 import { useKeyPress } from "../../../../hooks/useKeyPress";
 import FullScreenWrapper from "../../../../components/FullScreen/chatgtp";
 import { motion } from "framer-motion";
+import { SliderMine } from "./styles";
 
 const MyBook = ({ fullScreen, setFullScreen }) => {
   const [page, setPage] = useState(0);
@@ -226,7 +221,19 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
         </Box>
       )}
       {!mobileRotated && (
-        <Box style={{ position: "absolute", right: 60, top: 20 }}>
+        <Box
+          display='flex'
+          alignItems='center'
+          columnGap={2}
+          style={{
+            position: "absolute",
+            right: 60,
+            top: 10,
+            padding: "5px 5px 5px 5px",
+            border: `solid 2px ${Colors.tealcDark}`,
+            borderRadius: "10px",
+          }}
+        >
           {!zoom ? (
             <ImEyePlus
               size={mobileRotated ? "1em" : "1.5em"}
@@ -236,9 +243,9 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
             />
           ) : (
             <>
-              <Box width={100}>
-                <Typography>{zoomRatio}</Typography>
-                <Slider
+              <Typography>{zoomRatio}</Typography>
+              <Box display='flex' alignItems='center' width='100px'>
+                <SliderMine
                   size='small'
                   defaultValue={0}
                   aria-label='Small'
