@@ -88,7 +88,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
             textAlign='center'
             style={{
               textTransform: "uppercase",
-              fontSize: mobileRotated ? "60px" : "28px",
+              fontSize: mobileRotated || mobile ? "18px" : "28px",
               color: Colors.tealc,
               fontWeight: 700,
               letterSpacing: "3px",
@@ -109,7 +109,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
         {!zoom ? (
           <Box
             ref={mainBox}
-            mt={mobileRotated ? "60px" : fullScreen ? "30px" : "60px"}
+            mt={mobileRotated ? "20px" : fullScreen ? "30px" : "60px"}
             width={width}
             height={height}
             display='flex'
@@ -201,7 +201,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
         >
           <Typography
             color='white'
-            fontSize={mobileRotated ? "60px" : "28px"}
+            fontSize={mobileRotated ? "18px" : "28px"}
             fontWeight={700}
           >
             {i18n.t("modules.books.viewBook.page")} {page + 1}-{page + 2} /{" "}
