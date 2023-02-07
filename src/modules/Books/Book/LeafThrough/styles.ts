@@ -1,16 +1,17 @@
 import { styled } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
+import { Colors } from '../../../../constants/pallette';
 
 export const SliderMine = styled(Slider)({
-  color: '#52af77',
+  color: Colors.tealc,
   height: 8,
   '& .MuiSlider-track': {
     border: 'none',
   },
   '& .MuiSlider-thumb': {
-    height: 24,
-    width: 24,
-    backgroundColor: '#fff',
+    height: 16,
+    width: 16,
+    backgroundColor: Colors.tealc,
     border: '2px solid currentColor',
     '&:focus, &:hover, &.Mui-active, &.Mui-focusVisible': {
       boxShadow: 'inherit',

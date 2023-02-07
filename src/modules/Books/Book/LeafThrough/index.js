@@ -5,7 +5,6 @@ import CardMedia from "../../../../components/CardMedia";
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import { isEven } from "../../../../utils/math";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import { ImEyePlus, ImEyeMinus } from "react-icons/im";
 import { MdFullscreen } from "react-icons/md";
 import { Colors } from "../../../../constants/pallette";
 import { i18n } from "../../../../translations/i18n";
@@ -57,17 +56,34 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fullScreen]);
 
+  // useEffect(() => {
+  //   setZoomRatio(1);
+  // }, [zoom]);
+
   useEffect(() => {
-    setZoomRatio(1);
-  }, [zoom]);
+    if (zoomRatio === 1) {
+      setZoom(false);
+      setTimeout(() => {
+        bookRef.current.pageFlip().turnToPage(page);
+      }, [10]);
+    }
+  }, [zoomRatio]);
 
   const handleMove = (direction) => {
-    if (direction === "left") {
-      bookRef.current.pageFlip().flipPrev();
+    setZoom(false);
+    setZoomRatio(1);
+    setTimeout(() => {
+      bookRef.current.pageFlip().turnToPage(page);
+    }, [20]);
+    setTimeout(() => {
+      if (direction === "left") {
+        bookRef.current.pageFlip().flipPrev();
+        return;
+      }
+      bookRef.current.pageFlip().flipNext();
+
       return;
-    }
-    bookRef.current.pageFlip().flipNext();
-    return;
+    }, [50]);
   };
 
   const ratioWidth = fullScreen ? 0.9 : mobile ? 0.8 : 0.6;
@@ -79,6 +95,8 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
   const widthPage = windowSize.current[0] * ratioWidthPage;
 
   const constraintsRef = useRef(null);
+
+  console.log(zoomRatio);
 
   const renderContent = () => {
     return (
@@ -226,53 +244,30 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
       )}
       {!mobileRotated && (
         <Box
-          display='flex'
-          alignItems='center'
-          columnGap={2}
           style={{
             position: "absolute",
-            right: 60,
-            top: 14,
-            padding: "1px 5px 1px 5px",
-            border: `solid 2px ${Colors.tealcDark}`,
+            right: 50,
+            bottom: 20,
+            zIndex: 3000,
             borderRadius: "10px",
           }}
         >
-          {!zoom ? (
-            <ImEyePlus
-              size={mobileRotated ? "1em" : "1.7em"}
-              color={Colors.tealcDark}
-              style={{ cursor: "pointer" }}
-              onClick={() => setZoom(!zoom)}
+          <Box display='flex' alignItems='center' width='100px'>
+            <SliderMine
+              size='small'
+              value={zoomRatio * 20 - 20}
+              defaultValue={0}
+              aria-label='Small'
+              onChange={(e) => {
+                setZoomRatio(e.target.value / 20 + 1);
+                setZoom(true);
+              }}
             />
-          ) : (
-            <>
-              <Typography>{zoomRatio}</Typography>
-              <Box display='flex' alignItems='center' width='100px'>
-                <SliderMine
-                  size='small'
-                  defaultValue={0}
-                  aria-label='Small'
-                  onChange={(e) => setZoomRatio(e.target.value / 20 + 1)}
-                />
-              </Box>
-              <ImEyeMinus
-                size={mobileRotated ? "1em" : "1.7em"}
-                color={Colors.tealcDark}
-                style={{ cursor: "pointer" }}
-                onClick={() => {
-                  setZoom(!zoom);
-                  setTimeout(() => {
-                    bookRef.current.pageFlip().turnToPage(page);
-                  }, [10]);
-                }}
-              />
-            </>
-          )}
+          </Box>
         </Box>
       )}
 
-      {listImages.length > 1 && !mobileRotated && !zoom && (
+      {listImages.length > 1 && !mobileRotated && (
         <Box
           display='flex'
           justifyContent='space-between'
