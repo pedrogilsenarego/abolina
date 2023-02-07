@@ -17,7 +17,7 @@ import { Colors } from "../../../../constants/pallette";
 import { i18n } from "../../../../translations/i18n";
 import { useKeyPress } from "../../../../hooks/useKeyPress";
 import FullScreenWrapper from "../../../../components/FullScreen/chatgtp";
-import ZoomC from "../../../../components/Zoom";
+import { motion } from "framer-motion";
 
 const MyBook = ({ fullScreen, setFullScreen }) => {
   const [page, setPage] = useState(0);
@@ -78,6 +78,8 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
   const width = windowSize.current[0] * ratioWidth;
   const height = windowSize.current[1] * ratioHeight;
   const widthPage = windowSize.current[0] * ratioWidthPage;
+
+  const constraintsRef = useRef(null);
 
   const renderContent = () => {
     return (
@@ -145,28 +147,48 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
             </HTMLFlipBook>
           </Box>
         ) : (
-          <Box
-            display='flex'
-            mt={mobileRotated ? "60px" : fullScreen ? "30px" : "60px"}
+          <motion.div
+            ref={constraintsRef}
             style={{
-              boxShadow: "0px 10px 30px 10px #00000066",
-              borderRadius: "6px",
+              height: height,
+              width: width,
+              overflow: "hidden",
+              position: "relative",
               cursor: "grabbing",
+              placeContent: "center",
+              placeItems: "center",
+              display: "flex",
+              marginTop: mobileRotated ? "60px" : fullScreen ? "30px" : "60px",
             }}
           >
-            <ZoomC
-              image={listImages[page]}
-              width={widthPage}
-              height={height}
-              zoomScale={zoomRatio}
-            />
-            <ZoomC
-              image={listImages[page + 1]}
-              width={widthPage}
-              height={height}
-              zoomScale={zoomRatio}
-            />
-          </Box>
+            <motion.div
+              drag
+              dragConstraints={constraintsRef}
+              display='flex'
+              style={{
+                height: height * zoomRatio,
+                width: width * zoomRatio,
+                position: "absolute",
+              }}
+            >
+              <img
+                draggable={false}
+                src={listImages[page]}
+                width={widthPage * zoomRatio}
+                height={height * zoomRatio}
+                alt=''
+                style={{ objectFit: "cover" }}
+              />
+              <img
+                draggable={false}
+                alt=''
+                src={listImages[page + 1]}
+                width={widthPage * zoomRatio}
+                height={height * zoomRatio}
+                style={{ objectFit: "cover" }}
+              />
+            </motion.div>
+          </motion.div>
         )}
 
         <Box
