@@ -57,6 +57,10 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fullScreen]);
 
+  useEffect(() => {
+    setZoomRatio(1);
+  }, [zoom]);
+
   const handleMove = (direction) => {
     if (direction === "left") {
       bookRef.current.pageFlip().flipPrev();
@@ -228,15 +232,15 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
           style={{
             position: "absolute",
             right: 60,
-            top: 10,
-            padding: "5px 5px 5px 5px",
+            top: 14,
+            padding: "1px 5px 1px 5px",
             border: `solid 2px ${Colors.tealcDark}`,
             borderRadius: "10px",
           }}
         >
           {!zoom ? (
             <ImEyePlus
-              size={mobileRotated ? "1em" : "1.5em"}
+              size={mobileRotated ? "1em" : "1.7em"}
               color={Colors.tealcDark}
               style={{ cursor: "pointer" }}
               onClick={() => setZoom(!zoom)}
@@ -253,7 +257,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
                 />
               </Box>
               <ImEyeMinus
-                size={mobileRotated ? "1em" : "1.5em"}
+                size={mobileRotated ? "1em" : "1.7em"}
                 color={Colors.tealcDark}
                 style={{ cursor: "pointer" }}
                 onClick={() => {
