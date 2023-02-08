@@ -44,6 +44,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
     if (rightButton) {
       handleMove("right");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [leftButton, rightButton]);
 
   useEffect(() => {
@@ -56,10 +57,6 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fullScreen]);
 
-  // useEffect(() => {
-  //   setZoomRatio(1);
-  // }, [zoom]);
-
   useEffect(() => {
     if (zoomRatio === 1) {
       setZoom(false);
@@ -67,9 +64,12 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
         bookRef.current.pageFlip().turnToPage(page);
       }, [10]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [zoomRatio]);
 
   const handleMove = (direction) => {
+    if (page >= listImages.length / 2 && direction === "right") return;
+    if (page <= 0 && direction === "left") return;
     setZoom(false);
     setZoomRatio(1);
     setTimeout(() => {
@@ -81,7 +81,6 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
         return;
       }
       bookRef.current.pageFlip().flipNext();
-
       return;
     }, [50]);
   };
@@ -95,8 +94,6 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
   const widthPage = windowSize.current[0] * ratioWidthPage;
 
   const constraintsRef = useRef(null);
-
-  console.log(zoomRatio);
 
   const renderContent = () => {
     return (

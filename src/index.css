@@ -1,19 +1,19 @@
 @font-face {
   font-family: "Calibri";
   src: local("Calibri"),
-   url("./assets/fonts/Calibri_Regular.ttf") format("truetype");
+    url("./assets/fonts/Calibri_Regular.ttf") format("truetype");
   font-weight: normal;
-  }
+}
 @font-face {
-    font-family: "Calibri";
-    src: local("Calibri"),
-     url("./assets/fonts/Calibri_Bold.TTF") format("truetype");
-    font-weight: bold;
-    }
+  font-family: "Calibri";
+  src: local("Calibri"),
+    url("./assets/fonts/Calibri_Bold.TTF") format("truetype");
+  font-weight: bold;
+}
 
 body {
   margin: 0;
-  font-family: 'Fira Sans', sans-serif;
+  font-family: "Fira Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f6f7f8;
@@ -21,6 +21,17 @@ body {
   overflow-x: hidden;
   font-size: calc(10px + 2vmin);
   color: #3b3b3b !important;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body:focus {
+  outline: none !important;
 }
 
 code {
