@@ -46,7 +46,7 @@ const Popup = ({
             backgroundColor: "#e4e4e4",
             minWidth: fullScreen ? "100vw" : mobile ? "90vw" : "80vw",
             minHeight: fullScreen ? "100vh" : mobile ? "auto" : "89vh",
-            //boxShadow: "0 -60px 40px 0px #00000066 inset"
+            boxShadow: "0px -50px 50px -20px #00000066 inset"
 
           },
         }}

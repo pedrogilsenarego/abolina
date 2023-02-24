@@ -105,7 +105,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
               textTransform: "uppercase",
               fontSize: mobileRotated || mobile ? "18px" : "28px",
               color: Colors.tealc,
-              fontWeight: 700,
+              fontWeight: 800,
               letterSpacing: "3px",
             }}
           >

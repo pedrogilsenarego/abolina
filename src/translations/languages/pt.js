@@ -83,7 +83,7 @@ export const content = {
             translator: "TRADUTOR",
           },
           viewBook: {
-            page: "Páginas",
+            page: "PÁGINAS",
           },
         },
         admin: {
