@@ -56,8 +56,8 @@ const CardMedia = ({
             backgroundColor: "transparent",
             boxShadow:
               leafShadowPosition === "right"
-                ? "inset 9px 0 30px -7px rgb(0 0 0 / 70%)"
-                : "inset -9px 0 30px -7px rgb(0 0 0 / 70%)",
+                ? "inset 9px -10px 30px -7px rgb(0 0 0 / 70%)"
+                : "inset -9px -10px 30px -7px rgb(0 0 0 / 70%)",
           }}
         ></Box>
       )}
