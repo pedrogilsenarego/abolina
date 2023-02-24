@@ -12,6 +12,7 @@ import { useKeyPress } from "../../../../hooks/useKeyPress";
 import FullScreenWrapper from "../../../../components/FullScreen/chatgtp";
 import { motion } from "framer-motion";
 import { SliderMine } from "./styles";
+import { HiOutlinePlusSm, HiOutlineMinusSm } from "react-icons/hi";
 
 const MyBook = ({ fullScreen, setFullScreen }) => {
   const [page, setPage] = useState(0);
@@ -249,7 +250,8 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
             borderRadius: "10px",
           }}
         >
-          <Box display='flex' alignItems='center' width='100px'>
+          <Box display='flex' alignItems='center' width='180px' columnGap={2}>
+            <HiOutlineMinusSm size='40px' color='white' />
             <SliderMine
               size='small'
               value={zoomRatio * 20 - 20}
@@ -260,6 +262,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
                 setZoom(true);
               }}
             />
+            <HiOutlinePlusSm size='40px' color='white' />
           </Box>
         </Box>
       )}
