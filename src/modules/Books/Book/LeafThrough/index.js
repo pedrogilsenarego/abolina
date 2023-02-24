@@ -86,9 +86,9 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
     }, [50]);
   };
 
-  const ratioWidth = fullScreen ? 0.9 : mobile ? 0.8 : 0.6;
-  const ratioHeight = fullScreen ? 0.9 : mobile ? 0.3 : 0.6;
-  const ratioWidthPage = fullScreen ? 0.45 : mobile ? 0.4 : 0.3;
+  const ratioWidth = fullScreen ? 0.8 : mobile ? 0.8 : 0.6;
+  const ratioHeight = fullScreen ? 0.8 : mobile ? 0.3 : 0.6;
+  const ratioWidthPage = fullScreen ? 0.4 : mobile ? 0.4 : 0.3;
 
   const width = windowSize.current[0] * ratioWidth;
   const height = windowSize.current[1] * ratioHeight;
@@ -125,7 +125,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
         {!zoom ? (
           <Box
             ref={mainBox}
-            mt={mobileRotated ? "20px" : fullScreen ? "30px" : "60px"}
+            mt={mobileRotated ? "20px" : fullScreen ? "80px" : "60px"}
             width={width}
             height={height}
             display='flex'
