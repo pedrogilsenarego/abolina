@@ -217,8 +217,8 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
         >
           <Typography
             color='white'
-            fontSize={mobileRotated ? "18px" : "28px"}
-            fontWeight={700}
+            fontSize={mobileRotated ? "18px" : "22px"}
+            fontWeight='bold'
           >
             {i18n.t("modules.books.viewBook.page")} {page + 1}-{page + 2} /{" "}
             {listImages.length}
@@ -245,13 +245,13 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
           style={{
             position: "absolute",
             right: 50,
-            bottom: 20,
+            bottom: 10,
             zIndex: 3000,
             borderRadius: "10px",
           }}
         >
-          <Box display='flex' alignItems='center' width='180px' columnGap={2}>
-            <HiOutlineMinusSm size='40px' color='white' />
+          <Box display='flex' alignItems='center' width='220px' columnGap={2}>
+            <HiOutlineMinusSm size='60px' color='white' />
             <SliderMine
               size='small'
               value={zoomRatio * 20 - 20}
@@ -262,7 +262,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
                 setZoom(true);
               }}
             />
-            <HiOutlinePlusSm size='40px' color='white' />
+            <HiOutlinePlusSm size='60px' color='white' />
           </Box>
         </Box>
       )}

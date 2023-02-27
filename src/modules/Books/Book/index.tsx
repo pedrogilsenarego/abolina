@@ -28,6 +28,10 @@ const BookC = () => {
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("md"));
 
+  const lang = useSelector<State, string>(
+    (state) => state.general.lang || "PT"
+  );
+
   useEffect(() => {
     dispatch(fetchBook(id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -71,7 +75,7 @@ const BookC = () => {
             align='justify'
             style={{ marginTop: "20px", whiteSpace: "pre-line" }}
           >
-            {book?.resume || ""}
+            {(lang === "PT" ? book?.resume : book?.resumeEN) || ""}
           </Typography>
           <Grid
             container
@@ -83,7 +87,7 @@ const BookC = () => {
               <Tile
                 title={i18n.t("modules.books.book.writer")}
                 name={book?.author || ""}
-                text={book?.authorResume || ""}
+                text={(lang === "PT" ? book?.authorResume : book?.authorResumeEN) || ""}
               />
             </Grid>
             {book?.designer && (
@@ -91,7 +95,7 @@ const BookC = () => {
                 <Tile
                   title={i18n.t("modules.books.book.designer")}
                   name={book?.designer || ""}
-                  text={book?.designerResume || ""}
+                  text={(lang === "PT" ? book?.designerResume : book?.designerResumeEN) || ""}
                 />
               </Grid>
             )}
@@ -100,7 +104,7 @@ const BookC = () => {
                 <Tile
                   title={i18n.t("modules.books.book.translator")}
                   name={book?.translator || ""}
-                  text={book?.translatorResume || ""}
+                  text={(lang === "PT" ? book?.translatorResume : book?.translatorResumeEN) || ""}
                 />
               </Grid>
             )}

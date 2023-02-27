@@ -29,11 +29,15 @@ export interface Book {
   weight: string
   designer: string
   designerResume: string
+  designerResumeEN:string
   translator: string
   translatorResume: string
+  translatorResumeEN:string
   author: string
   authorResume: string
+  authorResumeEN:string
   resume: string
+  resumeEN:string
   language: string
   size: string
   pages:number

@@ -14,14 +14,18 @@ const SubmitBook = () => {
     title: "",
     author: "",
     authorResume: "",
+    authorResumeEN: "",
     designer: "",
     designerResume: "",
+    designerResumeEN: "",
     translator: "",
     translatorResume: "",
+    translatorResumeEN: "",
     language: "",
     weight: "",
     size: "",
     resume: "",
+    resumeEN: "",
     price: null,
     coverPage2: undefined,
     content: [],
@@ -111,6 +115,40 @@ const SubmitBook = () => {
                   />
                 </Box>
               </Grid>
+              <Grid item xs={4}>
+                <Box>
+                  <Textfield
+                    label={`${i18n.t("modules.admin.manageBooks.submitBook.authorResume")} EN`}
+                    name='authorResumeEN'
+                    multiline
+                    rows={6}
+                  />
+                </Box>
+
+              </Grid>
+              <Grid item xs={4}>
+                <Box>
+                  <Textfield
+                    label={`${i18n.t("modules.admin.manageBooks.submitBook.designerResume")} EN`}
+                    name='designerResumeEN'
+                    multiline
+                    rows={6}
+                  />
+                </Box>
+
+              </Grid>
+              <Grid item xs={4}>
+                <Box>
+                  <Textfield
+                    label={`${i18n.t("modules.admin.manageBooks.submitBook.translatorResume")} EN`}
+                    name='trasnlatorResumeEN'
+                    multiline
+                    rows={6}
+                  />
+                </Box>
+
+              </Grid>
+
               <Grid item xs={3}>
                 <Box>
                   <Textfield
@@ -159,6 +197,16 @@ const SubmitBook = () => {
                   <Textfield
                     label={i18n.t("modules.admin.manageBooks.submitBook.resume")}
                     name='resume'
+                    multiline
+                    rows={6}
+                  />
+                </Box>
+              </Grid>
+              <Grid item xs={12}>
+                <Box>
+                  <Textfield
+                    label={`${i18n.t("modules.admin.manageBooks.submitBook.resume")} EN`}
+                    name='resumeEN'
                     multiline
                     rows={6}
                   />
