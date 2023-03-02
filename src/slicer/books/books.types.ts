@@ -25,6 +25,7 @@ export interface Book {
   documentID: string
   coverPage:string;
   title:string
+  titleEN:string
   price: number
   weight: string
   designer: string

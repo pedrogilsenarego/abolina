@@ -15,6 +15,10 @@ const Books = () => {
     (state) => state.books.books.data || []
   );
 
+  const lang = useSelector<State, string>(
+    (state) => state.general.lang || "PT"
+  );
+
   useEffect(() => {
     dispatch(fetchBooks());
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -42,7 +46,7 @@ const Books = () => {
                   >
                     <CardMedia height="300" borderRadius="0px" image={book?.coverPage} />
                     <Box style={{ backgroundColor: "white" }}>
-                      <Typography>{book?.title}</Typography>
+                      <Typography>{(lang === "PT" ? book?.title : book?.titleEN) || ""}</Typography>
                     </Box>
                   </Box>
                 </Grid>

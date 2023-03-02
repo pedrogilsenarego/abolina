@@ -4,6 +4,8 @@ import { i18n } from "../../../../translations/i18n";
 import CollectionBrowser from "./CollectionBrowser";
 import CardMedia from "../../../../components/CardMedia";
 import { Colors } from "../../../../constants/pallette";
+import { useSelector } from "react-redux";
+import { State } from "../../../../slicer/types";
 
 
 interface Props {
@@ -14,6 +16,10 @@ interface Props {
 const Roster = ({ setOpenViewBook, book }: Props) => {
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
+
+  const lang = useSelector<State, string>(
+    (state) => state.general.lang || "PT"
+  );
 
 
   return (
@@ -105,7 +111,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
           fontSize='18px'
           style={{ fontWeight: 700, marginTop: mobile ? "20px" : "0px" }}
         >
-          {book?.title}
+          {(lang === "PT" ? book?.title : book?.titleEN) || ""}
         </GStyled.Title>
 
         <Box

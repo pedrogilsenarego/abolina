@@ -12,6 +12,7 @@ import FileUploader from "../../../../components/Inputs/FileUploader";
 const SubmitBook = () => {
   const INITIAL_FORM_STATE = {
     title: "",
+    titleEN: "",
     author: "",
     authorResume: "",
     authorResumeEN: "",
@@ -58,12 +59,22 @@ const SubmitBook = () => {
             sx={{ mt: "20px" }}
           >
             <Grid container columnSpacing={2} rowSpacing={6}>
-              <Grid item xs={12}>
+              <Grid item xs={6}>
                 <Box style={{ width: "350px" }}>
                   <Textfield
 
                     label={i18n.t("modules.admin.manageBooks.submitBook.title")}
                     name='title'
+                  />
+                </Box>
+
+              </Grid>
+              <Grid item xs={6}>
+                <Box style={{ width: "350px" }}>
+                  <Textfield
+
+                    label={`${i18n.t("modules.admin.manageBooks.submitBook.title")} EN`}
+                    name='titleEN'
                   />
                 </Box>
               </Grid>
