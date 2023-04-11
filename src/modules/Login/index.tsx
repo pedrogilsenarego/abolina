@@ -9,7 +9,6 @@ const Login = () => {
 
   const handleGoogleSigniIn = () => {
     dispatch(googleSignInStart());
-
   };
 
   return (

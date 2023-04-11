@@ -71,17 +71,21 @@ export const routes: AppRoute[] = [
   {
     path: ROUTE_PATHS.ADMIN_BOOKS_CREATE,
     component: (
-      <AdminLayout>
-        <AdminBooksCreate />
-      </AdminLayout>
+      <WithAdminAuth>
+        <AdminLayout>
+          <AdminBooksCreate />
+        </AdminLayout>
+      </WithAdminAuth>
     ),
   },
   {
     path: ROUTE_PATHS.ADMIN_CARROUSEL,
     component: (
-      <AdminLayout>
-        <AdminCarroussel />
-      </AdminLayout>
+      <WithAdminAuth>
+        <AdminLayout>
+          <AdminCarroussel />
+        </AdminLayout>
+      </WithAdminAuth>
     ),
   },
 ];
