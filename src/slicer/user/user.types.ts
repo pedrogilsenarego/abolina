@@ -16,3 +16,13 @@ export const userTypes = {
   SET_PREFERENCES: "SET_PREFERENCES",
   
 }
+
+export interface User {
+  currentUser:CurrentUser
+}
+
+export interface CurrentUser {
+  id:string;
+  email:string
+  userRoles:string[]
+}

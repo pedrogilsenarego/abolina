@@ -23,11 +23,8 @@ export function* getSnapshotFromUserAuthSocialLogin(user, additionalData = {}) {
 }
 
 export function* googleSignIn() {
-  console.log("duh");
   try {
-    console.log("teste");
     const { user } = yield auth.signInWithPopup(GoogleProvider);
-    console.log("teste2");
     yield getSnapshotFromUserAuthSocialLogin(user);
   } catch (err) {
     console.log(err);
