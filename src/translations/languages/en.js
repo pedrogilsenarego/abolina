@@ -36,6 +36,9 @@ export const content = {
         back: "Back",
       },
       modules: {
+        login: {
+          google: "Login with Google",
+        },
         home: {
           mainTextBtn: "READ MORE",
           contacts: {

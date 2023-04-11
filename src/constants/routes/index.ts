@@ -6,4 +6,5 @@ export const ROUTE_PATHS = {
   ADMIN: '/admin',
   ADMIN_CARROUSEL: "/admin/manage-carrousell",
   ADMIN_BOOKS_CREATE: '/admin/books/create',
+  LOGIN:'/login'
 }

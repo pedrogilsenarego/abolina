@@ -32,7 +32,7 @@ export const handleUserProfile = async ({ userAuth, additionalData }) => {
   if (!snapshot.exists) {
     const { displayName, email } = userAuth;
     const timestamp = new Date();
-    const userRoles = ["user", "verified"];
+    const userRoles = ["user"];
 
     try {
       await userRef.set({
@@ -40,10 +40,6 @@ export const handleUserProfile = async ({ userAuth, additionalData }) => {
         email,
         createdDate: timestamp,
         userRoles,
-        userVotes: ["1"],
-        numberVotes: 0,
-        experience: 0,
-        points: 0,
         ...additionalData,
       });
     } catch (err) {

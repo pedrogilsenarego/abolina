@@ -36,6 +36,9 @@ export const content = {
         back: "Voltar",
       },
       modules: {
+        login: {
+          google: "Entrar com o Google",
+        },
         home: {
           mainTextBtn: "LEIA MAIS",
           contacts: {
