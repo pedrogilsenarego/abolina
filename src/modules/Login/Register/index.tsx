@@ -5,12 +5,14 @@ import { i18n } from "../../../translations/i18n";
 import Button from "../../../components/Buttons/ButtonFormik";
 import { Colors } from "../../../constants/pallette";
 import CheckBox from "../../../components/Inputs/CheckBox";
+import { useDispatch } from "react-redux";
+import { signUpUserStart } from "../../../slicer/user/user.actions";
 
-interface FORM {
+export interface FORM {
   email: string;
   password: string;
-  name: string,
-  acceptTerms: boolean
+  name: string;
+  acceptTerms: boolean;
 }
 
 const Register = () => {
@@ -18,10 +20,11 @@ const Register = () => {
     email: "",
     password: "",
     name: "",
-    acceptTerms: false
+    acceptTerms: false,
   };
+  const dispatch = useDispatch();
   const handleSubmit = (values: FORM) => {
-    console.log(values);
+    dispatch(signUpUserStart(values));
   };
   return (
     <div style={{ width: "450px" }}>
@@ -41,7 +44,11 @@ const Register = () => {
               label={i18n.t("modules.login.password")}
               name='password'
             />
-            <CheckBox name="acceptTerms" color={Colors.tealc} label={i18n.t("modules.login.acceptTerms")} />
+            <CheckBox
+              name='acceptTerms'
+              color={Colors.tealc}
+              label={i18n.t("modules.login.acceptTerms")}
+            />
             <Button
               backgroundColor='white'
               color={Colors.tealc}
