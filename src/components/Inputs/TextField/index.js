@@ -14,7 +14,7 @@ const Textfield = ({
   rows = 0,
   ...otherProps
 }) => {
-  const [field, mata] = useField(name ?? "");
+  const [field, meta] = useField(name ?? "");
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => {
@@ -33,13 +33,8 @@ const Textfield = ({
     variant: "outlined",
   };
 
-  if (mata && mata.touched && mata.error) {
-    configTextField.error = true;
-    configTextField.helperText = mata.error;
-  }
-
   if (otherProps.getvalue) {
-    otherProps.getvalue(mata.value);
+    otherProps.getvalue(meta.value);
   }
 
   return (
@@ -78,6 +73,18 @@ const Textfield = ({
               : null
           }
         />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "start",
+            alignItems: "start",
+          }}
+        >
+          {meta.touched && meta.error && (
+            <Typography color='error'>{meta.error}</Typography>
+          )}
+        </div>
       </Box>
     </>
   );

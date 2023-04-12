@@ -8,14 +8,14 @@ import { Colors } from "../../../../constants/pallette";
 interface FORM {
   email: string;
   password: string;
-  name: string
+
 }
 
 const EmailPass = () => {
   const INITIAL_STATE: FORM = {
     email: "",
     password: "",
-    name: ""
+
   };
   const handleSubmit = (values: FORM) => {
     console.log(values);

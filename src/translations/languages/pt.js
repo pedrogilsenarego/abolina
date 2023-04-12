@@ -4,6 +4,7 @@ export const content = {
       forms: {
         required: "Obrigatório",
         fileSize: "O ficheiro tem de ser menos que ",
+        email: "Introduza um e-mail valido",
       },
       topBar: {
         memory: "Memória",
@@ -46,6 +47,8 @@ export const content = {
           email: "E-mail*",
           password: "Palavra-Passe*",
           name: "Nome*",
+          createAccount: "Criar Conta",
+          acceptTerms: "Aceitar os termos e condições",
         },
         home: {
           mainTextBtn: "LEIA MAIS",
