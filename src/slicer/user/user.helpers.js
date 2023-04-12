@@ -1,9 +1,6 @@
 import { firestore } from "../../firebase/utils";
 
-export const handleUserProfileSocialLogin = async ({
-  userAuth,
-  additionalData,
-}) => {
+export const handleUserProfile = async ({ userAuth, additionalData }) => {
   if (!userAuth) return;
   const { uid } = userAuth;
 

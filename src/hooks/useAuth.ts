@@ -1,12 +1,16 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import  checkUserIsAdmin from "../utils/checkUserIsAdmin";
 import { useSelector } from "react-redux";
 import { State } from "../slicer/types";
 import { CurrentUser } from "../slicer/user/user.types";
 import { ROUTE_PATHS } from "../constants/routes";
+import checkUser from "../utils/checkUser";
 
-const useAdminAuth = (props:any) => {
+interface Props {
+  noAuth?:boolean
+}
+
+const useAuth = (props:Props) => {
   const currentUser = useSelector<State, CurrentUser>(
     (state) => state?.user?.currentUser
   );
@@ -14,14 +18,21 @@ const useAdminAuth = (props:any) => {
 	const navigate = useNavigate();
 	useEffect(
 		() => {
-			if (!checkUserIsAdmin(currentUser)) {
-				navigate(ROUTE_PATHS.HOME);
-			}
+      if(props.noAuth) {
+        if (checkUser(currentUser)) {
+          navigate(ROUTE_PATHS.HOME);
+        }
+        
+      }
+      else if (!checkUser(currentUser)) {
+        navigate(ROUTE_PATHS.HOME);
+      }
+			
 		},
 		// eslint-disable-next-line
 		[currentUser]
 	);
-	return currentUser;
+	return props.noAuth? true:currentUser;
 };
 
-export default useAdminAuth;
+export default useAuth;

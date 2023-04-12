@@ -42,7 +42,7 @@ const userReducer = (state = INITIAL_STATE, action:Action) => {
     case userTypes.SIGN_OUT_USER_SUCCESS:
       return {
         ...state,
-        ...INITIAL_STATE,
+        currentUser:null,
       };
     case userTypes.SET_USERS:
       return {

@@ -5,6 +5,7 @@ import { lazyWithRetryAndLoader } from "../utils/lazyWithRetry";
 import MainLayout from "../layouts/MainLayout";
 import AdminLayout from "../layouts/AdminLayout";
 import WithAdminAuth from "../hoc/withAdminAuth";
+import WithAuth from "../hoc/withAuth";
 
 const Home = lazyWithRetryAndLoader(() => import("../modules/Home"));
 const Books = lazyWithRetryAndLoader(() => import("../modules/Books"));
@@ -56,7 +57,11 @@ export const routes: AppRoute[] = [
   },
   {
     path: ROUTE_PATHS.LOGIN,
-    component: <Login />,
+    component: (
+      <WithAuth noAuth>
+        <Login />
+      </WithAuth>
+    ),
   },
   {
     path: ROUTE_PATHS.ADMIN,

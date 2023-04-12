@@ -1,12 +1,13 @@
 import { all, call, takeLatest, put } from "redux-saga/effects";
 import { userTypes } from "./user.types";
-import { signInSuccess } from "./user.actions";
+import { signInSuccess, signOutUserSuccess } from "./user.actions";
 import { GoogleProvider, auth } from "../../firebase/utils";
-import { handleUserProfileSocialLogin } from "./user.helpers";
+import { handleUserProfile } from "./user.helpers";
+import { getCurrentUser } from "../../firebase/utils";
 
-export function* getSnapshotFromUserAuthSocialLogin(user, additionalData = {}) {
+export function* getSnapshotFromUserAuth(user, additionalData = {}) {
   try {
-    const userRef = yield call(handleUserProfileSocialLogin, {
+    const userRef = yield call(handleUserProfile, {
       userAuth: user,
       additionalData,
     });
@@ -18,14 +19,14 @@ export function* getSnapshotFromUserAuthSocialLogin(user, additionalData = {}) {
       })
     );
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 }
 
 export function* googleSignIn() {
   try {
     const { user } = yield auth.signInWithPopup(GoogleProvider);
-    yield getSnapshotFromUserAuthSocialLogin(user);
+    yield getSnapshotFromUserAuth(user);
   } catch (err) {
     console.log(err);
   }
@@ -35,6 +36,37 @@ export function* onGoogleSignInStart() {
   yield takeLatest(userTypes.GOOGLE_SIGN_IN_START, googleSignIn);
 }
 
+export function* signOutUser() {
+  try {
+    yield auth.signOut();
+    yield put(signOutUserSuccess());
+  } catch (err) {
+    // console.log(err);
+  }
+}
+
+export function* onSignOutUserStart() {
+  yield takeLatest(userTypes.SIGN_OUT_USER_START, signOutUser);
+}
+
+export function* isUserAuthenticated() {
+  try {
+    const userAuth = yield getCurrentUser();
+    if (!userAuth) return;
+    yield getSnapshotFromUserAuth(userAuth);
+  } catch (err) {
+    // console.log(err);
+  }
+}
+
+export function* onCheckUserSession() {
+  yield takeLatest(userTypes.CHECK_USER_SESSION, isUserAuthenticated);
+}
+
 export default function* userSagas() {
-  yield all([call(onGoogleSignInStart)]);
+  yield all([
+    call(onGoogleSignInStart),
+    call(onSignOutUserStart),
+    call(onCheckUserSession),
+  ]);
 }
