@@ -37,7 +37,15 @@ export const content = {
       },
       modules: {
         login: {
+          title: "My Account",
+          startSession: "Start Session",
+          register: "Create Account",
           google: "Login with Google",
+          facebook: "Login with Facebook",
+          or: "or",
+          email: "E-mail*",
+          password: "Password*",
+          name: "Name*",
         },
         home: {
           mainTextBtn: "READ MORE",

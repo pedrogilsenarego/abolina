@@ -18,8 +18,8 @@ const Button = ({ label, backgroundColor, borderColor, color }: Props) => {
         style={{
           backgroundColor: backgroundColor || Colors.tealc,
           color: color || "white",
-          border: borderColor ? `solid 1px ${borderColor}` : "auto",
-          borderRadius: "40px",
+          border: borderColor ? `solid 2px ${borderColor}` : "auto",
+          borderRadius: "12px",
           paddingLeft: "20px",
           paddingRight: "20px",
           paddingTop: "10px"
@@ -31,7 +31,8 @@ const Button = ({ label, backgroundColor, borderColor, color }: Props) => {
         }}
       >
         <Typography style={{
-          fontSize: "12px", fontWeight: 700,
+          textTransform: "uppercase",
+          fontSize: "16px", fontWeight: 800,
         }}>
           {label}
         </Typography>
