@@ -39,6 +39,15 @@ export const content = {
         back: "Voltar",
       },
       modules: {
+        cart: {
+          title: "Carrinho de compras",
+          table: {
+            product: "Produto",
+            price: "Preço",
+            quantity: "Quantidade",
+            subtotal: "Subtotal",
+          },
+        },
         login: {
           title: "A minha conta",
           startSession: "Iníciar Sessão",

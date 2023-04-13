@@ -21,6 +21,7 @@ const AdminCarroussel = lazyWithRetryAndLoader(
   () => import("../modules/Admin/ManageCarroussel")
 );
 const Login = lazyWithRetryAndLoader(() => import("../modules/Login"));
+const Cart = lazyWithRetryAndLoader(() => import("../modules/Cart"));
 
 export const routes: AppRoute[] = [
   {
@@ -63,6 +64,16 @@ export const routes: AppRoute[] = [
           <Login />
         </MainLayout>
       </WithAuth>
+    ),
+  },
+  {
+    path: ROUTE_PATHS.CART,
+    component: (
+
+      <MainLayout noUpScroll>
+        <Cart />
+      </MainLayout>
+
     ),
   },
   {
