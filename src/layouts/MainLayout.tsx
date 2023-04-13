@@ -11,7 +11,8 @@ const HomepageLayout = (props: any) => {
 
   return (
     <>
-      <UpScroller />
+      {!props.noUpScroll && (<UpScroller />)}
+
       <Grid
         container
         direction='column'

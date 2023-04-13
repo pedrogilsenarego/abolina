@@ -7,10 +7,13 @@ import { Colors } from "../../../constants/pallette";
 import CheckBox from "../../../components/Inputs/CheckBox";
 import { useDispatch } from "react-redux";
 import { signUpUserStart } from "../../../slicer/user/user.actions";
+import ValidationHelper from "./ValidationHelper";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 export interface FORM {
   email: string;
   password: string;
+  confirmPassword: string;
   name: string;
   acceptTerms: boolean;
 }
@@ -19,6 +22,7 @@ const Register = () => {
   const INITIAL_STATE: FORM = {
     email: "",
     password: "",
+    confirmPassword: "",
     name: "",
     acceptTerms: false,
   };
@@ -26,6 +30,9 @@ const Register = () => {
   const handleSubmit = (values: FORM) => {
     dispatch(signUpUserStart(values));
   };
+  const Theme = useTheme();
+  const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
+
   return (
     <div style={{ width: "450px" }}>
       <Formik
@@ -37,12 +44,18 @@ const Register = () => {
           <div
             style={{ display: "flex", flexDirection: "column", rowGap: "20px" }}
           >
+            <ValidationHelper mobile={mobile} />
             <TextField label={i18n.t("modules.login.name")} name='name' />
             <TextField label={i18n.t("modules.login.email")} name='email' />
             <TextField
               password
               label={i18n.t("modules.login.password")}
               name='password'
+            />
+            <TextField
+              password
+              label={i18n.t("modules.login.confirmPassword")}
+              name='confirmPassword'
             />
             <CheckBox
               name='acceptTerms'

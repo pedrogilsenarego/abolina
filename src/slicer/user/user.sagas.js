@@ -1,7 +1,7 @@
 import { all, call, takeLatest, put } from "redux-saga/effects";
 import { userTypes } from "./user.types";
 import { signInSuccess, signOutUserSuccess } from "./user.actions";
-import { GoogleProvider, auth } from "../../firebase/utils";
+import { FacebookProvider, GoogleProvider, auth } from "../../firebase/utils";
 import { handleUserProfile } from "./user.helpers";
 import { getCurrentUser } from "../../firebase/utils";
 import {
@@ -39,6 +39,19 @@ export function* googleSignIn() {
 
 export function* onGoogleSignInStart() {
   yield takeLatest(userTypes.GOOGLE_SIGN_IN_START, googleSignIn);
+}
+
+export function* facebookSignIn() {
+  try {
+    const { user } = yield auth.signInWithPopup(FacebookProvider);
+    yield getSnapshotFromUserAuth(user);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export function* onFacebookSignInStart() {
+  yield takeLatest(userTypes.FACEBOOK_SIGN_IN_START, facebookSignIn);
 }
 
 export function* signOutUser() {
@@ -105,6 +118,7 @@ export function* onEmailSignInStart() {
 export default function* userSagas() {
   yield all([
     call(onGoogleSignInStart),
+    call(onFacebookSignInStart),
     call(onSignOutUserStart),
     call(onCheckUserSession),
     call(onSignUpUserStart),

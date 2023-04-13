@@ -3,13 +3,17 @@ import { BsGoogle } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa"
 import { i18n } from "../../../translations/i18n";
 import { useDispatch } from "react-redux";
-import { googleSignInStart } from "../../../slicer/user/user.actions";
+import { googleSignInStart, facebookSignInStart } from "../../../slicer/user/user.actions";
 import EmailPass from "./EmailPass";
 
 const Enter = () => {
   const dispatch = useDispatch();
+
   const handleGoogleSigniIn = () => {
     dispatch(googleSignInStart());
+  };
+  const handleFacebookSigniIn = () => {
+    dispatch(facebookSignInStart());
   };
   return (
     <div style={{ display: "flex", flexDirection: "column", rowGap: "40px" }}>
@@ -44,7 +48,7 @@ const Enter = () => {
           </Typography>
         </Button>
         <Button
-
+          onClick={handleFacebookSigniIn}
           style={{
             backgroundColor: "#4267B2",
             color: "#FFFFFF",

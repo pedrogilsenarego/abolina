@@ -5,6 +5,8 @@ export const content = {
         required: "Obrigatório",
         fileSize: "O ficheiro tem de ser menos que ",
         email: "Introduza um e-mail valido",
+        password:
+          "Deve conter 8 Caracteres, uma letra maíuscula, uma letra minúscula, um número e um caracter especial",
       },
       topBar: {
         memory: "Memória",
@@ -46,6 +48,7 @@ export const content = {
           or: "ou",
           email: "E-mail*",
           password: "Palavra-Passe*",
+          confirmPassword: "Confirmar Palavra-Passe*",
           name: "Nome*",
           createAccount: "Criar Conta",
           acceptTerms: "Aceitar os termos e condições",

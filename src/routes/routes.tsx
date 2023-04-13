@@ -59,7 +59,7 @@ export const routes: AppRoute[] = [
     path: ROUTE_PATHS.LOGIN,
     component: (
       <WithAuth noAuth>
-        <MainLayout>
+        <MainLayout noUpScroll>
           <Login />
         </MainLayout>
       </WithAuth>
