@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { signOutUserStart } from "../../../slicer/user/user.actions";
 import { ROUTE_PATHS } from "../../../constants/routes";
 import { useNavigate } from "react-router";
+import { CartProduct } from "../../../slicer/cart/cart.types";
+import { Colors } from "../../../constants/pallette";
 
 const Right = () => {
   const { changeLanguage } = useChangeLang();
@@ -19,6 +21,19 @@ const Right = () => {
   const currentUser = useSelector<State, CurrentUser>(
     (state) => state?.user?.currentUser
   );
+  const cart = useSelector<State, CartProduct[]>(
+    (state) => state?.cart.cartItems
+  );
+
+  function getCartTotal() {
+    let total = 0;
+
+    for (const item of cart) {
+      total += item.value;
+    }
+
+    return total;
+  }
 
   const handleSignOut = () => {
     dispatch(signOutUserStart());
@@ -33,15 +48,44 @@ const Right = () => {
     >
       {!mobile && (
         <>
-          <Grid item style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
+          <Grid
+            item
+            style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
+          >
             <BiUser size='1.5em' color='white' />
           </Grid>
           <Grid
             onClick={() => navigate(ROUTE_PATHS.CART)}
             item
-            style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              cursor: "pointer",
+              position: "relative",
+            }}
           >
             <FiShoppingCart size='1.5em' color='white' />
+            {cart.length !== 0 && (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+
+                  height: "17px",
+                  aspectRatio: 1,
+                  borderRadius: "50%",
+                  backgroundColor: Colors.tealc,
+                  border: "solid 1px white",
+                }}
+              >
+                <Typography
+                  style={{ color: "white", fontSize: "12px", fontWeight: 800 }}
+                >
+                  {getCartTotal()}
+                </Typography>
+              </div>
+            )}
           </Grid>
           <Grid
             item

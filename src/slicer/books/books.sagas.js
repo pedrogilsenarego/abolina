@@ -32,7 +32,7 @@ export function* onFetchBooks() {
 function* sagaFetchBook({ payload }) {
   try {
     const book = yield handleFetchBook(payload);
-    yield put(setBook({ ...book }));
+    yield put(setBook({ ...book, documentID: payload }));
   } catch (err) {}
 }
 

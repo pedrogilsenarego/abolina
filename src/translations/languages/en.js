@@ -106,6 +106,7 @@ export const content = {
             writer: "WRITER",
             designer: "DESIGNER",
             translator: "TRANSLATOR",
+            addToCart: "Add to Cart",
           },
           viewBook: {
             page: "PAGES",
@@ -162,6 +163,7 @@ export const content = {
           newBookStatusChanged: "Book status changed",
           newUser: "You were registered with success",
           loginUser: "You are login",
+          addedCart: "Book added to cart",
         },
         fail: {
           newBook: "Somethng went wrong, the book was not added",

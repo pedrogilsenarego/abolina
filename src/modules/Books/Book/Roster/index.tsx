@@ -4,22 +4,32 @@ import { i18n } from "../../../../translations/i18n";
 import CollectionBrowser from "./CollectionBrowser";
 import CardMedia from "../../../../components/CardMedia";
 import { Colors } from "../../../../constants/pallette";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../../../slicer/types";
+import { FiShoppingCart } from "react-icons/fi";
+import { Book } from "../../../../slicer/books/books.types";
+import { addProductToCart } from "../../../../slicer/cart/cart.actions";
+import { updateSuccessNotification } from "../../../../slicer/general/general.actions";
 
 
 interface Props {
   setOpenViewBook: (openViewBook: boolean) => void;
-  book: any;
+  book: Book;
 }
+
 
 const Roster = ({ setOpenViewBook, book }: Props) => {
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
-
+  const dispatch = useDispatch()
   const lang = useSelector<State, string>(
     (state) => state.general.lang || "PT"
   );
+
+  const handleAddToCart = () => {
+    dispatch(addProductToCart([book]))
+    dispatch(updateSuccessNotification(`${i18n.t("notifications.success.addedCart")}`))
+  }
 
 
   return (
@@ -106,7 +116,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
           </Box>
         </Box>
       </Grid>
-      <Grid item xs={12} md={4} textAlign='start'>
+      <Grid item xs={12} md={4} textAlign='start' style={{ display: "flex", flexDirection: "column", }}>
         <GStyled.Title
           fontSize='18px'
           style={{ fontWeight: 700, marginTop: mobile ? "20px" : "0px" }}
@@ -119,7 +129,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
           flexDirection='row'
           columnGap={1}
           alignItems='center'
-          mt='30px'
+          mt='10px'
         >
           <GStyled.SubTitle style={{ fontWeight: 700 }}>
             {i18n.t("modules.books.book.price")}
@@ -132,7 +142,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
           flexDirection='row'
           columnGap={1}
           alignItems='center'
-          mt='10px'
+
         >
           <GStyled.SubTitle style={{ fontWeight: 700 }}>
             {i18n.t("modules.books.book.text")}
@@ -206,6 +216,12 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
           </GStyled.SubTitle>
           <Typography>{book?.size}</Typography>
         </Box>
+        <div onClick={handleAddToCart} style={{ cursor: "pointer", marginTop: "30px", columnGap: "10px", justifyContent: "center", textAlign: "center", display: "flex", color: "white", backgroundColor: Colors.tealc, borderRadius: "10px", padding: "10px" }}>
+          <FiShoppingCart size='1.5em' color='white' />
+          <Typography fontSize="18px" style={{ textTransform: "uppercase", fontWeight: 800 }}>
+            {i18n.t("modules.books.book.addToCart")}
+          </Typography>
+        </div>
         <Box
           display='flex'
           flexDirection='row'
