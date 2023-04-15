@@ -46,6 +46,9 @@ export const content = {
             price: "Price",
             quantity: "Quantity",
             subtotal: "Subtotal",
+            offerThisBook: "Offer this Book?",
+            offerCode: "A code will be generated",
+            readOnApp: "Read on App",
           },
         },
         login: {

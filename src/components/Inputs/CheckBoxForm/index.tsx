@@ -1,16 +1,16 @@
-
+import { Typography } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
+import { useField } from "formik";
 
 interface Props {
-  label?: JSX.Element;
+  label?: string;
   color?: string;
-  setValue?: (value: boolean) => void
-  value?: boolean
+  name: string;
 }
-const CheckBox = ({ label, color, setValue = () => { }, value = false }: Props) => {
-
+const CheckBox = ({ label, color, name }: Props) => {
+  const [field, meta, helpers] = useField(name ?? "");
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.checked);
+    helpers.setValue(event.target.checked);
   };
 
   return (
@@ -20,11 +20,11 @@ const CheckBox = ({ label, color, setValue = () => { }, value = false }: Props) 
           display: "flex",
           justifyContent: "start",
           alignItems: "center",
-          marginLeft: "-10px"
+          columnGap: "10px",
         }}
       >
         <Checkbox
-          checked={value}
+          checked={field.value}
           onChange={handleChange}
           sx={{
             color: color || "auto",
@@ -33,7 +33,7 @@ const CheckBox = ({ label, color, setValue = () => { }, value = false }: Props) 
             },
           }}
         />
-        {label}
+        <Typography>{label}</Typography>
       </div>
       <div
         style={{
@@ -43,7 +43,9 @@ const CheckBox = ({ label, color, setValue = () => { }, value = false }: Props) 
           alignItems: "start",
         }}
       >
-
+        {meta.touched && meta.error && (
+          <Typography color='error'>{meta.error}</Typography>
+        )}
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import TextField from "../../../components/Inputs/TextField";
 import { i18n } from "../../../translations/i18n";
 import Button from "../../../components/Buttons/ButtonFormik";
 import { Colors } from "../../../constants/pallette";
-import CheckBox from "../../../components/Inputs/CheckBox";
+import CheckBox from "../../../components/Inputs/CheckBoxForm";
 import { useDispatch } from "react-redux";
 import { signUpUserStart } from "../../../slicer/user/user.actions";
 import ValidationHelper from "./ValidationHelper";
