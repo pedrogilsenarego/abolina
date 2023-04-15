@@ -43,6 +43,8 @@ export const content = {
           title: "Carrinho de compras",
           discountCuppon: "Cupão de disconto",
           applyDiscount: "Aplicar",
+          total: "Total:",
+          finalize: "Finalizar",
           table: {
             product: "Produto",
             price: "Preço",

@@ -8,11 +8,14 @@ import { CartProduct } from "../../slicer/cart/cart.types";
 import Element from "./Element";
 import TextField from "../../components/Inputs/TextField";
 import Button from "../../components/Buttons/Button";
+import { useState } from "react";
+import { getTotalValue } from "./Utils";
 
 const Cart = () => {
   const cartItems = useSelector<State, CartProduct[]>(
     (state) => state.cart.cartItems
   );
+
   return (
     <Container maxWidth='lg'>
       <Typography
@@ -94,15 +97,44 @@ const Cart = () => {
         </Grid>
       </Grid>
       {cartItems?.map((item, pos) => {
-        return (
-          <Element item={item} pos={pos} />
-        );
+        return <Element item={item} pos={pos} />;
       })}
-      <div style={{ display: "flex", justifyContent: "space-between", marginTop: "50px" }}>
-        <div style={{ display: "flex", columnGap: "20px", alignItems: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginTop: "50px",
+        }}
+      >
+        <div
+          style={{ display: "flex", columnGap: "20px", alignItems: "center" }}
+        >
           <TextField label={i18n.t("modules.cart.discountCuppon")} />
           <Button label={i18n.t("modules.cart.applyDiscount")} />
         </div>
+        <div style={{ display: "flex", columnGap: "20px" }}>
+          <Typography
+            style={{
+              fontSize: "18px",
+              fontWeight: 800,
+              color: Colors.tealc,
+
+            }}
+          >
+            {i18n.t("modules.cart.total")}
+          </Typography>
+          <Typography style={{
+            fontSize: "18px",
+            fontWeight: 800,
+            color: Colors.tealc,
+
+          }}>
+            €{getTotalValue(cartItems)}
+          </Typography>
+        </div>
+      </div>
+      <div style={{ width: "100%", display: "flex", justifyContent: "end" }}>
+        <Button label={i18n.t("modules.cart.finalize")} />
       </div>
     </Container>
   );
