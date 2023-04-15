@@ -19,7 +19,7 @@ const Button = ({ label, backgroundColor, borderColor, color }: Props) => {
           backgroundColor: backgroundColor || Colors.tealc,
           color: color || "white",
           border: borderColor ? `solid 2px ${borderColor}` : "auto",
-          borderRadius: "12px",
+          borderRadius: "6px",
           paddingLeft: "20px",
           paddingRight: "20px",
           paddingTop: "10px"

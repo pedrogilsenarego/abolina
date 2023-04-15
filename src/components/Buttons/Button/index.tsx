@@ -14,13 +14,13 @@ const Button = ({ label, onClick, borderRadius }: Props) => {
         style={{
           backgroundColor: Colors.tealc,
           color: "white",
-          borderRadius: borderRadius || "40px",
+          borderRadius: borderRadius || "6px",
           paddingLeft: "20px",
           paddingRight: "20px",
         }}
         onClick={onClick}
       >
-        <Typography style={{ fontSize: "12px", fontWeight: 700 }}>
+        <Typography style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase" }}>
           {label}
         </Typography>
       </MuiButton>

@@ -6,6 +6,8 @@ import { State } from "../../slicer/types";
 import { CartProduct } from "../../slicer/cart/cart.types";
 
 import Element from "./Element";
+import TextField from "../../components/Inputs/TextField";
+import Button from "../../components/Buttons/Button";
 
 const Cart = () => {
   const cartItems = useSelector<State, CartProduct[]>(
@@ -96,6 +98,12 @@ const Cart = () => {
           <Element item={item} pos={pos} />
         );
       })}
+      <div style={{ display: "flex", justifyContent: "space-between", marginTop: "50px" }}>
+        <div style={{ display: "flex", columnGap: "20px", alignItems: "center" }}>
+          <TextField label={i18n.t("modules.cart.discountCuppon")} />
+          <Button label={i18n.t("modules.cart.applyDiscount")} />
+        </div>
+      </div>
     </Container>
   );
 };

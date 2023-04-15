@@ -10,6 +10,7 @@ import Snackbar from "./components/SnackBar";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { checkUserSession } from "./slicer/user/user.actions";
+import { Colors } from "./constants/pallette";
 
 const theme = createTheme({
   typography: {
@@ -17,7 +18,7 @@ const theme = createTheme({
       fontFamily: 'Calibri',
       textTransform: 'none',
       fontSize: 16,
-      caretColor: "transparent"
+      caretColor: Colors.tealc
     },
   },
 });

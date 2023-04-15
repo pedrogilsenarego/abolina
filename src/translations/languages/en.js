@@ -41,6 +41,8 @@ export const content = {
       modules: {
         cart: {
           title: "Shopping Cart",
+          discountCuppon: "Discount Cuppon",
+          applyDiscount: "Apply",
           table: {
             product: "Product",
             price: "Price",

@@ -1,7 +1,7 @@
 import * as GStyled from "../../../../styles";
 import { i18n } from "../../../../translations/i18n";
 import { Container, Box } from "@mui/material";
-import Textfield from "../../../../components/Inputs/TextField";
+import Textfield from "../../../../components/Inputs/TextFieldForm";
 import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
 import ButtonForm from "../../../../components/Buttons/ButtonFormik";
