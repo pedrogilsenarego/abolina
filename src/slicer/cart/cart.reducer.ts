@@ -27,7 +27,7 @@ const cartReducer = (state = INITIAL_STATE, action: Action) => {
           (item, id) => item.product.documentID !== action.payload
         ),
       };
-      case cartTypes.CHANGE_VALUE:
+      case cartTypes.UPDATE_CART:
         const { id, value } = action.payload;
         return {
           ...state,

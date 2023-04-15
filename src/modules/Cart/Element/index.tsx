@@ -7,6 +7,8 @@ import { i18n } from "../../../translations/i18n"
 import { CgSmartphone } from "react-icons/cg"
 import Incrementor from "../../../components/Incrementor"
 import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { deleteProductCart, updateCart } from "../../../slicer/cart/cart.actions"
 
 interface Props {
   item: CartProduct
@@ -14,11 +16,16 @@ interface Props {
 }
 
 const Element = ({ item, pos }: Props) => {
-  const [subtotal, setSubtotal] = useState<number>(item.value * item.product.price)
+
   const [forOffer, setForOffer] = useState<boolean>(false)
+  const dispatch = useDispatch()
 
   const handleUpdateSubtotal = (value: number) => {
-    setSubtotal(value * item.product.price)
+    dispatch(updateCart(value, item.product.documentID));
+  }
+
+  const handleDeleteCartProduct = () => {
+    dispatch(deleteProductCart(item.product.documentID))
   }
 
   return (
@@ -41,7 +48,7 @@ const Element = ({ item, pos }: Props) => {
           justifyContent: "center",
         }}
       >
-        <AiOutlineClose size='1.5rem' color='black' />
+        <AiOutlineClose style={{ cursor: "pointer" }} onClick={handleDeleteCartProduct} size='1.5rem' color='black' />
       </Grid>
       <Grid
         item
@@ -121,10 +128,10 @@ const Element = ({ item, pos }: Props) => {
         <Typography>€{item?.product?.price}</Typography>
       </Grid>
       <Grid item xs={2} style={{ display: "flex", alignItems: "center" }}>
-        <Incrementor initialValue={item.value} updateValue={handleUpdateSubtotal} />
+        <Incrementor key={item.product.documentID} initialValue={item.value} updateValue={handleUpdateSubtotal} />
       </Grid>
       <Grid item xs={2} style={{ display: "flex", alignItems: "center", justifyContent: "end" }}>
-        <Typography>€{subtotal}</Typography>
+        <Typography>€{item.value * item.product.price}</Typography>
       </Grid>
     </Grid>
   )

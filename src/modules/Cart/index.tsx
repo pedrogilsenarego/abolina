@@ -8,7 +8,6 @@ import { CartProduct } from "../../slicer/cart/cart.types";
 import Element from "./Element";
 import TextField from "../../components/Inputs/TextField";
 import Button from "../../components/Buttons/Button";
-import { useState } from "react";
 import { getTotalValue } from "./Utils";
 
 const Cart = () => {

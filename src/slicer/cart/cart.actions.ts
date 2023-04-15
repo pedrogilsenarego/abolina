@@ -18,11 +18,6 @@ export const deleteProductCart = (id:string) => ({
   payload:id
 })
 
-export const changeValueProductCart = (value:number,id:string) =>({
-type:cartTypes.CHANGE_VALUE,
-payload:{value,id}
-})
-
 
 export const clearCart = () => ({
   type: cartTypes.CLEAR_CART
