@@ -8,4 +8,5 @@ export const ROUTE_PATHS = {
   ADMIN_BOOKS_CREATE: '/admin/books/create',
   LOGIN:'/login',
   CART:"/cart",
+  PRIVACY_POLICY:"/privacy-policy"
 }

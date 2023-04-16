@@ -1,5 +1,4 @@
 import * as Styled from "./styles";
-import { useState } from "react";
 import { Typography, Box } from "@mui/material";
 
 const Textfield = ({

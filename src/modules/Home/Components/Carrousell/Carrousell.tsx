@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Box, Container, useMediaQuery, useTheme } from "@mui/material";
 import { Colors } from "../../../../constants/pallette";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCarroussell } from "../../../../slicer/books/books.actions";
 import { State } from "../../../../slicer/types";
@@ -21,7 +20,6 @@ const Carrousell = () => {
   const [hover, setHover] = useState<boolean>(false);
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
-  const Navigate = useNavigate();
   const dispatch = useDispatch();
   const IMAGE_HEIGHT_MOBILE = "25vh";
   const IMAGE_HEIGHT_LAPTOP = "20vh";

@@ -12,7 +12,8 @@ const generalTypes = {
   REMOVE_LAST_ENDPOINT: "REMOVE_LAST_ENDPOINT",
   UPDATE_LANG: "UPDATE_LANG",
   SCROLL_CONTACTS: "SCROLL_CONTACTS",
-  PAGINATION_MANAGE_BOOKS: "PAGINATION_MANAGE_BOOKS"
+  PAGINATION_MANAGE_BOOKS: "PAGINATION_MANAGE_BOOKS",
+  SET_COOKIE_POLICY: "SET_COOKIE_POLICY",
 };
 
 export interface GeneralState {
@@ -20,6 +21,7 @@ export interface GeneralState {
   scrollToContacts: boolean
   paginationManageBooks: Pagination
   lastEndpoint: string
+  cookiePolicy:boolean
 
 }
 

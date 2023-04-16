@@ -61,3 +61,5 @@ export interface DeleteProps {
     type: bookTypes.DELETE_BOOK,
     payload: payload,
   });
+
+  

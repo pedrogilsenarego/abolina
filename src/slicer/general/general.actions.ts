@@ -69,4 +69,7 @@ export const updatePaginationManageBooks = (filters:any) => ({
   payload: filters
 })
 
-
+export const setCookiePolicy = (signal:boolean) => ({
+  type: generalTypes.SET_COOKIE_POLICY,
+  payload: signal
+})

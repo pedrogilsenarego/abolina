@@ -1,6 +1,14 @@
 export const content = {
   en: {
     translations: {
+      cookiePolicy: {
+        acceptTerms: "Accept Cookies",
+        mainText:
+          "This website obtains information exclusively to increase the user experience. Visit our ",
+
+        secondText: " for more information",
+        cookiePolicy: "Cookie Policy",
+      },
       forms: {
         required: "Required",
         fileSize: "The file must be under ",

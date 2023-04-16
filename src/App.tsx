@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { checkUserSession } from "./slicer/user/user.actions";
 import { Colors } from "./constants/pallette";
+import CookiePolicy from "./presentational/CookiePopup";
 
 const theme = createTheme({
   typography: {
@@ -39,6 +40,7 @@ function App() {
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <StyledEngineProvider injectFirst>
+          <CookiePolicy />
           <Snackbar />
           <CssBaseline />
           <ScrollToTop />
