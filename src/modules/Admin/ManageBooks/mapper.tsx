@@ -10,6 +10,7 @@ const mapBookItem = (book: Book, pos: number) => {
   return {
     id: pos,
     title: book.title,
+    createdDate: book.createdDate,
     newBook: [
       {
         buttonType: "toggle",
@@ -39,7 +40,22 @@ const mapBookItem = (book: Book, pos: number) => {
         buttonType: "icon",
         event: "delete",
         icon: deleteIcon,
-        label: "Remove this watch",
+        label: i18n.t(
+          "modules.admin.manageBooks.tableList.delete.tooltip"
+        ),
+        confirmationButtonLabel: i18n.t(
+          "modules.admin.manageBooks.tableList.delete.accept"
+        ),
+        declineButtonLabel: i18n.t(
+          "modules.admin.manageBooks.tableList.delete.deny"
+        ),
+        confirmationDescription: i18n.t(
+          "modules.admin.manageBooks.tableList.delete.confirmationDescription"
+        ),
+        confirmationRequired: true,
+        confirmationTitle: i18n.t(
+          "modules.admin.manageBooks.tableList.delete.confirmationTitle"
+        ),
       },
     ],
   };

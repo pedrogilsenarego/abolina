@@ -16,6 +16,14 @@ export const tableColumns =
     sortable: false,
   },
   {
+    id: "createdDate",
+    label: i18n.t(
+      "modules.admin.manageBooks.tableList.createdDate"
+    ),
+    type: ColumnType.Date,
+    sortable: false,
+  },
+  {
     id: "newBook",
     label: i18n.t(
       "modules.admin.manageBooks.tableList.newBook.title"
@@ -23,12 +31,12 @@ export const tableColumns =
     type: ColumnType.ActionComponent,
     sortable: false,
   },
-  // {
-  //   id: 'delete',
-  //   label: 'Remove',
-  //   type: ColumnType.ActionComponent,
-  //   minWidth: 70,
-  //   sortable: false,
-  // },
+  {
+    id: 'delete',
+    label: 'Remove',
+    type: ColumnType.ActionComponent,
+    minWidth: 70,
+    sortable: false,
+  },
 
 ]

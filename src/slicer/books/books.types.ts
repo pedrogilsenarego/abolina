@@ -10,7 +10,8 @@ const bookTypes = {
   FETCH_CARROUSSELL: "FETCH_CARROUSSELL",
   SET_CARROUSSELL: "SET_CARROUSSELL",
   UPDATE_CARROUSELL: "UPDATE_CARROUSSELL",
-  ADD_NEW_IMAGE_CARROUSSELL: "ADD_NEW_IMAGE_CARROUSSELL"
+  ADD_NEW_IMAGE_CARROUSSELL: "ADD_NEW_IMAGE_CARROUSSELL",
+  DELETE_BOOK:"DELETE_BOOK"
 }
 
 export interface Books {
@@ -44,6 +45,7 @@ export interface Book {
   pages:number
   content: string[]
   newBook?: boolean
+  createdDate?: Date;
 }
 
 export default bookTypes

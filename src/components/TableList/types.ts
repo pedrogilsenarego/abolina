@@ -5,7 +5,8 @@ export enum ColumnType {
   Chip,
   CheckBox,
   Image,
-  Rating
+  Rating,
+  Select
 }
 
 export enum ClickType {

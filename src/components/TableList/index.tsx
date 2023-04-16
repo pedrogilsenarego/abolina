@@ -20,7 +20,7 @@ interface Props<T> {
   onCheckBoxChangeAll?: (checked: boolean) => void;
   selectedOptions?: number[];
   loading?: boolean;
-  onAction: (type: string, id: number) => void;
+  onAction: (type: string, id: number, value?: any) => void;
   onCheckBoxChange?: (data: any) => void;
 }
 
@@ -47,6 +47,8 @@ const TableList = <T extends BaseProps>({
       selectedOptions,
       onCheckBoxChange,
     });
+
+
 
   const renderHeadCell = (column: Column) => {
     if (

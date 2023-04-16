@@ -10,6 +10,8 @@ import {
   handleAddCarroussellImage,
   handleDeleteCarroussellStorage,
   handleUpdateNewBookStatus,
+  handleDeleteBook,
+  handleDeleteBookStorage,
 } from "./books.helpers";
 import bookTypes from "./books.types";
 import {
@@ -150,6 +152,28 @@ export function* onNewImageCarroussell() {
   );
 }
 
+function* sagaDeleteBook({ payload }) {
+  try {
+    yield handleDeleteBook(payload.documentID);
+    yield handleDeleteBookStorage(payload.title);
+    yield put(fetchBooks());
+
+    yield put(
+      updateSuccessNotification(
+        i18n.t("notifications.success.updateCarroussell")
+      )
+    );
+  } catch (err) {
+    yield put(
+      updateFailNotification(i18n.t("notifications.fail.updateCarroussell"))
+    );
+  }
+}
+
+export function* onDeleteBook() {
+  yield takeLatest(bookTypes.DELETE_BOOK, sagaDeleteBook);
+}
+
 //
 
 export default function* bookSagas() {
@@ -161,5 +185,6 @@ export default function* bookSagas() {
     call(onFetchCarroussell),
     call(onUpdateCarroussell),
     call(onNewImageCarroussell),
+    call(onDeleteBook),
   ]);
 }

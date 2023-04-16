@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { fetchBooks, updateNewBookStatus } from "../../../slicer/books/books.actions";
+import { deleteBook, fetchBooks, updateNewBookStatus } from "../../../slicer/books/books.actions";
 import { useEffect } from "react";
 
 interface Props {
@@ -21,6 +21,15 @@ const useList = ({tableData}:Props) => {
         const signal = tableData[id].newBook ?? true
         const payload = {signal: !signal, documentID: tableData[id].documentID}
         dispatch(updateNewBookStatus(payload))
+        break;
+      }
+      case "delete": {
+        const payload = {
+          documentID: tableData[id].documentID,
+          title: tableData[id].title
+        };
+        
+        dispatch(deleteBook(payload));
         break;
       }
       default:

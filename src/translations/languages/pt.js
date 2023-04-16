@@ -144,6 +144,7 @@ export const content = {
             },
             tableList: {
               title: "Título Livro",
+              createdDate: "Data",
               newBook: {
                 title: "Novo Livro?",
                 accept: "Prosseguir",
@@ -152,6 +153,15 @@ export const content = {
                   "Tem a certeza que quer mudar o estado deste livro?",
                 confirmationTitle: "Mudar o estado do livro",
                 tooltip: "Novo Livro (estado)",
+              },
+              delete: {
+                title: "Apagar",
+                accept: "Confirmar",
+                deny: "Cancelar",
+                confirmationDescription:
+                  "Tem a certeza que quer apagar este livro?",
+                confirmationTitle: "Apagar Livro",
+                tooltip: "Apagar Livro",
               },
             },
           },

@@ -143,6 +143,7 @@ export const content = {
             },
             tableList: {
               title: "Title Book",
+              createdDate: "Date",
               newBook: {
                 title: "New Book?",
                 accept: "Yes",
@@ -151,6 +152,15 @@ export const content = {
                   "Are you sure you want to change the status of this book?",
                 confirmationTitle: "Change status of new Book",
                 tooltip: "New Book status",
+              },
+              delete: {
+                title: "Delete",
+                accept: "Yes",
+                deny: "Cancel",
+                confirmationDescription:
+                  "Are you sure you want to delete this book?",
+                confirmationTitle: "Delete Book",
+                tooltip: "Delete book",
               },
             },
           },

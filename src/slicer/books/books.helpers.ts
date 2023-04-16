@@ -227,4 +227,43 @@ export const handleDeleteCarroussellStorage = async (list:string[]) => {
   
 };
 
+export const handleDeleteBook = (documentID: string) => {
+  return new Promise<void>((resolve, reject) => {
+    firestore
+      .collection("books")
+      .doc(documentID)
+      .delete()
+      .then(() => {
+        resolve();
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+
+
+export const handleDeleteBookStorage = async (title: string): Promise<void> => {
+  // Define folderPath
+  const folderPath = `books/${title}/`;
+
+  const storageRef = storage.ref();
+  const listRef = storageRef.child(folderPath);
+
+  // Find all the prefixes and items.
+  listRef
+    .listAll()
+    .then(async (res) => {
+      // Process all the items under listRef
+      const deletePromises: Promise<void>[] = res.items.map((itemRef) => itemRef.delete());
+      await Promise.all(deletePromises);
+      console.log('Folder deleted successfully');
+    })
+    .catch((error) => {
+      // Uh-oh, an error occurred!
+      console.error('Error deleting folder:', error);
+    });
+};
+
 
