@@ -4,15 +4,10 @@ import Footer from "../presentational/Footer";
 import TopBar from "../presentational/TopBar";
 import { Grid } from "@mui/material";
 
-
-
 const HomepageLayout = (props: any) => {
-
-
   return (
     <>
-      {!props.noUpScroll && (<UpScroller />)}
-
+      {!props.noUpScroll && <UpScroller />}
       <Grid
         container
         direction='column'

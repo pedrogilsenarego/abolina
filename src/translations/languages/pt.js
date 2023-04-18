@@ -179,6 +179,8 @@ export const content = {
           newCarrousselImage: "Foi adicionada uma nova imagem ao carrousel",
           newBookStatusChanged: "Estado do livro foi alterado",
           newUser: "O seu usuário foi registado com sucesso",
+          newUserEmailPassword:
+            "Por favor visite o seu email para verificar o seu e-mail",
           loginUser: "Esta logado",
           addedCart: "Livro adicionado ao carrinho",
         },
@@ -188,6 +190,9 @@ export const content = {
           newCarrousselImage: "Não foi adicionada uma nova imagem ao carrousel",
           newBookStatusChanged: "Estado do livro não foi alterado",
           newUser: "Alguma coisa correu mal",
+
+          emailNotVerified:
+            "Por favor verifique primeiro a sua conta antes de fazer o login",
         },
       },
     },

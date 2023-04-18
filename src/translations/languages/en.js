@@ -187,6 +187,7 @@ export const content = {
           newCarrousselImage: "New image was added to the carroussell",
           newBookStatusChanged: "Book status changed",
           newUser: "You were registered with success",
+          newUserEmailPassword: "Please visit your email to verify your e-mail",
           loginUser: "You are login",
           addedCart: "Book added to cart",
         },
@@ -196,7 +197,10 @@ export const content = {
           newCarrousselImage: "New image failed to be added to the carroussell",
           newBookStatusChanged: "Book status failed to change",
           newUser: "You were not registered this time",
+
           loginUser: "Something went wrong",
+          emailNotVerified:
+            "Please verify first your email to login with your account",
         },
       },
     },

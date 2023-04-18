@@ -33,7 +33,12 @@ const CheckBox = ({ label, color, name }: Props) => {
             },
           }}
         />
-        <Typography>{label}</Typography>
+        <Typography
+          style={{ cursor: "pointer" }}
+          onClick={() => helpers.setValue(!field.value)}
+        >
+          {label}
+        </Typography>
       </div>
       <div
         style={{

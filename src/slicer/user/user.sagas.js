@@ -71,9 +71,18 @@ export function* isUserAuthenticated() {
   try {
     const userAuth = yield getCurrentUser();
     if (!userAuth) return;
-    yield getSnapshotFromUserAuth(userAuth);
+
+    if (userAuth.emailVerified) {
+      // If the user's email is verified, proceed with your app's logic.
+      yield getSnapshotFromUserAuth(userAuth);
+    } else {
+      // If the user's email is not verified, handle it accordingly (e.g., show an alert, log it, or dispatch an action).
+      console.log("Email is not verified");
+      // You can dispatch an action to update your app state
+      // yield put({ type: 'EMAIL_NOT_VERIFIED' });
+    }
   } catch (err) {
-    // console.log(err);
+    console.error(err);
   }
 }
 
@@ -83,12 +92,16 @@ export function* onCheckUserSession() {
 
 export function* signUpUser({ payload: { name, email, password } }) {
   try {
-    const { user } = yield auth.createUserWithEmailAndPassword(email, password);
-    //yield auth.currentUser.sendEmailVerification();
-    const additionalData = { displayName: name };
-    yield getSnapshotFromUserAuth(user, additionalData);
+    yield auth.createUserWithEmailAndPassword(email, password);
+    //const { user } = yield auth.createUserWithEmailAndPassword(email, password);
+    yield auth.currentUser.sendEmailVerification();
+    //const additionalData = { displayName: name };
+    // this would login imiddiatle the user
+    //yield getSnapshotFromUserAuth(user, additionalData);
     yield put(
-      updateSuccessNotification(i18n.t("notifications.success.newUser"))
+      updateSuccessNotification(
+        i18n.t("notifications.success.newUserEmailPassword")
+      )
     );
   } catch (err) {
     yield put(updateFailNotification(i18n.t("notifications.fail.newUser")));
@@ -102,12 +115,24 @@ export function* onSignUpUserStart() {
 export function* emailSignIn({ payload: { email, password } }) {
   try {
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
-    yield getSnapshotFromUserAuth(user);
-    yield put(
-      updateSuccessNotification(i18n.t("notifications.success.loginUser"))
-    );
+
+    if (user.emailVerified) {
+      yield getSnapshotFromUserAuth(user);
+      yield put(
+        updateSuccessNotification(i18n.t("notifications.success.loginUser"))
+      );
+    } else {
+      yield put(
+        updateFailNotification(i18n.t("notifications.fail.emailNotVerified"))
+      );
+    }
   } catch (err) {
-    yield put(updateFailNotification(i18n.t("notifications.fail.loginUser")));
+    console.log(err);
+    if (err) yield put(updateFailNotification(`${err.message}`));
+    else
+      yield put(
+        updateFailNotification(`${i18n.t("notifications.fail.loginUser")}`)
+      );
   }
 }
 

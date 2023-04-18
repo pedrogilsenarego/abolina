@@ -9,6 +9,8 @@ import { useDispatch } from "react-redux";
 import { signUpUserStart } from "../../../slicer/user/user.actions";
 import ValidationHelper from "./ValidationHelper";
 import { useMediaQuery, useTheme } from "@mui/material";
+import { ROUTE_PATHS } from "../../../constants/routes";
+import { useNavigate } from "react-router";
 
 export interface FORM {
   email: string;
@@ -19,6 +21,7 @@ export interface FORM {
 }
 
 const Register = () => {
+  const navigate = useNavigate()
   const INITIAL_STATE: FORM = {
     email: "",
     password: "",
@@ -29,6 +32,7 @@ const Register = () => {
   const dispatch = useDispatch();
   const handleSubmit = (values: FORM) => {
     dispatch(signUpUserStart(values));
+    navigate(ROUTE_PATHS.HOME)
   };
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));

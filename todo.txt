@@ -1,0 +1,1 @@
+erro quando se tenta inserir pwd que ja existe
