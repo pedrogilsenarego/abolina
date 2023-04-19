@@ -1,6 +1,15 @@
 export const content = {
   pt: {
     translations: {
+      cookiePolicy: {
+        title: "Utilização de Cookies",
+        acceptTerms: "Aceitar Cookies",
+        mainText:
+          "This website obtains information exclusively to increase the user experience. Visit our ",
+
+        secondText: " for more information",
+        cookiePolicy: "Cookie Policy",
+      },
       forms: {
         required: "Obrigatório",
         fileSize: "O ficheiro tem de ser menos que ",

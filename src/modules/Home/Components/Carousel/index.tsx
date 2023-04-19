@@ -109,13 +109,13 @@ const Carousel = () => {
             style={{
               width: "62vw",
               position: "absolute",
-              left: "18.5vw",
+              left: "19vw",
               bottom: "45%",
               zIndex: 1000,
             }}
           >
             <FiChevronLeft
-              size='3em'
+              size='3rem'
 
               color={Colors.tealc}
               style={{ cursor: "pointer" }}
@@ -124,7 +124,7 @@ const Carousel = () => {
             />
 
             <FiChevronRight
-              size='3em'
+              size='3rem'
               color={Colors.tealc}
               style={{ cursor: "pointer" }}
               onClick={() => handleMove("right")}

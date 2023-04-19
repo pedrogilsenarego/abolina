@@ -52,7 +52,7 @@ const Right = () => {
             item
             style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
           >
-            <BiUser size='1.5em' color='white' />
+            <BiUser size='1.5rem' color='white' />
           </Grid>
           <Grid
             onClick={() => navigate(ROUTE_PATHS.CART)}
@@ -64,7 +64,7 @@ const Right = () => {
               position: "relative",
             }}
           >
-            <FiShoppingCart size='1.5em' color='white' />
+            <FiShoppingCart size='1.5rem' color='white' />
             {cart.length !== 0 && (
               <div
                 style={{

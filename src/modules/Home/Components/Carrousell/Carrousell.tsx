@@ -103,13 +103,13 @@ const Carrousell = () => {
             }}
           >
             <FiChevronLeft
-              size='3em'
+              size='3rem'
               color={Colors.tealc}
               style={{ cursor: "pointer" }}
               onClick={handleGoLeft}
             />
             <FiChevronRight
-              size='3em'
+              size='3rem'
               color={Colors.tealc}
               style={{ cursor: "pointer" }}
               onClick={handleGoRight}

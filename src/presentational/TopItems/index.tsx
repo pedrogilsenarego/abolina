@@ -28,7 +28,7 @@ const TopItems = () => {
         width: "100%",
         transition: "transform 0.5s ease-in-out",
         transform: navbarVisible ? "translateY(0%)" : "translateY(-100%)",
-        zIndex: 3000,
+        zIndex: 1000,
         backgroundColor: "white"
       }}
     >

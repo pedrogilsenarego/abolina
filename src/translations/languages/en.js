@@ -2,6 +2,7 @@ export const content = {
   en: {
     translations: {
       cookiePolicy: {
+        title: "Cookie Policy",
         acceptTerms: "Accept Cookies",
         mainText:
           "This website obtains information exclusively to increase the user experience. Visit our ",

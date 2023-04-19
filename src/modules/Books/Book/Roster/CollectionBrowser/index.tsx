@@ -23,7 +23,7 @@ const CollectionBrowser = ({ title, handleRight, handleLeft }: Props) => {
         alignItems='center'
       >
         <FiChevronLeft
-          size='2em'
+          size='2rem'
           color='white'
           onClick={() => (handleLeft ? handleLeft() : null)}
         />
@@ -42,7 +42,7 @@ const CollectionBrowser = ({ title, handleRight, handleLeft }: Props) => {
         alignItems='center'
       >
         <FiChevronRight
-          size='2em'
+          size='2rem'
           color='white'
           onClick={() => (handleRight ? handleRight() : null)}
         />

@@ -9,7 +9,7 @@ type Anchor = "top" | "left" | "bottom" | "right";
 type Props = {
   position: Anchor;
   openDrawer: boolean;
-  setOpenDrawer: (openDrawer: boolean) => void;
+  setOpenDrawer?: (openDrawer: boolean) => void;
   children: any;
   fullWidth?: boolean;
   fullHeight?: boolean;
@@ -18,6 +18,8 @@ type Props = {
   topRadius?: boolean;
   width?: string;
   paddingLeft?: string;
+  backgroundColor?: string
+  borderRadius?: string
 };
 
 const DrawerMine = ({
@@ -31,7 +33,9 @@ const DrawerMine = ({
   clearBackground,
   topRadius,
   width,
-  paddingLeft
+  paddingLeft,
+  backgroundColor,
+  borderRadius,
 }: Props) => {
   const list = () => (
     <Box
@@ -39,12 +43,14 @@ const DrawerMine = ({
       sx={{
         width: fullWidth ? "100vw" : width,
         height: fullHeight ? "100vh" : "auto",
-        backgroundColor: Colors.tealc,
+        backgroundColor: backgroundColor || Colors.tealc,
         padding: noPadding ? "0px" : "10px",
         paddingTop: "6vh",
         paddingLeft: paddingLeft || "auto",
         overflowY: "auto",
-        borderRadius: "0 10px 10px 0",
+        borderRadius: borderRadius || "0 10px 10px 0",
+        overflow: "hidden",
+
       }}
       role='presentation'
     >
@@ -53,7 +59,7 @@ const DrawerMine = ({
   );
 
   const handleClose = () => {
-    setOpenDrawer(false);
+    setOpenDrawer && setOpenDrawer(false);
   };
 
   const [touchStart, setTouchStart] = useState(null);
@@ -95,16 +101,13 @@ const DrawerMine = ({
           "& .MuiPaper-root": {
             backgroundColor: "transparent",
           },
+          overflow: "hidden"
         }}
         anchor={position}
         open={openDrawer}
-        onClose={handleClose}
+        onClose={setOpenDrawer && handleClose}
       >
-        <BsChevronCompactLeft
-          color='whiteSmoke'
-          size='2em'
-          style={{ position: "absolute", right: -8, top: "50%" }}
-        />
+
         {list()}
       </Drawer>
     </div>
