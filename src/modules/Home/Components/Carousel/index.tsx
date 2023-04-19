@@ -15,7 +15,7 @@ const Carousel = () => {
   );
   const value = 60;
   const initialTranslateXValue = ((images.length / 2 * value) - value / 2) * -1
-
+  const [mouseHover, setMousehover] = useState(false)
   const [current, setCurrent] = useState<number>(0);
   const [miniIndex, setMiniIndex] = useState<number>(0)
   const [translateX, setTranslateX] = useState<number>(initialTranslateXValue);
@@ -76,11 +76,11 @@ const Carousel = () => {
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      handleMove("right")
+      if (!mouseHover) handleMove("right")
     }, 4000);
     return () => clearTimeout(timeoutId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [current]);
+  }, [current, mouseHover]);
 
   function setVw() {
     let vw = document.documentElement.clientWidth / 100;
@@ -107,18 +107,19 @@ const Carousel = () => {
             display='flex'
             justifyContent='space-between'
             style={{
+              pointerEvents: "none",
               width: "62vw",
               position: "absolute",
               left: "19vw",
               bottom: "45%",
-              zIndex: 1000,
+              zIndex: 500,
             }}
           >
             <FiChevronLeft
               size='3rem'
 
               color={Colors.tealc}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", pointerEvents: "all" }}
 
               onClick={() => handleMove("left")}
             />
@@ -126,17 +127,20 @@ const Carousel = () => {
             <FiChevronRight
               size='3rem'
               color={Colors.tealc}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", pointerEvents: "all" }}
               onClick={() => handleMove("right")}
             />
 
           </Box>
         )}
         <Box
+          onMouseEnter={() => setMousehover(true)}
+          onMouseLeave={() => setMousehover(false)}
           display='flex'
           columnGap='5vw'
           justifyContent='center'
           style={{
+            //zIndex: 800,
             height: "40vh",
             transition: "all 1s ease-in-out",
             transform: `translateX(${-translateX}vw)`,
