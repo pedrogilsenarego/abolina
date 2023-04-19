@@ -1,9 +1,9 @@
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
-import { i18n } from "../../../translations/i18n";
+import { i18n } from "../../../../translations/i18n";
 import Button from "./Button";
-import { ROUTE_PATHS } from "../../../constants/routes";
+import { ROUTE_PATHS } from "../../../../constants/routes";
 import { useDispatch } from "react-redux";
-import { scrollToContacts } from "../../../slicer/general/general.actions";
+import { scrollToContacts } from "../../../../slicer/general/general.actions";
 import { useNavigate, useLocation } from "react-router";
 
 interface Props {

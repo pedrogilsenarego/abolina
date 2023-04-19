@@ -1,7 +1,8 @@
 import { CardMedia, useTheme, useMediaQuery, Box } from "@mui/material";
-import logo from "../../../assets/images/logoSite.svg";
+import logo from "../../../../assets/images/logoSite.svg";
 import { useNavigate } from "react-router-dom";
-import { ROUTE_PATHS } from "../../../constants/routes";
+import { ROUTE_PATHS } from "../../../../constants/routes";
+
 
 interface Props {
   height?: string;

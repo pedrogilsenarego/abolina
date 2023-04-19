@@ -1,8 +1,7 @@
 import UpScroller from "../presentational/UpScroller";
-import Header from "../presentational/Menu";
 import Footer from "../presentational/Footer";
-import TopBar from "../presentational/TopBar";
 import { Grid } from "@mui/material";
+import TopItems from "../presentational/TopItems";
 
 const HomepageLayout = (props: any) => {
   return (
@@ -15,8 +14,7 @@ const HomepageLayout = (props: any) => {
         style={{ minHeight: "100vh" }}
       >
         <Grid item xs={12}>
-          <TopBar />
-          <Header />
+          <TopItems />
         </Grid>
         <Grid
           item
@@ -24,7 +22,7 @@ const HomepageLayout = (props: any) => {
           style={{
             minHeight: "60vh",
             textAlign: "center",
-            marginTop: "6vh",
+            marginTop: "20vh",
             marginBottom: props.marginBottom || "15vh",
           }}
         >

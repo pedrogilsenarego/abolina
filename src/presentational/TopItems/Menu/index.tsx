@@ -7,16 +7,16 @@ import {
   Typography,
 } from "@mui/material";
 import { FiMenu } from "react-icons/fi";
-import { Colors } from "../../constants/pallette";
+import { Colors } from "../../../constants/pallette";
 import Left from "./Left";
 import Right from "./Right";
 import Middle from "./Middle";
 import MobileMainDrawer from "./MobileMainDrawer";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { State } from "../../slicer/types";
-import { LANG } from "../../constants/lang";
-import useChangeLang from "../../hooks/usechangeLang";
+import { State } from "../../../slicer/types";
+import { LANG } from "../../../constants/lang";
+import useChangeLang from "../../../hooks/usechangeLang";
 
 const Menu = () => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);

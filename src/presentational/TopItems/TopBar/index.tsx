@@ -6,14 +6,14 @@ import {
   useMediaQuery,
   Divider,
 } from "@mui/material";
-import { Colors } from "../../constants/pallette";
-import { i18n } from "../../translations/i18n";
+import { Colors } from "../../../constants/pallette";
+import { i18n } from "../../../translations/i18n";
 
 const TopBar = () => {
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
   return (
-    <Container>
+    <Container style={{ backgroundColor: "white" }}>
       <Grid
         container
         justifyContent={mobile ? "center" : "flex-end"}

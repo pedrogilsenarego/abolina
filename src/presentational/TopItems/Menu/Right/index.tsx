@@ -1,16 +1,16 @@
 import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { FiShoppingCart } from "react-icons/fi";
 import { BiUser } from "react-icons/bi";
-import useChangeLang from "../../../hooks/usechangeLang";
-import { LANG } from "../../../constants/lang";
-import { State } from "../../../slicer/types";
-import { CurrentUser } from "../../../slicer/user/user.types";
+import useChangeLang from "../../../../hooks/usechangeLang";
+import { LANG } from "../../../../constants/lang";
+import { State } from "../../../../slicer/types";
+import { CurrentUser } from "../../../../slicer/user/user.types";
 import { useDispatch, useSelector } from "react-redux";
-import { signOutUserStart } from "../../../slicer/user/user.actions";
-import { ROUTE_PATHS } from "../../../constants/routes";
+import { signOutUserStart } from "../../../../slicer/user/user.actions";
+import { ROUTE_PATHS } from "../../../../constants/routes";
 import { useNavigate } from "react-router";
-import { CartProduct } from "../../../slicer/cart/cart.types";
-import { Colors } from "../../../constants/pallette";
+import { CartProduct } from "../../../../slicer/cart/cart.types";
+import { Colors } from "../../../../constants/pallette";
 
 const Right = () => {
   const { changeLanguage } = useChangeLang();

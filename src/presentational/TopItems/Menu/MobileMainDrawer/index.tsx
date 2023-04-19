@@ -1,9 +1,9 @@
-import DrawerMine from "../../../components/Drawer";
+import DrawerMine from "../../../../components/Drawer";
 import Middle from "../Middle";
 import { Box, Typography } from "@mui/material";
-import InstaAvatar from "../../../components/InstaAvatar";
-import { Colors } from "../../../constants/pallette";
-import { i18n } from "../../../translations/i18n";
+import InstaAvatar from "../../../../components/InstaAvatar";
+import { Colors } from "../../../../constants/pallette";
+import { i18n } from "../../../../translations/i18n";
 
 interface Props {
   openDrawer: boolean;
