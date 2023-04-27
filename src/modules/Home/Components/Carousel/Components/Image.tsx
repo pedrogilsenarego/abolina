@@ -5,14 +5,16 @@ interface Props {
   pos: number;
   mobile: boolean;
   current: number;
+  onClick?: (pos: number) => void
 }
 
-const Image = ({ item, pos, mobile, current }: Props) => {
+const Image = ({ item, pos, mobile, current, onClick }: Props) => {
   const [hover, setHover] = useState<boolean>(false);
 
   return (
     <>
       <img
+        onClick={() => { if (onClick) onClick(pos) }}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         style={{

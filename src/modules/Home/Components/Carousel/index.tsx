@@ -90,6 +90,12 @@ const Carousel = () => {
   setVw();
   window.addEventListener('resize', setVw);
 
+  const handleClickImage = (pos: number) => {
+    console.log(pos, current)
+    if (pos - 1 > current) handleMove("right")
+    if (pos - 1 < current) handleMove("left")
+  }
+
   return (
     <>
       <div
@@ -147,7 +153,7 @@ const Carousel = () => {
           }}
         >
           {slider.map((item: any, pos: number) =>
-            <Image key={pos} item={item} pos={pos} mobile={mobile} current={current} />
+            <Image onClick={handleClickImage} key={pos} item={item} pos={pos} mobile={mobile} current={current} />
 
           )}
         </Box>
