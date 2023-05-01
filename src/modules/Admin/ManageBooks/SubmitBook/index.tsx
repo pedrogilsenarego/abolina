@@ -18,6 +18,7 @@ const SubmitBook = () => {
     title: "",
     titleEN: "",
     collections: "",
+    number: 0,
     author: "",
     authorResume: "",
     authorResumeEN: "",
@@ -100,6 +101,13 @@ const SubmitBook = () => {
                 <Box style={{ width: "350px" }}>
                   <SelectWithPlus loading={loadingCollections} options={collectionsData} refetch={refetch} />
                 </Box>
+              </Grid>
+              <Grid item xs={6}>
+                <Box style={{ width: "350px" }}>
+                  <Textfield
+                    label="Number of Book"
+                    name='number'
+                  />  </Box>
               </Grid>
               <Grid item xs={4}>
                 <Box>
