@@ -14,31 +14,25 @@ const generalTypes = {
   SCROLL_CONTACTS: "SCROLL_CONTACTS",
   PAGINATION_MANAGE_BOOKS: "PAGINATION_MANAGE_BOOKS",
   SET_COOKIE_POLICY: "SET_COOKIE_POLICY",
+  GET_COLLECTIONS:"GET_COLLECTIONS",
+  SET_COLLECTIONS:"SET_COLLECTIONS"
 };
+
+export interface Collection {
+  value: string;
+  title:string
+}
 
 export interface GeneralState {
   lang: string,
   scrollToContacts: boolean
-  paginationManageBooks: Pagination
   lastEndpoint: string
   cookiePolicy:boolean
+  collections: Collection[]
 
 }
 
-export interface Pagination {
-  page: number
-  perPage: number
-  sortBy: string
-  orderBy: 'asc' | 'desc'
-  type: PaginationTypes
-  searchQuery?: string
-  searchBy?: string | undefined
-  quickFilters?: any
-  startDate?: Date | string | undefined | null
-  endDate?: Date | string | undefined | null
-  filters?: any
-  loaded?: boolean
-}
+
 
 export enum PaginationTypes {
   PAGINATION_MANAGE_BOOKS= "PAGINATION_MANAGE_BOOKS"

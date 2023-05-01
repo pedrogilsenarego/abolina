@@ -13,6 +13,7 @@ const SubmitBook = () => {
   const INITIAL_FORM_STATE = {
     title: "",
     titleEN: "",
+    collection: "",
     author: "",
     authorResume: "",
     authorResumeEN: "",

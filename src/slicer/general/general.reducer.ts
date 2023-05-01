@@ -10,7 +10,8 @@ const INITIAL_STATE = {
   history: ["/"],
   lang: "PT",
   scrollToContacts: false,
-  cookiePolicy: true
+  cookiePolicy: true,
+  collections: []
 };
 
 interface Action {
@@ -97,6 +98,11 @@ const generalReducer = (state = INITIAL_STATE, action: Action) => {
           ...state,
           cookiePolicy: action.payload
         };
+        case generalTypes.SET_COLLECTIONS:
+          return {
+            ...state,
+            collections: action.payload
+          };
 
     default:
       return state;

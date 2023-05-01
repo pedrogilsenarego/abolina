@@ -14,6 +14,7 @@ const Image = ({ item, pos, mobile, current, onClick }: Props) => {
   return (
     <>
       <img
+        draggable={false}
         onClick={() => { if (onClick) onClick(pos) }}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
