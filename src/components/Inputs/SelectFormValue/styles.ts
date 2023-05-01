@@ -8,7 +8,7 @@ interface Props {
 export const TextField = styled(MuiTextField)(({maxWidth}:Props) => ({
   width: "100%",
   backgroundColor: "lightGrey",
-  borderRadius: "4px",
+  borderRadius: "10px",
   maxWidth: maxWidth || "auto",
   "& .MuiInputBase-input": {
     color: "black",
@@ -17,14 +17,14 @@ export const TextField = styled(MuiTextField)(({maxWidth}:Props) => ({
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
       borderColor: Colors.darkGrey,
-      borderRadius: "4px",
-      borderWidth: "1px",
+      borderRadius: "10px",
+      borderWidth: "2px",
     },
     "&:hover fieldset": {
       borderColor: Colors.tealc,
     },
     "&.Mui-focused fieldset": {
-      borderColor: Colors.tealc,
+      borderColor: Colors.darkGrey,
     },
   },
 }));

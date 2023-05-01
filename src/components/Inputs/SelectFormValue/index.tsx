@@ -38,7 +38,7 @@ const SelectWrapper = ({ name, options, label, getvalue, ...otherProps }: Props)
   }
 
   return (
-    <>
+    <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <Box display='flex' justifyContent='start'>
         <Typography>{label}</Typography>
       </Box>
@@ -60,7 +60,7 @@ const SelectWrapper = ({ name, options, label, getvalue, ...otherProps }: Props)
           );
         })}
       </Styled.TextField>
-    </>
+    </div>
   );
 };
 
