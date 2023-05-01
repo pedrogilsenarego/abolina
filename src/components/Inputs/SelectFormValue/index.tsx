@@ -1,5 +1,5 @@
 import { MenuItem, Box, Typography } from "@mui/material";
-import { useField, useFormikContext } from "formik";
+import { useField, } from "formik";
 import * as Styled from "./styles";
 
 interface Props {

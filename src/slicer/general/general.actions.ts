@@ -74,12 +74,12 @@ export const setCookiePolicy = (signal:boolean) => ({
   payload: signal
 })
 
-export const GET_COLLECTIONS = () => ({
+export const getCollections = () => ({
   type: generalTypes.GET_COLLECTIONS,
   
 })
 
-export const SET_COLLECTIONS = (collections:Collection[]) => ({
+export const setCollections = (collections:Collection[]) => ({
   type: generalTypes.GET_COLLECTIONS,
   payload: collections
   

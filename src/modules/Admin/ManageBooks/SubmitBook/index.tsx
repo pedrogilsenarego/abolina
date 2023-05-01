@@ -8,6 +8,12 @@ import ButtonForm from "../../../../components/Buttons/ButtonFormik";
 import { useDispatch } from "react-redux";
 import { addBook } from "../../../../slicer/books/books.actions";
 import FileUploader from "../../../../components/Inputs/FileUploader";
+import { handleFetchCollections } from "../../../../slicer/general/general.helpers";
+import SelectWrapper from "../../../../components/Inputs/SelectFormValue"
+import { useQuery } from "react-query";
+import { Collection } from "../../../../slicer/general/general.types";
+import Loader from "../../../../components/Loader";
+import { fetchCollections } from "../../../../services/adminServices";
 
 const SubmitBook = () => {
   const INITIAL_FORM_STATE = {
@@ -33,6 +39,13 @@ const SubmitBook = () => {
     content: [],
     pages: null
   };
+
+  const { isLoading: loadingCollections, error, data: collectionsData } = useQuery('collections', fetchCollections, {
+    staleTime: 3600000, // 1 hour in milliseconds
+    cacheTime: 3600000, // 10 minutes in milliseconds
+  })
+
+
 
   const dispatch = useDispatch();
 
@@ -77,6 +90,17 @@ const SubmitBook = () => {
                     label={`${i18n.t("modules.admin.manageBooks.submitBook.title")} EN`}
                     name='titleEN'
                   />
+                </Box>
+              </Grid>
+
+              <Grid item xs={6}>
+                <Box style={{ width: "350px" }}>
+                  {loadingCollections ? <Loader /> : <SelectWrapper
+                    options={collectionsData}
+                    label="Collections"
+                    name='collections'
+                  />}
+
                 </Box>
               </Grid>
               <Grid item xs={4}>
@@ -261,3 +285,4 @@ const SubmitBook = () => {
 };
 
 export default SubmitBook;
+

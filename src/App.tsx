@@ -12,6 +12,9 @@ import { useDispatch } from "react-redux";
 import { checkUserSession } from "./slicer/user/user.actions";
 import { Colors } from "./constants/pallette";
 import CookiePolicy from "./presentational/CookiePopup";
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 const theme = createTheme({
   typography: {
@@ -40,11 +43,13 @@ function App() {
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <StyledEngineProvider injectFirst>
-          <CookiePolicy />
-          <Snackbar />
-          <CssBaseline />
-          <ScrollToTop />
-          <AppRoutes />
+          <QueryClientProvider client={queryClient}>
+            <CookiePolicy />
+            <Snackbar />
+            <CssBaseline />
+            <ScrollToTop />
+            <AppRoutes />
+          </QueryClientProvider>
         </StyledEngineProvider>
       </ThemeProvider>
     </BrowserRouter>
