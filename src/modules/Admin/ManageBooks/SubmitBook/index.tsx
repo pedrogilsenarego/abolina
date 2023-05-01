@@ -17,7 +17,7 @@ const SubmitBook = () => {
   const INITIAL_FORM_STATE = {
     title: "",
     titleEN: "",
-    collection: "",
+    collections: "",
     author: "",
     authorResume: "",
     authorResumeEN: "",
@@ -51,7 +51,8 @@ const SubmitBook = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values: any) => {
-    dispatch(addBook({ ...values }));
+    console.log(values)
+    //dispatch(addBook({ ...values }));
   };
 
   return (
