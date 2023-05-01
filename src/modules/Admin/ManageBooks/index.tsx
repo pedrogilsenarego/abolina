@@ -11,36 +11,42 @@ import { mapBooksItems } from "./mapper";
 import useList from "./useList";
 import { Title } from "../../../styles";
 
-
 const ManageBooks = () => {
   const navigate = useNavigate();
   const tableData = useSelector<State, any>(
     (state) => state.books.books.data || []
   );
 
-  const { handleAction } = useList({ tableData })
+  const { handleAction } = useList({ tableData });
 
   return (
     <>
-
-      <Title fontSize="16px">{i18n.t("adminSideBar.submitBook")}</Title>
+      <Title fontSize='16px'>{i18n.t("adminSideBar.submitBook")}</Title>
       <Divider />
 
       <Box style={{ marginTop: "60px" }}>
-        <Box display='flex' justifyContent='start' style={{ marginBottom: "40px" }}>
+        <Box
+          display='flex'
+          justifyContent='start'
+          style={{ marginBottom: "40px" }}
+        >
           <Button
-            borderRadius="6px"
+            borderRadius='6px'
             label={i18n.t("modules.admin.manageBooks.createButton")}
             onClick={() => navigate(ROUTE_PATHS.ADMIN_BOOKS_CREATE)}
           />
         </Box>
 
         <Card style={{ padding: "20px" }}>
-          <TableList columns={tableColumns} rows={mapBooksItems(tableData).rows} onAction={handleAction} />
+          <TableList
+            columns={tableColumns}
+            rows={mapBooksItems(tableData).rows}
+            onAction={handleAction}
+          />
         </Card>
-      </Box >
+      </Box>
     </>
   );
-}
+};
 
 export default ManageBooks;

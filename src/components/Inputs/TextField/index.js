@@ -1,13 +1,16 @@
+import { useEffect } from "react";
 import * as Styled from "./styles";
 import { Typography, Box } from "@mui/material";
 
 const Textfield = ({
   maxWidth = "auto",
   placeholder = "",
-  label,
+  label = "",
   password = false,
   multiline = false,
   rows = 0,
+  getValue = (value) => value,
+  setValue = "",
   ...otherProps
 }) => {
   const configTextField = {
@@ -16,6 +19,8 @@ const Textfield = ({
     fullWidth: true,
     variant: "outlined",
   };
+
+  useEffect(() => {}, [setValue]);
 
   return (
     <>
@@ -34,11 +39,13 @@ const Textfield = ({
           style={{ caretColor: "white" }}
           type='text'
           maxWidth
+          value={setValue}
           multiline={multiline ? multiline : null}
           rows={rows ? rows : null}
           size='small'
           placeholder={placeholder}
           {...configTextField}
+          onChange={(e) => getValue(e.target.value)}
         />
       </Box>
     </>

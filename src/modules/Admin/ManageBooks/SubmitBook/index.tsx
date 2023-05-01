@@ -42,6 +42,7 @@ const SubmitBook = () => {
     isLoading: loadingCollections,
     error,
     data: collectionsData,
+    refetch
   } = useQuery("collections", fetchCollections, {
     staleTime: 3600000, // 1 hour in milliseconds
     cacheTime: 3600000, // 10 minutes in milliseconds
@@ -96,7 +97,7 @@ const SubmitBook = () => {
 
               <Grid item xs={6}>
                 <Box style={{ width: "350px" }}>
-                  <SelectWithPlus loading={loadingCollections} options={collectionsData} />
+                  <SelectWithPlus loading={loadingCollections} options={collectionsData} refetch={refetch} />
                 </Box>
               </Grid>
               <Grid item xs={4}>
