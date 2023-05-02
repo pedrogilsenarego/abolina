@@ -28,6 +28,10 @@ export const content = {
         about: "SOBRE NÓS",
         contacts: "CONTACTO",
         instagram: "Siga-nos",
+        userPopover: {
+          logout: "Logout",
+          admin: "Admin",
+        },
       },
       footer: {
         second: {

@@ -1,14 +1,15 @@
 import * as React from 'react';
 import Popover from '@mui/material/Popover';
-import Typography from '@mui/material/Typography';
+import { Colors } from '../../constants/pallette';
 
 interface BasicPopoverProps {
   isOpen: boolean;
   anchorEl: HTMLElement | null;
   onClose: () => void;
+  children: any
 }
 
-const BasicPopover: React.FC<BasicPopoverProps> = ({ isOpen, anchorEl, onClose }) => {
+const BasicPopover: React.FC<BasicPopoverProps> = ({ isOpen, anchorEl, onClose, children }) => {
   const id = isOpen ? 'simple-popover' : undefined;
 
   return (
@@ -22,8 +23,13 @@ const BasicPopover: React.FC<BasicPopoverProps> = ({ isOpen, anchorEl, onClose }
           vertical: 'bottom',
           horizontal: 'left',
         }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        sx={{ marginTop: '32px', cursor: "pointer" }}
       >
-        <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
+        {children}
       </Popover>
     </div>
   );

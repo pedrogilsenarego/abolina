@@ -1,22 +1,22 @@
-import { Box, Grid, Popover, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { FiShoppingCart } from "react-icons/fi";
 import { BiUser } from "react-icons/bi";
 import useChangeLang from "../../../../hooks/usechangeLang";
 import { LANG } from "../../../../constants/lang";
 import { State } from "../../../../slicer/types";
 import { CurrentUser } from "../../../../slicer/user/user.types";
-import { useDispatch, useSelector } from "react-redux";
-import { signOutUserStart } from "../../../../slicer/user/user.actions";
+import { useSelector } from "react-redux";
 import { ROUTE_PATHS } from "../../../../constants/routes";
 import { useNavigate } from "react-router";
 import { CartProduct } from "../../../../slicer/cart/cart.types";
 import { Colors } from "../../../../constants/pallette";
 import BasicPopover from "../../../../components/Popover";
 import { useState } from "react";
+import UserPopoverContent from "./UserPopoverContent";
 
 const Right = () => {
   const { changeLanguage } = useChangeLang();
-  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
@@ -58,13 +58,12 @@ const Right = () => {
     else handleClickPopover(e)
   }
 
-  const handleSignOut = () => {
-    dispatch(signOutUserStart());
-  };
+
 
   return (
     <>
       <Grid
+
         container
         alignItems='center'
         justifyContent={mobile ? "center" : "start"}
@@ -76,7 +75,7 @@ const Right = () => {
               item
               style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
             >
-              <BiUser size='1.5rem' color='white' onClick={(e: any) => handleUser(e)} />
+              <BiUser size='1.5rem' color='white' onMouseEnter={(e: any) => handleUser(e)} />
             </Grid>
             <Grid
               onClick={() => navigate(ROUTE_PATHS.CART)}
@@ -147,22 +146,11 @@ const Right = () => {
             </Typography>
           </Box>
         </Grid>
-        {currentUser ? (
-          <Box
-            display='flex'
-            flexDirection='column'
-            style={{ cursor: "pointer" }}
-          >
-            <Typography onClick={handleSignOut}>Logout</Typography>
-            {currentUser.userRoles.includes("admin") && (
-              <Typography onClick={() => navigate(ROUTE_PATHS.ADMIN)}>
-                Admin
-              </Typography>
-            )}
-          </Box>
-        ) : null}
+
       </Grid>
-      <BasicPopover isOpen={isOpen} anchorEl={anchorEl} onClose={handleClose} />
+      <BasicPopover isOpen={isOpen} anchorEl={anchorEl} onClose={handleClose} >
+        <UserPopoverContent handleClose={handleClose} />
+      </BasicPopover>
     </>
   );
 };

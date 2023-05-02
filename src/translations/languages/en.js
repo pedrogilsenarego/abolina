@@ -28,6 +28,10 @@ export const content = {
         about: "ABOUT",
         contacts: "CONTACTS",
         instagram: "Follow us",
+        userPopover: {
+          logout: "Logout",
+          admin: "Admin",
+        },
       },
       footer: {
         second: {
