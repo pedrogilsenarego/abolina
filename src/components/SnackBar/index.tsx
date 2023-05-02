@@ -5,6 +5,7 @@ import { clearNotification } from "../../slicer/general/general.actions";
 import { BiErrorCircle } from "react-icons/bi";
 import { GiCheckMark } from "react-icons/gi";
 import * as Styled from "./styles";
+import { Typography } from "@mui/material";
 
 interface SnackbarState {
   open: boolean;
@@ -95,7 +96,8 @@ const DirectionSnackbar = () => {
         autoHideDuration={4000}
       >
         <Styled.Box bgcolor={snackbar.bgcolor}>
-          {snackbar.icon} {snackbar.message}
+          <Typography>{snackbar.icon} {snackbar.message}</Typography>
+
         </Styled.Box>
       </Snackbar>
     </>

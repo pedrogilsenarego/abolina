@@ -1,4 +1,4 @@
-import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Grid, Popover, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { FiShoppingCart } from "react-icons/fi";
 import { BiUser } from "react-icons/bi";
 import useChangeLang from "../../../../hooks/usechangeLang";
@@ -11,6 +11,8 @@ import { ROUTE_PATHS } from "../../../../constants/routes";
 import { useNavigate } from "react-router";
 import { CartProduct } from "../../../../slicer/cart/cart.types";
 import { Colors } from "../../../../constants/pallette";
+import BasicPopover from "../../../../components/Popover";
+import { useState } from "react";
 
 const Right = () => {
   const { changeLanguage } = useChangeLang();
@@ -25,6 +27,22 @@ const Right = () => {
     (state) => state?.cart.cartItems
   );
 
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+
+  const handleClickPopover = (event: React.MouseEvent<HTMLElement>) => {
+    if (anchorEl) {
+      setAnchorEl(null);
+    } else {
+      setAnchorEl(event.currentTarget);
+    }
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const isOpen = Boolean(anchorEl);
+
   function getCartTotal() {
     let total = 0;
 
@@ -35,113 +53,117 @@ const Right = () => {
     return total;
   }
 
+  const handleUser = (e: any) => {
+    if (!currentUser) navigate(ROUTE_PATHS.LOGIN)
+    else handleClickPopover(e)
+  }
+
   const handleSignOut = () => {
     dispatch(signOutUserStart());
   };
 
   return (
-    <Grid
-      container
-      alignItems='center'
-      justifyContent={mobile ? "center" : "start"}
-      columnGap={1.5}
-    >
-      {!mobile && (
-        <>
-          <Grid
-            item
-            style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
-          >
-            <BiUser size='1.5rem' color='white' />
-          </Grid>
-          <Grid
-            onClick={() => navigate(ROUTE_PATHS.CART)}
-            item
-            style={{
-              display: "flex",
-              alignItems: "center",
-              cursor: "pointer",
-              position: "relative",
-            }}
-          >
-            <FiShoppingCart size='1.5rem' color='white' />
-            {cart.length !== 0 && (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
+    <>
+      <Grid
+        container
+        alignItems='center'
+        justifyContent={mobile ? "center" : "start"}
+        columnGap={1.5}
+      >
+        {!mobile && (
+          <>
+            <Grid
+              item
+              style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
+            >
+              <BiUser size='1.5rem' color='white' onClick={(e: any) => handleUser(e)} />
+            </Grid>
+            <Grid
+              onClick={() => navigate(ROUTE_PATHS.CART)}
+              item
+              style={{
+                display: "flex",
+                alignItems: "center",
+                cursor: "pointer",
+                position: "relative",
+              }}
+            >
+              <FiShoppingCart size='1.5rem' color='white' />
+              {cart.length !== 0 && (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
 
-                  height: "17px",
-                  aspectRatio: 1,
-                  borderRadius: "50%",
-                  backgroundColor: Colors.tealc,
-                  border: "solid 1px white",
-                }}
-              >
-                <Typography
-                  style={{ color: "white", fontSize: "12px", fontWeight: 800 }}
+                    height: "17px",
+                    aspectRatio: 1,
+                    borderRadius: "50%",
+                    backgroundColor: Colors.tealc,
+                    border: "solid 1px white",
+                  }}
                 >
-                  {getCartTotal()}
-                </Typography>
-              </div>
-            )}
-          </Grid>
-          <Grid
-            item
-            style={{
-              height: "30px",
-              width: "1px",
-              backgroundColor: "#ffffff66",
-            }}
-          ></Grid>
-        </>
-      )}
-      <Grid item>
-        <Box>
-          <Typography
-            fontSize={mobile ? "24px" : "12px"}
-            color='white'
-            fontWeight={800}
-            onClick={() => {
-              changeLanguage(LANG.pt);
-            }}
-            style={{ cursor: "pointer" }}
-          >
-            PT
-          </Typography>
-          <Typography
-            fontSize={mobile ? "24px" : "12px"}
-            color='white'
-            fontWeight={800}
-            onClick={() => {
-              changeLanguage(LANG.en);
-            }}
-            style={{ cursor: "pointer" }}
-          >
-            EN
-          </Typography>
-        </Box>
-      </Grid>
-      {currentUser ? (
-        <Box
-          display='flex'
-          flexDirection='column'
-          style={{ cursor: "pointer" }}
-        >
-          <Typography onClick={handleSignOut}>Logout</Typography>
-          {currentUser.userRoles.includes("admin") && (
-            <Typography onClick={() => navigate(ROUTE_PATHS.ADMIN)}>
-              Admin
+                  <Typography
+                    style={{ color: "white", fontSize: "12px", fontWeight: 800 }}
+                  >
+                    {getCartTotal()}
+                  </Typography>
+                </div>
+              )}
+            </Grid>
+            <Grid
+              item
+              style={{
+                height: "30px",
+                width: "1px",
+                backgroundColor: "#ffffff66",
+              }}
+            ></Grid>
+          </>
+        )}
+        <Grid item>
+          <Box>
+            <Typography
+              fontSize={mobile ? "24px" : "12px"}
+              color='white'
+              fontWeight={800}
+              onClick={() => {
+                changeLanguage(LANG.pt);
+              }}
+              style={{ cursor: "pointer" }}
+            >
+              PT
             </Typography>
-          )}
-        </Box>
-      ) : (
-        <Typography onClick={() => navigate(ROUTE_PATHS.LOGIN)}>
-          Login
-        </Typography>
-      )}
-    </Grid>
+            <Typography
+              fontSize={mobile ? "24px" : "12px"}
+              color='white'
+              fontWeight={800}
+              onClick={() => {
+                changeLanguage(LANG.en);
+              }}
+              style={{ cursor: "pointer" }}
+            >
+              EN
+            </Typography>
+          </Box>
+        </Grid>
+        {currentUser ? (
+          <Box
+            display='flex'
+            flexDirection='column'
+            style={{ cursor: "pointer" }}
+          >
+            <Typography onClick={handleSignOut}>Logout</Typography>
+            {currentUser.userRoles.includes("admin") && (
+              <Typography onClick={() => navigate(ROUTE_PATHS.ADMIN)}>
+                Admin
+              </Typography>
+            )}
+          </Box>
+        ) : null}
+      </Grid>
+      <BasicPopover isOpen={isOpen} anchorEl={anchorEl} onClose={handleClose} />
+    </>
   );
 };
 

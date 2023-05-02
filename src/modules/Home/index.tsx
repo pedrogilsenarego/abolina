@@ -10,6 +10,7 @@ import homeOndas2 from "../../assets/images/homeOndas2.svg";
 import { motion } from "framer-motion"
 import Carousel from "./Components/Carousel";
 import { Colors } from "../../constants/pallette";
+import HoverablePopover from "../../components/Popover";
 
 
 
@@ -79,6 +80,7 @@ const Home = () => {
             minHeight: "30vh",
           }}
         />
+
       </Box>
     </>
   );

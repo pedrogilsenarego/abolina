@@ -31,7 +31,7 @@ const AdminSideBar = () => {
         onClick={() => navigate(ROUTE_PATHS.ADMIN)}
         style={{ marginTop: "10px" }}
       >
-        <SiBookstack size="1.5em" color="white" />
+        <SiBookstack size="1.5rem" color="white" />
         <Typography style={{ fontSize: "14px", color: "white", cursor: "pointer" }}>
           {i18n.t("adminSideBar.submitBook")}
         </Typography>
@@ -43,7 +43,7 @@ const AdminSideBar = () => {
         onClick={() => navigate(ROUTE_PATHS.ADMIN_CARROUSEL)}
 
       >
-        <AiTwotoneCreditCard size="1.5em" color="white" />
+        <AiTwotoneCreditCard size="1.5rem" color="white" />
         <Typography style={{ fontSize: "14px", color: "white", cursor: "pointer" }}>
           {i18n.t("adminSideBar.manageCarroussel")}
         </Typography>
@@ -56,7 +56,7 @@ const AdminSideBar = () => {
         onClick={() => navigate(ROUTE_PATHS.HOME)}
 
       >
-        <AiTwotoneHome size="1.5em" color="white" />
+        <AiTwotoneHome size="1.5rem" color="white" />
         <Typography style={{ fontSize: "14px", color: "white", cursor: "pointer" }}>
           {i18n.t("adminSideBar.back")}
         </Typography>
