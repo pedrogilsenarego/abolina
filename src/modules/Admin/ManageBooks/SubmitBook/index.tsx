@@ -28,6 +28,7 @@ interface Props {
 const SubmitBook = ({ edit = false }: Props) => {
   const { id } = useParams<Record<string, string | undefined>>();
   const documentID = id || "";
+  const [contentLoader, setContentLoader] = useState<boolean>(false)
   const [contentValue, setContentValue] = useState<any>(undefined)
 
   const {
@@ -83,6 +84,7 @@ const SubmitBook = ({ edit = false }: Props) => {
   }, [edit, bookData]);
 
   const handleConvertStringIntoFile = async (images: string[]) => {
+    setContentLoader(true)
     // Create a new DataTransfer object
     const dataTransfer = new DataTransfer();
 
@@ -99,7 +101,7 @@ const SubmitBook = ({ edit = false }: Props) => {
       dataTransfer.items.add(file);
     }
     setContentValue(dataTransfer.files)
-
+    setContentLoader(false)
   };
 
   useEffect(() => {
@@ -401,6 +403,7 @@ const SubmitBook = ({ edit = false }: Props) => {
 
                   <Grid item xs={6}>
                     <FileUploader
+                      loading={contentLoader}
                       value={contentValue}
                       name='content'
                       multiple
