@@ -362,6 +362,7 @@ const SubmitBook = ({ edit = false }: Props) => {
                     </Box>
                   </Grid>
                   <Grid item xs={6}>
+
                     <FileUploader
                       name='coverPage2'
                       fieldTitle={i18n.t(

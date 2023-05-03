@@ -1,10 +1,11 @@
 import { Box, Grid, Typography } from "@mui/material";
 import { useState } from "react";
 import { Colors } from "../../../constants/pallette";
-import CardMedia from "../../CardMedia";
+
 import { RiDeleteBinLine } from "react-icons/ri";
 import { useField } from "formik";
 import { useRef } from "react";
+import Image from "./Image";
 
 interface Props {
   fieldTitle: string;
@@ -18,7 +19,29 @@ const FileUploader = ({ fieldTitle, name, acceptType, multiple }: Props) => {
   const [, mata, helpers] = useField(name);
   const inputRef = useRef<any>();
 
+
   const a = Array.prototype.slice.call(imageUpload);
+
+  const handleDeleteImage = (pos: number) => {
+    const updatedImages = [...a];
+    updatedImages.splice(pos, 1);
+    setImageUpload(updatedImages);
+    helpers.setValue(updatedImages);
+
+    // Create a new DataTransfer object
+    const dataTransfer = new DataTransfer();
+
+    // Add each file to the DataTransfer object
+    updatedImages.forEach((file) => {
+      dataTransfer.items.add(file);
+    });
+
+    // Assign the updated FileList to the input
+    inputRef.current.files = dataTransfer.files;
+  };
+
+
+
 
   return (
     <Box>
@@ -79,11 +102,7 @@ const FileUploader = ({ fieldTitle, name, acceptType, multiple }: Props) => {
             {imageUpload &&
               a.map((image: any, pos: number) => {
                 return (
-                  <CardMedia
-                    height='100'
-                    key={pos}
-                    image={URL.createObjectURL(image)}
-                  />
+                  <Image pos={pos} image={image} deleteImage={handleDeleteImage} />
                 );
               })}
           </Grid>
