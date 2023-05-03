@@ -86,7 +86,26 @@ export const mapInitialForm = (data: any) => {
   return {
     title: data?.title || "",
     titleEN: data?.titleEN || "",
-    author: data?.author || ""
+    author: data?.author || "",
+    collections: data?.collections || "",
+    number: data?.number || 0,
+    authorResume: data?.authorResume || "",
+    authorResumeEN: data?.authorResumeEN || "",
+    designer: data?.designer || "",
+    designerResume: data?.designerResume || "",
+    designerResumeEN: data?.designerResumeEN || "",
+    translator: data?.translator || "",
+    translatorResume: data?.translatorResume || "",
+    translatorResumeEN: data?.translatorResumeEN || "",
+    language: data?.language || "",
+    weight: data?.weight || "",
+    size: data?.size || "",
+    resume: data?.resume || "",
+    resumeEN: data?.resumeEN || "",
+    price: data?.price || null,
+    coverPage2: data?.coverPage2 || undefined,
+    content: data?.content || [],
+    pages: data?.pages || null,
 
   }
 
