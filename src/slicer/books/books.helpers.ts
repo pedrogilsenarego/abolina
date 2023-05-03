@@ -53,10 +53,14 @@ export const handleFetchBook = (documentID: string) => {
 
 
 
-export const handleAddCoverPage = async (title:string, files:any) => {
+export const handleAddCoverPage = async (title: string, files: any, onProgressUpdate: (progress: number) => void) => {
   const a = Array.prototype.slice.call(files);
-  const c:any = []
-  const uploadImageAsPromise = (imageFile:any) => {
+  const c: any = [];
+  let incrementLoad = 100/a.length
+  let loadProgress = 0
+
+
+  const uploadImageAsPromise = (imageFile: any) => {
     return new Promise<void>((resolve, reject) => {
       storage
         .ref(`books/${title}/${imageFile.name}`)
@@ -68,30 +72,25 @@ export const handleAddCoverPage = async (title:string, files:any) => {
             .child(imageFile.name)
             .getDownloadURL()
             .then((url) => {
-              resolve(url)
-              console.log(url)
+              resolve(url);
+              console.log(url);
+              loadProgress = loadProgress + incrementLoad
+              onProgressUpdate(~~loadProgress);
               c.push(url);
-              
             });
         })
         .catch((err) => {
           reject(err);
         });
-      // storageRef.on(
-      //   "state_changed",
-      //   (snapshot) => {
-      //     // const progressD = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
-      //     // setProgress(progressD)
-      //   },
-    });}
-  
+     
+    });
+  };
+
   for (var i = 0; i < a.length; i++) {
     var imageFile = a[i];
     await uploadImageAsPromise(imageFile);
-}
-return c
-
-  
+  }
+  return c;
 };
 
 export const handleAddBook = (payload: any) => {

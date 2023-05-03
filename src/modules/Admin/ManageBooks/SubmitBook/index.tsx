@@ -5,13 +5,17 @@ import Textfield from "../../../../components/Inputs/TextFieldForm";
 import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
 import ButtonForm from "../../../../components/Buttons/ButtonFormik";
-import { useDispatch } from "react-redux";
-import { addBook } from "../../../../slicer/books/books.actions";
+import { useDispatch, useSelector } from "react-redux";
+import { addBook, updateProgress } from "../../../../slicer/books/books.actions";
 import FileUploader from "../../../../components/Inputs/FileUploader";
 
 import { useQuery } from "react-query";
 import { fetchCollections } from "../../../../services/adminServices";
 import SelectWithPlus from "../../../../groupComponents/SelectWithPlus";
+import { State } from "../../../../slicer/types";
+import Loader from "../../../../components/Loader";
+import { useEffect } from "react";
+import { disableLoading } from "../../../../slicer/general/general.actions";
 
 const SubmitBook = () => {
   const INITIAL_FORM_STATE = {
@@ -49,11 +53,18 @@ const SubmitBook = () => {
     cacheTime: 3600000, // 10 minutes in milliseconds
   });
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(disableLoading())
+    dispatch(updateProgress(0))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
+  const dispatch = useDispatch();
+  const loading = useSelector<State, boolean>((state) => state.general.loading);
+  const progress = useSelector<State, number>((state) => state.books.progress);
   const handleSubmit = (values: any) => {
-    console.log(values)
-    //dispatch(addBook({ ...values }));
+
+    dispatch(addBook({ ...values }));
   };
 
   return (
@@ -71,235 +82,256 @@ const SubmitBook = () => {
         validationSchema={FORM_VALIDATION}
       >
         <Form>
-          <Box
-            rowGap={2}
-            display='flex'
-            flexDirection='column'
-            sx={{ mt: "20px" }}
-          >
-            <Grid container columnSpacing={2} rowSpacing={6}>
-              <Grid item xs={6}>
-                <Box style={{ width: "350px" }}>
-                  <Textfield
-                    label={i18n.t("modules.admin.manageBooks.submitBook.title")}
-                    name='title'
-                  />
-                </Box>
-              </Grid>
-              <Grid item xs={6}>
-                <Box style={{ width: "350px" }}>
-                  <Textfield
-                    label={`${i18n.t(
-                      "modules.admin.manageBooks.submitBook.title"
-                    )} EN`}
-                    name='titleEN'
-                  />
-                </Box>
-              </Grid>
+          {loading ? (
+            <Box
+              style={{
+                position: "relative",
+                width: "100%",
+                height: "100vh",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Loader
 
-              <Grid item xs={6}>
-                <Box style={{ width: "350px" }}>
-                  <SelectWithPlus loading={loadingCollections} options={collectionsData} refetch={refetch} />
-                </Box>
-              </Grid>
-              <Grid item xs={6}>
-                <Box style={{ width: "350px" }}>
-                  <Textfield
-                    label="Number of Book"
-                    name='number'
-                  />  </Box>
-              </Grid>
-              <Grid item xs={4}>
-                <Box>
-                  <Textfield
-                    label={i18n.t(
-                      "modules.admin.manageBooks.submitBook.author"
-                    )}
-                    name='author'
-                  />
-                  <Box>
-                    <Textfield
-                      label={i18n.t(
-                        "modules.admin.manageBooks.submitBook.authorResume"
+                size={200}
+                color='darkGrey'
+                customMessage='Your Data is being send'
+                progress={progress}
+              />
+            </Box>
+          ) : (
+            <>
+              <Box
+                rowGap={2}
+                display='flex'
+                flexDirection='column'
+                sx={{ mt: "20px" }}
+              >
+                <Grid container columnSpacing={2} rowSpacing={6}>
+                  <Grid item xs={6}>
+                    <Box style={{ width: "350px" }}>
+                      <Textfield
+                        label={i18n.t("modules.admin.manageBooks.submitBook.title")}
+                        name='title'
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Box style={{ width: "350px" }}>
+                      <Textfield
+                        label={`${i18n.t(
+                          "modules.admin.manageBooks.submitBook.title"
+                        )} EN`}
+                        name='titleEN'
+                      />
+                    </Box>
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    <Box style={{ width: "350px" }}>
+                      <SelectWithPlus loading={loadingCollections} options={collectionsData} refetch={refetch} />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Box style={{ width: "350px" }}>
+                      <Textfield
+                        label="Number of Book"
+                        name='number'
+                      />  </Box>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Box>
+                      <Textfield
+                        label={i18n.t(
+                          "modules.admin.manageBooks.submitBook.author"
+                        )}
+                        name='author'
+                      />
+                      <Box>
+                        <Textfield
+                          label={i18n.t(
+                            "modules.admin.manageBooks.submitBook.authorResume"
+                          )}
+                          name='authorResume'
+                          multiline
+                          rows={6}
+                        />
+                      </Box>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Box>
+                      <Textfield
+                        label={i18n.t(
+                          "modules.admin.manageBooks.submitBook.designer"
+                        )}
+                        name='designer'
+                      />
+                    </Box>
+                    <Box>
+                      <Textfield
+                        label={i18n.t(
+                          "modules.admin.manageBooks.submitBook.designerResume"
+                        )}
+                        name='designerResume'
+                        multiline
+                        rows={6}
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Box>
+                      <Textfield
+                        label={i18n.t(
+                          "modules.admin.manageBooks.submitBook.translator"
+                        )}
+                        name='translator'
+                      />
+                    </Box>
+                    <Box>
+                      <Textfield
+                        label={i18n.t(
+                          "modules.admin.manageBooks.submitBook.translatorResume"
+                        )}
+                        name='translatorResume'
+                        multiline
+                        rows={6}
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Box>
+                      <Textfield
+                        label={`${i18n.t(
+                          "modules.admin.manageBooks.submitBook.authorResume"
+                        )} EN`}
+                        name='authorResumeEN'
+                        multiline
+                        rows={6}
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Box>
+                      <Textfield
+                        label={`${i18n.t(
+                          "modules.admin.manageBooks.submitBook.designerResume"
+                        )} EN`}
+                        name='designerResumeEN'
+                        multiline
+                        rows={6}
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Box>
+                      <Textfield
+                        label={`${i18n.t(
+                          "modules.admin.manageBooks.submitBook.translatorResume"
+                        )} EN`}
+                        name='trasnlatorResumeEN'
+                        multiline
+                        rows={6}
+                      />
+                    </Box>
+                  </Grid>
+
+                  <Grid item xs={3}>
+                    <Box>
+                      <Textfield
+                        label={i18n.t(
+                          "modules.admin.manageBooks.submitBook.language"
+                        )}
+                        name='language'
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Box>
+                      <Textfield
+                        label={i18n.t(
+                          "modules.admin.manageBooks.submitBook.weight"
+                        )}
+                        name='weight'
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Box>
+                      <Textfield
+                        label={i18n.t("modules.admin.manageBooks.submitBook.size")}
+                        name='size'
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Box>
+                      <Textfield
+                        label={i18n.t("modules.admin.manageBooks.submitBook.price")}
+                        name='price'
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Box>
+                      <Textfield
+                        label={i18n.t("modules.admin.manageBooks.submitBook.pages")}
+                        name='pages'
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Box>
+                      <Textfield
+                        label={i18n.t(
+                          "modules.admin.manageBooks.submitBook.resume"
+                        )}
+                        name='resume'
+                        multiline
+                        rows={6}
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Box>
+                      <Textfield
+                        label={`${i18n.t(
+                          "modules.admin.manageBooks.submitBook.resume"
+                        )} EN`}
+                        name='resumeEN'
+                        multiline
+                        rows={6}
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <FileUploader
+                      name='coverPage2'
+                      fieldTitle={i18n.t(
+                        "modules.admin.manageBooks.submitBook.coverPage"
                       )}
-                      name='authorResume'
-                      multiline
-                      rows={6}
+                      acceptType='image/webp'
                     />
-                  </Box>
-                </Box>
-              </Grid>
-              <Grid item xs={4}>
-                <Box>
-                  <Textfield
-                    label={i18n.t(
-                      "modules.admin.manageBooks.submitBook.designer"
-                    )}
-                    name='designer'
-                  />
-                </Box>
-                <Box>
-                  <Textfield
-                    label={i18n.t(
-                      "modules.admin.manageBooks.submitBook.designerResume"
-                    )}
-                    name='designerResume'
-                    multiline
-                    rows={6}
-                  />
-                </Box>
-              </Grid>
-              <Grid item xs={4}>
-                <Box>
-                  <Textfield
-                    label={i18n.t(
-                      "modules.admin.manageBooks.submitBook.translator"
-                    )}
-                    name='translator'
-                  />
-                </Box>
-                <Box>
-                  <Textfield
-                    label={i18n.t(
-                      "modules.admin.manageBooks.submitBook.translatorResume"
-                    )}
-                    name='translatorResume'
-                    multiline
-                    rows={6}
-                  />
-                </Box>
-              </Grid>
-              <Grid item xs={4}>
-                <Box>
-                  <Textfield
-                    label={`${i18n.t(
-                      "modules.admin.manageBooks.submitBook.authorResume"
-                    )} EN`}
-                    name='authorResumeEN'
-                    multiline
-                    rows={6}
-                  />
-                </Box>
-              </Grid>
-              <Grid item xs={4}>
-                <Box>
-                  <Textfield
-                    label={`${i18n.t(
-                      "modules.admin.manageBooks.submitBook.designerResume"
-                    )} EN`}
-                    name='designerResumeEN'
-                    multiline
-                    rows={6}
-                  />
-                </Box>
-              </Grid>
-              <Grid item xs={4}>
-                <Box>
-                  <Textfield
-                    label={`${i18n.t(
-                      "modules.admin.manageBooks.submitBook.translatorResume"
-                    )} EN`}
-                    name='trasnlatorResumeEN'
-                    multiline
-                    rows={6}
-                  />
-                </Box>
-              </Grid>
+                  </Grid>
 
-              <Grid item xs={3}>
-                <Box>
-                  <Textfield
-                    label={i18n.t(
-                      "modules.admin.manageBooks.submitBook.language"
-                    )}
-                    name='language'
-                  />
-                </Box>
-              </Grid>
-              <Grid item xs={3}>
-                <Box>
-                  <Textfield
-                    label={i18n.t(
-                      "modules.admin.manageBooks.submitBook.weight"
-                    )}
-                    name='weight'
-                  />
-                </Box>
-              </Grid>
-              <Grid item xs={3}>
-                <Box>
-                  <Textfield
-                    label={i18n.t("modules.admin.manageBooks.submitBook.size")}
-                    name='size'
-                  />
-                </Box>
-              </Grid>
-              <Grid item xs={3}>
-                <Box>
-                  <Textfield
-                    label={i18n.t("modules.admin.manageBooks.submitBook.price")}
-                    name='price'
-                  />
-                </Box>
-              </Grid>
-              <Grid item xs={3}>
-                <Box>
-                  <Textfield
-                    label={i18n.t("modules.admin.manageBooks.submitBook.pages")}
-                    name='pages'
-                  />
-                </Box>
-              </Grid>
-              <Grid item xs={12}>
-                <Box>
-                  <Textfield
-                    label={i18n.t(
-                      "modules.admin.manageBooks.submitBook.resume"
-                    )}
-                    name='resume'
-                    multiline
-                    rows={6}
-                  />
-                </Box>
-              </Grid>
-              <Grid item xs={12}>
-                <Box>
-                  <Textfield
-                    label={`${i18n.t(
-                      "modules.admin.manageBooks.submitBook.resume"
-                    )} EN`}
-                    name='resumeEN'
-                    multiline
-                    rows={6}
-                  />
-                </Box>
-              </Grid>
-              <Grid item xs={6}>
-                <FileUploader
-                  name='coverPage2'
-                  fieldTitle={i18n.t(
-                    "modules.admin.manageBooks.submitBook.coverPage"
-                  )}
-                  acceptType='image/jpeg,image/jpg'
-                />
-              </Grid>
+                  <Grid item xs={6}>
+                    <FileUploader
+                      name='content'
+                      multiple
+                      fieldTitle={i18n.t(
+                        "modules.admin.manageBooks.submitBook.content"
+                      )}
+                      acceptType='webp'
+                    />
+                  </Grid>
+                </Grid>
+              </Box>
 
-              <Grid item xs={6}>
-                <FileUploader
-                  name='content'
-                  multiple
-                  fieldTitle={i18n.t(
-                    "modules.admin.manageBooks.submitBook.content"
-                  )}
-                  acceptType='image/jpeg,image/jpg'
-                />
-              </Grid>
-            </Grid>
-          </Box>
-
-          <Box display='flex' justifyContent='start' sx={{ mt: "20px" }}>
-            <ButtonForm label={i18n.t("modules.home.contacts.form.send")} />
-          </Box>
+              <Box display='flex' justifyContent='start' sx={{ mt: "20px" }}>
+                <ButtonForm label={i18n.t("modules.home.contacts.form.send")} />
+              </Box></>)}
         </Form>
       </Formik>
     </>

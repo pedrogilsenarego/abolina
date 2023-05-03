@@ -62,4 +62,9 @@ export interface DeleteProps {
     payload: payload,
   });
 
+  export const updateProgress = (payload:number) => ({
+    type: bookTypes.UPDATE_PROGRESS,
+    payload: payload,
+  });
+
   

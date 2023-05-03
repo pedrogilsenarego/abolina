@@ -22,7 +22,7 @@ const Loader = ({ size = 100, color, customMessage, progress }: Props) => {
       }}
     >
 
-      <Typography>{customMessage}</Typography>
+      <Typography>{customMessage}: {progress}%</Typography>
       <Ellipsis
 
         size={size || 100}

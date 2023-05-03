@@ -29,6 +29,7 @@ export interface GeneralState {
   lastEndpoint: string
   cookiePolicy:boolean
   collections: Collection[]
+  loading:boolean
 
 }
 

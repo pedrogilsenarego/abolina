@@ -3,7 +3,8 @@ import bookTypes from "./books.types";
 const INITIAL_STATE = {
   books: [],
   book: {},
-  carroussell: []
+  carroussell: [],
+  progress:0
 };
 
 interface Action {
@@ -28,6 +29,11 @@ const booksReducer = (state = INITIAL_STATE, action: Action) => {
           ...state,
           carroussell: action.payload.content,
         };
+        case bookTypes.UPDATE_PROGRESS:
+          return {
+            ...state,
+            progress: action.payload,
+          };
 
     default:
       return state;
