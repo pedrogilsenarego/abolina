@@ -15,13 +15,18 @@ const useList = ({tableData}:Props) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
-  const handleAction = (type: string, id: number) => {
+  const handleAction = (type: string, id: number, value?:any) => {
     switch (type) {
-      case "newBook": {
-        const signal = tableData[id].newBook ?? true
-        const payload = {signal: !signal, documentID: tableData[id].documentID}
-        dispatch(updateNewBookStatus(payload))
-        break;
+      case "newBook": 
+      {
+        const payload = {
+          value: value,
+          documentID: tableData[id].documentID
+        }
+        
+       
+          dispatch(updateNewBookStatus(payload))
+          break;
       }
       case "delete": {
         const payload = {

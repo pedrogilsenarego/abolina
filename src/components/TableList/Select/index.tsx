@@ -85,12 +85,12 @@ const Select = ({
           InputLabelProps={{ shrink: false }}
           value={selected}
 
-          maxWidth="80px"
+          maxWidth="140px"
 
         >
           {Object.keys(options).map((item: any, pos) => {
             return (
-              <MenuItem key={pos} value={item}>
+              <MenuItem key={pos} value={options[item]}>
                 {options[item]}
               </MenuItem>
             );

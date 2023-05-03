@@ -44,7 +44,7 @@ export interface Book {
   size: string
   pages:number
   content: string[]
-  newBook?: boolean
+  newBook?: string
   createdDate?: Date;
 }
 

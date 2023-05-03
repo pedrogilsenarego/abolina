@@ -28,7 +28,8 @@ export const tableColumns =
     label: i18n.t(
       "modules.admin.manageBooks.tableList.newBook.title"
     ),
-    type: ColumnType.ActionComponent,
+    
+    type: ColumnType.Select,
     sortable: false,
   },
   {

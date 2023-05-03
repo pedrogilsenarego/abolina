@@ -1,6 +1,7 @@
 import { ImCross } from "react-icons/im";
 import { Book } from "../../../slicer/books/books.types";
 import { i18n } from "../../../translations/i18n";
+import { newBookTypes } from "../../../constants/admin";
 
 const deleteIcon = (
   <ImCross fontSize='1em' color='black' style={{ cursor: "pointer" }} />
@@ -11,30 +12,29 @@ const mapBookItem = (book: Book, pos: number) => {
     id: pos,
     title: book.title,
     createdDate: book.createdDate,
-    newBook: [
-      {
-        buttonType: "toggle",
-        confirmationButtonLabel: i18n.t(
-          "modules.admin.manageBooks.tableList.newBook.accept"
-        ),
-        declineButtonLabel: i18n.t(
-          "modules.admin.manageBooks.tableList.newBook.deny"
-        ),
-        confirmationDescription: i18n.t(
-          "modules.admin.manageBooks.tableList.newBook.confirmationDescription"
-        ),
-        confirmationRequired: true,
-        confirmationTitle: i18n.t(
-          "modules.admin.manageBooks.tableList.newBook.confirmationTitle"
-        ),
-        isActive: book.newBook ?? true,
-        disabled: false,
-        event: "newBook",
-        label: i18n.t(
-          "modules.admin.manageBooks.tableList.newBook.tooltip"
-        ),
-      },
-    ],
+    newBook: {
+
+      value: book.newBook,
+      confirmationButtonLabel: i18n.t(
+        "modules.admin.manageBooks.tableList.newBook.accept"
+      ),
+      declineButtonLabel: i18n.t(
+        "modules.admin.manageBooks.tableList.newBook.deny"
+      ),
+      confirmationDescription: i18n.t(
+        "modules.admin.manageBooks.tableList.newBook.confirmationDescription"
+      ),
+      confirmationRequired: true,
+      confirmationTitle: i18n.t(
+        "modules.admin.manageBooks.tableList.newBook.confirmationTitle"
+      ),
+      options: newBookTypes,
+      event: "newBook",
+      label: i18n.t(
+        "modules.admin.manageBooks.tableList.newBook.tooltip"
+      ),
+
+    },
     delete: [
       {
         buttonType: "icon",
