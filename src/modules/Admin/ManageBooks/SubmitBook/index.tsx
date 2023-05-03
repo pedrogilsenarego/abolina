@@ -14,7 +14,7 @@ import { fetchCollections } from "../../../../services/adminServices";
 import SelectWithPlus from "../../../../groupComponents/SelectWithPlus";
 import { State } from "../../../../slicer/types";
 import Loader from "../../../../components/Loader";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { disableLoading } from "../../../../slicer/general/general.actions";
 import { mapInitialForm } from "../mapper";
 import { useParams } from "react-router";
@@ -28,7 +28,7 @@ interface Props {
 const SubmitBook = ({ edit = false }: Props) => {
   const { id } = useParams<Record<string, string | undefined>>();
   const documentID = id || "";
-
+  const [contentValue, setContentValue] = useState<any>(undefined)
 
   const {
     isLoading: loadingBook,
@@ -82,6 +82,32 @@ const SubmitBook = ({ edit = false }: Props) => {
     }
   }, [edit, bookData]);
 
+  const handleConvertStringIntoFile = async (images: string[]) => {
+    // Create a new DataTransfer object
+    const dataTransfer = new DataTransfer();
+
+    // Function to convert base64 string to a file
+    const base64StringToFile = async (base64String: string, filename: string): Promise<File> => {
+      const response = await fetch(base64String);
+      const data = await response.blob();
+      return new File([data], filename, { type: "image/webp" });
+    };
+
+    // Iterate through the images array and add each file to the DataTransfer object
+    for (let i = 0; i < images.length; i++) {
+      const file = await base64StringToFile(images[i], `image${i}.webp`); // You can replace the filename with any naming scheme you prefer
+      dataTransfer.items.add(file);
+    }
+    setContentValue(dataTransfer.files)
+
+  };
+
+  useEffect(() => {
+    if (!loadingBook && initialValues.content.length > 0) {
+      handleConvertStringIntoFile(initialValues.content)
+
+    }
+  }, [loadingBook, initialValues.content]);
 
   useEffect(() => {
     dispatch(disableLoading())
@@ -375,6 +401,7 @@ const SubmitBook = ({ edit = false }: Props) => {
 
                   <Grid item xs={6}>
                     <FileUploader
+                      value={contentValue}
                       name='content'
                       multiple
                       fieldTitle={i18n.t(

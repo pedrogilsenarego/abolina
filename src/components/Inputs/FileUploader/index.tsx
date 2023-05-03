@@ -1,5 +1,5 @@
 import { Box, Grid, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Colors } from "../../../constants/pallette";
 
 import { RiDeleteBinLine } from "react-icons/ri";
@@ -13,12 +13,18 @@ interface Props {
   acceptType?: string;
   name: string;
   multiple?: boolean;
+  value?: any
 }
 
-const FileUploader = ({ fieldTitle, name, acceptType, multiple }: Props) => {
+const FileUploader = ({ fieldTitle, name, acceptType, multiple, value }: Props) => {
   const [imageUpload, setImageUpload] = useState<any>({});
   const [, mata, helpers] = useField(name);
   const inputRef = useRef<any>();
+
+  useEffect(() => {
+    if (value) { setImageUpload(value); helpers.setValue(value) }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value])
 
 
   const a = Array.prototype.slice.call(imageUpload);

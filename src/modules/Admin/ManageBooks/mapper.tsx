@@ -81,25 +81,7 @@ const mapBooksItems = (cartItems: any) => {
 export { mapBooksItems };
 
 
-const handleConvertStringIntoFile = async (images: string[]) => {
-  // Create a new DataTransfer object
-  const dataTransfer = new DataTransfer();
 
-  // Function to convert base64 string to a file
-  const base64StringToFile = async (base64String: string, filename: string): Promise<File> => {
-    const response = await fetch(base64String);
-    const data = await response.blob();
-    return new File([data], filename, { type: "image/webp" });
-  };
-
-  // Iterate through the images array and add each file to the DataTransfer object
-  for (let i = 0; i < images.length; i++) {
-    const file = await base64StringToFile(images[i], `image${i}.webp`); // You can replace the filename with any naming scheme you prefer
-    dataTransfer.items.add(file);
-  }
-
-  return dataTransfer;
-};
 
 
 
@@ -126,8 +108,8 @@ export const mapInitialForm = (data: any) => {
     resume: data?.resume || "",
     resumeEN: data?.resumeEN || "",
     price: data?.price || null,
-    coverPage2: data?.coverPage2 || undefined,
-    content: handleConvertStringIntoFile(data?.content) || [],
+    coverPage2: data?.coverPage2 || "",
+    content: data?.content || [],
     pages: data?.pages || null,
 
   }
