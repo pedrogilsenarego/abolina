@@ -6,6 +6,7 @@ export const ROUTE_PATHS = {
   ADMIN: '/admin',
   ADMIN_CARROUSEL: "/admin/manage-carrousell",
   ADMIN_BOOKS_CREATE: '/admin/books/create',
+  ADMIN_BOOKS_EDIT:"/admin/books/edit/:id",
   LOGIN:'/login',
   CART:"/cart",
   PRIVACY_POLICY:"/privacy-policy"

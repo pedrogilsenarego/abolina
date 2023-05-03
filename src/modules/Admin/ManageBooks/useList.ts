@@ -1,13 +1,15 @@
 import { useDispatch } from "react-redux";
 import { deleteBook, fetchBooks, updateNewBookStatus } from "../../../slicer/books/books.actions";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
+import { ROUTE_PATHS } from "../../../constants/routes";
 
 interface Props {
   tableData: any
 }
 
 const useList = ({tableData}:Props) => {
-
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   useEffect(()=>{
@@ -33,8 +35,13 @@ const useList = ({tableData}:Props) => {
           documentID: tableData[id].documentID,
           title: tableData[id].title
         };
-        
         dispatch(deleteBook(payload));
+        break;
+      }
+      case "edit": {
+        const document = tableData[id].documentID;
+        const newPath = ROUTE_PATHS.ADMIN_BOOKS_EDIT.replace(':id', document);
+        navigate(newPath);
         break;
       }
       default:

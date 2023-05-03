@@ -33,8 +33,8 @@ export const tableColumns =
     sortable: false,
   },
   {
-    id: 'delete',
-    label: 'Remove',
+    id: 'actions',
+    label: 'Actions',
     type: ColumnType.ActionComponent,
     minWidth: 70,
     sortable: false,

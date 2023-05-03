@@ -10,6 +10,7 @@ interface Props {
 }
 
 const Loader = ({ size = 100, color, customMessage, progress }: Props) => {
+  const progressW = progress ? `${progress}%` : ""
   return (
     <div
       style={{
@@ -22,7 +23,7 @@ const Loader = ({ size = 100, color, customMessage, progress }: Props) => {
       }}
     >
 
-      <Typography>{customMessage}: {progress}%</Typography>
+      <Typography>{customMessage} {progressW}</Typography>
       <Ellipsis
 
         size={size || 100}

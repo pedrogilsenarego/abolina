@@ -16,32 +16,26 @@ import { State } from "../../../../slicer/types";
 import Loader from "../../../../components/Loader";
 import { useEffect } from "react";
 import { disableLoading } from "../../../../slicer/general/general.actions";
+import { mapInitialForm } from "../mapper";
+import { useParams } from "react-router";
+import { fetchBook } from "../../../../services/adminServices";
 
-const SubmitBook = () => {
-  const INITIAL_FORM_STATE = {
-    title: "",
-    titleEN: "",
-    collections: "",
-    number: 0,
-    author: "",
-    authorResume: "",
-    authorResumeEN: "",
-    designer: "",
-    designerResume: "",
-    designerResumeEN: "",
-    translator: "",
-    translatorResume: "",
-    translatorResumeEN: "",
-    language: "",
-    weight: "",
-    size: "",
-    resume: "",
-    resumeEN: "",
-    price: null,
-    coverPage2: undefined,
-    content: [],
-    pages: null,
-  };
+interface Props {
+  edit?: boolean
+}
+
+const SubmitBook = ({ edit = false }: Props) => {
+  const { id } = useParams<Record<string, string | undefined>>();
+  const documentID = id || "";
+
+  const {
+    isLoading: loadingBook,
+    error: errorBook,
+    data: bookData,
+  } = useQuery<[string, string]>(["book", documentID], fetchBook, {
+    enabled: edit && !!documentID,
+  });
+
 
   const {
     isLoading: loadingCollections,
@@ -52,6 +46,32 @@ const SubmitBook = () => {
     staleTime: 3600000, // 1 hour in milliseconds
     cacheTime: 3600000, // 10 minutes in milliseconds
   });
+
+  const INITIAL_FORM_STATE = edit ? mapInitialForm(bookData) :
+    {
+      title: "",
+      titleEN: "",
+      collections: "",
+      number: 0,
+      author: "",
+      authorResume: "",
+      authorResumeEN: "",
+      designer: "",
+      designerResume: "",
+      designerResumeEN: "",
+      translator: "",
+      translatorResume: "",
+      translatorResumeEN: "",
+      language: "",
+      weight: "",
+      size: "",
+      resume: "",
+      resumeEN: "",
+      price: null,
+      coverPage2: undefined,
+      content: [],
+      pages: null,
+    }
 
   useEffect(() => {
     dispatch(disableLoading())
@@ -82,7 +102,7 @@ const SubmitBook = () => {
         validationSchema={FORM_VALIDATION}
       >
         <Form>
-          {loading ? (
+          {loading || loadingBook ? (
             <Box
               style={{
                 position: "relative",
@@ -97,8 +117,8 @@ const SubmitBook = () => {
 
                 size={200}
                 color='darkGrey'
-                customMessage='Your Data is being send'
-                progress={progress}
+                customMessage={edit ? "fetching the book for edition" : 'Your Data is being send'}
+                progress={edit ? undefined : progress}
               />
             </Box>
           ) : (

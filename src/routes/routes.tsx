@@ -97,6 +97,16 @@ export const routes: AppRoute[] = [
     ),
   },
   {
+    path: ROUTE_PATHS.ADMIN_BOOKS_EDIT,
+    component: (
+      <WithAdminAuth>
+        <AdminLayout>
+          <AdminBooksCreate edit />
+        </AdminLayout>
+      </WithAdminAuth>
+    ),
+  },
+  {
     path: ROUTE_PATHS.ADMIN_CARROUSEL,
     component: (
       <WithAdminAuth>
