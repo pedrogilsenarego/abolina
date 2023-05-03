@@ -7,6 +7,7 @@ import { useField } from "formik";
 import { useRef } from "react";
 import Image from "./Image";
 
+
 interface Props {
   fieldTitle: string;
   acceptType?: string;
@@ -27,18 +28,44 @@ const FileUploader = ({ fieldTitle, name, acceptType, multiple }: Props) => {
     updatedImages.splice(pos, 1);
     setImageUpload(updatedImages);
     helpers.setValue(updatedImages);
+    // Create a new DataTransfer object
+    const dataTransfer = new DataTransfer();
+    // Add each file to the DataTransfer object
+    updatedImages.forEach((file) => {
+      dataTransfer.items.add(file);
+    });
+    // Assign the updated FileList to the input
+    inputRef.current.files = dataTransfer.files;
+  };
+
+  const handleChange = (e: any) => {
+    // Convert existing files to an array
+    const existingFiles = Array.prototype.slice.call(imageUpload);
+
+    // Convert new files to an array
+    const newFiles = Array.prototype.slice.call(e?.target?.files);
+
+    // Concatenate existing and new files
+    const allFiles = existingFiles.concat(newFiles);
+
+    setImageUpload(allFiles);
+    helpers.setValue(allFiles);
+    helpers.setError(undefined);
 
     // Create a new DataTransfer object
     const dataTransfer = new DataTransfer();
 
     // Add each file to the DataTransfer object
-    updatedImages.forEach((file) => {
+    allFiles.forEach((file) => {
       dataTransfer.items.add(file);
     });
 
     // Assign the updated FileList to the input
     inputRef.current.files = dataTransfer.files;
-  };
+  }
+
+
+
 
 
 
@@ -75,26 +102,25 @@ const FileUploader = ({ fieldTitle, name, acceptType, multiple }: Props) => {
                 multiple={multiple}
                 ref={inputRef}
                 accept={acceptType || "image/*"}
-                onChange={(e: any) => {
-                  setImageUpload(e?.target?.files);
-                  helpers.setValue(e?.target?.files);
-                  helpers.setError(undefined);
-                }}
+                onChange={(e: any) => handleChange(e)}
               />
+
             </Grid>
 
             <Grid item textAlign='start'>
               {imageUpload && (
-                <RiDeleteBinLine
-                  onClick={() => {
-                    setImageUpload({});
-                    helpers.setValue(null);
-                    inputRef.current.value = "";
-                  }}
-                  style={{ cursor: "pointer", marginLeft: "10px" }}
-                  size='1.5em'
-                  color={Colors.tealc}
-                />
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <RiDeleteBinLine
+                    onClick={() => {
+                      setImageUpload({});
+                      helpers.setValue(null);
+                      inputRef.current.value = "";
+                    }}
+                    style={{ cursor: "pointer", marginLeft: "10px" }}
+                    size='1.5em'
+                    color={Colors.tealc}
+                  />
+                  <Typography style={{ color: "red" }}>Delete All</Typography></div>
               )}
             </Grid>
           </Grid>

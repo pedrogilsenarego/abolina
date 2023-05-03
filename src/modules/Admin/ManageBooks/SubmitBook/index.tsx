@@ -82,6 +82,7 @@ const SubmitBook = ({ edit = false }: Props) => {
     }
   }, [edit, bookData]);
 
+
   useEffect(() => {
     dispatch(disableLoading())
     dispatch(updateProgress(0))

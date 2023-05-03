@@ -5,7 +5,7 @@ import { Typography } from "@mui/material";
 interface Props {
   pos: number;
   image: any;
-  deleteImage: (pos: number) => void
+  deleteImage: (pos: number) => void;
 }
 
 const Image = ({ pos, image, deleteImage }: Props) => {
@@ -21,19 +21,26 @@ const Image = ({ pos, image, deleteImage }: Props) => {
       style={{ position: "relative" }}
     >
       {hover && (
-        <Typography
+        <div
           style={{
-            color: "red",
-            fontWeight: 800,
-
             position: "absolute",
-            top: "50%",
-            left: 0,
-            right: 0,
+            width: "100px",
+            height: "100px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          Delete
-        </Typography>
+          <Typography
+            style={{
+              color: "red",
+              fontWeight: 800,
+
+            }}
+          >
+            Delete
+          </Typography>
+        </div>
       )}
       <img
         alt=''
