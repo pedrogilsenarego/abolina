@@ -80,9 +80,14 @@ const mapBooksItems = (cartItems: any) => {
 
 export { mapBooksItems };
 
-export const mapInitialForm = (data: Book) => {
-  console.log(data)
+export const mapInitialForm = (data: any) => {
+  console.log("data", data)
 
-  return
+  return {
+    title: data?.title || "",
+    titleEN: data?.titleEN || "",
+    author: data?.author || ""
+
+  }
 
 }

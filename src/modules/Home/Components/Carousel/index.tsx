@@ -91,7 +91,7 @@ const Carousel = () => {
   window.addEventListener('resize', setVw);
 
   const handleClickImage = (pos: number) => {
-    console.log(pos, current)
+
     if (pos - 1 > current) handleMove("right")
     if (pos - 1 < current) handleMove("left")
   }

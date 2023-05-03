@@ -14,7 +14,7 @@ import { fetchCollections } from "../../../../services/adminServices";
 import SelectWithPlus from "../../../../groupComponents/SelectWithPlus";
 import { State } from "../../../../slicer/types";
 import Loader from "../../../../components/Loader";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { disableLoading } from "../../../../slicer/general/general.actions";
 import { mapInitialForm } from "../mapper";
 import { useParams } from "react-router";
@@ -24,9 +24,11 @@ interface Props {
   edit?: boolean
 }
 
+
 const SubmitBook = ({ edit = false }: Props) => {
   const { id } = useParams<Record<string, string | undefined>>();
   const documentID = id || "";
+
 
   const {
     isLoading: loadingBook,
@@ -35,6 +37,8 @@ const SubmitBook = ({ edit = false }: Props) => {
   } = useQuery<[string, string]>(["book", documentID], fetchBook, {
     enabled: edit && !!documentID,
   });
+
+
 
 
   const {
@@ -47,31 +51,36 @@ const SubmitBook = ({ edit = false }: Props) => {
     cacheTime: 3600000, // 10 minutes in milliseconds
   });
 
-  const INITIAL_FORM_STATE = edit ? mapInitialForm(bookData) :
-    {
-      title: "",
-      titleEN: "",
-      collections: "",
-      number: 0,
-      author: "",
-      authorResume: "",
-      authorResumeEN: "",
-      designer: "",
-      designerResume: "",
-      designerResumeEN: "",
-      translator: "",
-      translatorResume: "",
-      translatorResumeEN: "",
-      language: "",
-      weight: "",
-      size: "",
-      resume: "",
-      resumeEN: "",
-      price: null,
-      coverPage2: undefined,
-      content: [],
-      pages: null,
+  const initialValues = useMemo(() => {
+    if (edit && bookData) {
+      return mapInitialForm(bookData);
+    } else {
+      return {
+        title: "",
+        titleEN: "",
+        collections: "",
+        number: 0,
+        author: "",
+        authorResume: "",
+        authorResumeEN: "",
+        designer: "",
+        designerResume: "",
+        designerResumeEN: "",
+        translator: "",
+        translatorResume: "",
+        translatorResumeEN: "",
+        language: "",
+        weight: "",
+        size: "",
+        resume: "",
+        resumeEN: "",
+        price: null,
+        coverPage2: undefined,
+        content: [],
+        pages: null,
+      };
     }
+  }, [edit, bookData]);
 
   useEffect(() => {
     dispatch(disableLoading())
@@ -82,10 +91,32 @@ const SubmitBook = ({ edit = false }: Props) => {
   const dispatch = useDispatch();
   const loading = useSelector<State, boolean>((state) => state.general.loading);
   const progress = useSelector<State, number>((state) => state.books.progress);
-  const handleSubmit = (values: any) => {
+  const handleSubmit = (values: any,) => {
 
     dispatch(addBook({ ...values }));
+
   };
+
+  if (edit && loadingBook) {
+    return (
+      <Box
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Loader
+          size={200}
+          color="darkGrey"
+          customMessage="fetching the book for edition"
+        />
+      </Box>
+    );
+  }
 
   return (
     <>
@@ -95,14 +126,18 @@ const SubmitBook = ({ edit = false }: Props) => {
       <Divider />
 
       <Formik
-        initialValues={{ ...INITIAL_FORM_STATE }}
-        onSubmit={(values) => {
-          handleSubmit(values);
+        initialValues={{ ...initialValues }}
+        onSubmit={(values, { resetForm }) => {
+          if (!edit) {
+            handleSubmit(values);
+            resetForm()
+          }
+          else console.log("values", values)
         }}
         validationSchema={FORM_VALIDATION}
       >
         <Form>
-          {loading || loadingBook ? (
+          {loading ? (
             <Box
               style={{
                 position: "relative",
@@ -117,8 +152,8 @@ const SubmitBook = ({ edit = false }: Props) => {
 
                 size={200}
                 color='darkGrey'
-                customMessage={edit ? "fetching the book for edition" : 'Your Data is being send'}
-                progress={edit ? undefined : progress}
+                customMessage='Your Data is being send'
+                progress={progress}
               />
             </Box>
           ) : (

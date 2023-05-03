@@ -10,7 +10,7 @@ export const handleFetchCollections = () => {
       .then((snapshot) => {
         if (snapshot.exists) {
           resolve(snapshot.data());
-          console.log(snapshot.data())
+         
         }
       })
       .catch((err) => {
