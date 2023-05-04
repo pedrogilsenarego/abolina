@@ -6,7 +6,7 @@ import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
 import ButtonForm from "../../../../components/Buttons/ButtonFormik";
 import { useDispatch, useSelector } from "react-redux";
-import { addBook, updateProgress } from "../../../../slicer/books/books.actions";
+import { addBook, editBook, updateProgress } from "../../../../slicer/books/books.actions";
 import FileUploader from "../../../../components/Inputs/FileUploader";
 
 import { useQuery } from "react-query";
@@ -127,9 +127,8 @@ const SubmitBook = ({ edit = false }: Props) => {
   const loading = useSelector<State, boolean>((state) => state.general.loading);
   const progress = useSelector<State, number>((state) => state.books.progress);
   const handleSubmit = (values: any,) => {
-
-    dispatch(addBook({ ...values }));
-
+    if (edit) dispatch(editBook({ ...values }))
+    else dispatch(addBook({ ...values }));
   };
 
   if (edit && loadingBook) {
@@ -163,11 +162,10 @@ const SubmitBook = ({ edit = false }: Props) => {
       <Formik
         initialValues={{ ...initialValues }}
         onSubmit={(values, { resetForm }) => {
-          if (!edit) {
-            handleSubmit(values);
-            resetForm()
-          }
-          else console.log("values", values)
+
+          handleSubmit(values);
+          resetForm()
+
         }}
         validationSchema={FORM_VALIDATION}
       >

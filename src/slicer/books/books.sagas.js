@@ -5,6 +5,7 @@ import {
   setCarroussell,
   fetchBooks,
   updateProgress,
+  addBook,
 } from "./books.actions";
 import { store } from "../createStore";
 import {
@@ -97,6 +98,18 @@ function* sagaAddBook({ payload }) {
 
 export function* onAddBook() {
   yield takeLatest(bookTypes.ADD_BOOK, sagaAddBook);
+}
+
+function* sagaEditBook({ payload }) {
+  try {
+    yield put(addBook(payload));
+  } catch {
+    yield put(updateFailNotification("Couldn't edit the book this time"));
+  }
+}
+
+export function* onEditBook() {
+  yield takeLatest(bookTypes.EDIT_BOOK, sagaEditBook);
 }
 
 //
@@ -211,6 +224,7 @@ export default function* bookSagas() {
     call(onFetchBooks),
     call(onFetchBook),
     call(onAddBook),
+    call(onEditBook),
     call(onUpdateNewBookStatus),
     call(onFetchCarroussell),
     call(onUpdateCarroussell),

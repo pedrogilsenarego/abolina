@@ -25,6 +25,11 @@ export const addBook = (book:any) => ({
   payload: book,
 });
 
+export const editBook = (book:any) => ({
+  type: bookTypes.EDIT_BOOK,
+  payload: book,
+});
+
 //
 export const updateNewBookStatus = (payload:{value:string, documentID:number | string}) => ({
   type: bookTypes.UPDATE_NEW_BOOK_STATUS,
