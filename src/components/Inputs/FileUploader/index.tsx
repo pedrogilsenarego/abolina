@@ -21,7 +21,7 @@ const FileUploader = ({
   fieldTitle,
   name,
   acceptType,
-  multiple,
+  multiple = false,
   value,
   loading,
 }: Props) => {
@@ -107,14 +107,10 @@ const FileUploader = ({
   };
 
   const handleChange = (e: any) => {
-    // Convert existing files to an array
-    const existingFiles = Array.prototype.slice.call(imageUpload);
-
-    // Convert new files to an array
     const newFiles = Array.prototype.slice.call(e?.target?.files);
 
-    // Concatenate existing and new files
-    const allFiles = existingFiles.concat(newFiles);
+    // Only set the first file as the value if multiple is false
+    const allFiles = multiple ? [...imageUpload, ...newFiles] : [newFiles[0]];
 
     setImageUpload(allFiles);
     helpers.setValue(allFiles);
@@ -131,6 +127,9 @@ const FileUploader = ({
     // Assign the updated FileList to the input
     inputRef.current.files = dataTransfer.files;
   };
+
+
+
 
   return (
     <Box>
@@ -174,7 +173,7 @@ const FileUploader = ({
                 </Grid>
 
                 <Grid item textAlign='start'>
-                  {imageUpload && (
+                  {imageUpload && multiple && (
                     <div style={{ display: "flex", alignItems: "center" }}>
                       <RiDeleteBinLine
                         onClick={() => {
