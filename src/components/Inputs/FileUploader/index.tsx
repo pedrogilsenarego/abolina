@@ -50,15 +50,18 @@ const FileUploader = ({
     e.preventDefault();
     if (draggedIndex === undefined || draggedIndex === droppedIndex) return;
 
-    const updatedImages = [...imageUpload];
+    const updatedImages = [...a];
     const draggedImage = updatedImages[draggedIndex];
-    if (droppedIndex === undefined) {
-      droppedIndex = updatedImages.length - 1;
-    }
-    const droppedImage = updatedImages[droppedIndex];
 
-    updatedImages[draggedIndex] = droppedImage;
-    updatedImages[droppedIndex] = draggedImage;
+    if (draggedIndex < droppedIndex) {
+      updatedImages.splice(draggedIndex, 1);
+      updatedImages.splice(droppedIndex, 0, draggedImage);
+    } else if (droppedIndex === updatedImages.length) {
+      updatedImages.push(draggedImage);
+    } else {
+      updatedImages.splice(draggedIndex, 1);
+      updatedImages.splice(droppedIndex, 0, draggedImage);
+    }
 
     setImageUpload(updatedImages);
     helpers.setValue(updatedImages);
@@ -72,7 +75,7 @@ const FileUploader = ({
     // Assign the updated FileList to the input
     inputRef.current.files = dataTransfer.files;
 
-    // Reset the draggedIndex and hoveredIndex
+    // Reset the draggedIndex
     setDraggedIndex(undefined);
     setHoveredIndex(undefined);
   };
@@ -127,18 +130,6 @@ const FileUploader = ({
 
     // Assign the updated FileList to the input
     inputRef.current.files = dataTransfer.files;
-  };
-
-  const shouldShowSeparator = (pos: number) => {
-    if (draggedIndex === undefined) return false;
-    if (
-      pos === hoveredIndex &&
-      pos !== draggedIndex &&
-      (pos !== draggedIndex - 1 || (draggedIndex === 0 && pos === a.length - 1))
-    ) {
-      return true;
-    }
-    return false;
   };
 
   return (
@@ -206,39 +197,71 @@ const FileUploader = ({
                 {imageUpload &&
                   a.map((image: any, pos: number) => {
                     return (
-                      <>
-                        <Grid
-                          item
-                          xs={12}
-                          draggable='true'
-                          onDragStart={(e) => handleDragStart(e, pos)}
-                          onDragOver={(e) => handleDragOver(e, pos)}
-
-                        >
-                          <Image
-                            pos={pos}
-                            image={image}
-                            deleteImage={handleDeleteImage}
-                          />
-                        </Grid>
-                        {shouldShowSeparator(pos) && (
-                          <Grid
-                            onDrop={(e) => handleDrop(e, pos)}
-                            onDragOver={(e) => handleDragOver(e, pos)}
-                            item
-                            xs={12}
+                      <Grid
+                        item
+                        xs={12}
+                        draggable='true'
+                        onDragStart={(e) => handleDragStart(e, pos)}
+                        onDragOver={(e) => handleDragOver(e, pos)}
+                        onDrop={(e) => handleDrop(e, pos)}
+                        style={{
+                          marginTop:
+                            pos === hoveredIndex && pos !== draggedIndex
+                              ? "10px"
+                              : "0px",
+                        }}
+                      >
+                        {pos === hoveredIndex && pos !== draggedIndex && (
+                          <div
                             style={{
-                              borderTop: "2px dashed black",
-                              marginTop: "20px",
-                              borderBottom: "2px dashed black",
+                              height: "80px",
+                              width: "100%",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              border: `dashed 3px ${Colors.darkGrey}`,
+                              borderRadius: "10px",
+                              marginBottom: "20px"
                             }}
                           >
-                            <Typography>Place here</Typography>
-                          </Grid>
+                            <Typography>Drag here</Typography>
+                          </div>
                         )}
-                      </>
+                        <Image
+                          pos={pos}
+                          image={image}
+                          deleteImage={handleDeleteImage}
+                        />
+                      </Grid>
                     );
                   })}
+                {a.length > 0 && (
+                  <Grid
+                    item
+                    xs={12}
+                    container
+                    onDragOver={(e) => handleDragOver(e, a.length)}
+                    onDrop={(e) => handleDrop(e, a.length)}
+                    style={{
+                      marginTop: a.length === hoveredIndex ? "10px" : "0px",
+                    }}
+                  >
+                    {a.length === hoveredIndex && (
+                      <div
+                        style={{
+                          height: "80px",
+                          width: "100%",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          border: `dashed 3px ${Colors.darkGrey}`,
+                          borderRadius: "10px"
+                        }}
+                      >
+                        <Typography>Drag here</Typography></div>
+                    )}
+                  </Grid>
+                )}
               </Grid>
             </Grid>
           </Box>
