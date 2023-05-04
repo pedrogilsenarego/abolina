@@ -1,6 +1,7 @@
 import { useState } from "react";
-import CardMedia from "../../../CardMedia";
-import { Typography } from "@mui/material";
+import { Colors } from "../../../../constants/pallette";
+import { RiDeleteBinLine } from "react-icons/ri";
+import { MdOutlineSearch } from "react-icons/md"
 
 interface Props {
   pos: number;
@@ -13,46 +14,48 @@ const Image = ({ pos, image, deleteImage }: Props) => {
   return (
     <div
       key={pos}
-      onClick={() => deleteImage(pos)}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => {
         setHover(false);
       }}
-      style={{ position: "relative" }}
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        backgroundColor: hover ? "lightGrey" : "transparent",
+        width: "100%",
+        height: "80px",
+        border: `solid 3px ${Colors.tealc}`,
+        borderRadius: "10px",
+        padding: "10px",
+        cursor: "grabbing"
+      }}
     >
-      {hover && (
-        <div
-          style={{
-            position: "absolute",
-            width: "100px",
-            height: "100px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Typography
-            style={{
-              color: "red",
-              fontWeight: 800,
 
-            }}
-          >
-            Delete
-          </Typography>
-        </div>
-      )}
       <img
         alt=''
+        draggable="false"
         style={{
-          width: "100px",
+
           cursor: "pointer",
-          height: "100px",
-          opacity: hover ? 0.5 : 1,
+          height: "100%",
+          borderRadius: "6px",
+          objectFit: "cover"
         }}
         key={pos}
         src={URL.createObjectURL(image)}
       />
+      <div style={{ display: "flex", columnGap: "5px" }}>
+        <MdOutlineSearch size="1.5rem" color={Colors.darkGrey} style={{ cursor: "pointer" }} />
+
+        <RiDeleteBinLine
+          onClick={() => deleteImage(pos)}
+          style={{ cursor: "pointer" }}
+          size='1.5rem'
+          color={Colors.darkGrey}
+        />
+
+      </div>
     </div>
   );
 };

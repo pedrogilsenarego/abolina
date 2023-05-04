@@ -25,9 +25,57 @@ const FileUploader = ({
   value,
   loading,
 }: Props) => {
-  const [imageUpload, setImageUpload] = useState<any>({});
+  const [imageUpload, setImageUpload] = useState<any[]>([]);
+  const [draggedIndex, setDraggedIndex] = useState<number | undefined>(undefined);
+  const [hoveredIndex, setHoveredIndex] = useState<number | undefined>(undefined);
+
   const [, mata, helpers] = useField(name);
   const inputRef = useRef<any>();
+
+  const handleDragStart = (e: any, index: number) => {
+    e.dataTransfer.effectAllowed = "move";
+    setDraggedIndex(index);
+  };
+
+  const handleDragOver = (e: any, index: number) => {
+    e.preventDefault();
+    setHoveredIndex(index);
+  };
+
+  const handleDrop = (e: any, droppedIndex: number) => {
+    e.preventDefault();
+    if (draggedIndex === undefined || draggedIndex === droppedIndex) return;
+
+    const updatedImages = [...a];
+    const draggedImage = updatedImages[draggedIndex];
+
+    if (draggedIndex < droppedIndex) {
+      updatedImages.splice(draggedIndex, 1);
+      updatedImages.splice(droppedIndex, 0, draggedImage);
+    } else {
+      updatedImages.splice(draggedIndex, 1);
+      updatedImages.splice(droppedIndex, 0, draggedImage);
+    }
+
+    setImageUpload(updatedImages);
+    helpers.setValue(updatedImages);
+
+    // Create a new DataTransfer object
+    const dataTransfer = new DataTransfer();
+    // Add each file to the DataTransfer object
+    updatedImages.forEach((file) => {
+      dataTransfer.items.add(file);
+    });
+    // Assign the updated FileList to the input
+    inputRef.current.files = dataTransfer.files;
+
+    // Reset the draggedIndex
+    setDraggedIndex(undefined);
+    setHoveredIndex(undefined);
+  };
+
+
+
 
   useEffect(() => {
     if (value) {
@@ -127,7 +175,7 @@ const FileUploader = ({
                     <div style={{ display: "flex", alignItems: "center" }}>
                       <RiDeleteBinLine
                         onClick={() => {
-                          setImageUpload({});
+                          setImageUpload([]);
                           helpers.setValue(null);
                           inputRef.current.value = "";
                         }}
@@ -142,15 +190,22 @@ const FileUploader = ({
                   )}
                 </Grid>
               </Grid>
-              <Grid item container xs={6}>
+              <Grid item container xs={6} rowSpacing={2}>
                 {imageUpload &&
                   a.map((image: any, pos: number) => {
                     return (
-                      <Image
-                        pos={pos}
-                        image={image}
-                        deleteImage={handleDeleteImage}
-                      />
+                      <Grid item xs={12} draggable="true" onDragStart={(e) => handleDragStart(e, pos)}
+                        onDragOver={(e) => handleDragOver(e, pos)}
+                        onDrop={(e) => handleDrop(e, pos)}
+                      //style={{ marginBottom: pos === hoveredIndex && pos !== draggedIndex ? "20px" : "0px" }}
+                      >
+
+                        <Image
+                          pos={pos}
+                          image={image}
+                          deleteImage={handleDeleteImage}
+                        />
+                      </Grid>
                     );
                   })}
               </Grid>
