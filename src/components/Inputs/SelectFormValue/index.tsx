@@ -37,6 +37,7 @@ const SelectWrapper = ({ name, options, label, getvalue, ...otherProps }: Props)
     getvalue(meta.value);
   }
 
+
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <Box display='flex' justifyContent='start'>
@@ -46,6 +47,7 @@ const SelectWrapper = ({ name, options, label, getvalue, ...otherProps }: Props)
         {...configSelect}
         variant='outlined'
         InputLabelProps={{ shrink: false }}
+
 
       >
         {options.map((item: Option, pos: number) => {
