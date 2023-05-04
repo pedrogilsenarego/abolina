@@ -26,8 +26,12 @@ const FileUploader = ({
   loading,
 }: Props) => {
   const [imageUpload, setImageUpload] = useState<any[]>([]);
-  const [draggedIndex, setDraggedIndex] = useState<number | undefined>(undefined);
-  const [hoveredIndex, setHoveredIndex] = useState<number | undefined>(undefined);
+  const [draggedIndex, setDraggedIndex] = useState<number | undefined>(
+    undefined
+  );
+  const [hoveredIndex, setHoveredIndex] = useState<number | undefined>(
+    undefined
+  );
 
   const [, mata, helpers] = useField(name);
   const inputRef = useRef<any>();
@@ -46,17 +50,15 @@ const FileUploader = ({
     e.preventDefault();
     if (draggedIndex === undefined || draggedIndex === droppedIndex) return;
 
-    const updatedImages = [...a];
+    const updatedImages = [...imageUpload];
     const draggedImage = updatedImages[draggedIndex];
-
-    // Fix the final order issue
-    if (draggedIndex < droppedIndex) {
-      updatedImages.splice(draggedIndex, 1);
-      updatedImages.splice(droppedIndex, 0, draggedImage);
-    } else {
-      updatedImages.splice(draggedIndex, 1);
-      updatedImages.splice(droppedIndex, 0, draggedImage);
+    if (droppedIndex === undefined) {
+      droppedIndex = updatedImages.length - 1;
     }
+    const droppedImage = updatedImages[droppedIndex];
+
+    updatedImages[draggedIndex] = droppedImage;
+    updatedImages[droppedIndex] = draggedImage;
 
     setImageUpload(updatedImages);
     helpers.setValue(updatedImages);
@@ -70,14 +72,10 @@ const FileUploader = ({
     // Assign the updated FileList to the input
     inputRef.current.files = dataTransfer.files;
 
-    // Reset the draggedIndex
-    // Reset the draggedIndex
+    // Reset the draggedIndex and hoveredIndex
     setDraggedIndex(undefined);
     setHoveredIndex(undefined);
   };
-
-
-
 
   useEffect(() => {
     if (value) {
@@ -129,6 +127,18 @@ const FileUploader = ({
 
     // Assign the updated FileList to the input
     inputRef.current.files = dataTransfer.files;
+  };
+
+  const shouldShowSeparator = (pos: number) => {
+    if (draggedIndex === undefined) return false;
+    if (
+      pos === hoveredIndex &&
+      pos !== draggedIndex &&
+      (pos !== draggedIndex - 1 || (draggedIndex === 0 && pos === a.length - 1))
+    ) {
+      return true;
+    }
+    return false;
   };
 
   return (
@@ -197,21 +207,37 @@ const FileUploader = ({
                   a.map((image: any, pos: number) => {
                     return (
                       <>
-                        {pos === hoveredIndex && pos !== draggedIndex && (
-                          <Grid item xs={12} style={{ borderTop: "2px dashed black", marginTop: "20px" }} />
-                        )}
-                        <Grid item xs={12} draggable="true" onDragStart={(e) => handleDragStart(e, pos)}
+                        <Grid
+                          item
+                          xs={12}
+                          draggable='true'
+                          onDragStart={(e) => handleDragStart(e, pos)}
                           onDragOver={(e) => handleDragOver(e, pos)}
-                          onDrop={(e) => handleDrop(e, pos)}
-                        >
 
+                        >
                           <Image
                             pos={pos}
                             image={image}
                             deleteImage={handleDeleteImage}
                           />
                         </Grid>
-                      </>);
+                        {shouldShowSeparator(pos) && (
+                          <Grid
+                            onDrop={(e) => handleDrop(e, pos)}
+                            onDragOver={(e) => handleDragOver(e, pos)}
+                            item
+                            xs={12}
+                            style={{
+                              borderTop: "2px dashed black",
+                              marginTop: "20px",
+                              borderBottom: "2px dashed black",
+                            }}
+                          >
+                            <Typography>Place here</Typography>
+                          </Grid>
+                        )}
+                      </>
+                    );
                   })}
               </Grid>
             </Grid>
