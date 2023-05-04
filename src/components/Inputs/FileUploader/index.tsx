@@ -49,6 +49,7 @@ const FileUploader = ({
     const updatedImages = [...a];
     const draggedImage = updatedImages[draggedIndex];
 
+    // Fix the final order issue
     if (draggedIndex < droppedIndex) {
       updatedImages.splice(draggedIndex, 1);
       updatedImages.splice(droppedIndex, 0, draggedImage);
@@ -69,6 +70,7 @@ const FileUploader = ({
     // Assign the updated FileList to the input
     inputRef.current.files = dataTransfer.files;
 
+    // Reset the draggedIndex
     // Reset the draggedIndex
     setDraggedIndex(undefined);
     setHoveredIndex(undefined);
@@ -194,19 +196,22 @@ const FileUploader = ({
                 {imageUpload &&
                   a.map((image: any, pos: number) => {
                     return (
-                      <Grid item xs={12} draggable="true" onDragStart={(e) => handleDragStart(e, pos)}
-                        onDragOver={(e) => handleDragOver(e, pos)}
-                        onDrop={(e) => handleDrop(e, pos)}
-                      //style={{ marginBottom: pos === hoveredIndex && pos !== draggedIndex ? "20px" : "0px" }}
-                      >
+                      <>
+                        {pos === hoveredIndex && pos !== draggedIndex && (
+                          <Grid item xs={12} style={{ borderTop: "2px dashed black", marginTop: "20px" }} />
+                        )}
+                        <Grid item xs={12} draggable="true" onDragStart={(e) => handleDragStart(e, pos)}
+                          onDragOver={(e) => handleDragOver(e, pos)}
+                          onDrop={(e) => handleDrop(e, pos)}
+                        >
 
-                        <Image
-                          pos={pos}
-                          image={image}
-                          deleteImage={handleDeleteImage}
-                        />
-                      </Grid>
-                    );
+                          <Image
+                            pos={pos}
+                            image={image}
+                            deleteImage={handleDeleteImage}
+                          />
+                        </Grid>
+                      </>);
                   })}
               </Grid>
             </Grid>
