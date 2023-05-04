@@ -30,6 +30,8 @@ const SubmitBook = ({ edit = false }: Props) => {
   const documentID = id || "";
   const [contentLoader, setContentLoader] = useState<boolean>(false)
   const [contentValue, setContentValue] = useState<any>(undefined)
+  const [coverPageLoader, setCoverPageLoader] = useState<boolean>(false)
+  const [coverPageValue, setCoverPageValue] = useState<any>(undefined)
 
   const {
     isLoading: loadingBook,
@@ -83,8 +85,8 @@ const SubmitBook = ({ edit = false }: Props) => {
     }
   }, [edit, bookData]);
 
-  const handleConvertStringIntoFile = async (images: string[]) => {
-    setContentLoader(true)
+  const handleConvertStringIntoFile = async (images: string[], setLoader: (signal: boolean) => void, setValue: (value: any) => void) => {
+    setLoader(true)
     // Create a new DataTransfer object
     const dataTransfer = new DataTransfer();
 
@@ -100,16 +102,19 @@ const SubmitBook = ({ edit = false }: Props) => {
       const file = await base64StringToFile(images[i], `image${i}.webp`); // You can replace the filename with any naming scheme you prefer
       dataTransfer.items.add(file);
     }
-    setContentValue(dataTransfer.files)
-    setContentLoader(false)
+    setValue(dataTransfer.files)
+    setLoader(false)
   };
 
+
   useEffect(() => {
-    if (!loadingBook && initialValues.content.length > 0) {
-      handleConvertStringIntoFile(initialValues.content)
+    if (!loadingBook) {
+      console.log(initialValues)
+      if (initialValues.content.length > 0) handleConvertStringIntoFile(initialValues.content, setContentLoader, setContentValue)
+      if (initialValues.coverPage2.length > 0) handleConvertStringIntoFile(initialValues.coverPage2, setCoverPageLoader, setCoverPageValue)
 
     }
-  }, [loadingBook, initialValues.content]);
+  }, [loadingBook, initialValues.content, initialValues.coverPage2]);
 
   useEffect(() => {
     dispatch(disableLoading())
@@ -393,6 +398,8 @@ const SubmitBook = ({ edit = false }: Props) => {
                   <Grid item xs={6}>
 
                     <FileUploader
+                      loading={coverPageLoader}
+                      value={coverPageValue}
                       name='coverPage2'
                       fieldTitle={i18n.t(
                         "modules.admin.manageBooks.submitBook.coverPage"

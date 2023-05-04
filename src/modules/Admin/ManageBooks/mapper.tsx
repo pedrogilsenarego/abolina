@@ -108,7 +108,7 @@ export const mapInitialForm = (data: any) => {
     resume: data?.resume || "",
     resumeEN: data?.resumeEN || "",
     price: data?.price || null,
-    coverPage2: data?.coverPage2 || "",
+    coverPage2: data?.coverPage2 || [],
     content: data?.content || [],
     pages: data?.pages || null,
 
