@@ -25,9 +25,9 @@ export const addBook = (book:any) => ({
   payload: book,
 });
 
-export const editBook = (book:any) => ({
+export const editBook = (payload:any) => ({
   type: bookTypes.EDIT_BOOK,
-  payload: book,
+  payload: payload,
 });
 
 //

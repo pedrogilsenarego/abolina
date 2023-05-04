@@ -112,10 +112,6 @@ const FileUploader = ({
     // Only set the first file as the value if multiple is false
     const allFiles = multiple ? [...imageUpload, ...newFiles] : [newFiles[0]];
 
-    setImageUpload(allFiles);
-    helpers.setValue(allFiles);
-    helpers.setError(undefined);
-
     // Create a new DataTransfer object
     const dataTransfer = new DataTransfer();
 
@@ -126,7 +122,14 @@ const FileUploader = ({
 
     // Assign the updated FileList to the input
     inputRef.current.files = dataTransfer.files;
+
+    // Set the new value in Formik
+    helpers.setValue(dataTransfer.files);
+
+    setImageUpload(allFiles);
+    helpers.setError(undefined);
   };
+
 
 
 

@@ -17,8 +17,9 @@ import Loader from "../../../../components/Loader";
 import { useEffect, useMemo, useState } from "react";
 import { disableLoading } from "../../../../slicer/general/general.actions";
 import { mapInitialForm } from "../mapper";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { fetchBook } from "../../../../services/adminServices";
+import { ROUTE_PATHS } from "../../../../constants/routes";
 
 interface Props {
   edit?: boolean
@@ -29,9 +30,14 @@ const SubmitBook = ({ edit = false }: Props) => {
   const { id } = useParams<Record<string, string | undefined>>();
   const documentID = id || "";
   const [contentLoader, setContentLoader] = useState<boolean>(false)
+  const [edited, setEdited] = useState<boolean>(false)
   const [contentValue, setContentValue] = useState<any>(undefined)
   const [coverPageLoader, setCoverPageLoader] = useState<boolean>(false)
   const [coverPageValue, setCoverPageValue] = useState<any>(undefined)
+  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const loading = useSelector<State, boolean>((state) => state.general.loading);
+  const progress = useSelector<State, number>((state) => state.books.progress);
 
   const {
     isLoading: loadingBook,
@@ -106,6 +112,11 @@ const SubmitBook = ({ edit = false }: Props) => {
     setLoader(false)
   };
 
+  useEffect(() => {
+    if (!loading && edit && edited) navigate(ROUTE_PATHS.ADMIN)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading])
+
 
   useEffect(() => {
     if (!loadingBook && edit) {
@@ -123,11 +134,17 @@ const SubmitBook = ({ edit = false }: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const dispatch = useDispatch();
-  const loading = useSelector<State, boolean>((state) => state.general.loading);
-  const progress = useSelector<State, number>((state) => state.books.progress);
+
   const handleSubmit = (values: any,) => {
-    if (edit) dispatch(editBook({ ...values }))
+    if (edit) {
+      const payload = {
+        values: { ...values },
+        documentID: documentID,
+        title: initialValues.title
+      }
+      dispatch(editBook(payload))
+      setEdited(true)
+    }
     else dispatch(addBook({ ...values }));
   };
 

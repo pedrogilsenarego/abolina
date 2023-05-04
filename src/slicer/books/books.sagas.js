@@ -6,6 +6,7 @@ import {
   fetchBooks,
   updateProgress,
   addBook,
+  deleteBook,
 } from "./books.actions";
 import { store } from "../createStore";
 import {
@@ -62,7 +63,7 @@ function* sagaAddBook({ payload }) {
       console.log(progress);
       store.dispatch(updateProgress(progress));
     };
-
+    console.log("here", payload);
     const coverPage = yield call(
       handleAddCoverPage,
       title,
@@ -101,8 +102,14 @@ export function* onAddBook() {
 }
 
 function* sagaEditBook({ payload }) {
+  const deleteValues = {
+    documentID: payload.documentID,
+    title: payload.title,
+  };
   try {
-    yield put(addBook(payload));
+    yield put(addBook(payload.values));
+    yield put(deleteBook(deleteValues));
+    yield put(updateSuccessNotification("The book was edited"));
   } catch {
     yield put(updateFailNotification("Couldn't edit the book this time"));
   }
