@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { State } from "../../../../slicer/types";
 import { scrollToContacts } from "../../../../slicer/general/general.actions";
 import { Colors } from "../../../../constants/pallette";
+import { api } from "../../../../constants/backend";
 
 const Contacts = () => {
   const INITIAL_FORM_STATE = {
@@ -40,7 +41,19 @@ const Contacts = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollToContactsL]);
 
-  const handleSubmit = (values: any) => { };
+  const handleSubmit = async (values: any) => {
+    await fetch(api.sendEmailLocal, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ values }),
+    })
+      .then((res) => {
+        console.log(res)
+        return res.json();
+      })
+  };
 
   return (
     <Container

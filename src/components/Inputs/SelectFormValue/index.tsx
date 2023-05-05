@@ -20,7 +20,10 @@ interface Config {
 }
 
 const SelectWrapper = ({ name, options, label, getvalue, ...otherProps }: Props) => {
-  const [field, meta, helper] = useField(name || "name");
+  const [field, meta, helper] = useField({
+    name: name || "name",
+    defaultValue: "",
+  });
 
   const configSelect: Config = {
     ...otherProps,
