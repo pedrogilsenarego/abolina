@@ -17,7 +17,7 @@ app.get("/home", (req, res) => {
 app.post("/submit-feedback", async (req, res) => {
   try {
     console.log(req.body);
-    const submitFeedback = await sendEmail(req.body);
+    //const submitFeedback = await sendEmail(req.body);
     // res.status(200).send(submitFeedback);
   } catch (err) {
     res.status(500).json({

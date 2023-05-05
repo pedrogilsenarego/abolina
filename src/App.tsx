@@ -13,6 +13,7 @@ import { checkUserSession } from "./slicer/user/user.actions";
 import { Colors } from "./constants/pallette";
 import CookiePolicy from "./presentational/CookiePopup";
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { disableLoading } from "./slicer/general/general.actions";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,7 @@ function App() {
   useEffect(
     () => {
       dispatch(checkUserSession());
+      dispatch(disableLoading())
     },
     // eslint-disable-next-line
     []

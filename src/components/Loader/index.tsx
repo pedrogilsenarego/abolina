@@ -7,9 +7,10 @@ interface Props {
   color?: string;
   customMessage?: string;
   progress?: number;
+  colorMessage?: string
 }
 
-const Loader = ({ size = 100, color, customMessage, progress }: Props) => {
+const Loader = ({ size = 100, color, customMessage, progress, colorMessage }: Props) => {
   const progressW = progress ? `${progress}%` : ""
   return (
     <div
@@ -23,11 +24,11 @@ const Loader = ({ size = 100, color, customMessage, progress }: Props) => {
       }}
     >
 
-      <Typography>{customMessage} {progressW}</Typography>
+      <Typography color={colorMessage || "black"}>{customMessage} {progressW}</Typography>
       <Ellipsis
 
         size={size || 100}
-        color={Colors.tealc}
+        color={color || Colors.tealc}
       />
     </div>
   );

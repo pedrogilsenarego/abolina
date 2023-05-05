@@ -8,9 +8,12 @@ import ButtonForm from "../../../../components/Buttons/ButtonFormik";
 import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { State } from "../../../../slicer/types";
-import { scrollToContacts } from "../../../../slicer/general/general.actions";
+import { scrollToContacts, updateFailNotification } from "../../../../slicer/general/general.actions";
 import { Colors } from "../../../../constants/pallette";
 import { api } from "../../../../constants/backend";
+import { enableLoading } from "../../../../slicer/general/general.actions";
+import { disableLoading } from "../../../../slicer/general/general.actions";
+import Loader from "../../../../components/Loader";
 
 const Contacts = () => {
   const INITIAL_FORM_STATE = {
@@ -24,6 +27,7 @@ const Contacts = () => {
   const scrollToContactsL = useSelector<State>(
     (state) => state.general.scrollToContacts
   );
+  const loading = useSelector<State, boolean>((state) => state.general.loading)
   const handleScrollToContacts = () => {
     if (null !== contactsRef.current) {
       window.scrollTo({
@@ -42,6 +46,7 @@ const Contacts = () => {
   }, [scrollToContactsL]);
 
   const handleSubmit = async (values: any) => {
+    dispatch(enableLoading())
     await fetch(api.sendEmailLocal, {
       method: "POST",
       headers: {
@@ -50,8 +55,15 @@ const Contacts = () => {
       body: JSON.stringify({ values }),
     })
       .then((res) => {
-        console.log(res)
         return res.json();
+      })
+      .catch((error) => {
+        dispatch(updateFailNotification("Error Sending the message"))
+        dispatch(disableLoading())
+        console.error("Error:", error);
+      })
+      .finally(() => {
+        dispatch(disableLoading())
       })
   };
 
@@ -66,12 +78,13 @@ const Contacts = () => {
       </GStyled.Title>
       <Formik
         initialValues={{ ...INITIAL_FORM_STATE }}
-        onSubmit={(values) => {
+        onSubmit={(values, { resetForm }) => {
           handleSubmit(values);
+          resetForm()
         }}
         validationSchema={FORM_VALIDATION}
       >
-        <Form>
+        {loading ? <Loader color="white" customMessage="Sending the message" /> : <Form>
           <Box
             rowGap={2}
             display='flex'
@@ -113,7 +126,8 @@ const Contacts = () => {
               label={i18n.t("modules.home.contacts.form.send")}
             />
           </Box>
-        </Form>
+        </Form>}
+
       </Formik>
     </Container>
   );
