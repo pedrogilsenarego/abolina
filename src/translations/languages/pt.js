@@ -54,10 +54,11 @@ export const content = {
       modules: {
         cart: {
           title: "Carrinho de compras",
+          title2: "Dados para compra",
           discountCuppon: "Cupão de disconto",
           applyDiscount: "Aplicar",
           total: "Total:",
-          finalize: "Finalizar",
+          finalize: "Prosseguir Compra",
           table: {
             product: "Produto",
             price: "Preço",

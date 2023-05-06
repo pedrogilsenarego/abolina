@@ -13,6 +13,7 @@ import FileUploader from "../../../components/Inputs/FileUploader";
 import { Formik, Form } from "formik";
 import { FORM_VALIDATION } from "./validation";
 import ButtonForm from "../../../components/Buttons/ButtonFormik";
+import Table from "./Table";
 
 const ManageCarrousell = () => {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ const ManageCarrousell = () => {
       </GStyled.Title>
       <Divider />
       <Card style={{ padding: "20px", marginTop: "60px" }}>
+        <Table />
         <Grid container rowSpacing={2}>
           {list?.map((grp, grpI) => (
             <Grid item xs={12}>

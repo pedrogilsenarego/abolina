@@ -54,10 +54,11 @@ export const content = {
       modules: {
         cart: {
           title: "Shopping Cart",
+          title2: "Checkout",
           discountCuppon: "Discount Cuppon",
           applyDiscount: "Apply",
           total: "Total:",
-          finalize: "Finalize",
+          finalize: "Proceed to checkout",
           table: {
             product: "Product",
             price: "Price",
@@ -182,6 +183,9 @@ export const content = {
             submitTitle: "Manage Carroussell",
             imagesKeep: "Images to keep",
             imagesDelete: "Images to Delete",
+            tableList: {
+              image: "image",
+            },
           },
         },
       },

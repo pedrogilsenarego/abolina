@@ -9,5 +9,6 @@ export const ROUTE_PATHS = {
   ADMIN_BOOKS_EDIT:"/admin/books/edit/:id",
   LOGIN:'/login',
   CART:"/cart",
+  CHECKOUT:"/checkout",
   PRIVACY_POLICY:"/privacy-policy"
 }

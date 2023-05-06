@@ -23,6 +23,8 @@ export interface Collection {
   title:string
 }
 
+
+
 export interface GeneralState {
   lang: string,
   scrollToContacts: boolean

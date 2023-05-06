@@ -10,7 +10,7 @@ import TextField from "../../components/Inputs/TextField";
 import Button from "../../components/Buttons/Button";
 import { getTotalValue } from "./Utils";
 
-const Cart = () => {
+const Checkout = () => {
   const cartItems = useSelector<State, CartProduct[]>(
     (state) => state.cart.cartItems
   );
@@ -154,4 +154,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default Checkout;

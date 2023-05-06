@@ -7,24 +7,25 @@ import { Colors } from "../../../../constants/pallette";
 import Image from "./Components/Image";
 import DotGroups from "./Components/DotGroups";
 import { fetchCarroussell } from "../../../../slicer/books/books.actions";
+import { Carousel } from "../../../../slicer/books/books.types";
 
-const Carousel = () => {
+const CarouselL = () => {
 
-  const images = useSelector<State, string[]>(
+  const itemsCarousel = useSelector<State, Carousel[]>(
     (state) => state.books.carroussell || []
   );
   const value = 60;
-  const initialTranslateXValue = ((images.length / 2 * value) - value / 2) * -1
+  const initialTranslateXValue = ((itemsCarousel.length / 2 * value) - value / 2) * -1
   const [mouseHover, setMousehover] = useState(false)
   const [current, setCurrent] = useState<number>(0);
   const [miniIndex, setMiniIndex] = useState<number>(0)
   const [translateX, setTranslateX] = useState<number>(initialTranslateXValue);
-  const [slider, setSlider] = useState<any>([]);
+  const [slider, setSlider] = useState<Carousel[]>([]);
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
   const dispatch = useDispatch()
 
-  const slides = images.length > 1 ? [images[images.length - 1], ...images, images[0]] : [...images];
+  const slides = itemsCarousel.length > 1 ? [itemsCarousel[itemsCarousel.length - 1], ...itemsCarousel, itemsCarousel[0]] : [...itemsCarousel];
 
 
 
@@ -42,9 +43,9 @@ const Carousel = () => {
     if (direction === "left") {
       if (current <= 0) {
 
-        setTranslateX(translateX + value * (images.length - 1))
-        setCurrent(images.length - 1)
-        setMiniIndex(images.length - 1)
+        setTranslateX(translateX + value * (itemsCarousel.length - 1))
+        setCurrent(itemsCarousel.length - 1)
+        setMiniIndex(itemsCarousel.length - 1)
       } else {
         setTranslateX(translateX - value);
         setCurrent(current - 1);
@@ -54,7 +55,7 @@ const Carousel = () => {
       return;
     }
 
-    if (current >= images.length - 1) {
+    if (current >= itemsCarousel.length - 1) {
       setTranslateX(initialTranslateXValue);
       setCurrent(0);
       setMiniIndex(0)
@@ -108,7 +109,7 @@ const Carousel = () => {
 
         }}
       >
-        {images.length > 1 && (
+        {itemsCarousel.length > 1 && (
           <Box
             display='flex'
             justifyContent='space-between'
@@ -152,8 +153,8 @@ const Carousel = () => {
             transform: `translateX(${-translateX}vw)`,
           }}
         >
-          {slider.map((item: any, pos: number) =>
-            <Image onClick={handleClickImage} key={pos} item={item} pos={pos} mobile={mobile} current={current} />
+          {slider.map((item: Carousel, pos: number) =>
+            <Image onClick={handleClickImage} key={pos} item={item.image} pos={pos} mobile={mobile} current={current} />
 
           )}
         </Box>
@@ -166,7 +167,7 @@ const Carousel = () => {
           style={{ marginTop: "35px" }}
         >
           <DotGroups
-            numberDots={images.length}
+            numberDots={itemsCarousel.length}
             index={miniIndex}
             setIndex={setMiniIndex}
           />
@@ -176,4 +177,4 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
+export default CarouselL;

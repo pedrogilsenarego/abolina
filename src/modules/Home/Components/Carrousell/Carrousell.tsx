@@ -9,14 +9,15 @@ import { fetchCarroussell } from "../../../../slicer/books/books.actions";
 import { State } from "../../../../slicer/types";
 import DotGroups from "./Components/DotGroups";
 import Teste from "./Components/teste";
+import { Carousel } from "../../../../slicer/books/books.types";
 
 const Carrousell = () => {
-  const images = useSelector<State, string[]>(
+  const itemsCarousel = useSelector<State, Carousel[]>(
     (state) => state.books.carroussell || []
   );
   const [errorImage, setErrorImage] = useState(false);
   const [indexMini, setIndexMini] = useState(0);
-  const [mainImage, setMainImage] = useState(images[0]);
+  const [mainImage, setMainImage] = useState<Carousel>(itemsCarousel[0]);
   const [hover, setHover] = useState<boolean>(false);
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
@@ -57,26 +58,26 @@ const Carrousell = () => {
   const handleGoLeft = () => {
     if (indexMini > 0) {
       setIndexMini(indexMini - 1);
-      setMainImage(images[indexMini]);
+      setMainImage(itemsCarousel[indexMini]);
     }
     return;
   };
   const handleGoRight = () => {
-    if (indexMini < images.length - 1) {
+    if (indexMini < itemsCarousel.length - 1) {
       setIndexMini(indexMini + 1);
-      setMainImage(images[indexMini]);
+      setMainImage(itemsCarousel[indexMini]);
     }
     return;
   };
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      if (indexMini < images.length - 1) {
+      if (indexMini < itemsCarousel.length - 1) {
         setIndexMini(indexMini + 1);
-        setMainImage(images[indexMini]);
+        setMainImage(itemsCarousel[indexMini]);
       } else {
         setIndexMini(0);
-        setMainImage(images[0]);
+        setMainImage(itemsCarousel[0]);
       }
     }, 10000);
 
@@ -121,7 +122,7 @@ const Carrousell = () => {
             <CarouselProvider
               naturalSlideHeight={40}
               naturalSlideWidth={100}
-              totalSlides={images.length}
+              totalSlides={itemsCarousel.length}
               currentSlide={indexMini}
               lockOnWindowScroll
               touchEnabled={mobile ? true : false}
@@ -145,7 +146,7 @@ const Carrousell = () => {
                   transition: "all 0.2s ease-in",
                 }}
               >
-                {images.map((image, pos) => {
+                {itemsCarousel.map((image, pos) => {
                   return (
                     <Slide
                       key={pos}
@@ -164,7 +165,7 @@ const Carrousell = () => {
                           height: "100%",
                           cursor: "Pointer",
                         }}
-                        src={image}
+                        src={image.image}
                         alt=''
                       />
                     </Slide>
@@ -178,7 +179,7 @@ const Carrousell = () => {
                   style={{ marginTop: "35px" }}
                 >
                   <DotGroups
-                    numberDots={images.length}
+                    numberDots={itemsCarousel.length}
                     index={indexMini}
                     setIndex={setIndexMini}
                   />

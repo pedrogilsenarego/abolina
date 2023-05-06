@@ -21,8 +21,13 @@ export interface Books {
     data:Book[]
   }
   book: Book
-  carroussell: string[]
+  carroussell: Carousel[]
   progress:number
+}
+
+export interface Carousel {
+  image: string;
+  link:string
 }
 
 export interface Book {
