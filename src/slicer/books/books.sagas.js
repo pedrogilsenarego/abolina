@@ -64,7 +64,7 @@ function* sagaAddBook({ payload }) {
       console.log(progress);
       store.dispatch(updateProgress(progress));
     };
-    console.log("here", payload);
+
     const coverPage = yield call(
       handleAddCoverPage,
       title,
@@ -160,6 +160,7 @@ function* sagaUpdateCarroussell({ payload }) {
     yield handleUpdateCarroussell(freshData);
     yield put(setCarroussell({ content: freshData }));
     const deleteData = payload[1].data;
+    deleteData.pop();
     yield handleDeleteCarroussellStorage(deleteData);
     yield put(
       updateSuccessNotification(

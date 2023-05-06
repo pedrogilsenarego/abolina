@@ -243,8 +243,9 @@ export const handleAddCarroussellImage = async (files: any) => {
   return c;
 };
 
-export const handleDeleteCarroussellStorage = async (list: string[]) => {
+export const handleDeleteCarroussellStorage = async (list: {image:string,title:string,link:string}[]) => {
   if (list.length <= 1) return;
+  console.log("list",list)
   const uploadImageAsPromise = (fileRef: any) => {
     return new Promise<void>((resolve, reject) => {
       fileRef
@@ -259,7 +260,7 @@ export const handleDeleteCarroussellStorage = async (list: string[]) => {
   };
 
   for (var i = 1; i < list.length; i++) {
-    var imageFile = list[i];
+    var imageFile = list[i].image;
     var fileRef = storage.refFromURL(imageFile);
     await uploadImageAsPromise(fileRef);
   }

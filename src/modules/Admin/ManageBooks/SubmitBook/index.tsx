@@ -120,7 +120,7 @@ const SubmitBook = ({ edit = false }: Props) => {
 
   useEffect(() => {
     if (!loadingBook && edit) {
-      console.log(initialValues)
+
       if (initialValues.content.length > 0) handleConvertStringIntoFile(initialValues.content, setContentLoader, setContentValue)
       if (initialValues.coverPage2.length > 0) handleConvertStringIntoFile(initialValues.coverPage2, setCoverPageLoader, setCoverPageValue)
 
