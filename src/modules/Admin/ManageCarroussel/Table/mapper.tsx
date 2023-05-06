@@ -17,7 +17,25 @@ const mapCarouselItem = (item: Carousel, pos: number) => {
   return {
     id: pos,
     image: item.image,
+    link: {
 
+      value: item.link,
+      confirmationButtonLabel: i18n.t(
+        "modules.admin.manageBooks.tableList.newBook.accept"
+      ),
+      declineButtonLabel: i18n.t(
+        "modules.admin.manageBooks.tableList.newBook.deny"
+      ),
+      confirmationDescription: "Are you sure you want to change this image connection to a book?",
+      confirmationRequired: true,
+      confirmationTitle: "Link this Image to a book",
+      options: ["newBookTypes", "sqdqdw"],
+      event: "link",
+      label: i18n.t(
+        "Link this Image to a book"
+      ),
+
+    },
 
     actions: [
       {

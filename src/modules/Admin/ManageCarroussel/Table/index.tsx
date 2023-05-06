@@ -4,11 +4,14 @@ import { tableColumns } from "./Constants";
 import { mapCarouselItems } from "./mapper";
 import useList from "./useList";
 import { State } from "../../../../slicer/types";
+import { Carousel } from "../../../../slicer/books/books.types";
 
 
 const Table = () => {
-  const tableData = useSelector<State, any>((state) => state.books.carroussell);
-  console.log(tableData)
+  const tableData = useSelector<State, Carousel[]>((state) => state?.books?.carroussell);
+  // const books = useSelector<State, any>((state) => state?.books?.books)
+  // console.log(books)
+
   const { handleAction } = useList({ tableData })
   return (
     <>
