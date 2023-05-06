@@ -51,14 +51,15 @@ export const handleFetchBook = (documentID: string) => {
   });
 };
 
-
-
-export const handleAddCoverPage = async (title: string, files: any, onProgressUpdate: (progress: number) => void) => {
+export const handleAddCoverPage = async (
+  title: string,
+  files: any,
+  onProgressUpdate: (progress: number) => void
+) => {
   const a = Array.prototype.slice.call(files);
   const c: any = [];
-  let incrementLoad = 100/a.length
-  let loadProgress = 0
-
+  let incrementLoad = 100 / a.length;
+  let loadProgress = 0;
 
   const uploadImageAsPromise = (imageFile: any) => {
     return new Promise<void>((resolve, reject) => {
@@ -74,7 +75,7 @@ export const handleAddCoverPage = async (title: string, files: any, onProgressUp
             .then((url) => {
               resolve(url);
               console.log(url);
-              loadProgress = loadProgress + incrementLoad
+              loadProgress = loadProgress + incrementLoad;
               onProgressUpdate(~~loadProgress);
               c.push(url);
             });
@@ -82,7 +83,6 @@ export const handleAddCoverPage = async (title: string, files: any, onProgressUp
         .catch((err) => {
           reject(err);
         });
-     
     });
   };
 
@@ -109,14 +109,17 @@ export const handleAddBook = (payload: any) => {
 };
 
 //
-export const handleUpdateNewBookStatus = (payload:{value:string, documentID:string}) => {
+export const handleUpdateNewBookStatus = (payload: {
+  value: string;
+  documentID: string;
+}) => {
   const { documentID, value } = payload;
   return new Promise<void>((resolve, reject) => {
     firestore
       .collection("books")
       .doc(documentID)
       .update({
-        newBook: value
+        newBook: value,
       })
       .then(() => {
         resolve();
@@ -127,6 +130,46 @@ export const handleUpdateNewBookStatus = (payload:{value:string, documentID:stri
   });
 };
 //
+
+export const handleUpdateCarroussellLink = (payload: { link: string, pos: number , title:string}) => {
+  const { link, pos, title } = payload;
+  
+  return new Promise<void>((resolve, reject) => {
+    firestore
+      .collection("general")
+      .doc("carrousell")
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const content = doc.data()?.content || [];
+
+          // Update the link property of the object at the specified position
+          content[pos].link = link;
+          content[pos].title = title;
+
+          // Update the content field with the updated array
+          firestore
+            .collection("general")
+            .doc("carrousell")
+            .update({
+              content: content,
+            })
+            .then(() => {
+              resolve();
+            })
+            .catch((err) => {
+              reject(err);
+            });
+        } else {
+          reject(new Error("Document does not exist"));
+        }
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
 
 export const handleFetchCarroussell = () => {
   return new Promise((resolve, reject) => {
@@ -145,13 +188,13 @@ export const handleFetchCarroussell = () => {
   });
 };
 
-export const handleUpdateCarroussell = (content:string[]) => {
+export const handleUpdateCarroussell = (content: string[]) => {
   return new Promise<void>((resolve, reject) => {
     firestore
       .collection("general")
       .doc("carrousell")
       .update({
-        content
+        content,
       })
       .then(() => {
         resolve();
@@ -162,10 +205,10 @@ export const handleUpdateCarroussell = (content:string[]) => {
   });
 };
 
-export const handleAddCarroussellImage = async (files:any) => {
+export const handleAddCarroussellImage = async (files: any) => {
   const a = Array.prototype.slice.call(files);
-  const c:any = []
-  const uploadImageAsPromise = (imageFile:any) => {
+  const c: any = [];
+  const uploadImageAsPromise = (imageFile: any) => {
     return new Promise<void>((resolve, reject) => {
       storage
         .ref(`carroussell/${imageFile.name}`)
@@ -176,10 +219,9 @@ export const handleAddCarroussellImage = async (files:any) => {
             .child(imageFile.name)
             .getDownloadURL()
             .then((url) => {
-              resolve(url)
-              console.log(url)
+              resolve(url);
+              console.log(url);
               c.push(url);
-              
             });
         })
         .catch((err) => {
@@ -191,39 +233,36 @@ export const handleAddCarroussellImage = async (files:any) => {
       //     // const progressD = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
       //     // setProgress(progressD)
       //   },
-    });}
-  
+    });
+  };
+
   for (var i = 0; i < a.length; i++) {
     var imageFile = a[i];
     await uploadImageAsPromise(imageFile);
-}
-return c
-
-  
+  }
+  return c;
 };
 
-export const handleDeleteCarroussellStorage = async (list:string[]) => {
-  if(list.length<=1) return
-  const uploadImageAsPromise = (fileRef:any) => {
+export const handleDeleteCarroussellStorage = async (list: string[]) => {
+  if (list.length <= 1) return;
+  const uploadImageAsPromise = (fileRef: any) => {
     return new Promise<void>((resolve, reject) => {
       fileRef
-      .delete()
+        .delete()
         .then(() => {
-         resolve()
+          resolve();
         })
-        .catch((err:any) => {
+        .catch((err: any) => {
           reject(err);
         });
-     
-    });}
-  
+    });
+  };
+
   for (var i = 1; i < list.length; i++) {
     var imageFile = list[i];
     var fileRef = storage.refFromURL(imageFile);
     await uploadImageAsPromise(fileRef);
-}
-
-  
+  }
 };
 
 export const handleDeleteBook = (documentID: string) => {
@@ -241,8 +280,6 @@ export const handleDeleteBook = (documentID: string) => {
   });
 };
 
-
-
 export const handleDeleteBookStorage = async (title: string): Promise<void> => {
   // Define folderPath
   const folderPath = `books/${title}/`;
@@ -255,14 +292,14 @@ export const handleDeleteBookStorage = async (title: string): Promise<void> => {
     .listAll()
     .then(async (res) => {
       // Process all the items under listRef
-      const deletePromises: Promise<void>[] = res.items.map((itemRef) => itemRef.delete());
+      const deletePromises: Promise<void>[] = res.items.map((itemRef) =>
+        itemRef.delete()
+      );
       await Promise.all(deletePromises);
-      console.log('Folder deleted successfully');
+      console.log("Folder deleted successfully");
     })
     .catch((error) => {
       // Uh-oh, an error occurred!
-      console.error('Error deleting folder:', error);
+      console.error("Error deleting folder:", error);
     });
 };
-
-

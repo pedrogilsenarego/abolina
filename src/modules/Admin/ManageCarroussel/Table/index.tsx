@@ -8,16 +8,17 @@ import { Carousel } from "../../../../slicer/books/books.types";
 
 
 const Table = () => {
-  const tableData = useSelector<State, Carousel[]>((state) => state?.books?.carroussell);
-  // const books = useSelector<State, any>((state) => state?.books?.books)
-  // console.log(books)
+  const tableData = useSelector<State, Carousel[]>((state) => state?.books?.carroussell) || [];
 
-  const { handleAction } = useList({ tableData })
+  const books = useSelector<State, any>((state) => state?.books?.books) || []
+
+
+  const { handleAction } = useList({ tableData, books })
   return (
     <>
       <TableList
         columns={tableColumns}
-        rows={mapCarouselItems(tableData).rows}
+        rows={mapCarouselItems(tableData, books.data).rows}
         onAction={handleAction}
       /></>
   )

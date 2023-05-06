@@ -21,6 +21,7 @@ import {
   handleUpdateNewBookStatus,
   handleDeleteBook,
   handleDeleteBookStorage,
+  handleUpdateCarroussellLink,
 } from "./books.helpers";
 import bookTypes from "./books.types";
 import {
@@ -176,11 +177,30 @@ export function* onUpdateCarroussell() {
   yield takeLatest(bookTypes.UPDATE_CARROUSELL, sagaUpdateCarroussell);
 }
 
+function* sagaUpdateCarrouselLink({ payload }) {
+  try {
+    yield handleUpdateCarroussellLink(payload);
+
+    yield put(updateSuccessNotification("Carousel Link updated"));
+  } catch (err) {
+    yield put(updateFailNotification("Carousel Link not updated"));
+  }
+}
+
+export function* onUpdateCarrousellLink() {
+  yield takeLatest(bookTypes.UPDATE_CARROUSELL_LINK, sagaUpdateCarrouselLink);
+}
+
 function* sagaNewImageCarroussell({ payload }) {
   try {
     const { newImage, list } = payload;
     const url = yield handleAddCarroussellImage(newImage);
-    const newArray = list[0].data.concat(url);
+    const urlObj = {
+      title: "",
+      link: "",
+      image: url[0],
+    };
+    const newArray = list[0].data.concat(urlObj);
     yield handleUpdateCarroussell(newArray);
     yield put(setCarroussell({ content: newArray }));
     yield put(
@@ -237,5 +257,6 @@ export default function* bookSagas() {
     call(onUpdateCarroussell),
     call(onNewImageCarroussell),
     call(onDeleteBook),
+    call(onUpdateCarrousellLink),
   ]);
 }

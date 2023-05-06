@@ -1,15 +1,16 @@
 import { useDispatch } from "react-redux";
-import { deleteBook, fetchBooks, updateNewBookStatus } from "../../../../slicer/books/books.actions";
+import { deleteBook, fetchBooks, updateCarroussellLink } from "../../../../slicer/books/books.actions";
 import { useEffect } from "react";
-import { useNavigate } from "react-router";
-import { ROUTE_PATHS } from "../../../../constants/routes";
+
+import { Book } from "../../../../slicer/books/books.types";
 
 interface Props {
   tableData: any
+  books?: any
 }
 
-const useList = ({tableData}:Props) => {
-  const navigate = useNavigate()
+const useList = ({tableData, books}:Props) => {
+
   const dispatch = useDispatch()
 
   useEffect(()=>{
@@ -19,31 +20,20 @@ const useList = ({tableData}:Props) => {
 
   const handleAction = (type: string, id: number, value?:any) => {
     switch (type) {
-      case "newBook": 
+      case "link": 
       {
         const payload = {
-          value: value,
-          documentID: tableData[id].documentID
+          link: books?.data?.filter((book:Book)=>book.title===value)[0].documentID,
+          title:value,
+          pos: id
         }
-        
        
-          dispatch(updateNewBookStatus(payload))
+       
+          dispatch(updateCarroussellLink(payload))
           break;
       }
-      case "delete": {
-        const payload = {
-          documentID: tableData[id].documentID,
-          title: tableData[id].title
-        };
-        dispatch(deleteBook(payload));
-        break;
-      }
-      case "edit": {
-        const document = tableData[id].documentID;
-        const newPath = ROUTE_PATHS.ADMIN_BOOKS_EDIT.replace(':id', document);
-        navigate(newPath);
-        break;
-      }
+     
+     
       default:
         break;
     }

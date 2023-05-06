@@ -32,6 +32,7 @@ const ManageCarrousell = () => {
 
   const handleNewImage = (values) => {
     const newValues = { ...values, list };
+
     dispatch(addNewCarroussell(newValues));
     // setList([...list], list[0].data.push() );
   };
@@ -46,7 +47,7 @@ const ManageCarrousell = () => {
         <Table />
         <Grid container rowSpacing={2}>
           {list?.map((grp, grpI) => (
-            <Grid item xs={12}>
+            <Grid item xs={12} key={grpI}>
               <Paper
                 style={{
                   marginTop: "5px",
@@ -63,7 +64,7 @@ const ManageCarrousell = () => {
                   }
                 >
                   <Grid container>
-                    <Grid xs={12} style={{ display: "flex" }}>
+                    <Grid item xs={12} style={{ display: "flex" }}>
                       {grp?.data?.map((item, itemI) => (
                         <Box
                           onDragStart={(e) => {
@@ -74,7 +75,7 @@ const ManageCarrousell = () => {
                               ? (e) => handleDragEnter(e, { grpI, itemI })
                               : null
                           }
-                          key={itemI}
+                          key={grpI + itemI}
                           style={{
                             cursor: "pointer",
                             maxWidth: "100px",
@@ -87,7 +88,7 @@ const ManageCarrousell = () => {
                         >
                           <img
                             draggable={itemI === 0 && grpI === 1 ? false : true}
-                            src={item}
+                            src={item.image}
                             style={{
                               maxWidth: "100%",
                               maxHeight: "100%",
@@ -131,8 +132,7 @@ const ManageCarrousell = () => {
             <FileUploader
               fieldTitle='New image'
               name='newImage'
-              multiple
-              acceptType='image/jpeg,image/jpg'
+              acceptType='image/webp'
             />
             <Box display='flex' justifyContent='start' sx={{ mt: "20px" }}>
               <ButtonForm label={i18n.t("modules.home.contacts.form.send")} />

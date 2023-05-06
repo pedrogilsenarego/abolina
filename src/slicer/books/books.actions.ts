@@ -52,6 +52,11 @@ export const updateCarroussell = (list:string[]) => ({
   payload: list,
 })
 
+export const updateCarroussellLink = (payload:{link:string;pos:number, title:string}) => ({
+  type: bookTypes.UPDATE_CARROUSELL_LINK,
+  payload: payload,
+})
+
 export const addNewCarroussell = (newImage:any) => ({
   type: bookTypes.ADD_NEW_IMAGE_CARROUSSELL,
   payload:newImage

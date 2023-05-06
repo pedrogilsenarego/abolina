@@ -75,7 +75,7 @@ const CardMedia = ({
         height={height || "120"}
 
         width={width || "auto"}
-        image={image}
+        image={image || ""}
         alt={alt || ""}
         onClick={handleClick}
       />
