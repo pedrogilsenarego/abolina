@@ -17,7 +17,7 @@ const Image = ({ item, pos, mobile, current, onClick }: Props) => {
       <img
         draggable={false}
         onClick={() => { if (onClick) onClick(pos) }}
-        onMouseEnter={() => { setHover(true); console.log(pos, current) }}
+        onMouseEnter={() => { setHover(true) }}
         onMouseLeave={() => setHover(false)}
         style={{
           cursor: "pointer",

@@ -15,6 +15,7 @@ import image1 from "../../../../assets/images/1_xfn4yn.webp"
 import image2 from "../../../../assets/images/1-1_edzth5.webp"
 import image3 from "../../../../assets/images/1-2_i4s044.webp"
 
+
 const CarouselL = () => {
   // const itemsCarousel = useSelector<State, Carousel[]>(
   //   (state) => state.books.carroussell || []
@@ -41,6 +42,7 @@ const CarouselL = () => {
   const [miniIndex, setMiniIndex] = useState<number>(0);
   const [translateX, setTranslateX] = useState<number>(initialTranslateXValue);
   const [slider, setSlider] = useState<Carousel[]>([]);
+  const [absoluteCurrent, setAbsoluteCurrent] = useState<number>(0);
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
   const dispatch = useDispatch();
@@ -75,6 +77,7 @@ const CarouselL = () => {
         setCurrent((prev) => --prev);
         setMiniIndex((prev) => --prev);
       }
+      setAbsoluteCurrent((prev) => --prev)
 
       const newSlider = [...slider];
       const nextIndex =
@@ -97,6 +100,7 @@ const CarouselL = () => {
       setCurrent(0);
       setMiniIndex(0);
     }
+    setAbsoluteCurrent((prev) => ++prev)
 
     const newSlider = [...slider];
     const nextIndex =
@@ -136,12 +140,13 @@ const CarouselL = () => {
   window.addEventListener("resize", setVw);
 
   const handleClickImage = (pos: number) => {
-    if (pos - 1 === current)
+    console.log(pos / 2, absoluteCurrent)
+    if (pos % 2 !== 0)
       navigate(
         ROUTE_PATHS.BOOKS_BOOK.replace(":id", itemsCarousel[pos - 1].link)
       );
-    if (pos - 1 > current) handleMove("right");
-    if (pos - 1 < current) handleMove("left");
+    if (pos / 2 - 1 > absoluteCurrent) handleMove("right");
+    if (pos / 2 - 1 < absoluteCurrent) handleMove("left");
   };
 
   return (
