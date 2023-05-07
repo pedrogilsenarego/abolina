@@ -20,6 +20,7 @@ import { mapInitialForm } from "../mapper";
 import { useNavigate, useParams } from "react-router";
 import { fetchBook } from "../../../../services/adminServices";
 import { ROUTE_PATHS } from "../../../../constants/routes";
+import PreviewWrapper from "./PreviewWrapper";
 
 interface Props {
   edit?: boolean
@@ -439,7 +440,8 @@ const SubmitBook = ({ edit = false }: Props) => {
                 </Grid>
               </Box>
 
-              <Box display='flex' justifyContent='start' sx={{ mt: "20px" }}>
+              <Box display='flex' justifyContent='start' sx={{ mt: "20px", columnGap: "10px" }}>
+                <PreviewWrapper />
                 <ButtonForm label={i18n.t("modules.home.contacts.form.send")} />
               </Box></>)}
         </Form>
