@@ -61,16 +61,16 @@ const CarouselL = () => {
 
       return;
     }
+    const newSlider = [...slider]
+    newSlider.push(newSlider[current])
+    newSlider.shift()
+    setSlider(newSlider)
+    console.log(slider)
 
-    if (current >= itemsCarousel.length - 1) {
-      setTranslateX(initialTranslateXValue);
-      setCurrent(0);
-      setMiniIndex(0);
-    } else {
-      setTranslateX(translateX + value);
-      setCurrent((prev) => ++prev);
-      setMiniIndex((prev) => ++prev);
-    }
+    setTranslateX(translateX + value);
+    setCurrent((prev) => ++prev);
+    setMiniIndex((prev) => ++prev);
+
     return;
   };
 
