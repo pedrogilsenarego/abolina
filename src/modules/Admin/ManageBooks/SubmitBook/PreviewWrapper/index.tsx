@@ -16,8 +16,7 @@ const PreviewWrapper = () => {
     } else if (values.content instanceof File) {
       newProduct.content = [URL.createObjectURL(values.content)];
     }
-    newProduct['content2'] = newProduct['content'];
-    delete newProduct['content'];
+
 
     if (values.coverPage2 instanceof FileList) {
       newProduct.coverPage2 = Array.from(values.coverPage2).map((file: any) => URL.createObjectURL(file));
