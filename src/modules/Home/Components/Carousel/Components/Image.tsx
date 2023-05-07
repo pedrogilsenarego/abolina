@@ -11,12 +11,13 @@ interface Props {
 const Image = ({ item, pos, mobile, current, onClick }: Props) => {
   const [hover, setHover] = useState<boolean>(false);
 
+
   return (
     <>
       <img
         draggable={false}
         onClick={() => { if (onClick) onClick(pos) }}
-        onMouseEnter={() => setHover(true)}
+        onMouseEnter={() => { setHover(true); console.log(pos, current) }}
         onMouseLeave={() => setHover(false)}
         style={{
           cursor: "pointer",
@@ -24,17 +25,17 @@ const Image = ({ item, pos, mobile, current, onClick }: Props) => {
 
           objectFit: "cover",
           boxShadow:
-            hover && !mobile && !mobile && current + 1 === pos
+            hover && !mobile && !mobile && pos % 2 !== 0
               ? "0 24px 30px 0px #00000026"
               : "0 4px 16px 0px #00000040",
           borderRadius: "4px",
 
           transition: "all 0.2s ease-in-out",
-          opacity: current + 1 === pos ? 1 : 0.5,
+          opacity: pos % 2 !== 0 ? 1 : 0.5,
           transform:
-            hover && !mobile && current + 1 === pos
+            hover && !mobile && pos % 2 !== 0
               ? "translate(0px,-12px) scale(1.0)"
-              : current + 1 === pos ? "translate(0px,0px) scale(1)" : "translate(0px,0px) scale(0.9)",
+              : pos % 2 !== 0 ? "translate(0px,0px) scale(1)" : "translate(0px,0px) scale(0.9)",
         }}
         key={pos}
         src={item}

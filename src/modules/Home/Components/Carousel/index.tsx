@@ -11,10 +11,28 @@ import { Carousel } from "../../../../slicer/books/books.types";
 import { useNavigate } from "react-router";
 import { ROUTE_PATHS } from "../../../../constants/routes";
 
+import image1 from "../../../../assets/images/1_xfn4yn.webp"
+import image2 from "../../../../assets/images/1-1_edzth5.webp"
+import image3 from "../../../../assets/images/1-2_i4s044.webp"
+
 const CarouselL = () => {
-  const itemsCarousel = useSelector<State, Carousel[]>(
-    (state) => state.books.carroussell || []
-  );
+  // const itemsCarousel = useSelector<State, Carousel[]>(
+  //   (state) => state.books.carroussell || []
+  // );
+  const itemsCarousel = [
+    {
+      image: image1,
+      link: ""
+    },
+    {
+      image: image2,
+      link: ""
+    },
+    {
+      image: image3,
+      link: ""
+    }
+  ]
   const value = 60;
   const initialTranslateXValue =
     ((itemsCarousel.length / 2) * value - value / 2) * -1;
@@ -49,56 +67,65 @@ const CarouselL = () => {
 
   const handleMove = (direction: "left" | "right") => {
     if (direction === "left") {
-      if (current <= 0) {
-        setTranslateX(translateX + value * (itemsCarousel.length - 1));
+      setTranslateX(translateX - value);
+      if (current < 1) {
         setCurrent(itemsCarousel.length - 1);
         setMiniIndex(itemsCarousel.length - 1);
       } else {
-        setTranslateX(translateX - value);
-        setCurrent(current - 1);
-        setMiniIndex(current - 1);
+        setCurrent((prev) => --prev);
+        setMiniIndex((prev) => --prev);
       }
+
+      const newSlider = [...slider];
+      const nextIndex =
+        current - itemsCarousel.length - 1 > 0 ? current + 1 : current; // Calculate the index of the next element from itemsCarousel using modulo
+
+      setSlider([
+        itemsCarousel[nextIndex],
+        ...newSlider,
+        itemsCarousel[nextIndex],
+      ]);
 
       return;
     }
 
-
-
     setTranslateX(translateX + value); // Change the sign of value to move items to the left
-    setCurrent((prev) => ++prev);
-    setMiniIndex((prev) => ++prev);
-
+    if (current < itemsCarousel.length - 1) {
+      setCurrent((prev) => ++prev);
+      setMiniIndex((prev) => ++prev);
+    } else {
+      setCurrent(0);
+      setMiniIndex(0);
+    }
 
     const newSlider = [...slider];
-    const nextIndex = (current) % itemsCarousel.length; // Calculate the index of the next element from itemsCarousel using modulo
-    const previousIndex = (current + 1) % itemsCarousel.length; // Calculate the index of the next element from itemsCarousel using modulo
-    newSlider.push(itemsCarousel[nextIndex]); // Append the next element from itemsCarousel
-    ; // Append the next element from itemsCarousel
-    //newSlider.shift(); // Remove the first element from the left
-    setSlider([itemsCarousel[previousIndex], ...newSlider]);
+    const nextIndex =
+      current - itemsCarousel.length - 1 > 0 ? current + 1 : current; // Calculate the index of the next element from itemsCarousel using modulo
 
-
-
-
+    setSlider([
+      itemsCarousel[nextIndex],
+      ...newSlider,
+      itemsCarousel[nextIndex],
+    ]);
 
     return;
   };
 
-  useEffect(() => {
-    if (miniIndex !== current) {
-      setTranslateX(translateX + value * (current - miniIndex) * -1);
-      setCurrent(miniIndex);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [miniIndex]);
+  // useEffect(() => {
+  //   if (miniIndex !== current) {
+  //     setTranslateX(translateX + value * (current - miniIndex) * -1);
+  //     setCurrent(miniIndex);
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [miniIndex]);
 
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      if (!mouseHover) handleMove("right");
-    }, 4000);
-    return () => clearTimeout(timeoutId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [current, mouseHover]);
+  // useEffect(() => {
+  //   const timeoutId = setTimeout(() => {
+  //     if (!mouseHover) handleMove("right");
+  //   }, 4000);
+  //   return () => clearTimeout(timeoutId);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [current, mouseHover]);
 
   function setVw() {
     let vw = document.documentElement.clientWidth / 100;
@@ -109,7 +136,10 @@ const CarouselL = () => {
   window.addEventListener("resize", setVw);
 
   const handleClickImage = (pos: number) => {
-    if (pos - 1 === current) navigate(ROUTE_PATHS.BOOKS_BOOK.replace(":id", itemsCarousel[pos - 1].link))
+    if (pos - 1 === current)
+      navigate(
+        ROUTE_PATHS.BOOKS_BOOK.replace(":id", itemsCarousel[pos - 1].link)
+      );
     if (pos - 1 > current) handleMove("right");
     if (pos - 1 < current) handleMove("left");
   };
