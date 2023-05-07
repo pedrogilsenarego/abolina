@@ -48,28 +48,33 @@ const CarouselL = () => {
   }, []);
 
   const handleMove = (direction: "left" | "right") => {
-    if (direction === "left") {
-      if (current <= 0) {
-        setTranslateX(translateX + value * (itemsCarousel.length - 1));
-        setCurrent(itemsCarousel.length - 1);
-        setMiniIndex(itemsCarousel.length - 1);
-      } else {
-        setTranslateX(translateX - value);
-        setCurrent(current - 1);
-        setMiniIndex(current - 1);
-      }
+    // if (direction === "left") {
+    //   if (current <= 0) {
+    //     setTranslateX(translateX + value * (itemsCarousel.length - 1));
+    //     setCurrent(itemsCarousel.length - 1);
+    //     setMiniIndex(itemsCarousel.length - 1);
+    //   } else {
+    //     setTranslateX(translateX - value);
+    //     setCurrent(current - 1);
+    //     setMiniIndex(current - 1);
+    //   }
 
-      return;
-    }
-    const newSlider = [...slider]
-    newSlider.push(newSlider[current])
-    newSlider.shift()
-    setSlider(newSlider)
-    console.log(slider)
+    //   return;
+    // }
 
-    setTranslateX(translateX + value);
+
+
+    setTranslateX(translateX + value); // Change the sign of value to move items to the left
     setCurrent((prev) => ++prev);
     setMiniIndex((prev) => ++prev);
+
+    // const newSlider = [...slider];
+    // const nextIndex = (current) % itemsCarousel.length; // Calculate the index of the next element from itemsCarousel using modulo
+    // newSlider.push(itemsCarousel[nextIndex]); // Append the next element from itemsCarousel
+    // //newSlider.shift(); // Remove the first element from the left
+    // setSlider(newSlider);
+
+
 
     return;
   };
