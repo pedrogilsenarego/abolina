@@ -124,7 +124,7 @@ export const content = {
             collectionBrowser: "Mais da Coleção",
             bookBrowser: "FOLHEAR\n O LIVRO",
             new: "Novo",
-            title: "DESCRIÇÃO",
+            title: "A HISTÓRIA",
             writer: "AUTOR",
             designer: "ILUSTRADOR",
             translator: "TRADUTOR",

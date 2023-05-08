@@ -51,13 +51,13 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                   borderRadius: "3px",
                   right: "-5px",
                   width: "calc(100% + 5px)",
-                  zIndex: 1000,
+                  zIndex: 900,
                   cursor: "pointer",
                   alignItems: "center",
                   boxShadow: "2px 2px 2px #00000066",
                 }}
               >
-                <BsBook size="1.5rem" color="white" />
+                <BsBook size="1.2rem" color="white" />
                 <Typography
                   onClick={() => setOpenViewBook(true)}
                   style={{
@@ -225,7 +225,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
           <Typography>{book?.size}</Typography>
         </Box>
         <div onClick={handleAddToCart} style={{ cursor: "pointer", marginTop: "30px", columnGap: "10px", justifyContent: "center", textAlign: "center", display: "flex", color: "white", backgroundColor: Colors.tealc, borderRadius: "10px", padding: "10px" }}>
-          <FiShoppingCart size='1.5em' color='white' />
+          <FiShoppingCart size='1.5rem' color='white' />
           <Typography fontSize="18px" style={{ textTransform: "uppercase", fontWeight: 800 }}>
             {i18n.t("modules.books.book.addToCart")}
           </Typography>

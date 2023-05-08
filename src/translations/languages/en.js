@@ -123,7 +123,7 @@ export const content = {
             collectionBrowser: "More from Collection",
             bookBrowser: "VIEW THE\n BOOK",
             new: "New",
-            title: "RESUME",
+            title: "THE HISTORY",
             writer: "WRITER",
             designer: "DESIGNER",
             translator: "TRANSLATOR",
