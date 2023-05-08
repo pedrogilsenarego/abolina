@@ -10,6 +10,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import { Book } from "../../../../slicer/books/books.types";
 import { addProductToCart } from "../../../../slicer/cart/cart.actions";
 import { updateSuccessNotification } from "../../../../slicer/general/general.actions";
+import { BsBook } from "react-icons/bs";
 
 
 interface Props {
@@ -40,6 +41,8 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
             <Box width='20%' style={{ position: "relative" }}>
               <Box
                 style={{
+                  display: "flex",
+                  columnGap: "10px",
                   backgroundColor: Colors.tealc,
                   marginTop: "20px",
                   position: "absolute",
@@ -49,9 +52,11 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                   width: "calc(100% + 5px)",
                   zIndex: 1000,
                   cursor: "pointer",
+                  alignItems: "center",
                   boxShadow: "2px 2px 2px #00000066",
                 }}
               >
+                <BsBook size="1rem" color="white" />
                 <Typography
                   onClick={() => setOpenViewBook(true)}
                   style={{
@@ -83,6 +88,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                     boxShadow: "2px 2px 2px #00000066",
                   }}
                 >
+
                   <Typography
                     onClick={() => setOpenViewBook(true)}
 
