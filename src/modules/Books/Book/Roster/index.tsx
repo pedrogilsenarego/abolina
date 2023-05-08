@@ -11,6 +11,7 @@ import { Book } from "../../../../slicer/books/books.types";
 import { addProductToCart } from "../../../../slicer/cart/cart.actions";
 import { updateSuccessNotification } from "../../../../slicer/general/general.actions";
 import { BsBook } from "react-icons/bs";
+import { BsStars } from "react-icons/bs";
 
 
 interface Props {
@@ -42,11 +43,11 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
               <Box
                 style={{
                   display: "flex",
-                  columnGap: "10px",
+                  columnGap: "6px",
                   backgroundColor: Colors.tealc,
                   marginTop: "20px",
                   position: "absolute",
-                  padding: "5px 15px 5px 15px",
+                  padding: "5px 12px 5px 12px",
                   borderRadius: "3px",
                   right: "-5px",
                   width: "calc(100% + 5px)",
@@ -56,7 +57,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                   boxShadow: "2px 2px 2px #00000066",
                 }}
               >
-                <BsBook size="1rem" color="white" />
+                <BsBook size="1.5rem" color="white" />
                 <Typography
                   onClick={() => setOpenViewBook(true)}
                   style={{
@@ -106,13 +107,14 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                   position: "absolute",
                   zIndex: 1000,
                   backgroundColor: Colors.tealc,
-                  top: mobile ? 40 : 90,
-                  left: "-5px",
+                  top: mobile ? 40 : "88%",
+                  left: "-50px",
                   padding: "3px 20px 3px 20px",
                   borderRadius: "3px",
                   boxShadow: "1px 1px 1px #00000066",
                 }}
               >
+                <BsStars size="1.2rem" color="yellow" style={{ position: "absolute", left: "-10%", top: "-40%" }} />
                 <Typography style={{ color: "white", fontSize: "12px" }}>
                   {i18n.t("modules.books.book.new")}
                 </Typography>
