@@ -44,6 +44,12 @@ const useList = ({tableData}:Props) => {
         navigate(newPath);
         break;
       }
+      case "settings": {
+        const document = tableData[id].documentID;
+        const newPath = ROUTE_PATHS.ADMIN_BOOKS_SETTINGS.replace(':id', document);
+        navigate(newPath);
+        break;
+      }
       default:
         break;
     }

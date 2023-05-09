@@ -101,7 +101,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
               </Box>
             )}
 
-            {(book?.newBook ?? true) && (
+            {(book?.newBook !== "undefined") && (
               <Box
                 style={{
                   position: "absolute",
@@ -116,7 +116,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
               >
                 <BsStars size="1.2rem" color="yellow" style={{ position: "absolute", left: "-10%", top: "-40%" }} />
                 <Typography style={{ color: "white", fontSize: "12px" }}>
-                  {i18n.t("modules.books.book.new")}
+                  {book?.newBook === "new" ? i18n.t("modules.books.book.new") : i18n.t("modules.books.book.soon")}
                 </Typography>
               </Box>
             )}

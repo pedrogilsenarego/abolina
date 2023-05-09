@@ -124,6 +124,7 @@ export const content = {
             collectionBrowser: "Mais da Coleção",
             bookBrowser: "FOLHEAR\n O LIVRO",
             new: "Novo",
+            soon: "Brevemente",
             title: "A HISTÓRIA",
             writer: "AUTOR",
             designer: "ILUSTRADOR",
@@ -155,6 +156,9 @@ export const content = {
               size: "Tamanho",
               resume: "Resumo",
               price: "Preço",
+            },
+            settingsBook: {
+              breadCrumbs: "Manage Books - Settings Book",
             },
             tableList: {
               title: "Título Livro",

@@ -123,6 +123,7 @@ export const content = {
             collectionBrowser: "More from Collection",
             bookBrowser: "VIEW THE\n BOOK",
             new: "New",
+            soon: "Soon",
             title: "THE HISTORY",
             writer: "WRITER",
             designer: "DESIGNER",
@@ -154,6 +155,9 @@ export const content = {
               size: "Size",
               resume: "Resume",
               price: "Price",
+            },
+            settingsBook: {
+              breadCrumbs: "Manage Books - Settings Book",
             },
             tableList: {
               title: "Title Book",

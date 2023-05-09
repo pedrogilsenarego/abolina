@@ -3,7 +3,7 @@ import { AiFillEdit } from "react-icons/ai"
 import { Book } from "../../../slicer/books/books.types";
 import { i18n } from "../../../translations/i18n";
 import { newBookTypes } from "../../../constants/admin";
-import { fetchBook } from "../../../services/adminServices";
+import { IoMdSettings } from "react-icons/io"
 
 const deleteIcon = (
   <ImCross fontSize='1rem' color='black' style={{ cursor: "pointer" }} />
@@ -11,6 +11,10 @@ const deleteIcon = (
 
 const editIcon = (
   <AiFillEdit fontSize='1.2rem' color='black' style={{ cursor: "pointer" }} />
+);
+
+const settingsIcon = (
+  <IoMdSettings fontSize='1.2rem' color='black' style={{ cursor: "pointer" }} />
 );
 
 const mapBookItem = (book: Book, pos: number) => {
@@ -44,9 +48,16 @@ const mapBookItem = (book: Book, pos: number) => {
     actions: [
       {
         buttonType: "icon",
+        event: "settings",
+        icon: settingsIcon,
+        label: "Settings ",
+
+      },
+      {
+        buttonType: "icon",
         event: "edit",
         icon: editIcon,
-        label: "Edit Book",
+        label: "Edit",
 
       },
       {

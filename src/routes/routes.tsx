@@ -17,6 +17,9 @@ const AdminManageBooks = lazyWithRetryAndLoader(
 const AdminBooksCreate = lazyWithRetryAndLoader(
   () => import("../modules/Admin/ManageBooks/SubmitBook")
 );
+const AdminBooksSettings = lazyWithRetryAndLoader(
+  () => import("../modules/Admin/ManageBooks/Settings")
+);
 const AdminCarroussel = lazyWithRetryAndLoader(
   () => import("../modules/Admin/ManageCarroussel")
 );
@@ -103,6 +106,16 @@ export const routes: AppRoute[] = [
       <WithAdminAuth>
         <AdminLayout>
           <AdminBooksCreate />
+        </AdminLayout>
+      </WithAdminAuth>
+    ),
+  },
+  {
+    path: ROUTE_PATHS.ADMIN_BOOKS_SETTINGS,
+    component: (
+      <WithAdminAuth>
+        <AdminLayout>
+          <AdminBooksSettings />
         </AdminLayout>
       </WithAdminAuth>
     ),
