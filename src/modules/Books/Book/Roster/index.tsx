@@ -151,7 +151,42 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
           <GStyled.SubTitle style={{ fontWeight: 700 }}>
             {i18n.t("modules.books.book.price")}
           </GStyled.SubTitle>
-          <Typography>{book?.price} €</Typography>
+          <Typography
+            style={{ textDecoration: book?.discount ? "line-through" : "none" }}
+          >
+            {book?.price} €
+          </Typography>
+          {book?.discount !== 0 && book?.discount && (
+            <div style={{ display: "flex", alignItems: "center", columnGap: "10px" }}>
+              <Typography style={{ color: Colors.tealc, fontWeight: 800 }}>
+                {(Number(book?.price) * (book?.discount / 100)).toFixed(2)} €
+              </Typography>
+              <div
+                style={{
+                  width: "30px",
+                  height: "30px",
+                  backgroundColor: Colors.tealc,
+                  borderRadius: "50%",
+                  color: "white",
+                  fontWeight: 800,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: "14px",
+                  position: "relative",
+                  marginTop: "-3px"
+
+                }}
+              >
+                <BsStars
+                  size='1.2rem'
+                  color='yellow'
+                  style={{ position: "absolute", left: "-10%", top: "-40%" }}
+                />
+                <Typography style={{ fontSize: "14px" }}>{book?.discount}%</Typography>
+              </div>
+            </div>
+          )}
         </Box>
 
         <Box
