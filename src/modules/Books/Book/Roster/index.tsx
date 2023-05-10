@@ -13,26 +13,25 @@ import { updateSuccessNotification } from "../../../../slicer/general/general.ac
 import { BsBook } from "react-icons/bs";
 import { BsStars } from "react-icons/bs";
 
-
 interface Props {
   setOpenViewBook: (openViewBook: boolean) => void;
   book: Book;
 }
 
-
 const Roster = ({ setOpenViewBook, book }: Props) => {
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const lang = useSelector<State, string>(
     (state) => state.general.lang || "PT"
   );
 
   const handleAddToCart = () => {
-    dispatch(addProductToCart([book]))
-    dispatch(updateSuccessNotification(`${i18n.t("notifications.success.addedCart")}`))
-  }
-
+    dispatch(addProductToCart([book]));
+    dispatch(
+      updateSuccessNotification(`${i18n.t("notifications.success.addedCart")}`)
+    );
+  };
 
   return (
     <Grid container columnSpacing={4}>
@@ -57,14 +56,14 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                   boxShadow: "2px 2px 2px #00000066",
                 }}
               >
-                <BsBook size="1.2rem" color="white" />
+                <BsBook size='1.2rem' color='white' />
                 <Typography
                   onClick={() => setOpenViewBook(true)}
                   style={{
                     color: "white",
                     fontSize: "14px",
                     lineHeight: "14px",
-                    whiteSpace: "pre-line"
+                    whiteSpace: "pre-line",
                   }}
                 >
                   {i18n.t("modules.books.book.bookBrowser")}
@@ -89,11 +88,9 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                     boxShadow: "2px 2px 2px #00000066",
                   }}
                 >
-
                   <Typography
                     onClick={() => setOpenViewBook(true)}
-
-                    style={{ color: "white", fontSize: "16px", }}
+                    style={{ color: "white", fontSize: "16px" }}
                   >
                     {i18n.t("modules.books.book.bookBrowser")}
                   </Typography>
@@ -101,7 +98,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
               </Box>
             )}
 
-            {(book?.newBook !== "undefined") && (
+            {book?.newBook !== "undefined" && (
               <Box
                 style={{
                   position: "absolute",
@@ -114,9 +111,15 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                   boxShadow: "1px 1px 1px #00000066",
                 }}
               >
-                <BsStars size="1.2rem" color="yellow" style={{ position: "absolute", left: "-10%", top: "-40%" }} />
+                <BsStars
+                  size='1.2rem'
+                  color='yellow'
+                  style={{ position: "absolute", left: "-10%", top: "-40%" }}
+                />
                 <Typography style={{ color: "white", fontSize: "12px" }}>
-                  {book?.newBook === "new" ? i18n.t("modules.books.book.new") : i18n.t("modules.books.book.soon")}
+                  {book?.newBook === "new"
+                    ? i18n.t("modules.books.book.new")
+                    : i18n.t("modules.books.book.soon")}
                 </Typography>
               </Box>
             )}
@@ -124,7 +127,13 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
           </Box>
         </Box>
       </Grid>
-      <Grid item xs={12} md={4} textAlign='start' style={{ display: "flex", flexDirection: "column", }}>
+      <Grid
+        item
+        xs={12}
+        md={4}
+        textAlign='start'
+        style={{ display: "flex", flexDirection: "column" }}
+      >
         <GStyled.Title
           fontSize='18px'
           style={{ fontWeight: 700, marginTop: mobile ? "20px" : "0px" }}
@@ -150,7 +159,6 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
           flexDirection='row'
           columnGap={1}
           alignItems='center'
-
         >
           <GStyled.SubTitle style={{ fontWeight: 700 }}>
             {i18n.t("modules.books.book.text")}
@@ -224,9 +232,26 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
           </GStyled.SubTitle>
           <Typography>{book?.size}</Typography>
         </Box>
-        <div onClick={handleAddToCart} style={{ cursor: "pointer", marginTop: "30px", columnGap: "10px", justifyContent: "center", textAlign: "center", display: "flex", color: "white", backgroundColor: Colors.tealc, borderRadius: "10px", padding: "10px" }}>
+        <div
+          onClick={handleAddToCart}
+          style={{
+            cursor: "pointer",
+            marginTop: "30px",
+            columnGap: "10px",
+            justifyContent: "center",
+            textAlign: "center",
+            display: "flex",
+            color: "white",
+            backgroundColor: Colors.tealc,
+            borderRadius: "10px",
+            padding: "10px",
+          }}
+        >
           <FiShoppingCart size='1.5rem' color='white' />
-          <Typography fontSize="18px" style={{ textTransform: "uppercase", fontWeight: 800 }}>
+          <Typography
+            fontSize='18px'
+            style={{ textTransform: "uppercase", fontWeight: 800 }}
+          >
             {i18n.t("modules.books.book.addToCart")}
           </Typography>
         </div>
@@ -236,7 +261,6 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
           columnGap={1}
           alignItems='center'
           mt={mobile ? "40px" : "80px"}
-
         >
           <CollectionBrowser
             title={i18n.t("modules.books.book.collectionBrowser")}
