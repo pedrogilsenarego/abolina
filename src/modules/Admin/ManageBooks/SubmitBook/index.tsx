@@ -6,7 +6,11 @@ import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
 import ButtonForm from "../../../../components/Buttons/ButtonFormik";
 import { useDispatch, useSelector } from "react-redux";
-import { addBook, editBook, updateProgress } from "../../../../slicer/books/books.actions";
+import {
+  addBook,
+  editBook,
+  updateProgress,
+} from "../../../../slicer/books/books.actions";
 import FileUploader from "../../../../components/Inputs/FileUploader";
 
 import { useQuery } from "react-query";
@@ -21,21 +25,23 @@ import { useNavigate, useParams } from "react-router";
 import { fetchBook } from "../../../../services/adminServices";
 import { ROUTE_PATHS } from "../../../../constants/routes";
 import PreviewWrapper from "./PreviewWrapper";
+import { getObjectDifferences } from "../../../../utils/compareObjects";
 
 interface Props {
-  edit?: boolean
+  edit?: boolean;
 }
-
 
 const SubmitBook = ({ edit = false }: Props) => {
   const { id } = useParams<Record<string, string | undefined>>();
   const documentID = id || "";
-  const [contentLoader, setContentLoader] = useState<boolean>(false)
-  const [edited, setEdited] = useState<boolean>(false)
-  const [contentValue, setContentValue] = useState<any>(undefined)
-  const [coverPageLoader, setCoverPageLoader] = useState<boolean>(false)
-  const [coverPageValue, setCoverPageValue] = useState<any>(undefined)
-  const navigate = useNavigate()
+  const [contentLoader, setContentLoader] = useState<boolean>(false);
+  const [edited, setEdited] = useState<boolean>(false);
+  const [contentValue, setContentValue] = useState<any>(undefined);
+  const [coverPageLoader, setCoverPageLoader] = useState<boolean>(false);
+  const [coverPageValue, setCoverPageValue] = useState<any>(undefined);
+  const [touchedContent, setTouchedContent] = useState<boolean>(false);
+  const [touchedCoverPage, setTouchedCoverPage] = useState<boolean>(false);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const loading = useSelector<State, boolean>((state) => state.general.loading);
   const progress = useSelector<State, number>((state) => state.books.progress);
@@ -48,14 +54,11 @@ const SubmitBook = ({ edit = false }: Props) => {
     enabled: edit && !!documentID,
   });
 
-
-
-
   const {
     isLoading: loadingCollections,
     error,
     data: collectionsData,
-    refetch
+    refetch,
   } = useQuery("collections", fetchCollections, {
     staleTime: 3600000, // 1 hour in milliseconds
     cacheTime: 3600000, // 10 minutes in milliseconds
@@ -92,13 +95,20 @@ const SubmitBook = ({ edit = false }: Props) => {
     }
   }, [edit, bookData]);
 
-  const handleConvertStringIntoFile = async (images: string[], setLoader: (signal: boolean) => void, setValue: (value: any) => void) => {
-    setLoader(true)
+  const handleConvertStringIntoFile = async (
+    images: string[],
+    setLoader: (signal: boolean) => void,
+    setValue: (value: any) => void
+  ) => {
+    setLoader(true);
     // Create a new DataTransfer object
     const dataTransfer = new DataTransfer();
 
     // Function to convert base64 string to a file
-    const base64StringToFile = async (base64String: string, filename: string): Promise<File> => {
+    const base64StringToFile = async (
+      base64String: string,
+      filename: string
+    ): Promise<File> => {
       const response = await fetch(base64String);
       const data = await response.blob();
       return new File([data], filename, { type: "image/webp" });
@@ -109,44 +119,59 @@ const SubmitBook = ({ edit = false }: Props) => {
       const file = await base64StringToFile(images[i], `image${i}.webp`); // You can replace the filename with any naming scheme you prefer
       dataTransfer.items.add(file);
     }
-    setValue(dataTransfer.files)
-    setLoader(false)
+    setValue(dataTransfer.files);
+    setLoader(false);
   };
 
   useEffect(() => {
-    if (!loading && edit && edited) navigate(ROUTE_PATHS.ADMIN)
+    if (!loading && edit && edited) navigate(ROUTE_PATHS.ADMIN);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading])
-
+  }, [loading]);
 
   useEffect(() => {
     if (!loadingBook && edit) {
-
-      if (initialValues.content.length > 0) handleConvertStringIntoFile(initialValues.content, setContentLoader, setContentValue)
-      if (initialValues.coverPage2.length > 0) handleConvertStringIntoFile(initialValues.coverPage2, setCoverPageLoader, setCoverPageValue)
-
+      if (initialValues.content.length > 0)
+        handleConvertStringIntoFile(
+          initialValues.content,
+          setContentLoader,
+          setContentValue
+        );
+      if (initialValues.coverPage2.length > 0)
+        handleConvertStringIntoFile(
+          initialValues.coverPage2,
+          setCoverPageLoader,
+          setCoverPageValue
+        );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadingBook, initialValues.content, initialValues.coverPage2]);
 
   useEffect(() => {
-    dispatch(disableLoading())
-    dispatch(updateProgress(0))
+    dispatch(disableLoading());
+    dispatch(updateProgress(0));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
-
-  const handleSubmit = (values: any,) => {
+  const handleSubmit = (values: any) => {
     if (edit) {
-      const payload = {
-        values: { ...values },
-        documentID: documentID,
-        title: initialValues.title
+      if (
+        !touchedContent &&
+        !touchedCoverPage &&
+        initialValues.title === values.title
+      ) {
+        delete values.content;
+        delete values.coverPage2;
       }
-      dispatch(editBook(payload))
-      setEdited(true)
-    }
-    else dispatch(addBook({ ...values }));
+
+      const payload = {
+        values: getObjectDifferences(initialValues, { ...values }),
+        documentID: documentID,
+        title: initialValues.title,
+      };
+
+      dispatch(editBook(payload));
+      setEdited(true);
+    } else dispatch(addBook({ ...values }));
   };
 
   if (edit && loadingBook) {
@@ -163,8 +188,8 @@ const SubmitBook = ({ edit = false }: Props) => {
       >
         <Loader
           size={200}
-          color="darkGrey"
-          customMessage="fetching the book for edition"
+          color='darkGrey'
+          customMessage='fetching the book for edition'
         />
       </Box>
     );
@@ -180,10 +205,8 @@ const SubmitBook = ({ edit = false }: Props) => {
       <Formik
         initialValues={{ ...initialValues }}
         onSubmit={(values, { resetForm }) => {
-
           handleSubmit(values);
-          resetForm()
-
+          resetForm();
         }}
         validationSchema={FORM_VALIDATION}
       >
@@ -200,7 +223,6 @@ const SubmitBook = ({ edit = false }: Props) => {
               }}
             >
               <Loader
-
                 size={200}
                 color='darkGrey'
                 customMessage='Your Data is being send'
@@ -219,7 +241,9 @@ const SubmitBook = ({ edit = false }: Props) => {
                   <Grid item xs={6}>
                     <Box style={{ width: "350px" }}>
                       <Textfield
-                        label={i18n.t("modules.admin.manageBooks.submitBook.title")}
+                        label={i18n.t(
+                          "modules.admin.manageBooks.submitBook.title"
+                        )}
                         name='title'
                       />
                     </Box>
@@ -237,15 +261,17 @@ const SubmitBook = ({ edit = false }: Props) => {
 
                   <Grid item xs={6}>
                     <Box style={{ width: "350px" }}>
-                      <SelectWithPlus loading={loadingCollections} options={collectionsData} refetch={refetch} />
+                      <SelectWithPlus
+                        loading={loadingCollections}
+                        options={collectionsData}
+                        refetch={refetch}
+                      />
                     </Box>
                   </Grid>
                   <Grid item xs={6}>
                     <Box style={{ width: "350px" }}>
-                      <Textfield
-                        label="Number of Book"
-                        name='number'
-                      />  </Box>
+                      <Textfield label='Number of Book' name='number' />{" "}
+                    </Box>
                   </Grid>
                   <Grid item xs={4}>
                     <Box>
@@ -367,7 +393,9 @@ const SubmitBook = ({ edit = false }: Props) => {
                   <Grid item xs={3}>
                     <Box>
                       <Textfield
-                        label={i18n.t("modules.admin.manageBooks.submitBook.size")}
+                        label={i18n.t(
+                          "modules.admin.manageBooks.submitBook.size"
+                        )}
                         name='size'
                       />
                     </Box>
@@ -375,7 +403,9 @@ const SubmitBook = ({ edit = false }: Props) => {
                   <Grid item xs={3}>
                     <Box>
                       <Textfield
-                        label={i18n.t("modules.admin.manageBooks.submitBook.price")}
+                        label={i18n.t(
+                          "modules.admin.manageBooks.submitBook.price"
+                        )}
                         name='price'
                       />
                     </Box>
@@ -383,7 +413,9 @@ const SubmitBook = ({ edit = false }: Props) => {
                   <Grid item xs={3}>
                     <Box>
                       <Textfield
-                        label={i18n.t("modules.admin.manageBooks.submitBook.pages")}
+                        label={i18n.t(
+                          "modules.admin.manageBooks.submitBook.pages"
+                        )}
                         name='pages'
                       />
                     </Box>
@@ -413,8 +445,8 @@ const SubmitBook = ({ edit = false }: Props) => {
                     </Box>
                   </Grid>
                   <Grid item xs={6}>
-
                     <FileUploader
+                      touched={setTouchedCoverPage}
                       loading={coverPageLoader}
                       value={coverPageValue}
                       name='coverPage2'
@@ -427,6 +459,7 @@ const SubmitBook = ({ edit = false }: Props) => {
 
                   <Grid item xs={6}>
                     <FileUploader
+                      touched={setTouchedContent}
                       loading={contentLoader}
                       value={contentValue}
                       name='content'
@@ -440,10 +473,16 @@ const SubmitBook = ({ edit = false }: Props) => {
                 </Grid>
               </Box>
 
-              <Box display='flex' justifyContent='start' sx={{ mt: "20px", columnGap: "10px" }}>
+              <Box
+                display='flex'
+                justifyContent='start'
+                sx={{ mt: "20px", columnGap: "10px" }}
+              >
                 <PreviewWrapper />
                 <ButtonForm label={i18n.t("modules.home.contacts.form.send")} />
-              </Box></>)}
+              </Box>
+            </>
+          )}
         </Form>
       </Formik>
     </>

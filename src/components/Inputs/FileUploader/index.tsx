@@ -15,6 +15,7 @@ interface Props {
   multiple?: boolean;
   value?: any;
   loading?: boolean;
+  touched?: (signal: boolean) => void
 }
 
 const FileUploader = ({
@@ -24,6 +25,7 @@ const FileUploader = ({
   multiple = false,
   value,
   loading,
+  touched
 }: Props) => {
   const [imageUpload, setImageUpload] = useState<any[]>([]);
   const [draggedIndex, setDraggedIndex] = useState<number | undefined>(
@@ -36,9 +38,12 @@ const FileUploader = ({
   const [, mata, helpers] = useField(name);
   const inputRef = useRef<any>();
 
+
+
   const handleDragStart = (e: any, index: number) => {
     e.dataTransfer.effectAllowed = "move";
     setDraggedIndex(index);
+    if (touched) touched(true)
   };
 
   const handleDragOver = (e: any, index: number) => {
@@ -128,6 +133,7 @@ const FileUploader = ({
 
     setImageUpload(allFiles);
     helpers.setError(undefined);
+    if (touched) touched(true)
   };
 
 
@@ -171,7 +177,7 @@ const FileUploader = ({
                     multiple={multiple}
                     ref={inputRef}
                     accept={acceptType || "image/*"}
-                    onChange={(e: any) => handleChange(e)}
+                    onChange={(e: any) => { handleChange(e); if (touched) touched(true) }}
                   />
                 </Grid>
 
@@ -181,6 +187,7 @@ const FileUploader = ({
                       <RiDeleteBinLine
                         onClick={() => {
                           setImageUpload([]);
+                          if (touched) touched(true)
                           helpers.setValue(null);
                           inputRef.current.value = "";
                         }}

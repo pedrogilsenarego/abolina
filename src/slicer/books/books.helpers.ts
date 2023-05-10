@@ -304,3 +304,23 @@ export const handleDeleteBookStorage = async (title: string): Promise<void> => {
       console.error("Error deleting folder:", error);
     });
 };
+
+export const handleEditBook = (payload: {
+  values: any;
+  documentID: string;
+}) => {
+  const { documentID, values } = payload;
+  return new Promise<void>((resolve, reject) => {
+    firestore
+      .collection("books")
+      .doc(documentID)
+      .update(values) // update the document with the values object
+      .then(() => {
+        resolve();
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+

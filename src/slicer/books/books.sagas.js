@@ -5,8 +5,6 @@ import {
   setCarroussell,
   fetchBooks,
   updateProgress,
-  addBook,
-  deleteBook,
 } from "./books.actions";
 import { store } from "../createStore";
 import {
@@ -22,6 +20,7 @@ import {
   handleDeleteBook,
   handleDeleteBookStorage,
   handleUpdateCarroussellLink,
+  handleEditBook,
 } from "./books.helpers";
 import bookTypes from "./books.types";
 import {
@@ -103,13 +102,53 @@ export function* onAddBook() {
 }
 
 function* sagaEditBook({ payload }) {
-  const deleteValues = {
-    documentID: payload.documentID,
-    title: payload.title,
-  };
+  const { documentID, title, values } = payload;
+
+  const newTitle = values.title || title;
+
   try {
-    yield put(addBook(payload.values));
-    yield put(deleteBook(deleteValues));
+    yield put(enableLoading());
+
+    if ("content" in values) {
+      // se as fotos tiverem sido mexidas...
+
+      yield handleDeleteBookStorage(payload.title); //delete nas fotos que existem
+
+      const onProgressUpdate = (progress) => {
+        console.log(progress);
+        store.dispatch(updateProgress(progress));
+      };
+      const content = values.content;
+      const coverPage2 = values.coverPage2;
+
+      const coverPage = yield call(
+        handleAddCoverPage,
+        newTitle,
+        coverPage2,
+        onProgressUpdate
+      );
+      yield put(updateProgress(0));
+      const content2 = yield call(
+        handleAddCoverPage,
+        newTitle,
+        content,
+        onProgressUpdate
+      );
+      delete payload.values.coverPage2;
+
+      values.coverPage = coverPage;
+      values.content = content2;
+    }
+
+    const editPayload = {
+      values,
+      documentID,
+    };
+    console.log(editPayload);
+    yield handleEditBook(editPayload);
+
+    yield put(updateProgress(0));
+    yield put(disableLoading());
     yield put(updateSuccessNotification("The book was edited"));
   } catch {
     yield put(updateFailNotification("Couldn't edit the book this time"));
