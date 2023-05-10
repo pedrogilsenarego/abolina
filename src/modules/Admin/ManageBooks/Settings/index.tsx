@@ -15,6 +15,7 @@ import { State } from "../../../../slicer/types";
 import ButtonForm from "../../../../components/Buttons/ButtonFormik";
 import SelectWrapper from "../../../../components/Inputs/SelectFormValue";
 import { newBookTypes2 } from "../../../../constants/admin";
+import Textfield from "../../../../components/Inputs/TextFieldForm";
 
 const Settings = () => {
   const { id } = useParams<Record<string, string | undefined>>();
@@ -109,6 +110,14 @@ const Settings = () => {
                         options={newBookTypes2}
                         label='New Book Status'
                         name='newBook'
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Box style={{ width: "350px" }}>
+                      <Textfield
+                        label="Discount"
+                        name='discount'
                       />
                     </Box>
                   </Grid>
