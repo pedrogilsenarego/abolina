@@ -21,6 +21,7 @@ const mapBookItem = (book: Book, pos: number) => {
   return {
     id: pos,
     title: book.title,
+    collection: book.collections || "",
     createdDate: book.createdDate,
     newBook: book.newBook || "",
     discount: book.discount || "Not Defined",

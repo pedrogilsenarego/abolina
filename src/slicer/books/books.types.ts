@@ -39,6 +39,7 @@ export interface Book {
   price: number
   weight: string
   designer: string
+  collections:string,
   designerResume: string
   designerResumeEN:string
   translator: string
