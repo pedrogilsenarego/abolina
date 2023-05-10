@@ -159,7 +159,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
           {book?.discount !== 0 && book?.discount && (
             <div style={{ display: "flex", alignItems: "center", columnGap: "10px" }}>
               <Typography style={{ color: Colors.tealc, fontWeight: 800 }}>
-                {(Number(book?.price) * (book?.discount / 100)).toFixed(2)} €
+                {(Number(book?.price) * (1 - (book?.discount / 100))).toFixed(2)} €
               </Typography>
               <div
                 style={{
