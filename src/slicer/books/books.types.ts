@@ -55,6 +55,7 @@ export interface Book {
   content: string[]
   newBook?: string
   createdDate?: Date;
+  discount?:number
 }
 
 export default bookTypes

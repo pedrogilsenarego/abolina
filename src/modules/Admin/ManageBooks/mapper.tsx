@@ -22,29 +22,8 @@ const mapBookItem = (book: Book, pos: number) => {
     id: pos,
     title: book.title,
     createdDate: book.createdDate,
-    newBook: {
-
-      value: book.newBook,
-      confirmationButtonLabel: i18n.t(
-        "modules.admin.manageBooks.tableList.newBook.accept"
-      ),
-      declineButtonLabel: i18n.t(
-        "modules.admin.manageBooks.tableList.newBook.deny"
-      ),
-      confirmationDescription: i18n.t(
-        "modules.admin.manageBooks.tableList.newBook.confirmationDescription"
-      ),
-      confirmationRequired: true,
-      confirmationTitle: i18n.t(
-        "modules.admin.manageBooks.tableList.newBook.confirmationTitle"
-      ),
-      options: newBookTypes,
-      event: "newBook",
-      label: i18n.t(
-        "modules.admin.manageBooks.tableList.newBook.tooltip"
-      ),
-
-    },
+    newBook: book.newBook || "",
+    discount: book.discount || "Not Defined",
     actions: [
       {
         buttonType: "icon",

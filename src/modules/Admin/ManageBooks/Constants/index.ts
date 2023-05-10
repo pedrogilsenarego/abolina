@@ -25,13 +25,18 @@ export const tableColumns =
   },
   {
     id: "newBook",
-    label: i18n.t(
-      "modules.admin.manageBooks.tableList.newBook.title"
-    ),
+    label: "Book Status",
     
-    type: ColumnType.Select,
+    type: ColumnType.Text,
+    sortable: false,
+  },{
+    id: "discount",
+    label: "Discount Available",
+    
+    type: ColumnType.Text,
     sortable: false,
   },
+
   {
     id: 'actions',
     label: 'Actions',

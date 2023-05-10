@@ -20,3 +20,21 @@ export const handleAddCollection = (payload: {value:string, title:string}) => {
       });
   });
 };
+
+export const handleSaveSettings = (payload: {newBook:string, discount:number}, documentID:string) => {
+  return new Promise<void>((resolve, reject) => {
+    firestore
+      .collection("books")
+      .doc(documentID)
+      .update({
+        newBook: payload.newBook,
+        discount: payload.discount
+      })
+      .then(() => {
+        resolve();
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};

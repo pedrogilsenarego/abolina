@@ -3,21 +3,23 @@ import { Title } from "../../../../styles";
 import { i18n } from "../../../../translations/i18n";
 import { useParams } from "react-router";
 
-import { fetchBook } from "../../../../services/adminServices";
+import { fetchBook, saveSettings } from "../../../../services/adminServices";
 import { useQuery } from "react-query";
 import Loader from "../../../../components/Loader";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { mapInitialForm } from "./mapper";
 import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../../../slicer/types";
 import ButtonForm from "../../../../components/Buttons/ButtonFormik";
 import SelectWrapper from "../../../../components/Inputs/SelectFormValue";
 import { newBookTypes2 } from "../../../../constants/admin";
 import Textfield from "../../../../components/Inputs/TextFieldForm";
+import { disableLoading, enableLoading, updateFailNotification, updateSuccessNotification } from "../../../../slicer/general/general.actions";
 
 const Settings = () => {
+  const dispatch = useDispatch()
   const { id } = useParams<Record<string, string | undefined>>();
   const documentID = id || "";
   const loading = useSelector<State, boolean>((state) => state.general.loading);
@@ -25,6 +27,7 @@ const Settings = () => {
     isLoading: loadingBook,
     error: errorBook,
     data: bookData,
+    refetch: refetchBook
   } = useQuery<[string, string]>(["book", documentID], fetchBook, {
     enabled: !!documentID,
   });
@@ -35,11 +38,25 @@ const Settings = () => {
     }
   }, [bookData]);
 
-  const handleSubmit = (values: any) => {
-    console.log(values);
+  useEffect(() => {
+    dispatch(disableLoading())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const handleSubmit = async (values: any) => {
+    try {
+      dispatch(enableLoading())
+      await saveSettings(values, documentID)
+      dispatch(disableLoading())
+      dispatch(updateSuccessNotification("Settings saved"))
+      refetchBook()
+    } catch {
+      dispatch(updateFailNotification("Settings failed to be saved"))
+    }
+
   };
 
-  console.log(initialValues);
+
 
   if (loadingBook) {
     return (
@@ -72,7 +89,7 @@ const Settings = () => {
         initialValues={{ ...initialValues }}
         onSubmit={(values, { resetForm }) => {
           handleSubmit(values);
-          resetForm();
+
         }}
         validationSchema={FORM_VALIDATION}
       >
@@ -103,7 +120,7 @@ const Settings = () => {
                 sx={{ mt: "20px" }}
               >
                 <Grid container columnSpacing={2} rowSpacing={6}>
-                  <Grid item xs={6}>
+                  <Grid item xs={12}>
                     <Box style={{ width: "350px" }}>
                       <SelectWrapper
                         initialValue={initialValues?.newBook}
@@ -113,23 +130,24 @@ const Settings = () => {
                       />
                     </Box>
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item xs={12}>
                     <Box style={{ width: "350px" }}>
                       <Textfield
-                        label="Discount"
+                        type="number"
+                        label="Discount %"
                         name='discount'
                       />
                     </Box>
                   </Grid>
-                  <Grid xs={12}>
-                    <Box
-                      display='flex'
-                      justifyContent='start'
-                      sx={{ mt: "20px", columnGap: "10px" }}
-                    >
-                      <ButtonForm label='Save Data' />
-                    </Box>
-                  </Grid>
+
+                  <Box
+                    display='flex'
+                    justifyContent='start'
+                    sx={{ mt: "20px", columnGap: "10px" }}
+                  >
+                    <ButtonForm label='Save Data' />
+                  </Box>
+
                 </Grid>
               </Box>
             </>
