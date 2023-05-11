@@ -62,8 +62,8 @@ const SubmitBook = ({ edit = false }: Props) => {
     data: collectionsData,
     refetch,
   } = useQuery("collections", fetchCollections, {
-    staleTime: 3600000, // 1 hour in milliseconds
-    cacheTime: 3600000, // 10 minutes in milliseconds
+    // staleTime: 3600000, // 1 hour in milliseconds
+    // cacheTime: 3600000, // 10 minutes in milliseconds
   });
 
   const initialValues = useMemo(() => {
@@ -171,9 +171,9 @@ const SubmitBook = ({ edit = false }: Props) => {
         documentID: documentID,
         title: initialValues.title,
       };
-
+      console.log(payload)
       dispatch(editBook(payload));
-      setEdited(true);
+      setEdited(true)
     } else dispatch(addBook({ ...values }));
   };
 
