@@ -26,6 +26,8 @@ import { fetchBook } from "../../../../services/adminServices";
 import { ROUTE_PATHS } from "../../../../constants/routes";
 import PreviewWrapper from "./PreviewWrapper";
 import { getObjectDifferences } from "../../../../utils/compareObjects";
+import MultiSelectInput from "../../../../components/Inputs/MultiSelect/MultiSelectInput";
+import { caracteristics } from "../../../../constants/admin";
 
 interface Props {
   edit?: boolean;
@@ -74,6 +76,7 @@ const SubmitBook = ({ edit = false }: Props) => {
         collections: "",
         number: 0,
         author: "",
+        caracteristics: [],
         authorResume: "",
         authorResumeEN: "",
         designer: "",
@@ -265,6 +268,19 @@ const SubmitBook = ({ edit = false }: Props) => {
                         loading={loadingCollections}
                         options={collectionsData}
                         refetch={refetch}
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Box style={{ width: "350px" }}>
+                      <MultiSelectInput
+                        disableDefaultLabel
+                        multiple
+                        defaultValue={initialValues.caracteristics}
+                        chips
+                        label="Caracteristics"
+                        items={caracteristics}
+                        name="caracteristics"
                       />
                     </Box>
                   </Grid>

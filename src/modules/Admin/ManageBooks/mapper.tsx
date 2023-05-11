@@ -84,6 +84,7 @@ export const mapInitialForm = (data: any) => {
     titleEN: data?.titleEN || "",
     author: data?.author || "",
     collections: data?.collections || "",
+    caracteristics: data?.caracteristics || [],
     number: data?.number || 0,
     authorResume: data?.authorResume || "",
     authorResumeEN: data?.authorResumeEN || "",
