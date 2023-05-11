@@ -120,6 +120,7 @@ export const content = {
             pages: "Número de páginas:",
             language: "Language:",
             weight: "Peso:",
+            caracteristics: "Características:",
             size: "Dimensões:",
             collectionBrowser: "Mais da Coleção",
             bookBrowser: "FOLHEAR\n O LIVRO",

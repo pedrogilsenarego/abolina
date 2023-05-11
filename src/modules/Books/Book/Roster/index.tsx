@@ -157,9 +157,16 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
             {book?.price} €
           </Typography>
           {book?.discount !== 0 && book?.discount && (
-            <div style={{ display: "flex", alignItems: "center", columnGap: "10px" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                columnGap: "10px",
+              }}
+            >
               <Typography style={{ color: Colors.tealc, fontWeight: 800 }}>
-                {(Number(book?.price) * (1 - (book?.discount / 100))).toFixed(2)} €
+                {(Number(book?.price) * (1 - book?.discount / 100)).toFixed(2)}{" "}
+                €
               </Typography>
               <div
                 style={{
@@ -174,8 +181,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                   alignItems: "center",
                   padding: "14px",
                   position: "relative",
-                  marginTop: "-3px"
-
+                  marginTop: "-3px",
                 }}
               >
                 <BsStars
@@ -183,7 +189,9 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                   color='yellow'
                   style={{ position: "absolute", left: "-10%", top: "-40%" }}
                 />
-                <Typography style={{ fontSize: "14px" }}>{book?.discount}%</Typography>
+                <Typography style={{ fontSize: "14px" }}>
+                  {book?.discount}%
+                </Typography>
               </div>
             </div>
           )}
@@ -267,6 +275,39 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
           </GStyled.SubTitle>
           <Typography>{book?.size}</Typography>
         </Box>
+        {book?.caracteristics && (
+          <Box
+            display='flex'
+            flexDirection='row'
+            columnGap={1}
+            alignItems='center'
+          >
+            <GStyled.SubTitle style={{ fontWeight: 700 }}>
+              {i18n.t("modules.books.book.caracteristics")}
+            </GStyled.SubTitle>
+            <div style={{ display: "flex", columnGap: "8px" }}>
+              {book?.caracteristics?.map((item, pos) => (
+                <div
+                  key={pos}
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    padding: "2px 10px 2px 10px",
+                    borderRadius: "12px",
+                    color: "white",
+                    backgroundColor: Colors.tealc
+                  }}
+                >
+                  <Typography style={{ textTransform: "capitalize" }}>
+                    {item}
+                  </Typography>
+                </div>
+              ))}
+            </div>
+          </Box>
+        )}
+
         <div
           onClick={handleAddToCart}
           style={{

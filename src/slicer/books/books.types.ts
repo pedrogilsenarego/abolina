@@ -40,6 +40,7 @@ export interface Book {
   weight: string
   designer: string
   collections:string,
+  caracteristics:string[]
   designerResume: string
   designerResumeEN:string
   translator: string
