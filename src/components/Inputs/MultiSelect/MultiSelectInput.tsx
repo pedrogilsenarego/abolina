@@ -71,8 +71,7 @@ const MultiSelectInput: React.FunctionComponent<MultiSelectProps<any>> = ({
   const labelID = `select_${name}`;
   const [field, meta, helpers] = useField(name ?? "");
   const [values, setValues] = useState(defaultValue || []);
-  console.log(field.value);
-  console.log(values);
+
 
   const getItemValue = (value: number | string) => {
     const found = items.find((ele) => ele[valueRef] === value);

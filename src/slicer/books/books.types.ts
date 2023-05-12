@@ -41,6 +41,7 @@ export interface Book {
   designer: string
   collections:string,
   caracteristics:string[]
+  format: string[]
   designerResume: string
   designerResumeEN:string
   translator: string

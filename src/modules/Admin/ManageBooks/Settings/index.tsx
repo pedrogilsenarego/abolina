@@ -14,9 +14,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../../../slicer/types";
 import ButtonForm from "../../../../components/Buttons/ButtonFormik";
 import SelectWrapper from "../../../../components/Inputs/SelectFormValue";
-import { newBookTypes2 } from "../../../../constants/admin";
+import { formatTypes, newBookTypes2 } from "../../../../constants/admin";
 import Textfield from "../../../../components/Inputs/TextFieldForm";
 import { disableLoading, enableLoading, updateFailNotification, updateSuccessNotification } from "../../../../slicer/general/general.actions";
+import MultiSelectInput from "../../../../components/Inputs/MultiSelect/MultiSelectInput";
+
 
 const Settings = () => {
   const dispatch = useDispatch()
@@ -45,6 +47,7 @@ const Settings = () => {
 
   const handleSubmit = async (values: any) => {
     try {
+
       dispatch(enableLoading())
       await saveSettings(values, documentID)
       dispatch(disableLoading())
@@ -139,7 +142,17 @@ const Settings = () => {
                       />
                     </Box>
                   </Grid>
-
+                  <Grid item xs={12}>
+                    <Box style={{ width: "350px" }}>
+                      <MultiSelectInput
+                        disableDefaultLabel
+                        chips
+                        label="Format"
+                        name="format"
+                        items={formatTypes}
+                      />
+                    </Box>
+                  </Grid>
                   <Box
                     display='flex'
                     justifyContent='start'

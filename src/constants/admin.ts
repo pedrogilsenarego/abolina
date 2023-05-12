@@ -15,3 +15,13 @@ export const caracteristics = [
   {value:"original", title:"Original"},
   {value:"kids", title:"Kids"}
 ]
+
+export const formatTypes = [
+  
+  {
+    value: "papper", title: "Papper"
+  },
+  {
+    value: "digital", title: "Digital"
+  },
+]

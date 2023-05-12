@@ -1,7 +1,6 @@
 import { Grid, Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import * as GStyled from "../../../../styles";
 import { i18n } from "../../../../translations/i18n";
-import CollectionBrowser from "./CollectionBrowser";
 import CardMedia from "../../../../components/CardMedia";
 import { Colors } from "../../../../constants/pallette";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +11,7 @@ import { addProductToCart } from "../../../../slicer/cart/cart.actions";
 import { updateSuccessNotification } from "../../../../slicer/general/general.actions";
 import { BsBook } from "react-icons/bs";
 import { BsStars } from "react-icons/bs";
+import { useState } from "react";
 
 interface Props {
   setOpenViewBook: (openViewBook: boolean) => void;
@@ -22,6 +22,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
   const dispatch = useDispatch();
+  const [format, setFormat] = useState<string>(book?.format[0] || "");
   const lang = useSelector<State, string>(
     (state) => state.general.lang || "PT"
   );
@@ -296,7 +297,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                     padding: "2px 10px 2px 10px",
                     borderRadius: "12px",
                     color: "white",
-                    backgroundColor: Colors.tealc
+                    backgroundColor: Colors.tealc,
                   }}
                 >
                   <Typography style={{ textTransform: "capitalize" }}>
@@ -307,7 +308,29 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
             </div>
           </Box>
         )}
+        {book?.format && (
+          <div style={{ display: "flex", marginTop: "20px", columnGap: "10px" }}>
+            {book?.format.map((item, pos) => (
+              <Typography
+                onClick={() => setFormat(item)}
+                style={{
 
+                  paddingLeft: pos > 0 ? "10px" : "0px",
+                  borderLeft: pos > 0 ? `3px solid ${Colors.tealc}` : "none",
+                  textTransform: "uppercase",
+                  textDecoration: format === item ? "underline" : "none",
+                  fontSize: "24px",
+                  cursor: "pointer",
+                  color: format === item ? Colors.tealc : "black",
+                  fontWeight: 800,
+                }}
+                key={pos}
+              >
+                {item}
+              </Typography>
+            ))}
+          </div>
+        )}
         <div
           onClick={handleAddToCart}
           style={{
@@ -331,17 +354,6 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
             {i18n.t("modules.books.book.addToCart")}
           </Typography>
         </div>
-        <Box
-          display='flex'
-          flexDirection='row'
-          columnGap={1}
-          alignItems='center'
-          mt={mobile ? "40px" : "80px"}
-        >
-          <CollectionBrowser
-            title={i18n.t("modules.books.book.collectionBrowser")}
-          />
-        </Box>
       </Grid>
     </Grid>
   );

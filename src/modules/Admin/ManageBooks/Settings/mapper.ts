@@ -3,7 +3,8 @@ export const mapInitialForm = (data: any) => {
 
   return {
     newBook: data?.newBook || "",
-    discount: data?.discount || 0
+    discount: data?.discount || 0,
+    format: data?.format || []
   }
 
 }

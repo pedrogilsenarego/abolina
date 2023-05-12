@@ -37,7 +37,7 @@ export const fetchBook: QueryFunction<any, QueryKey> = async ({ queryKey }) => {
   }
 };
 
-export const saveSettings = async (values:{newBook:string,discount:number}, documentID:string) => {
+export const saveSettings = async (values:{newBook:string,discount:number, format:string[]}, documentID:string) => {
   try {
     console.log("adding Data")
     await handleSaveSettings(values, documentID)
