@@ -12,6 +12,7 @@ import { updateSuccessNotification } from "../../../../slicer/general/general.ac
 import { BsBook } from "react-icons/bs";
 import { BsStars } from "react-icons/bs";
 import { useState } from "react";
+import { caracteristics, formatTypes } from "../../../../constants/admin";
 
 interface Props {
   setOpenViewBook: (openViewBook: boolean) => void;
@@ -295,13 +296,15 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                     justifyContent: "center",
                     alignItems: "center",
                     padding: "2px 10px 2px 10px",
-                    borderRadius: "12px",
+                    borderRadius: "4px",
                     color: "white",
                     backgroundColor: Colors.tealc,
                   }}
                 >
-                  <Typography style={{ textTransform: "capitalize" }}>
-                    {item}
+                  <Typography style={{}}>
+                    {lang === "EN"
+                      ? caracteristics.find((obj) => obj["value"] === item)?.title
+                      : caracteristics.find((obj) => obj["value"] === item)?.titlePT}
                   </Typography>
                 </div>
               ))}
@@ -309,24 +312,27 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
           </Box>
         )}
         {book?.format && (
-          <div style={{ display: "flex", marginTop: "20px", columnGap: "10px" }}>
+          <div
+            style={{ display: "flex", marginTop: "20px", columnGap: "10px" }}
+          >
             {book?.format.map((item, pos) => (
               <Typography
                 onClick={() => setFormat(item)}
                 style={{
-
                   paddingLeft: pos > 0 ? "10px" : "0px",
                   borderLeft: pos > 0 ? `3px solid ${Colors.tealc}` : "none",
-                  textTransform: "uppercase",
+
                   textDecoration: format === item ? "underline" : "none",
-                  fontSize: "24px",
+                  fontSize: "20px",
                   cursor: "pointer",
                   color: format === item ? Colors.tealc : "black",
                   fontWeight: 800,
                 }}
                 key={pos}
               >
-                {item}
+                {lang === "EN"
+                  ? formatTypes.find((obj) => obj["value"] === item)?.title
+                  : formatTypes.find((obj) => obj["value"] === item)?.titlePT}
               </Typography>
             ))}
           </div>

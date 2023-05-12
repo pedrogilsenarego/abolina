@@ -94,16 +94,18 @@ const Right = () => {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-
+                    position: "absolute",
+                    right: "-7px",
+                    top: "-5px",
                     height: "17px",
                     aspectRatio: 1,
                     borderRadius: "50%",
-                    backgroundColor: Colors.tealc,
+                    backgroundColor: "white",
                     border: "solid 1px white",
                   }}
                 >
                   <Typography
-                    style={{ color: "white", fontSize: "12px", fontWeight: 800 }}
+                    style={{ color: Colors.tealc, fontSize: "12px", fontWeight: 800, marginTop: "2px" }}
                   >
                     {getCartTotal()}
                   </Typography>
