@@ -1,4 +1,4 @@
-import { firestore } from "../firebase/utils";
+import { firestore } from "../../firebase/utils";
 import firebase from "firebase/app"
 
 export const handleAddCollection = (payload: {value:string, title:string}) => {
@@ -34,7 +34,7 @@ export const handleSaveSettings = (payload: {newBook:string, discount:number, fo
       .then(() => {
         resolve();
       })
-      .catch((err) => {
+      .catch((err:any) => {
         reject(err);
       });
   });

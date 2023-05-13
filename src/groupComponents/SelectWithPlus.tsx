@@ -3,7 +3,7 @@ import SelectWrapper from "../components/Inputs/SelectFormValue";
 import Loader from "../components/Loader";
 import Textfield from "../components/Inputs/TextField";
 import Button from "../components/Buttons/Button";
-import { addCollection } from "../services/adminServices";
+import { addCollection } from "../services/admin/adminServices";
 import { useDispatch } from "react-redux";
 import { updateSuccessNotification } from "../slicer/general/general.actions";
 

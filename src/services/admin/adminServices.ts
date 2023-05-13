@@ -1,7 +1,7 @@
 import { QueryFunction, QueryKey } from "react-query";
-import { handleFetchCollections } from "../slicer/general/general.helpers";
+import { handleFetchCollections } from "../../slicer/general/general.helpers";
 import { handleAddCollection, handleSaveSettings } from "./adminHelpers";
-import { handleFetchBook } from "../slicer/books/books.helpers";
+import { handleFetchBook } from "../../slicer/books/books.helpers";
 
 export const fetchCollections: QueryFunction<any> = async () => {
   

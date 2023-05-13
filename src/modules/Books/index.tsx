@@ -1,38 +1,53 @@
 import { useNavigate } from "react-router";
 import { ROUTE_PATHS } from "../../constants/routes";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchBooks } from "../../slicer/books/books.actions";
-import { State } from "../../slicer/types";
-import { Book } from "../../slicer/books/books.types";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import CardMedia from "../../components/CardMedia";
+import { Title } from "../../styles";
+import { i18n } from "../../translations/i18n";
+import useBooks from "./useBooks";
+import CollectionsItem from "./CollectionsItem";
 
 const Books = () => {
-  const dispatch = useDispatch();
   const Navigate = useNavigate();
-  const books = useSelector<State, Book[]>(
-    (state) => state.books.books.data || []
-  );
+  const { books, lang, collections } = useBooks();
 
-  const lang = useSelector<State, string>(
-    (state) => state.general.lang || "PT"
-  );
-
-  useEffect(() => {
-    dispatch(fetchBooks());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  console.log(collections);
 
   return (
     <>
       <Container>
-        <Grid container justifyContent='center' columnSpacing={2} style={{ marginTop: "60px" }}>
-          <Grid container item xs={3}></Grid>
-          <Grid container columnSpacing="1px" rowSpacing="1px" item xs={9}>
+        <Grid
+          container
+          justifyContent='center'
+          columnSpacing={2}
+          style={{ marginTop: "60px" }}
+        >
+          <Grid container item xs={2}>
+            <div>
+              <Title style={{ textDecoration: "underline" }}>
+                {i18n.t("modules.books.collections")}
+              </Title>
+              <div
+                style={{
+                  marginTop: "20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "end",
+                  rowGap: "10px"
+                }}
+              >
+                {collections.map((item, pos) => {
+                  return (
+                    <CollectionsItem pos={pos} item={item} />
+                  );
+                })}
+              </div>
+            </div>
+          </Grid>
+          <Grid container columnSpacing='0px' rowSpacing='0px' item xs={8}>
             {books?.map((book, pos) => {
               return (
-                <Grid item key={pos} xs={12} sm={4}>
+                <Grid item key={pos} xs={12} sm={6}>
                   <Box
                     style={{ backgroundColor: "lightGrey", padding: "10px" }}
                     onClick={() =>
@@ -44,15 +59,22 @@ const Books = () => {
                       )
                     }
                   >
-                    <CardMedia height="300" borderRadius="0px" image={book?.coverPage} />
+                    <CardMedia
+                      height='300'
+                      borderRadius='0px'
+                      image={book?.coverPage}
+                    />
                     <Box style={{ backgroundColor: "white" }}>
-                      <Typography>{(lang === "PT" ? book?.title : book?.titleEN) || ""}</Typography>
+                      <Typography>
+                        {(lang === "PT" ? book?.title : book?.titleEN) || ""}
+                      </Typography>
                     </Box>
                   </Box>
                 </Grid>
               );
             })}
           </Grid>
+          <Grid container item xs={2}></Grid>
         </Grid>
       </Container>
     </>

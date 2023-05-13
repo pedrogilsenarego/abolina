@@ -111,6 +111,7 @@ export const content = {
             "Por que sabemos que o edifício da existência se constrói abraçando desafios, vencendo dificuldades e medos, com vista à construção de um projeto de vida com sentido.",
         },
         books: {
+          collections: "Coleções",
           book: {
             bookTitle: "Título",
             text: "Texto:",

@@ -14,7 +14,7 @@ import {
 import FileUploader from "../../../../components/Inputs/FileUploader";
 
 import { useQuery } from "react-query";
-import { fetchCollections } from "../../../../services/adminServices";
+import { fetchCollections } from "../../../../services/admin/adminServices";
 import SelectWithPlus from "../../../../groupComponents/SelectWithPlus";
 import { State } from "../../../../slicer/types";
 import Loader from "../../../../components/Loader";
@@ -22,7 +22,7 @@ import { useEffect, useMemo, useState } from "react";
 import { disableLoading } from "../../../../slicer/general/general.actions";
 import { mapInitialForm } from "../mapper";
 import { useNavigate, useParams } from "react-router";
-import { fetchBook } from "../../../../services/adminServices";
+import { fetchBook } from "../../../../services/admin/adminServices";
 import { ROUTE_PATHS } from "../../../../constants/routes";
 import PreviewWrapper from "./PreviewWrapper";
 import { getObjectDifferences } from "../../../../utils/compareObjects";

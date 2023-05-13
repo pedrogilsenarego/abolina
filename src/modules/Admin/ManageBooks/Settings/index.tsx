@@ -3,7 +3,7 @@ import { Title } from "../../../../styles";
 import { i18n } from "../../../../translations/i18n";
 import { useParams } from "react-router";
 
-import { fetchBook, saveSettings } from "../../../../services/adminServices";
+import { fetchBook, saveSettings } from "../../../../services/admin/adminServices";
 import { useQuery } from "react-query";
 import Loader from "../../../../components/Loader";
 import { useEffect, useMemo } from "react";

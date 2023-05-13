@@ -110,6 +110,7 @@ export const content = {
             "Because we understand that the edifice of our existence is built by embracing challenges, overcoming our difficulties and fears, to shape a meaningful project for our lives.",
         },
         books: {
+          collections: "Collections",
           book: {
             bookTitle: "Title",
             text: "Text:",

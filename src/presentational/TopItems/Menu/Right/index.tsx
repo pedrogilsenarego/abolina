@@ -97,7 +97,7 @@ const Right = () => {
                     position: "absolute",
                     right: "-7px",
                     top: "-5px",
-                    height: "17px",
+                    height: "15px",
                     aspectRatio: 1,
                     borderRadius: "50%",
                     backgroundColor: "white",
