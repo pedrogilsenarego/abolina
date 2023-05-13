@@ -39,6 +39,7 @@ export interface Book {
   price: number
   weight: string
   designer: string
+  number:string
   collections:string,
   caracteristics:string[]
   format: string[]

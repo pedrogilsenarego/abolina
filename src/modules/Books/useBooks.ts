@@ -4,6 +4,9 @@ import { Book } from "../../slicer/books/books.types";
 import { useEffect } from "react";
 import { fetchBooks } from "../../slicer/books/books.actions";
 import { organizeBooks } from "./utilsBooks";
+import { addProductToCart } from "../../slicer/cart/cart.actions";
+import { updateSuccessNotification } from "../../slicer/general/general.actions";
+import { i18n } from "../../translations/i18n";
 
 const useBooks = () => {
   const dispatch=useDispatch()
@@ -16,13 +19,20 @@ const useBooks = () => {
 
   const collections = organizeBooks(books)
 
+  const handleAddToCart = (book:Book) => {
+    dispatch(addProductToCart([book]));
+    dispatch(
+      updateSuccessNotification(`${i18n.t("notifications.success.addedCart")}`)
+    );
+  };
+
 
   useEffect(() => {
     dispatch(fetchBooks());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return {books, lang, collections}
+  return {books, lang, collections, handleAddToCart}
 }
 
 export default useBooks

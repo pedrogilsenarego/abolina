@@ -11,5 +11,5 @@ export const getTotalValue = (cartProducts:CartProduct[]) => {
     );
     totalValue += price * cartProduct.value;
   }
-  return totalValue;
+  return totalValue.toFixed(2);
 };
