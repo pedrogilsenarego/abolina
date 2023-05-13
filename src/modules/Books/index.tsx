@@ -49,8 +49,11 @@ const Books = () => {
               return (
                 <Grid item key={pos} xs={12} sm={6}>
                   <Box
-                    style={{ backgroundColor: "lightGrey", padding: "15px", height: "100%" }}
-
+                    style={{
+                      backgroundColor: "lightGrey",
+                      padding: "15px",
+                      height: "100%",
+                    }}
                   >
                     <CardMedia
                       height='400'
@@ -72,9 +75,30 @@ const Books = () => {
                         flexDirection: "column",
                         alignItems: "start",
                         padding: "20px",
-                        height: "100%"
+
+                        position: "relative",
                       }}
                     >
+                      {book?.discount && (
+                        <div
+                          style={{
+                            position: "absolute",
+                            top: "-25px",
+                            right: "-10px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            borderRadius: "50%",
+                            padding: "10px",
+
+                            height: "50px",
+                            aspectRatio: 1,
+                            backgroundColor: Colors.tealc,
+                          }}
+                        >
+                          <Typography style={{ color: "white", fontSize: "18px" }}>{book?.discount}%</Typography>
+                        </div>
+                      )}
                       <Typography
                         color={Colors.tealc}
                         style={{ fontWeight: 800 }}
@@ -99,33 +123,34 @@ const Books = () => {
                         >
                           {book?.price} €
                         </Typography>
-                        {book?.newBook !== "soon" && <div
-                          onClick={() => handleAddToCart(book)}
-                          style={{
-                            cursor: "pointer",
-
-                            columnGap: "10px",
-                            justifyContent: "center",
-                            textAlign: "center",
-                            display: "flex",
-                            color: "white",
-                            backgroundColor: Colors.tealc,
-                            borderRadius: "10px",
-                            padding: "10px",
-                          }}
-                        >
-                          <FiShoppingCart size='1.5rem' color='white' />
-                          <Typography
-                            fontSize='18px'
+                        {book?.newBook !== "soon" && (
+                          <div
+                            onClick={() => handleAddToCart(book)}
                             style={{
-                              textTransform: "uppercase",
-                              fontWeight: 800,
+                              cursor: "pointer",
+
+                              columnGap: "10px",
+                              justifyContent: "center",
+                              textAlign: "center",
+                              display: "flex",
+                              color: "white",
+                              backgroundColor: Colors.tealc,
+                              borderRadius: "10px",
+                              padding: "10px",
                             }}
                           >
-                            {i18n.t("modules.books.book.addToCart")}
-                          </Typography>
-                        </div>}
-
+                            <FiShoppingCart size='1.5rem' color='white' />
+                            <Typography
+                              fontSize='18px'
+                              style={{
+                                textTransform: "uppercase",
+                                fontWeight: 800,
+                              }}
+                            >
+                              {i18n.t("modules.books.book.addToCart")}
+                            </Typography>
+                          </div>
+                        )}
                       </div>
                     </Box>
                   </Box>
