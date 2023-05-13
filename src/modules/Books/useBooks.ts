@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../slicer/types";
 import { Book } from "../../slicer/books/books.types";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchBooks } from "../../slicer/books/books.actions";
 import { organizeBooks } from "./utilsBooks";
 import { addProductToCart } from "../../slicer/cart/cart.actions";
@@ -9,6 +9,8 @@ import { updateSuccessNotification } from "../../slicer/general/general.actions"
 import { i18n } from "../../translations/i18n";
 
 const useBooks = () => {
+  const [collection, setCollection] = useState<string>("")
+  
   const dispatch=useDispatch()
   const books = useSelector<State, Book[]>(
     (state) => state.books.books.data || []
@@ -32,7 +34,7 @@ const useBooks = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return {books, lang, collections, handleAddToCart}
+  return {books, lang, collections, handleAddToCart, setCollection, collection}
 }
 
 export default useBooks

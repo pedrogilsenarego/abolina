@@ -4,33 +4,43 @@ import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
 import { Colors } from "../../../constants/pallette";
 import { useState } from "react";
 
+
+
 interface Props {
   pos: number;
   item: Collection;
+  setCollection: (collection: string) => void
 }
 
-const CollectionsItem = ({ pos, item }: Props) => {
+const CollectionsItem = ({ pos, item, setCollection }: Props) => {
   const [open, setOpen] = useState<boolean>(false);
+
+  const handleClick = (title: string) => {
+    setOpen(!open)
+    setCollection(title)
+  }
+
   return (
     <div>
       <div
+        onClick={() => { handleClick(item.name) }}
         key={pos}
-        style={{ display: "flex", columnGap: "40px", alignItems: "center" }}
+        style={{ display: "flex", columnGap: "40px", alignItems: "center", cursor: "pointer" }}
       >
-        <Typography style={{ fontSize: "18px" }}>{item.name}</Typography>
+        <Typography style={{ fontSize: "18px" }} >{item.name}</Typography>
         {open ? (
           <RiArrowUpSLine
             color={Colors.tealc}
             size='2rem'
             style={{ cursor: "pointer" }}
-            onClick={() => setOpen(false)}
+
           />
         ) : (
           <RiArrowDownSLine
             color={Colors.tealc}
             size='2rem'
             style={{ cursor: "pointer" }}
-            onClick={() => setOpen(true)}
+
           />
         )}
       </div>

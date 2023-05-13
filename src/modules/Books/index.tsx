@@ -8,16 +8,17 @@ import useBooks from "./useBooks";
 import CollectionsItem from "./CollectionsItem";
 import { Colors } from "../../constants/pallette";
 import { FiShoppingCart } from "react-icons/fi";
+import { BsStars } from "react-icons/bs";
 
 const Books = () => {
   const Navigate = useNavigate();
-  const { books, lang, collections, handleAddToCart } = useBooks();
+  const { books, lang, collections, handleAddToCart, setCollection, collection } = useBooks();
 
-  console.log(collections);
 
   return (
     <>
       <Container>
+        <Title>{collection}</Title>
         <Grid
           container
           justifyContent='center'
@@ -39,12 +40,14 @@ const Books = () => {
                 }}
               >
                 {collections.map((item, pos) => {
-                  return <CollectionsItem pos={pos} item={item} />;
+                  return <CollectionsItem pos={pos} item={item} setCollection={setCollection} />;
                 })}
               </div>
             </div>
           </Grid>
           <Grid container columnSpacing='0px' rowSpacing='0px' item xs={8}>
+
+
             {books?.map((book, pos) => {
               return (
                 <Grid item key={pos} xs={12} sm={6}>
@@ -53,8 +56,40 @@ const Books = () => {
                       backgroundColor: "lightGrey",
                       padding: "15px",
                       height: "100%",
+                      position: "relative",
                     }}
                   >
+                    {book?.newBook !== "undefined" && (
+                      <Box
+                        style={{
+                          position: "absolute",
+                          zIndex: 1000,
+                          backgroundColor: Colors.tealc,
+                          top: "10%",
+                          left: "10px",
+                          padding: "3px 20px 3px 20px",
+                          borderRadius: "3px",
+                          boxShadow: "1px 1px 1px #00000066",
+                        }}
+                      >
+                        <BsStars
+                          size='1.2rem'
+                          color='yellow'
+                          style={{
+                            position: "absolute",
+                            left: "-10%",
+                            top: "-40%",
+                          }}
+                        />
+                        <Typography
+                          style={{ color: "white", fontSize: "12px" }}
+                        >
+                          {book?.newBook === "new"
+                            ? i18n.t("modules.books.book.new")
+                            : i18n.t("modules.books.book.soon")}
+                        </Typography>
+                      </Box>
+                    )}
                     <CardMedia
                       height='400'
                       borderRadius='0px'
@@ -96,7 +131,11 @@ const Books = () => {
                             backgroundColor: Colors.tealc,
                           }}
                         >
-                          <Typography style={{ color: "white", fontSize: "18px" }}>{book?.discount}%</Typography>
+                          <Typography
+                            style={{ color: "white", fontSize: "18px" }}
+                          >
+                            {book?.discount}%
+                          </Typography>
                         </div>
                       )}
                       <Typography
@@ -115,6 +154,7 @@ const Books = () => {
                           width: "100%",
                           justifyContent: "space-between",
                           alignItems: "center",
+                          minHeight: "50px",
                         }}
                       >
                         <Typography
@@ -157,6 +197,7 @@ const Books = () => {
                 </Grid>
               );
             })}
+
           </Grid>
           <Grid container item xs={2}></Grid>
         </Grid>
