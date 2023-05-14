@@ -9,32 +9,45 @@ import { updateSuccessNotification } from "../../slicer/general/general.actions"
 import { i18n } from "../../translations/i18n";
 
 const useBooks = () => {
-  const [collection, setCollection] = useState<string>("")
-  
-  const dispatch=useDispatch()
-  const books = useSelector<State, Book[]>(
+  const [collection, setCollection] = useState<string>("");
+
+  const dispatch = useDispatch();
+  const initialBooks = useSelector<State, Book[]>(
     (state) => state.books.books.data || []
   );
   const lang = useSelector<State, string>(
     (state) => state.general.lang || "PT"
   );
 
-  const collections = organizeBooks(books)
+  const collections = organizeBooks(initialBooks);
 
-  const handleAddToCart = (book:Book) => {
+  const filterBooks = (): Book[] => {
+    if (collection === "") return initialBooks;
+    return initialBooks.filter((book) => book.collections === collection);
+  };
+
+  const filteredBooks = filterBooks();
+
+  const handleAddToCart = (book: Book) => {
     dispatch(addProductToCart([book]));
     dispatch(
       updateSuccessNotification(`${i18n.t("notifications.success.addedCart")}`)
     );
   };
 
-
   useEffect(() => {
     dispatch(fetchBooks());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return {books, lang, collections, handleAddToCart, setCollection, collection}
-}
+  return {
+    filteredBooks,
+    lang,
+    collections,
+    handleAddToCart,
+    setCollection,
+    collection,
+  };
+};
 
-export default useBooks
+export default useBooks;

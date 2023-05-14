@@ -17,7 +17,8 @@ const CollectionsItem = ({ pos, item, setCollection }: Props) => {
 
   const handleClick = (title: string) => {
     setOpen(!open)
-    setCollection(title)
+    if (open) { setCollection("") }
+    else setCollection(title)
   }
 
   return (

@@ -9,16 +9,17 @@ import CollectionsItem from "./CollectionsItem";
 import { Colors } from "../../constants/pallette";
 import { FiShoppingCart } from "react-icons/fi";
 import { BsStars } from "react-icons/bs";
+import { Book } from "../../slicer/books/books.types";
 
 const Books = () => {
   const Navigate = useNavigate();
-  const { books, lang, collections, handleAddToCart, setCollection, collection } = useBooks();
+  const { filteredBooks, lang, collections, handleAddToCart, setCollection, collection } = useBooks();
 
 
   return (
     <>
       <Container>
-        <Title>{collection}</Title>
+
         <Grid
           container
           justifyContent='center'
@@ -46,158 +47,158 @@ const Books = () => {
             </div>
           </Grid>
           <Grid container columnSpacing='0px' rowSpacing='0px' item xs={8}>
-
-
-            {books?.map((book, pos) => {
-              return (
-                <Grid item key={pos} xs={12} sm={6}>
-                  <Box
-                    style={{
-                      backgroundColor: "lightGrey",
-                      padding: "15px",
-                      height: "100%",
-                      position: "relative",
-                    }}
-                  >
-                    {book?.newBook !== "undefined" && (
-                      <Box
-                        style={{
-                          position: "absolute",
-                          zIndex: 1000,
-                          backgroundColor: Colors.tealc,
-                          top: "10%",
-                          left: "10px",
-                          padding: "3px 20px 3px 20px",
-                          borderRadius: "3px",
-                          boxShadow: "1px 1px 1px #00000066",
-                        }}
-                      >
-                        <BsStars
-                          size='1.2rem'
-                          color='yellow'
-                          style={{
-                            position: "absolute",
-                            left: "-10%",
-                            top: "-40%",
-                          }}
-                        />
-                        <Typography
-                          style={{ color: "white", fontSize: "12px" }}
-                        >
-                          {book?.newBook === "new"
-                            ? i18n.t("modules.books.book.new")
-                            : i18n.t("modules.books.book.soon")}
-                        </Typography>
-                      </Box>
-                    )}
-                    <CardMedia
-                      height='400'
-                      borderRadius='0px'
-                      image={book?.coverPage}
-                      onClick={() =>
-                        Navigate(
-                          ROUTE_PATHS.BOOKS_BOOK.replace(
-                            ":id",
-                            book?.documentID.toString()
-                          )
-                        )
-                      }
-                    />
+            <Title style={{}}>{collection}</Title>
+            <Grid container style={{ marginTop: "20px" }}>
+              {filteredBooks?.map((book: Book, pos: number) => {
+                return (
+                  <Grid item key={pos} xs={12} sm={6}>
                     <Box
                       style={{
-                        backgroundColor: "white",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "start",
-                        padding: "20px",
-
+                        background: "linear-gradient(to bottom, rgba(211,211,211,0.2) 0%, rgba(211,211,211,0.6) 25%, rgba(169,169,169,0.9) 50%, rgba(211,211,211,0.6) 75%, rgba(211,211,211,0.2) 100%)",
+                        padding: "15px",
+                        height: "100%",
                         position: "relative",
                       }}
                     >
-                      {book?.discount && (
-                        <div
+                      {book?.newBook !== "undefined" && (
+                        <Box
                           style={{
                             position: "absolute",
-                            top: "-25px",
-                            right: "-10px",
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            borderRadius: "50%",
-                            padding: "10px",
-
-                            height: "50px",
-                            aspectRatio: 1,
+                            zIndex: 1000,
                             backgroundColor: Colors.tealc,
+                            top: "10%",
+                            left: "10px",
+                            padding: "3px 20px 3px 20px",
+                            borderRadius: "3px",
+                            boxShadow: "1px 1px 1px #00000066",
                           }}
                         >
+                          <BsStars
+                            size='1.2rem'
+                            color='yellow'
+                            style={{
+                              position: "absolute",
+                              left: "-10%",
+                              top: "-40%",
+                            }}
+                          />
                           <Typography
-                            style={{ color: "white", fontSize: "18px" }}
+                            style={{ color: "white", fontSize: "12px" }}
                           >
-                            {book?.discount}%
+                            {book?.newBook === "new"
+                              ? i18n.t("modules.books.book.new")
+                              : i18n.t("modules.books.book.soon")}
                           </Typography>
-                        </div>
+                        </Box>
                       )}
-                      <Typography
-                        color={Colors.tealc}
-                        style={{ fontWeight: 800 }}
-                      >
-                        Nº {book?.number}
-                      </Typography>
-                      <Typography style={{ fontWeight: 800 }}>
-                        {(lang === "PT" ? book?.title : book?.titleEN) || ""}
-                      </Typography>
-                      <div
+                      <CardMedia
+                        height='400'
+                        borderRadius='0px'
+                        image={book?.coverPage}
+                        onClick={() =>
+                          Navigate(
+                            ROUTE_PATHS.BOOKS_BOOK.replace(
+                              ":id",
+                              book?.documentID.toString()
+                            )
+                          )
+                        }
+                      />
+                      <Box
                         style={{
-                          marginTop: "10px",
+                          backgroundColor: "white",
                           display: "flex",
-                          width: "100%",
-                          justifyContent: "space-between",
-                          alignItems: "center",
-                          minHeight: "50px",
+                          flexDirection: "column",
+                          alignItems: "start",
+                          padding: "20px",
+
+                          position: "relative",
                         }}
                       >
-                        <Typography
-                          color={Colors.tealc}
-                          style={{ fontWeight: 800, fontSize: "23px" }}
-                        >
-                          {book?.price} €
-                        </Typography>
-                        {book?.newBook !== "soon" && (
+                        {book?.discount && (
                           <div
-                            onClick={() => handleAddToCart(book)}
                             style={{
-                              cursor: "pointer",
-
-                              columnGap: "10px",
-                              justifyContent: "center",
-                              textAlign: "center",
+                              position: "absolute",
+                              top: "-25px",
+                              right: "-10px",
                               display: "flex",
-                              color: "white",
-                              backgroundColor: Colors.tealc,
-                              borderRadius: "10px",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              borderRadius: "50%",
                               padding: "10px",
+
+                              height: "50px",
+                              aspectRatio: 1,
+                              backgroundColor: Colors.tealc,
                             }}
                           >
-                            <FiShoppingCart size='1.5rem' color='white' />
                             <Typography
-                              fontSize='18px'
-                              style={{
-                                textTransform: "uppercase",
-                                fontWeight: 800,
-                              }}
+                              style={{ color: "white", fontSize: "18px" }}
                             >
-                              {i18n.t("modules.books.book.addToCart")}
+                              {book?.discount}%
                             </Typography>
                           </div>
                         )}
-                      </div>
-                    </Box>
-                  </Box>
-                </Grid>
-              );
-            })}
+                        <Typography
+                          color={Colors.tealc}
+                          style={{ fontWeight: 800 }}
+                        >
+                          Nº {book?.number}
+                        </Typography>
+                        <Typography style={{ fontWeight: 800 }}>
+                          {(lang === "PT" ? book?.title : book?.titleEN) || ""}
+                        </Typography>
+                        <div
+                          style={{
+                            marginTop: "10px",
+                            display: "flex",
+                            width: "100%",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                            minHeight: "50px",
+                          }}
+                        >
+                          <Typography
+                            color={Colors.tealc}
+                            style={{ fontWeight: 800, fontSize: "23px" }}
+                          >
+                            {book?.price} €
+                          </Typography>
+                          {book?.newBook !== "soon" && (
+                            <div
+                              onClick={() => handleAddToCart(book)}
+                              style={{
+                                cursor: "pointer",
 
+                                columnGap: "10px",
+                                justifyContent: "center",
+                                textAlign: "center",
+                                display: "flex",
+                                color: "white",
+                                backgroundColor: Colors.tealc,
+                                borderRadius: "10px",
+                                padding: "10px",
+                              }}
+                            >
+                              <FiShoppingCart size='1.5rem' color='white' />
+                              <Typography
+                                fontSize='18px'
+                                style={{
+                                  textTransform: "uppercase",
+                                  fontWeight: 800,
+                                }}
+                              >
+                                {i18n.t("modules.books.book.addToCart")}
+                              </Typography>
+                            </div>
+                          )}
+                        </div>
+                      </Box>
+                    </Box>
+                  </Grid>
+                );
+              })}
+            </Grid>
           </Grid>
           <Grid container item xs={2}></Grid>
         </Grid>
