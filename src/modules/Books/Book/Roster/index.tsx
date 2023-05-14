@@ -23,7 +23,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
   const dispatch = useDispatch();
-  const [format, setFormat] = useState<string>(book?.format[0] || "");
+  const [format, setFormat] = useState<string>(book?.format ? book?.format[0] : "");
   const lang = useSelector<State, string>(
     (state) => state.general.lang || "PT"
   );
