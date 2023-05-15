@@ -49,7 +49,7 @@ const DrawerMine = ({
         paddingLeft: paddingLeft || "auto",
         overflowY: "auto",
         borderRadius: borderRadius || "0 0px 0px 0",
-        overflow: "hidden",
+        overflowX: "hidden",
 
       }}
       role='presentation'

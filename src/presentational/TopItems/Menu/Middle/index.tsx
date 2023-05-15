@@ -14,6 +14,8 @@ import { useState } from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import { Languages } from "../../../../constants/lang";
 import useChangeLang from "../../../../hooks/usechangeLang";
+import { CurrentUser } from "../../../../slicer/user/user.types";
+import { signOutUserStart } from "../../../../slicer/user/user.actions";
 
 interface Props {
   setOpenDrawer: (openDrawer: boolean) => void;
@@ -25,6 +27,9 @@ const Middle = ({ setOpenDrawer }: Props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loc = useLocation();
+  const currentUser = useSelector<State, CurrentUser>(
+    (state) => state.user.currentUser
+  );
   const vertical = useSelector<State, boolean>(
     (state) => state.general.positionVertical
   );
@@ -33,7 +38,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
   const [openMyLanguageSubMenu, setOpenMyLanguageSubMenu] =
     useState<boolean>(false);
 
-  const { changeLanguage } = useChangeLang()
+  const { changeLanguage } = useChangeLang();
 
   const handleContacts = () => {
     if (loc.pathname !== ROUTE_PATHS.HOME) {
@@ -52,7 +57,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
         flexDirection={mobile ? "column" : "row"}
         justifyContent={mobile ? "start" : "space-between"}
         alignItems={mobile ? "start" : "center"}
-        style={{ paddingTop: mobile ? "80px" : "8px", }}
+        style={{ paddingTop: mobile ? "80px" : "8px" }}
       >
         <Grid item style={{ width: vertical ? "100%" : "auto" }}>
           <Button
@@ -129,18 +134,58 @@ const Middle = ({ setOpenDrawer }: Props) => {
               justifyContent: "space-between",
               paddingRight: "20px",
             }}
-            onClick={() => setOpenMyAccountSubMenu(!openMyAccountSubMenu)}
+            onClick={() =>
+              currentUser
+                ? setOpenMyAccountSubMenu(!openMyAccountSubMenu)
+                : navigate(ROUTE_PATHS.LOGIN)
+            }
           >
             <Button
-              title={i18n.t("menuBar.account")}
-              onClick={handleContacts}
+              title={
+                currentUser
+                  ? i18n.t("menuBar.account")
+                  : i18n.t("menuBar.userPopover.login")
+              }
               setOpenDrawer={setOpenDrawer}
               icon={vertical ? <BiUser size='1.5rem' color='black' /> : null}
             />
-            {!openMyAccountSubMenu ? (
+            {!openMyAccountSubMenu && currentUser ? (
               <RiArrowDownSLine size='1.5rem' />
-            ) : (
+            ) : currentUser ? (
               <RiArrowUpSLine size='1.5rem' />
+            ) : null}
+          </Grid>
+        )}
+        {vertical && openMyAccountSubMenu && (
+          <Grid
+            item
+            style={{
+              paddingLeft: "55px",
+              boxShadow: "inset -2px 2px 7px rgba(0, 0, 0, 0.25)", // Adjust the values as needed
+              paddingTop: "10px",
+              paddingBottom: "10px",
+              width: "100%",
+            }}
+          >
+            <Typography style={{ fontSize: "20px" }}>
+              {i18n.t("menuBar.userPopover.user")}
+            </Typography>
+            <Typography
+              style={{ fontSize: "20px" }}
+              onClick={() => {
+                setOpenDrawer(false);
+                dispatch(signOutUserStart());
+              }}
+            >
+              {i18n.t("menuBar.userPopover.logout")}
+            </Typography>
+            {currentUser?.userRoles?.includes("admin") && (
+              <Typography
+                style={{ fontSize: "20px" }}
+                onClick={() => navigate(ROUTE_PATHS.ADMIN)}
+              >
+                {i18n.t("menuBar.userPopover.admin")}
+              </Typography>
             )}
           </Grid>
         )}
@@ -164,6 +209,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
             />
           </Grid>
         )}
+
         {vertical && (
           <Grid
             item
@@ -174,11 +220,6 @@ const Middle = ({ setOpenDrawer }: Props) => {
               paddingRight: "20px",
               alignItems: "center",
               columnGap: "20px",
-
-
-              boxShadow: openMyLanguageSubMenu
-                ? "0px 2px 7px rgba(0, 0, 0, 0.15)"
-                : "none", // Adjust the values as needed
             }}
             onClick={() => setOpenMyLanguageSubMenu(!openMyLanguageSubMenu)}
           >
@@ -199,7 +240,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
             item
             style={{
               paddingLeft: "55px",
-              boxShadow: "inset 0px -2px 7px rgba(0, 0, 0, 0.15)", // Adjust the values as needed
+              boxShadow: "inset -2px 2px 7px rgba(0, 0, 0, 0.25)", // Adjust the values as needed
               paddingTop: "10px",
               paddingBottom: "10px",
               width: "100%",
@@ -207,7 +248,11 @@ const Middle = ({ setOpenDrawer }: Props) => {
           >
             {Languages.map((item, pos) => {
               return (
-                <Typography key={pos} style={{ fontSize: "20px" }} onClick={() => changeLanguage(item.value)}>
+                <Typography
+                  key={pos}
+                  style={{ fontSize: "20px" }}
+                  onClick={() => changeLanguage(item.value)}
+                >
                   {item.title}
                 </Typography>
               );

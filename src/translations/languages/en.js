@@ -35,6 +35,7 @@ export const content = {
           user: "Manage User",
           logout: "Logout",
           admin: "Admin",
+          login: "Login",
         },
       },
       footer: {

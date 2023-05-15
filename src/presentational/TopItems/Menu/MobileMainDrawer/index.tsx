@@ -32,6 +32,8 @@ const MobileMainDrawer = ({ openDrawer, setOpenDrawer }: Props) => {
           alignItems='center'
           paddingLeft="18px"
           mt='20px'
+          paddingBottom="40px"
+
 
 
         >

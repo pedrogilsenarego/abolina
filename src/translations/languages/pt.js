@@ -33,8 +33,9 @@ export const content = {
         instagram: "Siga-nos",
         userPopover: {
           user: "Gerir Utilizador",
-          logout: "Logout",
+          logout: "Terminar Sessão",
           admin: "Admin",
+          login: "Iniciar Sessão",
         },
       },
       footer: {
