@@ -27,6 +27,9 @@ export const content = {
         books: "BOOKS",
         about: "ABOUT",
         contacts: "CONTACTS",
+        account: "MY ACCOUNT",
+        cart: "CART",
+        language: "LANGUAGE",
         instagram: "Follow us",
         userPopover: {
           user: "Manage User",

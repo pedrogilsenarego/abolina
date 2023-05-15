@@ -4,6 +4,7 @@ import "./styles.css";
 import { useSelector } from "react-redux";
 import { State } from "../../../../../slicer/types";
 import { Colors } from "../../../../../constants/pallette";
+import { ReactNode } from "react";
 
 interface Props {
   title: string;
@@ -11,9 +12,17 @@ interface Props {
   setOpenDrawer: (openDrawer: boolean) => void;
   onClick?: () => void;
   selected?: boolean;
+  icon?: ReactNode;
 }
 
-const Button = ({ title, path, setOpenDrawer, onClick, selected }: Props) => {
+const Button = ({
+  title,
+  path,
+  setOpenDrawer,
+  onClick,
+  selected,
+  icon,
+}: Props) => {
   const vertical = useSelector<State, boolean>(
     (state) => state.general.positionVertical
   );
@@ -25,20 +34,24 @@ const Button = ({ title, path, setOpenDrawer, onClick, selected }: Props) => {
     <div
       style={{
         backgroundColor: vertical && selected ? Colors.tealc : "auto",
-        paddingLeft: vertical ? "40px" : "0px",
+        paddingLeft: vertical ? "20px" : "0px",
+        display: "flex",
+        alignItems: "center",
+        columnGap: "10px",
+        height: "45px"
       }}
     >
+      {icon}
       <p
-        className={selected && !vertical ? "menu-text-selected" : "menu-text"}
+        className={
+          !vertical ? (selected ? "menu-text-selected" : "menu-text") : ""
+        }
         style={{
-          display: "flex",
-          alignItems: "center",
-          paddingTop: vertical ? "5px" : "0px",
-
           color: vertical && !selected ? "black" : "whiteSmoke",
           cursor: "pointer",
           fontSize: mobile ? "20px" : "18px",
           fontWeight: 700,
+          paddingTop: vertical ? "5px" : "0px",
           paddingBottom: "5px",
         }}
         onClick={() => {
@@ -53,6 +66,7 @@ const Button = ({ title, path, setOpenDrawer, onClick, selected }: Props) => {
       >
         {title}
       </p>
+
     </div>
   );
 };

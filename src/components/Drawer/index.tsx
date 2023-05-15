@@ -48,7 +48,7 @@ const DrawerMine = ({
         paddingTop: "6vh",
         paddingLeft: paddingLeft || "auto",
         overflowY: "auto",
-        borderRadius: borderRadius || "0 10px 10px 0",
+        borderRadius: borderRadius || "0 0px 0px 0",
         overflow: "hidden",
 
       }}
