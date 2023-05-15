@@ -1,4 +1,4 @@
-import { Grid, useMediaQuery, useTheme } from "@mui/material";
+import { Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { i18n } from "../../../../translations/i18n";
 import Button from "./Button";
 import { ROUTE_PATHS } from "../../../../constants/routes";
@@ -12,6 +12,8 @@ import { HiOutlineMail } from "react-icons/hi";
 import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
 import { useState } from "react";
 import { FiShoppingCart } from "react-icons/fi";
+import { Languages } from "../../../../constants/lang";
+import useChangeLang from "../../../../hooks/usechangeLang";
 
 interface Props {
   setOpenDrawer: (openDrawer: boolean) => void;
@@ -31,6 +33,8 @@ const Middle = ({ setOpenDrawer }: Props) => {
   const [openMyLanguageSubMenu, setOpenMyLanguageSubMenu] =
     useState<boolean>(false);
 
+  const { changeLanguage } = useChangeLang()
+
   const handleContacts = () => {
     if (loc.pathname !== ROUTE_PATHS.HOME) {
       navigate(ROUTE_PATHS.HOME);
@@ -48,7 +52,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
         flexDirection={mobile ? "column" : "row"}
         justifyContent={mobile ? "start" : "space-between"}
         alignItems={mobile ? "start" : "center"}
-        style={{ paddingTop: mobile ? "80px" : "8px" }}
+        style={{ paddingTop: mobile ? "80px" : "8px", }}
       >
         <Grid item style={{ width: vertical ? "100%" : "auto" }}>
           <Button
@@ -122,6 +126,8 @@ const Middle = ({ setOpenDrawer }: Props) => {
               display: "flex",
               alignItems: "center",
               columnGap: "20px",
+              justifyContent: "space-between",
+              paddingRight: "20px",
             }}
             onClick={() => setOpenMyAccountSubMenu(!openMyAccountSubMenu)}
           >
@@ -138,38 +144,46 @@ const Middle = ({ setOpenDrawer }: Props) => {
             )}
           </Grid>
         )}
-        {vertical && (<Grid item style={{ width: vertical ? "100%" : "auto" }}>
-          <Button
-            selected={loc.pathname === ROUTE_PATHS.CART}
-            title={i18n.t("menuBar.cart")}
-            path={ROUTE_PATHS.CART}
-            setOpenDrawer={setOpenDrawer}
-            icon={
-              vertical ? (
-                <FiShoppingCart
-                  size='1.5rem'
-                  color={
-                    loc.pathname === ROUTE_PATHS.CART ? "whiteSmoke" : "black"
-                  }
-                />
-              ) : null
-            }
-          />
-        </Grid>)}
+        {vertical && (
+          <Grid item style={{ width: vertical ? "100%" : "auto" }}>
+            <Button
+              selected={loc.pathname === ROUTE_PATHS.CART}
+              title={i18n.t("menuBar.cart")}
+              path={ROUTE_PATHS.CART}
+              setOpenDrawer={setOpenDrawer}
+              icon={
+                vertical ? (
+                  <FiShoppingCart
+                    size='1.5rem'
+                    color={
+                      loc.pathname === ROUTE_PATHS.CART ? "whiteSmoke" : "black"
+                    }
+                  />
+                ) : null
+              }
+            />
+          </Grid>
+        )}
         {vertical && (
           <Grid
             item
             style={{
               width: vertical ? "100%" : "auto",
               display: "flex",
+              justifyContent: "space-between",
+              paddingRight: "20px",
               alignItems: "center",
               columnGap: "20px",
+
+
+              boxShadow: openMyLanguageSubMenu
+                ? "0px 2px 7px rgba(0, 0, 0, 0.15)"
+                : "none", // Adjust the values as needed
             }}
             onClick={() => setOpenMyLanguageSubMenu(!openMyLanguageSubMenu)}
           >
             <Button
               title={i18n.t("menuBar.language")}
-              onClick={handleContacts}
               setOpenDrawer={setOpenDrawer}
               icon={vertical ? <BiWorld size='1.5rem' color='black' /> : null}
             />
@@ -178,6 +192,26 @@ const Middle = ({ setOpenDrawer }: Props) => {
             ) : (
               <RiArrowUpSLine size='1.5rem' />
             )}
+          </Grid>
+        )}
+        {vertical && openMyLanguageSubMenu && (
+          <Grid
+            item
+            style={{
+              paddingLeft: "55px",
+              boxShadow: "inset 0px -2px 7px rgba(0, 0, 0, 0.15)", // Adjust the values as needed
+              paddingTop: "10px",
+              paddingBottom: "10px",
+              width: "100%",
+            }}
+          >
+            {Languages.map((item, pos) => {
+              return (
+                <Typography key={pos} style={{ fontSize: "20px" }} onClick={() => changeLanguage(item.value)}>
+                  {item.title}
+                </Typography>
+              );
+            })}
           </Grid>
         )}
       </Grid>

@@ -219,6 +219,12 @@ export const content = {
             "Por favor verifique primeiro a sua conta antes de fazer o login",
         },
       },
+      constants: {
+        languages: {
+          portuguese: "Português",
+          english: "Inglês",
+        },
+      },
     },
   },
 };

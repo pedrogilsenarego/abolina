@@ -222,6 +222,12 @@ export const content = {
             "Please verify first your email to login with your account",
         },
       },
+      constants: {
+        languages: {
+          portuguese: "Portuguese",
+          english: "English",
+        },
+      },
     },
   },
 };

@@ -33,6 +33,7 @@ const MobileMainDrawer = ({ openDrawer, setOpenDrawer }: Props) => {
           paddingLeft="18px"
           mt='20px'
 
+
         >
           <InstaAvatar
             size='1.5rem'
