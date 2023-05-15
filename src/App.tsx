@@ -14,6 +14,7 @@ import { Colors } from "./constants/pallette";
 import CookiePolicy from "./presentational/CookiePopup";
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { disableLoading } from "./slicer/general/general.actions";
+import usePosition from "./hooks/usePosition";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,9 @@ const theme = createTheme({
 
 
 function App() {
+
+  usePosition()
+
   const dispatch = useDispatch()
   useEffect(
     () => {

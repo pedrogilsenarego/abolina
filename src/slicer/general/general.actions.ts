@@ -84,3 +84,8 @@ export const setCollections = (collections:Collection[]) => ({
   payload: collections
   
 })
+
+export const setPositionVertical = (position:boolean) => ({
+  type: generalTypes.POSITION_VERTICAL,
+  payload: position
+})

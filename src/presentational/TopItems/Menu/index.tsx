@@ -79,14 +79,14 @@ const Menu = () => {
             columnSpacing={1}
             justifyContent='center'
             alignItems='center'
-            style={{ height: "80px" }}
+            style={{ height: "65px" }}
           >
             <Grid item xs={2}>
               <Box display="flex">
                 <FiMenu
                   size='2em'
                   color='white'
-                  onClick={() => setOpenDrawer(true)}
+                  onClick={() => setOpenDrawer(!openDrawer)}
                 />
               </Box>
             </Grid>

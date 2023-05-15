@@ -8,8 +8,11 @@ import {
 } from "@mui/material";
 import { Colors } from "../../../constants/pallette";
 import { i18n } from "../../../translations/i18n";
+import { useSelector } from "react-redux";
+import { State } from "../../../slicer/types";
 
 const TopBar = () => {
+  const vertical = useSelector<State, boolean>((state) => state.general.positionVertical)
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
   return (
@@ -18,7 +21,7 @@ const TopBar = () => {
         container
         justifyContent={mobile ? "center" : "flex-end"}
         columnGap={1}
-        style={{ padding: "10px 0px 10px 0px" }}
+        style={{ padding: vertical ? "5px 0px 5px 0px" : "10px 0px 10px 0px" }}
       >
         <Grid item>
           <Typography fontSize={mobile ? "12px" : "14px"} color={Colors.tealc}>

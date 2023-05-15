@@ -20,7 +20,8 @@ const MobileMainDrawer = ({ openDrawer, setOpenDrawer }: Props) => {
         setOpenDrawer={setOpenDrawer}
         fullHeight
         width="70vw"
-        paddingLeft="30px"
+        noPadding
+
       >
         <Middle setOpenDrawer={setOpenDrawer} />
         <Box display='flex'

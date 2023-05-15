@@ -2,9 +2,10 @@ import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import { i18n } from "../../../../translations/i18n";
 import Button from "./Button";
 import { ROUTE_PATHS } from "../../../../constants/routes";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { scrollToContacts } from "../../../../slicer/general/general.actions";
 import { useNavigate, useLocation } from "react-router";
+import { State } from "../../../../slicer/types";
 
 interface Props {
   setOpenDrawer: (openDrawer: boolean) => void;
@@ -16,6 +17,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loc = useLocation();
+  const vertical = useSelector<State, boolean>((state) => state.general.positionVertical)
 
   const handleContacts = () => {
     if (loc.pathname !== ROUTE_PATHS.HOME) {
@@ -30,15 +32,15 @@ const Middle = ({ setOpenDrawer }: Props) => {
     <>
       <Grid
         container
-        rowSpacing={mobile ? 4 : 3}
-        columnGap={"26px"}
+        rowSpacing={mobile ? 0 : 3}
+        columnGap={vertical ? "0px" : "26px"}
         flexDirection={mobile ? "column" : "row"}
-        justifyContent={mobile ? "center" : "space-between"}
+        justifyContent={mobile ? "start" : "space-between"}
         alignItems={mobile ? 'start' : "center"}
-        style={{ paddingTop: mobile ? "0px" : "8px" }}
+        style={{ paddingTop: mobile ? "80px" : "8px" }}
 
       >
-        <Grid item>
+        <Grid item style={{ width: vertical ? "100%" : "auto" }}>
           <Button
             selected={loc.pathname === ROUTE_PATHS.HOME}
             title={i18n.t("menuBar.home")}
@@ -46,7 +48,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
             setOpenDrawer={setOpenDrawer}
           />
         </Grid>
-        <Grid item>
+        <Grid item style={{ width: vertical ? "100%" : "auto" }}>
           <Button
             selected={loc.pathname === ROUTE_PATHS.BOOKS}
             title={i18n.t("menuBar.books")}
@@ -54,7 +56,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
             setOpenDrawer={setOpenDrawer}
           />
         </Grid>
-        <Grid item>
+        <Grid item style={{ width: vertical ? "100%" : "auto" }}>
           <Button
             selected={loc.pathname === ROUTE_PATHS.ABOUT}
             title={i18n.t("menuBar.about")}
@@ -62,7 +64,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
             setOpenDrawer={setOpenDrawer}
           />
         </Grid>
-        <Grid item>
+        <Grid item style={{ width: vertical ? "100%" : "auto" }}>
           <Button
             title={i18n.t("menuBar.contacts")}
             onClick={handleContacts}

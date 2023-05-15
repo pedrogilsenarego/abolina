@@ -29,6 +29,7 @@ export const content = {
         contacts: "CONTACTO",
         instagram: "Siga-nos",
         userPopover: {
+          user: "Gerir Utilizador",
           logout: "Logout",
           admin: "Admin",
         },

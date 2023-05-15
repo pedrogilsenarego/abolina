@@ -19,18 +19,23 @@ const UserPopoverContent = ({ handleClose }: any) => {
     <div
       onMouseLeave={handleClose}
       style={{
-        padding: "10px",
+        padding: "20px",
         display: "flex",
         flexDirection: "column",
         rowGap: "10px",
         minWidth: "200px",
         justifyContent: "center",
         alignItems: "center",
-        border: `solid 2px ${Colors.tealc}`
       }}
     >
       <Typography
-        style={{ cursor: "pointer" }}
+        style={{ cursor: "pointer", color: Colors.tealc, fontWeight: 800, textTransform: "uppercase" }}
+      >
+        {i18n.t("menuBar.userPopover.user")}
+      </Typography>
+
+      <Typography
+        style={{ cursor: "pointer", color: Colors.tealc, fontWeight: 800, textTransform: "uppercase" }}
         onClick={() => dispatch(signOutUserStart())}
       >
         {i18n.t("menuBar.userPopover.logout")}
@@ -38,7 +43,10 @@ const UserPopoverContent = ({ handleClose }: any) => {
       {currentUser?.userRoles?.includes("admin") && (
         <>
           <Divider style={{ width: "90%" }} />
-          <Typography onClick={() => navigate(ROUTE_PATHS.ADMIN)}>
+          <Typography
+            style={{ cursor: "pointer", color: Colors.tealc, fontWeight: 800, textTransform: "uppercase" }}
+            onClick={() => navigate(ROUTE_PATHS.ADMIN)}
+          >
             Admin
           </Typography>
         </>

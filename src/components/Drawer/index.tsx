@@ -43,7 +43,7 @@ const DrawerMine = ({
       sx={{
         width: fullWidth ? "100vw" : width,
         height: fullHeight ? "100vh" : "auto",
-        backgroundColor: backgroundColor || Colors.tealc,
+        backgroundColor: backgroundColor || "White",
         padding: noPadding ? "0px" : "10px",
         paddingTop: "6vh",
         paddingLeft: paddingLeft || "auto",

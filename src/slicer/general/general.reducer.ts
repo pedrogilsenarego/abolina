@@ -11,7 +11,8 @@ const INITIAL_STATE = {
   lang: "PT",
   scrollToContacts: false,
   cookiePolicy: true,
-  collections: []
+  collections: [],
+  positionVertical:false,
 };
 
 interface Action {
@@ -103,6 +104,11 @@ const generalReducer = (state = INITIAL_STATE, action: Action) => {
             ...state,
             collections: action.payload
           };
+          case generalTypes.POSITION_VERTICAL:
+            return {
+              ...state,
+              positionVertical: action.payload
+            };
 
     default:
       return state;
