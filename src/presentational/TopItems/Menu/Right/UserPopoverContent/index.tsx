@@ -35,7 +35,7 @@ const UserPopoverContent = ({ handleClose }: any) => {
       >
         {i18n.t("menuBar.userPopover.logout")}
       </Typography>
-      {currentUser.userRoles.includes("admin") && (
+      {currentUser?.userRoles?.includes("admin") && (
         <>
           <Divider style={{ width: "90%" }} />
           <Typography onClick={() => navigate(ROUTE_PATHS.ADMIN)}>

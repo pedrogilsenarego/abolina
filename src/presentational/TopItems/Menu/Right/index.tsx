@@ -13,6 +13,7 @@ import { Colors } from "../../../../constants/pallette";
 import BasicPopover from "../../../../components/Popover";
 import { useState } from "react";
 import UserPopoverContent from "./UserPopoverContent";
+import { BsCheckLg } from "react-icons/bs";
 
 const Right = () => {
   const { changeLanguage } = useChangeLang();
@@ -54,8 +55,8 @@ const Right = () => {
   }
 
   const handleUser = (e: any) => {
-    if (!currentUser) navigate(ROUTE_PATHS.LOGIN)
-    else handleClickPopover(e)
+
+    handleClickPopover(e)
   }
 
 
@@ -73,9 +74,28 @@ const Right = () => {
           <>
             <Grid
               item
-              style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
+              style={{ display: "flex", alignItems: "center", cursor: "pointer", position: "relative" }}
             >
-              <BiUser size='1.5rem' color='white' onMouseEnter={(e: any) => handleUser(e)} />
+              <BiUser size='1.5rem' color='white' onClick={() => { if (!currentUser) navigate(ROUTE_PATHS.LOGIN) }} onMouseEnter={(e: any) => { if (currentUser) handleUser(e) }} />
+              {currentUser && (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    position: "absolute",
+                    right: "-4px",
+                    top: "-5px",
+                    height: "15px",
+                    aspectRatio: 1,
+                    borderRadius: "50%",
+                    backgroundColor: Colors.tealc,
+
+                  }}
+                >
+                  <BsCheckLg size="0.7rem" color="white" />
+                </div>
+              )}
             </Grid>
             <Grid
               onClick={() => navigate(ROUTE_PATHS.CART)}
