@@ -124,7 +124,7 @@ export const content = {
             design: "Ilustração:",
             translation: "Tradução:",
             pages: "Número de páginas:",
-            language: "Language:",
+            language: "Língua:",
             weight: "Peso:",
             caracteristics: "Características:",
             size: "Dimensões:",

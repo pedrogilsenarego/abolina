@@ -11,10 +11,7 @@
   font-weight: bold;
 }
 
-*{
-  backface-visibility: hidden;
-  perspective: 1000;
-}
+
 
 body {
   margin: 0;
@@ -35,7 +32,7 @@ body {
   user-select: none;
   -ms-overflow-style: none !important;  /* IE and Edge */
   scrollbar-width: none !important;  /* Firefox */
-  transform: translateZ(0);
+
 }
 
 body::-webkit-scrollbar{
