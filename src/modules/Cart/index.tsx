@@ -1,4 +1,4 @@
-import { Container, Grid, Typography } from "@mui/material";
+import { Container, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { i18n } from "../../translations/i18n";
 import { Colors } from "../../constants/pallette";
 import { useSelector } from "react-redux";
@@ -14,13 +14,15 @@ const Cart = () => {
   const cartItems = useSelector<State, CartProduct[]>(
     (state) => state.cart.cartItems
   );
+  const theme = useTheme()
+  const mobile = useMediaQuery(theme.breakpoints.down("sm"))
 
   return (
     <Container maxWidth='lg'>
       <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
         <Typography
           style={{
-            fontSize: "28px",
+            fontSize: mobile ? "20px" : "28px",
             textTransform: "uppercase",
             color: Colors.tealc,
             fontWeight: 800,
@@ -30,7 +32,7 @@ const Cart = () => {
         </Typography>
         <Typography
           style={{
-            fontSize: "28px",
+            fontSize: mobile ? "20px" : "28px",
             textTransform: "uppercase",
             color: Colors.tealcTransparent,
             fontWeight: 800,
@@ -54,7 +56,7 @@ const Cart = () => {
             }}
           >
             <Typography
-              style={{ fontSize: "18px", color: Colors.tealc, fontWeight: 800 }}
+              style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
             >
               {i18n.t("modules.cart.table.product")}
             </Typography>
@@ -69,7 +71,7 @@ const Cart = () => {
             }}
           >
             <Typography
-              style={{ fontSize: "18px", color: Colors.tealc, fontWeight: 800 }}
+              style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
             >
               {i18n.t("modules.cart.table.price")}
             </Typography>
@@ -84,7 +86,7 @@ const Cart = () => {
             }}
           >
             <Typography
-              style={{ fontSize: "18px", color: Colors.tealc, fontWeight: 800 }}
+              style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
             >
               {i18n.t("modules.cart.table.quantity")}
             </Typography>
@@ -100,7 +102,7 @@ const Cart = () => {
             }}
           >
             <Typography
-              style={{ fontSize: "18px", color: Colors.tealc, fontWeight: 800 }}
+              style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
             >
               {i18n.t("modules.cart.table.subtotal")}
             </Typography>

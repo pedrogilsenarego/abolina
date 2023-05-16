@@ -58,7 +58,7 @@ export const content = {
       },
       modules: {
         cart: {
-          title: "Carrinho de compras",
+          title: "Carrinho",
           title2: "Dados para compra",
           discountCuppon: "Cupão de disconto",
           applyDiscount: "Aplicar",

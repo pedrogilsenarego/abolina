@@ -233,7 +233,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
       {!fullScreen && !mobileRotated && (
         <Box style={{ position: "absolute", right: 10, top: 10 }}>
           <MdFullscreen
-            size={mobileRotated ? "2em" : "2.5em"}
+            size={mobileRotated ? "2rem" : "2.5rem"}
             color={Colors.tealcDark}
             style={{ cursor: "pointer" }}
             onClick={() => setFullScreen(true)}
