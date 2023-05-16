@@ -130,6 +130,7 @@ export const content = {
             size: "Dimensões:",
             collectionBrowser: "Mais da Coleção",
             bookBrowser: "FOLHEAR\n O LIVRO",
+            peakDigital: "ESPREITAR\n O DIGITAL",
             new: "Novo",
             soon: "Brevemente",
             title: "A HISTÓRIA",

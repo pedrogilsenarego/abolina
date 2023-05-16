@@ -9,7 +9,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import { Book } from "../../../../slicer/books/books.types";
 import { addProductToCart } from "../../../../slicer/cart/cart.actions";
 import { updateSuccessNotification } from "../../../../slicer/general/general.actions";
-import { BsBook } from "react-icons/bs";
+import { BsBook, BsPlayCircle } from "react-icons/bs";
 import { BsStars } from "react-icons/bs";
 import { useState } from "react";
 import { caracteristics, formatTypes } from "../../../../constants/admin";
@@ -27,6 +27,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
   const lang = useSelector<State, string>(
     (state) => state.general.lang || "PT"
   );
+  const vertical = useSelector<State, boolean>((state) => state.general.positionVertical)
 
   const handleAddToCart = () => {
     dispatch(addProductToCart([book]));
@@ -76,25 +77,57 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
 
           <Box width={mobile ? "100%" : "80%"} style={{ position: "relative" }}>
             {mobile && (
-              <Box width='20%'>
+              <Box width='20%' style={{
+                position: "absolute", top: -24,
+                left: 16,
+                zIndex: 1000,
+                display: "flex",
+                columnGap: "15px"
+              }}>
                 <Box
                   style={{
-                    position: "absolute",
-                    zIndex: 1000,
+
+
                     backgroundColor: Colors.tealc,
-                    top: -24,
-                    left: 16,
-                    padding: "5px",
+
+                    padding: "8px",
                     borderRadius: "3px",
                     cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    columnGap: "5px",
                     boxShadow: "2px 2px 2px #00000066",
                   }}
                 >
+                  <BsBook size='1.2rem' color='white' />
                   <Typography
                     onClick={() => setOpenViewBook(true)}
-                    style={{ color: "white", fontSize: "16px" }}
+                    style={{ color: "white", fontSize: "16px", whiteSpace: "pre-line", lineHeight: "14px" }}
                   >
                     {i18n.t("modules.books.book.bookBrowser")}
+                  </Typography>
+                </Box>
+                <Box
+                  style={{
+
+
+                    backgroundColor: Colors.tealc,
+
+                    padding: "8px",
+                    borderRadius: "3px",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    columnGap: "5px",
+                    boxShadow: "2px 2px 2px #00000066",
+                  }}
+                >
+                  <BsPlayCircle size='1.2rem' color='white' />
+                  <Typography
+                    onClick={() => setOpenViewBook(true)}
+                    style={{ color: "white", fontSize: "16px", whiteSpace: "pre-line", lineHeight: "14px" }}
+                  >
+                    {i18n.t("modules.books.book.peakDigital")}
                   </Typography>
                 </Box>
               </Box>
@@ -106,11 +139,12 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                   position: "absolute",
                   zIndex: 1000,
                   backgroundColor: Colors.tealc,
-                  top: mobile ? 40 : "88%",
-                  left: "-50px",
+                  top: "88%",
+                  left: vertical ? "-5px" : "-50px",
                   padding: "3px 20px 3px 20px",
                   borderRadius: "3px",
                   boxShadow: "1px 1px 1px #00000066",
+
                 }}
               >
                 <BsStars

@@ -129,6 +129,7 @@ export const content = {
             size: "Size",
             collectionBrowser: "More from Collection",
             bookBrowser: "VIEW THE\n BOOK",
+            peakDigital: "LOOK\n DIGITAL",
             new: "New",
             soon: "Soon",
             title: "THE HISTORY",
