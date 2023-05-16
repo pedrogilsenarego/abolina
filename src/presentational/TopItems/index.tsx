@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import Menu from "./Menu";
 import TopBar from "./TopBar";
+import { useSelector } from "react-redux";
+import { State } from "../../slicer/types";
 
 const TopItems = () => {
   const [navbarVisible, setNavbarVisible] = useState<boolean>(true);
+  const vertical = useSelector<State, boolean>((state) => state.general.positionVertical)
 
   useEffect(() => {
     let previousScrollPosition = window.pageYOffset;
@@ -28,7 +31,7 @@ const TopItems = () => {
         width: "100%",
         transition: "transform 0.5s ease-in-out",
         transform: navbarVisible ? "translateY(0%)" : "translateY(-100%)",
-        zIndex: 1000,
+        zIndex: vertical ? 2000 : 1000,
         backgroundColor: "white"
       }}
     >

@@ -99,7 +99,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
   const renderContent = () => {
     return (
       <FullScreenWrapper fullScreen={fullScreen} setFullScreen={setFullScreen}>
-        <Box>
+        {/* <Box>
           <Typography
             textAlign='center'
             style={{
@@ -121,22 +121,23 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
                 "linear-gradient(90deg, #e4e4e4 0%, rgba(0,156,166,1) 50%, #e4e4e4 100%)",
             }}
           />
-        </Box>
+        </Box> */}
         {!zoom ? (
-          <Box
+          <div
             ref={mainBox}
-            mt={mobileRotated ? "20px" : fullScreen ? "80px" : "60px"}
-            width={width}
-            height={height}
-            display='flex'
-            justifyContent='center'
             style={{
+              width: width,
+              height: height,
+              display: "flex",
+              justifyContent: "center",
+              marginTop: mobileRotated ? "20px" : fullScreen ? "80px" : "60px",
               boxShadow: "0px 10px 30px 10px #00000066",
               borderRadius: "6px",
             }}
           >
             <HTMLFlipBook
               width={widthPage}
+              minWidth={widthPage}
               height={height}
               size='stretch'
               maxShadowOpacity={0.5}
@@ -160,7 +161,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
                 );
               })}
             </HTMLFlipBook>
-          </Box>
+          </div>
         ) : (
           <motion.div
             ref={constraintsRef}
@@ -206,7 +207,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
           </motion.div>
         )}
 
-        <Box
+        {/* <Box
           style={{
             position: mobileRotated ? "inherit" : "absolute",
             width: "70vw",
@@ -223,7 +224,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
             {i18n.t("modules.books.viewBook.page")} {page + 1}-{page + 2} /{" "}
             {listImages.length}
           </Typography>
-        </Box>
+        </Box> */}
       </FullScreenWrapper>
     );
   };
