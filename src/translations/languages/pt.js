@@ -119,6 +119,7 @@ export const content = {
           collections: "Coleções",
           book: {
             bookTitle: "Título",
+            backCollection: "Voltar à colleção",
             text: "Texto:",
             price: "Preço:",
             design: "Ilustração:",

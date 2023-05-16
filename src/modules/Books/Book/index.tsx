@@ -32,6 +32,8 @@ const BookC = () => {
     (state) => state.general.lang || "PT"
   );
 
+  const vertical = useSelector<State, boolean>((state) => state.general.positionVertical)
+
   useEffect(() => {
     dispatch(fetchBook(id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -63,7 +65,7 @@ const BookC = () => {
 
   return (
     <>
-      <Box mt='20px'>
+      <Box mt={vertical ? "0px" : '20px'}>
         <Container maxWidth='md'>
           <Roster book={book} setOpenViewBook={setOpenViewBook} />
           <Box display='flex' justifyContent='start' mt='40px'>

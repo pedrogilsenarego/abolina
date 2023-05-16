@@ -2,8 +2,11 @@ import UpScroller from "../presentational/UpScroller";
 import Footer from "../presentational/Footer";
 import { Grid } from "@mui/material";
 import TopItems from "../presentational/TopItems";
+import { useSelector } from "react-redux";
+import { State } from "../slicer/types";
 
 const HomepageLayout = (props: any) => {
+  const vertical = useSelector<State, boolean>((state) => state.general.positionVertical)
   return (
     <>
       {!props.noUpScroll && <UpScroller />}
@@ -21,8 +24,10 @@ const HomepageLayout = (props: any) => {
           xs={12}
           style={{
             minHeight: "60vh",
+            paddingLeft: vertical ? "8px" : "0px",
+            paddingRight: vertical ? "8px" : "0px",
             textAlign: "center",
-            marginTop: "20vh",
+            marginTop: vertical ? "17vh" : "15vh",
             marginBottom: props.marginBottom || "15vh",
           }}
         >

@@ -7,10 +7,11 @@ import { organizeBooks } from "./utilsBooks";
 import { addProductToCart } from "../../slicer/cart/cart.actions";
 import { updateSuccessNotification } from "../../slicer/general/general.actions";
 import { i18n } from "../../translations/i18n";
+import { useLocation } from "react-router";
 
 const useBooks = () => {
-  const [collection, setCollection] = useState<string>("");
-
+  const location = useLocation()
+  const [collection, setCollection] = useState<string>(location?.state?.collection|| "");
   const dispatch = useDispatch();
   const initialBooks = useSelector<State, Book[]>(
     (state) => state.books.books.data || []
