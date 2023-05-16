@@ -99,7 +99,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
   const renderContent = () => {
     return (
       <FullScreenWrapper fullScreen={fullScreen} setFullScreen={setFullScreen}>
-        {/* <Box>
+        <Box>
           <Typography
             textAlign='center'
             style={{
@@ -121,7 +121,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
                 "linear-gradient(90deg, #e4e4e4 0%, rgba(0,156,166,1) 50%, #e4e4e4 100%)",
             }}
           />
-        </Box> */}
+        </Box>
         {!zoom ? (
           <div
             ref={mainBox}
