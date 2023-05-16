@@ -54,7 +54,7 @@ const Incrementor = ({ minimumOne, initialValue, updateValue }: Props) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          borderRadius: "5px"
+          borderRadius: "3px"
         }}
         className='box'
         onClick={(e) => {
@@ -67,15 +67,15 @@ const Incrementor = ({ minimumOne, initialValue, updateValue }: Props) => {
       <Box style={{
         width: "25px",
         height: "25px",
-        border: `solid 2px ${Colors.tealc}`,
+
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        borderRadius: "5px",
-        backgroundColor: Colors.tealc
+
+
       }}>
         {" "}
-        <Typography style={{ paddingTop: "2px" }} color="white" fontSize={mobile ? "0.6rem" : "1rem"}>{value}</Typography>
+        <Typography style={{ paddingTop: "2px" }} color="black" fontSize={mobile ? "0.6rem" : "1.2rem"}>{value}</Typography>
       </Box>
       <Box
         style={{
@@ -85,7 +85,7 @@ const Incrementor = ({ minimumOne, initialValue, updateValue }: Props) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          borderRadius: "5px",
+          borderRadius: "3px",
           backgroundColor: Colors.tealc
         }}
 
