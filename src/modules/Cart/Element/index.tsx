@@ -57,12 +57,7 @@ const Element = ({ item, pos }: Props) => {
           justifyContent: "center",
         }}
       >
-        <AiOutlineClose
-          style={{ cursor: "pointer" }}
-          onClick={handleDeleteCartProduct}
-          size='1.5rem'
-          color='black'
-        />
+
       </Grid>
       <Grid
         item
@@ -81,8 +76,15 @@ const Element = ({ item, pos }: Props) => {
             rowGap: "20px",
             alignItems: "start",
             height: "100%",
+            position: "relative"
           }}
         >
+          <AiOutlineClose
+            style={{ cursor: "pointer", position: "absolute", top: "calc(50% - 48px)", left: "-70px" }}
+            onClick={handleDeleteCartProduct}
+            size='1.5rem'
+            color='black'
+          />
           <img
             style={{
               height: "200px",
@@ -170,7 +172,7 @@ const Element = ({ item, pos }: Props) => {
         xs={2}
         style={{ display: "flex", alignItems: "center", justifyContent: "end" }}
       >
-        <Typography>€{item.value * price}</Typography>
+        <Typography>€{(item.value * price).toFixed(2)}</Typography>
       </Grid>
     </Grid>
   );

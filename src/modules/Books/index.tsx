@@ -43,7 +43,7 @@ const Books = () => {
           container
           justifyContent='center'
           columnSpacing={2}
-          style={{ marginTop: vertical ? "20px" : "60px" }}
+          style={{ marginTop: vertical ? "20px" : "60px", paddingLeft: vertical ? "8px" : "0px", paddingRight: vertical ? "8px" : "0px", }}
         >
           {!vertical && (
             <Grid container item xs={2}>

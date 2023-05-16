@@ -75,7 +75,7 @@ const Incrementor = ({ minimumOne, initialValue, updateValue }: Props) => {
         backgroundColor: Colors.tealc
       }}>
         {" "}
-        <Typography color="white" fontSize={mobile ? "0.6rem" : "1rem"}>{value}</Typography>
+        <Typography style={{ paddingTop: "2px" }} color="white" fontSize={mobile ? "0.6rem" : "1rem"}>{value}</Typography>
       </Box>
       <Box
         style={{
@@ -96,7 +96,7 @@ const Incrementor = ({ minimumOne, initialValue, updateValue }: Props) => {
       >
         <Typography color="white" fontSize={mobile ? "0.6rem" : "1rem"}>+</Typography>
       </Box>
-    </Box>
+    </Box >
   );
 };
 

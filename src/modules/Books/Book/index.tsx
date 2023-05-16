@@ -65,7 +65,7 @@ const BookC = () => {
 
   return (
     <>
-      <Box mt={vertical ? "0px" : '20px'}>
+      <Box mt={vertical ? "0px" : '20px'} style={{ paddingLeft: vertical ? "8px" : "0px", paddingRight: vertical ? "8px" : "0px", }}>
         <Container maxWidth='md'>
           <Roster book={book} setOpenViewBook={setOpenViewBook} />
           <Box display='flex' justifyContent='start' mt='40px'>

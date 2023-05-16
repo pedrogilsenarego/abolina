@@ -11,13 +11,16 @@ import {
 import sobreOndas from "../../assets/images/sobreOndas.svg";
 import CardMine from "./CardMine";
 import { Colors } from "../../constants/pallette";
+import { useSelector } from "react-redux";
+import { State } from "../../slicer/types";
 
 const About = () => {
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
+  const vertical = useSelector<State, boolean>((state) => state.general.positionVertical)
 
   return (
-    <Box style={{ position: "relative", paddingBottom: "15vh" }}>
+    <Box style={{ position: "relative", paddingBottom: "15vh", paddingLeft: vertical ? "8px" : "0px", paddingRight: vertical ? "8px" : "0px", }}>
       <Container>
         <Box display='flex' justifyContent='start'>
           <Typography color={Colors.tealc} fontSize='28px' fontWeight={800}>

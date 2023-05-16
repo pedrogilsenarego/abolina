@@ -10,6 +10,8 @@ import homeOndas2 from "../../assets/images/homeOndas2.svg";
 import { motion } from "framer-motion"
 import Carousel from "./Components/Carousel";
 import { Colors } from "../../constants/pallette";
+import { useSelector } from "react-redux";
+import { State } from "../../slicer/types";
 
 
 
@@ -19,6 +21,7 @@ const Home = () => {
   const navigate = useNavigate();
   const Theme = useTheme()
   const mobile = useMediaQuery(Theme.breakpoints.down("md"))
+  const vertical = useSelector<State, boolean>((state) => state.general.positionVertical)
 
   return (
     <>
@@ -48,7 +51,7 @@ const Home = () => {
       </Box>
       <Box >
         <Container maxWidth='lg' style={{ justifyContent: "center" }}>
-          <Box sx={{ mt: mobile ? "0px" : "140px" }}>
+          <Box sx={{ mt: mobile ? "0px" : "140px", paddingLeft: vertical ? "8px" : "0px", paddingRight: vertical ? "8px" : "0px", }}>
             <Typography fontWeight={800} fontSize={28} color={Colors.tealc}>{i18n.t("menuBar.about")}</Typography>
             <Typography
               align='justify'
