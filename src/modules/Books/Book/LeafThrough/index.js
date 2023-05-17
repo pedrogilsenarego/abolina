@@ -7,7 +7,6 @@ import { isEven } from "../../../../utils/math";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { MdFullscreen } from "react-icons/md";
 import { Colors } from "../../../../constants/pallette";
-import { i18n } from "../../../../translations/i18n";
 import { useKeyPress } from "../../../../hooks/useKeyPress";
 import FullScreenWrapper from "../../../../components/FullScreen/chatgtp";
 import { motion } from "framer-motion";

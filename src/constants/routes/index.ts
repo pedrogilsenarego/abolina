@@ -8,6 +8,7 @@ export const ROUTE_PATHS = {
   ADMIN_BOOKS_CREATE: '/admin/books/create',
   ADMIN_BOOKS_EDIT:"/admin/books/edit/:id",
   ADMIN_BOOKS_SETTINGS:"/admin/books/settings/:id",
+  ADMIN_COLLECTION: "/admin/manage-collections",
   LOGIN:'/login',
   CART:"/cart",
   CHECKOUT:"/checkout",

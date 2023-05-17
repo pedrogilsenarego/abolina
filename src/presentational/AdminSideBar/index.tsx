@@ -40,6 +40,18 @@ const AdminSideBar = () => {
         display="flex"
         columnGap={1}
         alignItems="center"
+        onClick={() => navigate(ROUTE_PATHS.ADMIN_COLLECTION)}
+
+      >
+        <AiTwotoneCreditCard size="1.5rem" color="white" />
+        <Typography style={{ fontSize: "14px", color: "white", cursor: "pointer" }}>
+          Manage Collections
+        </Typography>
+      </Box>
+      <Box
+        display="flex"
+        columnGap={1}
+        alignItems="center"
         onClick={() => navigate(ROUTE_PATHS.ADMIN_CARROUSEL)}
 
       >
