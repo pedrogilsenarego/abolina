@@ -1,4 +1,5 @@
 import { styled, Checkbox, TableRow as MuiTableRow, BoxProps, TableCell as MuiTableCell, TableContainer as MuiTableContainer, TableCellProps as MuiTableCellProps, Box } from "@mui/material"
+import { Colors } from "../../constants/pallette"
 
 export const CheckboxContainer = styled(Checkbox)({
   height: '24px',
@@ -35,8 +36,10 @@ export const TableCell = styled(MuiTableCell, {
   paddingInline: '27px',
   paddingTop: isFirstRow ? '16px' : '8px',
   paddingBottom: isFirstRow ? '10px' : '8px',
-  color: "black !important",
-  cursor: onClick?"pointer": "default"
+  color: isFirstRow? `black !important`:"black !important",
+  cursor: onClick?"pointer": "default",
+  textDecoration: isFirstRow?"underline":"none"
+  
 }))
 
 export const ActionContainer = styled(Box)({

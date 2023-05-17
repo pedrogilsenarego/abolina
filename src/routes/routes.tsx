@@ -24,6 +24,9 @@ const AdminCarroussel = lazyWithRetryAndLoader(
   () => import("../modules/Admin/ManageCarroussel")
 );
 const AdminCollections = lazyWithRetryAndLoader(() => import("../modules/Admin/ManageCollections"))
+const AdminCollectionsCreate = lazyWithRetryAndLoader(
+  () => import("../modules/Admin/ManageCollections/CreateCollection")
+);
 const Login = lazyWithRetryAndLoader(() => import("../modules/Login"));
 const Cart = lazyWithRetryAndLoader(() => import("../modules/Cart"));
 const Checkout = lazyWithRetryAndLoader(() => import("../modules/Checkout"));
@@ -147,6 +150,16 @@ export const routes: AppRoute[] = [
       <WithAdminAuth>
         <AdminLayout>
           <AdminCollections />
+        </AdminLayout>
+      </WithAdminAuth>
+    ),
+  },
+  {
+    path: ROUTE_PATHS.ADMIN_COLLECTION_CREATE,
+    component: (
+      <WithAdminAuth>
+        <AdminLayout>
+          <AdminCollectionsCreate />
         </AdminLayout>
       </WithAdminAuth>
     ),

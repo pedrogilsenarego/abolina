@@ -42,7 +42,7 @@ const ManageCollections = () => {
           <Button
             borderRadius='6px'
             label="Add Collection"
-            onClick={() => navigate(ROUTE_PATHS.ADMIN_BOOKS_CREATE)}
+            onClick={() => navigate(ROUTE_PATHS.ADMIN_COLLECTION_CREATE)}
           />
         </Box>
       </Box>
