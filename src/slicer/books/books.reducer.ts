@@ -3,6 +3,7 @@ import bookTypes from "./books.types";
 const INITIAL_STATE = {
   books: [],
   book: {},
+  collections:[],
   carroussell: [],
   progress:0
 };
@@ -34,6 +35,11 @@ const booksReducer = (state = INITIAL_STATE, action: Action) => {
             ...state,
             progress: action.payload,
           };
+          case bookTypes.SET_COLLECTIONS:
+            return {
+              ...state,
+              collections: action.payload,
+            };
 
     default:
       return state;

@@ -5,6 +5,8 @@ import {
   setCarroussell,
   fetchBooks,
   updateProgress,
+  setCollections,
+  fetchCollections,
 } from "./books.actions";
 import { store } from "../createStore";
 import {
@@ -21,6 +23,10 @@ import {
   handleDeleteBookStorage,
   handleUpdateCarroussellLink,
   handleEditBook,
+  handleAddCollection,
+  handleFetchCollections,
+  handleDeleteCollection,
+  handleEditCollection,
 } from "./books.helpers";
 import bookTypes from "./books.types";
 import {
@@ -284,19 +290,100 @@ export function* onDeleteBook() {
   yield takeLatest(bookTypes.DELETE_BOOK, sagaDeleteBook);
 }
 
-//
+//collections
+
+function* sagaFetchCollections({ payload }) {
+  try {
+    const collections = yield handleFetchCollections(payload);
+    yield put(setCollections({ ...collections }));
+  } catch (err) {}
+}
+
+export function* onFetchCollections() {
+  yield takeLatest(bookTypes.FETCH_COLLECTIONS, sagaFetchCollections);
+}
+
+function* sagaAddCollection({ payload }) {
+  try {
+    yield put(enableLoading());
+    const timestamp = new Date();
+    yield handleAddCollection({
+      ...payload,
+      createdDate: timestamp,
+    });
+
+    yield put(disableLoading());
+    yield put(
+      updateSuccessNotification(i18n.t("notifications.success.newBook"))
+    );
+  } catch (err) {
+    yield put(updateFailNotification(i18n.t("notifications.fail.newBook")));
+  }
+}
+
+export function* onAddCollection() {
+  yield takeLatest(bookTypes.ADD_COLLECTION, sagaAddCollection);
+}
+
+function* sagaDeleteCollection({ payload }) {
+  try {
+    yield handleDeleteCollection(payload);
+
+    yield put(fetchCollections());
+
+    yield put(
+      updateSuccessNotification(
+        i18n.t("notifications.success.updateCarroussell")
+      )
+    );
+  } catch (err) {
+    yield put(
+      updateFailNotification(i18n.t("notifications.fail.updateCarroussell"))
+    );
+  }
+}
+
+export function* onDeleteCollection() {
+  yield takeLatest(bookTypes.DELETE_COLLECTION, sagaDeleteCollection);
+}
+
+function* sagaEditCollection({ payload }) {
+  const { documentID, values } = payload;
+  try {
+    yield put(enableLoading());
+    const editPayload = {
+      values,
+      documentID,
+    };
+    console.log(editPayload);
+    yield handleEditCollection(editPayload);
+
+    yield put(disableLoading());
+    yield put(updateSuccessNotification("The book was edited"));
+  } catch {
+    yield put(updateFailNotification("Couldn't edit the book this time"));
+  }
+}
+
+export function* onEditCollection() {
+  yield takeLatest(bookTypes.EDIT_COLLECTION, sagaEditCollection);
+}
 
 export default function* bookSagas() {
   yield all([
     call(onFetchBooks),
+    call(onFetchCollections),
     call(onFetchBook),
     call(onAddBook),
+    call(onAddCollection),
     call(onEditBook),
+    call(onEditCollection),
     call(onUpdateNewBookStatus),
     call(onFetchCarroussell),
     call(onUpdateCarroussell),
     call(onNewImageCarroussell),
     call(onDeleteBook),
+    call(onDeleteCollection),
     call(onUpdateCarrousellLink),
   ]);
 }

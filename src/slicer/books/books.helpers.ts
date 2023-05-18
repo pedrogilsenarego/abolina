@@ -324,3 +324,102 @@ export const handleEditBook = (payload: {
   });
 };
 
+//Collections
+export const handleAddCollection = (payload: any) => {
+  return new Promise<void>((resolve, reject) => {
+    firestore
+      .collection("collections")
+      .doc()
+      .set(payload)
+      .then(() => {
+        resolve();
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export const handleFetchCollections = ({ persistProducts = [] }) => {
+  return new Promise((resolve, reject) => {
+    const pageSize = 10;
+
+    let ref = firestore.collection("collections").limit(pageSize);
+
+    ref
+      .get()
+      .then((snapshot: any) => {
+        const totalCount = snapshot.size;
+
+        const data = [
+          ...persistProducts,
+          ...snapshot.docs.map((doc: any) => {
+            return {
+              ...doc.data(),
+              documentID: doc.id,
+            };
+          }),
+        ];
+
+        resolve({
+          data,
+          queryDoc: snapshot.docs[totalCount - 1],
+          isLastPage: totalCount < 1,
+        });
+      })
+      .catch((err: any) => {
+        reject(err);
+      });
+  });
+};
+
+export const handleFetchCollection = (documentID: string) => {
+  return new Promise((resolve, reject) => {
+    firestore
+      .collection("collections")
+      .doc(documentID)
+      .get()
+      .then((snapshot) => {
+        if (snapshot.exists) {
+          resolve(snapshot.data());
+        }
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export const handleDeleteCollection = (documentID: string) => {
+  return new Promise<void>((resolve, reject) => {
+    firestore
+      .collection("collections")
+      .doc(documentID)
+      .delete()
+      .then(() => {
+        resolve();
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export const handleEditCollection = (payload: {
+  values: any;
+  documentID: string;
+}) => {
+  const { documentID, values } = payload;
+  return new Promise<void>((resolve, reject) => {
+    firestore
+      .collection("collections")
+      .doc(documentID)
+      .update(values) // update the document with the values object
+      .then(() => {
+        resolve();
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};

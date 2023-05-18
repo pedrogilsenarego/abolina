@@ -1,4 +1,4 @@
-import bookTypes, { Books, Book } from "./books.types"
+import bookTypes, { Books, Book, Collection } from "./books.types"
 
 export const fetchBooks = (filters = {}) => ({
   type: bookTypes.FETCH_BOOKS,
@@ -74,6 +74,32 @@ export interface DeleteProps {
 
   export const updateProgress = (payload:number) => ({
     type: bookTypes.UPDATE_PROGRESS,
+    payload: payload,
+  });
+
+  // collections 
+  export const addCollection = (collection:Collection) => ({
+    type: bookTypes.ADD_COLLECTION,
+    payload: collection,
+  });
+
+  export const fetchCollections = (filters = {}) => ({
+    type: bookTypes.FETCH_COLLECTIONS,
+    payload: filters
+  })
+
+  export const setCollections = (collections:Books) => ({
+    type: bookTypes.SET_COLLECTIONS,
+    payload: collections,
+  });
+
+  export const deleteCollection = (payload:string) => ({
+    type: bookTypes.DELETE_COLLECTION,
+    payload: payload,
+  });
+
+  export const editCollection = (payload:any) => ({
+    type: bookTypes.EDIT_COLLECTION,
     payload: payload,
   });
 

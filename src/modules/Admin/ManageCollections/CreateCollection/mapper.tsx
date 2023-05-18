@@ -20,18 +20,12 @@ const mapBookItem = (book: Book, pos: number) => {
   return {
     id: pos,
     title: book.title,
-    collection: book.collections || "",
-    createdDate: book.createdDate,
-    newBook: book.newBook || "",
-    discount: book.discount || "Not Defined",
-    actions: [
-      {
-        buttonType: "icon",
-        event: "settings",
-        icon: settingsIcon,
-        label: "Settings ",
 
-      },
+    createdDate: book.createdDate,
+
+
+    actions: [
+
       {
         buttonType: "icon",
         event: "edit",
@@ -43,32 +37,26 @@ const mapBookItem = (book: Book, pos: number) => {
         buttonType: "icon",
         event: "delete",
         icon: deleteIcon,
-        label: i18n.t(
-          "modules.admin.manageBooks.tableList.delete.tooltip"
-        ),
+        label: "Delete collection",
         confirmationButtonLabel: i18n.t(
           "modules.admin.manageBooks.tableList.delete.accept"
         ),
         declineButtonLabel: i18n.t(
           "modules.admin.manageBooks.tableList.delete.deny"
         ),
-        confirmationDescription: i18n.t(
-          "modules.admin.manageBooks.tableList.delete.confirmationDescription"
-        ),
+        confirmationDescription: "This is not reversible",
         confirmationRequired: true,
-        confirmationTitle: i18n.t(
-          "modules.admin.manageBooks.tableList.delete.confirmationTitle"
-        ),
+        confirmationTitle: "Delete collection",
       },
     ],
   };
 };
 
-const mapBooksItems = (cartItems: any) => {
+const mapCollectionsItems = (cartItems: any) => {
   return { rows: cartItems.map((p: any, pos: number) => mapBookItem(p, pos)) };
 };
 
-export { mapBooksItems };
+export { mapCollectionsItems };
 
 
 

@@ -1,7 +1,7 @@
 import { QueryFunction, QueryKey } from "react-query";
 import { handleFetchCollections } from "../../slicer/general/general.helpers";
 import { handleAddCollection, handleSaveSettings } from "./adminHelpers";
-import { handleFetchBook } from "../../slicer/books/books.helpers";
+import { handleFetchBook, handleFetchCollection } from "../../slicer/books/books.helpers";
 
 export const fetchCollections: QueryFunction<any> = async () => {
   
@@ -30,6 +30,19 @@ export const fetchBook: QueryFunction<any, QueryKey> = async ({ queryKey }) => {
   try {
     console.log(`fetching book ${documentID}`);
     const data = await handleFetchBook(documentID);
+    return data;
+  } catch (error) {
+    // Handle the error or throw it to be caught by React Query's error handling
+    throw error;
+  }
+};
+
+export const fetchCollection: QueryFunction<any, QueryKey> = async ({ queryKey }) => {
+  const documentID = queryKey[1] as string;
+
+  try {
+    console.log(`fetching collection ${documentID}`);
+    const data = await handleFetchCollection(documentID);
     return data;
   } catch (error) {
     // Handle the error or throw it to be caught by React Query's error handling

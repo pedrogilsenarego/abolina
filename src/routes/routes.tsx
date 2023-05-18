@@ -164,4 +164,14 @@ export const routes: AppRoute[] = [
       </WithAdminAuth>
     ),
   },
+  {
+    path: ROUTE_PATHS.ADMIN_COLLECTIONS_EDIT,
+    component: (
+      <WithAdminAuth>
+        <AdminLayout>
+          <AdminCollectionsCreate edit />
+        </AdminLayout>
+      </WithAdminAuth>
+    ),
+  },
 ];

@@ -10,6 +10,7 @@ export const ROUTE_PATHS = {
   ADMIN_BOOKS_SETTINGS:"/admin/books/settings/:id",
   ADMIN_COLLECTION: "/admin/manage-collections",
   ADMIN_COLLECTION_CREATE: '/admin/manage-carrousell/create',
+  ADMIN_COLLECTIONS_EDIT:"/admin/collections/edit/:id",
   LOGIN:'/login',
   CART:"/cart",
   CHECKOUT:"/checkout",

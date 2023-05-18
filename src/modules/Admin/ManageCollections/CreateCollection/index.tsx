@@ -7,19 +7,20 @@ import { FORM_VALIDATION } from "./validation";
 import ButtonForm from "../../../../components/Buttons/ButtonFormik";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addBook,
+
+  addCollection,
   editBook,
-  updateProgress,
+  editCollection,
+
 } from "../../../../slicer/books/books.actions";
 import { useQuery } from "react-query";
-import { fetchCollections } from "../../../../services/admin/adminServices";
 import { State } from "../../../../slicer/types";
 import Loader from "../../../../components/Loader";
 import { useEffect, useMemo, useState } from "react";
 import { disableLoading } from "../../../../slicer/general/general.actions";
 import { mapInitialForm } from "./mapper";
 import { useNavigate, useParams } from "react-router";
-import { fetchBook } from "../../../../services/admin/adminServices";
+import { fetchCollection } from "../../../../services/admin/adminServices";
 import { ROUTE_PATHS } from "../../../../constants/routes";
 import { getObjectDifferences } from "../../../../utils/compareObjects";
 import MultiSelectInput from "../../../../components/Inputs/MultiSelect/MultiSelectInput";
@@ -43,7 +44,7 @@ const CreateCollection = ({ edit = false }: Props) => {
     isLoading: loadingBook,
     error: errorBook,
     data: bookData,
-  } = useQuery<[string, string]>(["book", documentID], fetchBook, {
+  } = useQuery<[string, string]>(["collection", documentID], fetchCollection, {
     enabled: edit && !!documentID,
   });
 
@@ -66,7 +67,7 @@ const CreateCollection = ({ edit = false }: Props) => {
   }, [edit, bookData]);
 
   useEffect(() => {
-    if (!loading && edit && edited) navigate(ROUTE_PATHS.ADMIN);
+    if (!loading && edit && edited) navigate(ROUTE_PATHS.ADMIN_COLLECTION);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading]);
 
@@ -74,7 +75,7 @@ const CreateCollection = ({ edit = false }: Props) => {
 
   useEffect(() => {
     dispatch(disableLoading());
-    dispatch(updateProgress(0));
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -83,12 +84,12 @@ const CreateCollection = ({ edit = false }: Props) => {
       const payload = {
         values: getObjectDifferences(initialValues, { ...values }),
         documentID: documentID,
-        title: initialValues.title,
+
       };
       console.log(payload)
-      dispatch(editBook(payload));
+      dispatch(editCollection(payload));
       setEdited(true)
-    } else dispatch(addBook({ ...values }));
+    } else dispatch(addCollection({ ...values }));
   };
 
   if (edit && loadingBook) {
