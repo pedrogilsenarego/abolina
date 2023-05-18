@@ -7,6 +7,7 @@ import {
   updateProgress,
   setCollections,
   fetchCollections,
+  setCollection,
 } from "./books.actions";
 import { store } from "../createStore";
 import {
@@ -15,6 +16,7 @@ import {
   handleAddBook,
   handleAddCoverPage,
   handleFetchCarroussell,
+  handleFetchCollection,
   handleUpdateCarroussell,
   handleAddCarroussellImage,
   handleDeleteCarroussellStorage,
@@ -369,11 +371,35 @@ export function* onEditCollection() {
   yield takeLatest(bookTypes.EDIT_COLLECTION, sagaEditCollection);
 }
 
+function* sagaFetchCollection({ payload }) {
+  try {
+    const collection = yield handleFetchCollection(payload);
+    yield put(setCollection({ ...collection, documentID: payload }));
+  } catch (err) {}
+}
+
+export function* onFetchCollection() {
+  yield takeLatest(bookTypes.FETCH_COLLECTION, sagaFetchCollection);
+}
+
+//
+function* sagaFetchBookThenCollection({ payload }) {
+  try {
+    const book = yield handleFetchBook(payload);
+    yield put(setBook({ ...book, documentID: payload }));
+  } catch (err) {}
+}
+
+export function* onFetchBookThenCollection() {
+  yield takeLatest(bookTypes.FETCH_BOOK, sagaFetchBookThenCollection);
+}
+
 export default function* bookSagas() {
   yield all([
     call(onFetchBooks),
     call(onFetchCollections),
     call(onFetchBook),
+    call(onFetchCollection),
     call(onAddBook),
     call(onAddCollection),
     call(onEditBook),
@@ -385,5 +411,6 @@ export default function* bookSagas() {
     call(onDeleteBook),
     call(onDeleteCollection),
     call(onUpdateCarrousellLink),
+    call(onFetchBookThenCollection),
   ]);
 }

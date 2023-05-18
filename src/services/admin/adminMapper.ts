@@ -6,8 +6,8 @@ export const mapCollectionsData = (data: any) => {
     
     return []; // Return an empty array if data is undefined or falsy
   }
-
+  console.log(data)
   return data.data.map((item:Collection) => {
-    return { title: item.title, value: item.title };
+    return { title: item.title, value: item.documentID };
   });
 };

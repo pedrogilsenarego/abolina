@@ -103,4 +103,20 @@ export interface DeleteProps {
     payload: payload,
   });
 
+  export const fetchCollection = (documentID:string | undefined) => ({
+    type: bookTypes.FETCH_COLLECTION,
+    payload: documentID
+  })
+  
+  export const setCollection = (collection:Collection) => ({
+    type: bookTypes.SET_COLLECTION,
+    payload: collection,
+  });
+
+  //
+  export const fetchBookThenCollection = (documentID:string | undefined) => ({
+    type: bookTypes.FETCH_BOOK_THEN_FETCH_COLLECTION,
+    payload: documentID
+  })
+
   

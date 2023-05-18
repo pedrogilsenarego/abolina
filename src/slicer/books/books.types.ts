@@ -18,9 +18,13 @@ const bookTypes = {
   //collections
   ADD_COLLECTION: "ADD_COLLECTION",
   FETCH_COLLECTIONS:"FETCH_COLLECTIONS",
+  FETCH_COLLECTION:"FETCH_COLLECTION",
+  SET_COLLECTION:"SET_COLLECTION",
   SET_COLLECTIONS:"SET_COLLECTIONS",
   DELETE_COLLECTION:"DELETE_COLLECTION",
-  EDIT_COLLECTION:"EDIT_COLLECTION"
+  EDIT_COLLECTION:"EDIT_COLLECTION",
+  //
+  FETCH_BOOK_THEN_FETCH_COLLECTION:"FETCH_BOOK_THEN_FETCH_COLLECTION"
 };
 
 export interface Books {
@@ -30,6 +34,7 @@ export interface Books {
   book: Book;
   carroussell: Carousel[];
   collection: Collection;
+  
   collections: { data: Collection[] };
   progress: number;
 }
@@ -76,6 +81,7 @@ export interface Collection {
   resume: string;
   resumeEN: string;
   caracteristicis: string[];
+  documentID:string
 }
 
 export default bookTypes;
