@@ -24,7 +24,7 @@ import { mapInitialForm } from "../mapper";
 import { useNavigate, useParams } from "react-router";
 import { fetchBook } from "../../../../services/admin/adminServices";
 import { ROUTE_PATHS } from "../../../../constants/routes";
-import PreviewWrapper from "../../ManageCollections/CreateCollection/PreviewWrapper";
+import PreviewWrapper from "../SubmitBook/PreviewWrapper"
 import { getObjectDifferences } from "../../../../utils/compareObjects";
 import MultiSelectInput from "../../../../components/Inputs/MultiSelect/MultiSelectInput";
 import { caracteristics } from "../../../../constants/admin";

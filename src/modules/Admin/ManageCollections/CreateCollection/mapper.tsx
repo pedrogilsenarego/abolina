@@ -81,24 +81,10 @@ export const mapInitialForm = (data: any) => {
   return {
     title: data?.title || "",
     titleEN: data?.titleEN || "",
-    author: data?.author || "",
-    authorResume: data?.authorResume || "",
-    authorResumeEN: data?.authorResumeEN || "",
-    designer: data?.designer || "",
-    designerResume: data?.designerResume || "",
-    designerResumeEN: data?.designerResumeEN || "",
-    translator: data?.translator || "",
-    translatorResume: data?.translatorResume || "",
-    translatorResumeEN: data?.translatorResumeEN || "",
-    language: data?.language || "",
-    weight: data?.weight || "",
-    size: data?.size || "",
+    caracteristics: data?.caracteristics || [],
     resume: data?.resume || "",
     resumeEN: data?.resumeEN || "",
-    price: data?.price || null,
-    coverPage2: data?.coverPage || [],
-    content: data?.content || [],
-    pages: data?.pages || null,
+
 
   }
 

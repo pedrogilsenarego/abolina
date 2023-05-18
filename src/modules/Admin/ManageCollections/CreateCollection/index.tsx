@@ -11,11 +11,8 @@ import {
   editBook,
   updateProgress,
 } from "../../../../slicer/books/books.actions";
-import FileUploader from "../../../../components/Inputs/FileUploader";
-import PreviewWrapper from "./PreviewWrapper";
 import { useQuery } from "react-query";
 import { fetchCollections } from "../../../../services/admin/adminServices";
-import SelectWithPlus from "../../../../groupComponents/SelectWithPlus";
 import { State } from "../../../../slicer/types";
 import Loader from "../../../../components/Loader";
 import { useEffect, useMemo, useState } from "react";
@@ -35,13 +32,8 @@ interface Props {
 const CreateCollection = ({ edit = false }: Props) => {
   const { id } = useParams<Record<string, string | undefined>>();
   const documentID = id || "";
-  const [contentLoader, setContentLoader] = useState<boolean>(false);
+
   const [edited, setEdited] = useState<boolean>(false);
-  const [contentValue, setContentValue] = useState<any>(undefined);
-  const [coverPageLoader, setCoverPageLoader] = useState<boolean>(false);
-  const [coverPageValue, setCoverPageValue] = useState<any>(undefined);
-  const [touchedContent, setTouchedContent] = useState<boolean>(false);
-  const [touchedCoverPage, setTouchedCoverPage] = useState<boolean>(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loading = useSelector<State, boolean>((state) => state.general.loading);
@@ -55,15 +47,7 @@ const CreateCollection = ({ edit = false }: Props) => {
     enabled: edit && !!documentID,
   });
 
-  const {
-    isLoading: loadingCollections,
-    error,
-    data: collectionsData,
-    refetch,
-  } = useQuery("collections", fetchCollections, {
-    // staleTime: 3600000, // 1 hour in milliseconds
-    // cacheTime: 3600000, // 10 minutes in milliseconds
-  });
+
 
   const initialValues = useMemo(() => {
     if (edit && bookData) {
@@ -72,81 +56,21 @@ const CreateCollection = ({ edit = false }: Props) => {
       return {
         title: "",
         titleEN: "",
-        collections: "",
-        number: 0,
-        author: "",
-        caracteristics: [],
-        authorResume: "",
-        authorResumeEN: "",
-        designer: "",
-        designerResume: "",
-        designerResumeEN: "",
-        translator: "",
-        translatorResume: "",
-        translatorResumeEN: "",
-        language: "",
-        weight: "",
-        size: "",
         resume: "",
         resumeEN: "",
-        price: null,
-        coverPage2: undefined,
-        content: [],
-        pages: null,
+
+        caracteristics: [],
+
       };
     }
   }, [edit, bookData]);
-
-  const handleConvertStringIntoFile = async (
-    images: string[],
-    setLoader: (signal: boolean) => void,
-    setValue: (value: any) => void
-  ) => {
-    setLoader(true);
-    // Create a new DataTransfer object
-    const dataTransfer = new DataTransfer();
-
-    // Function to convert base64 string to a file
-    const base64StringToFile = async (
-      base64String: string,
-      filename: string
-    ): Promise<File> => {
-      const response = await fetch(base64String);
-      const data = await response.blob();
-      return new File([data], filename, { type: "image/webp" });
-    };
-
-    // Iterate through the images array and add each file to the DataTransfer object
-    for (let i = 0; i < images.length; i++) {
-      const file = await base64StringToFile(images[i], `image${i}.webp`); // You can replace the filename with any naming scheme you prefer
-      dataTransfer.items.add(file);
-    }
-    setValue(dataTransfer.files);
-    setLoader(false);
-  };
 
   useEffect(() => {
     if (!loading && edit && edited) navigate(ROUTE_PATHS.ADMIN);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading]);
 
-  useEffect(() => {
-    if (!loadingBook && edit) {
-      if (initialValues.content.length > 0)
-        handleConvertStringIntoFile(
-          initialValues.content,
-          setContentLoader,
-          setContentValue
-        );
-      if (initialValues.coverPage2.length > 0)
-        handleConvertStringIntoFile(
-          initialValues.coverPage2,
-          setCoverPageLoader,
-          setCoverPageValue
-        );
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loadingBook, initialValues.content, initialValues.coverPage2]);
+
 
   useEffect(() => {
     dispatch(disableLoading());
@@ -156,15 +80,6 @@ const CreateCollection = ({ edit = false }: Props) => {
 
   const handleSubmit = (values: any) => {
     if (edit) {
-      if (
-        !touchedContent &&
-        !touchedCoverPage &&
-        initialValues.title === values.title
-      ) {
-        delete values.content;
-        delete values.coverPage2;
-      }
-
       const payload = {
         values: getObjectDifferences(initialValues, { ...values }),
         documentID: documentID,
@@ -260,7 +175,19 @@ const CreateCollection = ({ edit = false }: Props) => {
                       />
                     </Box>
                   </Grid>
-
+                  <Grid item xs={12}>
+                    <Box style={{ width: "350px" }}>
+                      <MultiSelectInput
+                        disableDefaultLabel
+                        multiple
+                        defaultValue={initialValues.caracteristics}
+                        chips
+                        label="Caracteristics"
+                        items={caracteristics}
+                        name="caracteristics"
+                      />
+                    </Box>
+                  </Grid>
 
 
 
@@ -297,7 +224,7 @@ const CreateCollection = ({ edit = false }: Props) => {
                 justifyContent='start'
                 sx={{ mt: "20px", columnGap: "10px" }}
               >
-                <PreviewWrapper />
+
                 <ButtonForm label={i18n.t("modules.home.contacts.form.send")} />
               </Box>
             </>
