@@ -7,7 +7,7 @@ import livroOndas from "../../../assets/images/livroOndas.svg";
 import Popup from "../../../components/Popup";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBook } from "../../../slicer/books/books.actions";
+import { fetchBook, fetchBookThenCollection } from "../../../slicer/books/books.actions";
 import { useParams } from "react-router";
 import { Book } from "../../../slicer/books/books.types";
 import { State } from "../../../slicer/types";
@@ -29,7 +29,7 @@ const BookC = () => {
   );
 
   useEffect(() => {
-    dispatch(fetchBook(id));
+    dispatch(fetchBookThenCollection(id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 

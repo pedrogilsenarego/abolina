@@ -26,6 +26,7 @@ import {
   handleUpdateCarroussellLink,
   handleEditBook,
   handleAddCollection,
+  handleFetchCollectionByName,
   handleFetchCollections,
   handleDeleteCollection,
   handleEditCollection,
@@ -387,11 +388,17 @@ function* sagaFetchBookThenCollection({ payload }) {
   try {
     const book = yield handleFetchBook(payload);
     yield put(setBook({ ...book, documentID: payload }));
+
+    const collection = yield handleFetchCollectionByName(book.collections);
+    yield put(setCollection({ ...collection }));
   } catch (err) {}
 }
 
 export function* onFetchBookThenCollection() {
-  yield takeLatest(bookTypes.FETCH_BOOK, sagaFetchBookThenCollection);
+  yield takeLatest(
+    bookTypes.FETCH_BOOK_THEN_FETCH_COLLECTION,
+    sagaFetchBookThenCollection
+  );
 }
 
 export default function* bookSagas() {

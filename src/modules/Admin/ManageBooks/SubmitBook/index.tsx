@@ -267,7 +267,7 @@ const SubmitBook = ({ edit = false }: Props) => {
                       <SelectWrapper
                         initialValue={initialValues.collections}
                         loading={loadingCollections}
-                        options={collectionsData.options || [{ title: "", value: "" }]}
+                        options={collectionsData || [{ title: "", value: "" }]}
                         name="collections"
                         label="Collections"
                       />

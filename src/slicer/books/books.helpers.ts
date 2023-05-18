@@ -390,6 +390,28 @@ export const handleFetchCollection = (documentID: string) => {
   });
 };
 
+export const handleFetchCollectionByName = (name: string) => {
+  return new Promise((resolve, reject) => {
+   
+    firestore
+      .collection("collections")
+      .where("title", "==", name)
+      .get()
+      .then((snapshot) => {
+        if (!snapshot.empty) {
+          const data = snapshot.docs[0].data();
+          resolve(data);
+        } else {
+          resolve(null); // Resolve with null if no matching document is found
+        }
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+
 export const handleDeleteCollection = (documentID: string) => {
   return new Promise<void>((resolve, reject) => {
     firestore

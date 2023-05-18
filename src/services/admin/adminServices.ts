@@ -8,7 +8,7 @@ export const fetchCollections: QueryFunction<any> = async () => {
     console.log("fetching")
     const data:any = await handleFetchCollections({})
     
-    return {options:mapCollectionsData(data)||[{value:"", title:""}], data}
+    return mapCollectionsData(data)||[{value:"", title:""}]
   }
   catch {
   }
