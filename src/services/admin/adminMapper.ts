@@ -8,6 +8,6 @@ export const mapCollectionsData = (data: any) => {
   }
   console.log(data)
   return data.data.map((item:Collection) => {
-    return { title: item.title, value: item.documentID };
+    return { title: item.title, value: item.title };
   });
 };
