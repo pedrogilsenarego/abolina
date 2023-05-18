@@ -265,6 +265,7 @@ const SubmitBook = ({ edit = false }: Props) => {
                   <Grid item xs={6}>
                     <Box style={{ width: "350px" }}>
                       <SelectWrapper
+                        initialValue={initialValues.collections}
                         loading={loadingCollections}
                         options={collectionsData || [{ title: "", value: "" }]}
                         name="collections"
