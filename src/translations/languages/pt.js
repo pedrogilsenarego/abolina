@@ -135,6 +135,7 @@ export const content = {
             new: "Novo",
             soon: "Brevemente",
             title: "A HISTÓRIA",
+            collection: "A COLEÇÃO",
             writer: "AUTOR",
             designer: "ILUSTRADOR",
             translator: "TRADUTOR",
