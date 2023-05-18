@@ -2,6 +2,7 @@ import { MenuItem, Box, Typography } from "@mui/material";
 import { useField, } from "formik";
 import * as Styled from "./styles";
 import { useState } from "react";
+import Loader from "../../Loader";
 
 interface Props {
   options: Option[];
@@ -9,6 +10,7 @@ interface Props {
   name: string;
   getvalue?: (value: string) => void;
   initialValue?: string
+  loading?: boolean;
 }
 interface Option {
   value: string;
@@ -20,9 +22,10 @@ interface Config {
   fullWidth?: boolean;
   select: boolean;
   onChange: any
+
 }
 
-const SelectWrapper = ({ name, options, label, getvalue, initialValue, ...otherProps }: Props) => {
+const SelectWrapper = ({ name, options, label, loading, getvalue, initialValue, ...otherProps }: Props) => {
   const [field, meta, helper] = useField({
     name: name || "name",
     defaultValue: "",
@@ -54,27 +57,30 @@ const SelectWrapper = ({ name, options, label, getvalue, initialValue, ...otherP
 
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
-      <Box display='flex' justifyContent='start'>
-        <Typography>{label}</Typography>
-      </Box>
-      <Styled.TextField
-        {...configSelect}
-        variant='outlined'
-        InputLabelProps={{ shrink: false }}
-        value={selected}
+    <>
+      {loading ? (
+        <Loader />) :
+        (<div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
+          <Box display='flex' justifyContent='start'>
+            <Typography>{label}</Typography>
+          </Box>
+          <Styled.TextField
+            {...configSelect}
+            variant='outlined'
+            InputLabelProps={{ shrink: false }}
+            value={selected}
 
 
-      >
-        {Object.keys(options).map((item: any, pos) => {
-          return (
-            <MenuItem key={pos} value={options[item].value}>
-              {options[item].title}
-            </MenuItem>
-          );
-        })}
-      </Styled.TextField>
-    </div>
+          >
+            {Object.keys(options).map((item: any, pos) => {
+              return (
+                <MenuItem key={pos} value={options[item].value}>
+                  {options[item].title}
+                </MenuItem>
+              );
+            })}
+          </Styled.TextField>
+        </div>)}</>
   );
 };
 

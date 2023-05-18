@@ -3,7 +3,7 @@ import SelectWrapper from "../components/Inputs/SelectFormValue";
 import Loader from "../components/Loader";
 import Textfield from "../components/Inputs/TextField";
 import Button from "../components/Buttons/Button";
-import { addCollection } from "../services/admin/adminServices";
+
 import { useDispatch } from "react-redux";
 import { updateSuccessNotification } from "../slicer/general/general.actions";
 
@@ -18,17 +18,17 @@ const SelectWithPlus = ({ loading, options, refetch }: Props) => {
   const [input, setInput] = useState<boolean>(false);
   const [inputValue, setInputValue] = useState<string>("")
 
-  const handleAddCollection = async () => {
-    const newEntry = {
-      value: inputValue.toLocaleLowerCase(),
-      title: inputValue.charAt(0).toUpperCase() + inputValue.slice(1)
-    };
-    await addCollection(newEntry);
-    dispatch(updateSuccessNotification("Collection Added"))
-    setInputValue("");
-    setInput(false);
-    refetch()
-  };
+  // const handleAddCollection = async () => {
+  //   const newEntry = {
+  //     value: inputValue.toLocaleLowerCase(),
+  //     title: inputValue.charAt(0).toUpperCase() + inputValue.slice(1)
+  //   };
+  //   await addCollection(newEntry);
+  //   dispatch(updateSuccessNotification("Collection Added"))
+  //   setInputValue("");
+  //   setInput(false);
+  //   refetch()
+  // };
 
 
   return (
@@ -66,7 +66,7 @@ const SelectWithPlus = ({ loading, options, refetch }: Props) => {
           {input && (
             <div style={{ display: "flex", columnGap: "10px" }}>
               <Textfield getValue={setInputValue} setValue={inputValue} />
-              <Button onClick={handleAddCollection} label="Add"></Button>
+              <Button label="Add"></Button>
             </div>
           )}
         </div>

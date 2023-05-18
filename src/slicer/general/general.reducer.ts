@@ -11,7 +11,7 @@ const INITIAL_STATE = {
   lang: "PT",
   scrollToContacts: false,
   cookiePolicy: true,
-  collections: [],
+  
   positionVertical:false,
 };
 
@@ -99,11 +99,7 @@ const generalReducer = (state = INITIAL_STATE, action: Action) => {
           ...state,
           cookiePolicy: action.payload
         };
-        case generalTypes.SET_COLLECTIONS:
-          return {
-            ...state,
-            collections: action.payload
-          };
+      
           case generalTypes.POSITION_VERTICAL:
             return {
               ...state,

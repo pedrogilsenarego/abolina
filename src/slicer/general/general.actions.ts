@@ -1,4 +1,4 @@
-import generalTypes, { Collection } from "./general.types";
+import generalTypes from "./general.types";
 
 export const enableLoading = () => ({
   type: generalTypes.ENABLE_LOADING,
@@ -72,17 +72,6 @@ export const updatePaginationManageBooks = (filters:any) => ({
 export const setCookiePolicy = (signal:boolean) => ({
   type: generalTypes.SET_COOKIE_POLICY,
   payload: signal
-})
-
-export const getCollections = () => ({
-  type: generalTypes.GET_COLLECTIONS,
-  
-})
-
-export const setCollections = (collections:Collection[]) => ({
-  type: generalTypes.GET_COLLECTIONS,
-  payload: collections
-  
 })
 
 export const setPositionVertical = (position:boolean) => ({

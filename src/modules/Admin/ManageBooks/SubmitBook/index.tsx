@@ -15,7 +15,6 @@ import FileUploader from "../../../../components/Inputs/FileUploader";
 
 import { useQuery } from "react-query";
 import { fetchCollections } from "../../../../services/admin/adminServices";
-import SelectWithPlus from "../../../../groupComponents/SelectWithPlus";
 import { State } from "../../../../slicer/types";
 import Loader from "../../../../components/Loader";
 import { useEffect, useMemo, useState } from "react";
@@ -28,6 +27,7 @@ import PreviewWrapper from "../SubmitBook/PreviewWrapper"
 import { getObjectDifferences } from "../../../../utils/compareObjects";
 import MultiSelectInput from "../../../../components/Inputs/MultiSelect/MultiSelectInput";
 import { caracteristics } from "../../../../constants/admin";
+import SelectWrapper from "../../../../components/Inputs/SelectFormValue";
 
 interface Props {
   edit?: boolean;
@@ -264,10 +264,11 @@ const SubmitBook = ({ edit = false }: Props) => {
 
                   <Grid item xs={6}>
                     <Box style={{ width: "350px" }}>
-                      <SelectWithPlus
+                      <SelectWrapper
                         loading={loadingCollections}
-                        options={collectionsData}
-                        refetch={refetch}
+                        options={collectionsData || [{ title: "", value: "" }]}
+                        name="collections"
+                        label="Collections"
                       />
                     </Box>
                   </Grid>

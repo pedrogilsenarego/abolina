@@ -14,15 +14,11 @@ const generalTypes = {
   SCROLL_CONTACTS: "SCROLL_CONTACTS",
   PAGINATION_MANAGE_BOOKS: "PAGINATION_MANAGE_BOOKS",
   SET_COOKIE_POLICY: "SET_COOKIE_POLICY",
-  GET_COLLECTIONS:"GET_COLLECTIONS",
-  SET_COLLECTIONS:"SET_COLLECTIONS",
+ 
   POSITION_VERTICAL: "POSITION_VERTICAL"
 };
 
-export interface Collection {
-  value: string;
-  title:string
-}
+
 
 
 
@@ -31,7 +27,7 @@ export interface GeneralState {
   scrollToContacts: boolean
   lastEndpoint: string
   cookiePolicy:boolean
-  collections: Collection[]
+  
   loading:boolean,
   positionVertical:boolean
 
