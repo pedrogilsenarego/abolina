@@ -14,6 +14,7 @@ import { State } from "../../../slicer/types";
 import LeafThrough from "./LeafThrough";
 import TheHistory from "./TheHistory";
 import { Colors } from "../../../constants/pallette";
+import TheCollection from "./TheCollection";
 
 const BookC = () => {
   const dispatch = useDispatch();
@@ -85,7 +86,7 @@ const BookC = () => {
             >
               {i18n.t("modules.books.book.title")}
             </GStyled.Title>
-            <GStyled.Title
+            {book?.collections && (<GStyled.Title
               onClick={() => setInfoState("collection")}
               color={infoState === "collection" ? Colors.tealc : "black"}
               fontSize='24px'
@@ -97,9 +98,10 @@ const BookC = () => {
               }}
             >
               {i18n.t("modules.books.book.collection")}
-            </GStyled.Title>
+            </GStyled.Title>)}
+
           </Box>
-          {infoState === "story" ? <TheHistory /> : <></>}
+          {infoState === "story" ? <TheHistory /> : <><TheCollection /></>}
         </Container>
         <Box
           style={{

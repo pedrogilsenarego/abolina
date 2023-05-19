@@ -388,9 +388,10 @@ function* sagaFetchBookThenCollection({ payload }) {
   try {
     const book = yield handleFetchBook(payload);
     yield put(setBook({ ...book, documentID: payload }));
-
-    const collection = yield handleFetchCollectionByName(book.collections);
-    yield put(setCollection({ ...collection }));
+    if (book?.collections) {
+      const collection = yield handleFetchCollectionByName(book.collections);
+      yield put(setCollection({ ...collection }));
+    }
   } catch (err) {}
 }
 
