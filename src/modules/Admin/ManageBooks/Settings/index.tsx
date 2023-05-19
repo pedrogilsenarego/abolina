@@ -14,10 +14,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../../../slicer/types";
 import ButtonForm from "../../../../components/Buttons/ButtonFormik";
 import SelectWrapper from "../../../../components/Inputs/SelectFormValue";
-import { formatTypes, newBookTypes2 } from "../../../../constants/admin";
+import { newBookTypes2 } from "../../../../constants/admin";
 import Textfield from "../../../../components/Inputs/TextFieldForm";
 import { disableLoading, enableLoading, updateFailNotification, updateSuccessNotification } from "../../../../slicer/general/general.actions";
-import MultiSelectInput from "../../../../components/Inputs/MultiSelect/MultiSelectInput";
 
 
 const Settings = () => {
@@ -137,19 +136,17 @@ const Settings = () => {
                     <Box style={{ width: "350px" }}>
                       <Textfield
                         type="number"
-                        label="Discount %"
+                        label="Discount Papper %"
                         name='discount'
                       />
                     </Box>
                   </Grid>
                   <Grid item xs={12}>
                     <Box style={{ width: "350px" }}>
-                      <MultiSelectInput
-                        disableDefaultLabel
-                        chips
-                        label="Format"
-                        name="format"
-                        items={formatTypes}
+                      <Textfield
+                        type="number"
+                        label="Discount Digital %"
+                        name='discountDigital'
                       />
                     </Box>
                   </Grid>

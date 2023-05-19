@@ -12,15 +12,4 @@ export const caracteristics = [
   { value: "kids", title: "Kids", titlePT:"Crianças" },
 ];
 
-export const formatTypes = [
-  {
-    value: "papper",
-    title: "Papper",
-    titlePT: "Papel",
-  },
-  {
-    value: "digital",
-    title: "Digital",
-    titlePT: "Digital",
-  },
-];
+

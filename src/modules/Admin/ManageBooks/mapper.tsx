@@ -25,6 +25,7 @@ const mapBookItem = (book: Book, pos: number) => {
     createdDate: book.createdDate,
     newBook: book.newBook || "",
     discount: book.discount || "Not Defined",
+    discountDigital: book.discountDigital || "Not Defined",
     actions: [
       {
         buttonType: "icon",
@@ -100,6 +101,7 @@ export const mapInitialForm = (data: any) => {
     resume: data?.resume || "",
     resumeEN: data?.resumeEN || "",
     price: data?.price || null,
+    digitalPrice: data?.digitalPrice || null,
     coverPage2: data?.coverPage || [],
     content: data?.content || [],
     pages: data?.pages || null,

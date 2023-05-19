@@ -139,6 +139,9 @@ export const content = {
             designer: "DESIGNER",
             translator: "TRANSLATOR",
             addToCart: "Add to Cart",
+            papper: "Papper",
+            digital: "Digital",
+            availableStores: "Available in Stores",
           },
           viewBook: {
             page: "PAGES",

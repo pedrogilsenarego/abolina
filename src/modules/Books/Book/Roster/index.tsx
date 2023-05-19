@@ -12,7 +12,7 @@ import { updateSuccessNotification } from "../../../../slicer/general/general.ac
 import { BsBook, BsPlayCircle } from "react-icons/bs";
 import { BsStars } from "react-icons/bs";
 import { useState } from "react";
-import { caracteristics, formatTypes } from "../../../../constants/admin";
+import { caracteristics } from "../../../../constants/admin";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useNavigate } from "react-router";
 import { ROUTE_PATHS } from "../../../../constants/routes";
@@ -27,9 +27,9 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
   const dispatch = useDispatch();
   const [format, setFormat] = useState<string>(
-    book?.format ? book?.format[0] : ""
+    book?.price ? "papper" : book?.digitalPrice ? "digital" : ""
   );
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const lang = useSelector<State, string>(
     (state) => state.general.lang || "PT"
   );
@@ -47,10 +47,13 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
   return (
     <div>
       {" "}
-
       <div>
         <div
-          onClick={() => navigate(ROUTE_PATHS.BOOKS, { state: { collection: book?.collections || "" } })}
+          onClick={() =>
+            navigate(ROUTE_PATHS.BOOKS, {
+              state: { collection: book?.collections || "" },
+            })
+          }
           style={{
             display: "flex",
             columnGap: "5px",
@@ -70,7 +73,6 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
               textTransform: "uppercase",
               fontSize: "18px",
               cursor: "pointer",
-
             }}
           >
             {i18n.t("modules.books.book.backCollection")}
@@ -83,10 +85,13 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
           >
             {(lang === "PT" ? book?.title : book?.titleEN) || ""}
           </GStyled.Title>
-
         )}
       </div>
-      <Grid container columnSpacing={4} style={{ marginTop: vertical ? "0px" : "20px" }}>
+      <Grid
+        container
+        columnSpacing={4}
+        style={{ marginTop: vertical ? "0px" : "20px" }}
+      >
         <Grid item xs={12} md={8}>
           <Box display='flex' justifyContent='end'>
             {!mobile && (
@@ -119,6 +124,33 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                     }}
                   >
                     {i18n.t("modules.books.book.bookBrowser")}
+                  </Typography>
+                </Box>
+                <Box
+                  style={{
+                    backgroundColor: Colors.tealc,
+                    position: "absolute",
+                    top: "20%",
+                    padding: "8px",
+                    borderRadius: "3px",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    columnGap: "5px",
+                    boxShadow: "2px 2px 2px #00000066",
+                  }}
+                >
+                  <BsPlayCircle size='1.2rem' color='white' />
+                  <Typography
+
+                    style={{
+                      color: "white",
+                      fontSize: "14px",
+                      whiteSpace: "pre-line",
+                      lineHeight: "14px",
+                    }}
+                  >
+                    {i18n.t("modules.books.book.peakDigital")}
                   </Typography>
                 </Box>
               </Box>
@@ -241,66 +273,139 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
               {(lang === "PT" ? book?.title : book?.titleEN) || ""}
             </GStyled.Title>
           )}
-
-          <Box
-            display='flex'
-            flexDirection='row'
-            columnGap={1}
-            alignItems='center'
-            mt='10px'
-          >
-            <GStyled.SubTitle style={{ fontWeight: 700 }}>
-              {i18n.t("modules.books.book.price")}
-            </GStyled.SubTitle>
-            <Typography
-              style={{
-                textDecoration: book?.discount ? "line-through" : "none",
-              }}
+          {format === "papper" && (
+            <Box
+              display='flex'
+              flexDirection='row'
+              columnGap={1}
+              alignItems='center'
+              mt='10px'
             >
-              {book?.price} €
-            </Typography>
-            {book?.discount !== 0 && book?.discount && (
-              <div
+              <GStyled.SubTitle style={{ fontWeight: 700 }}>
+                {i18n.t("modules.books.book.price")}
+              </GStyled.SubTitle>
+              <Typography
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  columnGap: "10px",
+                  textDecoration: book?.discount ? "line-through" : "none",
                 }}
               >
-                <Typography style={{ color: Colors.tealc, fontWeight: 800 }}>
-                  {(Number(book?.price) * (1 - book?.discount / 100)).toFixed(
-                    2
-                  )}{" "}
-                  €
-                </Typography>
+                {book?.price} €
+              </Typography>
+              {book?.discount !== 0 && book?.discount && (
                 <div
                   style={{
-                    width: "30px",
-                    height: "30px",
-                    backgroundColor: Colors.tealc,
-                    borderRadius: "50%",
-                    color: "white",
-                    fontWeight: 800,
                     display: "flex",
-                    justifyContent: "center",
                     alignItems: "center",
-                    padding: "14px",
-                    position: "relative",
-                    marginTop: "-3px",
+                    columnGap: "10px",
                   }}
                 >
-                  <BsStars
-                    size='1.2rem'
-                    color='yellow'
-                    style={{ position: "absolute", left: "-10%", top: "-40%" }}
-                  />
-                  <Typography style={{ fontSize: "14px" }}>
-                    {book?.discount}%
+                  <Typography style={{ color: Colors.tealc, fontWeight: 800 }}>
+                    {(Number(book?.price) * (1 - book?.discount / 100)).toFixed(
+                      2
+                    )}{" "}
+                    €
                   </Typography>
+                  <div
+                    style={{
+                      width: "30px",
+                      height: "30px",
+                      backgroundColor: Colors.tealc,
+                      borderRadius: "50%",
+                      color: "white",
+                      fontWeight: 800,
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      padding: "14px",
+                      position: "relative",
+                      marginTop: "-3px",
+                    }}
+                  >
+                    <BsStars
+                      size='1.2rem'
+                      color='yellow'
+                      style={{
+                        position: "absolute",
+                        left: "-10%",
+                        top: "-40%",
+                      }}
+                    />
+                    <Typography style={{ fontSize: "14px" }}>
+                      {book?.discount}%
+                    </Typography>
+                  </div>
                 </div>
-              </div>
-            )}
-          </Box>
+              )}
+            </Box>
+          )}
+          {format === "digital" && (
+            <Box
+              display='flex'
+              flexDirection='row'
+              columnGap={1}
+              alignItems='center'
+              mt='10px'
+            >
+              <GStyled.SubTitle style={{ fontWeight: 700 }}>
+                {i18n.t("modules.books.book.price")}
+              </GStyled.SubTitle>
+              <Typography
+                style={{
+                  textDecoration: book?.discountDigital
+                    ? "line-through"
+                    : "none",
+                }}
+              >
+                {book?.digitalPrice} €
+              </Typography>
+              {book?.discountDigital !== 0 && book?.discountDigital && (
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    columnGap: "10px",
+                  }}
+                >
+                  <Typography style={{ color: Colors.tealc, fontWeight: 800 }}>
+                    {(
+                      Number(book?.digitalPrice) *
+                      (1 - book?.discountDigital / 100)
+                    ).toFixed(2)}{" "}
+                    €
+                  </Typography>
+                  <div
+                    style={{
+                      width: "30px",
+                      height: "30px",
+                      backgroundColor: Colors.tealc,
+                      borderRadius: "50%",
+                      color: "white",
+                      fontWeight: 800,
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      padding: "14px",
+                      position: "relative",
+                      marginTop: "-3px",
+                    }}
+                  >
+                    <BsStars
+                      size='1.2rem'
+                      color='yellow'
+                      style={{
+                        position: "absolute",
+                        left: "-10%",
+                        top: "-40%",
+                      }}
+                    />
+                    <Typography style={{ fontSize: "14px" }}>
+                      {book?.discountDigital}%
+                    </Typography>
+                  </div>
+                </div>
+              )}
+            </Box>
+          )}
 
           <Box
             display='flex'
@@ -335,17 +440,20 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
             </GStyled.SubTitle>
             <Typography>{book?.translator}</Typography>
           </Box>
-          <Box
-            display='flex'
-            flexDirection='row'
-            columnGap={1}
-            alignItems='center'
-          >
-            <GStyled.SubTitle style={{ fontWeight: 700 }}>
-              {i18n.t("modules.books.book.pages")}
-            </GStyled.SubTitle>
-            <Typography>{book?.pages}</Typography>
-          </Box>
+          {format === "papper" && book?.pages && (
+            <Box
+              display='flex'
+              flexDirection='row'
+              columnGap={1}
+              alignItems='center'
+            >
+              <GStyled.SubTitle style={{ fontWeight: 700 }}>
+                {i18n.t("modules.books.book.pages")}
+              </GStyled.SubTitle>
+              <Typography>{book?.pages}</Typography>
+            </Box>
+          )}
+
           <Box
             display='flex'
             flexDirection='row'
@@ -357,29 +465,20 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
             </GStyled.SubTitle>
             <Typography>{book?.language}</Typography>
           </Box>
-          <Box
-            display='flex'
-            flexDirection='row'
-            columnGap={1}
-            alignItems='center'
-            mt='10px'
-          >
-            <GStyled.SubTitle style={{ fontWeight: 700 }}>
-              {i18n.t("modules.books.book.weight")}
-            </GStyled.SubTitle>
-            <Typography>{book?.weight}</Typography>
-          </Box>
-          <Box
-            display='flex'
-            flexDirection='row'
-            columnGap={1}
-            alignItems='center'
-          >
-            <GStyled.SubTitle style={{ fontWeight: 700 }}>
-              {i18n.t("modules.books.book.size")}
-            </GStyled.SubTitle>
-            <Typography>{book?.size}</Typography>
-          </Box>
+          {format === "papper" && book?.weight && (
+            <Box
+              display='flex'
+              flexDirection='row'
+              columnGap={1}
+              alignItems='center'
+            >
+              <GStyled.SubTitle style={{ fontWeight: 700 }}>
+                {i18n.t("modules.books.book.size")}
+              </GStyled.SubTitle>
+              <Typography>{book?.size}</Typography>
+            </Box>
+          )}
+
           {book?.caracteristics && (
             <Box
               display='flex'
@@ -416,55 +515,80 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
               </div>
             </Box>
           )}
-          {book?.format && (
-            <div
-              style={{ display: "flex", marginTop: "20px", columnGap: "10px" }}
-            >
-              {book?.format.map((item, pos) => (
-                <Typography
-                  onClick={() => setFormat(item)}
-                  style={{
-                    paddingLeft: pos > 0 ? "10px" : "0px",
-                    borderLeft: pos > 0 ? `3px solid ${Colors.tealc}` : "none",
 
-                    textDecoration: format === item ? "underline" : "none",
-                    fontSize: "20px",
-                    cursor: "pointer",
-                    color: format === item ? Colors.tealc : "black",
-                    fontWeight: 800,
-                  }}
-                  key={pos}
-                >
-                  {lang === "EN"
-                    ? formatTypes.find((obj) => obj["value"] === item)?.title
-                    : formatTypes.find((obj) => obj["value"] === item)?.titlePT}
-                </Typography>
-              ))}
+          <div
+            style={{ display: "flex", marginTop: "20px", columnGap: "10px" }}
+          >
+            {book?.price && (
+              <Typography
+                onClick={() => setFormat("papper")}
+                style={{
+                  textDecoration: format === "papper" ? "underline" : "none",
+                  fontSize: "20px",
+                  cursor: "pointer",
+                  color: format === "papper" ? Colors.tealc : "black",
+                  fontWeight: 800,
+                }}
+              >
+                {i18n.t("modules.books.book.papper")}
+              </Typography>
+            )}
+            {book?.digitalPrice && (
+              <Typography
+                onClick={() => setFormat("digital")}
+                style={{
+                  textDecoration: format === "digital" ? "underline" : "none",
+                  fontSize: "20px",
+                  cursor: "pointer",
+                  color: format === "digital" ? Colors.tealc : "black",
+                  fontWeight: 800,
+                }}
+              >
+                {i18n.t("modules.books.book.digital")}
+              </Typography>
+            )}
+          </div>
+          {format === "papper" ? (
+            <div
+              style={{
+                padding: "20px",
+                border: `dashed 2px black`,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                borderRadius: "6px",
+                marginTop: "20px"
+              }}
+            >
+              <Typography style={{ fontSize: "20px", fontWeight: 800 }}>
+                {i18n.t("modules.books.book.availableStores")}
+              </Typography>
+            </div>
+          ) : (
+            <div
+              onClick={handleAddToCart}
+              style={{
+                cursor: "pointer",
+                marginTop: "30px",
+                columnGap: "10px",
+                justifyContent: "center",
+                textAlign: "center",
+                display: "flex",
+                color: "white",
+                backgroundColor: Colors.tealc,
+                borderRadius: "10px",
+                padding: "10px",
+              }}
+            >
+              <FiShoppingCart size='1.5rem' color='white' />
+              <Typography
+                fontSize='18px'
+                style={{ textTransform: "uppercase", fontWeight: 800 }}
+              >
+                {i18n.t("modules.books.book.addToCart")}
+              </Typography>
             </div>
           )}
-          <div
-            onClick={handleAddToCart}
-            style={{
-              cursor: "pointer",
-              marginTop: "30px",
-              columnGap: "10px",
-              justifyContent: "center",
-              textAlign: "center",
-              display: "flex",
-              color: "white",
-              backgroundColor: Colors.tealc,
-              borderRadius: "10px",
-              padding: "10px",
-            }}
-          >
-            <FiShoppingCart size='1.5rem' color='white' />
-            <Typography
-              fontSize='18px'
-              style={{ textTransform: "uppercase", fontWeight: 800 }}
-            >
-              {i18n.t("modules.books.book.addToCart")}
-            </Typography>
-          </div>
         </Grid>
       </Grid>
     </div>

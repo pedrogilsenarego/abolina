@@ -50,12 +50,13 @@ export interface Book {
   title: string;
   titleEN: string;
   price: number;
+  digitalPrice:number;
   weight: string;
   designer: string;
   number: string;
   collections: string;
   caracteristics: string[];
-  format: string[];
+  
   designerResume: string;
   designerResumeEN: string;
   translator: string;
@@ -73,6 +74,7 @@ export interface Book {
   newBook?: string;
   createdDate?: Date;
   discount?: number;
+  discountDigital?:number
 }
 
 export interface Collection {

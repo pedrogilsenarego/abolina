@@ -140,6 +140,9 @@ export const content = {
             designer: "ILUSTRADOR",
             translator: "TRADUTOR",
             addToCart: "Adicionar ao carrinho",
+            papper: "Papel",
+            digital: "Digital",
+            availableStores: "Dísponivel nas Livrarias",
           },
           viewBook: {
             page: "PÁGINAS",

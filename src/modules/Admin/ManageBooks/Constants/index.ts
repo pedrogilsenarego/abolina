@@ -38,12 +38,18 @@ export const tableColumns =
     sortable: false,
   },{
     id: "discount",
-    label: "Discount Available",
+    label: "Discount Papper",
     
     type: ColumnType.Text,
     sortable: false,
   },
-
+  {
+    id: "discountDigital",
+    label: "Discount Digital",
+    
+    type: ColumnType.Text,
+    sortable: false,
+  },
   {
     id: 'actions',
     label: 'Actions',

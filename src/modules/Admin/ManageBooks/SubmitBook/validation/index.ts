@@ -27,12 +27,13 @@ export const FORM_VALIDATION = Yup.object().shape({
   authorResume: Yup.string().required(`${i18n.t("forms.required")}`),
   authorResumeEN: Yup.string().required(`${i18n.t("forms.required")}`),
   language: Yup.string().required(`${i18n.t("forms.required")}`),
-  weight: Yup.string().required(`${i18n.t("forms.required")}`),
-  size: Yup.string().required(`${i18n.t("forms.required")}`),
-  price: Yup.number().required(`${i18n.t("forms.required")}`),
+  weight: Yup.string(),
+  size: Yup.string(),
+  price: Yup.number(),
+  digitalPrice: Yup.number(),
   resume: Yup.string().required(`${i18n.t("forms.required")}`),
   resumeEN: Yup.string().required(`${i18n.t("forms.required")}`),
-  pages: Yup.number().required(`${i18n.t("forms.required")}`),
+  pages: Yup.number(),
   coverPage2: Yup
   .mixed()
   .required(`${i18n.t("forms.required")}`)

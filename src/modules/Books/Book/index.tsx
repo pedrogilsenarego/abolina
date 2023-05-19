@@ -7,7 +7,10 @@ import livroOndas from "../../../assets/images/livroOndas.svg";
 import Popup from "../../../components/Popup";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBook, fetchBookThenCollection } from "../../../slicer/books/books.actions";
+import {
+  fetchBook,
+  fetchBookThenCollection,
+} from "../../../slicer/books/books.actions";
 import { useParams } from "react-router";
 import { Book } from "../../../slicer/books/books.types";
 import { State } from "../../../slicer/types";
@@ -86,25 +89,33 @@ const BookC = () => {
             >
               {i18n.t("modules.books.book.title")}
             </GStyled.Title>
-            {book?.collections && (<GStyled.Title
-              onClick={() => setInfoState("collection")}
-              color={infoState === "collection" ? Colors.tealc : "black"}
-              fontSize='24px'
-              style={{
-                fontWeight: 700,
-                cursor: "pointer",
-                textDecoration:
-                  infoState === "collection" ? "underline" : "none",
-              }}
-            >
-              {i18n.t("modules.books.book.collection")}
-            </GStyled.Title>)}
-
+            {book?.collections && (
+              <GStyled.Title
+                onClick={() => setInfoState("collection")}
+                color={infoState === "collection" ? Colors.tealc : "black"}
+                fontSize='24px'
+                style={{
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  textDecoration:
+                    infoState === "collection" ? "underline" : "none",
+                }}
+              >
+                {i18n.t("modules.books.book.collection")}
+              </GStyled.Title>
+            )}
           </Box>
-          {infoState === "story" ? <TheHistory /> : <><TheCollection /></>}
+          {infoState === "story" ? (
+            <TheHistory />
+          ) : (
+            <>
+              <TheCollection />
+            </>
+          )}
         </Container>
         <Box
           style={{
+            pointerEvents: "none",
             marginTop: mobile ? "-60px" : "20px",
             marginBottom: mobile ? "-20px" : "0px",
             backgroundImage: `url(${livroOndas})`,

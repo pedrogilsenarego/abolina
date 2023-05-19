@@ -1,6 +1,6 @@
 import { Title } from "../../../../styles";
 import { i18n } from "../../../../translations/i18n";
-import { Box, Divider, Grid } from "@mui/material";
+import { Box, Divider, Grid, Typography } from "@mui/material";
 import Textfield from "../../../../components/Inputs/TextFieldForm";
 import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
@@ -23,11 +23,13 @@ import { mapInitialForm } from "../mapper";
 import { useNavigate, useParams } from "react-router";
 import { fetchBook } from "../../../../services/admin/adminServices";
 import { ROUTE_PATHS } from "../../../../constants/routes";
-import PreviewWrapper from "../SubmitBook/PreviewWrapper"
+import PreviewWrapper from "../SubmitBook/PreviewWrapper";
 import { getObjectDifferences } from "../../../../utils/compareObjects";
 import MultiSelectInput from "../../../../components/Inputs/MultiSelect/MultiSelectInput";
 import { caracteristics } from "../../../../constants/admin";
 import SelectWrapper from "../../../../components/Inputs/SelectFormValue";
+import CheckBox from "../../../../components/Inputs/CheckBox";
+import { Colors } from "../../../../constants/pallette";
 
 interface Props {
   edit?: boolean;
@@ -43,6 +45,8 @@ const SubmitBook = ({ edit = false }: Props) => {
   const [coverPageValue, setCoverPageValue] = useState<any>(undefined);
   const [touchedContent, setTouchedContent] = useState<boolean>(false);
   const [touchedCoverPage, setTouchedCoverPage] = useState<boolean>(false);
+  const [papperBook, setPapperBook] = useState<boolean>(false);
+  const [digitalBook, setDigitalBook] = useState<boolean>(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loading = useSelector<State, boolean>((state) => state.general.loading);
@@ -91,6 +95,7 @@ const SubmitBook = ({ edit = false }: Props) => {
         resume: "",
         resumeEN: "",
         price: null,
+        digitalPrice: null,
         coverPage2: undefined,
         content: [],
         pages: null,
@@ -156,6 +161,7 @@ const SubmitBook = ({ edit = false }: Props) => {
   }, []);
 
   const handleSubmit = (values: any) => {
+    console.log(values)
     if (edit) {
       if (
         !touchedContent &&
@@ -171,9 +177,9 @@ const SubmitBook = ({ edit = false }: Props) => {
         documentID: documentID,
         title: initialValues.title,
       };
-      console.log(payload)
+      console.log(payload);
       dispatch(editBook(payload));
-      setEdited(true)
+      setEdited(true);
     } else dispatch(addBook({ ...values }));
   };
 
@@ -268,8 +274,8 @@ const SubmitBook = ({ edit = false }: Props) => {
                         initialValue={initialValues.collections}
                         loading={loadingCollections}
                         options={collectionsData || [{ title: "", value: "" }]}
-                        name="collections"
-                        label="Collections"
+                        name='collections'
+                        label='Collections'
                       />
                     </Box>
                   </Grid>
@@ -280,9 +286,9 @@ const SubmitBook = ({ edit = false }: Props) => {
                         multiple
                         defaultValue={initialValues.caracteristics}
                         chips
-                        label="Caracteristics"
+                        label='Caracteristics'
                         items={caracteristics}
-                        name="caracteristics"
+                        name='caracteristics'
                       />
                     </Box>
                   </Grid>
@@ -398,70 +404,105 @@ const SubmitBook = ({ edit = false }: Props) => {
                       />
                     </Box>
                   </Grid>
-                  <Grid item xs={3}>
-                    <Box>
-                      <Textfield
-                        label={i18n.t(
-                          "modules.admin.manageBooks.submitBook.weight"
-                        )}
-                        name='weight'
-                      />
-                    </Box>
-                  </Grid>
-                  <Grid item xs={3}>
-                    <Box>
-                      <Textfield
-                        label={i18n.t(
-                          "modules.admin.manageBooks.submitBook.size"
-                        )}
-                        name='size'
-                      />
-                    </Box>
-                  </Grid>
-                  <Grid item xs={3}>
-                    <Box>
-                      <Textfield
-                        label={i18n.t(
-                          "modules.admin.manageBooks.submitBook.price"
-                        )}
-                        name='price'
-                      />
-                    </Box>
-                  </Grid>
-                  <Grid item xs={3}>
-                    <Box>
-                      <Textfield
-                        label={i18n.t(
-                          "modules.admin.manageBooks.submitBook.pages"
-                        )}
-                        name='pages'
-                      />
-                    </Box>
-                  </Grid>
                   <Grid item xs={12}>
-                    <Box>
-                      <Textfield
-                        label={i18n.t(
-                          "modules.admin.manageBooks.submitBook.resume"
-                        )}
-                        name='resume'
-                        multiline
-                        rows={6}
-                      />
-                    </Box>
+
+
+                    <Grid item xs={12}>
+                      <Box>
+                        <Textfield
+                          label={i18n.t(
+                            "modules.admin.manageBooks.submitBook.resume"
+                          )}
+                          name='resume'
+                          multiline
+                          rows={6}
+                        />
+                      </Box>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Box>
+                        <Textfield
+                          label={`${i18n.t(
+                            "modules.admin.manageBooks.submitBook.resume"
+                          )} EN`}
+                          name='resumeEN'
+                          multiline
+                          rows={6}
+                        />
+                      </Box>
+                    </Grid>
+                    <CheckBox
+                      color={Colors.tealc}
+                      value={papperBook}
+                      setValue={setPapperBook}
+                      label={<Typography>Papper Book</Typography>}
+                    />
+
+                    {papperBook && (
+                      <>
+                        <Grid item xs={3}>
+                          <Box>
+                            <Textfield
+                              label={i18n.t(
+                                "modules.admin.manageBooks.submitBook.price"
+                              )}
+                              name='price'
+                            />
+                          </Box>
+                        </Grid>
+                        <Grid item xs={3}>
+                          <Box>
+                            <Textfield
+                              label={i18n.t(
+                                "modules.admin.manageBooks.submitBook.weight"
+                              )}
+                              name='weight'
+                            />
+                          </Box>
+                        </Grid>
+                        <Grid item xs={3}>
+                          <Box>
+                            <Textfield
+                              label={i18n.t(
+                                "modules.admin.manageBooks.submitBook.size"
+                              )}
+                              name='size'
+                            />
+                          </Box>
+                        </Grid>
+
+                        <Grid item xs={3}>
+                          <Box>
+                            <Textfield
+                              label={i18n.t(
+                                "modules.admin.manageBooks.submitBook.pages"
+                              )}
+                              name='pages'
+                            />
+                          </Box>
+                        </Grid>
+                      </>
+                    )}
+                    <CheckBox
+                      color={Colors.tealc}
+                      value={digitalBook}
+                      setValue={setDigitalBook}
+                      label={<Typography>Digital Book</Typography>}
+                    />
                   </Grid>
-                  <Grid item xs={12}>
-                    <Box>
-                      <Textfield
-                        label={`${i18n.t(
-                          "modules.admin.manageBooks.submitBook.resume"
-                        )} EN`}
-                        name='resumeEN'
-                        multiline
-                        rows={6}
-                      />
-                    </Box>
-                  </Grid>
+                  {digitalBook && (
+                    <>
+                      <Grid item xs={3}>
+                        <Box>
+                          <Textfield
+                            label="Digital Price"
+                            name='digitalPrice'
+                          />
+                        </Box>
+                      </Grid>
+
+                    </>
+                  )}
                   <Grid item xs={6}>
                     <FileUploader
                       touched={setTouchedCoverPage}
@@ -502,7 +543,7 @@ const SubmitBook = ({ edit = false }: Props) => {
             </>
           )}
         </Form>
-      </Formik>
+      </Formik >
     </>
   );
 };

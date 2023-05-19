@@ -2,7 +2,7 @@ import { firestore } from "../../firebase/utils";
 
 
 
-export const handleSaveSettings = (payload: {newBook:string, discount:number, format:string[]}, documentID:string) => {
+export const handleSaveSettings = (payload: {newBook:string, discount:number, discountDigital:number}, documentID:string) => {
   return new Promise<void>((resolve, reject) => {
     firestore
       .collection("books")
@@ -10,7 +10,7 @@ export const handleSaveSettings = (payload: {newBook:string, discount:number, fo
       .update({
         newBook: payload.newBook,
         discount: payload.discount,
-        format: payload.format
+        discountDigital:payload.discountDigital
       })
       .then(() => {
         resolve();

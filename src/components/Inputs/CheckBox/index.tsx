@@ -22,6 +22,7 @@ const CheckBox = ({ label, color, setValue = () => { }, value = false }: Props) 
           alignItems: "center",
           marginLeft: "-10px"
         }}
+
       >
         <Checkbox
           checked={value}
@@ -33,7 +34,9 @@ const CheckBox = ({ label, color, setValue = () => { }, value = false }: Props) 
             },
           }}
         />
+
         {label}
+
       </div>
       <div
         style={{
