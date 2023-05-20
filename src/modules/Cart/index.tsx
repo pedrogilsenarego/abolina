@@ -19,7 +19,7 @@ const Cart = () => {
 
   return (
     <Container maxWidth='lg'>
-      <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
+      <div style={{ display: "flex", justifyContent: "center", width: "100%", marginTop: "20px" }}>
         <Typography
           style={{
             fontSize: mobile ? "20px" : "28px",

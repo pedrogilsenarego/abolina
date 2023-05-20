@@ -47,7 +47,7 @@ const CollectionsItem = ({ pos, item, setCollection }: Props) => {
       </div>
       {open && item?.books.map((item, pos) => {
         return (
-          <Typography key={pos}>{item}</Typography>
+          <Typography key={pos} style={{ textAlign: "right", marginRight: "40px" }}>{item}</Typography>
         )
       })}
     </div>
