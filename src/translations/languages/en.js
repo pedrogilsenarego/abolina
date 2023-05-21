@@ -57,6 +57,10 @@ export const content = {
         back: "Back",
       },
       modules: {
+        checkout: {
+          resumePurchase: "Resume Purchase",
+          cartItems: "Items on Cart",
+        },
         cart: {
           title: "Shopping Cart",
           title2: "Checkout",

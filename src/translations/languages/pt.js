@@ -57,6 +57,10 @@ export const content = {
         back: "Voltar",
       },
       modules: {
+        checkout: {
+          resumePurchase: "Resumo da Compra",
+          cartItems: "Artigos no Carrinho",
+        },
         cart: {
           title: "Carrinho",
           title2: "Dados para compra",

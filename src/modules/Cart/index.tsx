@@ -4,17 +4,19 @@ import { Colors } from "../../constants/pallette";
 import { useSelector } from "react-redux";
 import { State } from "../../slicer/types";
 import { CartProduct } from "../../slicer/cart/cart.types";
-
 import Element from "./Element";
 import TextField from "../../components/Inputs/TextField";
 import Button from "../../components/Buttons/Button";
 import { getTotalValue } from "./Utils";
+import { ROUTE_PATHS } from "../../constants/routes";
+import { useNavigate } from "react-router";
 
 const Cart = () => {
   const cartItems = useSelector<State, CartProduct[]>(
     (state) => state.cart.cartItems
   );
   const theme = useTheme()
+  const navigate = useNavigate()
   const mobile = useMediaQuery(theme.breakpoints.down("sm"))
 
   return (
@@ -150,7 +152,7 @@ const Cart = () => {
         </div>
       </div>
       <div style={{ width: "100%", display: "flex", justifyContent: "end", marginTop: "100px" }}>
-        <Button label={i18n.t("modules.cart.finalize")} />
+        <Button onClick={() => navigate(ROUTE_PATHS.CHECKOUT)} label={i18n.t("modules.cart.finalize")} />
       </div>
     </Container>
   );

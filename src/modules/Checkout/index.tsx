@@ -9,15 +9,31 @@ import Element from "./Element";
 import TextField from "../../components/Inputs/TextField";
 import Button from "../../components/Buttons/Button";
 import { getTotalValue } from "./Utils";
+import { IoIosArrowUp } from "react-icons/io";
 
 const Checkout = () => {
   const cartItems = useSelector<State, CartProduct[]>(
     (state) => state.cart.cartItems
   );
 
+  function getCartTotal() {
+    let total = 0;
+    for (const item of cartItems) {
+      total += item.value;
+    }
+    return total;
+  }
+
   return (
     <Container maxWidth='lg'>
-      <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          width: "100%",
+          marginTop: "20px",
+        }}
+      >
         <Typography
           style={{
             fontSize: "28px",
@@ -39,117 +55,90 @@ const Checkout = () => {
           &nbsp; &nbsp;{i18n.t("modules.cart.title2")}
         </Typography>
       </div>
-      <Grid container style={{ marginTop: "40px" }}>
-        <Grid
-          item
-          xs={1}
-          style={{ borderBottom: `solid 2px ${Colors.tealc}` }}
-        ></Grid>
-        <Grid item xs={5}>
+      <Grid container style={{ marginTop: "20px" }}>
+        <Grid item xs={6}></Grid>
+        <Grid item xs={6}>
+          <Typography
+            style={{ textAlign: "left", fontSize: "24px", fontWeight: 800 }}
+          >
+            {i18n.t("modules.checkout.resumePurchase")}
+          </Typography>
           <div
             style={{
               display: "flex",
-              borderBottom: `solid 2px ${Colors.tealc}`,
-              width: "100%",
+              justifyContent: "space-between",
+              alignItems: "center",
+              borderBottom: `2px solid ${Colors.tealc}`,
+              marginTop: "20px",
+              paddingBottom: "6px",
+              cursor: "pointer"
+
             }}
           >
-            <Typography
-              style={{ fontSize: "18px", color: Colors.tealc, fontWeight: 800 }}
-            >
-              {i18n.t("modules.cart.table.product")}
+            <Typography style={{ color: Colors.tealc, fontWeight: 800 }}>
+              {getCartTotal()}
+              {" "}
+              {i18n.t("modules.checkout.cartItems")}
             </Typography>
+            <IoIosArrowUp size="1.2rem" color={Colors.tealc} />
           </div>
-        </Grid>
-        <Grid item xs={2}>
+          {cartItems?.map((item, pos) => {
+            return <Element item={item} pos={pos} />;
+          })}
           <div
             style={{
               display: "flex",
-              borderBottom: `solid 2px ${Colors.tealc}`,
-              width: "100%",
+              justifyContent: "space-between",
+              marginTop: "50px",
             }}
           >
-            <Typography
-              style={{ fontSize: "18px", color: Colors.tealc, fontWeight: 800 }}
+            <div
+              style={{
+                display: "flex",
+                columnGap: "20px",
+                alignItems: "center",
+              }}
             >
-              {i18n.t("modules.cart.table.price")}
-            </Typography>
+              <TextField label={i18n.t("modules.cart.discountCuppon")} />
+              <Button label={i18n.t("modules.cart.applyDiscount")} />
+            </div>
+            <div style={{ display: "flex", columnGap: "20px" }}>
+              <Typography
+                style={{
+                  fontSize: "18px",
+                  fontWeight: 800,
+
+                  color: Colors.tealc,
+
+                  marginBottom: "16px",
+                  borderBottom: `solid 2px ${Colors.tealc}`,
+                }}
+              >
+                {i18n.t("modules.cart.total")}
+              </Typography>
+              <Typography
+                style={{
+                  fontSize: "18px",
+                  fontWeight: 800,
+                  color: Colors.tealc,
+                }}
+              >
+                €{getTotalValue(cartItems)}
+              </Typography>
+            </div>
           </div>
-        </Grid>
-        <Grid item xs={2}>
           <div
             style={{
-              display: "flex",
-              borderBottom: `solid 2px ${Colors.tealc}`,
               width: "100%",
-            }}
-          >
-            <Typography
-              style={{ fontSize: "18px", color: Colors.tealc, fontWeight: 800 }}
-            >
-              {i18n.t("modules.cart.table.quantity")}
-            </Typography>
-          </div>
-        </Grid>
-        <Grid item xs={2}>
-          <div
-            style={{
               display: "flex",
               justifyContent: "end",
-              borderBottom: `solid 2px ${Colors.tealc}`,
-              width: "100%",
+              marginTop: "100px",
             }}
           >
-            <Typography
-              style={{ fontSize: "18px", color: Colors.tealc, fontWeight: 800 }}
-            >
-              {i18n.t("modules.cart.table.subtotal")}
-            </Typography>
+            <Button label={i18n.t("modules.cart.finalize")} />
           </div>
         </Grid>
       </Grid>
-      {cartItems?.map((item, pos) => {
-        return <Element item={item} pos={pos} />;
-      })}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginTop: "50px",
-        }}
-      >
-        <div
-          style={{ display: "flex", columnGap: "20px", alignItems: "center" }}
-        >
-          <TextField label={i18n.t("modules.cart.discountCuppon")} />
-          <Button label={i18n.t("modules.cart.applyDiscount")} />
-        </div>
-        <div style={{ display: "flex", columnGap: "20px" }}>
-          <Typography
-            style={{
-              fontSize: "18px",
-              fontWeight: 800,
-
-              color: Colors.tealc,
-
-              marginBottom: "16px",
-              borderBottom: `solid 2px ${Colors.tealc}`
-            }}
-          >
-            {i18n.t("modules.cart.total")}
-          </Typography>
-          <Typography style={{
-            fontSize: "18px",
-            fontWeight: 800,
-            color: Colors.tealc,
-
-          }}>
-            €{getTotalValue(cartItems)}
-          </Typography>
-        </div>
-      </div>
-      <div style={{ width: "100%", display: "flex", justifyContent: "end", marginTop: "100px" }}>
-        <Button label={i18n.t("modules.cart.finalize")} />
-      </div>
     </Container>
   );
 };
