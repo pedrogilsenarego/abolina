@@ -24,6 +24,7 @@ const Checkout = () => {
   const [resumeOpen, setResumeOpen] = useState<boolean>(true);
   const stripePromise = loadStripe(publishableKeyTest);
   const navigate = useNavigate()
+  const vertical = useSelector<State, boolean>((state) => state.general.positionVertical)
 
   function getCartTotal() {
     let total = 0;
@@ -33,8 +34,8 @@ const Checkout = () => {
     return total;
   }
 
-  return (
-    <Container maxWidth='lg'>
+  const renderMobile = () => {
+    return (<Container maxWidth='lg'>
 
       <div
         onClick={() =>
@@ -96,13 +97,7 @@ const Checkout = () => {
         </Typography>
       </div>
       <Grid container columnSpacing="60px" style={{ marginTop: "20px" }}>
-        <Grid item xs={6}>
-          {" "}
-          <Elements stripe={stripePromise}>
-            <CheckoutForm />
-          </Elements>
-        </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12}>
           <Typography
             style={{ textAlign: "left", fontSize: "24px", fontWeight: 800 }}
           >
@@ -204,9 +199,195 @@ const Checkout = () => {
             </Typography>
           </div>
         </Grid>
+        <Grid item xs={12}>
+          {" "}
+          <Elements stripe={stripePromise}>
+            <CheckoutForm />
+          </Elements>
+        </Grid>
+
       </Grid>
-    </Container>
-  );
+    </Container>)
+  }
+
+  const renderLaptop = () => {
+    return (
+      <Container maxWidth='lg'>
+
+        <div
+          onClick={() =>
+            navigate(ROUTE_PATHS.BOOKS)
+          }
+          style={{
+            display: "flex",
+            columnGap: "5px",
+            alignItems: "center",
+            position: "relative",
+          }}
+        >
+          <AiOutlineArrowLeft
+            color={Colors.tealc}
+            size='0.8rem'
+            style={{ position: "absolute", left: "-15px" }}
+          />
+          <Typography
+            style={{
+              paddingTop: "5px",
+              textAlign: "start",
+              textTransform: "uppercase",
+              fontSize: "18px",
+              cursor: "pointer",
+            }}
+          >
+            {i18n.t("modules.checkout.backBooks")}
+          </Typography>
+        </div>
+
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
+            marginTop: "20px",
+          }}
+        >
+          <Typography
+            style={{
+              fontSize: "28px",
+              textTransform: "uppercase",
+              color: Colors.tealcTransparent,
+              fontWeight: 800,
+            }}
+          >
+            {i18n.t("modules.cart.title")}&nbsp; &nbsp;&#62;
+          </Typography>
+          <Typography
+            style={{
+              fontSize: "28px",
+              textTransform: "uppercase",
+              color: Colors.tealc,
+              fontWeight: 800,
+            }}
+          >
+            &nbsp; &nbsp;{i18n.t("modules.cart.title2")}
+          </Typography>
+        </div>
+        <Grid container columnSpacing="60px" style={{ marginTop: "20px" }}>
+          <Grid item xs={6}>
+            {" "}
+            <Elements stripe={stripePromise}>
+              <CheckoutForm />
+            </Elements>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography
+              style={{ textAlign: "left", fontSize: "24px", fontWeight: 800 }}
+            >
+              {i18n.t("modules.checkout.resumePurchase")}
+            </Typography>
+            <div
+              onClick={() => setResumeOpen(!resumeOpen)}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                borderBottom: `2px solid ${Colors.tealc}`,
+                marginTop: "20px",
+                paddingBottom: "6px",
+                cursor: "pointer",
+              }}
+            >
+              <Typography style={{ color: Colors.tealc, fontWeight: 800 }}>
+                {getCartTotal()} {i18n.t("modules.checkout.cartItems")}
+              </Typography>
+              {resumeOpen ? (
+                <IoIosArrowUp size='1.2rem' color={Colors.tealc} />
+              ) : (
+                <IoIosArrowDown size='1.2rem' color={Colors.tealc} />
+              )}
+            </div>
+            {resumeOpen &&
+              cartItems?.map((item, pos) => {
+                return <Element item={item} pos={pos} />;
+              })}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginTop: "20px",
+              }}
+            >
+              <Typography
+                style={{
+                  fontSize: "18px",
+                  fontWeight: 800,
+                }}
+              >
+                {i18n.t("modules.checkout.itemsTotal")}
+              </Typography>
+              <Typography
+                style={{
+                  fontSize: "18px",
+                  fontWeight: 800,
+                }}
+              >
+                €{getTotalValue(cartItems)}
+              </Typography>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginTop: "20px",
+              }}
+            >
+              <Typography
+                style={{
+                  fontSize: "18px",
+                }}
+              >
+                {i18n.t("modules.checkout.discountTotal")}
+              </Typography>
+              <Typography
+                style={{
+                  fontSize: "18px",
+                }}
+              >
+                €0
+              </Typography>
+            </div>
+            <Divider />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginTop: "20px",
+              }}
+            >
+              <Typography
+                style={{
+                  fontSize: "18px",
+                }}
+              >
+                {i18n.t("modules.checkout.total")}
+              </Typography>
+              <Typography
+                style={{
+                  fontSize: "18px",
+                  fontWeight: 800,
+                }}
+              >
+                €{getTotalValue(cartItems)}
+              </Typography>
+            </div>
+          </Grid>
+        </Grid>
+      </Container>
+    )
+  }
+
+  return vertical ? renderMobile() : renderLaptop();
 };
 
 export default Checkout;

@@ -7,11 +7,12 @@ import { i18n } from "../../../translations/i18n";
 import { CgSmartphone } from "react-icons/cg";
 import Incrementor from "../../../components/Incrementor";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  deleteProductCart,
+
   updateCart,
 } from "../../../slicer/cart/cart.actions";
+import { State } from "../../../slicer/types";
 
 interface Props {
   item: CartProduct;
@@ -21,14 +22,12 @@ interface Props {
 const Element = ({ item, pos }: Props) => {
   const [forOffer, setForOffer] = useState<boolean>(false);
   const dispatch = useDispatch();
-
+  const vertical = useSelector<State, boolean>((state) => state.general.positionVertical)
   const handleUpdateSubtotal = (value: number) => {
     dispatch(updateCart(value, item.product.documentID));
   };
 
-  const handleDeleteCartProduct = () => {
-    dispatch(deleteProductCart(item.product.documentID));
-  };
+
 
   return (
     <Grid
@@ -42,7 +41,7 @@ const Element = ({ item, pos }: Props) => {
     >
       <Grid
         item
-        xs={5}
+        xs={vertical ? 4 : 5}
         style={{
           display: "flex",
           columnGap: "20px",
@@ -61,7 +60,8 @@ const Element = ({ item, pos }: Props) => {
         >
           <img
             style={{
-              height: "200px",
+
+              width: vertical ? "100px" : "200px",
               objectFit: "contain",
             }}
             src={item.product.coverPage}
@@ -91,7 +91,7 @@ const Element = ({ item, pos }: Props) => {
           />
         </div>
       </Grid>
-      <Grid item xs={7} style={{ display: "flex", flexDirection: "column", rowGap: "5px" }}>
+      <Grid item xs={vertical ? 8 : 7} style={{ display: "flex", flexDirection: "column", rowGap: "5px" }}>
         <Typography
           style={{ fontSize: "18px", fontWeight: "bold", textAlign: "left" }}
         >
@@ -138,7 +138,7 @@ const Element = ({ item, pos }: Props) => {
           </Typography>
         </div>
       </Grid>
-    </Grid>
+    </Grid >
   );
 };
 
