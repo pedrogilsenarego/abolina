@@ -6,17 +6,20 @@ import { State } from "../../slicer/types";
 import { CartProduct } from "../../slicer/cart/cart.types";
 
 import Element from "./Element";
-import TextField from "../../components/Inputs/TextField";
-import Button from "../../components/Buttons/Button";
+import { loadStripe } from "@stripe/stripe-js";
 import { getTotalValue } from "./Utils";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useState } from "react";
+import CheckoutForm from "./CheckoutForm";
+import { Elements } from "@stripe/react-stripe-js";
+import { publishableKeyTest } from "../../stripe/config";
 
 const Checkout = () => {
   const cartItems = useSelector<State, CartProduct[]>(
     (state) => state.cart.cartItems
   );
-  const [resumeOpen, setResumeOpen] = useState<boolean>(false)
+  const [resumeOpen, setResumeOpen] = useState<boolean>(false);
+  const stripePromise = loadStripe(publishableKeyTest);
 
   function getCartTotal() {
     let total = 0;
@@ -58,7 +61,12 @@ const Checkout = () => {
         </Typography>
       </div>
       <Grid container style={{ marginTop: "20px" }}>
-        <Grid item xs={6}></Grid>
+        <Grid item xs={6}>
+          {" "}
+          <Elements stripe={stripePromise}>
+            <CheckoutForm />
+          </Elements>
+        </Grid>
         <Grid item xs={6}>
           <Typography
             style={{ textAlign: "left", fontSize: "24px", fontWeight: 800 }}
@@ -74,21 +82,22 @@ const Checkout = () => {
               borderBottom: `2px solid ${Colors.tealc}`,
               marginTop: "20px",
               paddingBottom: "6px",
-              cursor: "pointer"
-
+              cursor: "pointer",
             }}
           >
             <Typography style={{ color: Colors.tealc, fontWeight: 800 }}>
-              {getCartTotal()}
-              {" "}
-              {i18n.t("modules.checkout.cartItems")}
+              {getCartTotal()} {i18n.t("modules.checkout.cartItems")}
             </Typography>
-            {resumeOpen ? <IoIosArrowUp size="1.2rem" color={Colors.tealc} /> : <IoIosArrowDown size="1.2rem" color={Colors.tealc} />}
-
+            {resumeOpen ? (
+              <IoIosArrowUp size='1.2rem' color={Colors.tealc} />
+            ) : (
+              <IoIosArrowDown size='1.2rem' color={Colors.tealc} />
+            )}
           </div>
-          {resumeOpen && cartItems?.map((item, pos) => {
-            return <Element item={item} pos={pos} />;
-          })}
+          {resumeOpen &&
+            cartItems?.map((item, pos) => {
+              return <Element item={item} pos={pos} />;
+            })}
           <div
             style={{
               display: "flex",
@@ -123,7 +132,6 @@ const Checkout = () => {
             <Typography
               style={{
                 fontSize: "18px",
-
               }}
             >
               {i18n.t("modules.checkout.discountTotal")}
@@ -131,7 +139,6 @@ const Checkout = () => {
             <Typography
               style={{
                 fontSize: "18px",
-
               }}
             >
               €0
@@ -148,7 +155,6 @@ const Checkout = () => {
             <Typography
               style={{
                 fontSize: "18px",
-
               }}
             >
               {i18n.t("modules.checkout.total")}
@@ -156,13 +162,12 @@ const Checkout = () => {
             <Typography
               style={{
                 fontSize: "18px",
-                fontWeight: 800
+                fontWeight: 800,
               }}
             >
               €{getTotalValue(cartItems)}
             </Typography>
           </div>
-
         </Grid>
       </Grid>
     </Container>
