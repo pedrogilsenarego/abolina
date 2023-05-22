@@ -1,32 +1,34 @@
-import { Grid, Typography } from "@mui/material"
-import { CartProduct } from "../../../slicer/cart/cart.types"
-import { Colors } from "../../../constants/pallette"
-import { AiOutlineClose } from "react-icons/ai"
-import CheckBox from "../../../components/Inputs/CheckBox"
-import { i18n } from "../../../translations/i18n"
-import { CgSmartphone } from "react-icons/cg"
-import Incrementor from "../../../components/Incrementor"
-import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { deleteProductCart, updateCart } from "../../../slicer/cart/cart.actions"
+import { Grid, Typography } from "@mui/material";
+import { CartProduct } from "../../../slicer/cart/cart.types";
+import { Colors } from "../../../constants/pallette";
+import { AiOutlineClose } from "react-icons/ai";
+import CheckBox from "../../../components/Inputs/CheckBox";
+import { i18n } from "../../../translations/i18n";
+import { CgSmartphone } from "react-icons/cg";
+import Incrementor from "../../../components/Incrementor";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  deleteProductCart,
+  updateCart,
+} from "../../../slicer/cart/cart.actions";
 
 interface Props {
-  item: CartProduct
-  pos: number
+  item: CartProduct;
+  pos: number;
 }
 
 const Element = ({ item, pos }: Props) => {
-
-  const [forOffer, setForOffer] = useState<boolean>(false)
-  const dispatch = useDispatch()
+  const [forOffer, setForOffer] = useState<boolean>(false);
+  const dispatch = useDispatch();
 
   const handleUpdateSubtotal = (value: number) => {
     dispatch(updateCart(value, item.product.documentID));
-  }
+  };
 
   const handleDeleteCartProduct = () => {
-    dispatch(deleteProductCart(item.product.documentID))
-  }
+    dispatch(deleteProductCart(item.product.documentID));
+  };
 
   return (
     <Grid
@@ -36,20 +38,8 @@ const Element = ({ item, pos }: Props) => {
         paddingTop: "40px",
         paddingBottom: "40px",
         borderBottom: `solid 2px ${Colors.tealc}`,
-
       }}
     >
-      <Grid
-        item
-        xs={1}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <AiOutlineClose style={{ cursor: "pointer" }} onClick={handleDeleteCartProduct} size='1.5rem' color='black' />
-      </Grid>
       <Grid
         item
         xs={5}
@@ -100,41 +90,56 @@ const Element = ({ item, pos }: Props) => {
             }
           />
         </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "start",
-            height: "200px",
-
-
-          }}
+      </Grid>
+      <Grid item xs={7} style={{ display: "flex", flexDirection: "column", rowGap: "5px" }}>
+        <Typography
+          style={{ fontSize: "18px", fontWeight: "bold", textAlign: "left" }}
         >
-          <Typography style={{ fontSize: "18px", fontWeight: "bold" }}>
-            {item.product.title}
-          </Typography>
-          <Typography>Nome da coleção</Typography>
-          <Typography>NºX</Typography>
-          <div style={{ display: "flex", justifyContent: "start", alignItems: "center" }}>
-            <CgSmartphone size='2rem' color={Colors.tealc} style={{ marginLeft: "-8px" }} />
-            <Typography style={{ textTransform: "uppercase", color: Colors.tealc, fontSize: "12px" }}>
+          {item.product.title}
+        </Typography>
+        <Typography style={{ textAlign: "left" }}>
+          {item.product.collections}
+        </Typography>
+        <Typography style={{ textAlign: "left" }}>
+          Nº{item.product.number}
+        </Typography>
+
+        <Incrementor
+          key={item.product.documentID}
+          initialValue={item.value}
+          updateValue={handleUpdateSubtotal}
+        />
+        <div style={{ display: "flex", justifyContent: "space-between", marginTop: "30px" }}>
+          {" "}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "start",
+              alignItems: "center",
+            }}
+          >
+            <CgSmartphone
+              size='2rem'
+              color={Colors.tealc}
+              style={{ marginLeft: "-8px" }}
+            />
+            <Typography
+              style={{
+                textTransform: "uppercase",
+                color: Colors.tealc,
+                fontSize: "12px",
+              }}
+            >
               {i18n.t("modules.cart.table.readOnApp")}
             </Typography>
           </div>
+          <Typography style={{ textAlign: "left" }}>
+            €{item?.product?.price}
+          </Typography>
         </div>
       </Grid>
-      <Grid item xs={2} style={{ display: "flex", alignItems: "center" }}>
-        <Typography>€{item?.product?.price}</Typography>
-      </Grid>
-      <Grid item xs={2} style={{ display: "flex", alignItems: "center" }}>
-        <Incrementor key={item.product.documentID} initialValue={item.value} updateValue={handleUpdateSubtotal} />
-      </Grid>
-      <Grid item xs={2} style={{ display: "flex", alignItems: "center", justifyContent: "end" }}>
-        <Typography>€{item.value * item.product.price}</Typography>
-      </Grid>
     </Grid>
-  )
-}
+  );
+};
 
-export default Element
+export default Element;
