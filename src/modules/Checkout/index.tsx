@@ -9,12 +9,14 @@ import Element from "./Element";
 import TextField from "../../components/Inputs/TextField";
 import Button from "../../components/Buttons/Button";
 import { getTotalValue } from "./Utils";
-import { IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { useState } from "react";
 
 const Checkout = () => {
   const cartItems = useSelector<State, CartProduct[]>(
     (state) => state.cart.cartItems
   );
+  const [resumeOpen, setResumeOpen] = useState<boolean>(false)
 
   function getCartTotal() {
     let total = 0;
@@ -64,6 +66,7 @@ const Checkout = () => {
             {i18n.t("modules.checkout.resumePurchase")}
           </Typography>
           <div
+            onClick={() => setResumeOpen(!resumeOpen)}
             style={{
               display: "flex",
               justifyContent: "space-between",
@@ -80,9 +83,10 @@ const Checkout = () => {
               {" "}
               {i18n.t("modules.checkout.cartItems")}
             </Typography>
-            <IoIosArrowUp size="1.2rem" color={Colors.tealc} />
+            {resumeOpen ? <IoIosArrowUp size="1.2rem" color={Colors.tealc} /> : <IoIosArrowDown size="1.2rem" color={Colors.tealc} />}
+
           </div>
-          {cartItems?.map((item, pos) => {
+          {resumeOpen && cartItems?.map((item, pos) => {
             return <Element item={item} pos={pos} />;
           })}
           <div
