@@ -60,6 +60,9 @@ export const content = {
         checkout: {
           resumePurchase: "Resumo da Compra",
           cartItems: "Artigos no Carrinho",
+          itemsTotal: "Valor dos Artigos:",
+          discountTotal: "Valor do desconto:",
+          total: "Valor Total:",
         },
         cart: {
           title: "Carrinho",

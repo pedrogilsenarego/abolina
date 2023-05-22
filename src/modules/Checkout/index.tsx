@@ -1,4 +1,4 @@
-import { Container, Grid, Typography } from "@mui/material";
+import { Container, Divider, Grid, Typography } from "@mui/material";
 import { i18n } from "../../translations/i18n";
 import { Colors } from "../../constants/pallette";
 import { useSelector } from "react-redux";
@@ -93,54 +93,76 @@ const Checkout = () => {
             style={{
               display: "flex",
               justifyContent: "space-between",
-              marginTop: "50px",
+              marginTop: "20px",
             }}
           >
-            <div
+            <Typography
               style={{
-                display: "flex",
-                columnGap: "20px",
-                alignItems: "center",
+                fontSize: "18px",
+                fontWeight: 800,
               }}
             >
-              <TextField label={i18n.t("modules.cart.discountCuppon")} />
-              <Button label={i18n.t("modules.cart.applyDiscount")} />
-            </div>
-            <div style={{ display: "flex", columnGap: "20px" }}>
-              <Typography
-                style={{
-                  fontSize: "18px",
-                  fontWeight: 800,
-
-                  color: Colors.tealc,
-
-                  marginBottom: "16px",
-                  borderBottom: `solid 2px ${Colors.tealc}`,
-                }}
-              >
-                {i18n.t("modules.cart.total")}
-              </Typography>
-              <Typography
-                style={{
-                  fontSize: "18px",
-                  fontWeight: 800,
-                  color: Colors.tealc,
-                }}
-              >
-                €{getTotalValue(cartItems)}
-              </Typography>
-            </div>
+              {i18n.t("modules.checkout.itemsTotal")}
+            </Typography>
+            <Typography
+              style={{
+                fontSize: "18px",
+                fontWeight: 800,
+              }}
+            >
+              €{getTotalValue(cartItems)}
+            </Typography>
           </div>
           <div
             style={{
-              width: "100%",
               display: "flex",
-              justifyContent: "end",
-              marginTop: "100px",
+              justifyContent: "space-between",
+              marginTop: "20px",
             }}
           >
-            <Button label={i18n.t("modules.cart.finalize")} />
+            <Typography
+              style={{
+                fontSize: "18px",
+
+              }}
+            >
+              {i18n.t("modules.checkout.discountTotal")}
+            </Typography>
+            <Typography
+              style={{
+                fontSize: "18px",
+
+              }}
+            >
+              €0
+            </Typography>
           </div>
+          <Divider />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: "20px",
+            }}
+          >
+            <Typography
+              style={{
+                fontSize: "18px",
+
+              }}
+            >
+              {i18n.t("modules.checkout.total")}
+            </Typography>
+            <Typography
+              style={{
+                fontSize: "18px",
+                fontWeight: 800
+              }}
+            >
+              €{getTotalValue(cartItems)}
+            </Typography>
+          </div>
+
         </Grid>
       </Grid>
     </Container>
