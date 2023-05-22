@@ -13,6 +13,9 @@ import { useState } from "react";
 import CheckoutForm from "./CheckoutForm";
 import { Elements } from "@stripe/react-stripe-js";
 import { publishableKeyTest } from "../../stripe/config";
+import { useNavigate } from "react-router";
+import { ROUTE_PATHS } from "../../constants/routes";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 const Checkout = () => {
   const cartItems = useSelector<State, CartProduct[]>(
@@ -20,6 +23,7 @@ const Checkout = () => {
   );
   const [resumeOpen, setResumeOpen] = useState<boolean>(true);
   const stripePromise = loadStripe(publishableKeyTest);
+  const navigate = useNavigate()
 
   function getCartTotal() {
     let total = 0;
@@ -31,6 +35,37 @@ const Checkout = () => {
 
   return (
     <Container maxWidth='lg'>
+
+      <div
+        onClick={() =>
+          navigate(ROUTE_PATHS.BOOKS)
+        }
+        style={{
+          display: "flex",
+          columnGap: "5px",
+          alignItems: "center",
+          position: "relative",
+        }}
+      >
+        <AiOutlineArrowLeft
+          color={Colors.tealc}
+          size='0.8rem'
+          style={{ position: "absolute", left: "-15px" }}
+        />
+        <Typography
+          style={{
+            paddingTop: "5px",
+            textAlign: "start",
+            textTransform: "uppercase",
+            fontSize: "18px",
+            cursor: "pointer",
+          }}
+        >
+          {i18n.t("modules.checkout.backBooks")}
+        </Typography>
+      </div>
+
+
       <div
         style={{
           display: "flex",
@@ -43,7 +78,7 @@ const Checkout = () => {
           style={{
             fontSize: "28px",
             textTransform: "uppercase",
-            color: Colors.tealc,
+            color: Colors.tealcTransparent,
             fontWeight: 800,
           }}
         >
@@ -53,7 +88,7 @@ const Checkout = () => {
           style={{
             fontSize: "28px",
             textTransform: "uppercase",
-            color: Colors.tealcTransparent,
+            color: Colors.tealc,
             fontWeight: 800,
           }}
         >

@@ -11,6 +11,12 @@ export const content = {
         cookiePolicy: "Cookie Policy",
       },
       forms: {
+        checkout: {
+          email: "E-mail",
+          phone: "Phone",
+          name: "Name",
+          country: "Country",
+        },
         required: "Required",
         fileSize: "The file must be under ",
         email: "Must be a valid e-mail",
@@ -64,6 +70,9 @@ export const content = {
           discountTotal: "Value from Discount:",
           total: "Total Value:",
           contactDetails: "Contact Details",
+          invoiceDetails: "Invoice Details",
+          paymentMethods: "Payment Methods",
+          backBooks: "Back to Books",
         },
         cart: {
           title: "Shopping Cart",

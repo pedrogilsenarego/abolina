@@ -40,6 +40,8 @@ const CheckoutForm = () => {
 
   const dispatch = useDispatch();
   const [openForm, setOpenForm] = useState<boolean>(true);
+  const [openInvoiceDetails, setOpenInvoiceDetails] = useState<boolean>(true)
+  const [openPaymentMethods, setOpenPaymentMethods] = useState<boolean>(true)
   const cartProducts = useSelector<State, CartProduct[]>(
     (state) => state.cart.cartItems
   );
@@ -110,43 +112,87 @@ const CheckoutForm = () => {
           <IoIosArrowDown size='1.5rem' />
         )}
       </div>
-      {openForm && (
-        <Formik
-          initialValues={{ ...INITIAL_FORM_STATE }}
-          onSubmit={(values, { resetForm }) => {
-            handleSubmitCard(values);
-            resetForm();
-          }}
-          validationSchema={FORM_VALIDATION}
-        >
-          <Form>
-            <>
-              <Box
-                rowGap={2}
-                display='flex'
-                flexDirection='column'
-                sx={{ mt: "20px", pb: "20px" }}
+
+      <Formik
+        initialValues={{ ...INITIAL_FORM_STATE }}
+        onSubmit={(values, { resetForm }) => {
+          handleSubmitCard(values);
+          resetForm();
+        }}
+        validationSchema={FORM_VALIDATION}
+      >
+        <Form>
+          <>
+            <Box
+              rowGap={2}
+              display='flex'
+              flexDirection='column'
+              sx={{ mt: "20px", pb: "20px" }}
+            >
+              {openForm && (
+                <>
+                  <Textfield label={i18n.t("forms.checkout.email")} name='email' />
+                  <Textfield label={i18n.t("forms.checkout.phone")} name='phone' /></>)}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  cursor: "pointer",
+                }}
+                onClick={() => setOpenInvoiceDetails(!openInvoiceDetails)}
               >
+                <Typography
+                  style={{ textAlign: "left", fontSize: "24px", fontWeight: 800 }}
+                >
+                  {i18n.t("modules.checkout.invoiceDetails")}
+                </Typography>
+                {openInvoiceDetails ? (
+                  <IoIosArrowUp size='1.5rem' />
+                ) : (
+                  <IoIosArrowDown size='1.5rem' />
+                )}
+              </div>
+              {openInvoiceDetails && (<> <Textfield label={i18n.t("forms.checkout.name")} name='name' />
                 <SelectWrapper
                   options={countryList}
                   name='country'
-                  label='Country'
+                  label={i18n.t("forms.checkout.country")}
                   getvalue={setCountry}
                 />
-                <Textfield label={i18n.t("forms.name")} name='name' />
+
                 <Textfield label='Line 1' name='address' />
                 <Textfield label='Line 2' name='address2' />
                 <Textfield label={i18n.t("forms.city")} name='city' />
-                <Textfield label={i18n.t("forms.postCode")} name='postCode' />
-                <Textfield label={i18n.t("forms.email")} name='email' />
-                <Textfield label={i18n.t("forms.phone")} name='phone' />
-              </Box>
-            </>
+                <Textfield label={i18n.t("forms.postCode")} name='postCode' /></>)}
 
-            <ButtonForm label={i18n.t("cartDrawer.buyNow")} />
-          </Form>
-        </Formik>
-      )}
+
+
+            </Box>
+          </>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              cursor: "pointer",
+            }}
+            onClick={() => setOpenPaymentMethods(!openPaymentMethods)}
+          >
+            <Typography
+              style={{ textAlign: "left", fontSize: "24px", fontWeight: 800 }}
+            >
+              {i18n.t("modules.checkout.paymentMethods")}
+            </Typography>
+            {openPaymentMethods ? (
+              <IoIosArrowUp size='1.5rem' />
+            ) : (
+              <IoIosArrowDown size='1.5rem' />
+            )}
+          </div>
+          {openPaymentMethods && (<ButtonForm label={i18n.t("cartDrawer.buyNow")} />)}
+
+        </Form>
+      </Formik>
+
     </>
   );
 };
