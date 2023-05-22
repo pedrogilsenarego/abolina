@@ -18,7 +18,7 @@ const Checkout = () => {
   const cartItems = useSelector<State, CartProduct[]>(
     (state) => state.cart.cartItems
   );
-  const [resumeOpen, setResumeOpen] = useState<boolean>(false);
+  const [resumeOpen, setResumeOpen] = useState<boolean>(true);
   const stripePromise = loadStripe(publishableKeyTest);
 
   function getCartTotal() {
@@ -60,7 +60,7 @@ const Checkout = () => {
           &nbsp; &nbsp;{i18n.t("modules.cart.title2")}
         </Typography>
       </div>
-      <Grid container style={{ marginTop: "20px" }}>
+      <Grid container columnSpacing="60px" style={{ marginTop: "20px" }}>
         <Grid item xs={6}>
           {" "}
           <Elements stripe={stripePromise}>

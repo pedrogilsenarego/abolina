@@ -63,6 +63,7 @@ export const content = {
           itemsTotal: "Valor dos Artigos:",
           discountTotal: "Valor do desconto:",
           total: "Valor Total:",
+          contactDetails: "Informação de Contacto",
         },
         cart: {
           title: "Carrinho",
