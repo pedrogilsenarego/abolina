@@ -14,5 +14,6 @@ export const ROUTE_PATHS = {
   LOGIN:'/login',
   CART:"/cart",
   CHECKOUT:"/checkout",
+  BUY_SUCCESS:"/buy-success",
   PRIVACY_POLICY:"/privacy-policy"
 }

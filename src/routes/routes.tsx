@@ -30,6 +30,7 @@ const AdminCollectionsCreate = lazyWithRetryAndLoader(
 const Login = lazyWithRetryAndLoader(() => import("../modules/Login"));
 const Cart = lazyWithRetryAndLoader(() => import("../modules/Cart"));
 const Checkout = lazyWithRetryAndLoader(() => import("../modules/Checkout"));
+const BuySuccess = lazyWithRetryAndLoader(() => import("../modules/BuySuccess"));
 
 export const routes: AppRoute[] = [
   {
@@ -92,6 +93,14 @@ export const routes: AppRoute[] = [
         <Checkout />
       </MainLayout>
 
+    ),
+  },
+  {
+    path: ROUTE_PATHS.BUY_SUCCESS,
+    component: (
+      <MainLayout noUpScroll>
+        <BuySuccess />
+      </MainLayout>
     ),
   },
   {

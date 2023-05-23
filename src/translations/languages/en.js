@@ -233,6 +233,7 @@ export const content = {
           newUserEmailPassword: "Please visit your email to verify your e-mail",
           loginUser: "You are login",
           addedCart: "Book added to cart",
+          successBuy: "Items bought with success",
         },
         fail: {
           newBook: "Somethng went wrong, the book was not added",

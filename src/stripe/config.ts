@@ -1,6 +1,6 @@
 export const publishableKey = "pk_live_51MxoidBqKgbRXjOW2OctYlQplhr8gRZu0YYix38Y2Kzy6I43Pgj0VnETSWsvW07iJ5aIKx5QUuIg85UlrmTmxkFK00Vr1hWv1k"
 
-export const publishableKeyTest = "pk_test_51MxoidBqKgbRXjOWRbtaXCK9orCn5WZt8GVlsWhejof4HteHYe5mRbShQ9ofdqLeg3FGiwwGaCdTt7AysZtrPhSE00T6Wm6upa"
+export const publishableKeyTest = "sk_test_51JVYiDAJkp7H04iOc15imhQd2rwyXEvpJPoIbmALZdGhdEFfoflCONqvnCNOezek0l47mVLGxpyJlsBx3vM0NcS300i0OvF9hL"
 
 
 //mine

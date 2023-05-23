@@ -231,6 +231,7 @@ export const content = {
             "Por favor visite o seu email para verificar o seu e-mail",
           loginUser: "Esta logado",
           addedCart: "Livro adicionado ao carrinho",
+          successBuy: "Os items foram pagos com sucesso",
         },
         fail: {
           newBook: "Livro não foi adicionado, algum erro ocorreu",

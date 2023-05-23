@@ -45,10 +45,8 @@ const CheckoutForm = () => {
   const cartProducts = useSelector<State, CartProduct[]>(
     (state) => state.cart.cartItems
   );
-  const [country, setCountry] = useState<string>("");
-  const shippingFees =
-    countryList?.filter((item) => item.value === country)[0]?.shippingPrice ||
-    0;
+
+
 
   const handleSubmitCard = async (values: FormProps) => {
     let items: {
@@ -64,14 +62,8 @@ const CheckoutForm = () => {
         quantity: item.value,
       });
     });
-    if (shippingFees !== 0)
-      items.push({
-        title: `Shipping to ${countryList?.filter((item) => item.value === country)[0]?.title || ""
-          }`,
-        amount: shippingFees * 100,
-        quantity: 1,
-      });
-    await fetch(stripeProduction, {
+
+    await fetch(stripeLocal, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -84,7 +76,7 @@ const CheckoutForm = () => {
       .then((res) => {
         if (res.url) {
           dispatch(clearCart());
-          dispatch(updateSuccessNotification(i18n.t("cartDrawer.successBuy")));
+          dispatch(updateSuccessNotification(i18n.t("notifications.success.successBuy")));
 
           window.location.assign(res.url);
         }
@@ -157,7 +149,7 @@ const CheckoutForm = () => {
                   options={countryList}
                   name='country'
                   label={i18n.t("forms.checkout.country")}
-                  getvalue={setCountry}
+
                 />
 
                 <Textfield label='Line 1' name='address' />
