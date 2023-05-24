@@ -39,7 +39,7 @@ const Checkout = () => {
 
       <div
         onClick={() =>
-          navigate(ROUTE_PATHS.BOOKS)
+          navigate(ROUTE_PATHS.CART)
         }
         style={{
           display: "flex",
@@ -62,7 +62,7 @@ const Checkout = () => {
             cursor: "pointer",
           }}
         >
-          {i18n.t("modules.checkout.backBooks")}
+          {i18n.t("modules.checkout.backCart")}
         </Typography>
       </div>
 

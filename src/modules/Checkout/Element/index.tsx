@@ -67,28 +67,6 @@ const Element = ({ item, pos }: Props) => {
             src={item.product.coverPage}
             alt={item.product.title}
           />
-          <CheckBox
-            color={Colors.tealc}
-            value={forOffer}
-            setValue={setForOffer}
-            label={
-              <div>
-                <Typography style={{ fontSize: "18px" }}>
-                  {i18n.t("modules.cart.table.offerThisBook")}
-                </Typography>
-                <Typography
-                  style={{
-                    marginTop: "-5px",
-                    fontSize: "12px",
-                    fontStyle: "italic",
-                    color: Colors.tealc,
-                  }}
-                >
-                  {i18n.t("modules.cart.table.offerCode")}
-                </Typography>
-              </div>
-            }
-          />
         </div>
       </Grid>
       <Grid item xs={vertical ? 8 : 7} style={{ display: "flex", flexDirection: "column", rowGap: "5px" }}>
@@ -104,11 +82,7 @@ const Element = ({ item, pos }: Props) => {
           Nº{item.product.number}
         </Typography>
 
-        <Incrementor
-          key={item.product.documentID}
-          initialValue={item.value}
-          updateValue={handleUpdateSubtotal}
-        />
+
         <div style={{ display: "flex", justifyContent: "space-between", marginTop: "30px" }}>
           {" "}
           <div

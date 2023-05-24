@@ -134,8 +134,8 @@ const Element = ({ item, pos }: Props) => {
           <Typography style={{ fontSize: "18px", fontWeight: "bold" }}>
             {item.product.title}
           </Typography>
-          <Typography>Nome da coleção</Typography>
-          <Typography>NºX</Typography>
+          <Typography>{item.product.collections}</Typography>
+          <Typography>Nº{item.product.number}</Typography>
           <div
             style={{
               display: "flex",

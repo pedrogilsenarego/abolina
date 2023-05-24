@@ -13,6 +13,10 @@ const CheckBox = ({ label, color, setValue = () => { }, value = false }: Props) 
     setValue(event.target.checked);
   };
 
+  const handleLabelClick = () => {
+    setValue(!value);
+  };
+
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <div
@@ -34,9 +38,9 @@ const CheckBox = ({ label, color, setValue = () => { }, value = false }: Props) 
             },
           }}
         />
-
-        {label}
-
+        <div onClick={handleLabelClick} style={{ cursor: "pointer" }}>
+          {label}
+        </div>
       </div>
       <div
         style={{
