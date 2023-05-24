@@ -20,9 +20,11 @@ interface Props {
 
 const Element = ({ item, pos }: Props) => {
   const [forOffer, setForOffer] = useState<boolean>(false);
+  const [numberOffer, setNumberOffer] = useState<number>(0)
   const dispatch = useDispatch();
 
   const handleUpdateSubtotal = (value: number) => {
+    if (value < numberOffer) setNumberOffer(value)
     dispatch(updateCart(value, item.product.documentID));
   };
 
@@ -33,10 +35,11 @@ const Element = ({ item, pos }: Props) => {
   const price = !item?.product?.discount
     ? Number(item?.product?.price)
     : Number(
-      (Number(item?.product.price) * (1 - item?.product?.discount / 100)).toFixed(2)
+      (
+        Number(item?.product.price) *
+        (1 - item?.product?.discount / 100)
+      ).toFixed(2)
     );
-
-
 
   return (
     <Grid
@@ -56,9 +59,7 @@ const Element = ({ item, pos }: Props) => {
           alignItems: "center",
           justifyContent: "center",
         }}
-      >
-
-      </Grid>
+      ></Grid>
       <Grid
         item
         xs={5}
@@ -76,11 +77,16 @@ const Element = ({ item, pos }: Props) => {
             rowGap: "20px",
             alignItems: "start",
             height: "100%",
-            position: "relative"
+            position: "relative",
           }}
         >
           <AiOutlineClose
-            style={{ cursor: "pointer", position: "absolute", top: "calc(50% - 48px)", left: "-70px" }}
+            style={{
+              cursor: "pointer",
+              position: "absolute",
+              top: "calc(50% - 48px)",
+              left: "-70px",
+            }}
             onClick={handleDeleteCartProduct}
             size='1.5rem'
             color='black'
@@ -155,17 +161,29 @@ const Element = ({ item, pos }: Props) => {
         </div>
       </Grid>
       <Grid item xs={2} style={{ display: "flex", alignItems: "center" }}>
-        <Typography>
-          €
-          {price}
-        </Typography>
+        <Typography>€{price}</Typography>
       </Grid>
-      <Grid item xs={2} style={{ display: "flex", alignItems: "center" }}>
+      <Grid
+        item
+        xs={2}
+        style={{ display: "flex", alignItems: "center", position: "relative" }}
+      >
         <Incrementor
           key={item.product.documentID}
           initialValue={item.value}
           updateValue={handleUpdateSubtotal}
         />
+        {forOffer && (
+          <div style={{ position: "absolute", bottom: "10px" }}>
+            <Incrementor
+              key={item.product.documentID}
+              initialValue={numberOffer}
+              updateValue={setNumberOffer}
+              maxValue={item.value}
+              forceSetValue={numberOffer}
+            />
+          </div>
+        )}
       </Grid>
       <Grid
         item

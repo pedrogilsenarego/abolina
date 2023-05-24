@@ -72,7 +72,7 @@ export const content = {
           contactDetails: "Informação de Contacto",
           invoiceDetails: "Detalhes de Faturação",
           paymentMethods: "Métodos de Pagamento",
-          backBooks: "Voltar a Livros",
+          backCart: "Voltar ao Carrinho",
         },
         cart: {
           title: "Carrinho",

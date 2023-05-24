@@ -7,22 +7,32 @@ interface Props {
   minimumOne?: boolean;
   initialValue?: number;
   updateValue?: (value: number) => void;
+  maxValue?: number
+  forceSetValue?: number
 }
 
-const Incrementor = ({ minimumOne, initialValue, updateValue }: Props) => {
+const Incrementor = ({ minimumOne, initialValue, updateValue, maxValue, forceSetValue }: Props) => {
   const [value, setValue] = useState<number>(initialValue || 0);
-
   const theme = useTheme();
-
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  useEffect(() => {
+    if (forceSetValue) {
+      setValue(forceSetValue)
+    }
+  }, [forceSetValue])
 
   const handleValue = (signal: "minus" | "plus") => {
     let newValue = value;
     if (signal === "minus" && newValue > (minimumOne ? 1 : 0)) {
       newValue -= 1;
     } else if (signal === "plus") {
-      newValue += 1;
+      if (!maxValue) {
+        newValue += 1;
+      }
+      else if (maxValue > value) newValue += 1;
     }
+
     setValue(newValue);
 
     if (updateValue) {
@@ -81,12 +91,17 @@ const Incrementor = ({ minimumOne, initialValue, updateValue }: Props) => {
         style={{
           cursor: "pointer", width: "25px",
           height: "25px",
-          border: `solid 2px ${Colors.tealc}`,
+          border:
+            value === maxValue
+              ? "solid 2px lightGrey"
+              : `solid 2px ${Colors.tealc}`,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           borderRadius: "3px",
-          backgroundColor: Colors.tealc
+          backgroundColor: value === maxValue
+            ? "lightGrey"
+            : Colors.tealc,
         }}
 
         onClick={(e) => {

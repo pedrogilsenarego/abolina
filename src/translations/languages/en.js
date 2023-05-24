@@ -72,7 +72,7 @@ export const content = {
           contactDetails: "Contact Details",
           invoiceDetails: "Invoice Details",
           paymentMethods: "Payment Methods",
-          backBooks: "Back to Books",
+          backCart: "Back to Cart",
         },
         cart: {
           title: "Shopping Cart",

@@ -82,15 +82,13 @@ const Books = () => {
             xs={vertical ? 12 : 8}
           >
             <Title style={{}}>{collection}</Title>
-            <Grid container style={{ marginTop: "20px" }}>
+            <Grid container columnSpacing={mobile ? "10px" : "20px"} rowSpacing={mobile ? "10px" : "20px"} style={{ marginTop: "20px" }}>
               {filteredBooks?.map((book: Book, pos: number) => {
                 return (
                   <Grid item key={pos} xs={6}>
                     <Box
                       style={{
-                        background:
-                          "linear-gradient(to bottom, rgba(211,211,211,0.2) 0%, rgba(211,211,211,0.6) 25%, rgba(169,169,169,0.9) 50%, rgba(211,211,211,0.6) 75%, rgba(211,211,211,0.2) 100%)",
-                        padding: mobile ? "5px" : "15px",
+
                         height: "100%",
                         position: "relative",
                       }}
