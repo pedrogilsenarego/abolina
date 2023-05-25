@@ -1,14 +1,17 @@
-
 import Checkbox from "@mui/material/Checkbox";
 
 interface Props {
   label?: JSX.Element;
   color?: string;
-  setValue?: (value: boolean) => void
-  value?: boolean
+  setValue?: (value: boolean) => void;
+  value?: boolean;
 }
-const CheckBox = ({ label, color, setValue = () => { }, value = false }: Props) => {
-
+const CheckBox = ({
+  label,
+  color,
+  setValue = () => { },
+  value = false,
+}: Props) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.checked);
   };
@@ -24,9 +27,8 @@ const CheckBox = ({ label, color, setValue = () => { }, value = false }: Props) 
           display: "flex",
           justifyContent: "start",
           alignItems: "center",
-          marginLeft: "-10px"
+          marginLeft: "-10px",
         }}
-
       >
         <Checkbox
           checked={value}
@@ -49,9 +51,7 @@ const CheckBox = ({ label, color, setValue = () => { }, value = false }: Props) 
           justifyContent: "start",
           alignItems: "start",
         }}
-      >
-
-      </div>
+      ></div>
     </div>
   );
 };
