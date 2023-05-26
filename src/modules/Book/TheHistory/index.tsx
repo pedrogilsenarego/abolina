@@ -1,9 +1,9 @@
 import { Grid, Typography } from "@mui/material"
 import { useSelector } from "react-redux";
-import { State } from "../../../../slicer/types";
-import { Book } from "../../../../slicer/books/books.types";
+import { State } from "../../../slicer/types";
+import { Book } from "../../../slicer/books/books.types";
 import Tile from "../Tile";
-import { i18n } from "../../../../translations/i18n";
+import { i18n } from "../../../translations/i18n";
 
 const TheHistory = () => {
   const lang = useSelector<State, string>(

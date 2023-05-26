@@ -1,8 +1,8 @@
 import { Typography } from "@mui/material";
 import { useSelector } from "react-redux";
-import { State } from "../../../../slicer/types";
-import { Title } from "../../../../styles";
-import { Collection } from "../../../../slicer/books/books.types";
+import { State } from "../../../slicer/types";
+import { Title } from "../../../styles";
+import { Collection } from "../../../slicer/books/books.types";
 
 const TheCollection = () => {
   const lang = useSelector<State, string>(

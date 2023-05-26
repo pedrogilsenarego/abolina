@@ -9,7 +9,7 @@ import WithAuth from "../hoc/withAuth";
 
 const Home = lazyWithRetryAndLoader(() => import("../modules/Home"));
 const Books = lazyWithRetryAndLoader(() => import("../modules/Books"));
-const Book = lazyWithRetryAndLoader(() => import("../modules/Books/Book"));
+const Book = lazyWithRetryAndLoader(() => import("../modules/Book"));
 const About = lazyWithRetryAndLoader(() => import("../modules/About"));
 const AdminManageBooks = lazyWithRetryAndLoader(
   () => import("../modules/Admin/ManageBooks")

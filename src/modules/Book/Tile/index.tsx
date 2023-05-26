@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material"
-import * as GStyled from "../../../../styles";
+import * as GStyled from "../../../styles";
 
 interface Props {
   title: string;

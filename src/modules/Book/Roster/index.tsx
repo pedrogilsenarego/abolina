@@ -1,21 +1,21 @@
 import { Grid, Box, Typography, useTheme, useMediaQuery } from "@mui/material";
-import * as GStyled from "../../../../styles";
-import { i18n } from "../../../../translations/i18n";
-import CardMedia from "../../../../components/CardMedia";
-import { Colors } from "../../../../constants/pallette";
+import * as GStyled from "../../../styles";
+import { i18n } from "../../../translations/i18n";
+import CardMedia from "../../../components/CardMedia";
+import { Colors } from "../../../constants/pallette";
 import { useDispatch, useSelector } from "react-redux";
-import { State } from "../../../../slicer/types";
+import { State } from "../../../slicer/types";
 import { FiShoppingCart } from "react-icons/fi";
-import { Book } from "../../../../slicer/books/books.types";
-import { addProductToCart } from "../../../../slicer/cart/cart.actions";
-import { updateSuccessNotification } from "../../../../slicer/general/general.actions";
+import { Book } from "../../../slicer/books/books.types";
+import { addProductToCart } from "../../../slicer/cart/cart.actions";
+import { updateSuccessNotification } from "../../../slicer/general/general.actions";
 import { BsBook, BsPlayCircle } from "react-icons/bs";
 import { BsStars } from "react-icons/bs";
 import { useState } from "react";
-import { caracteristics } from "../../../../constants/admin";
+import { caracteristics } from "../../../constants/admin";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useNavigate } from "react-router";
-import { ROUTE_PATHS } from "../../../../constants/routes";
+import { ROUTE_PATHS } from "../../../constants/routes";
 
 interface Props {
   setOpenViewBook: (openViewBook: boolean) => void;
@@ -505,9 +505,9 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                   >
                     <Typography style={{}}>
                       {lang === "EN"
-                        ? caracteristics.find((obj) => obj["value"] === item)
+                        ? caracteristics.find((obj: any) => obj["value"] === item)
                           ?.title
-                        : caracteristics.find((obj) => obj["value"] === item)
+                        : caracteristics.find((obj: any) => obj["value"] === item)
                           ?.titlePT}
                     </Typography>
                   </div>
