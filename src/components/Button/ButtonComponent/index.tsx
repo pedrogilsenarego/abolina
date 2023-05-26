@@ -6,9 +6,10 @@ interface Props {
   label: string;
   onClick?: () => void
   borderRadius?: string
+  invertColors?: boolean
 }
 
-const ButtonComponent = ({ label, onClick, borderRadius }: Props) => {
+const ButtonComponent = ({ label, onClick, borderRadius, invertColors }: Props) => {
   const [hover, setHover] = useState<boolean>(false)
   return (
     <>
@@ -16,8 +17,8 @@ const ButtonComponent = ({ label, onClick, borderRadius }: Props) => {
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         style={{
-          backgroundColor: hover ? Colors.tealc : "white",
-          color: hover ? "white" : Colors.tealc,
+          backgroundColor: hover || invertColors ? Colors.tealc : "white",
+          color: hover || invertColors ? "white" : Colors.tealc,
           borderRadius: borderRadius || "6px",
           paddingLeft: "20px",
           paddingRight: "20px",

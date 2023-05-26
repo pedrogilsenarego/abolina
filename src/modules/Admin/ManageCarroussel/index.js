@@ -12,7 +12,7 @@ import Button from "../../../components/Button";
 import FileUploader from "../../../components/Inputs/FileUploader";
 import { Formik, Form } from "formik";
 import { FORM_VALIDATION } from "./validation";
-import ButtonForm from "../../../components/Button/ButtonFormik";
+import ButtonForm from "../../../components/Button";
 import Table from "./Table";
 
 const ManageCarrousell = () => {
@@ -135,7 +135,10 @@ const ManageCarrousell = () => {
               acceptType='image/webp'
             />
             <Box display='flex' justifyContent='start' sx={{ mt: "20px" }}>
-              <ButtonForm label={i18n.t("modules.home.contacts.form.send")} />
+              <ButtonForm
+                formik
+                label={i18n.t("modules.home.contacts.form.send")}
+              />
             </Box>
           </Form>
         </Formik>

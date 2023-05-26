@@ -12,7 +12,7 @@ import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../../../slicer/types";
-import ButtonForm from "../../../../components/Button/ButtonFormik";
+import ButtonForm from "../../../../components/Button";
 import SelectWrapper from "../../../../components/Inputs/SelectFormValue";
 import { newBookTypes2 } from "../../../../constants/admin";
 import Textfield from "../../../../components/Inputs/TextFieldForm";
@@ -155,7 +155,7 @@ const Settings = () => {
                     justifyContent='start'
                     sx={{ mt: "20px", columnGap: "10px" }}
                   >
-                    <ButtonForm label='Save Data' />
+                    <ButtonForm formik label='Save Data' />
                   </Box>
 
                 </Grid>

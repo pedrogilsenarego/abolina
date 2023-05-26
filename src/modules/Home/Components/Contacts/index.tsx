@@ -4,7 +4,7 @@ import { Container, Box } from "@mui/material";
 import Textfield from "../../../../components/Inputs/TextFieldForm";
 import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
-import ButtonForm from "../../../../components/Button/ButtonFormik";
+import ButtonForm from "../../../../components/Button";
 import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { State } from "../../../../slicer/types";
@@ -120,9 +120,8 @@ const Contacts = () => {
           </Box>
           <Box display='flex' justifyContent='start' sx={{ mt: "20px" }}>
             <ButtonForm
-              backgroundColor='white'
-              borderColor={Colors.darkGrey}
-              color={Colors.tealc}
+              formik
+
               label={i18n.t("modules.home.contacts.form.send")}
             />
           </Box>

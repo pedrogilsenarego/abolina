@@ -31,7 +31,7 @@ const PreviewWrapper = () => {
     window.open(url.toString(), "_blank");
   }
   return (<>
-    <Button label="Preview Book" onClick={handlePreview} />
+    <Button invertColors label="Preview Book" onClick={handlePreview} />
   </>
   )
 }

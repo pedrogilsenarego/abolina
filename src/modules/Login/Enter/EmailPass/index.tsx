@@ -2,7 +2,7 @@ import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
 import TextField from "../../../../components/Inputs/TextFieldForm";
 import { i18n } from "../../../../translations/i18n";
-import Button from "../../../../components/Button/ButtonFormik";
+import Button from "../../../../components/Button";
 import { Colors } from "../../../../constants/pallette";
 import { useDispatch } from "react-redux";
 import { emailSignInStart } from "../../../../slicer/user/user.actions";
@@ -44,9 +44,7 @@ const EmailPass = () => {
               name='password'
             />
             <Button
-              backgroundColor='white'
-              color={Colors.tealc}
-              borderColor={Colors.tealc}
+              formik
               label={i18n.t("modules.login.startSession")}
             />
           </div>

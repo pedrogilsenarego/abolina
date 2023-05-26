@@ -4,7 +4,7 @@ import { Box, Divider, Grid, Typography } from "@mui/material";
 import Textfield from "../../../../components/Inputs/TextFieldForm";
 import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
-import ButtonForm from "../../../../components/Button/ButtonFormik";
+import ButtonForm from "../../../../components/Button";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addBook,
@@ -538,7 +538,7 @@ const SubmitBook = ({ edit = false }: Props) => {
                 sx={{ mt: "20px", columnGap: "10px" }}
               >
                 <PreviewWrapper />
-                <ButtonForm label={i18n.t("modules.home.contacts.form.send")} />
+                <ButtonForm formik label={i18n.t("modules.home.contacts.form.send")} />
               </Box>
             </>
           )}

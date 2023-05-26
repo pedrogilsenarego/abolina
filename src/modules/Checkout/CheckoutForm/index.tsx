@@ -2,7 +2,7 @@ import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
 import { Box, Typography } from "@mui/material";
 import { i18n } from "../../../translations/i18n";
-import ButtonForm from "../../../components/Button/ButtonFormik";
+import ButtonForm from "../../../components/Button";
 import Textfield from "../../../components/Inputs/TextFieldForm";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../../slicer/types";
@@ -180,7 +180,7 @@ const CheckoutForm = () => {
               <IoIosArrowDown size='1.5rem' />
             )}
           </div>
-          {openPaymentMethods && (<ButtonForm label={i18n.t("cartDrawer.buyNow")} />)}
+          {openPaymentMethods && (<ButtonForm formik label={i18n.t("cartDrawer.buyNow")} />)}
 
         </Form>
       </Formik>
