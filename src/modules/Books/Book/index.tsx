@@ -197,7 +197,7 @@ const BookComponent = ({ book }: Props) => {
               style={{ paddingRight: "5px", cursor: "pointer" }}
             >
               <BsCartPlus
-                color={Colors.tealc}
+                color={Colors.darkGrey}
                 size={mobile ? "1.5rem" : "2rem"}
               />
             </div>
