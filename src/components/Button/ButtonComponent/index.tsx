@@ -8,7 +8,7 @@ interface Props {
   borderRadius?: string
 }
 
-const Button = ({ label, onClick, borderRadius }: Props) => {
+const ButtonComponent = ({ label, onClick, borderRadius }: Props) => {
   const [hover, setHover] = useState<boolean>(false)
   return (
     <>
@@ -33,4 +33,4 @@ const Button = ({ label, onClick, borderRadius }: Props) => {
   );
 };
 
-export default Button;
+export default ButtonComponent;

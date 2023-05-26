@@ -1,5 +1,5 @@
 import { Box, Card, Divider } from "@mui/material";
-import Button from "../../../components/Buttons/Button";
+import Button from "../../../components/Button";
 import { ROUTE_PATHS } from "../../../constants/routes";
 import { useNavigate } from "react-router";
 import TableList from "../../../components/TableList";
@@ -42,7 +42,7 @@ const ManageCollections = () => {
           style={{ marginTop: "40px" }}
         >
           <Button
-            borderRadius='6px'
+
             label="Add Collection"
             onClick={() => navigate(ROUTE_PATHS.ADMIN_COLLECTION_CREATE)}
           />

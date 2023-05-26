@@ -20,7 +20,7 @@ import { useField } from "formik";
 import Tooltip from "../../Tooltip/Tooltip";
 import { Colors } from "../../../constants/pallette";
 import * as Styled from "./styles"
-import Button from "../../Buttons/Button";
+import Button from "../../Button";
 
 interface MultiSelectProps<T> {
   label: string;

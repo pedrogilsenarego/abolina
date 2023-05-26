@@ -2,7 +2,7 @@ import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
 import { Box, Typography } from "@mui/material";
 import { i18n } from "../../../translations/i18n";
-import ButtonForm from "../../../components/Buttons/ButtonFormik";
+import ButtonForm from "../../../components/Button/ButtonFormik";
 import Textfield from "../../../components/Inputs/TextFieldForm";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../../slicer/types";

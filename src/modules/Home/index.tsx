@@ -1,7 +1,7 @@
 import Carrousell from "./Components/Carrousell/Carrousell";
 import { i18n } from "../../translations/i18n";
 import { Typography, Container, Box, useTheme, useMediaQuery } from "@mui/material";
-import Button from "../../components/Buttons/Button";
+import Button from "../../components/Button";
 import { useNavigate } from "react-router";
 import { ROUTE_PATHS } from "../../constants/routes";
 import Contacts from "./Components/Contacts";

@@ -6,7 +6,7 @@ import { State } from "../../slicer/types";
 import { CartProduct } from "../../slicer/cart/cart.types";
 import Element from "./Element";
 import TextField from "../../components/Inputs/TextField";
-import Button from "../../components/Buttons/Button";
+import Button from "../../components/Button";
 import { getTotalValue } from "./Utils";
 import { ROUTE_PATHS } from "../../constants/routes";
 import { useNavigate } from "react-router";

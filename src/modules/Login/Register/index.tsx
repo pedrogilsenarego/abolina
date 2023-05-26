@@ -2,7 +2,7 @@ import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
 import TextField from "../../../components/Inputs/TextFieldForm";
 import { i18n } from "../../../translations/i18n";
-import Button from "../../../components/Buttons/ButtonFormik";
+import Button from "../../../components/Button/ButtonFormik";
 import { Colors } from "../../../constants/pallette";
 import CheckBox from "../../../components/Inputs/CheckBoxForm";
 import { useDispatch } from "react-redux";

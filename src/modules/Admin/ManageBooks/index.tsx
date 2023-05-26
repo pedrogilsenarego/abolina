@@ -1,5 +1,5 @@
 import { Box, Card, Divider } from "@mui/material";
-import Button from "../../../components/Buttons/Button";
+import Button from "../../../components/Button";
 import { ROUTE_PATHS } from "../../../constants/routes";
 import { i18n } from "../../../translations/i18n";
 import { useNavigate } from "react-router";
@@ -40,7 +40,7 @@ const ManageBooks = () => {
           style={{ marginTop: "40px" }}
         >
           <Button
-            borderRadius='6px'
+
             label={i18n.t("modules.admin.manageBooks.createButton")}
             onClick={() => navigate(ROUTE_PATHS.ADMIN_BOOKS_CREATE)}
           />

@@ -2,7 +2,7 @@ import { useState } from "react";
 import SelectWrapper from "../components/Inputs/SelectFormValue";
 import Loader from "../components/Loader";
 import Textfield from "../components/Inputs/TextField";
-import Button from "../components/Buttons/Button";
+import Button from "../components/Button";
 
 import { useDispatch } from "react-redux";
 import { updateSuccessNotification } from "../slicer/general/general.actions";

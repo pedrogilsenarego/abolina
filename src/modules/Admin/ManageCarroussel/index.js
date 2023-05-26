@@ -8,11 +8,11 @@ import {
   fetchCarroussell,
 } from "../../../slicer/books/books.actions";
 import useManageCarroussel from "./useManageCarroussel";
-import Button from "../../../components/Buttons/Button";
+import Button from "../../../components/Button";
 import FileUploader from "../../../components/Inputs/FileUploader";
 import { Formik, Form } from "formik";
 import { FORM_VALIDATION } from "./validation";
-import ButtonForm from "../../../components/Buttons/ButtonFormik";
+import ButtonForm from "../../../components/Button/ButtonFormik";
 import Table from "./Table";
 
 const ManageCarrousell = () => {

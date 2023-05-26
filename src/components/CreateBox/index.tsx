@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box } from '@mui/material'
-import Button from '../Buttons/Button'
+import Button from '../Button'
 
 interface Props {
   label: string

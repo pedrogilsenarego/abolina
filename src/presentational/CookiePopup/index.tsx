@@ -1,7 +1,7 @@
 import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useState } from "react";
 import { Colors } from "../../constants/pallette";
-import Button from "../../components/Buttons/Button";
+import Button from "../../components/Button";
 import { i18n } from "../../translations/i18n";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../slicer/types";

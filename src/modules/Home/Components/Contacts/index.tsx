@@ -4,7 +4,7 @@ import { Container, Box } from "@mui/material";
 import Textfield from "../../../../components/Inputs/TextFieldForm";
 import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
-import ButtonForm from "../../../../components/Buttons/ButtonFormik";
+import ButtonForm from "../../../../components/Button/ButtonFormik";
 import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { State } from "../../../../slicer/types";
