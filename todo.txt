@@ -1,6 +1,3 @@
-normalizar butoes
-digital puxar para cima
-carrinho passa a azul quando sobrevoado
 texto default cinzento escuro,
 tags arredondar,
 só é possivel comprar mais que um livro se for oferta e terão sempre que ser todos excepto um para oferta

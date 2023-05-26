@@ -10,20 +10,21 @@ import { ROUTE_PATHS } from "../../../constants/routes";
 import { Colors } from "../../../constants/pallette";
 import useBooks from "../useBooks";
 import { useState } from "react";
+import Icon from "../../../components/Icon";
 
 interface Props {
-  book: Book
+  book: Book;
 }
 
 const BookComponent = ({ book }: Props) => {
   const vertical = useSelector<State, boolean>(
     (state) => state.general.positionVertical
   );
-  const theme = useTheme()
-  const [hover, setHover] = useState<boolean>()
-  const navigate = useNavigate()
+  const theme = useTheme();
+  const [hover, setHover] = useState<boolean>();
+  const navigate = useNavigate();
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const { lang, handleAddToCart } = useBooks()
+  const { lang, handleAddToCart } = useBooks();
 
   return (
     <Box
@@ -41,7 +42,6 @@ const BookComponent = ({ book }: Props) => {
           hover && !mobile
             ? "translate(0px,-6px) scale(1.005)"
             : "translate(0px,0px) scale(1)",
-
       }}
     >
       {book?.newBook !== "available" && (
@@ -66,9 +66,7 @@ const BookComponent = ({ book }: Props) => {
               top: "-40%",
             }}
           />
-          <Typography
-            style={{ color: "white", fontSize: "12px" }}
-          >
+          <Typography style={{ color: "white", fontSize: "12px" }}>
             {book?.newBook === "new"
               ? i18n.t("modules.books.book.new")
               : i18n.t("modules.books.book.soon")}
@@ -81,10 +79,7 @@ const BookComponent = ({ book }: Props) => {
         image={book?.coverPage}
         onClick={() =>
           navigate(
-            ROUTE_PATHS.BOOKS_BOOK.replace(
-              ":id",
-              book?.documentID.toString()
-            )
+            ROUTE_PATHS.BOOKS_BOOK.replace(":id", book?.documentID.toString())
           )
         }
       />
@@ -172,10 +167,7 @@ const BookComponent = ({ book }: Props) => {
             >
               €
               {book?.discount
-                ? (
-                  book?.price *
-                  (book?.discount / 100)
-                ).toFixed(2)
+                ? (book?.price * (book?.discount / 100)).toFixed(2)
                 : book?.price}
             </Typography>
             <Typography
@@ -185,7 +177,6 @@ const BookComponent = ({ book }: Props) => {
                 fontWeight: 800,
                 fontSize: mobile ? "12px" : "14px",
                 marginLeft: "-5px",
-                marginTop: "5px",
               }}
             >
               {i18n.t("modules.books.book.digital")}
@@ -196,16 +187,21 @@ const BookComponent = ({ book }: Props) => {
               onClick={() => handleAddToCart(book)}
               style={{ paddingRight: "5px", cursor: "pointer" }}
             >
-              <BsCartPlus
-                color={Colors.darkGrey}
-                size={mobile ? "1.5rem" : "2rem"}
+              <Icon
+                colorHover={Colors.tealc}
+                icon={
+                  <BsCartPlus
+                    color={Colors.darkGrey}
+                    size={mobile ? "1.5rem" : "2rem"}
+                  />
+                }
               />
             </div>
           )}
         </div>
       </Box>
-    </Box >
-  )
-}
+    </Box>
+  );
+};
 
-export default BookComponent
+export default BookComponent;
