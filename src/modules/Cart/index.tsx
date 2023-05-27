@@ -36,7 +36,7 @@ const Cart = () => {
           style={{
             fontSize: mobile ? "20px" : "28px",
             textTransform: "uppercase",
-            color: Colors.tealcTransparent,
+            color: "lightGrey",
             fontWeight: 800,
           }}
         >

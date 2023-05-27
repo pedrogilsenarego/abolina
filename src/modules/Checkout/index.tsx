@@ -79,7 +79,7 @@ const Checkout = () => {
           style={{
             fontSize: "28px",
             textTransform: "uppercase",
-            color: Colors.tealcTransparent,
+            color: "lightGrey",
             fontWeight: 800,
           }}
         >
