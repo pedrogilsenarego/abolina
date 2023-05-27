@@ -290,7 +290,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                 }}
               >
                 {book?.price} €
-              </Typography>
+              </Typography >
               {book?.discount !== 0 && book?.discount && (
                 <div
                   style={{
@@ -330,7 +330,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                         top: "-40%",
                       }}
                     />
-                    <Typography style={{ fontSize: "14px" }}>
+                    <Typography style={{ fontSize: "14px", color: "white" }}>
                       {book?.discount}%
                     </Typography>
                   </div>
@@ -398,7 +398,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                         top: "-40%",
                       }}
                     />
-                    <Typography style={{ fontSize: "14px" }}>
+                    <Typography style={{ fontSize: "14px", color: "white" }}>
                       {book?.discountDigital}%
                     </Typography>
                   </div>
@@ -583,7 +583,7 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
               <FiShoppingCart size='1.5rem' color='white' />
               <Typography
                 fontSize='18px'
-                style={{ textTransform: "uppercase", fontWeight: 800 }}
+                style={{ textTransform: "uppercase", fontWeight: 800, color: "white" }}
               >
                 {i18n.t("modules.books.book.addToCart")}
               </Typography>

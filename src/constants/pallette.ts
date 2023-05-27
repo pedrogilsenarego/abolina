@@ -8,3 +8,9 @@ export const Colors = {
   dirtyWhite: "#F4F6F7 ",
   darkGrey: "#3b3b3b"
 }
+
+export const Pallette = {
+  primary: Colors.tealc,
+  constrast: "white",
+  text: Colors.darkGrey
+}

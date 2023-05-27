@@ -10,7 +10,7 @@ import Snackbar from "./components/SnackBar";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { checkUserSession } from "./slicer/user/user.actions";
-import { Colors } from "./constants/pallette";
+import { Colors, Pallette } from "./constants/pallette";
 import CookiePolicy from "./presentational/CookiePopup";
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { disableLoading } from "./slicer/general/general.actions";
@@ -24,6 +24,7 @@ const theme = createTheme({
       fontFamily: 'Calibri',
       textTransform: 'none',
       fontSize: 16,
+      color: Pallette.text,
       caretColor: Colors.tealc
     },
   },
