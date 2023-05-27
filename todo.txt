@@ -1,5 +1,3 @@
-tags arredondar,
-só é possivel comprar mais que um livro se for oferta e terão sempre que ser todos excepto um para oferta
 carrinho, breadcrumb (cinzento claro)
 espreitar o digital
 cart telemovel

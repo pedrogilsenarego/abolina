@@ -16,6 +16,7 @@ import { caracteristics } from "../../../constants/admin";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useNavigate } from "react-router";
 import { ROUTE_PATHS } from "../../../constants/routes";
+import Tag from "../../../components/Tags";
 
 interface Props {
   setOpenViewBook: (openViewBook: boolean) => void;
@@ -493,23 +494,14 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                 {book?.caracteristics?.map((item, pos) => (
                   <div
                     key={pos}
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      padding: "2px 10px 2px 10px",
-                      borderRadius: "4px",
-                      color: "white",
-                      backgroundColor: Colors.tealc,
-                    }}
+
                   >
-                    <Typography style={{}}>
-                      {lang === "EN"
-                        ? caracteristics.find((obj: any) => obj["value"] === item)
-                          ?.title
-                        : caracteristics.find((obj: any) => obj["value"] === item)
-                          ?.titlePT}
-                    </Typography>
+                    <Tag label={lang === "EN"
+                      ? caracteristics.find((obj: any) => obj["value"] === item)
+                        ?.title || ""
+                      : caracteristics.find((obj: any) => obj["value"] === item)
+                        ?.titlePT || ""} />
+
                   </div>
                 ))}
               </div>
