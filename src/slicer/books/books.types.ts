@@ -75,6 +75,7 @@ export interface Book {
   createdDate?: Date;
   discount?: number;
   discountDigital?:number
+  peekDigital?:string
 }
 
 export interface Collection {

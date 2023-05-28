@@ -96,7 +96,7 @@ const DirectionSnackbar = () => {
         autoHideDuration={4000}
       >
         <Styled.Box bgcolor={snackbar.bgcolor}>
-          <Typography>{snackbar.icon} {snackbar.message}</Typography>
+          <Typography color="white">{snackbar.icon} {snackbar.message}</Typography>
 
         </Styled.Box>
       </Snackbar>

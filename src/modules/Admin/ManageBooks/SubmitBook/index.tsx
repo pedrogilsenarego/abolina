@@ -99,6 +99,7 @@ const SubmitBook = ({ edit = false }: Props) => {
         coverPage2: undefined,
         content: [],
         pages: null,
+        peekDigital: "",
       };
     }
   }, [edit, bookData]);
@@ -503,6 +504,14 @@ const SubmitBook = ({ edit = false }: Props) => {
 
                     </>
                   )}
+                  <Grid item xs={6}>
+                    <Box style={{ width: "350px" }}>
+                      <Textfield
+                        label="Espreitar Digital(apenas o codigo do video: ex. ckiaNqOrG5U"
+                        name='peekDigital'
+                      />
+                    </Box>
+                  </Grid>
                   <Grid item xs={6}>
                     <FileUploader
                       touched={setTouchedCoverPage}

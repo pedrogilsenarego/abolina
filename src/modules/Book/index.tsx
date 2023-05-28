@@ -18,10 +18,12 @@ import LeafThrough from "./LeafThrough";
 import TheHistory from "./TheHistory";
 import { Colors } from "../../constants/pallette";
 import TheCollection from "./TheCollection";
+import PeekDigital from "./PeekDigital";
 
 const BookC = () => {
   const dispatch = useDispatch();
   const [openViewBook, setOpenViewBook] = useState<boolean>(false);
+  const [openPeekDigital, setOpenPeekDigital] = useState<boolean>(false);
   const [infoState, setInfoState] = useState<"story" | "collection">("story");
   const [fullScreen, setFullScreen] = useState(false);
   const { id } = useParams();
@@ -60,6 +62,21 @@ const BookC = () => {
     );
   };
 
+  const renderPeekDigital = () => {
+    return (
+      <Popup
+        openPopup={openPeekDigital}
+        setOpenPopup={setOpenPeekDigital}
+        onClose={() => setOpenPeekDigital(false)}
+        fullScreen={fullScreen}
+
+
+      >
+        <PeekDigital fullScreen={fullScreen} setFullScreen={setFullScreen} />
+      </Popup>
+    );
+  };
+
   return (
     <>
       <Box
@@ -70,7 +87,7 @@ const BookC = () => {
         }}
       >
         <Container maxWidth='md'>
-          <Roster book={book} setOpenViewBook={setOpenViewBook} />
+          <Roster book={book} setOpenViewBook={setOpenViewBook} setOpenPeekDigital={setOpenPeekDigital} />
           <Box
             display='flex'
             justifyContent='start'
@@ -129,6 +146,7 @@ const BookC = () => {
       </Box>
 
       {renderPopup()}
+      {renderPeekDigital()}
     </>
   );
 };

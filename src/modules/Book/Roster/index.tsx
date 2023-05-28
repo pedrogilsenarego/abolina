@@ -20,10 +20,11 @@ import Tag from "../../../components/Tags";
 
 interface Props {
   setOpenViewBook: (openViewBook: boolean) => void;
+  setOpenPeekDigital: (openPeekDigital: boolean) => void;
   book: Book;
 }
 
-const Roster = ({ setOpenViewBook, book }: Props) => {
+const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
   const dispatch = useDispatch();
@@ -127,7 +128,8 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                     {i18n.t("modules.books.book.bookBrowser")}
                   </Typography>
                 </Box>
-                <Box
+                {book?.peekDigital && (<Box
+                  onClick={() => setOpenPeekDigital(true)}
                   style={{
                     backgroundColor: Colors.tealc,
                     position: "absolute",
@@ -153,7 +155,8 @@ const Roster = ({ setOpenViewBook, book }: Props) => {
                   >
                     {i18n.t("modules.books.book.peakDigital")}
                   </Typography>
-                </Box>
+                </Box>)}
+
               </Box>
             )}
 

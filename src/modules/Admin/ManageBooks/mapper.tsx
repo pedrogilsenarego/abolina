@@ -105,6 +105,7 @@ export const mapInitialForm = (data: any) => {
     coverPage2: data?.coverPage || [],
     content: data?.content || [],
     pages: data?.pages || null,
+    peekDigital: data?.peekDigital || null
 
   }
 
