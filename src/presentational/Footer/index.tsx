@@ -62,7 +62,7 @@ const Footer = () => {
             color: "white",
           }}
         >
-          <Typography fontSize='14px'>
+          <Typography color="white" fontSize='14px'>
             &copy; Copyright Business Connect
           </Typography>
         </Box>
@@ -114,7 +114,7 @@ const Footer = () => {
             marginTop: "-2px",
           }}
         >
-          <Typography fontSize='14px'>
+          <Typography color="white" fontSize='14px'>
             &copy; Copyright Business Connect
           </Typography>
         </Box>
