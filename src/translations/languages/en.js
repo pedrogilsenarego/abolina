@@ -159,6 +159,7 @@ export const content = {
             papper: "Papper",
             digital: "Digital",
             availableStores: "Available in Stores",
+            loading: "Looking for your book",
           },
           viewBook: {
             page: "PAGES",

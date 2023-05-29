@@ -19,9 +19,11 @@ import TheHistory from "./TheHistory";
 import { Colors } from "../../constants/pallette";
 import TheCollection from "./TheCollection";
 import PeekDigital from "./PeekDigital";
+import Loader from "../../components/Loader";
 
 const BookC = () => {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState<boolean>(true)
   const [openViewBook, setOpenViewBook] = useState<boolean>(false);
   const [openPeekDigital, setOpenPeekDigital] = useState<boolean>(false);
   const [infoState, setInfoState] = useState<"story" | "collection">("story");
@@ -34,12 +36,18 @@ const BookC = () => {
     (state) => state.general.positionVertical
   );
 
+  const book = useSelector<State, Book>((state) => state.books.book || {});
+
+
   useEffect(() => {
     dispatch(fetchBookThenCollection(id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  const book = useSelector<State, Book>((state) => state.books.book || {});
+  useEffect(() => {
+    if (book.documentID === id) setLoading(false)
+  }, [book.documentID, id])
+
 
   const renderPopup = () => {
     return (
@@ -77,7 +85,7 @@ const BookC = () => {
     );
   };
 
-  return (
+  return loading ? <Loader customMessage={i18n.t("modules.books.book.loading")} /> :
     <>
       <Box
         mt={vertical ? "0px" : "20px"}
@@ -148,7 +156,7 @@ const BookC = () => {
       {renderPopup()}
       {renderPeekDigital()}
     </>
-  );
+
 };
 
 export default BookC;

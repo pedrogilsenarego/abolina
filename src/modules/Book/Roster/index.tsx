@@ -293,7 +293,7 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                   textDecoration: book?.discount ? "line-through" : "none",
                 }}
               >
-                {book?.price} €
+                €{book?.price}
               </Typography >
               {book?.discount !== 0 && book?.discount && (
                 <div
@@ -304,10 +304,10 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                   }}
                 >
                   <Typography style={{ color: Colors.tealc, fontWeight: 800 }}>
-                    {(Number(book?.price) * (1 - book?.discount / 100)).toFixed(
+                    €{(Number(book?.price) * (1 - book?.discount / 100)).toFixed(
                       2
-                    )}{" "}
-                    €
+                    )}
+
                   </Typography>
                   <div
                     style={{
@@ -360,7 +360,7 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                     : "none",
                 }}
               >
-                {book?.digitalPrice} €
+                €{book?.digitalPrice}
               </Typography>
               {book?.discountDigital !== 0 && book?.discountDigital && (
                 <div
@@ -371,11 +371,11 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                   }}
                 >
                   <Typography style={{ color: Colors.tealc, fontWeight: 800 }}>
-                    {(
+                    €{(
                       Number(book?.digitalPrice) *
                       (1 - book?.discountDigital / 100)
                     ).toFixed(2)}{" "}
-                    €
+
                   </Typography>
                   <div
                     style={{

@@ -1,5 +1,5 @@
 import { Ellipsis } from "react-spinners-css";
-import { Colors } from "../../constants/pallette";
+import { Colors, Pallette } from "../../constants/pallette";
 import { Typography } from "@mui/material";
 
 interface Props {
@@ -24,7 +24,7 @@ const Loader = ({ size = 100, color, customMessage, progress, colorMessage }: Pr
       }}
     >
 
-      <Typography color={colorMessage || "black"}>{customMessage} {progressW}</Typography>
+      <Typography color={colorMessage || Pallette.primary} fontSize="20px">{customMessage} {progressW}</Typography>
       <Ellipsis
 
         size={size || 100}
