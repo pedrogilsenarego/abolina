@@ -26,9 +26,7 @@ const Books = () => {
   );
   const {
     filteredBooks,
-
     collections,
-
     setCollection,
     collection,
   } = useBooks();
@@ -83,6 +81,7 @@ const Books = () => {
             xs={vertical ? 12 : 8}
           >
             <Title style={{}}>{collection}</Title>
+
             <Grid
               container
               columnSpacing={mobile ? "10px" : "20px"}

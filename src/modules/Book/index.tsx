@@ -45,7 +45,7 @@ const BookC = () => {
   }, [id]);
 
   useEffect(() => {
-    if (book.documentID === id) setLoading(false)
+    if (book.documentID === id || id === "preview") setLoading(false)
   }, [book.documentID, id])
 
 
