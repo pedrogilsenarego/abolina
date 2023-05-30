@@ -45,7 +45,7 @@ const Books = () => {
           }}
         >
           {!vertical && (
-            <Grid container item xs={2}>
+            <Grid container item xs={2.5}>
               <div>
                 <Title style={{ textDecoration: "underline" }}>
                   {i18n.t("modules.books.collections")}
@@ -78,7 +78,7 @@ const Books = () => {
             columnSpacing='0px'
             rowSpacing='0px'
             item
-            xs={vertical ? 12 : 8}
+            xs={vertical ? 12 : 7}
           >
             <Title style={{}}>{collection}</Title>
 
@@ -90,14 +90,14 @@ const Books = () => {
             >
               {filteredBooks?.map((book: Book, pos: number) => {
                 return (
-                  <Grid item key={pos} xs={6}>
+                  <Grid item key={pos} xs={4}>
                     <BookComponent book={book} />
                   </Grid>
                 );
               })}
             </Grid>
           </Grid>
-          <Grid container item xs={2}></Grid>
+          <Grid container item xs={2.5}></Grid>
         </Grid>
       </Container>
     </>

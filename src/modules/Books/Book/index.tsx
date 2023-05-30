@@ -74,7 +74,7 @@ const BookComponent = ({ book }: Props) => {
         </Box>
       )}
       <CardMedia
-        height={mobile ? "170" : "450"}
+        height={mobile ? "170" : "200"}
         borderRadius='0px'
         image={book?.coverPage}
         onClick={() =>
@@ -89,7 +89,7 @@ const BookComponent = ({ book }: Props) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "start",
-          padding: mobile ? "5px" : "15px",
+          padding: mobile ? "5px" : "10px",
           position: "relative",
         }}
       >
@@ -128,7 +128,7 @@ const BookComponent = ({ book }: Props) => {
         >
           Nº {book?.number}
         </Typography>
-        <Typography style={{ fontWeight: 800 }}>
+        <Typography style={{ fontWeight: 800, textAlign: "left" }}>
           {(lang === "PT" ? book?.title : book?.titleEN) || ""}
         </Typography>
         <div
