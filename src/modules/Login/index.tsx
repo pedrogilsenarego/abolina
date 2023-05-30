@@ -16,7 +16,10 @@ const Login = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        rowGap: "40px"
+        rowGap: "40px",
+        paddingLeft: "16px",
+        paddingRight: "16px",
+
       }}
     >
       <Typography
@@ -29,12 +32,32 @@ const Login = () => {
       >
         {i18n.t("modules.login.title")}
       </Typography>
-      <Box style={{ display: "flex", columnGap: "10px", justifyContent: "center" }}>
-        <Typography onClick={() => setMode("enter")} style={{ cursor: "pointer", fontWeight: 800, fontSize: "24px", color: mode === "enter" ? "black" : "#00000066" }}>
+      <Box
+        style={{ display: "flex", columnGap: "10px", justifyContent: "center" }}
+      >
+        <Typography
+          onClick={() => setMode("enter")}
+          style={{
+            cursor: "pointer",
+            fontWeight: 800,
+            fontSize: "24px",
+            color: mode === "enter" ? "black" : "#00000066",
+          }}
+        >
           {i18n.t("modules.login.startSession")}
         </Typography>
-        <Box style={{ height: "30px", width: "3px", backgroundColor: "black", }} />
-        <Typography onClick={() => setMode("register")} style={{ cursor: "pointer", fontWeight: 800, fontSize: "24px", color: mode === "register" ? "black" : "#00000066" }}>
+        <Box
+          style={{ height: "30px", width: "3px", backgroundColor: "black" }}
+        />
+        <Typography
+          onClick={() => setMode("register")}
+          style={{
+            cursor: "pointer",
+            fontWeight: 800,
+            fontSize: "24px",
+            color: mode === "register" ? "black" : "#00000066",
+          }}
+        >
           {i18n.t("modules.login.register")}
         </Typography>
       </Box>

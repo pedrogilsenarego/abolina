@@ -38,7 +38,7 @@ const Register = () => {
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
 
   return (
-    <div style={{ width: "450px" }}>
+    <div style={{ width: mobile ? "90vw" : "450px", }}>
       <Formik
         initialValues={{ ...INITIAL_STATE }}
         onSubmit={(values) => handleSubmit(values)}

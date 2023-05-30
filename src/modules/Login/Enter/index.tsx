@@ -1,4 +1,4 @@
-import { Button, Typography } from "@mui/material";
+import { Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { BsGoogle } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa"
 import { i18n } from "../../../translations/i18n";
@@ -15,11 +15,15 @@ const Enter = () => {
   const handleFacebookSigniIn = () => {
     dispatch(facebookSignInStart());
   };
+
+  const theme = useTheme()
+  const mobile = useMediaQuery(theme.breakpoints.down("sm"))
+
   return (
     <div style={{ display: "flex", flexDirection: "column", rowGap: "40px" }}>
       <div
         style={{
-          width: "450px",
+          width: mobile ? "90vw" : "450px",
           display: "flex",
           flexDirection: "column",
           rowGap: "25px",
@@ -39,6 +43,7 @@ const Enter = () => {
           <BsGoogle color='white' size={"1.8em"} /> &nbsp;
           <Typography
             style={{
+              color: "white",
               fontSize: "16px",
               textTransform: "uppercase",
               fontWeight: 800,
@@ -61,6 +66,7 @@ const Enter = () => {
           <FaFacebookF color='white' size={"1.8em"} /> &nbsp;
           <Typography
             style={{
+              color: "white",
               fontSize: "16px",
               textTransform: "uppercase",
               fontWeight: 800,

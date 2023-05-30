@@ -25,7 +25,6 @@ const HomepageLayout = (props: any) => {
           xs={12}
           style={{
             minHeight: "60vh",
-
             textAlign: "center",
             marginTop: vertical ? "17vh" : "15vh",
             marginBottom: props.marginBottom || "15vh",
