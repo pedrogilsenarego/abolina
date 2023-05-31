@@ -36,8 +36,8 @@ const BookComponent = ({ book }: Props) => {
         transition: "all 0.3s ease-in-out",
         boxShadow:
           hover && !mobile
-            ? "0 12px 30px 0px #00000026"
-            : "0 4px 16px 0px #00000040",
+            ? "0px 12px 30px 0px #00000026"
+            : "0px 4px 16px 0px #00000040",
         transform:
           hover && !mobile
             ? "translate(0px,-6px) scale(1.005)"
@@ -103,8 +103,8 @@ const BookComponent = ({ book }: Props) => {
               justifyContent: "center",
               alignItems: "center",
               borderRadius: "50%",
-              padding: mobile ? "5px" : "10px",
-              height: mobile ? "35px" : "50px",
+              padding: mobile ? "5px" : "-2px",
+              height: mobile ? "35px" : "45px",
               aspectRatio: 1,
               backgroundColor: Colors.tealc,
             }}
@@ -128,7 +128,12 @@ const BookComponent = ({ book }: Props) => {
         >
           Nº {book?.number}
         </Typography>
-        <Typography style={{ fontWeight: 800, textAlign: "left" }}>
+        <Typography style={{
+          width: "100%",
+          fontWeight: 800, textAlign: "left", whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+        }}>
           {(lang === "PT" ? book?.title : book?.titleEN) || ""}
         </Typography>
         <div
@@ -162,7 +167,7 @@ const BookComponent = ({ book }: Props) => {
               color={Colors.tealc}
               style={{
                 fontWeight: 800,
-                fontSize: mobile ? "18px" : "23px",
+                fontSize: mobile ? "18px" : "20px",
               }}
             >
               €
@@ -175,8 +180,9 @@ const BookComponent = ({ book }: Props) => {
               style={{
                 textTransform: "uppercase",
                 fontWeight: 800,
-                fontSize: mobile ? "12px" : "14px",
+                fontSize: mobile ? "12px" : "12px",
                 marginLeft: "-5px",
+                marginTop: "3px"
               }}
             >
               {i18n.t("modules.books.book.digital")}
@@ -192,7 +198,7 @@ const BookComponent = ({ book }: Props) => {
                 icon={
                   <BsCartPlus
                     color={Colors.darkGrey}
-                    size={mobile ? "1.5rem" : "2rem"}
+                    size={mobile ? "1.5rem" : "1.6rem"}
                   />
                 }
               />
