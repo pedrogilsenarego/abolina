@@ -156,6 +156,7 @@ const BookComponent = ({ book }: Props) => {
             {book?.discount && (
               <Typography
                 style={{
+                  fontSize: mobile ? "12px" : "16px",
                   textDecoration: "line-through",
                   fontWeight: 800,
                 }}
@@ -167,7 +168,7 @@ const BookComponent = ({ book }: Props) => {
               color={Colors.tealc}
               style={{
                 fontWeight: 800,
-                fontSize: mobile ? "18px" : "20px",
+                fontSize: mobile ? "14px" : "20px",
               }}
             >
               €
@@ -180,7 +181,7 @@ const BookComponent = ({ book }: Props) => {
               style={{
                 textTransform: "uppercase",
                 fontWeight: 800,
-                fontSize: mobile ? "12px" : "12px",
+                fontSize: mobile ? "10px" : "12px",
                 marginLeft: "-5px",
                 marginTop: "3px"
               }}

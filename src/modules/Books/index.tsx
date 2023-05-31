@@ -93,7 +93,7 @@ const Books = () => {
             >
               {filteredBooks?.map((book: Book, pos: number) => {
                 return (
-                  <Grid item key={pos} xs={4}>
+                  <Grid item key={pos} xs={mobile ? 6 : 4}>
                     <BookComponent book={book} />
                   </Grid>
                 );
