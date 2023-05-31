@@ -37,7 +37,7 @@ const Books = () => {
         <Grid
           container
           justifyContent='center'
-          columnSpacing="100px"
+          columnSpacing="50px"
           style={{
             marginTop: vertical ? "20px" : "60px",
             paddingLeft: vertical ? "8px" : "0px",
@@ -45,18 +45,21 @@ const Books = () => {
           }}
         >
           {!vertical && (
-            <Grid container item xs={2.5}>
-              <div>
-                <Title style={{ textDecoration: "underline" }}>
+            <Grid container item xs={2.5} >
+              <div style={{ width: "100%" }}>
+                <Title style={{ textDecoration: "underline", textAlign: "left" }}>
                   {i18n.t("modules.books.collections")}
                 </Title>
                 <div
                   style={{
+                    width: "100%",
                     marginTop: "20px",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "end",
                     rowGap: "10px",
+
+
                   }}
                 >
                   {collections.map((item, pos) => {

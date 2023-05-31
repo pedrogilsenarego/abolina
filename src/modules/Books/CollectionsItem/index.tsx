@@ -24,30 +24,44 @@ const CollectionsItem = ({ pos, item, setCollection }: Props) => {
   };
 
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <div
         onClick={() => {
           handleClick(item.name);
         }}
         key={pos}
         style={{
+          width: "100%",
+
           display: "flex",
-          columnGap: "40px",
+          columnGap: "20px",
           alignItems: "center",
           cursor: "pointer",
+          justifyContent: "space-between",
         }}
       >
-        <Typography style={{ fontSize: "18px" }}>{item.name}</Typography>
+        <Typography
+          style={{
+            fontSize: "18px",
+            textAlign: "left",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            fontWeight: 800
+          }}
+        >
+          {item.name}
+        </Typography>
         {open ? (
           <RiArrowUpSLine
             color={Colors.tealc}
-            size='2rem'
+            size='1rem'
             style={{ cursor: "pointer" }}
           />
         ) : (
           <RiArrowDownSLine
             color={Colors.tealc}
-            size='2rem'
+            size='1rem'
             style={{ cursor: "pointer" }}
           />
         )}
@@ -61,9 +75,13 @@ const CollectionsItem = ({ pos, item, setCollection }: Props) => {
               }
               key={pos}
               style={{
-                textAlign: "right",
+                width: "100%",
+                textAlign: "left",
                 marginRight: "40px",
                 cursor: "pointer",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
               }}
             >
               {item.title}
