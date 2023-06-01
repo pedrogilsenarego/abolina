@@ -10,6 +10,7 @@ import Button from "../../components/Button";
 import { getTotalValue } from "./Utils";
 import { ROUTE_PATHS } from "../../constants/routes";
 import { useNavigate } from "react-router";
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 
 const Cart = () => {
   const cartItems = useSelector<State, CartProduct[]>(
@@ -21,27 +22,64 @@ const Cart = () => {
 
   return (
     <Container maxWidth='lg'>
-      <div style={{ display: "flex", justifyContent: "center", width: "100%", marginTop: "20px" }}>
-        <Typography
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div
+          onClick={() =>
+            navigate(ROUTE_PATHS.BOOKS)
+          }
           style={{
-            fontSize: mobile ? "20px" : "28px",
-            textTransform: "uppercase",
-            color: Colors.tealc,
-            fontWeight: 800,
+            display: "flex",
+            columnGap: "5px",
+            alignItems: "center",
+            position: "relative",
           }}
         >
-          {i18n.t("modules.cart.title")}&nbsp; &nbsp;&#62;
-        </Typography>
-        <Typography
+          <AiOutlineArrowLeft
+            color={Colors.tealc}
+            size='0.8rem'
+            style={{ position: "absolute", left: "-15px" }}
+          />
+          <Typography
+            style={{
+              paddingTop: "5px",
+              textAlign: "start",
+              textTransform: "uppercase",
+              fontSize: "18px",
+              cursor: "pointer",
+            }}
+          >
+            {i18n.t("modules.books.book.backBooks")}
+          </Typography>
+        </div>
+        <div
+          onClick={() =>
+            navigate(ROUTE_PATHS.CHECKOUT)
+          }
           style={{
-            fontSize: mobile ? "20px" : "28px",
-            textTransform: "uppercase",
-            color: "lightGrey",
-            fontWeight: 800,
+            display: "flex",
+            columnGap: "5px",
+            alignItems: "center",
+            position: "relative",
           }}
         >
-          &nbsp; &nbsp;{i18n.t("modules.cart.title2")}
-        </Typography>
+
+          <Typography
+            style={{
+              paddingTop: "5px",
+              textAlign: "start",
+              textTransform: "uppercase",
+              fontSize: "18px",
+              cursor: "pointer",
+            }}
+          >
+            {i18n.t("modules.cart.finalize")}
+          </Typography>
+          <AiOutlineArrowRight
+            color={Colors.tealc}
+            size='0.8rem'
+            style={{ position: "absolute", right: "-15px" }}
+          />
+        </div>
       </div>
       <Grid container style={{ marginTop: "40px" }}>
         <Grid

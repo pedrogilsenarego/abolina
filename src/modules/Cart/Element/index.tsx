@@ -1,6 +1,6 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, IconButton, Tooltip, Typography } from "@mui/material";
 import { CartProduct } from "../../../slicer/cart/cart.types";
-import { Colors } from "../../../constants/pallette";
+import { Colors, Pallette } from "../../../constants/pallette";
 import { AiOutlineClose } from "react-icons/ai";
 import CheckBox from "../../../components/Inputs/CheckBox";
 import { i18n } from "../../../translations/i18n";
@@ -8,6 +8,7 @@ import { CgSmartphone } from "react-icons/cg";
 import Incrementor from "../../../components/Incrementor";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { IoMdInformationCircleOutline } from "react-icons/io";
 import {
   deleteProductCart,
   updateCart,
@@ -20,11 +21,11 @@ interface Props {
 
 const Element = ({ item, pos }: Props) => {
   const [forOffer, setForOffer] = useState<boolean>(false);
-  const [numberOffer, setNumberOffer] = useState<number>(0)
+  const [numberOffer, setNumberOffer] = useState<number>(0);
   const dispatch = useDispatch();
 
   const handleUpdateSubtotal = (value: number) => {
-    if (value < numberOffer) setNumberOffer(value)
+    if (value < numberOffer) setNumberOffer(value);
     dispatch(updateCart(value, item.product.documentID));
   };
 
@@ -157,6 +158,15 @@ const Element = ({ item, pos }: Props) => {
             >
               {i18n.t("modules.cart.table.readOnApp")}
             </Typography>
+            <Tooltip arrow placement='top' title='teste'>
+              <IconButton>
+                <IoMdInformationCircleOutline
+                  color={Pallette.primary}
+                  size='1rem'
+                  style={{ marginTop: "-3px", cursor: "pointer" }}
+                />
+              </IconButton>
+            </Tooltip>
           </div>
         </div>
       </Grid>
@@ -173,15 +183,44 @@ const Element = ({ item, pos }: Props) => {
           initialValue={item.value}
           updateValue={handleUpdateSubtotal}
         />
-        {forOffer && (
-          <div style={{ position: "absolute", bottom: "10px" }}>
-            <Incrementor
-              key={item.product.documentID}
-              initialValue={numberOffer}
-              updateValue={setNumberOffer}
-              maxValue={item.value}
-              forceSetValue={numberOffer}
-            />
+        {(item?.value > 1 || forOffer) && (
+          <div
+            style={{
+              position: "absolute",
+              bottom: "10px",
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              paddingLeft: "40px",
+            }}
+          >
+            <Typography style={{ fontSize: "18px" }}>
+              {forOffer ? item.value : item.value - 1}
+            </Typography>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                paddingLeft: "20px",
+                columnGap: "5px",
+              }}
+            >
+              <Typography
+                color={Pallette.primary}
+                style={{ marginTop: "-2px" }}
+              >
+                {i18n.t("modules.cart.table.offer")}
+              </Typography>
+              <Tooltip arrow placement='top' title='teste'>
+                <IconButton>
+                  <IoMdInformationCircleOutline
+                    color={Pallette.primary}
+                    size='1rem'
+                    style={{ marginTop: "-3px", cursor: "pointer" }}
+                  />
+                </IconButton>
+              </Tooltip>
+            </div>
           </div>
         )}
       </Grid>
