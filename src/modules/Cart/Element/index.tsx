@@ -91,7 +91,7 @@ const Element = ({ item, pos }: Props) => {
             }}
             onClick={handleDeleteCartProduct}
             size='1.5rem'
-            color='black'
+            color={Colors.darkGrey}
           />
           <img
             style={{

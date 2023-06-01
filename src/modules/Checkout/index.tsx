@@ -242,37 +242,6 @@ const Checkout = () => {
             {i18n.t("modules.checkout.backCart")}
           </Typography>
         </div>
-
-
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            width: "100%",
-            marginTop: "20px",
-          }}
-        >
-          <Typography
-            style={{
-              fontSize: "28px",
-              textTransform: "uppercase",
-              color: Colors.tealcTransparent,
-              fontWeight: 800,
-            }}
-          >
-            {i18n.t("modules.cart.title")}&nbsp; &nbsp;&#62;
-          </Typography>
-          <Typography
-            style={{
-              fontSize: "28px",
-              textTransform: "uppercase",
-              color: Colors.tealc,
-              fontWeight: 800,
-            }}
-          >
-            &nbsp; &nbsp;{i18n.t("modules.cart.title2")}
-          </Typography>
-        </div>
         <Grid container columnSpacing="60px" style={{ marginTop: "20px" }}>
           <Grid item xs={6}>
             {" "}

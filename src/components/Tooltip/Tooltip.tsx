@@ -10,7 +10,7 @@ interface Props {
 
 const ToolTipJ = ({ children, title, maxWidth }: Props) => {
   const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
-    <Tooltip {...props} classes={{ popper: className }} />
+    <Tooltip  {...props} classes={{ popper: className }} />
   ))(({ theme }) => ({
     [`& .${tooltipClasses.tooltip}`]: {
       backgroundColor: Pallette.primaryTransparent,
@@ -29,6 +29,7 @@ const ToolTipJ = ({ children, title, maxWidth }: Props) => {
     <HtmlTooltip
       arrow
       placement="top"
+
       title={
         <span
           dangerouslySetInnerHTML={{ __html: title }}

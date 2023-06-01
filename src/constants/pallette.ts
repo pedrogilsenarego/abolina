@@ -6,7 +6,9 @@ export const Colors = {
   roastedYellow: "#e1d4ac",
   champagne: "#ece1c6",
   dirtyWhite: "#F4F6F7 ",
-  darkGrey: "#3b3b3b"
+  darkGrey: "#3b3b3b",
+  grey:"#e4e4e4",
+  brilho: "#ffe500"
 }
 
 export const Pallette = {
