@@ -1,5 +1,6 @@
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip'
 import { styled } from '@mui/system'
+import { Pallette } from '../../constants/pallette'
 
 interface Props {
   children: any
@@ -12,15 +13,16 @@ const ToolTipJ = ({ children, title, maxWidth }: Props) => {
     <Tooltip {...props} classes={{ popper: className }} />
   ))(({ theme }) => ({
     [`& .${tooltipClasses.tooltip}`]: {
-      backgroundColor: theme.palette.primary.light,
-      color: 'black',
+      backgroundColor: Pallette.primaryTransparent,
+      color: Pallette.constrast,
       maxWidth: maxWidth ?? 240,
       fontSize: '12px',
-      border: '1px solid #dadde9',
+      border: `0px solid ${Pallette.primaryTransparent}`,
       fontWeight: 'inherit',
     },
     [`& .${tooltipClasses.arrow}`]: {
-      color: 'lightGrey',
+      color: Pallette.primaryTransparent,
+
     },
   }))
   return (

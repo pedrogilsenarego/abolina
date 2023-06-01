@@ -11,6 +11,7 @@ export const Colors = {
 
 export const Pallette = {
   primary: Colors.tealc,
+  primaryTransparent: Colors.tealcTransparent,
   constrast: "white",
   text: Colors.darkGrey
 }

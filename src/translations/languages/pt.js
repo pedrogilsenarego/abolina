@@ -87,6 +87,7 @@ export const content = {
             quantity: "Quantidade",
             subtotal: "Subtotal",
             offer: "oferta",
+            offerTooltip: "Será gerado um, ou mais, código(s) de oferta",
             offerThisBook: "Apenas para Oferta",
             offerCode: "(Sem compras para o próprio)",
             readOnApp: "Leitura na App",

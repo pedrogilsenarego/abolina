@@ -20,7 +20,7 @@ interface Props {
 }
 
 const Element = ({ item, pos }: Props) => {
-  const [forOffer, setForOffer] = useState<boolean>(false);
+
   const dispatch = useDispatch();
   const vertical = useSelector<State, boolean>((state) => state.general.positionVertical)
   const handleUpdateSubtotal = (value: number) => {

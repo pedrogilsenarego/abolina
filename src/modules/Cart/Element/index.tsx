@@ -1,4 +1,4 @@
-import { Grid, IconButton, Tooltip, Typography } from "@mui/material";
+import { Grid, IconButton, Typography } from "@mui/material";
 import { CartProduct } from "../../../slicer/cart/cart.types";
 import { Colors, Pallette } from "../../../constants/pallette";
 import { AiOutlineClose } from "react-icons/ai";
@@ -13,6 +13,7 @@ import {
   deleteProductCart,
   updateCart,
 } from "../../../slicer/cart/cart.actions";
+import Tooltip from "../../../components/Tooltip/Tooltip"
 
 interface Props {
   item: CartProduct;
@@ -158,7 +159,7 @@ const Element = ({ item, pos }: Props) => {
             >
               {i18n.t("modules.cart.table.readOnApp")}
             </Typography>
-            <Tooltip arrow placement='top' title='teste'>
+            <Tooltip title='teste'>
               <IconButton>
                 <IoMdInformationCircleOutline
                   color={Pallette.primary}
@@ -211,7 +212,8 @@ const Element = ({ item, pos }: Props) => {
               >
                 {i18n.t("modules.cart.table.offer")}
               </Typography>
-              <Tooltip arrow placement='top' title='teste'>
+              <Tooltip
+                title={i18n.t("modules.cart.table.offerTooltip")}>
                 <IconButton>
                   <IoMdInformationCircleOutline
                     color={Pallette.primary}
