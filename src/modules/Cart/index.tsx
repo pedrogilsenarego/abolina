@@ -20,180 +20,360 @@ const Cart = () => {
   const navigate = useNavigate()
   const mobile = useMediaQuery(theme.breakpoints.down("sm"))
 
-  return (
-    <Container maxWidth='lg'>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div
-          onClick={() =>
-            navigate(ROUTE_PATHS.BOOKS)
-          }
-          style={{
-            display: "flex",
-            columnGap: "5px",
-            alignItems: "center",
-            position: "relative",
-          }}
-        >
-          <AiOutlineArrowLeft
-            color={Colors.tealc}
-            size='0.8rem'
-            style={{ position: "absolute", left: "-15px" }}
-          />
-          <Typography
+  const renderMobile = () => {
+    return (
+      <Container maxWidth='lg'>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div
+            onClick={() =>
+              navigate(ROUTE_PATHS.BOOKS)
+            }
             style={{
-              paddingTop: "5px",
-              textAlign: "start",
-              textTransform: "uppercase",
-              fontSize: "18px",
-              cursor: "pointer",
-            }}
-          >
-            {i18n.t("modules.books.book.backBooks")}
-          </Typography>
-        </div>
-        <div
-          onClick={() =>
-            navigate(ROUTE_PATHS.CHECKOUT)
-          }
-          style={{
-            display: "flex",
-            columnGap: "5px",
-            alignItems: "center",
-            position: "relative",
-          }}
-        >
+              display: "flex",
+              columnGap: "5px",
+              alignItems: "center",
 
-          <Typography
-            style={{
-              paddingTop: "5px",
-              textAlign: "start",
-              textTransform: "uppercase",
-              fontSize: "18px",
-              cursor: "pointer",
             }}
           >
-            {i18n.t("modules.cart.finalize")}
-          </Typography>
-          <AiOutlineArrowRight
-            color={Colors.tealc}
-            size='0.8rem'
-            style={{ position: "absolute", right: "-15px" }}
-          />
+            <AiOutlineArrowLeft
+              color={Colors.tealc}
+              size='0.8rem'
+
+            />
+            <Typography
+              style={{
+                paddingTop: "5px",
+                textAlign: "start",
+                textTransform: "uppercase",
+                fontSize: "14px",
+                cursor: "pointer",
+              }}
+            >
+              {i18n.t("modules.books.book.backBooks")}
+            </Typography>
+          </div>
+          <div
+            onClick={() =>
+              navigate(ROUTE_PATHS.CHECKOUT)
+            }
+            style={{
+              display: "flex",
+              columnGap: "5px",
+              alignItems: "center",
+
+            }}
+          >
+
+            <Typography
+              style={{
+                paddingTop: "5px",
+                textAlign: "start",
+                textTransform: "uppercase",
+                fontSize: "14px",
+                cursor: "pointer",
+              }}
+            >
+              {i18n.t("modules.cart.finalize")}
+            </Typography>
+            <AiOutlineArrowRight
+              color={Colors.tealc}
+              size='0.8rem'
+
+            />
+          </div>
         </div>
-      </div>
-      <Grid container style={{ marginTop: "40px" }}>
-        <Grid
-          item
-          xs={1}
-          style={{ borderBottom: `solid 2px ${Colors.tealc}` }}
-        ></Grid>
-        <Grid item xs={5}>
-          <div
-            style={{
-              display: "flex",
-              borderBottom: `solid 2px ${Colors.tealc}`,
-              width: "100%",
-            }}
-          >
-            <Typography
-              style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
+        <Grid container style={{ marginTop: "40px" }}>
+          <Grid
+            item
+            xs={1}
+            style={{ borderBottom: `solid 2px ${Colors.tealc}` }}
+          ></Grid>
+          <Grid item xs={5}>
+            <div
+              style={{
+                display: "flex",
+                borderBottom: `solid 2px ${Colors.tealc}`,
+                width: "100%",
+              }}
             >
-              {i18n.t("modules.cart.table.product")}
-            </Typography>
-          </div>
-        </Grid>
-        <Grid item xs={2}>
-          <div
-            style={{
-              display: "flex",
-              borderBottom: `solid 2px ${Colors.tealc}`,
-              width: "100%",
-            }}
-          >
-            <Typography
-              style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
+              <Typography
+                style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
+              >
+                {i18n.t("modules.cart.table.product")}
+              </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={2}>
+            <div
+              style={{
+                display: "flex",
+                borderBottom: `solid 2px ${Colors.tealc}`,
+                width: "100%",
+              }}
             >
-              {i18n.t("modules.cart.table.price")}
-            </Typography>
-          </div>
-        </Grid>
-        <Grid item xs={2}>
-          <div
-            style={{
-              display: "flex",
-              borderBottom: `solid 2px ${Colors.tealc}`,
-              width: "100%",
-            }}
-          >
-            <Typography
-              style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
+              <Typography
+                style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
+              >
+                {i18n.t("modules.cart.table.price")}
+              </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={2}>
+            <div
+              style={{
+                display: "flex",
+                borderBottom: `solid 2px ${Colors.tealc}`,
+                width: "100%",
+              }}
             >
-              {i18n.t("modules.cart.table.quantity")}
-            </Typography>
-          </div>
-        </Grid>
-        <Grid item xs={2}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "end",
-              borderBottom: `solid 2px ${Colors.tealc}`,
-              width: "100%",
-            }}
-          >
-            <Typography
-              style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
+              <Typography
+                style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
+              >
+                {i18n.t("modules.cart.table.quantity")}
+              </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={2}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "end",
+                borderBottom: `solid 2px ${Colors.tealc}`,
+                width: "100%",
+              }}
             >
-              {i18n.t("modules.cart.table.subtotal")}
-            </Typography>
-          </div>
+              <Typography
+                style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
+              >
+                {i18n.t("modules.cart.table.subtotal")}
+              </Typography>
+            </div>
+          </Grid>
         </Grid>
-      </Grid>
-      {cartItems?.map((item, pos) => {
-        return <Element item={item} pos={pos} />;
-      })}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginTop: "50px",
-        }}
-      >
+        {cartItems?.map((item, pos) => {
+          return <Element item={item} pos={pos} />;
+        })}
         <div
-          style={{ display: "flex", columnGap: "20px", alignItems: "center" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            rowGap: "30px",
+
+            marginTop: "50px",
+          }}
         >
-          <TextField label={i18n.t("modules.cart.discountCuppon")} />
-          <Button label={i18n.t("modules.cart.applyDiscount")} />
-        </div>
-        <div style={{ display: "flex", columnGap: "20px" }}>
-          <Typography
-            style={{
+          <div
+            style={{ display: "flex", columnGap: "30px", alignItems: "center", justifyContent: "end" }}
+          >
+            <TextField label={i18n.t("modules.cart.discountCuppon")} />
+            <Button label={i18n.t("modules.cart.applyDiscount")} />
+          </div>
+          <div style={{ display: "flex", columnGap: "20px", justifyContent: "end" }}>
+            <Typography
+              style={{
+                fontSize: "18px",
+                fontWeight: 800,
+                color: Colors.tealc,
+                marginBottom: "16px",
+                textAlign: "right",
+                borderBottom: `solid 2px ${Colors.tealc}`
+              }}
+            >
+              {i18n.t("modules.cart.total")}
+            </Typography>
+            <Typography style={{
               fontSize: "18px",
               fontWeight: 800,
-
               color: Colors.tealc,
 
-              marginBottom: "16px",
-              borderBottom: `solid 2px ${Colors.tealc}`
+            }}>
+              €{getTotalValue(cartItems)}
+            </Typography>
+          </div>
+        </div>
+        <div style={{ width: "100%", display: "flex", justifyContent: "end", marginTop: "30px" }}>
+          <Button onClick={() => navigate(ROUTE_PATHS.CHECKOUT)} label={i18n.t("modules.cart.finalize")} />
+        </div>
+      </Container>)
+  }
+
+  const renderLaptop = () => {
+    return (
+      <Container maxWidth='lg'>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div
+            onClick={() =>
+              navigate(ROUTE_PATHS.BOOKS)
+            }
+            style={{
+              display: "flex",
+              columnGap: "5px",
+              alignItems: "center",
+              position: "relative",
             }}
           >
-            {i18n.t("modules.cart.total")}
-          </Typography>
-          <Typography style={{
-            fontSize: "18px",
-            fontWeight: 800,
-            color: Colors.tealc,
+            <AiOutlineArrowLeft
+              color={Colors.tealc}
+              size='0.8rem'
+              style={{ position: "absolute", left: "-15px" }}
+            />
+            <Typography
+              style={{
+                paddingTop: "5px",
+                textAlign: "start",
+                textTransform: "uppercase",
+                fontSize: "18px",
+                cursor: "pointer",
+              }}
+            >
+              {i18n.t("modules.books.book.backBooks")}
+            </Typography>
+          </div>
+          <div
+            onClick={() =>
+              navigate(ROUTE_PATHS.CHECKOUT)
+            }
+            style={{
+              display: "flex",
+              columnGap: "5px",
+              alignItems: "center",
+              position: "relative",
+            }}
+          >
 
-          }}>
-            €{getTotalValue(cartItems)}
-          </Typography>
+            <Typography
+              style={{
+                paddingTop: "5px",
+                textAlign: "start",
+                textTransform: "uppercase",
+                fontSize: "18px",
+                cursor: "pointer",
+              }}
+            >
+              {i18n.t("modules.cart.finalize")}
+            </Typography>
+            <AiOutlineArrowRight
+              color={Colors.tealc}
+              size='0.8rem'
+              style={{ position: "absolute", right: "-15px" }}
+            />
+          </div>
         </div>
-      </div>
-      <div style={{ width: "100%", display: "flex", justifyContent: "end", marginTop: "100px" }}>
-        <Button onClick={() => navigate(ROUTE_PATHS.CHECKOUT)} label={i18n.t("modules.cart.finalize")} />
-      </div>
-    </Container>
-  );
+        <Grid container style={{ marginTop: "40px" }}>
+          <Grid
+            item
+            xs={1}
+            style={{ borderBottom: `solid 2px ${Colors.tealc}` }}
+          ></Grid>
+          <Grid item xs={5}>
+            <div
+              style={{
+                display: "flex",
+                borderBottom: `solid 2px ${Colors.tealc}`,
+                width: "100%",
+              }}
+            >
+              <Typography
+                style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
+              >
+                {i18n.t("modules.cart.table.product")}
+              </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={2}>
+            <div
+              style={{
+                display: "flex",
+                borderBottom: `solid 2px ${Colors.tealc}`,
+                width: "100%",
+              }}
+            >
+              <Typography
+                style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
+              >
+                {i18n.t("modules.cart.table.price")}
+              </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={2}>
+            <div
+              style={{
+                display: "flex",
+                borderBottom: `solid 2px ${Colors.tealc}`,
+                width: "100%",
+              }}
+            >
+              <Typography
+                style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
+              >
+                {i18n.t("modules.cart.table.quantity")}
+              </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={2}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "end",
+                borderBottom: `solid 2px ${Colors.tealc}`,
+                width: "100%",
+              }}
+            >
+              <Typography
+                style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
+              >
+                {i18n.t("modules.cart.table.subtotal")}
+              </Typography>
+            </div>
+          </Grid>
+        </Grid>
+        {cartItems?.map((item, pos) => {
+          return <Element item={item} pos={pos} />;
+        })}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginTop: "50px",
+          }}
+        >
+          <div
+            style={{ display: "flex", columnGap: "20px", alignItems: "center" }}
+          >
+            <TextField label={i18n.t("modules.cart.discountCuppon")} />
+            <Button label={i18n.t("modules.cart.applyDiscount")} />
+          </div>
+          <div style={{ display: "flex", columnGap: "20px" }}>
+            <Typography
+              style={{
+                fontSize: "18px",
+                fontWeight: 800,
+
+                color: Colors.tealc,
+
+                marginBottom: "16px",
+                borderBottom: `solid 2px ${Colors.tealc}`
+              }}
+            >
+              {i18n.t("modules.cart.total")}
+            </Typography>
+            <Typography style={{
+              fontSize: "18px",
+              fontWeight: 800,
+              color: Colors.tealc,
+
+            }}>
+              €{getTotalValue(cartItems)}
+            </Typography>
+          </div>
+        </div>
+        <div style={{ width: "100%", display: "flex", justifyContent: "end", marginTop: "100px" }}>
+          <Button onClick={() => navigate(ROUTE_PATHS.CHECKOUT)} label={i18n.t("modules.cart.finalize")} />
+        </div>
+      </Container>)
+  }
+
+  return mobile ? renderMobile() : renderLaptop()
 };
 
 export default Cart;
