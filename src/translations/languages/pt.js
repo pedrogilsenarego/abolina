@@ -29,12 +29,12 @@ export const content = {
         audacity: "Audácia",
       },
       menuBar: {
-        home: "INÍCIO",
-        books: "LIVROS",
-        about: "SOBRE NÓS",
-        contacts: "CONTACTO",
-        account: "A MINHA CONTA",
-        cart: "CARRINHO",
+        home: "Início",
+        books: "Livros",
+        about: "Sobre Nós",
+        contacts: "Contato",
+        account: "A Minha Conta",
+        cart: "Carrinho",
         language: "Língua",
         instagram: "Siga-nos",
         userPopover: {

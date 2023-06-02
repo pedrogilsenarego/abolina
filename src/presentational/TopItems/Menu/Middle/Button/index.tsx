@@ -51,6 +51,7 @@ const Button = ({
           cursor: "pointer",
           fontSize: mobile ? "20px" : "18px",
           fontWeight: 700,
+          textTransform: mobile ? "unset" : "uppercase",
           paddingTop: vertical ? "5px" : "0px",
           paddingBottom: "5px",
         }}
