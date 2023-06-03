@@ -13,7 +13,11 @@ const TopItems = () => {
     const handleScroll = () => {
       let currentScrollPosition = window.pageYOffset;
       if (currentScrollPosition > previousScrollPosition) {
-        setNavbarVisible(false);
+        if (currentScrollPosition < (vertical ? 80 : 120)) {
+          setNavbarVisible(true);
+        } else {
+          setNavbarVisible(false);
+        }
       } else {
         setNavbarVisible(true);
       }
@@ -22,6 +26,7 @@ const TopItems = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
 
   return (
     <div

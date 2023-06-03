@@ -169,7 +169,7 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
             >
               {mobile && (
                 <Box
-                  width='20%'
+
                   style={{
                     position: "absolute",
                     top: -24,
