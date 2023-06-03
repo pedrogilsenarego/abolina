@@ -103,16 +103,17 @@ const BookComponent = ({ book }: Props) => {
               justifyContent: "center",
               alignItems: "center",
               borderRadius: "50%",
-              padding: mobile ? "5px" : "-2px",
-              height: mobile ? "35px" : "45px",
-              aspectRatio: 1,
+              padding: mobile ? "-2px" : "-2px",
+              height: mobile ? "30px" : "45px",
+              width: mobile ? "30px" : "45px",
+
               backgroundColor: Colors.tealc,
             }}
           >
             <Typography
               style={{
                 color: "white",
-                fontSize: mobile ? "14px" : "18px",
+                fontSize: mobile ? "12px" : "18px",
               }}
             >
               {book?.discount}%
