@@ -103,7 +103,13 @@ export function* signUpUser({ payload: { name, email, password } }) {
       )
     );
   } catch (err) {
-    yield put(updateFailNotification(i18n.t("notifications.fail.newUser")));
+    yield put(
+      updateFailNotification(
+        err.code === "auth/email-already-in-use"
+          ? i18n.t("notifications.fail.emailInUse")
+          : err.message || i18n.t("notifications.fail.newUser")
+      )
+    );
   }
 }
 

@@ -245,7 +245,8 @@ export const content = {
           newCarrousselImage: "New image failed to be added to the carroussell",
           newBookStatusChanged: "Book status failed to change",
           newUser: "You were not registered this time",
-
+          emailInUse:
+            "This email is already in use, please recover the password",
           loginUser: "Something went wrong",
           emailNotVerified:
             "Please verify first your email to login with your account",

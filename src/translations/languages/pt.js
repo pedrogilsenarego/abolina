@@ -242,6 +242,8 @@ export const content = {
           updateCarroussell: "O carrousel não foi actualizado",
           newCarrousselImage: "Não foi adicionada uma nova imagem ao carrousel",
           newBookStatusChanged: "Estado do livro não foi alterado",
+          emailInUse:
+            "Este e-mail já se encontra em uso, por favor recuperar password",
           newUser: "Alguma coisa correu mal",
 
           emailNotVerified:
