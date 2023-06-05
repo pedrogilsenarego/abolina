@@ -106,6 +106,7 @@ export const content = {
           name: "Nome*",
           createAccount: "Criar Conta",
           acceptTerms: "Aceitar os termos e condições",
+          retrievePassword: "Recuperar a Palavra-passe",
         },
         home: {
           mainTextBtn: "LEIA MAIS",
@@ -235,7 +236,9 @@ export const content = {
             "Por favor visite o seu email para verificar o seu e-mail",
           loginUser: "Esta logado",
           addedCart: "Livro adicionado ao carrinho",
+          recoverPassword: "Um e-mail foi enviado para recuperar a password",
           successBuy: "Os items foram pagos com sucesso",
+          logout: "A sua sessão foi terminada",
         },
         fail: {
           newBook: "Livro não foi adicionado, algum erro ocorreu",
@@ -245,7 +248,7 @@ export const content = {
           emailInUse:
             "Este e-mail já se encontra em uso, por favor recuperar password",
           newUser: "Alguma coisa correu mal",
-
+          recoverPassword: "Existiu um problema a recuperar a password",
           emailNotVerified:
             "Por favor verifique primeiro a sua conta antes de fazer o login",
         },

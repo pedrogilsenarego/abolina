@@ -5,9 +5,10 @@ import { Colors } from "../../constants/pallette";
 import { useState } from "react";
 import Enter from "./Enter";
 import Register from "./Register";
+import RecoverPwd from "./RecoverPwd";
 
 const Login = () => {
-  const [mode, setMode] = useState<"enter" | "register">("enter");
+  const [mode, setMode] = useState<"enter" | "register" | "recoverPwd">("enter");
 
   return (
     <div
@@ -61,7 +62,9 @@ const Login = () => {
           {i18n.t("modules.login.register")}
         </Typography>
       </Box>
-      {mode === "enter" ? <Enter /> : <Register />}
+      {mode === "enter" ? <Enter /> : mode === "register" ? <Register /> : <RecoverPwd />}
+      {mode !== "recoverPwd" && (<Typography onClick={() => setMode("recoverPwd")} style={{ cursor: "pointer" }}>{i18n.t("modules.login.retrievePassword")}</Typography>)}
+
     </div>
   );
 };

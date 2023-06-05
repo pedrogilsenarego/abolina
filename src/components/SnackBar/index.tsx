@@ -6,6 +6,7 @@ import { BiErrorCircle } from "react-icons/bi";
 import { GiCheckMark } from "react-icons/gi";
 import * as Styled from "./styles";
 import { Typography } from "@mui/material";
+import { Colors } from "../../constants/pallette";
 
 interface SnackbarState {
   open: boolean;
@@ -20,9 +21,9 @@ const INITIALSTATE = {
   open: false,
   message: "",
   type: null,
-  icon: <BiErrorCircle />,
-  color: "",
-  bgcolor: "",
+  icon: null,
+  color: "white",
+  bgcolor: Colors.darkGrey,
 };
 
 const DirectionSnackbar = () => {
@@ -42,38 +43,32 @@ const DirectionSnackbar = () => {
       case "information":
         return {
           icon: <BiErrorCircle />,
-          color: "white",
-          bgcolor: "orange",
+
         };
       case "fail":
         return {
-          icon: <BiErrorCircle />,
-          color: "white",
-          bgcolor: "red",
+          icon: <BiErrorCircle color="red" size="1.4rem" />,
+
         };
       case "success":
         return {
-          icon: <GiCheckMark />,
-          color: "white",
-          bgcolor: "green",
+          icon: <GiCheckMark color="green" size="1.4rem" />,
+
         };
       default:
         return {
-          icon: <GiCheckMark />,
-          color: "white",
-          bgcolor: "orange",
+          icon: <GiCheckMark color="green" size="1.4rem" />,
+
         };
     }
   };
 
   React.useEffect(() => {
     if (notificationType !== null) {
-      const { color, icon, bgcolor } = getSnackbarElements(notificationType);
+      const { icon } = getSnackbarElements(notificationType);
       setSnackbar({
         ...snackbar,
         open: true,
-        color: color,
-        bgcolor: bgcolor,
         icon: icon,
         message: notificationMessage,
         type: notificationType,
@@ -96,8 +91,8 @@ const DirectionSnackbar = () => {
         autoHideDuration={4000}
       >
         <Styled.Box bgcolor={snackbar.bgcolor}>
-          <Typography color="white">{snackbar.icon} {snackbar.message}</Typography>
-
+          {snackbar.icon}
+          <Typography color="white">{snackbar.message}</Typography>
         </Styled.Box>
       </Snackbar>
     </>

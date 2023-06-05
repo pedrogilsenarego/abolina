@@ -35,3 +35,8 @@ export const emailSignInStart = (userCredentials: {email:string, password:string
   type: userTypes.EMAIL_SIGN_IN_START,
   payload: userCredentials,
 });
+
+export const recoverPassword = (email:string) => ({
+  type: userTypes.RECOVER_PASSWORD,
+  payload: email,
+});

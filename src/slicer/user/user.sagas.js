@@ -2,7 +2,7 @@ import { all, call, takeLatest, put } from "redux-saga/effects";
 import { userTypes } from "./user.types";
 import { signInSuccess, signOutUserSuccess } from "./user.actions";
 import { FacebookProvider, GoogleProvider, auth } from "../../firebase/utils";
-import { handleUserProfile } from "./user.helpers";
+import { handleUserProfile, handleRecoverPassword } from "./user.helpers";
 import { getCurrentUser } from "../../firebase/utils";
 import {
   updateFailNotification,
@@ -32,6 +32,9 @@ export function* googleSignIn() {
   try {
     const { user } = yield auth.signInWithPopup(GoogleProvider);
     yield getSnapshotFromUserAuth(user);
+    yield put(
+      updateSuccessNotification(i18n.t("notifications.success.loginUser"))
+    );
   } catch (err) {
     console.log(err);
   }
@@ -45,6 +48,9 @@ export function* facebookSignIn() {
   try {
     const { user } = yield auth.signInWithPopup(FacebookProvider);
     yield getSnapshotFromUserAuth(user);
+    yield put(
+      updateSuccessNotification(i18n.t("notifications.success.loginUser"))
+    );
   } catch (err) {
     console.log(err);
   }
@@ -58,6 +64,9 @@ export function* signOutUser() {
   try {
     yield auth.signOut();
     yield put(signOutUserSuccess());
+    yield put(
+      updateSuccessNotification(i18n.t("notifications.success.logout"))
+    );
   } catch (err) {
     // console.log(err);
   }
@@ -145,8 +154,32 @@ export function* onEmailSignInStart() {
   yield takeLatest(userTypes.EMAIL_SIGN_IN_START, emailSignIn);
 }
 
+export function* recoverPassword(action) {
+  try {
+    const { payload } = action;
+    yield handleRecoverPassword(payload);
+    yield put(
+      updateSuccessNotification(i18n.t("notifications.success.recoverPassword"))
+    );
+  } catch (err) {
+    console.log(err);
+    if (err) yield put(updateFailNotification(`${err.message}`));
+    else
+      yield put(
+        updateFailNotification(
+          `${i18n.t("notifications.fail.recoverPassword")}`
+        )
+      );
+  }
+}
+
+export function* onRecoverPassword() {
+  yield takeLatest(userTypes.RECOVER_PASSWORD, recoverPassword);
+}
+
 export default function* userSagas() {
   yield all([
+    call(onRecoverPassword),
     call(onGoogleSignInStart),
     call(onFacebookSignInStart),
     call(onSignOutUserStart),

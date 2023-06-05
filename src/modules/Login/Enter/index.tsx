@@ -82,6 +82,8 @@ const Enter = () => {
         <div style={{ height: "1px", width: "45%", backgroundColor: "#00000066" }} />
       </div>
       <EmailPass />
+
+
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { firestore } from "../../firebase/utils";
+import { firestore, auth } from "../../firebase/utils";
 
 export const handleUserProfile = async ({ userAuth, additionalData }) => {
   if (!userAuth) return;
@@ -26,4 +26,17 @@ export const handleUserProfile = async ({ userAuth, additionalData }) => {
   }
 
   return userRef;
+};
+
+export const handleRecoverPassword = async (email) => {
+  return new Promise((resolve, reject) => {
+    auth
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        resolve();
+      })
+      .catch((error) => {
+        reject(error.message);
+      });
+  });
 };
