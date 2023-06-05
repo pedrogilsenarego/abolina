@@ -105,10 +105,10 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                     backgroundColor: Colors.tealc,
                     marginTop: "20px",
                     position: "absolute",
-                    padding: "5px 12px 5px 12px",
+                    padding: "8px",
                     borderRadius: "3px",
                     right: "-5px",
-                    width: "calc(100% + 5px)",
+
                     zIndex: 900,
                     cursor: "pointer",
                     alignItems: "center",
@@ -134,6 +134,8 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                     backgroundColor: Colors.tealc,
                     position: "absolute",
                     top: "20%",
+                    zIndex: 900,
+                    right: "-5px",
                     padding: "8px",
                     borderRadius: "3px",
                     cursor: "pointer",
@@ -177,6 +179,7 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                     zIndex: 1000,
                     display: "flex",
                     columnGap: "15px",
+
                   }}
                 >
                   <Box
@@ -240,7 +243,7 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                     zIndex: 1000,
                     backgroundColor: Colors.tealc,
                     top: "88%",
-                    left: vertical ? "-5px" : "-50px",
+                    left: vertical ? "-5px" : "-5px",
                     padding: "3px 20px 3px 20px",
                     borderRadius: "3px",
                     boxShadow: "1px 1px 1px #00000066",
