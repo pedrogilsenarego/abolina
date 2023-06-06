@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../slicer/types";
-import { Book } from "../../slicer/books/books.types";
+import { Book, Collection } from "../../slicer/books/books.types";
 import { useEffect, useState } from "react";
 import { fetchBooks } from "../../slicer/books/books.actions";
 import { organizeBooks } from "./utilsBooks";
@@ -8,6 +8,8 @@ import { addProductToCart } from "../../slicer/cart/cart.actions";
 import { updateSuccessNotification } from "../../slicer/general/general.actions";
 import { i18n } from "../../translations/i18n";
 import { useLocation } from "react-router";
+import { useQuery } from "react-query";
+import { fetchCollectionByName } from "../../services/books/booksServices";
 
 const useBooks = () => {
   const location = useLocation()
@@ -41,6 +43,19 @@ const useBooks = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  
+
+  const {
+    isLoading: loadingCollectionData,
+    error: errorCollectionData,
+    data: collectionData,
+  } = useQuery<Collection>(["collection", collection], fetchCollectionByName, {
+    enabled: collection!=="",
+    staleTime: 600000, // 600 seconds (in milliseconds)
+  });
+
+  
+
   return {
     filteredBooks,
     lang,
@@ -48,6 +63,7 @@ const useBooks = () => {
     handleAddToCart,
     setCollection,
     collection,
+    collectionData
   };
 };
 

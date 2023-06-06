@@ -83,7 +83,7 @@ export interface Collection {
   titleEN: string;
   resume: string;
   resumeEN: string;
-  caracteristicis: string[];
+  caracteristics: string[];
   documentID:string
 }
 

@@ -3,21 +3,21 @@ import { Colors, Pallette } from "../../constants/pallette";
 
 interface Props {
   label: string;
-  disabled?: boolean;
+  inverted?: boolean;
 }
 
-const Tag = ({ label, disabled }: Props) => {
+const Tag = ({ label, inverted }: Props) => {
   return (
     <div
       style={{
         padding: "5px 10px 5px 10px",
-        backgroundColor: disabled ? "transparent" : Pallette.primary,
-        border: disabled ? `dashed 2px ${Colors.darkGrey}` : undefined,
+        backgroundColor: inverted ? "transparent" : Pallette.primary,
+        border: inverted ? `dashed 2px ${Colors.darkGrey}` : undefined,
         borderRadius: "30px",
 
       }}
     >
-      <Typography style={{ color: disabled ? "inherit" : Pallette.constrast }}>{label}</Typography>
+      <Typography style={{ color: inverted ? "inherit" : Pallette.constrast }}>{label}</Typography>
 
     </div>
   );

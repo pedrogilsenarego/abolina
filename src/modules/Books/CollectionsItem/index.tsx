@@ -2,17 +2,18 @@ import { Typography } from "@mui/material";
 import { Collection } from "../utilsBooks";
 import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
 import { Colors } from "../../../constants/pallette";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ROUTE_PATHS } from "../../../constants/routes";
 import { useNavigate } from "react-router";
 
 interface Props {
   pos: number;
   item: Collection;
+  collection: string;
   setCollection: (collection: string) => void;
 }
 
-const CollectionsItem = ({ pos, item, setCollection }: Props) => {
+const CollectionsItem = ({ pos, item, setCollection, collection }: Props) => {
   const [open, setOpen] = useState<boolean>(false);
   const navigate = useNavigate();
 
@@ -22,6 +23,11 @@ const CollectionsItem = ({ pos, item, setCollection }: Props) => {
       setCollection("");
     } else setCollection(title);
   };
+
+  useEffect(() => {
+    if (collection !== item.name) setOpen(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [collection])
 
   return (
     <div style={{ width: "100%" }}>

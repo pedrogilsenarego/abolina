@@ -1,12 +1,4 @@
-
-import {
-
-  Container,
-  Grid,
-
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Container, Grid, useMediaQuery, useTheme } from "@mui/material";
 import { Title } from "../../styles";
 import { i18n } from "../../translations/i18n";
 import useBooks from "./useBooks";
@@ -16,9 +8,9 @@ import { Book } from "../../slicer/books/books.types";
 import { useSelector } from "react-redux";
 import { State } from "../../slicer/types";
 import BookComponent from "./Book";
+import Tag from "../../components/Tags";
 
 const Books = () => {
-
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
   const vertical = useSelector<State, boolean>(
@@ -29,6 +21,7 @@ const Books = () => {
     collections,
     setCollection,
     collection,
+    collectionData,
   } = useBooks();
 
   return (
@@ -37,7 +30,7 @@ const Books = () => {
         <Grid
           container
           justifyContent='center'
-          columnSpacing="50px"
+          columnSpacing='50px'
           style={{
             marginTop: vertical ? "20px" : "60px",
             paddingLeft: vertical ? "8px" : "0px",
@@ -45,9 +38,11 @@ const Books = () => {
           }}
         >
           {!vertical && (
-            <Grid container item xs={2.5} >
+            <Grid container item xs={2.5}>
               <div style={{ width: "100%" }}>
-                <Title style={{ textDecoration: "underline", textAlign: "left" }}>
+                <Title
+                  style={{ textDecoration: "underline", textAlign: "left" }}
+                >
                   {i18n.t("modules.books.collections")}
                 </Title>
                 <div
@@ -58,8 +53,6 @@ const Books = () => {
                     flexDirection: "column",
                     alignItems: "end",
                     rowGap: "10px",
-
-
                   }}
                 >
                   {collections.map((item, pos) => {
@@ -67,6 +60,7 @@ const Books = () => {
                       <CollectionsItem
                         pos={pos}
                         item={item}
+                        collection={collection}
                         setCollection={setCollection}
                       />
                     );
@@ -83,13 +77,27 @@ const Books = () => {
             item
             xs={vertical ? 12 : 7}
           >
-            <Title style={{}}>{collection}</Title>
-
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                rowGap: "5px",
+              }}
+            >
+              <Title style={{}}>{collection}</Title>
+              <div style={{ display: "flex", columnGap: "10px" }}>
+                {collectionData?.caracteristics?.map(
+                  (item: string, pos: number) => {
+                    return <Tag inverted label={item} key={pos} />;
+                  }
+                )}
+              </div>
+            </div>
             <Grid
               container
               columnSpacing={mobile ? "10px" : "20px"}
               rowSpacing={mobile ? "10px" : "20px"}
-              style={{ marginTop: "20px" }}
+              style={{ marginTop: "1px" }}
             >
               {filteredBooks?.map((book: Book, pos: number) => {
                 return (
