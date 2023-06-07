@@ -3,11 +3,10 @@ import { i18n } from "../../translations/i18n";
 
 import { Colors } from "../../constants/pallette";
 import { useState } from "react";
-import Enter from "./Enter";
-import Register from "./Register";
-import RecoverPwd from "./RecoverPwd";
 
-const Login = () => {
+
+
+const ClientManagement = () => {
   const [mode, setMode] = useState<"enter" | "register" | "recoverPwd">("enter");
 
   return (
@@ -31,7 +30,7 @@ const Login = () => {
           color: Colors.tealc,
         }}
       >
-        {i18n.t("modules.login.title")}
+        {i18n.t("modules.clientManagement.title")}
       </Typography>
       <Box
         style={{ display: "flex", columnGap: "10px", justifyContent: "center" }}
@@ -62,11 +61,10 @@ const Login = () => {
           {i18n.t("modules.login.register")}
         </Typography>
       </Box>
-      {mode === "enter" ? <Enter /> : mode === "register" ? <Register /> : <RecoverPwd />}
-      {mode !== "recoverPwd" && (<Typography onClick={() => setMode("recoverPwd")} style={{ cursor: "pointer" }}>{i18n.t("modules.login.retrievePassword")}</Typography>)}
+
 
     </div>
   );
 };
 
-export default Login;
+export default ClientManagement;

@@ -29,6 +29,7 @@ const UserPopoverContent = ({ handleClose }: any) => {
       }}
     >
       <Typography
+        onClick={() => navigate(ROUTE_PATHS.CLIENT_MANAGEMENT)}
         style={{ cursor: "pointer", color: Colors.tealc, fontWeight: 800, textTransform: "uppercase" }}
       >
         {i18n.t("menuBar.userPopover.user")}

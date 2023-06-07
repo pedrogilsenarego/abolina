@@ -1,8 +1,6 @@
 
-cart telemovel
-
-quando se entra em livro especifico tem o fantasma do livro antes,
-livro especifico euro lado esq
-
-laura,
-pensar a questao das ofertas, 
+recuperar password, por baixo da pwd e letra mais pequena bold
+quando se tenta criar conta que ja existe não deveria sair da pagina
+esta logado - sessão iniciada
+mudar a mensagem para password errada
+tooltip aumentar tamanho

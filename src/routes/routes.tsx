@@ -31,6 +31,7 @@ const Login = lazyWithRetryAndLoader(() => import("../modules/Login"));
 const Cart = lazyWithRetryAndLoader(() => import("../modules/Cart"));
 const Checkout = lazyWithRetryAndLoader(() => import("../modules/Checkout"));
 const BuySuccess = lazyWithRetryAndLoader(() => import("../modules/BuySuccess"));
+const ClientManagement = lazyWithRetryAndLoader(() => import("../modules/ClientManagement"));
 
 export const routes: AppRoute[] = [
   {
@@ -71,6 +72,16 @@ export const routes: AppRoute[] = [
       <WithAuth noAuth>
         <MainLayout noUpScroll>
           <Login />
+        </MainLayout>
+      </WithAuth>
+    ),
+  },
+  {
+    path: ROUTE_PATHS.CLIENT_MANAGEMENT,
+    component: (
+      <WithAuth>
+        <MainLayout noUpScroll>
+          <ClientManagement />
         </MainLayout>
       </WithAuth>
     ),

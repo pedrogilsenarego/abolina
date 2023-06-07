@@ -167,7 +167,12 @@ const Middle = ({ setOpenDrawer }: Props) => {
               width: "100%",
             }}
           >
-            <Typography style={{ fontSize: "20px" }}>
+            <Typography
+              onClick={() => {
+                setOpenDrawer(false);
+                navigate(ROUTE_PATHS.CLIENT_MANAGEMENT);
+              }}
+              style={{ fontSize: "20px" }}>
               {i18n.t("menuBar.userPopover.user")}
             </Typography>
             <Typography

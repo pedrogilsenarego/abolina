@@ -12,6 +12,7 @@ export const ROUTE_PATHS = {
   ADMIN_COLLECTION_CREATE: '/admin/manage-carrousell/create',
   ADMIN_COLLECTIONS_EDIT:"/admin/collections/edit/:id",
   LOGIN:'/login',
+  CLIENT_MANAGEMENT:"/client-management",
   CART:"/cart",
   CHECKOUT:"/checkout",
   BUY_SUCCESS:"/buy-success",

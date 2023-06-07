@@ -38,7 +38,7 @@ export const content = {
         language: "Língua",
         instagram: "Siga-nos",
         userPopover: {
-          user: "Gerir Utilizador",
+          user: "Área de Cliente",
           logout: "Terminar Sessão",
           admin: "Admin",
           login: "Iniciar Sessão",
@@ -134,6 +134,9 @@ export const content = {
           forthTitle: "PORQUÊ A AUDÁCIA?",
           forth:
             "Por que sabemos que o edifício da existência se constrói abraçando desafios, vencendo dificuldades e medos, com vista à construção de um projeto de vida com sentido.",
+        },
+        clientManagement: {
+          title: "Área de Cliente",
         },
         books: {
           collections: "Coleções",
@@ -245,8 +248,7 @@ export const content = {
           updateCarroussell: "O carrousel não foi actualizado",
           newCarrousselImage: "Não foi adicionada uma nova imagem ao carrousel",
           newBookStatusChanged: "Estado do livro não foi alterado",
-          emailInUse:
-            "Este e-mail já se encontra em uso, por favor recuperar password",
+          emailInUse: "Este e-mail já se encontra em uso",
           newUser: "Alguma coisa correu mal",
           recoverPassword: "Existiu um problema a recuperar a password",
           emailNotVerified:

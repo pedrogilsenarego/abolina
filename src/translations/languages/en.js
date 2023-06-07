@@ -227,6 +227,9 @@ export const content = {
             },
           },
         },
+        clientManagement: {
+          title: "Client Management",
+        },
       },
       notifications: {
         success: {
@@ -248,8 +251,7 @@ export const content = {
           newCarrousselImage: "New image failed to be added to the carroussell",
           newBookStatusChanged: "Book status failed to change",
           newUser: "You were not registered this time",
-          emailInUse:
-            "This email is already in use, please recover the password",
+          emailInUseCreateAccount: "This email is already in use",
           loginUser: "Something went wrong",
           recoverPassword: "There was a problem recovering the password",
           emailNotVerified:
