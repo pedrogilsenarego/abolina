@@ -1,11 +1,10 @@
 import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
-import TextField from "../../../../components/Inputs/TextFieldForm";
-import { i18n } from "../../../../translations/i18n";
-import Button from "../../../../components/Button";
-import { Colors } from "../../../../constants/pallette";
+import TextField from "../../../components/Inputs/TextFieldForm";
+import { i18n } from "../../../translations/i18n";
+import Button from "../../../components/Button";
 import { useDispatch } from "react-redux";
-import { emailSignInStart } from "../../../../slicer/user/user.actions";
+import { emailSignInStart } from "../../../slicer/user/user.actions";
 
 interface FORM {
   email: string;
@@ -13,7 +12,7 @@ interface FORM {
 
 }
 
-const EmailPass = () => {
+const GeneralData = () => {
   const INITIAL_STATE: FORM = {
     email: "",
     password: "",
@@ -54,4 +53,4 @@ const EmailPass = () => {
   );
 };
 
-export default EmailPass;
+export default GeneralData;

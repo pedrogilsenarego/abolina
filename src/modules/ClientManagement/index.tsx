@@ -1,69 +1,63 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Card, Container, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { i18n } from "../../translations/i18n";
 
 import { Colors } from "../../constants/pallette";
 import { useState } from "react";
+import GeneralData from "./GeneralData";
 
 
 
 const ClientManagement = () => {
-  const [mode, setMode] = useState<"enter" | "register" | "recoverPwd">("enter");
+  const [mode, setMode] = useState<"invoiceData" | "generalData">("generalData");
+  const theme = useTheme()
+  const mobile = useMediaQuery(theme.breakpoints.down("sm"))
+
+  const renderMode = () => {
+    switch (mode) {
+      case "invoiceData": return <GeneralData />
+      default: return <GeneralData />
+    }
+  }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        rowGap: "40px",
-        paddingLeft: "16px",
-        paddingRight: "16px",
-
-      }}
-    >
-      <Typography
+    <Container>
+      <div
         style={{
-          textTransform: "uppercase",
-          fontSize: "28px",
-          fontWeight: 800,
-          color: Colors.tealc,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          rowGap: "40px",
+          paddingLeft: "16px",
+          paddingRight: "16px",
+
         }}
       >
-        {i18n.t("modules.clientManagement.title")}
-      </Typography>
-      <Box
-        style={{ display: "flex", columnGap: "10px", justifyContent: "center" }}
-      >
         <Typography
-          onClick={() => setMode("enter")}
           style={{
-            cursor: "pointer",
+            textTransform: "uppercase",
+            fontSize: "28px",
             fontWeight: 800,
-            fontSize: "24px",
-            color: mode === "enter" ? "black" : "#00000066",
+            color: Colors.tealc,
           }}
         >
-          {i18n.t("modules.login.startSession")}
+          {i18n.t("modules.clientManagement.title")}
         </Typography>
-        <Box
-          style={{ height: "30px", width: "1px", backgroundColor: "#00000066" }}
-        />
-        <Typography
-          onClick={() => setMode("register")}
-          style={{
-            cursor: "pointer",
-            fontWeight: 800,
-            fontSize: "24px",
-            color: mode === "register" ? "black" : "#00000066",
-          }}
-        >
-          {i18n.t("modules.login.register")}
-        </Typography>
-      </Box>
+        <div style={{ display: "flex", columnGap: "20px", width: "100%" }}>
+          <Card style={{ width: "30%", padding: "30px" }}>
+            <Typography>General settings</Typography>
+            <Typography>Invoice settings</Typography>
+          </Card>
+          <Card style={{ width: "70%", padding: "30px", justifyContent: "center", display: "flex" }}>
+            <div style={{ width: mobile ? "90vw" : "450px", }}>
+              {renderMode()}
+            </div>
+          </Card>
+        </div>
 
 
-    </div>
+      </div>
+    </Container>
   );
 };
 
