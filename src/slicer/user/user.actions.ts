@@ -1,4 +1,4 @@
-import { userTypes } from "./user.types";
+import { CurrentUser, userTypes } from "./user.types";
 import {FORM} from "../../modules/Login/Register"
 
 export const signInSuccess = (user:any) => ({
@@ -40,3 +40,8 @@ export const recoverPassword = (email:string) => ({
   type: userTypes.RECOVER_PASSWORD,
   payload: email,
 });
+
+export const mutateUserSettings = (userFields:CurrentUser[keyof CurrentUser]) => ({
+  type: userTypes.MUTATE_USER_SETTINGS,
+  payload:userFields
+})

@@ -137,6 +137,10 @@ export const content = {
         },
         clientManagement: {
           title: "Área de Cliente",
+          general: {
+            name: "Nome Útilizador",
+            submit: "Salvar",
+          },
         },
         books: {
           collections: "Coleções",

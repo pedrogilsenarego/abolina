@@ -229,6 +229,10 @@ export const content = {
         },
         clientManagement: {
           title: "Client Management",
+          general: {
+            name: "User Name",
+            submit: "Save Settings",
+          },
         },
       },
       notifications: {

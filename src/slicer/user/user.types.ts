@@ -15,7 +15,8 @@ export const userTypes = {
   FETCH_USERS_START: "FETCH_USERS_START",
   SET_USERS: "SET_USERS",
   SET_PREFERENCES: "SET_PREFERENCES",
-  RECOVER_PASSWORD:"RECOVER_PASSWORD"
+  RECOVER_PASSWORD:"RECOVER_PASSWORD",
+  MUTATE_USER_SETTINGS:"MUTATE_USER_SETTINGS"
   
 }
 
@@ -27,4 +28,5 @@ export interface CurrentUser {
   id:string;
   email:string
   userRoles:string[]
+  displayName:string
 }

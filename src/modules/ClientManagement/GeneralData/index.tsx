@@ -3,26 +3,25 @@ import { FORM_VALIDATION } from "./validation";
 import TextField from "../../../components/Inputs/TextFieldForm";
 import { i18n } from "../../../translations/i18n";
 import Button from "../../../components/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { emailSignInStart } from "../../../slicer/user/user.actions";
+import { CurrentUser } from "../../../slicer/user/user.types";
+import { State } from "../../../slicer/types";
 
 interface FORM {
-  email: string;
-  password: string;
-
+  displayName: string;
 }
 
 const GeneralData = () => {
+  const currentUser = useSelector<State, CurrentUser>((state) => state.user.currentUser)
   const INITIAL_STATE: FORM = {
-    email: "",
-    password: "",
+    displayName: currentUser.displayName,
+
 
   };
   const dispatch = useDispatch()
   const handleSubmit = (values: FORM) => {
-    dispatch(
-      emailSignInStart(values)
-    );
+
   };
   return (
     <>
@@ -36,15 +35,11 @@ const GeneralData = () => {
             style={{ display: "flex", flexDirection: "column", rowGap: "20px" }}
           >
 
-            <TextField label={i18n.t("modules.login.email")} name='email' />
-            <TextField
-              password
-              label={i18n.t("modules.login.password")}
-              name='password'
-            />
+            <TextField label={i18n.t("modules.clientManagement.general.name")} name='displayName' />
+
             <Button
               formik
-              label={i18n.t("modules.login.startSession")}
+              label={i18n.t("modules.clientManagement.general.submit")}
             />
           </div>
         </Form>
