@@ -229,6 +229,8 @@ export const content = {
         },
         clientManagement: {
           title: "Client Management",
+          generalSettings: "General Settings",
+          invoiceSettings: "Invoice Settings",
           general: {
             name: "User Name",
             submit: "Save Settings",
@@ -237,6 +239,15 @@ export const content = {
             confirmChangePassword: "Confirm",
             changePasswordHelperText:
               "Follow the instructions that will be sent to the following email: ",
+          },
+          invoice: {
+            name: "Name",
+            surname: "Surname",
+            country: "Country",
+            address: "Address",
+            postalCode: "Postal Code",
+            city: "City",
+            taxId: "Tax Id",
           },
         },
       },

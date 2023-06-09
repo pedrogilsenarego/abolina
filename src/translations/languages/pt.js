@@ -137,6 +137,8 @@ export const content = {
         },
         clientManagement: {
           title: "Área de Cliente",
+          generalSettings: "Definições gerais",
+          invoiceSettings: "Definições facturação",
           general: {
             name: "Nome Utilizador",
             submit: "Salvar",
@@ -145,6 +147,15 @@ export const content = {
             confirmChangePassword: "Confirmar",
             changePasswordHelperText:
               "Siga as instruções que serão enviadas para o email: ",
+          },
+          invoice: {
+            name: "Nome",
+            surname: "Apelido",
+            country: "País",
+            address: "Morada",
+            postalCode: "Código Postal",
+            city: "Cidade",
+            taxId: "NIF",
           },
         },
         books: {

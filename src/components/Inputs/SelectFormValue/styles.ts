@@ -9,6 +9,7 @@ export const TextField = styled(MuiTextField)(({maxWidth}:Props) => ({
   width: "100%",
   backgroundColor: "lightGrey",
   borderRadius: "10px",
+  textAlign:"left",
   maxWidth: maxWidth || "auto",
   "& .MuiInputBase-input": {
     color: "black",

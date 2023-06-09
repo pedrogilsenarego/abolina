@@ -24,9 +24,20 @@ export interface User {
   currentUser:CurrentUser
 }
 
+export interface InvoiceSettings {
+  name:string
+  surname:string
+  country:string
+  address:string
+  city:string;
+  postalCode:string
+  taxId:string
+}
+
 export interface CurrentUser {
   id:string;
   email:string
   userRoles:string[]
   displayName:string
+  invoiceSettings:InvoiceSettings
 }

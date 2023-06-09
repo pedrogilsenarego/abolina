@@ -1,9 +1,10 @@
-import { Box, Card, Container, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Card, Container, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { i18n } from "../../translations/i18n";
 
 import { Colors } from "../../constants/pallette";
 import { useState } from "react";
 import GeneralData from "./GeneralData";
+import InvoiceData from "./InvoiceData";
 
 
 
@@ -14,7 +15,8 @@ const ClientManagement = () => {
 
   const renderMode = () => {
     switch (mode) {
-      case "invoiceData": return <GeneralData />
+      case "generalData": return <GeneralData />
+      case "invoiceData": return <InvoiceData />
       default: return <GeneralData />
     }
   }
@@ -45,8 +47,8 @@ const ClientManagement = () => {
         </Typography>
         <div style={{ display: "flex", columnGap: "20px", width: "100%" }}>
           <Card style={{ width: "30%", padding: "30px" }}>
-            <Typography>General settings</Typography>
-            <Typography>Invoice settings</Typography>
+            <Typography onClick={() => setMode("generalData")} style={{ cursor: "pointer", textAlign: "left", fontWeight: mode === "generalData" ? 800 : 500 }}>{i18n.t("modules.clientManagement.generalSettings")}</Typography>
+            <Typography onClick={() => setMode("invoiceData")} style={{ cursor: "pointer", textAlign: "left", fontWeight: mode === "invoiceData" ? 800 : 500 }}>{i18n.t("modules.clientManagement.invoiceSettings")}</Typography>
           </Card>
           <Card style={{ width: "70%", padding: "30px", justifyContent: "center", display: "flex" }}>
             <div style={{ width: mobile ? "90vw" : "450px", }}>
