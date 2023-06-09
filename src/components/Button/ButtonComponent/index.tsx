@@ -17,7 +17,7 @@ const ButtonComponent = ({
 }: Props) => {
   const [hover, setHover] = useState<boolean>(false);
   return (
-    <>
+    <div style={{ display: "inline-block" }}>
       <MuiButton
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
@@ -29,6 +29,7 @@ const ButtonComponent = ({
           paddingLeft: "20px",
           paddingRight: "20px",
           border: `solid 2px ${Pallette.primary}`,
+
         }}
         onClick={onClick}
       >
@@ -44,7 +45,7 @@ const ButtonComponent = ({
           {label}
         </Typography>
       </MuiButton>
-    </>
+    </div>
   );
 };
 

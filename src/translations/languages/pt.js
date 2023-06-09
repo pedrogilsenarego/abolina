@@ -141,6 +141,10 @@ export const content = {
             name: "Nome Utilizador",
             submit: "Salvar",
             changePassword: "Mude aqui a sua chave de acesso",
+            changePasswordTitle: "Mudar chave de acesso",
+            confirmChangePassword: "Confirmar",
+            changePasswordHelperText:
+              "Siga as instruções que serão enviadas para o email: ",
           },
         },
         books: {
