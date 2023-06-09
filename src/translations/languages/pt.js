@@ -140,6 +140,7 @@ export const content = {
           general: {
             name: "Nome Utilizador",
             submit: "Salvar",
+            changePassword: "Mude aqui a sua chave de acesso",
           },
         },
         books: {

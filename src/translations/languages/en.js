@@ -232,6 +232,7 @@ export const content = {
           general: {
             name: "User Name",
             submit: "Save Settings",
+            changePassword: "Change here the password",
           },
         },
       },

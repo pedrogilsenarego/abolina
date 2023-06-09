@@ -8,6 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { CurrentUser } from "../../../slicer/user/user.types";
 import { State } from "../../../slicer/types";
 import { mutateUserSettings } from "../../../slicer/user/user.actions";
+import { Typography } from "@mui/material";
+import { useState } from "react";
+import Popup from "../../../components/Popup";
+import { Title } from "../../../styles";
 
 interface FORM {
   displayName: string;
@@ -15,12 +19,22 @@ interface FORM {
 
 const GeneralData = () => {
   const currentUser = useSelector<State, CurrentUser>((state) => state.user.currentUser)
+  const [changePassword, setChangePassword] = useState<boolean>(false)
   const INITIAL_STATE: FORM = {
     displayName: currentUser.displayName,
 
 
   };
   const dispatch = useDispatch()
+
+  const changePasswordPopup = () => {
+    return (
+      <Popup openPopup={changePassword} setOpenPopup={setChangePassword}>
+        <Title>Change Password</Title>
+      </Popup>
+    )
+  }
+
   const handleSubmit = (values: FORM) => {
     const payload = {
       userFields: values,
@@ -47,8 +61,10 @@ const GeneralData = () => {
               label={i18n.t("modules.clientManagement.general.submit")}
             />
           </div>
+          <Typography onClick={() => setChangePassword(true)} style={{ cursor: "pointer", textAlign: "left", marginTop: "20px" }}>{i18n.t("modules.clientManagement.general.changePassword")}</Typography>
         </Form>
       </Formik>
+      {changePasswordPopup}
     </>
   );
 };
