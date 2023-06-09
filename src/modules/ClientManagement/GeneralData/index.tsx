@@ -4,9 +4,10 @@ import TextField from "../../../components/Inputs/TextFieldForm";
 import { i18n } from "../../../translations/i18n";
 import Button from "../../../components/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { emailSignInStart } from "../../../slicer/user/user.actions";
+
 import { CurrentUser } from "../../../slicer/user/user.types";
 import { State } from "../../../slicer/types";
+import { mutateUserSettings } from "../../../slicer/user/user.actions";
 
 interface FORM {
   displayName: string;
@@ -21,7 +22,11 @@ const GeneralData = () => {
   };
   const dispatch = useDispatch()
   const handleSubmit = (values: FORM) => {
-
+    const payload = {
+      userFields: values,
+      id: currentUser.id
+    }
+    dispatch(mutateUserSettings(payload))
   };
   return (
     <>

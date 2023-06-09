@@ -248,6 +248,7 @@ export const content = {
           recoverPassword: "An e-mail was sent to recover the password",
           successBuy: "Items bought with success",
           logout: "You are now Logout",
+          userSettings: "The user settings were updated",
         },
         fail: {
           newBook: "Somethng went wrong, the book was not added",
@@ -257,6 +258,8 @@ export const content = {
           newUser: "You were not registered this time",
           emailInUseCreateAccount: "This email is already in use",
           loginUser: "Something went wrong",
+          userSettings:
+            "The user settings were not updated, if the problem continues please contact our serviçes",
           recoverPassword: "There was a problem recovering the password",
           emailNotVerified:
             "Please verify first your email to login with your account",

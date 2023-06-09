@@ -138,7 +138,7 @@ export const content = {
         clientManagement: {
           title: "Área de Cliente",
           general: {
-            name: "Nome Útilizador",
+            name: "Nome Utilizador",
             submit: "Salvar",
           },
         },
@@ -246,6 +246,7 @@ export const content = {
           recoverPassword: "Um e-mail foi enviado para recuperar a password",
           successBuy: "Os items foram pagos com sucesso",
           logout: "A sua sessão foi terminada",
+          userSettings: "As definições do utilizador foram actualizadas",
         },
         fail: {
           newBook: "Livro não foi adicionado, algum erro ocorreu",
@@ -255,6 +256,8 @@ export const content = {
           emailInUse: "Este e-mail já se encontra em uso",
           newUser: "Alguma coisa correu mal",
           recoverPassword: "Existiu um problema a recuperar a password",
+          userSettings:
+            "As definições do utilizador não foram actualizadas, se o problema se mantiver por favor contactar-nos",
           emailNotVerified:
             "Por favor verifique primeiro a sua conta antes de fazer o login",
         },

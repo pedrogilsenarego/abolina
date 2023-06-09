@@ -41,7 +41,12 @@ export const recoverPassword = (email:string) => ({
   payload: email,
 });
 
-export const mutateUserSettings = (userFields:CurrentUser[keyof CurrentUser]) => ({
+export const mutateUserSettings = (payload:{userFields:Partial<CurrentUser>, id:string}) => ({
   type: userTypes.MUTATE_USER_SETTINGS,
-  payload:userFields
+  payload:payload
+})
+
+export const setUserSettings = (payload:{userFields:Partial<CurrentUser>}) => ({
+  type: userTypes.SET_PREFERENCES,
+  payload:payload
 })

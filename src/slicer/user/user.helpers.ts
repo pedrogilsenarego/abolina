@@ -1,6 +1,7 @@
 import { firestore, auth } from "../../firebase/utils";
+import { CurrentUser } from "./user.types";
 
-export const handleUserProfile = async ({ userAuth, additionalData }) => {
+export const handleUserProfile = async ({ userAuth, additionalData }:any) => {
   if (!userAuth) return;
   const { uid } = userAuth;
 
@@ -28,8 +29,8 @@ export const handleUserProfile = async ({ userAuth, additionalData }) => {
   return userRef;
 };
 
-export const handleRecoverPassword = async (email) => {
-  return new Promise((resolve, reject) => {
+export const handleRecoverPassword = async (email:any) => {
+  return new Promise<void>((resolve, reject) => {
     auth
       .sendPasswordResetEmail(email)
       .then(() => {
@@ -37,6 +38,23 @@ export const handleRecoverPassword = async (email) => {
       })
       .catch((error) => {
         reject(error.message);
+      });
+  });
+};
+
+export const handleMutateUserSettings = (payload:{userFields:Partial<CurrentUser>, id:string}) => {
+  const { id, userFields } = payload;
+  
+  return new Promise<void>((resolve, reject) => {
+    firestore
+      .collection("users")
+      .doc(id)
+      .update(userFields) 
+      .then(() => {
+        resolve();
+      })
+      .catch((err) => {
+        reject(err);
       });
   });
 };

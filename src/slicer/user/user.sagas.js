@@ -1,8 +1,16 @@
 import { all, call, takeLatest, put } from "redux-saga/effects";
 import { userTypes } from "./user.types";
-import { signInSuccess, signOutUserSuccess } from "./user.actions";
+import {
+  setUserSettings,
+  signInSuccess,
+  signOutUserSuccess,
+} from "./user.actions";
 import { FacebookProvider, GoogleProvider, auth } from "../../firebase/utils";
-import { handleUserProfile, handleRecoverPassword } from "./user.helpers";
+import {
+  handleUserProfile,
+  handleRecoverPassword,
+  handleMutateUserSettings,
+} from "./user.helpers";
 import { getCurrentUser } from "../../firebase/utils";
 import {
   updateFailNotification,
@@ -177,8 +185,28 @@ export function* onRecoverPassword() {
   yield takeLatest(userTypes.RECOVER_PASSWORD, recoverPassword);
 }
 
+export function* mutateUserSettings(payload) {
+  try {
+    yield handleMutateUserSettings(payload.payload);
+    yield put(
+      updateSuccessNotification(i18n.t("notifications.success.userSettings"))
+    );
+    yield put(setUserSettings(payload.payload.userFields));
+  } catch (err) {
+    console.log(err);
+    yield put(
+      updateFailNotification(`${i18n.t("notifications.fail.userSettings")}`)
+    );
+  }
+}
+
+export function* onMutateUserSettings() {
+  yield takeLatest(userTypes.MUTATE_USER_SETTINGS, mutateUserSettings);
+}
+
 export default function* userSagas() {
   yield all([
+    call(onMutateUserSettings),
     call(onRecoverPassword),
     call(onGoogleSignInStart),
     call(onFacebookSignInStart),

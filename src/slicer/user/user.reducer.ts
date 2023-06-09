@@ -2,7 +2,7 @@ import {userTypes} from "./user.types";
 
 
 const INITIAL_STATE = {
-  currentUser: null,
+  currentUser: {},
   resetPasswordSuccess: false,
   userErr: [],
   users: [],
@@ -53,7 +53,7 @@ const userReducer = (state = INITIAL_STATE, action:Action) => {
     case userTypes.SET_PREFERENCES:
       return {
         ...state,
-        currentUser: action.payload,
+        currentUser: {...state.currentUser, ...action.payload},
       };
     
     
