@@ -41,6 +41,7 @@ const Element = ({ item, pos }: Props) => {
     >
       <Grid
         item
+        key={pos}
         xs={vertical ? 4 : 5}
         style={{
           display: "flex",

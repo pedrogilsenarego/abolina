@@ -17,7 +17,6 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { CurrentUser, InvoiceSettings } from "../../../slicer/user/user.types";
 
 interface FormProps extends InvoiceSettings {
-
   email: string;
   phone: string;
 }
@@ -73,7 +72,7 @@ const CheckoutForm = () => {
       })
       .then((res) => {
         if (res.url) {
-          dispatch(clearCart());
+          //dispatch(clearCart());
           dispatch(
             updateSuccessNotification(
               i18n.t("notifications.success.successBuy")
