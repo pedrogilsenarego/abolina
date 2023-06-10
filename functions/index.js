@@ -40,7 +40,7 @@ app.post("/payments/creditCard", async (req, res) => {
     line_items: lineItems,
     mode: "payment",
     success_url: "http://localhost:3000/buy-success",
-    cancel_url: "https://octo-mistic.com/cancel",
+    cancel_url: "http://localhost:3000/buy-success",
     metadata: values,
   });
 
