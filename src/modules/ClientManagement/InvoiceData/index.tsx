@@ -10,6 +10,7 @@ import { State } from "../../../slicer/types";
 import { mutateUserSettings } from "../../../slicer/user/user.actions";
 import SelectWrapper from "../../../components/Inputs/SelectFormValue";
 import { countryList } from "../../../constants/forms";
+import { Grid } from "@mui/material";
 
 const InvoiceData = () => {
   const currentUser = useSelector<State, CurrentUser>(
@@ -43,39 +44,55 @@ const InvoiceData = () => {
         validationSchema={FORM_VALIDATION}
       >
         <Form>
-          <div
-            style={{ display: "flex", flexDirection: "column", rowGap: "20px" }}
-          >
-            <TextField
-              label={i18n.t("modules.clientManagement.invoice.name")}
-              name='name'
-            />
-            <TextField
-              label={i18n.t("modules.clientManagement.invoice.surname")}
-              name='surname'
-            />
-            <SelectWrapper options={countryList} label={i18n.t("modules.clientManagement.invoice.country")} name="country" />
-            <TextField
-              label={i18n.t("modules.clientManagement.invoice.address")}
-              name='address'
-            />
-            <TextField
-              label={i18n.t("modules.clientManagement.invoice.postalCode")}
-              name='postalCode'
-            />
-            <TextField
-              label={i18n.t("modules.clientManagement.invoice.city")}
-              name='city'
-            />
-            <TextField
-              label={i18n.t("modules.clientManagement.invoice.taxId")}
-              name='taxId'
-            />
-            <Button
-              formik
-              label={i18n.t("modules.clientManagement.general.submit")}
-            />
-          </div>
+          <Grid container
+            columnSpacing="20px"
+            rowSpacing="20px"
+          ><Grid item xs={6}>
+              <TextField
+                label={i18n.t("modules.clientManagement.invoice.name")}
+                name='name'
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                label={i18n.t("modules.clientManagement.invoice.surname")}
+                name='surname'
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <SelectWrapper initialValue={currentUser?.invoiceSettings?.country || ""} options={countryList} label={i18n.t("modules.clientManagement.invoice.country")} name="country" />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label={i18n.t("modules.clientManagement.invoice.address")}
+                name='address'
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label={i18n.t("modules.clientManagement.invoice.postalCode")}
+                name='postalCode'
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label={i18n.t("modules.clientManagement.invoice.city")}
+                name='city'
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label={i18n.t("modules.clientManagement.invoice.taxId")}
+                name='taxId'
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                formik
+                label={i18n.t("modules.clientManagement.general.submit")}
+              />
+            </Grid>
+          </Grid>
 
         </Form>
       </Formik>

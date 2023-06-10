@@ -14,39 +14,37 @@ import SelectWrapper from "../../../components/Inputs/SelectFormValue";
 import { countryList } from "../../../constants/forms";
 import { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { CurrentUser, InvoiceSettings } from "../../../slicer/user/user.types";
 
-interface FormProps {
-  name: string;
-  address: string;
-  address2: string;
-  city: string;
-  postCode: string;
-  country: string;
+interface FormProps extends InvoiceSettings {
+
   email: string;
   phone: string;
 }
 
 const CheckoutForm = () => {
+  const currentUser = useSelector<State, CurrentUser>(
+    (state) => state.user.currentUser
+  );
   const INITIAL_FORM_STATE: FormProps = {
-    name: "",
-    address: "",
-    address2: "",
-    city: "",
-    postCode: "",
-    country: "",
-    email: "",
+    email: currentUser?.email || "",
     phone: "",
+    name: currentUser?.invoiceSettings?.name || "",
+    surname: currentUser?.invoiceSettings?.surname || "",
+    address: currentUser?.invoiceSettings?.address || "",
+    city: currentUser?.invoiceSettings?.city || "",
+    postalCode: currentUser?.invoiceSettings?.postalCode || "",
+    country: currentUser?.invoiceSettings?.country || "",
+    taxId: currentUser?.invoiceSettings?.taxId || ""
   };
 
   const dispatch = useDispatch();
   const [openForm, setOpenForm] = useState<boolean>(true);
-  const [openInvoiceDetails, setOpenInvoiceDetails] = useState<boolean>(true)
-  const [openPaymentMethods, setOpenPaymentMethods] = useState<boolean>(true)
+  const [openInvoiceDetails, setOpenInvoiceDetails] = useState<boolean>(true);
+  const [openPaymentMethods, setOpenPaymentMethods] = useState<boolean>(true);
   const cartProducts = useSelector<State, CartProduct[]>(
     (state) => state.cart.cartItems
   );
-
-
 
   const handleSubmitCard = async (values: FormProps) => {
     let items: {
@@ -76,7 +74,11 @@ const CheckoutForm = () => {
       .then((res) => {
         if (res.url) {
           dispatch(clearCart());
-          dispatch(updateSuccessNotification(i18n.t("notifications.success.successBuy")));
+          dispatch(
+            updateSuccessNotification(
+              i18n.t("notifications.success.successBuy")
+            )
+          );
 
           window.location.assign(res.url);
         }
@@ -123,8 +125,16 @@ const CheckoutForm = () => {
             >
               {openForm && (
                 <>
-                  <Textfield label={i18n.t("forms.checkout.email")} name='email' />
-                  <Textfield label={i18n.t("forms.checkout.phone")} name='phone' /></>)}
+                  <Textfield
+                    label={i18n.t("forms.checkout.email")}
+                    name='email'
+                  />
+                  <Textfield
+                    label={i18n.t("forms.checkout.phone")}
+                    name='phone'
+                  />
+                </>
+              )}
               <div
                 style={{
                   display: "flex",
@@ -134,7 +144,11 @@ const CheckoutForm = () => {
                 onClick={() => setOpenInvoiceDetails(!openInvoiceDetails)}
               >
                 <Typography
-                  style={{ textAlign: "left", fontSize: "24px", fontWeight: 800 }}
+                  style={{
+                    textAlign: "left",
+                    fontSize: "24px",
+                    fontWeight: 800,
+                  }}
                 >
                   {i18n.t("modules.checkout.invoiceDetails")}
                 </Typography>
@@ -144,21 +158,37 @@ const CheckoutForm = () => {
                   <IoIosArrowDown size='1.5rem' />
                 )}
               </div>
-              {openInvoiceDetails && (<> <Textfield label={i18n.t("forms.checkout.name")} name='name' />
-                <SelectWrapper
-                  options={countryList}
-                  name='country'
-                  label={i18n.t("forms.checkout.country")}
-
-                />
-
-                <Textfield label='Line 1' name='address' />
-                <Textfield label='Line 2' name='address2' />
-                <Textfield label={i18n.t("forms.city")} name='city' />
-                <Textfield label={i18n.t("forms.postCode")} name='postCode' /></>)}
-
-
-
+              {openInvoiceDetails && (
+                <>
+                  {" "}
+                  <div style={{ display: "flex", columnGap: "20px", justifyContent: "space-between" }}>
+                    <Textfield
+                      style={{ width: "100" }}
+                      label={i18n.t("modules.clientManagement.invoice.name")}
+                      name='name'
+                    />
+                    <Textfield
+                      style={{ width: "100" }}
+                      label={i18n.t("modules.clientManagement.invoice.surname")}
+                      name='surname'
+                    />
+                  </div>
+                  <SelectWrapper
+                    initialValue={currentUser?.invoiceSettings?.country || ""}
+                    options={countryList}
+                    name='country'
+                    label={i18n.t("forms.checkout.country")}
+                  />
+                  <Textfield label={i18n.t("modules.clientManagement.invoice.address")}
+                    name='address' />
+                  <Textfield label={i18n.t("modules.clientManagement.invoice.postalCode")}
+                    name='postalCode' />
+                  <Textfield label={i18n.t("modules.clientManagement.invoice.city")}
+                    name='city' />
+                  <Textfield label={i18n.t("modules.clientManagement.invoice.taxId")}
+                    name='taxId' />
+                </>
+              )}
             </Box>
           </>
           <div
@@ -180,11 +210,11 @@ const CheckoutForm = () => {
               <IoIosArrowDown size='1.5rem' />
             )}
           </div>
-          {openPaymentMethods && (<ButtonForm formik label={i18n.t("cartDrawer.buyNow")} />)}
-
+          {openPaymentMethods && (
+            <ButtonForm formik label="Pay now" />
+          )}
         </Form>
       </Formik>
-
     </>
   );
 };
