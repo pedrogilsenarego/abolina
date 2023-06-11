@@ -51,6 +51,43 @@ app.post("/payments/creditCard", async (req, res) => {
   );
 });
 
+//implement this after for a sucess buy
+app.post(
+  "/webhook-success-buy",
+  express.raw({ type: "application/json" }),
+  (request, response) => {
+    const sig = request.headers["stripe-signature"];
+
+    let event;
+
+    try {
+      event = stripe.webhooks.constructEvent(
+        request.rawBody,
+        sig,
+        process.env.STRIPE_WEBHOOK_SECRET_LIVE
+      );
+    } catch (err) {
+      response.status(400).send(`Webhook Error: ${err.message}`);
+      return;
+    }
+
+    const dataObject = event.data.object;
+
+    // Handle the event
+    switch (event.type) {
+      case "checkout.session.completed":
+        sendEmail(dataObject.metadata.email);
+        break;
+
+      default:
+        console.log(`Unhandled event type ${event.type}`);
+    }
+
+    // Return a 200 response to acknowledge receipt of the event
+    response.send();
+  }
+);
+
 app.post("/submit-feedback", async (req, res) => {
   try {
     console.log(req.body);

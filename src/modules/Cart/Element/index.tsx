@@ -12,12 +12,13 @@ import CheckBox from "../../../components/Inputs/CheckBox";
 import { i18n } from "../../../translations/i18n";
 import { CgSmartphone } from "react-icons/cg";
 import Incrementor from "../../../components/Incrementor";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { RiDeleteBinLine } from "react-icons/ri"
 import {
   deleteProductCart,
+  onlyOfferToggle,
   updateCart,
 } from "../../../slicer/cart/cart.actions";
 import Tooltip from "../../../components/Tooltip/Tooltip";
@@ -28,7 +29,7 @@ interface Props {
 }
 
 const Element = ({ item, pos }: Props) => {
-  const [forOffer, setForOffer] = useState<boolean>(false);
+  const [forOffer, setForOffer] = useState<boolean>(item?.onlyOffer || false);
   const [numberOffer, setNumberOffer] = useState<number>(0);
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -37,10 +38,18 @@ const Element = ({ item, pos }: Props) => {
     if (value < numberOffer) setNumberOffer(value);
     dispatch(updateCart(value, item.product.documentID));
   };
-
   const handleDeleteCartProduct = () => {
     dispatch(deleteProductCart(item.product.documentID));
   };
+
+  useEffect(() => {
+    if (forOffer !== item?.onlyOffer) dispatch(onlyOfferToggle(item.product.documentID, forOffer))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [forOffer])
+
+
+
+
 
   const price = !item?.product?.discount
     ? Number(item?.product?.price)
@@ -265,21 +274,15 @@ const Element = ({ item, pos }: Props) => {
 
         }}
       >
-        <div
-
-        >
+        <div>
           <div style={{
             overflow: "scroll",
             display: "flex",
             width: "auto",
             columnGap: "40px",
             backgroundColor: "whiteSmoke",
-
             padding: "10px",
-
           }}>
-
-
             <img
               style={{
                 height: "120px",

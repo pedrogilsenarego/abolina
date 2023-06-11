@@ -23,3 +23,8 @@ export const clearCart = () => ({
   type: cartTypes.CLEAR_CART
 });
 
+export const onlyOfferToggle = (itemId:string, signal:boolean) => ({
+  type: cartTypes.ONLY_OFFER_TOOGLE,
+  payload:{itemId,signal}
+})
+

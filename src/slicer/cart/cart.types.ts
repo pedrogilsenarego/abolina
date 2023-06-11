@@ -5,12 +5,13 @@ export const cartTypes = {
   CLEAR_CART:"CLEAR_CART",
   UPDATE_CART:"UPDATE_CART",
   DELETE_PRODUCT:"DELETE_PRODUCT",
-  
+  ONLY_OFFER_TOOGLE:"ONLY_OFFER_TOOGLE"
 };
 
 export interface CartProduct {
   product:Book;
-  value:number
+  value:number;
+  onlyOffer:boolean
 }
 
 export interface CartState {

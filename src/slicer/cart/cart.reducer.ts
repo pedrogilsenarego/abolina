@@ -27,22 +27,35 @@ const cartReducer = (state = INITIAL_STATE, action: Action) => {
           (item, id) => item.product.documentID !== action.payload
         ),
       };
-      case cartTypes.UPDATE_CART:
-        const { id, value } = action.payload;
-        return {
-          ...state,
-          cartItems: state.cartItems.map((item) => {
-            if (item.product.documentID === id) {
-              // Return a new object with the updated value property
-              return {
-                ...item,
-                value: value,
-              };
-            }
-            return item;
-          }),
-        };
-      
+    case cartTypes.UPDATE_CART:
+      const { id, value } = action.payload;
+      return {
+        ...state,
+        cartItems: state.cartItems.map((item) => {
+          if (item.product.documentID === id) {
+            // Return a new object with the updated value property
+            return {
+              ...item,
+              value: value,
+            };
+          }
+          return item;
+        }),
+      };
+    case cartTypes.ONLY_OFFER_TOOGLE:
+      const { itemId, signal } = action.payload;
+      return {
+        ...state,
+        cartItems: state.cartItems.map((item) => {
+          if (item.product.documentID === itemId) {
+            return {
+              ...item,
+              onlyOffer: signal,
+            };
+          }
+          return item;
+        }),
+      };
     case cartTypes.CLEAR_CART:
       return {
         ...state,
