@@ -9,6 +9,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY_TEST);
 
 admin.initializeApp(functions.config().firebase);
 const usersCollection = admin.firestore().collection("users");
+const couponsCollection = admin.firestore().collection("cuppons");
 
 app.use(
   cors({
@@ -35,6 +36,41 @@ app.post("/payments/creditCard", async (req, res) => {
         booksOwned: admin.firestore.FieldValue.arrayUnion(...booksToAdd),
       });
     }
+
+    const couponPromises = items.map(async (item) => {
+      if (item.quantity > 0) {
+        const couponIds = [];
+        const iterations = item.onlyOffer ? item.quantity : item.quantity - 1;
+
+        for (let i = 0; i < iterations; i++) {
+          const couponData = {
+            userId: userId,
+            bookId: item.documentId,
+          };
+
+          const docRef = await couponsCollection.add(couponData);
+          couponIds.push(docRef.id);
+        }
+
+        return {
+          title: item.title,
+          couponIds: couponIds,
+        };
+      }
+    });
+
+    const couponsResult = await Promise.all(couponPromises);
+    const emailContent = couponsResult
+      .filter((result) => result && result.couponIds.length > 0)
+      .map((result) => {
+        const couponList = result.couponIds.join(" - ");
+        return `Here are the coupons for ${result.title}: ${couponList}`;
+      })
+      .join("\n");
+
+    console.log(emailContent);
+
+    //sendEmail(userId, emailContent);
 
     return res.status(200).send("Payment successful");
   } catch (error) {
