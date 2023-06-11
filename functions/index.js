@@ -22,10 +22,8 @@ app.post("/payments/creditCard", async (req, res) => {
   let lineItems = [];
   const items = req.body.items;
   const values = req.body.values;
-  console.log("items", items);
   //
   const userId = values.userId;
-  console.log("user", userId);
   try {
     // Update the user document with the purchased books
     const booksToAdd = items

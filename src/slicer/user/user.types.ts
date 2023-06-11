@@ -40,4 +40,5 @@ export interface CurrentUser {
   userRoles:string[]
   displayName:string
   invoiceSettings:InvoiceSettings
+  booksOwned:string[]
 }

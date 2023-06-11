@@ -5,19 +5,21 @@ interface Props {
   color?: string;
   setValue?: (value: boolean) => void;
   value?: boolean;
+  disabled?: boolean
 }
 const CheckBox = ({
   label,
   color,
   setValue = () => { },
   value = false,
+  disabled = false
 }: Props) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.checked);
   };
 
   const handleLabelClick = () => {
-    setValue(!value);
+    if (!disabled) setValue(!value);
   };
 
   return (
@@ -31,12 +33,13 @@ const CheckBox = ({
         }}
       >
         <Checkbox
+          disabled={disabled}
           checked={value}
           onChange={handleChange}
           sx={{
-            color: color || "auto",
+            color: disabled ? "lightGrey" : color || "auto",
             "&.Mui-checked": {
-              color: color || "auto",
+              color: disabled ? "lightGrey" : color || "auto",
             },
           }}
         />

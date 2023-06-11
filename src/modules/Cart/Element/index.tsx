@@ -13,15 +13,17 @@ import { i18n } from "../../../translations/i18n";
 import { CgSmartphone } from "react-icons/cg";
 import Incrementor from "../../../components/Incrementor";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IoMdInformationCircleOutline } from "react-icons/io";
-import { RiDeleteBinLine } from "react-icons/ri"
+import { RiDeleteBinLine } from "react-icons/ri";
 import {
   deleteProductCart,
   onlyOfferToggle,
   updateCart,
 } from "../../../slicer/cart/cart.actions";
 import Tooltip from "../../../components/Tooltip/Tooltip";
+import { State } from "../../../slicer/types";
+import { CurrentUser } from "../../../slicer/user/user.types";
 
 interface Props {
   item: CartProduct;
@@ -30,10 +32,14 @@ interface Props {
 
 const Element = ({ item, pos }: Props) => {
   const [forOffer, setForOffer] = useState<boolean>(item?.onlyOffer || false);
+  const [checkBoxDisabled, setCheckBoxDisabled] = useState<boolean>(false);
   const [numberOffer, setNumberOffer] = useState<number>(0);
   const dispatch = useDispatch();
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const currentUser = useSelector<State, CurrentUser>(
+    (state) => state.user.currentUser
+  );
   const handleUpdateSubtotal = (value: number) => {
     if (value < numberOffer) setNumberOffer(value);
     dispatch(updateCart(value, item.product.documentID));
@@ -43,13 +49,18 @@ const Element = ({ item, pos }: Props) => {
   };
 
   useEffect(() => {
-    if (forOffer !== item?.onlyOffer) dispatch(onlyOfferToggle(item.product.documentID, forOffer))
+    if (forOffer !== item?.onlyOffer)
+      dispatch(onlyOfferToggle(item.product.documentID, forOffer));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [forOffer])
+  }, [forOffer]);
 
-
-
-
+  useEffect(() => {
+    if (currentUser.booksOwned.includes(item.product.documentID)) {
+      setForOffer(true);
+      setCheckBoxDisabled(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const price = !item?.product?.discount
     ? Number(item?.product?.price)
@@ -121,11 +132,12 @@ const Element = ({ item, pos }: Props) => {
             />
             <CheckBox
               color={Colors.tealc}
+              disabled={checkBoxDisabled}
               value={forOffer}
               setValue={setForOffer}
               label={
                 <div>
-                  <Typography style={{ fontSize: "18px" }}>
+                  <Typography style={{ fontSize: "18px", color: checkBoxDisabled ? "lightgray" : "inherit" }}>
                     {i18n.t("modules.cart.table.offerThisBook")}
                   </Typography>
                   <Typography
@@ -133,7 +145,7 @@ const Element = ({ item, pos }: Props) => {
                       marginTop: "-5px",
                       fontSize: "12px",
                       fontStyle: "italic",
-                      color: Colors.tealc,
+                      color: checkBoxDisabled ? "lightgray" : Colors.tealc,
                     }}
                   >
                     {i18n.t("modules.cart.table.offerCode")}
@@ -271,18 +283,19 @@ const Element = ({ item, pos }: Props) => {
           paddingTop: "10px",
           paddingBottom: "5px",
           borderBottom: `solid 2px ${Colors.tealc}`,
-
         }}
       >
         <div>
-          <div style={{
-            overflow: "scroll",
-            display: "flex",
-            width: "auto",
-            columnGap: "40px",
-            backgroundColor: "whiteSmoke",
-            padding: "10px",
-          }}>
+          <div
+            style={{
+              overflow: "scroll",
+              display: "flex",
+              width: "auto",
+              columnGap: "40px",
+              backgroundColor: "whiteSmoke",
+              padding: "10px",
+            }}
+          >
             <img
               style={{
                 height: "120px",
@@ -304,24 +317,47 @@ const Element = ({ item, pos }: Props) => {
               </Typography>
               <Typography>{item.product.collections}</Typography>
               <Typography>Nº{item.product.number}</Typography>
-
             </div>
-            <div style={{ display: "flex", justifyContent: "start", alignItems: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "start",
+                alignItems: "center",
+              }}
+            >
               <Typography>€{price}</Typography>
             </div>
-            <div style={{ display: "flex", justifyContent: "start", alignItems: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "start",
+                alignItems: "center",
+              }}
+            >
               <Incrementor
                 key={item.product.documentID}
                 initialValue={item.value}
                 updateValue={handleUpdateSubtotal}
               />
             </div>
-            <div style={{ display: "flex", justifyContent: "start", alignItems: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "start",
+                alignItems: "center",
+              }}
+            >
               <Typography>€{(item.value * price).toFixed(2)}</Typography>
             </div>
           </div>
-          <div style={{ display: "flex", columnGap: "30px", justifyContent: "space-between", alignItems: "center" }}>
-
+          <div
+            style={{
+              display: "flex",
+              columnGap: "30px",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
             <CheckBox
               color={Colors.tealc}
               value={forOffer}
@@ -342,7 +378,6 @@ const Element = ({ item, pos }: Props) => {
                     {i18n.t("modules.cart.table.offerCode")}
                   </Typography>
                 </div>
-
               }
             />
             {(item?.value > 1 || forOffer) && (
@@ -360,22 +395,17 @@ const Element = ({ item, pos }: Props) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-
                   }}
                 >
-                  <Typography
-                    color={Pallette.primary}
-                  >
+                  <Typography color={Pallette.primary}>
                     {i18n.t("modules.cart.table.offer")}
                   </Typography>
-
                 </div>
               </div>
             )}
             <RiDeleteBinLine
               style={{
                 cursor: "pointer",
-
               }}
               onClick={handleDeleteCartProduct}
               size='1.5rem'
