@@ -79,11 +79,11 @@ const CheckoutForm = () => {
       .then((res) => {
         if (res.url) {
           //dispatch(clearCart());
-          dispatch(
-            updateSuccessNotification(
-              i18n.t("notifications.success.successBuy")
-            )
-          );
+          // dispatch(
+          //   updateSuccessNotification(
+          //     i18n.t("notifications.success.successBuy")
+          //   )
+          // );
 
           window.location.assign(res.url);
         }
