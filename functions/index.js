@@ -24,90 +24,90 @@ app.post("/payments/creditCard", async (req, res) => {
   const items = req.body.items;
   const values = req.body.values;
   //
-  const userId = values.userId;
-  try {
-    // Update the user document with the purchased books
-    const booksToAdd = items
-      .filter((item) => !item.onlyOffer && item.documentId)
-      .map((item) => item.documentId);
+  // const userId = values.userId;
+  // try {
+  //   // Update the user document with the purchased books
+  //   const booksToAdd = items
+  //     .filter((item) => !item.onlyOffer && item.documentId)
+  //     .map((item) => item.documentId);
 
-    if (booksToAdd.length > 0) {
-      await usersCollection.doc(userId).update({
-        booksOwned: admin.firestore.FieldValue.arrayUnion(...booksToAdd),
-      });
-    }
+  //   if (booksToAdd.length > 0) {
+  //     await usersCollection.doc(userId).update({
+  //       booksOwned: admin.firestore.FieldValue.arrayUnion(...booksToAdd),
+  //     });
+  //   }
 
-    const couponPromises = items.map(async (item) => {
-      if (item.quantity > 0) {
-        const couponIds = [];
-        const iterations = item.onlyOffer ? item.quantity : item.quantity - 1;
+  //   const couponPromises = items.map(async (item) => {
+  //     if (item.quantity > 0) {
+  //       const couponIds = [];
+  //       const iterations = item.onlyOffer ? item.quantity : item.quantity - 1;
 
-        for (let i = 0; i < iterations; i++) {
-          const couponData = {
-            userId: userId,
-            bookId: item.documentId,
-          };
+  //       for (let i = 0; i < iterations; i++) {
+  //         const couponData = {
+  //           userId: userId,
+  //           bookId: item.documentId,
+  //         };
 
-          const docRef = await couponsCollection.add(couponData);
-          couponIds.push(docRef.id);
-        }
+  //         const docRef = await couponsCollection.add(couponData);
+  //         couponIds.push(docRef.id);
+  //       }
 
-        return {
-          title: item.title,
-          couponIds: couponIds,
-        };
-      }
-    });
+  //       return {
+  //         title: item.title,
+  //         couponIds: couponIds,
+  //       };
+  //     }
+  //   });
 
-    const couponsResult = await Promise.all(couponPromises);
-    const emailContent = couponsResult
-      .filter((result) => result && result.couponIds.length > 0)
-      .map((result) => {
-        const couponList = result.couponIds.join(" - ");
-        return `Here are the coupons for ${result.title}: ${couponList}`;
-      })
-      .join("\n");
+  //   const couponsResult = await Promise.all(couponPromises);
+  //   const emailContent = couponsResult
+  //     .filter((result) => result && result.couponIds.length > 0)
+  //     .map((result) => {
+  //       const couponList = result.couponIds.join(" - ");
+  //       return `Here are the coupons for ${result.title}: ${couponList}`;
+  //     })
+  //     .join("\n");
 
-    console.log(emailContent);
+  //   console.log(emailContent);
 
-    //sendEmail(userId, emailContent);
+  //   //sendEmail(userId, emailContent);
 
-    return res.status(200).send("Payment successful");
-  } catch (error) {
-    console.error("Error updating user document:", error);
-    return res.status(500).send("An error occurred");
-  }
+  //   return res.status(200).send("Payment successful");
+  // } catch (error) {
+  //   console.error("Error updating user document:", error);
+  //   return res.status(500).send("An error occurred");
+  // }
 
   //
 
-  // if (typeof items !== "undefined") {
-  //   items.forEach((item) => {
-  //     lineItems.push({
-  //       price_data: {
-  //         currency: "eur",
-  //         unit_amount: item.amount,
-  //         product_data: {
-  //           name: item.title,
-  //         },
-  //       },
-  //       quantity: item.quantity,
-  //     });
-  //   });
-  // }
+  if (typeof items !== "undefined") {
+    items.forEach((item) => {
+      lineItems.push({
+        price_data: {
+          currency: "eur",
+          unit_amount: item.amount,
+          product_data: {
+            name: item.title,
+          },
+        },
+        quantity: item.quantity,
+      });
+    });
+  }
 
-  // const session = await stripe.checkout.sessions.create({
-  //   line_items: lineItems,
-  //   mode: "payment",
-  //   success_url: "http://localhost:3000/buy-success",
-  //   cancel_url: "http://localhost:3000/buy-success",
-  //   metadata: values,
-  // });
+  const session = await stripe.checkout.sessions.create({
+    line_items: lineItems,
+    mode: "payment",
+    success_url: "http://localhost:3000/buy-success",
+    cancel_url: "http://localhost:3000/buy-success",
+    metadata: { items, values },
+  });
 
-  // res.status(200).send(
-  //   JSON.stringify({
-  //     url: session.url,
-  //   })
-  // );
+  res.status(200).send(
+    JSON.stringify({
+      url: session.url,
+    })
+  );
 });
 
 //implement this after for a sucess buy
