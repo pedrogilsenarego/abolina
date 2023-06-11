@@ -19,6 +19,7 @@ import { CurrentUser, InvoiceSettings } from "../../../slicer/user/user.types";
 interface FormProps extends InvoiceSettings {
   email: string;
   phone: string;
+  userId: string
 }
 
 const CheckoutForm = () => {
@@ -34,7 +35,8 @@ const CheckoutForm = () => {
     city: currentUser?.invoiceSettings?.city || "",
     postalCode: currentUser?.invoiceSettings?.postalCode || "",
     country: currentUser?.invoiceSettings?.country || "",
-    taxId: currentUser?.invoiceSettings?.taxId || ""
+    taxId: currentUser?.invoiceSettings?.taxId || "",
+    userId: currentUser?.id
   };
 
   const dispatch = useDispatch();
@@ -50,6 +52,8 @@ const CheckoutForm = () => {
       title: string;
       amount: number;
       quantity: number;
+      onlyOffer: boolean;
+      documentId: string
     }[] = [];
 
     cartProducts.forEach((item: CartProduct) => {
@@ -57,6 +61,8 @@ const CheckoutForm = () => {
         title: `${item.product.title}-${item.product.collections}`,
         amount: item.product.price * 100,
         quantity: item.value,
+        onlyOffer: item.onlyOffer,
+        documentId: item.product.documentID
       });
     });
 

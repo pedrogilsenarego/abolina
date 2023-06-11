@@ -8,6 +8,7 @@ const { sendEmail } = require("./sendEmail");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY_TEST);
 
 admin.initializeApp(functions.config().firebase);
+const usersCollection = admin.firestore().collection("users");
 
 app.use(
   cors({
@@ -21,34 +22,58 @@ app.post("/payments/creditCard", async (req, res) => {
   let lineItems = [];
   const items = req.body.items;
   const values = req.body.values;
+  console.log("items", items);
+  //
+  const userId = values.userId;
+  console.log("user", userId);
+  try {
+    // Update the user document with the purchased books
+    const booksToAdd = items
+      .filter((item) => !item.onlyOffer && item.documentId)
+      .map((item) => item.documentId);
 
-  if (typeof items !== "undefined") {
-    items.forEach((item) => {
-      lineItems.push({
-        price_data: {
-          currency: "eur",
-          unit_amount: item.amount,
-          product_data: {
-            name: item.title,
-          },
-        },
-        quantity: item.quantity,
+    if (booksToAdd.length > 0) {
+      await usersCollection.doc(userId).update({
+        booksOwned: admin.firestore.FieldValue.arrayUnion(...booksToAdd),
       });
-    });
-  }
-  const session = await stripe.checkout.sessions.create({
-    line_items: lineItems,
-    mode: "payment",
-    success_url: "http://localhost:3000/buy-success",
-    cancel_url: "http://localhost:3000/buy-success",
-    metadata: values,
-  });
+    }
 
-  res.status(200).send(
-    JSON.stringify({
-      url: session.url,
-    })
-  );
+    return res.status(200).send("Payment successful");
+  } catch (error) {
+    console.error("Error updating user document:", error);
+    return res.status(500).send("An error occurred");
+  }
+
+  //
+
+  // if (typeof items !== "undefined") {
+  //   items.forEach((item) => {
+  //     lineItems.push({
+  //       price_data: {
+  //         currency: "eur",
+  //         unit_amount: item.amount,
+  //         product_data: {
+  //           name: item.title,
+  //         },
+  //       },
+  //       quantity: item.quantity,
+  //     });
+  //   });
+  // }
+
+  // const session = await stripe.checkout.sessions.create({
+  //   line_items: lineItems,
+  //   mode: "payment",
+  //   success_url: "http://localhost:3000/buy-success",
+  //   cancel_url: "http://localhost:3000/buy-success",
+  //   metadata: values,
+  // });
+
+  // res.status(200).send(
+  //   JSON.stringify({
+  //     url: session.url,
+  //   })
+  // );
 });
 
 //implement this after for a sucess buy
