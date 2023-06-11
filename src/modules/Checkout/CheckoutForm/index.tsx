@@ -66,7 +66,7 @@ const CheckoutForm = () => {
       });
     });
 
-    await fetch(stripeLocal, {
+    await fetch(stripeProduction, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
