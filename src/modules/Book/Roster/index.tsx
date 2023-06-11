@@ -486,7 +486,7 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
             </Box>
           )}
 
-          {book?.caracteristics.length > 0 && (
+          {book?.caracteristics?.length > 0 && (
             <Box
               display='flex'
               flexDirection='row'

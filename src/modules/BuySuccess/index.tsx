@@ -1,10 +1,18 @@
 import { Typography, useTheme, useMediaQuery, Container } from "@mui/material";
 import { Colors } from "../../constants/pallette";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { clearCart } from "../../slicer/cart/cart.actions";
 
 
 const BuySuccess = () => {
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(clearCart())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Container
