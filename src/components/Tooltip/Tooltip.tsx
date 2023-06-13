@@ -15,8 +15,8 @@ const ToolTipJ = ({ children, title, maxWidth }: Props) => {
     [`& .${tooltipClasses.tooltip}`]: {
       backgroundColor: Pallette.primaryTransparent,
       color: Pallette.constrast,
-      maxWidth: maxWidth ?? 240,
-      fontSize: '12px',
+      maxWidth: maxWidth ?? 400,
+      fontSize: '14px',
       border: `0px solid ${Pallette.primaryTransparent}`,
       fontWeight: 'inherit',
     },

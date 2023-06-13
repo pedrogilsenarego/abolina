@@ -58,7 +58,6 @@ app.post("/payments/creditCard", async (req, res) => {
   );
 });
 
-//implement this after for a sucess buy
 app.post(
   "/webhook-success-buy",
   express.raw({ type: "application/json" }),
@@ -152,9 +151,8 @@ app.post(
 
 app.post("/submit-feedback", async (req, res) => {
   try {
-    console.log(req.body);
-    //const submitFeedback = await sendEmail(req.body);
-    // res.status(200).send(submitFeedback);
+    const submitFeedback = sendEmail(req.body.values);
+    res.status(200).send(submitFeedback);
   } catch (err) {
     res.status(500).json({
       statusCode: 500,

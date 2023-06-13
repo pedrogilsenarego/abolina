@@ -257,7 +257,7 @@ export const content = {
           newUser: "O seu usuário foi registado com sucesso",
           newUserEmailPassword:
             "Por favor visite o seu email para verificar o seu e-mail",
-          loginUser: "Esta logado",
+          loginUser: "Sessão Iniciada",
           addedCart: "Livro adicionado ao carrinho",
           recoverPassword: "Um e-mail foi enviado para recuperar a password",
           successBuy: "Os items foram pagos com sucesso",
