@@ -139,6 +139,7 @@ export const content = {
           title: "Área de Cliente",
           generalSettings: "Definições gerais",
           invoiceSettings: "Definições facturação",
+          couponsSettings: "Definições dos cupões",
           general: {
             name: "Nome Utilizador",
             submit: "Salvar",
@@ -156,6 +157,9 @@ export const content = {
             postalCode: "Código Postal",
             city: "Cidade",
             taxId: "NIF",
+          },
+          coupons: {
+            title: "Cupões Disponíveis",
           },
         },
         books: {

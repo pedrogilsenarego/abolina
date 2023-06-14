@@ -134,6 +134,46 @@ app.post(
 
           //sendEmail(userId, emailContent);
 
+          // Update the user document with the purchased coupons
+          const couponsToAdd = couponsResult
+            .filter((result) => result && result.couponIds.length > 0)
+            .map((result) => ({
+              couponId: result.couponIds,
+              title: result.title,
+              bookId: items.find((item) => item.title === result.title)
+                ?.documentId,
+            }));
+
+          if (couponsToAdd.length > 0) {
+            const userDoc = usersCollection.doc(userId);
+            const userSnapshot = await userDoc.get();
+
+            if (userSnapshot.exists) {
+              const userData = userSnapshot.data();
+              const existingCoupons = userData.coupons || [];
+
+              // Find the existing coupon object with the same book ID
+              const existingCouponIndex = existingCoupons.findIndex(
+                (coupon) => coupon.bookId === couponsToAdd[0].bookId
+              );
+
+              if (existingCouponIndex !== -1) {
+                // Add the new coupon IDs to the existing coupon object
+                existingCoupons[existingCouponIndex].couponId.push(
+                  ...couponsToAdd[0].couponId
+                );
+              } else {
+                // Add the new coupon object to the existing coupons array
+                existingCoupons.push(couponsToAdd[0]);
+              }
+
+              // Update the user document with the updated coupons array
+              await userDoc.update({
+                coupons: existingCoupons,
+              });
+            }
+          }
+
           return response.status(200).send("Payment successful");
         } catch (error) {
           console.error("Error updating user document:", error);

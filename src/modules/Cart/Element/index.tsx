@@ -55,7 +55,7 @@ const Element = ({ item, pos }: Props) => {
   }, [forOffer]);
 
   useEffect(() => {
-    if (currentUser.booksOwned.includes(item.product.documentID)) {
+    if (currentUser?.booksOwned?.includes(item.product.documentID)) {
       setForOffer(true);
       setCheckBoxDisabled(true);
     }

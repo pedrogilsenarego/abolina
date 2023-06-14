@@ -34,6 +34,12 @@ export interface InvoiceSettings {
   taxId:string
 }
 
+export interface Coupons {
+bookId:string;
+couponId:string[]
+title:string
+}
+
 export interface CurrentUser {
   id:string;
   email:string
@@ -41,4 +47,5 @@ export interface CurrentUser {
   displayName:string
   invoiceSettings:InvoiceSettings
   booksOwned:string[]
+  coupons:Coupons[]
 }

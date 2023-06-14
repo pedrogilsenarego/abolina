@@ -231,6 +231,7 @@ export const content = {
           title: "Client Management",
           generalSettings: "General Settings",
           invoiceSettings: "Invoice Settings",
+          couponsSettings: "Coupons Settings",
           general: {
             name: "User Name",
             submit: "Save Settings",
@@ -248,6 +249,9 @@ export const content = {
             postalCode: "Postal Code",
             city: "City",
             taxId: "Tax Id",
+          },
+          coupons: {
+            title: "Coupons Available",
           },
         },
       },
