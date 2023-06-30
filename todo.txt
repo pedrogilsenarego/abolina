@@ -1,4 +1,3 @@
-recuperar password, por baixo da pwd e letra mais pequena bold
+
 quando se tenta criar conta que ja existe não deveria sair da pagina
 mudar a mensagem para password errada
-tooltip aumentar tamanho
