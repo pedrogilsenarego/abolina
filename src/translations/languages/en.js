@@ -252,6 +252,7 @@ export const content = {
           },
           coupons: {
             title: "Coupons Available",
+            tooltipCopy:"Copy to clipboard"
           },
         },
       },
