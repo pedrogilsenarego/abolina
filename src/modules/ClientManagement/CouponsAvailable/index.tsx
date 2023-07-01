@@ -71,7 +71,7 @@ const CouponsAvailable = () => {
                     <ToolTip title={i18n.t("modules.clientManagement.coupons.tooltipCopy")}>
                       <IconButton  onClick={handleClick}>
                         <BiCopy
-                          color="black"
+                          color={Pallette.text}
                           size="1.2rem"
                           style={{ marginTop: "-3px", cursor: "pointer" }}
                         />
