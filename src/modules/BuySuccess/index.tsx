@@ -3,6 +3,7 @@ import { Colors } from "../../constants/pallette";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { clearCart } from "../../slicer/cart/cart.actions";
+import { checkUserSession } from "../../slicer/user/user.actions";
 
 
 const BuySuccess = () => {
@@ -11,6 +12,7 @@ const BuySuccess = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(clearCart())
+    dispatch(checkUserSession())
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
