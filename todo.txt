@@ -1,3 +1,4 @@
 
 
 
+quando se entra na loading success, tem que se fazer um reload ao user current data
