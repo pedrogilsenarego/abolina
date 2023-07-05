@@ -1,29 +1,25 @@
 import { Form, Formik } from "formik";
-import { FORM_VALIDATION } from "./validation";
-import TextField from "../../../../components/Inputs/TextFieldForm";
-import { i18n } from "../../../../translations/i18n";
-import Button from "../../../../components/Button";
-import { Colors } from "../../../../constants/pallette";
 import { useDispatch } from "react-redux";
+import Button from "../../../../components/Button";
+import TextField from "../../../../components/Inputs/TextFieldForm";
+import { Colors } from "../../../../constants/pallette";
 import { emailSignInStart } from "../../../../slicer/user/user.actions";
+import { i18n } from "../../../../translations/i18n";
+import { FORM_VALIDATION } from "./validation";
 
 interface FORM {
   email: string;
   password: string;
-
 }
 
 const EmailPass = () => {
   const INITIAL_STATE: FORM = {
     email: "",
     password: "",
-
   };
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleSubmit = (values: FORM) => {
-    dispatch(
-      emailSignInStart(values)
-    );
+    dispatch(emailSignInStart(values));
   };
   return (
     <>
@@ -36,17 +32,13 @@ const EmailPass = () => {
           <div
             style={{ display: "flex", flexDirection: "column", rowGap: "20px" }}
           >
-
-            <TextField label={i18n.t("modules.login.email")} name='email' />
+            <TextField label={i18n.t("modules.login.email")} name="email" />
             <TextField
               password
               label={i18n.t("modules.login.password")}
-              name='password'
+              name="password"
             />
-            <Button
-              formik
-              label={i18n.t("modules.login.startSession")}
-            />
+            <Button formik label={i18n.t("modules.login.startSession")} />
           </div>
         </Form>
       </Formik>

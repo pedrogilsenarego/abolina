@@ -46,7 +46,8 @@ app.post("/payments/creditCard", async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     line_items: lineItems,
     mode: "payment",
-    success_url: "http://localhost:3000/buy-success",
+    success_url:
+      "https://us-central1-abolina-a5745.cloudfunctions.net/api/buy-success",
     cancel_url: "http://localhost:3000/buy-success",
     metadata: metadata,
   });
