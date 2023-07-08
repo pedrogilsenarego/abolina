@@ -58,7 +58,11 @@ const ClientManagement = () => {
           {i18n.t("modules.clientManagement.title")}
         </Typography>
         <div style={{ display: "flex", columnGap: "20px", width: "100%" }}>
-          <div style={{ width: "30%", padding: "30px" }}>
+          <div
+            style={{
+              width: "30%",
+            }}
+          >
             <Typography
               onClick={() => setMode("generalData")}
               style={{

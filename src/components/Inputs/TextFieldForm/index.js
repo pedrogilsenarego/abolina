@@ -1,14 +1,15 @@
-import * as Styled from "./styles";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Box, IconButton, InputAdornment, Typography } from "@mui/material";
 import { useField } from "formik";
 import { useState } from "react";
-import { IconButton, InputAdornment, Typography, Box } from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import * as Styled from "./styles";
 
 const Textfield = ({
   maxWidth = "auto",
   placeholder = "",
   name,
   label,
+  fullWidth = false,
   password = false,
   multiline = false,
   rows = 0,
@@ -29,7 +30,6 @@ const Textfield = ({
     ...field,
     ...otherProps,
 
-    fullWidth: true,
     variant: "outlined",
   };
 
@@ -40,10 +40,11 @@ const Textfield = ({
   return (
     <>
       <Box
-        display='flex'
-        flexDirection='column'
-        alignItems='start'
-        justifyContent='start'
+        display="flex"
+        flexDirection="column"
+        alignItems="start"
+        justifyContent="start"
+        width={fullWidth ? "100%" : "inherit"}
       >
         <Typography>{label}</Typography>
 
@@ -52,18 +53,18 @@ const Textfield = ({
           maxWidth
           multiline={multiline ? multiline : null}
           rows={rows ? rows : null}
-          size='small'
+          size="small"
           placeholder={placeholder}
           {...configTextField}
           InputProps={
             password
               ? {
                   endAdornment: (
-                    <InputAdornment position='end'>
+                    <InputAdornment position="end">
                       <IconButton
                         onClick={handleClickShowPassword}
                         onMouseDown={handleMouseDownPassword}
-                        edge='end'
+                        edge="end"
                       >
                         {showPassword ? <VisibilityOff /> : <Visibility />}
                       </IconButton>
@@ -82,7 +83,7 @@ const Textfield = ({
           }}
         >
           {meta.touched && meta.error && (
-            <Typography color='error'>{meta.error}</Typography>
+            <Typography color="error">{meta.error}</Typography>
           )}
         </div>
       </Box>

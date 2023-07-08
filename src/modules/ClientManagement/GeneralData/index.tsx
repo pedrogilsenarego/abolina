@@ -1,16 +1,19 @@
 import { Form, Formik } from "formik";
-import { FORM_VALIDATION } from "./validation";
+import { useDispatch, useSelector } from "react-redux";
+import Button from "../../../components/Button";
 import TextField from "../../../components/Inputs/TextFieldForm";
 import { i18n } from "../../../translations/i18n";
-import Button from "../../../components/Button";
-import { useDispatch, useSelector } from "react-redux";
+import { FORM_VALIDATION } from "./validation";
 
-import { CurrentUser } from "../../../slicer/user/user.types";
-import { State } from "../../../slicer/types";
-import { mutateUserSettings, recoverPassword } from "../../../slicer/user/user.actions";
 import { Typography } from "@mui/material";
 import { useState } from "react";
 import Popup from "../../../components/BasicPopup";
+import { State } from "../../../slicer/types";
+import {
+  mutateUserSettings,
+  recoverPassword,
+} from "../../../slicer/user/user.actions";
+import { CurrentUser } from "../../../slicer/user/user.types";
 import { Title } from "../../../styles";
 
 interface FORM {
@@ -29,16 +32,18 @@ const GeneralData = () => {
 
   const changePasswordPopup = () => {
     const handleChangePassword = () => {
-      dispatch(recoverPassword(currentUser.email))
-      setChangePassword(false)
-    }
+      dispatch(recoverPassword(currentUser.email));
+      setChangePassword(false);
+    };
     return (
       <Popup
         openPopup={changePassword}
         setOpenPopup={setChangePassword}
         onClose={() => setChangePassword(false)}
       >
-        <div style={{ display: "flex", flexDirection: "column", rowGap: "30px" }}>
+        <div
+          style={{ display: "flex", flexDirection: "column", rowGap: "30px" }}
+        >
           <Title>
             {i18n.t("modules.clientManagement.general.changePasswordTitle")}
           </Title>
@@ -75,11 +80,17 @@ const GeneralData = () => {
       >
         <Form>
           <div
-            style={{ display: "flex", flexDirection: "column", rowGap: "20px" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              rowGap: "20px",
+              alignItems: "start",
+            }}
           >
             <TextField
+              fullWidth
               label={i18n.t("modules.clientManagement.general.name")}
-              name='displayName'
+              name="displayName"
             />
 
             <Button
