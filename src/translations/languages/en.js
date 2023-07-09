@@ -229,9 +229,9 @@ export const content = {
         },
         clientManagement: {
           title: "Client Management",
-          generalSettings: "General Settings",
+          generalSettings: "My settings",
           invoiceSettings: "Invoice Settings",
-          couponsSettings: "Coupons Settings",
+          couponsSettings: "Offer Codes",
           general: {
             name: "User Name",
             submit: "Save Settings",
@@ -252,7 +252,7 @@ export const content = {
           },
           coupons: {
             title: "Coupons Available",
-            tooltipCopy:"Copy to clipboard"
+            tooltipCopy: "Copy to clipboard",
           },
         },
       },

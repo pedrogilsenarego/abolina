@@ -137,9 +137,9 @@ export const content = {
         },
         clientManagement: {
           title: "Área de Cliente",
-          generalSettings: "Definições gerais",
-          invoiceSettings: "Definições facturação",
-          couponsSettings: "Definições dos cupões",
+          generalSettings: "Os meus dados",
+          invoiceSettings: "Dados de Faturação",
+          couponsSettings: "Códigos de oferta",
           general: {
             name: "Nome Utilizador",
             submit: "Salvar",
@@ -160,7 +160,7 @@ export const content = {
           },
           coupons: {
             title: "Cupões Disponíveis",
-            tooltipCopy:"Copiar o cupão"
+            tooltipCopy: "Copiar o cupão",
           },
         },
         books: {

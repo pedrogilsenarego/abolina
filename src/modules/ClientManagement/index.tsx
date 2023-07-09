@@ -97,7 +97,8 @@ const ClientManagement = () => {
           <div
             style={{
               width: "70%",
-              padding: "30px",
+              paddingLeft: "30px",
+              paddingRight: "30px",
               justifyContent: "center",
               display: "flex",
             }}

@@ -14,6 +14,7 @@ import {
   recoverPassword,
 } from "../../../slicer/user/user.actions";
 import { CurrentUser } from "../../../slicer/user/user.types";
+import * as Styled from "../../../styles";
 import { Title } from "../../../styles";
 
 interface FORM {
@@ -79,12 +80,16 @@ const GeneralData = () => {
         validationSchema={FORM_VALIDATION}
       >
         <Form>
+          <Styled.SubTitle style={{ fontWeight: 800 }}>
+            {i18n.t("modules.clientManagement.generalSettings")}
+          </Styled.SubTitle>
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               rowGap: "20px",
               alignItems: "start",
+              marginTop: "20px",
             }}
           >
             <TextField

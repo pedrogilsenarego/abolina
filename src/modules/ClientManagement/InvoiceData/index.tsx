@@ -1,16 +1,17 @@
 import { Form, Formik } from "formik";
-import { FORM_VALIDATION } from "./validation";
+import { useDispatch, useSelector } from "react-redux";
+import Button from "../../../components/Button";
 import TextField from "../../../components/Inputs/TextFieldForm";
 import { i18n } from "../../../translations/i18n";
-import Button from "../../../components/Button";
-import { useDispatch, useSelector } from "react-redux";
+import { FORM_VALIDATION } from "./validation";
 
-import { CurrentUser, InvoiceSettings } from "../../../slicer/user/user.types";
-import { State } from "../../../slicer/types";
-import { mutateUserSettings } from "../../../slicer/user/user.actions";
+import { Grid } from "@mui/material";
 import SelectWrapper from "../../../components/Inputs/SelectFormValue";
 import { countryList } from "../../../constants/forms";
-import { Grid } from "@mui/material";
+import { State } from "../../../slicer/types";
+import { mutateUserSettings } from "../../../slicer/user/user.actions";
+import { CurrentUser, InvoiceSettings } from "../../../slicer/user/user.types";
+import * as Styled from "../../../styles";
 
 const InvoiceData = () => {
   const currentUser = useSelector<State, CurrentUser>(
@@ -30,7 +31,7 @@ const InvoiceData = () => {
   const handleSubmit = (values: InvoiceSettings) => {
     const payload = {
       userFields: {
-        invoiceSettings: { ...values }
+        invoiceSettings: { ...values },
       },
       id: currentUser.id,
     };
@@ -44,59 +45,70 @@ const InvoiceData = () => {
         validationSchema={FORM_VALIDATION}
       >
         <Form>
-          <Grid container
-            columnSpacing="20px"
-            rowSpacing="20px"
-          ><Grid item xs={6}>
+          <Styled.SubTitle style={{ fontWeight: 800 }}>
+            {i18n.t("modules.clientManagement.invoiceSettings")}
+          </Styled.SubTitle>
+          <Grid container columnSpacing="20px" rowSpacing="20px" mt="20px">
+            <Grid item xs={6}>
               <TextField
                 label={i18n.t("modules.clientManagement.invoice.name")}
-                name='name'
+                name="name"
               />
             </Grid>
             <Grid item xs={6}>
               <TextField
                 label={i18n.t("modules.clientManagement.invoice.surname")}
-                name='surname'
+                name="surname"
               />
             </Grid>
             <Grid item xs={12}>
-              <SelectWrapper initialValue={currentUser?.invoiceSettings?.country || ""} options={countryList} label={i18n.t("modules.clientManagement.invoice.country")} name="country" />
+              <SelectWrapper
+                initialValue={currentUser?.invoiceSettings?.country || ""}
+                options={countryList}
+                label={i18n.t("modules.clientManagement.invoice.country")}
+                name="country"
+              />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 label={i18n.t("modules.clientManagement.invoice.address")}
-                name='address'
+                name="address"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <TextField
                 label={i18n.t("modules.clientManagement.invoice.postalCode")}
-                name='postalCode'
+                name="postalCode"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={6}>
               <TextField
                 label={i18n.t("modules.clientManagement.invoice.city")}
-                name='city'
+                name="city"
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 label={i18n.t("modules.clientManagement.invoice.taxId")}
-                name='taxId'
+                name="taxId"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid
+              item
+              xs={12}
+              style={{
+                display: "flex",
+                justifyContent: "start",
+              }}
+            >
               <Button
                 formik
                 label={i18n.t("modules.clientManagement.general.submit")}
               />
             </Grid>
           </Grid>
-
         </Form>
       </Formik>
-
     </>
   );
 };
