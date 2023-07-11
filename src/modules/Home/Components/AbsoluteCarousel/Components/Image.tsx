@@ -41,7 +41,7 @@ const Image = ({ item, pos, mobile, current, onClick }: Props) => {
         style={{
           cursor: "pointer",
           width: "55vw",
-          aspectRatio: 16 / 9,
+          aspectRatio: 16 / 6,
           objectFit: "cover",
           boxShadow:
             hover && current === pos

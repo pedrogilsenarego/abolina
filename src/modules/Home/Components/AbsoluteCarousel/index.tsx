@@ -2,8 +2,8 @@ import Image from "./Components/Image";
 import useAbsoluteCarousel from "./useAbsoluteCarousel";
 
 const AbsoluteCarousel = () => {
-  const { slides, current, mobile } = useAbsoluteCarousel();
-  console.log(current);
+  const { slides, current, mobile, getPositionValue } = useAbsoluteCarousel();
+  console.log(slides);
 
   return (
     <div style={{ height: "300px", position: "relative" }}>
@@ -12,10 +12,15 @@ const AbsoluteCarousel = () => {
           <div
             style={{
               position: "absolute",
-              zIndex: current > pos - 2 ? 1 : 0,
-              opacity: current > pos - 2 ? 1 : 0,
-              left: current === pos ? 0 : current === pos - 1 ? "80%" : 0,
-              right: current === pos ? 0 : current === pos - 1 ? "50%" : 0,
+              zIndex: slide.position === "back" ? -10 : 1,
+              opacity:
+                slide.position === "central"
+                  ? 1
+                  : slide.position === "back"
+                  ? 0
+                  : 0.5,
+              left: getPositionValue(slide.position),
+              right: getPositionValue(slide.position),
             }}
           >
             <Image
