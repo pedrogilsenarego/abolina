@@ -1,27 +1,32 @@
-import Carrousell from "./Components/Carrousell/Carrousell";
-import { i18n } from "../../translations/i18n";
-import { Typography, Container, Box, useTheme, useMediaQuery } from "@mui/material";
-import Button from "../../components/Button";
+import {
+  Box,
+  Container,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { ROUTE_PATHS } from "../../constants/routes";
-import Contacts from "./Components/Contacts";
 import homeOndas1 from "../../assets/images/homeOndas1.svg";
 import homeOndas2 from "../../assets/images/homeOndas2.svg";
-import { motion } from "framer-motion"
-import Carousel from "./Components/Carousel";
+import Button from "../../components/Button";
 import { Colors } from "../../constants/pallette";
-import { useSelector } from "react-redux";
+import { ROUTE_PATHS } from "../../constants/routes";
 import { State } from "../../slicer/types";
-
-
-
-
+import { i18n } from "../../translations/i18n";
+import AbsoluteCarousel from "./Components/AbsoluteCarousel";
+import Carousel from "./Components/Carousel";
+import Carrousell from "./Components/Carrousell/Carrousell";
+import Contacts from "./Components/Contacts";
 
 const Home = () => {
   const navigate = useNavigate();
-  const Theme = useTheme()
-  const mobile = useMediaQuery(Theme.breakpoints.down("md"))
-  const vertical = useSelector<State, boolean>((state) => state.general.positionVertical)
+  const Theme = useTheme();
+  const mobile = useMediaQuery(Theme.breakpoints.down("md"));
+  const vertical = useSelector<State, boolean>(
+    (state) => state.general.positionVertical
+  );
 
   return (
     <>
@@ -32,8 +37,8 @@ const Home = () => {
           transition={{ duration: 0.8 }}
         >
           {mobile ? <Carrousell /> : <Carousel />}
-
         </motion.div>
+        <AbsoluteCarousel />
         <Box
           style={{
             position: "absolute",
@@ -45,24 +50,30 @@ const Home = () => {
             backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",
             minHeight: mobile ? "45%" : "40%",
-
           }}
         />
       </Box>
-      <Box >
-        <Container maxWidth='lg' style={{ justifyContent: "center" }}>
-          <Box sx={{ mt: mobile ? "0px" : "140px", paddingLeft: vertical ? "8px" : "0px", paddingRight: vertical ? "8px" : "0px", }}>
-            <Typography fontWeight={800} fontSize={28} color={Colors.tealc}>{i18n.t("menuBar.about")}</Typography>
+      <Box>
+        <Container maxWidth="lg" style={{ justifyContent: "center" }}>
+          <Box
+            sx={{
+              mt: mobile ? "0px" : "140px",
+              paddingLeft: vertical ? "8px" : "0px",
+              paddingRight: vertical ? "8px" : "0px",
+            }}
+          >
+            <Typography fontWeight={800} fontSize={28} color={Colors.tealc}>
+              {i18n.t("menuBar.about")}
+            </Typography>
             <Typography
-              align='justify'
+              align="justify"
               style={{ marginTop: "30px", whiteSpace: "pre-line" }}
             >
               {i18n.t("modules.about.mainText")}
             </Typography>
           </Box>
-          <Box sx={{ mt: "20px" }} display='flex' justifyContent='start'>
+          <Box sx={{ mt: "20px" }} display="flex" justifyContent="start">
             <Button
-
               label={i18n.t("modules.home.mainTextBtn")}
               onClick={() => navigate(ROUTE_PATHS.ABOUT)}
             />
@@ -83,7 +94,6 @@ const Home = () => {
             minHeight: "30vh",
           }}
         />
-
       </Box>
     </>
   );
