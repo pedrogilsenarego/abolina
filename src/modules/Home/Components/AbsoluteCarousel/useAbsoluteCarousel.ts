@@ -77,6 +77,8 @@ const useAbsoluteCarousel = () => {
     if (direction === "left") {
       const updatedSlides = slides.map((slide) => {
         switch (slide.position) {
+          case "back":
+            return { ...slide, position: "furtherLeft" };
           case "central":
             return { ...slide, position: "right" };
           case "right":
@@ -97,6 +99,8 @@ const useAbsoluteCarousel = () => {
     if (direction === "right") {
       const updatedSlides = slides.map((slide) => {
         switch (slide.position) {
+          case "back":
+            return { ...slide, position: "furtherRight" };
           case "central":
             return { ...slide, position: "left" };
           case "left":
