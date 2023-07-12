@@ -11,6 +11,7 @@ const useAbsoluteCarousel = () => {
   );
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
+  const [canMove, setCanMove] = useState<boolean>(true);
 
   const getTranslateX = (position: string) => {
     switch (position) {
@@ -74,6 +75,10 @@ const useAbsoluteCarousel = () => {
   }, []);
 
   const handleMove = (direction: "left" | "right") => {
+    if (!canMove) {
+      return;
+    }
+    setCanMove(false);
     if (direction === "left") {
       const updatedSlides = slides.map((slide) => {
         switch (slide.position) {
@@ -93,7 +98,6 @@ const useAbsoluteCarousel = () => {
             return slide;
         }
       });
-
       setSlides(updatedSlides);
     }
     if (direction === "right") {
@@ -115,9 +119,11 @@ const useAbsoluteCarousel = () => {
             return slide;
         }
       });
-
       setSlides(updatedSlides);
     }
+    setTimeout(() => {
+      setCanMove(true);
+    }, 1000);
   };
 
   return {
