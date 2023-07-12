@@ -31,43 +31,47 @@ const useAbsoluteCarousel = () => {
     }
   };
 
-  // Define the positions
-  const positions = [
-    "central",
-    "right",
-    "furtherRight",
-    "back",
-    "left",
-    "furtherLeft",
-  ];
-
   useEffect(() => {
-    // Generate the slides array with the positions
-    const slidesT = itemsCarousel.map((item, index) => {
-      const position = positions[index % positions.length];
+    const positions = [
+      { position: "central", value: null },
+      { position: "right", value: null },
+      { position: "furtherRight", value: null },
+      { position: "back", value: 0 },
+      { position: "furtherLeft", value: null },
+      { position: "left", value: null },
+    ];
+    // Multiply the slides when needed
+    const initialCount = itemsCarousel.length;
+    const finalSlides =
+      initialCount >= 6
+        ? itemsCarousel
+        : initialCount <= 2
+        ? [...itemsCarousel, ...itemsCarousel, ...itemsCarousel]
+        : [...itemsCarousel, ...itemsCarousel];
+
+    // Find the index of "back" in the positions array
+    const insertionIndex = positions.findIndex(
+      (pos) => pos.position === "back"
+    );
+
+    // Determine the number of additional "back" elements to add
+    const excedentSlides = finalSlides.length - 6;
+
+    // Generate the additional "back" elements with incremental values for "value"
+    const additionalBackElements = Array(excedentSlides)
+      .fill(null)
+      .map((_, index) => ({
+        position: "back",
+        value: index + 1,
+      }));
+
+    // Insert the additional "back" elements into the positions array
+    positions.splice(insertionIndex, 0, ...additionalBackElements);
+
+    const slidesT = finalSlides.map((item, index) => {
+      const position = positions[index];
       return { ...item, position };
     });
-
-    // If there are less than 6 items, fill the rest with repeated items
-    if (slidesT.length < 6) {
-      const repeatedSlides = slidesT
-        .slice(0, 6 - slidesT.length)
-        .map((item, index) => {
-          const position = positions[slidesT.length + index];
-          return { ...item, position };
-        });
-      slidesT.push(...repeatedSlides);
-    }
-
-    // Set "left" position for the last item
-    if (slidesT.length >= 1) {
-      slidesT[slidesT.length - 1].position = "left";
-    }
-
-    // Set "furtherLeft" position for the second-to-last item
-    if (slidesT.length >= 2) {
-      slidesT[slidesT.length - 2].position = "furtherLeft";
-    }
 
     setSlides(slidesT);
 
@@ -80,20 +84,36 @@ const useAbsoluteCarousel = () => {
     }
     setCanMove(false);
     if (direction === "left") {
-      const updatedSlides = slides.map((slide) => {
-        switch (slide.position) {
+      const updatedSlides = slides.map((slide, index, array) => {
+        const excedentSlides = array.length - 6;
+        switch (slide.position.position) {
           case "back":
-            return { ...slide, position: "furtherLeft" };
+            if (slide.position.value === excedentSlides) {
+              return {
+                ...slide,
+                position: { position: "furtherLeft", value: null },
+              };
+            }
+            return {
+              ...slide,
+              position: {
+                position: "back",
+                value: slide.position.value + 1,
+              },
+            };
           case "central":
-            return { ...slide, position: "right" };
+            return { ...slide, position: { position: "right", value: null } };
           case "right":
-            return { ...slide, position: "furtherRight" };
+            return {
+              ...slide,
+              position: { position: "furtherRight", value: null },
+            };
           case "furtherRight":
-            return { ...slide, position: "back" };
+            return { ...slide, position: { position: "back", value: 0 } };
           case "left":
-            return { ...slide, position: "central" };
+            return { ...slide, position: { position: "central", value: null } };
           case "furtherLeft":
-            return { ...slide, position: "left" };
+            return { ...slide, position: { position: "left", value: null } };
           default:
             return slide;
         }
@@ -101,20 +121,39 @@ const useAbsoluteCarousel = () => {
       setSlides(updatedSlides);
     }
     if (direction === "right") {
-      const updatedSlides = slides.map((slide) => {
-        switch (slide.position) {
+      const updatedSlides = slides.map((slide, index, array) => {
+        const excedentSlides = array.length - 6;
+        switch (slide.position.position) {
           case "back":
-            return { ...slide, position: "furtherRight" };
+            if (slide.position.value === 0) {
+              return {
+                ...slide,
+                position: { position: "furtherRight", value: null },
+              };
+            }
+            return {
+              ...slide,
+              position: {
+                position: "back",
+                value: slide.position.value - 1,
+              },
+            };
           case "central":
-            return { ...slide, position: "left" };
+            return { ...slide, position: { position: "left", value: null } };
           case "left":
-            return { ...slide, position: "furtherLeft" };
+            return {
+              ...slide,
+              position: { position: "furtherLeft", value: null },
+            };
           case "furtherLeft":
-            return { ...slide, position: "back" };
+            return {
+              ...slide,
+              position: { position: "back", value: excedentSlides },
+            };
           case "right":
-            return { ...slide, position: "central" };
+            return { ...slide, position: { position: "central", value: null } };
           case "furtherRight":
-            return { ...slide, position: "right" };
+            return { ...slide, position: { position: "right", value: null } };
           default:
             return slide;
         }

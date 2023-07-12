@@ -85,6 +85,7 @@ const AbsoluteCarousel = ({ height = "300px" }: IProps) => {
       )}
 
       {slides.map((slide, pos) => {
+        const { position } = slide.position;
         return (
           <div
             key={pos}
@@ -93,25 +94,17 @@ const AbsoluteCarousel = ({ height = "300px" }: IProps) => {
               transition: "all 1s ease-in-out",
               position: "absolute",
               zIndex:
-                slide.position === "back"
-                  ? -10
-                  : slide.position === "central"
-                  ? 10
-                  : 5,
+                position === "back" ? -10 : position === "central" ? 10 : 5,
               willChange: "transform opacity zIndex",
               opacity:
-                slide.position === "central"
-                  ? 1
-                  : slide.position === "back"
-                  ? 0
-                  : 0.5,
+                position === "central" ? 1 : position === "back" ? 0 : 0.5,
               left: 0,
               right: 0,
-              transform: `translateX(${getTranslateX(slide.position)}vw)`,
+              transform: `translateX(${getTranslateX(position)}vw)`,
             }}
           >
             <Image
-              position={slide.position}
+              position={position}
               mobile={mobile}
               key={pos}
               item={slide.image}
