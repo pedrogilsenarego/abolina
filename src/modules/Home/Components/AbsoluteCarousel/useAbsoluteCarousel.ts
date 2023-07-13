@@ -40,8 +40,18 @@ const useAbsoluteCarousel = () => {
       { position: "furtherLeft", value: null },
       { position: "left", value: null },
     ];
-    // Multiply the slides when needed
+
     const initialCount = itemsCarousel.length;
+    // if it is only one slide or none
+    if (initialCount <= 1) {
+      const slidesT = itemsCarousel.map((item) => {
+        const position = positions[0];
+        return { ...item, position };
+      });
+      setSlides(slidesT);
+      return;
+    }
+    // Multiply the slides when needed
     const finalSlides =
       initialCount >= 6
         ? itemsCarousel
@@ -58,6 +68,7 @@ const useAbsoluteCarousel = () => {
     const excedentSlides = finalSlides.length - 6;
 
     // Generate the additional "back" elements with incremental values for "value"
+
     const additionalBackElements = Array(excedentSlides)
       .fill(null)
       .map((_, index) => ({
