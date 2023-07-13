@@ -4,15 +4,21 @@ import { useSelector } from "react-redux";
 import { Carousel } from "../../../../slicer/books/books.types";
 import { State } from "../../../../slicer/types";
 
-const useAbsoluteCarousel = () => {
+interface IProps {
+  automaticSlide: number | undefined;
+}
+
+const useAbsoluteCarousel = ({ automaticSlide }: IProps) => {
   const [slides, setSlides] = useState<any[]>([]);
   const [miniIndex, setMiniIndex] = useState<number>(0);
+  const [mouseHover, setMousehover] = useState(false);
+  const [canMove, setCanMove] = useState<boolean>(true);
   const itemsCarousel = useSelector<State, Carousel[]>(
     (state) => state.books.carroussell || []
   );
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
-  const [canMove, setCanMove] = useState<boolean>(true);
+
   const initialCount = itemsCarousel.length;
 
   const getTranslateX = (position: string) => {
@@ -90,11 +96,7 @@ const useAbsoluteCarousel = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleMove = (direction: "left" | "right", disableTimout = false) => {
-    if (!canMove) {
-      return;
-    }
-    setCanMove(false);
+  const handleMove = (direction: "left" | "right") => {
     const updateMiniIndex = () => {
       if (direction === "right") {
         setMiniIndex(miniIndex < initialCount - 1 ? miniIndex + 1 : 0);
@@ -181,12 +183,6 @@ const useAbsoluteCarousel = () => {
       });
       setSlides(updatedSlides);
     }
-    setTimeout(
-      () => {
-        setCanMove(true);
-      },
-      disableTimout ? 0 : 1000
-    );
   };
 
   const handleMiniIndex = (newIndex: number) => {
@@ -202,8 +198,7 @@ const useAbsoluteCarousel = () => {
       if (movesLeft <= 0) {
         return;
       }
-
-      handleMove(direction, true);
+      handleMove(direction);
       setTimeout(() => {
         handleMoveRecursively(movesLeft - 1);
       }, 1000);
@@ -212,6 +207,27 @@ const useAbsoluteCarousel = () => {
     handleMoveRecursively(numberOfMoves);
   };
 
+  const handleCallMove = (position: "left" | "right") => {
+    if (!canMove) {
+      return;
+    }
+    setCanMove(false);
+
+    handleMove(position);
+    setTimeout(() => {
+      setCanMove(true);
+    }, 1000);
+  };
+
+  useEffect(() => {
+    if (!automaticSlide) return;
+    const timeoutId = setTimeout(() => {
+      if (!mouseHover) handleMove("right");
+    }, automaticSlide);
+    return () => clearTimeout(timeoutId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [slides, mouseHover]);
+
   return {
     slides,
     initialCount,
@@ -219,8 +235,9 @@ const useAbsoluteCarousel = () => {
     mobile,
     getTranslateX,
     miniIndex,
+    setMousehover,
     setMiniIndex,
-    handleMove,
+    handleCallMove,
   };
 };
 

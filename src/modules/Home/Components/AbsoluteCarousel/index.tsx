@@ -7,24 +7,27 @@ import useAbsoluteCarousel from "./useAbsoluteCarousel";
 
 interface IProps {
   height?: string;
+  automaticSlide?: number;
 }
 
-const AbsoluteCarousel = ({ height = "300px" }: IProps) => {
+const AbsoluteCarousel = ({ height = "300px", automaticSlide }: IProps) => {
   const {
     slides,
     mobile,
     getTranslateX,
     handleMiniIndex,
-    handleMove,
+    handleCallMove,
     miniIndex,
-    setMiniIndex,
+    setMousehover,
     initialCount,
-  } = useAbsoluteCarousel();
+  } = useAbsoluteCarousel({ automaticSlide });
   console.log(slides);
 
   return (
     <>
       <div
+        onMouseEnter={() => setMousehover(true)}
+        onMouseLeave={() => setMousehover(false)}
         style={{
           height: height,
           position: "relative",
@@ -44,7 +47,7 @@ const AbsoluteCarousel = ({ height = "300px" }: IProps) => {
             }}
           >
             <div
-              onClick={() => handleMove("left")}
+              onClick={() => handleCallMove("left")}
               style={{
                 width: "250px",
                 height: height,
@@ -55,7 +58,7 @@ const AbsoluteCarousel = ({ height = "300px" }: IProps) => {
             />
 
             <div
-              onClick={() => handleMove("right")}
+              onClick={() => handleCallMove("right")}
               style={{
                 pointerEvents: "all",
                 width: "250px",
@@ -83,14 +86,14 @@ const AbsoluteCarousel = ({ height = "300px" }: IProps) => {
               size="3rem"
               color={Colors.tealc}
               style={{ cursor: "pointer", pointerEvents: "all" }}
-              onClick={() => handleMove("left")}
+              onClick={() => handleCallMove("left")}
             />
 
             <FiChevronRight
               size="3rem"
               color={Colors.tealc}
               style={{ cursor: "pointer", pointerEvents: "all" }}
-              onClick={() => handleMove("right")}
+              onClick={() => handleCallMove("right")}
             />
           </Box>
         )}
