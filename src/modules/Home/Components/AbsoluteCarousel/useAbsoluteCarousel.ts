@@ -66,7 +66,7 @@ const useAbsoluteCarousel = () => {
       }));
 
     // Insert the additional "back" elements into the positions array
-    positions.splice(insertionIndex, 0, ...additionalBackElements);
+    positions.splice(insertionIndex + 1, 0, ...additionalBackElements);
 
     const slidesT = finalSlides.map((item, index) => {
       const position = positions[index];
