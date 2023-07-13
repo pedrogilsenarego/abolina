@@ -97,6 +97,15 @@ const AbsoluteCarousel = ({ height = "300px", automaticSlide }: IProps) => {
             />
           </Box>
         )}
+        <div
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: height,
+            backgroundColor: "white",
+            zIndex: 2,
+          }}
+        />
 
         {slides.map((slide, pos) => {
           const { position } = slide.position;
