@@ -6,12 +6,14 @@ import { State } from "../../../../slicer/types";
 
 const useAbsoluteCarousel = () => {
   const [slides, setSlides] = useState<any[]>([]);
+  const [miniIndex, setMiniIndex] = useState<number>(0);
   const itemsCarousel = useSelector<State, Carousel[]>(
     (state) => state.books.carroussell || []
   );
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
   const [canMove, setCanMove] = useState<boolean>(true);
+  const initialCount = itemsCarousel.length;
 
   const getTranslateX = (position: string) => {
     switch (position) {
@@ -41,7 +43,6 @@ const useAbsoluteCarousel = () => {
       { position: "left", value: null },
     ];
 
-    const initialCount = itemsCarousel.length;
     // if it is only one slide or none
     if (initialCount <= 1) {
       const slidesT = itemsCarousel.map((item) => {
@@ -89,11 +90,20 @@ const useAbsoluteCarousel = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleMove = (direction: "left" | "right") => {
+  const handleMove = (direction: "left" | "right", disableTimout = false) => {
     if (!canMove) {
       return;
     }
     setCanMove(false);
+    const updateMiniIndex = () => {
+      if (direction === "right") {
+        setMiniIndex(miniIndex < initialCount - 1 ? miniIndex + 1 : 0);
+      }
+      if (direction === "left") {
+        setMiniIndex(miniIndex === 0 ? initialCount - 1 : miniIndex - 1);
+      }
+    };
+    updateMiniIndex();
     if (direction === "left") {
       const updatedSlides = slides.map((slide, index, array) => {
         const excedentSlides = array.length - 6;
@@ -171,17 +181,45 @@ const useAbsoluteCarousel = () => {
       });
       setSlides(updatedSlides);
     }
-    setTimeout(() => {
-      setCanMove(true);
-    }, 1000);
+    setTimeout(
+      () => {
+        setCanMove(true);
+      },
+      disableTimout ? 0 : 1000
+    );
+  };
+
+  const handleMiniIndex = (newIndex: number) => {
+    const direction = newIndex - miniIndex > 0 ? "right" : "left";
+    const numberOfMoves = Math.abs(newIndex - miniIndex);
+
+    if (numberOfMoves <= 1) {
+      handleMove(direction);
+      return;
+    }
+
+    const handleMoveRecursively = (movesLeft: number) => {
+      if (movesLeft <= 0) {
+        return;
+      }
+
+      handleMove(direction, true);
+      setTimeout(() => {
+        handleMoveRecursively(movesLeft - 1);
+      }, 1000);
+    };
+
+    handleMoveRecursively(numberOfMoves);
   };
 
   return {
     slides,
-
+    initialCount,
+    handleMiniIndex,
     mobile,
     getTranslateX,
-
+    miniIndex,
+    setMiniIndex,
     handleMove,
   };
 };

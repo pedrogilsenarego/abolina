@@ -14,6 +14,7 @@ const Image = ({ item, pos, onClick, position }: Props) => {
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const [initialTransition, setInitialTransition] = useState<boolean>(false);
 
+  const opacity = isMounted ? (position === "central" ? 1 : 0.5) : 0;
   const timeinitialTransition = position === "central" ? 1.5 : 3;
 
   useEffect(() => {
@@ -49,7 +50,7 @@ const Image = ({ item, pos, onClick, position }: Props) => {
               : "0 4px 16px 0px #00000040",
           borderRadius: "4px",
           transition: transition,
-
+          opacity: opacity,
           transform:
             hover && position === "central"
               ? "translate(0px,-12px) scale(1.0)"
