@@ -29,6 +29,7 @@ const AbsoluteCarousel = ({
     handleTouchEnd,
     handleTouchMove,
     handleTouchStart,
+    handleClickMainImage,
   } = useAbsoluteCarousel({ automaticSlide, mobile });
   console.log(slides);
 
@@ -137,6 +138,11 @@ const AbsoluteCarousel = ({
               <Image
                 position={position}
                 mobile={mobile}
+                onClick={
+                  position === "central"
+                    ? () => handleClickMainImage(slide.link)
+                    : undefined
+                }
                 key={pos}
                 width={width}
                 item={slide.image}

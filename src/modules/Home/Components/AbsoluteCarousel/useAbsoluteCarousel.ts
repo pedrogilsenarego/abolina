@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { ROUTE_PATHS } from "../../../../constants/routes";
 import { Carousel } from "../../../../slicer/books/books.types";
 import { State } from "../../../../slicer/types";
 
@@ -18,6 +20,8 @@ const useAbsoluteCarousel = ({ automaticSlide, mobile }: IProps) => {
   const itemsCarousel = useSelector<State, Carousel[]>(
     (state) => state.books.carroussell || []
   );
+
+  const navigate = useNavigate();
 
   const initialCount = itemsCarousel.length;
 
@@ -255,11 +259,15 @@ const useAbsoluteCarousel = ({ automaticSlide, mobile }: IProps) => {
     setIsMoving(false);
   };
 
+  const handleClickMainImage = (link: string) => {
+    navigate(ROUTE_PATHS.BOOKS_BOOK.replace(":id", link));
+  };
+
   return {
     slides,
     initialCount,
     handleMiniIndex,
-
+    handleClickMainImage,
     getTranslateX,
     miniIndex,
     setMousehover,
