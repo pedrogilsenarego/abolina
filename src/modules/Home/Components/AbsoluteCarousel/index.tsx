@@ -8,19 +8,25 @@ import useAbsoluteCarousel from "./useAbsoluteCarousel";
 interface IProps {
   height?: string;
   automaticSlide?: number;
+  mobile?: boolean;
+  width?: string;
 }
 
-const AbsoluteCarousel = ({ height = "300px", automaticSlide }: IProps) => {
+const AbsoluteCarousel = ({
+  height = "300px",
+  mobile = false,
+  width = "55vw",
+  automaticSlide,
+}: IProps) => {
   const {
     slides,
-    mobile,
     getTranslateX,
     handleMiniIndex,
     handleCallMove,
     miniIndex,
     setMousehover,
     initialCount,
-  } = useAbsoluteCarousel({ automaticSlide });
+  } = useAbsoluteCarousel({ automaticSlide, mobile });
   console.log(slides);
 
   return (
@@ -33,69 +39,73 @@ const AbsoluteCarousel = ({ height = "300px", automaticSlide }: IProps) => {
           position: "relative",
         }}
       >
-        {slides.length > 1 && (
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            style={{
-              pointerEvents: "none",
-              width: "100vw",
-              position: "absolute",
-              left: 0,
-              bottom: 0,
-              zIndex: 1000,
-            }}
-          >
-            <div
-              onClick={() => handleCallMove("left")}
-              style={{
-                width: "250px",
-                height: height,
+        {!mobile && (
+          <>
+            {slides.length > 1 && (
+              <Box
+                display="flex"
+                justifyContent="space-between"
+                style={{
+                  pointerEvents: "none",
+                  width: "100vw",
+                  position: "absolute",
+                  left: 0,
+                  bottom: 0,
+                  zIndex: 1000,
+                }}
+              >
+                <div
+                  onClick={() => handleCallMove("left")}
+                  style={{
+                    width: "250px",
+                    height: height,
 
-                cursor: "pointer",
-                pointerEvents: "all",
-              }}
-            />
+                    cursor: "pointer",
+                    pointerEvents: "all",
+                  }}
+                />
 
-            <div
-              onClick={() => handleCallMove("right")}
-              style={{
-                pointerEvents: "all",
-                width: "250px",
-                height: height,
+                <div
+                  onClick={() => handleCallMove("right")}
+                  style={{
+                    pointerEvents: "all",
+                    width: "250px",
+                    height: height,
 
-                cursor: "pointer",
-              }}
-            />
-          </Box>
-        )}
-        {slides.length > 1 && (
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            style={{
-              pointerEvents: "none",
-              width: "62vw",
-              position: "absolute",
-              left: "19vw",
-              bottom: "42%",
-              zIndex: 500,
-            }}
-          >
-            <FiChevronLeft
-              size="3rem"
-              color={Colors.tealc}
-              style={{ cursor: "pointer", pointerEvents: "all" }}
-              onClick={() => handleCallMove("left")}
-            />
+                    cursor: "pointer",
+                  }}
+                />
+              </Box>
+            )}
+            {slides.length > 1 && (
+              <Box
+                display="flex"
+                justifyContent="space-between"
+                style={{
+                  pointerEvents: "none",
+                  width: "62vw",
+                  position: "absolute",
+                  left: "19vw",
+                  bottom: "42%",
+                  zIndex: 500,
+                }}
+              >
+                <FiChevronLeft
+                  size="3rem"
+                  color={Colors.tealc}
+                  style={{ cursor: "pointer", pointerEvents: "all" }}
+                  onClick={() => handleCallMove("left")}
+                />
 
-            <FiChevronRight
-              size="3rem"
-              color={Colors.tealc}
-              style={{ cursor: "pointer", pointerEvents: "all" }}
-              onClick={() => handleCallMove("right")}
-            />
-          </Box>
+                <FiChevronRight
+                  size="3rem"
+                  color={Colors.tealc}
+                  style={{ cursor: "pointer", pointerEvents: "all" }}
+                  onClick={() => handleCallMove("right")}
+                />
+              </Box>
+            )}
+          </>
         )}
         <div
           style={{
@@ -130,6 +140,7 @@ const AbsoluteCarousel = ({ height = "300px", automaticSlide }: IProps) => {
                 position={position}
                 mobile={mobile}
                 key={pos}
+                width={width}
                 item={slide.image}
                 pos={pos}
               />
@@ -137,7 +148,11 @@ const AbsoluteCarousel = ({ height = "300px", automaticSlide }: IProps) => {
           );
         })}
       </div>
-      <Box display="flex" justifyContent="center" style={{ marginTop: "35px" }}>
+      <Box
+        display="flex"
+        justifyContent="center"
+        style={{ marginTop: mobile ? "10px" : "35px" }}
+      >
         <DotGroups
           numberDots={initialCount}
           index={miniIndex}

@@ -1,4 +1,3 @@
-import { useMediaQuery, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Carousel } from "../../../../slicer/books/books.types";
@@ -6,9 +5,10 @@ import { State } from "../../../../slicer/types";
 
 interface IProps {
   automaticSlide: number | undefined;
+  mobile: boolean;
 }
 
-const useAbsoluteCarousel = ({ automaticSlide }: IProps) => {
+const useAbsoluteCarousel = ({ automaticSlide, mobile }: IProps) => {
   const [slides, setSlides] = useState<any[]>([]);
   const [miniIndex, setMiniIndex] = useState<number>(0);
   const [mouseHover, setMousehover] = useState(false);
@@ -16,8 +16,6 @@ const useAbsoluteCarousel = ({ automaticSlide }: IProps) => {
   const itemsCarousel = useSelector<State, Carousel[]>(
     (state) => state.books.carroussell || []
   );
-  const Theme = useTheme();
-  const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
 
   const initialCount = itemsCarousel.length;
 
@@ -27,13 +25,13 @@ const useAbsoluteCarousel = ({ automaticSlide }: IProps) => {
       case "back":
         return 0;
       case "left":
-        return -60;
+        return mobile ? -110 : -60;
       case "furtherLeft":
-        return -150;
+        return mobile ? -200 : -150;
       case "right":
-        return 60;
+        return mobile ? 110 : 60;
       case "furtherRight":
-        return 150;
+        return mobile ? 200 : 150;
       default:
         return 0;
     }
@@ -232,7 +230,7 @@ const useAbsoluteCarousel = ({ automaticSlide }: IProps) => {
     slides,
     initialCount,
     handleMiniIndex,
-    mobile,
+
     getTranslateX,
     miniIndex,
     setMousehover,

@@ -43,14 +43,18 @@ const Home = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
         >
-          <AbsoluteCarousel />
+          <AbsoluteCarousel
+            mobile={mobile}
+            height={mobile ? "150px" : "300px"}
+            width={mobile ? "92vw" : "55vw"}
+          />
         </motion.div>
         <Box
           style={{
             position: "absolute",
             zIndex: -10,
             width: "100%",
-            bottom: mobile ? "-20%" : "-40%",
+            bottom: mobile ? "-65%" : "-40%",
             backgroundImage: `url(${homeOndas1})`,
             backgroundSize: mobile ? "400%" : "100%",
             backgroundPosition: "center center",
@@ -63,7 +67,7 @@ const Home = () => {
         <Container maxWidth="lg" style={{ justifyContent: "center" }}>
           <Box
             sx={{
-              mt: mobile ? "0px" : "140px",
+              mt: mobile ? "50px" : "140px",
               paddingLeft: vertical ? "8px" : "0px",
               paddingRight: vertical ? "8px" : "0px",
             }}

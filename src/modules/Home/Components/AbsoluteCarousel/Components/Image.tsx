@@ -4,12 +4,12 @@ interface Props {
   item: string;
   pos: number;
   mobile: boolean;
-
+  width: string;
   position: string;
   onClick?: (pos: number) => void;
 }
 
-const Image = ({ item, pos, onClick, position }: Props) => {
+const Image = ({ item, pos, onClick, position, width }: Props) => {
   const [hover, setHover] = useState<boolean>(false);
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const [initialTransition, setInitialTransition] = useState<boolean>(false);
@@ -41,7 +41,7 @@ const Image = ({ item, pos, onClick, position }: Props) => {
         onMouseLeave={() => setHover(false)}
         style={{
           cursor: "pointer",
-          width: "55vw",
+          width: width,
           height: "100%",
           objectFit: "cover",
           boxShadow:
