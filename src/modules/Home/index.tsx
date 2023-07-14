@@ -16,8 +16,6 @@ import { ROUTE_PATHS } from "../../constants/routes";
 import { State } from "../../slicer/types";
 import { i18n } from "../../translations/i18n";
 import AbsoluteCarousel from "./Components/AbsoluteCarousel";
-import Carousel from "./Components/Carousel";
-import Carrousell from "./Components/Carrousell/Carrousell";
 import Contacts from "./Components/Contacts";
 
 const Home = () => {
@@ -31,13 +29,6 @@ const Home = () => {
   return (
     <>
       <Box style={{ position: "relative" }}>
-        {/*  <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-        >
-          {mobile ? <Carrousell /> : <Carousel />}
-        </motion.div> */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -54,9 +45,9 @@ const Home = () => {
             position: "absolute",
             zIndex: -10,
             width: "100%",
-            bottom: mobile ? "-65%" : "-40%",
+            bottom: mobile ? "-55%" : "-40%",
             backgroundImage: `url(${homeOndas1})`,
-            backgroundSize: mobile ? "400%" : "100%",
+            backgroundSize: mobile ? "350%" : "100%",
             backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",
             minHeight: mobile ? "45%" : "40%",
@@ -67,7 +58,7 @@ const Home = () => {
         <Container maxWidth="lg" style={{ justifyContent: "center" }}>
           <Box
             sx={{
-              mt: mobile ? "50px" : "140px",
+              mt: mobile ? "30px" : "140px",
               paddingLeft: vertical ? "8px" : "0px",
               paddingRight: vertical ? "8px" : "0px",
             }}

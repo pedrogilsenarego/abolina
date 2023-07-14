@@ -35,6 +35,7 @@ const AbsoluteCarousel = ({
         onMouseEnter={() => setMousehover(true)}
         onMouseLeave={() => setMousehover(false)}
         style={{
+          overflow: "hidden",
           height: height,
           position: "relative",
         }}
@@ -107,15 +108,6 @@ const AbsoluteCarousel = ({
             )}
           </>
         )}
-        <div
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: height,
-            backgroundColor: "white",
-            zIndex: 2,
-          }}
-        />
 
         {slides.map((slide, pos) => {
           const { position } = slide.position;
