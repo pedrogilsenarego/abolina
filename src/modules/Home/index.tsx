@@ -6,13 +6,15 @@ import {
   useTheme,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import homeOndas1 from "../../assets/images/homeOndas1.svg";
 import homeOndas2 from "../../assets/images/homeOndas2.svg";
 import Button from "../../components/Button";
 import { Colors } from "../../constants/pallette";
 import { ROUTE_PATHS } from "../../constants/routes";
+import { fetchCarroussell } from "../../slicer/books/books.actions";
 import { State } from "../../slicer/types";
 import { i18n } from "../../translations/i18n";
 import AbsoluteCarousel from "./Components/AbsoluteCarousel";
@@ -21,10 +23,16 @@ import Contacts from "./Components/Contacts";
 const Home = () => {
   const navigate = useNavigate();
   const Theme = useTheme();
+  const dispatch = useDispatch();
   const mobile = useMediaQuery(Theme.breakpoints.down("md"));
   const vertical = useSelector<State, boolean>(
     (state) => state.general.positionVertical
   );
+
+  useEffect(() => {
+    dispatch(fetchCarroussell());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -47,7 +55,7 @@ const Home = () => {
             width: "100%",
             bottom: mobile ? "-55%" : "-40%",
             backgroundImage: `url(${homeOndas1})`,
-            backgroundSize: mobile ? "350%" : "100%",
+            backgroundSize: mobile ? "320%" : "100%",
             backgroundPosition: "center center",
             backgroundRepeat: "no-repeat",
             minHeight: mobile ? "45%" : "40%",
