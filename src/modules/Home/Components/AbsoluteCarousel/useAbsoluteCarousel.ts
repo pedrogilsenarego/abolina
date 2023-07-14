@@ -13,6 +13,8 @@ const useAbsoluteCarousel = ({ automaticSlide, mobile }: IProps) => {
   const [miniIndex, setMiniIndex] = useState<number>(0);
   const [mouseHover, setMousehover] = useState(false);
   const [canMove, setCanMove] = useState<boolean>(true);
+  const [startX, setStartX] = useState(0);
+  const [isMoving, setIsMoving] = useState(false);
   const itemsCarousel = useSelector<State, Carousel[]>(
     (state) => state.books.carroussell || []
   );
@@ -226,6 +228,33 @@ const useAbsoluteCarousel = ({ automaticSlide, mobile }: IProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slides, mouseHover]);
 
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    const touch = event.touches[0];
+
+    setStartX(touch.clientX);
+    setIsMoving(true);
+  };
+
+  const handleTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (!isMoving) return;
+
+    const touch = event.touches[0];
+    const diff = touch.clientX - startX;
+
+    const threshold = 80;
+    if (diff < -threshold) {
+      handleCallMove("right");
+      setIsMoving(false);
+    } else if (diff > threshold) {
+      handleCallMove("left");
+      setIsMoving(false);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsMoving(false);
+  };
+
   return {
     slides,
     initialCount,
@@ -236,6 +265,9 @@ const useAbsoluteCarousel = ({ automaticSlide, mobile }: IProps) => {
     setMousehover,
     setMiniIndex,
     handleCallMove,
+    handleTouchEnd,
+    handleTouchMove,
+    handleTouchStart,
   };
 };
 

@@ -26,6 +26,9 @@ const AbsoluteCarousel = ({
     miniIndex,
     setMousehover,
     initialCount,
+    handleTouchEnd,
+    handleTouchMove,
+    handleTouchStart,
   } = useAbsoluteCarousel({ automaticSlide, mobile });
   console.log(slides);
 
@@ -113,6 +116,9 @@ const AbsoluteCarousel = ({
           const { position } = slide.position;
           return (
             <div
+              onTouchStart={!mobile ? undefined : handleTouchStart}
+              onTouchMove={!mobile ? undefined : handleTouchMove}
+              onTouchEnd={!mobile ? undefined : handleTouchEnd}
               key={pos}
               style={{
                 height: "100%",
