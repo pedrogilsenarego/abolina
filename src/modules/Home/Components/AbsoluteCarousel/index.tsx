@@ -33,7 +33,7 @@ const AbsoluteCarousel = ({
   console.log(slides);
 
   return (
-    <>
+    <div style={{ position: "relative" }}>
       <div
         onMouseEnter={() => setMousehover(true)}
         onMouseLeave={() => setMousehover(false)}
@@ -111,15 +111,7 @@ const AbsoluteCarousel = ({
             )}
           </>
         )}
-        <div
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: `calc(${height} + 10%)`,
-            backgroundColor: "white",
-            zIndex: 2,
-          }}
-        />
+
         {slides.map((slide, pos) => {
           const { position } = slide.position;
           return (
@@ -154,10 +146,15 @@ const AbsoluteCarousel = ({
           );
         })}
       </div>
+
       <Box
         display="flex"
         justifyContent="center"
-        style={{ marginTop: mobile ? "10px" : "35px" }}
+        style={{
+          marginTop: mobile ? "10px" : "35px",
+          zIndex: 200,
+          position: "relative",
+        }}
       >
         <DotGroups
           numberDots={initialCount}
@@ -165,7 +162,17 @@ const AbsoluteCarousel = ({
           setIndex={handleMiniIndex}
         />
       </Box>
-    </>
+      <div
+        style={{
+          top: 0,
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          backgroundColor: "white",
+          zIndex: 2,
+        }}
+      />
+    </div>
   );
 };
 

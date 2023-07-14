@@ -9,7 +9,7 @@ interface Props {
   onClick?: (pos: number) => void;
 }
 
-const Image = ({ item, pos, onClick, position, width }: Props) => {
+const Image = ({ item, pos, onClick, position, width, mobile }: Props) => {
   const [hover, setHover] = useState<boolean>(false);
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const [initialTransition, setInitialTransition] = useState<boolean>(false);
@@ -44,10 +44,11 @@ const Image = ({ item, pos, onClick, position, width }: Props) => {
           width: width,
           height: "100%",
           objectFit: "cover",
-          boxShadow:
-            hover && position === "central"
+          boxShadow: !mobile
+            ? hover && position === "central"
               ? "0 24px 30px 0px #00000026"
-              : "0 4px 16px 0px #00000040",
+              : "0 4px 16px 0px #00000040"
+            : "inherit",
           borderRadius: "4px",
           transition: transition,
           opacity: opacity,
