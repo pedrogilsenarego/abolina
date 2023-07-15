@@ -31,7 +31,6 @@ const AbsoluteCarousel = ({
     handleTouchStart,
     handleClickMainImage,
   } = useAbsoluteCarousel({ automaticSlide, mobile });
-  console.log(slides);
 
   return (
     <div style={{ position: "relative" }}>

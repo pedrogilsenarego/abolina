@@ -100,99 +100,110 @@ const useAbsoluteCarousel = ({ automaticSlide, mobile }: IProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleMove = (direction: "left" | "right") => {
-    const updateMiniIndex = () => {
+  const updateMiniIndex = (direction: "right" | "left") => {
+    setMiniIndex((prevMiniIndex) => {
       if (direction === "right") {
-        setMiniIndex(miniIndex < initialCount - 1 ? miniIndex + 1 : 0);
+        return prevMiniIndex < initialCount - 1 ? prevMiniIndex + 1 : 0;
       }
       if (direction === "left") {
-        setMiniIndex(miniIndex === 0 ? initialCount - 1 : miniIndex - 1);
+        return prevMiniIndex === 0 ? initialCount - 1 : prevMiniIndex - 1;
       }
-    };
-    updateMiniIndex();
+      return prevMiniIndex;
+    });
+  };
+
+  const handleMove = (direction: "left" | "right") => {
+    updateMiniIndex(direction);
     if (direction === "left") {
-      const updatedSlides = slides.map((slide, index, array) => {
-        const excedentSlides = array.length - 6;
-        switch (slide.position.position) {
-          case "back":
-            if (slide.position.value === excedentSlides) {
+      setSlides((prevSlides) => {
+        return prevSlides.map((slide, index, array) => {
+          const excedentSlides = array.length - 6;
+          switch (slide.position.position) {
+            case "back":
+              if (slide.position.value === excedentSlides) {
+                return {
+                  ...slide,
+                  position: { position: "furtherLeft", value: null },
+                };
+              }
               return {
                 ...slide,
-                position: { position: "furtherLeft", value: null },
+                position: {
+                  position: "back",
+                  value: slide.position.value + 1,
+                },
               };
-            }
-            return {
-              ...slide,
-              position: {
-                position: "back",
-                value: slide.position.value + 1,
-              },
-            };
-          case "central":
-            return { ...slide, position: { position: "right", value: null } };
-          case "right":
-            return {
-              ...slide,
-              position: { position: "furtherRight", value: null },
-            };
-          case "furtherRight":
-            return { ...slide, position: { position: "back", value: 0 } };
-          case "left":
-            return { ...slide, position: { position: "central", value: null } };
-          case "furtherLeft":
-            return { ...slide, position: { position: "left", value: null } };
-          default:
-            return slide;
-        }
-      });
-      setSlides(updatedSlides);
-    }
-    if (direction === "right") {
-      const updatedSlides = slides.map((slide, index, array) => {
-        const excedentSlides = array.length - 6;
-        switch (slide.position.position) {
-          case "back":
-            if (slide.position.value === 0) {
+            case "central":
+              return { ...slide, position: { position: "right", value: null } };
+            case "right":
               return {
                 ...slide,
                 position: { position: "furtherRight", value: null },
               };
-            }
-            return {
-              ...slide,
-              position: {
-                position: "back",
-                value: slide.position.value - 1,
-              },
-            };
-          case "central":
-            return { ...slide, position: { position: "left", value: null } };
-          case "left":
-            return {
-              ...slide,
-              position: { position: "furtherLeft", value: null },
-            };
-          case "furtherLeft":
-            return {
-              ...slide,
-              position: { position: "back", value: excedentSlides },
-            };
-          case "right":
-            return { ...slide, position: { position: "central", value: null } };
-          case "furtherRight":
-            return { ...slide, position: { position: "right", value: null } };
-          default:
-            return slide;
-        }
+            case "furtherRight":
+              return { ...slide, position: { position: "back", value: 0 } };
+            case "left":
+              return {
+                ...slide,
+                position: { position: "central", value: null },
+              };
+            case "furtherLeft":
+              return { ...slide, position: { position: "left", value: null } };
+            default:
+              return slide;
+          }
+        });
       });
-      setSlides(updatedSlides);
+    }
+    if (direction === "right") {
+      setSlides((prevSlides) => {
+        return prevSlides.map((slide, index, array) => {
+          const excedentSlides = array.length - 6;
+          switch (slide.position.position) {
+            case "back":
+              if (slide.position.value === 0) {
+                return {
+                  ...slide,
+                  position: { position: "furtherRight", value: null },
+                };
+              }
+              return {
+                ...slide,
+                position: {
+                  position: "back",
+                  value: slide.position.value - 1,
+                },
+              };
+            case "central":
+              return { ...slide, position: { position: "left", value: null } };
+            case "left":
+              return {
+                ...slide,
+                position: { position: "furtherLeft", value: null },
+              };
+            case "furtherLeft":
+              return {
+                ...slide,
+                position: { position: "back", value: excedentSlides },
+              };
+            case "right":
+              return {
+                ...slide,
+                position: { position: "central", value: null },
+              };
+            case "furtherRight":
+              return { ...slide, position: { position: "right", value: null } };
+            default:
+              return slide;
+          }
+        });
+      });
     }
   };
 
   const handleMiniIndex = (newIndex: number) => {
     const direction = newIndex - miniIndex > 0 ? "right" : "left";
     const numberOfMoves = Math.abs(newIndex - miniIndex);
-
     if (numberOfMoves <= 1) {
       handleMove(direction);
       return;
@@ -202,6 +213,7 @@ const useAbsoluteCarousel = ({ automaticSlide, mobile }: IProps) => {
       if (movesLeft <= 0) {
         return;
       }
+
       handleMove(direction);
       setTimeout(() => {
         handleMoveRecursively(movesLeft - 1);
