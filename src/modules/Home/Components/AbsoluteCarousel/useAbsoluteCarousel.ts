@@ -17,6 +17,7 @@ const useAbsoluteCarousel = ({ automaticSlide, mobile }: IProps) => {
   const [canMove, setCanMove] = useState<boolean>(true);
   const [startX, setStartX] = useState(0);
   const [isMoving, setIsMoving] = useState(false);
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
   const itemsCarousel = useSelector<State, Carousel[]>(
     (state) => state.books.carroussell || []
   );
@@ -202,12 +203,11 @@ const useAbsoluteCarousel = ({ automaticSlide, mobile }: IProps) => {
   };
 
   const handleMiniIndex = (newIndex: number) => {
+    if (timeoutId) {
+      clearTimeout(timeoutId); // Clear the timeout if it's already set
+    }
     const direction = newIndex - miniIndex > 0 ? "right" : "left";
     const numberOfMoves = Math.abs(newIndex - miniIndex);
-    if (numberOfMoves <= 1) {
-      handleMove(direction);
-      return;
-    }
 
     const handleMoveRecursively = (movesLeft: number) => {
       if (movesLeft <= 0) {
@@ -215,24 +215,33 @@ const useAbsoluteCarousel = ({ automaticSlide, mobile }: IProps) => {
       }
 
       handleMove(direction);
-      setTimeout(() => {
+      const id = setTimeout(() => {
         handleMoveRecursively(movesLeft - 1);
       }, 1000);
+      setTimeoutId(id); // Store the new timeout ID
     };
 
-    handleMoveRecursively(numberOfMoves);
+    if (numberOfMoves <= 1) {
+      handleMove(direction);
+    } else {
+      handleMoveRecursively(numberOfMoves);
+    }
   };
 
   const handleCallMove = (position: "left" | "right") => {
     if (!canMove) {
       return;
     }
+    if (timeoutId) {
+      clearTimeout(timeoutId); // Clear the timeout if it's already set
+    }
     setCanMove(false);
 
     handleMove(position);
-    setTimeout(() => {
+    const id = setTimeout(() => {
       setCanMove(true);
     }, 1000);
+    setTimeoutId(id); // Store the new timeout ID
   };
 
   useEffect(() => {

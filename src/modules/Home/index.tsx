@@ -43,7 +43,6 @@ const Home = () => {
           transition={{ duration: 0.8 }}
         >
           <AbsoluteCarousel
-            automaticSlide={mobile ? undefined : 4000}
             mobile={mobile}
             height={mobile ? "150px" : "300px"}
             width={mobile ? "92vw" : "55vw"}
