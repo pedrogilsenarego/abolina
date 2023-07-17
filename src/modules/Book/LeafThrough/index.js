@@ -1,17 +1,18 @@
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { motion } from "framer-motion";
+import { forwardRef, useEffect, useRef, useState } from "react";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { HiOutlineMinusSm, HiOutlinePlusSm } from "react-icons/hi";
+import { MdFullscreen } from "react-icons/md";
 import HTMLFlipBook from "react-pageflip";
-import { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import CardMedia from "../../../components/CardMedia";
-import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
-import { isEven } from "../../../utils/math";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import { MdFullscreen } from "react-icons/md";
+import FullScreenWrapper from "../../../components/FullScreen/chatgtp";
 import { Colors } from "../../../constants/pallette";
 import { useKeyPress } from "../../../hooks/useKeyPress";
-import FullScreenWrapper from "../../../components/FullScreen/chatgtp";
-import { motion } from "framer-motion";
+import { i18n } from "../../../translations/i18n";
+import { isEven } from "../../../utils/math";
 import { SliderMine } from "./styles";
-import { HiOutlinePlusSm, HiOutlineMinusSm } from "react-icons/hi";
 
 const MyBook = ({ fullScreen, setFullScreen }) => {
   const [page, setPage] = useState(0);
@@ -87,20 +88,46 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
 
   const ratioWidth = fullScreen ? 0.8 : mobile ? 0.8 : 0.6;
   const ratioHeight = fullScreen ? 0.8 : mobile ? 0.3 : 0.6;
-  const ratioWidthPage = fullScreen ? 0.4 : mobile ? 0.4 : 0.3;
+  //const ratioWidthPage = fullScreen ? 0.4 : mobile ? 0.4 : 0.3;
 
   const width = windowSize.current[0] * ratioWidth;
   const height = windowSize.current[1] * ratioHeight;
-  const widthPage = windowSize.current[0] * ratioWidthPage;
+  //const widthPage = windowSize.current[0] * ratioWidthPage;
 
   const constraintsRef = useRef(null);
+
+  const PageCover = forwardRef((props, ref) => {
+    return (
+      <div ref={ref} data-density="hard">
+        <CardMedia
+          leafThrough
+          leafShadowPosition={isEven(props.index) ? "left" : "right"}
+          image={props.item}
+          height={height}
+        />
+      </div>
+    );
+  });
+
+  const Page = forwardRef((props, ref) => {
+    return (
+      <div ref={ref} data-density="soft">
+        <CardMedia
+          leafThrough
+          leafShadowPosition={isEven(props.index) ? "left" : "right"}
+          image={props.item}
+          height={height}
+        />
+      </div>
+    );
+  });
 
   const renderContent = () => {
     return (
       <FullScreenWrapper fullScreen={fullScreen} setFullScreen={setFullScreen}>
         <Box>
           <Typography
-            textAlign='center'
+            textAlign="center"
             style={{
               textTransform: "uppercase",
               fontSize: mobileRotated || mobile ? "18px" : "28px",
@@ -135,14 +162,15 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
             }}
           >
             <HTMLFlipBook
-              width={widthPage}
-              minWidth={widthPage}
+              width={width / (height / (width / 2) > 1.05 ? 2.001 : 2)}
+              //minWidth={widthPage}
               height={height}
-              size='stretch'
+              //size="fixed"
               maxShadowOpacity={0.5}
               drawShadow
               flippingTime={1200}
-              autoSize
+              //autoSize
+              //showCover={true}
               ref={bookRef}
               onFlip={(e) => setPage(e.data)}
               mobileScrollSupport={true}
@@ -150,12 +178,11 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
               {listImages.map((item, index) => {
                 return (
                   <div key={index}>
-                    <CardMedia
-                      leafThrough
-                      leafShadowPosition={isEven(index) ? "left" : "right"}
-                      image={item}
-                      height={height}
-                    />
+                    {index === 0 ? (
+                      <PageCover item={item} index={index} />
+                    ) : (
+                      <Page item={item} index={index} />
+                    )}
                   </div>
                 );
               })}
@@ -179,7 +206,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
             <motion.div
               drag
               dragConstraints={constraintsRef}
-              display='flex'
+              display="flex"
               style={{
                 height: height * zoomRatio,
                 width: width * zoomRatio,
@@ -189,16 +216,16 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
               <img
                 draggable={false}
                 src={listImages[page]}
-                width={widthPage * zoomRatio}
+                width={(width / 2) * zoomRatio}
                 height={height * zoomRatio}
-                alt=''
+                alt=""
                 style={{ objectFit: "cover" }}
               />
               <img
                 draggable={false}
-                alt=''
+                alt=""
                 src={listImages[page + 1]}
-                width={widthPage * zoomRatio}
+                width={(width / 2) * zoomRatio}
                 height={height * zoomRatio}
                 style={{ objectFit: "cover" }}
               />
@@ -206,7 +233,7 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
           </motion.div>
         )}
 
-        {/* <Box
+        <Box
           style={{
             position: mobileRotated ? "inherit" : "absolute",
             width: "70vw",
@@ -216,14 +243,14 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
           }}
         >
           <Typography
-            color='white'
+            color="white"
             fontSize={mobileRotated ? "18px" : "22px"}
-            fontWeight='bold'
+            fontWeight="bold"
           >
             {i18n.t("modules.books.viewBook.page")} {page + 1}-{page + 2} /{" "}
             {listImages.length}
           </Typography>
-        </Box> */}
+        </Box>
       </FullScreenWrapper>
     );
   };
@@ -250,27 +277,27 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
             borderRadius: "10px",
           }}
         >
-          <Box display='flex' alignItems='center' width='220px' columnGap={2}>
-            <HiOutlineMinusSm size='60px' color='white' />
+          <Box display="flex" alignItems="center" width="220px" columnGap={2}>
+            <HiOutlineMinusSm size="60px" color="white" />
             <SliderMine
-              size='small'
+              size="small"
               value={zoomRatio * 20 - 20}
               defaultValue={0}
-              aria-label='Small'
+              aria-label="Small"
               onChange={(e) => {
                 setZoomRatio(e.target.value / 20 + 1);
                 setZoom(true);
               }}
             />
-            <HiOutlinePlusSm size='60px' color='white' />
+            <HiOutlinePlusSm size="60px" color="white" />
           </Box>
         </Box>
       )}
 
       {listImages.length > 1 && !mobileRotated && (
         <Box
-          display='flex'
-          justifyContent='space-between'
+          display="flex"
+          justifyContent="space-between"
           style={{
             position: "absolute",
             top: "45%",
@@ -280,14 +307,14 @@ const MyBook = ({ fullScreen, setFullScreen }) => {
           }}
         >
           <FiChevronLeft
-            size='80px'
+            size="80px"
             color={Colors.tealc}
             style={{ cursor: "pointer" }}
             onClick={() => handleMove("left")}
           />
 
           <FiChevronRight
-            size='80px'
+            size="80px"
             color={Colors.tealc}
             style={{ cursor: "pointer" }}
             onClick={() => handleMove("right")}
