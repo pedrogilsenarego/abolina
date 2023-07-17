@@ -1,35 +1,37 @@
-import { Title } from "../../../../styles";
-import { i18n } from "../../../../translations/i18n";
 import { Box, Divider, Grid, Typography } from "@mui/material";
-import Textfield from "../../../../components/Inputs/TextFieldForm";
 import { Form, Formik } from "formik";
-import { FORM_VALIDATION } from "./validation";
-import ButtonForm from "../../../../components/Button";
 import { useDispatch, useSelector } from "react-redux";
+import ButtonForm from "../../../../components/Button";
+import FileUploader from "../../../../components/Inputs/FileUploader";
+import Textfield from "../../../../components/Inputs/TextFieldForm";
 import {
   addBook,
   editBook,
   updateProgress,
 } from "../../../../slicer/books/books.actions";
-import FileUploader from "../../../../components/Inputs/FileUploader";
+import { Title } from "../../../../styles";
+import { i18n } from "../../../../translations/i18n";
+import { FORM_VALIDATION } from "./validation";
 
-import { useQuery } from "react-query";
-import { fetchCollections } from "../../../../services/admin/adminServices";
-import { State } from "../../../../slicer/types";
-import Loader from "../../../../components/Loader";
 import { useEffect, useMemo, useState } from "react";
-import { disableLoading } from "../../../../slicer/general/general.actions";
-import { mapInitialForm } from "../mapper";
+import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router";
-import { fetchBook } from "../../../../services/admin/adminServices";
-import { ROUTE_PATHS } from "../../../../constants/routes";
-import PreviewWrapper from "../SubmitBook/PreviewWrapper";
-import { getObjectDifferences } from "../../../../utils/compareObjects";
-import MultiSelectInput from "../../../../components/Inputs/MultiSelect/MultiSelectInput";
-import { caracteristics } from "../../../../constants/admin";
-import SelectWrapper from "../../../../components/Inputs/SelectFormValue";
 import CheckBox from "../../../../components/Inputs/CheckBox";
+import MultiSelectInput from "../../../../components/Inputs/MultiSelect/MultiSelectInput";
+import SelectWrapper from "../../../../components/Inputs/SelectFormValue";
+import Loader from "../../../../components/Loader";
+import { caracteristics } from "../../../../constants/admin";
 import { Colors } from "../../../../constants/pallette";
+import { ROUTE_PATHS } from "../../../../constants/routes";
+import {
+  fetchBook,
+  fetchCollections,
+} from "../../../../services/admin/adminServices";
+import { disableLoading } from "../../../../slicer/general/general.actions";
+import { State } from "../../../../slicer/types";
+import { getObjectDifferences } from "../../../../utils/compareObjects";
+import PreviewWrapper from "../SubmitBook/PreviewWrapper";
+import { mapInitialForm } from "../mapper";
 
 interface Props {
   edit?: boolean;
@@ -162,7 +164,7 @@ const SubmitBook = ({ edit = false }: Props) => {
   }, []);
 
   const handleSubmit = (values: any) => {
-    console.log(values)
+    console.log(values);
     if (edit) {
       if (
         !touchedContent &&
@@ -198,8 +200,8 @@ const SubmitBook = ({ edit = false }: Props) => {
       >
         <Loader
           size={200}
-          color='darkGrey'
-          customMessage='fetching the book for edition'
+          color="darkGrey"
+          customMessage="fetching the book for edition"
         />
       </Box>
     );
@@ -207,7 +209,7 @@ const SubmitBook = ({ edit = false }: Props) => {
 
   return (
     <>
-      <Title fontSize='16px'>
+      <Title fontSize="16px">
         {i18n.t("modules.admin.manageBooks.submitBook.breadCrumbs")}
       </Title>
       <Divider />
@@ -234,8 +236,8 @@ const SubmitBook = ({ edit = false }: Props) => {
             >
               <Loader
                 size={200}
-                color='darkGrey'
-                customMessage='Your Data is being send'
+                color="darkGrey"
+                customMessage="Your Data is being send"
                 progress={progress}
               />
             </Box>
@@ -243,8 +245,8 @@ const SubmitBook = ({ edit = false }: Props) => {
             <>
               <Box
                 rowGap={2}
-                display='flex'
-                flexDirection='column'
+                display="flex"
+                flexDirection="column"
                 sx={{ mt: "20px" }}
               >
                 <Grid container columnSpacing={2} rowSpacing={6}>
@@ -254,7 +256,7 @@ const SubmitBook = ({ edit = false }: Props) => {
                         label={i18n.t(
                           "modules.admin.manageBooks.submitBook.title"
                         )}
-                        name='title'
+                        name="title"
                       />
                     </Box>
                   </Grid>
@@ -264,7 +266,7 @@ const SubmitBook = ({ edit = false }: Props) => {
                         label={`${i18n.t(
                           "modules.admin.manageBooks.submitBook.title"
                         )} EN`}
-                        name='titleEN'
+                        name="titleEN"
                       />
                     </Box>
                   </Grid>
@@ -275,8 +277,8 @@ const SubmitBook = ({ edit = false }: Props) => {
                         initialValue={initialValues.collections}
                         loading={loadingCollections}
                         options={collectionsData || [{ title: "", value: "" }]}
-                        name='collections'
-                        label='Collections'
+                        name="collections"
+                        label="Collections"
                       />
                     </Box>
                   </Grid>
@@ -287,15 +289,15 @@ const SubmitBook = ({ edit = false }: Props) => {
                         multiple
                         defaultValue={initialValues.caracteristics}
                         chips
-                        label='Caracteristics'
+                        label="Caracteristics"
                         items={caracteristics}
-                        name='caracteristics'
+                        name="caracteristics"
                       />
                     </Box>
                   </Grid>
                   <Grid item xs={6}>
                     <Box style={{ width: "350px" }}>
-                      <Textfield label='Number of Book' name='number' />{" "}
+                      <Textfield label="Number of Book" name="number" />{" "}
                     </Box>
                   </Grid>
                   <Grid item xs={4}>
@@ -304,14 +306,14 @@ const SubmitBook = ({ edit = false }: Props) => {
                         label={i18n.t(
                           "modules.admin.manageBooks.submitBook.author"
                         )}
-                        name='author'
+                        name="author"
                       />
                       <Box>
                         <Textfield
                           label={i18n.t(
                             "modules.admin.manageBooks.submitBook.authorResume"
                           )}
-                          name='authorResume'
+                          name="authorResume"
                           multiline
                           rows={6}
                         />
@@ -324,7 +326,7 @@ const SubmitBook = ({ edit = false }: Props) => {
                         label={i18n.t(
                           "modules.admin.manageBooks.submitBook.designer"
                         )}
-                        name='designer'
+                        name="designer"
                       />
                     </Box>
                     <Box>
@@ -332,7 +334,7 @@ const SubmitBook = ({ edit = false }: Props) => {
                         label={i18n.t(
                           "modules.admin.manageBooks.submitBook.designerResume"
                         )}
-                        name='designerResume'
+                        name="designerResume"
                         multiline
                         rows={6}
                       />
@@ -344,7 +346,7 @@ const SubmitBook = ({ edit = false }: Props) => {
                         label={i18n.t(
                           "modules.admin.manageBooks.submitBook.translator"
                         )}
-                        name='translator'
+                        name="translator"
                       />
                     </Box>
                     <Box>
@@ -352,7 +354,7 @@ const SubmitBook = ({ edit = false }: Props) => {
                         label={i18n.t(
                           "modules.admin.manageBooks.submitBook.translatorResume"
                         )}
-                        name='translatorResume'
+                        name="translatorResume"
                         multiline
                         rows={6}
                       />
@@ -364,7 +366,7 @@ const SubmitBook = ({ edit = false }: Props) => {
                         label={`${i18n.t(
                           "modules.admin.manageBooks.submitBook.authorResume"
                         )} EN`}
-                        name='authorResumeEN'
+                        name="authorResumeEN"
                         multiline
                         rows={6}
                       />
@@ -376,7 +378,7 @@ const SubmitBook = ({ edit = false }: Props) => {
                         label={`${i18n.t(
                           "modules.admin.manageBooks.submitBook.designerResume"
                         )} EN`}
-                        name='designerResumeEN'
+                        name="designerResumeEN"
                         multiline
                         rows={6}
                       />
@@ -388,7 +390,7 @@ const SubmitBook = ({ edit = false }: Props) => {
                         label={`${i18n.t(
                           "modules.admin.manageBooks.submitBook.translatorResume"
                         )} EN`}
-                        name='trasnlatorResumeEN'
+                        name="trasnlatorResumeEN"
                         multiline
                         rows={6}
                       />
@@ -401,20 +403,18 @@ const SubmitBook = ({ edit = false }: Props) => {
                         label={i18n.t(
                           "modules.admin.manageBooks.submitBook.language"
                         )}
-                        name='language'
+                        name="language"
                       />
                     </Box>
                   </Grid>
                   <Grid item xs={12}>
-
-
                     <Grid item xs={12}>
                       <Box>
                         <Textfield
                           label={i18n.t(
                             "modules.admin.manageBooks.submitBook.resume"
                           )}
-                          name='resume'
+                          name="resume"
                           multiline
                           rows={6}
                         />
@@ -426,7 +426,7 @@ const SubmitBook = ({ edit = false }: Props) => {
                           label={`${i18n.t(
                             "modules.admin.manageBooks.submitBook.resume"
                           )} EN`}
-                          name='resumeEN'
+                          name="resumeEN"
                           multiline
                           rows={6}
                         />
@@ -447,7 +447,7 @@ const SubmitBook = ({ edit = false }: Props) => {
                               label={i18n.t(
                                 "modules.admin.manageBooks.submitBook.price"
                               )}
-                              name='price'
+                              name="price"
                             />
                           </Box>
                         </Grid>
@@ -457,7 +457,7 @@ const SubmitBook = ({ edit = false }: Props) => {
                               label={i18n.t(
                                 "modules.admin.manageBooks.submitBook.weight"
                               )}
-                              name='weight'
+                              name="weight"
                             />
                           </Box>
                         </Grid>
@@ -467,7 +467,7 @@ const SubmitBook = ({ edit = false }: Props) => {
                               label={i18n.t(
                                 "modules.admin.manageBooks.submitBook.size"
                               )}
-                              name='size'
+                              name="size"
                             />
                           </Box>
                         </Grid>
@@ -478,7 +478,7 @@ const SubmitBook = ({ edit = false }: Props) => {
                               label={i18n.t(
                                 "modules.admin.manageBooks.submitBook.pages"
                               )}
-                              name='pages'
+                              name="pages"
                             />
                           </Box>
                         </Grid>
@@ -497,18 +497,17 @@ const SubmitBook = ({ edit = false }: Props) => {
                         <Box>
                           <Textfield
                             label="Digital Price"
-                            name='digitalPrice'
+                            name="digitalPrice"
                           />
                         </Box>
                       </Grid>
-
                     </>
                   )}
                   <Grid item xs={6}>
                     <Box style={{ width: "350px" }}>
                       <Textfield
                         label="Espreitar Digital(apenas o codigo do video: ex. ckiaNqOrG5U"
-                        name='peekDigital'
+                        name="peekDigital"
                       />
                     </Box>
                   </Grid>
@@ -517,11 +516,11 @@ const SubmitBook = ({ edit = false }: Props) => {
                       touched={setTouchedCoverPage}
                       loading={coverPageLoader}
                       value={coverPageValue}
-                      name='coverPage2'
+                      name="coverPage2"
                       fieldTitle={i18n.t(
                         "modules.admin.manageBooks.submitBook.coverPage"
                       )}
-                      acceptType='image/webp'
+                      acceptType="image/webp"
                     />
                   </Grid>
 
@@ -530,29 +529,32 @@ const SubmitBook = ({ edit = false }: Props) => {
                       touched={setTouchedContent}
                       loading={contentLoader}
                       value={contentValue}
-                      name='content'
+                      name="content"
                       multiple
                       fieldTitle={i18n.t(
                         "modules.admin.manageBooks.submitBook.content"
                       )}
-                      acceptType='webp'
+                      acceptType="webp"
                     />
                   </Grid>
                 </Grid>
               </Box>
 
               <Box
-                display='flex'
-                justifyContent='start'
+                display="flex"
+                justifyContent="start"
                 sx={{ mt: "20px", columnGap: "10px" }}
               >
                 <PreviewWrapper />
-                <ButtonForm formik label={i18n.t("modules.home.contacts.form.send")} />
+                <ButtonForm
+                  formik
+                  label={i18n.t("modules.home.contacts.form.send")}
+                />
               </Box>
             </>
           )}
         </Form>
-      </Formik >
+      </Formik>
     </>
   );
 };

@@ -2,11 +2,11 @@ import { Box, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Colors } from "../../../constants/pallette";
 
-import { RiDeleteBinLine } from "react-icons/ri";
 import { useField } from "formik";
 import { useRef } from "react";
-import Image from "./Image";
+import { RiDeleteBinLine } from "react-icons/ri";
 import Loader from "../../Loader";
+import Image from "./Image";
 
 interface Props {
   fieldTitle: string;
@@ -15,7 +15,7 @@ interface Props {
   multiple?: boolean;
   value?: any;
   loading?: boolean;
-  touched?: (signal: boolean) => void
+  touched?: (signal: boolean) => void;
 }
 
 const FileUploader = ({
@@ -25,7 +25,7 @@ const FileUploader = ({
   multiple = false,
   value,
   loading,
-  touched
+  touched,
 }: Props) => {
   const [imageUpload, setImageUpload] = useState<any[]>([]);
   const [draggedIndex, setDraggedIndex] = useState<number | undefined>(
@@ -38,12 +38,10 @@ const FileUploader = ({
   const [, mata, helpers] = useField(name);
   const inputRef = useRef<any>();
 
-
-
   const handleDragStart = (e: any, index: number) => {
     e.dataTransfer.effectAllowed = "move";
     setDraggedIndex(index);
-    if (touched) touched(true)
+    if (touched) touched(true);
   };
 
   const handleDragOver = (e: any, index: number) => {
@@ -99,6 +97,7 @@ const FileUploader = ({
   const handleDeleteImage = (pos: number) => {
     const updatedImages = [...a];
     updatedImages.splice(pos, 1);
+    if (touched) touched(true);
     setImageUpload(updatedImages);
     helpers.setValue(updatedImages);
     // Create a new DataTransfer object
@@ -133,20 +132,16 @@ const FileUploader = ({
 
     setImageUpload(allFiles);
     helpers.setError(undefined);
-    if (touched) touched(true)
+    if (touched) touched(true);
   };
-
-
-
-
 
   return (
     <Box>
-      <Box display='flex' justifyContent='start'>
+      <Box display="flex" justifyContent="start">
         <Typography>{fieldTitle}</Typography>
       </Box>
       {loading ? (
-        <Loader customMessage='Getting Images' />
+        <Loader customMessage="Getting Images" />
       ) : (
         <>
           {" "}
@@ -161,8 +156,8 @@ const FileUploader = ({
               <Grid
                 item
                 container
-                flexDirection='row'
-                alignItems='center'
+                flexDirection="row"
+                alignItems="center"
                 xs={6}
                 style={{
                   border: `solid 2px ${Colors.tealc}`,
@@ -171,28 +166,31 @@ const FileUploader = ({
                   padding: "10px",
                 }}
               >
-                <Grid item textAlign='start'>
+                <Grid item textAlign="start">
                   <input
                     type={"file"}
                     multiple={multiple}
                     ref={inputRef}
                     accept={acceptType || "image/*"}
-                    onChange={(e: any) => { handleChange(e); if (touched) touched(true) }}
+                    onChange={(e: any) => {
+                      handleChange(e);
+                      if (touched) touched(true);
+                    }}
                   />
                 </Grid>
 
-                <Grid item textAlign='start'>
+                <Grid item textAlign="start">
                   {imageUpload && multiple && (
                     <div style={{ display: "flex", alignItems: "center" }}>
                       <RiDeleteBinLine
                         onClick={() => {
                           setImageUpload([]);
-                          if (touched) touched(true)
+                          if (touched) touched(true);
                           helpers.setValue(null);
                           inputRef.current.value = "";
                         }}
                         style={{ cursor: "pointer", marginLeft: "10px" }}
-                        size='1.5em'
+                        size="1.5em"
                         color={Colors.tealc}
                       />
                       <Typography style={{ color: "red" }}>
@@ -209,7 +207,7 @@ const FileUploader = ({
                       <Grid
                         item
                         xs={12}
-                        draggable='true'
+                        draggable="true"
                         onDragStart={(e) => handleDragStart(e, pos)}
                         onDragOver={(e) => handleDragOver(e, pos)}
                         onDrop={(e) => handleDrop(e, pos)}
@@ -230,7 +228,7 @@ const FileUploader = ({
                               alignItems: "center",
                               border: `dashed 3px ${Colors.darkGrey}`,
                               borderRadius: "10px",
-                              marginBottom: "20px"
+                              marginBottom: "20px",
                             }}
                           >
                             <Typography>Drag here</Typography>
@@ -264,17 +262,18 @@ const FileUploader = ({
                           justifyContent: "center",
                           alignItems: "center",
                           border: `dashed 3px ${Colors.darkGrey}`,
-                          borderRadius: "10px"
+                          borderRadius: "10px",
                         }}
                       >
-                        <Typography>Drag here</Typography></div>
+                        <Typography>Drag here</Typography>
+                      </div>
                     )}
                   </Grid>
                 )}
               </Grid>
             </Grid>
           </Box>
-          <Box display='flex' justifyContent='start'>
+          <Box display="flex" justifyContent="start">
             {mata.error && (
               <Typography
                 style={{
