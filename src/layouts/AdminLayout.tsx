@@ -1,25 +1,17 @@
 import { Grid } from "@mui/material";
-import AdminSideBar from "../presentational/AdminSideBar";
-
+import AdminSideBar from "../modules/Admin/Presentational/AdminSideBar";
 
 const AdminLayout = (props: any) => {
   return (
     <Grid container>
-      <Grid  >
+      <Grid>
         <AdminSideBar />
       </Grid>
 
-
-      <Grid style={{ padding: "20px", marginLeft: "200px", width: "100%", }}>
-
-
-
+      <Grid style={{ padding: "20px", marginLeft: "200px", width: "100%" }}>
         {props.children}
       </Grid>
-
-
     </Grid>
-
   );
 };
 
