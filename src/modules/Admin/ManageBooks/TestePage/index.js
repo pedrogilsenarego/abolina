@@ -50,8 +50,7 @@ function MyAlbum(props) {
   }, [leftButton, rightButton]);
 
   const handleMove = (direction) => {
-    console.log(page, direction);
-    if (page >= listImages.length / 2 && direction === "right") return;
+    if (page >= listImages.length / 2 + 5 && direction === "right") return;
     if (page <= 0 && direction === "left") return;
     setZoom(false);
     setTimeout(() => {
@@ -89,8 +88,8 @@ function MyAlbum(props) {
           <PageCover image={book?.coverPage[0] || ""} />
           <PageCover />
           <Page>
-            <p contentEditable="true">{book?.title}</p>
-            <p contentEditable="true">{book?.author}</p>
+            <p>{book?.title}</p>
+            <p>{book?.author}</p>
           </Page>
           {listImages.map((item, index) => {
             return (
