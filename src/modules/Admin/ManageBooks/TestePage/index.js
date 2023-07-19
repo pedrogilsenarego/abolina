@@ -52,8 +52,6 @@ function MyAlbum(props) {
   const height = width * 1.18;
   const fullScreen = false;
 
-  console.log(page);
-
   useEffect(() => {
     setBook(storeBook);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -108,7 +106,74 @@ function MyAlbum(props) {
 
   const renderBook = () => {
     return (
-      <div style={{ padding: "200px 0px" }}>
+      <div
+        style={{
+          padding: "200px 0px",
+          position: "relative",
+          backgroundColor: "lightblue",
+          display: zoom ? "flex" : undefined,
+          justifyContent: zoom ? "center" : undefined,
+        }}
+      >
+        {!mobileRotated && (
+          <Box
+            style={{
+              position: "absolute",
+              right: 50,
+              bottom: 10,
+              zIndex: 3000,
+              borderRadius: "10px",
+            }}
+          >
+            <Box display="flex" alignItems="center" width="220px" columnGap={2}>
+              <HiOutlineMinusSm size="60px" color="white" />
+              <SliderMine
+                size="small"
+                value={zoomRatio * 20 - 20}
+                defaultValue={0}
+                aria-label="Small"
+                onChange={(e) => {
+                  setZoomRatio(e.target.value / 20 + 1);
+                  setZoom(true);
+                }}
+              />
+              <HiOutlinePlusSm size="60px" color="white" />
+            </Box>
+          </Box>
+        )}
+        {listImages.length > 1 && !mobileRotated && !zoom && (
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            style={{
+              position: "absolute",
+
+              top: "47%",
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: width * 2.3,
+              zIndex: 1000,
+            }}
+          >
+            <FiChevronLeft
+              size="50px"
+              color={page > 0 ? Colors.tealc : Colors.greyTransparent}
+              style={{ cursor: "pointer" }}
+              onClick={() => handleMove("left")}
+            />
+
+            <FiChevronRight
+              size="50px"
+              color={
+                page < listImages.length + 5
+                  ? Colors.tealc
+                  : Colors.greyTransparent
+              }
+              style={{ cursor: "pointer" }}
+              onClick={() => handleMove("right")}
+            />
+          </Box>
+        )}
         {!zoom ? (
           <div>
             <HTMLFlipBook
@@ -152,48 +217,55 @@ function MyAlbum(props) {
             </HTMLFlipBook>
           </div>
         ) : (
-          <motion.div
-            ref={constraintsRef}
-            style={{
-              height: height,
-              width: width,
-              overflow: "hidden",
-              position: "relative",
-              cursor: "grabbing",
-              placeContent: "center",
-              placeItems: "center",
-              display: "flex",
-              marginTop: mobileRotated ? "60px" : fullScreen ? "30px" : "60px",
-            }}
-          >
+          <div>
             <motion.div
-              drag
-              dragConstraints={constraintsRef}
-              display="flex"
+              ref={constraintsRef}
               style={{
-                height: height * zoomRatio,
-                width: width * zoomRatio,
-                position: "absolute",
+                height: height,
+
+                width: width * 2,
+                overflow: "hidden",
+                position: "relative",
+                cursor: "grabbing",
+                placeContent: "center",
+                placeItems: "center",
+                display: "flex",
+                marginTop: mobileRotated
+                  ? "60px"
+                  : fullScreen
+                  ? "30px"
+                  : "60px",
               }}
             >
-              <img
-                draggable={false}
-                src={listImages[page]}
-                width={(width / 2) * zoomRatio}
-                height={height * zoomRatio}
-                alt=""
-                style={{ objectFit: "cover" }}
-              />
-              <img
-                draggable={false}
-                alt=""
-                src={listImages[page + 1]}
-                width={(width / 2) * zoomRatio}
-                height={height * zoomRatio}
-                style={{ objectFit: "cover" }}
-              />
+              <motion.div
+                drag
+                dragConstraints={constraintsRef}
+                display="flex"
+                style={{
+                  height: height * zoomRatio,
+                  width: width * 2 * zoomRatio,
+                  position: "absolute",
+                }}
+              >
+                <img
+                  draggable={false}
+                  src={listImages[page]}
+                  width={width * zoomRatio}
+                  height={height * zoomRatio}
+                  alt=""
+                  style={{ objectFit: "cover" }}
+                />
+                <img
+                  draggable={false}
+                  alt=""
+                  src={listImages[page + 1]}
+                  width={width * zoomRatio}
+                  height={height * zoomRatio}
+                  style={{ objectFit: "cover" }}
+                />
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </div>
         )}
         {page !== 0 && page !== listImages.length + 5 && (
           <div
@@ -221,68 +293,7 @@ function MyAlbum(props) {
     );
   };
 
-  return (
-    <>
-      {!mobileRotated && (
-        <Box
-          style={{
-            position: "absolute",
-            right: 50,
-            bottom: 10,
-            zIndex: 3000,
-            borderRadius: "10px",
-          }}
-        >
-          <Box display="flex" alignItems="center" width="220px" columnGap={2}>
-            <HiOutlineMinusSm size="60px" color="white" />
-            <SliderMine
-              size="small"
-              value={zoomRatio * 20 - 20}
-              defaultValue={0}
-              aria-label="Small"
-              onChange={(e) => {
-                setZoomRatio(e.target.value / 20 + 1);
-                setZoom(true);
-              }}
-            />
-            <HiOutlinePlusSm size="60px" color="white" />
-          </Box>
-        </Box>
-      )}
-      {listImages.length > 1 && !mobileRotated && (
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          style={{
-            position: "absolute",
-            top: "45%",
-            width: fullScreen ? "96vw" : "75vw",
-
-            zIndex: 1000,
-          }}
-        >
-          <FiChevronLeft
-            size="80px"
-            color={page > 0 ? Colors.tealc : Colors.greyTransparent}
-            style={{ cursor: "pointer" }}
-            onClick={() => handleMove("left")}
-          />
-
-          <FiChevronRight
-            size="80px"
-            color={
-              page < listImages.length + 5
-                ? Colors.tealc
-                : Colors.greyTransparent
-            }
-            style={{ cursor: "pointer" }}
-            onClick={() => handleMove("right")}
-          />
-        </Box>
-      )}
-      {renderBook()}
-    </>
-  );
+  return <>{renderBook()}</>;
 }
 
 export default MyAlbum;
