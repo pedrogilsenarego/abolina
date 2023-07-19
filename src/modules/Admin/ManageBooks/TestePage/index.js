@@ -4,12 +4,19 @@ import React, { useEffect, useRef, useState } from "react";
 import HTMLFlipBook from "react-pageflip";
 import { useSelector } from "react-redux";
 import { useKeyPress } from "../../../../hooks/useKeyPress";
+import { i18n } from "../../../../translations/i18n";
 import "./App.css";
 
 const PageCover = React.forwardRef((props, ref) => {
   return (
     <div className="cover" ref={ref} data-density="hard">
-      <img src={props.image} alt="" width="100%" height="100%" />
+      <img
+        src={props.image}
+        alt=""
+        width="100%"
+        height="100%"
+        objectFit="cover"
+      />
     </div>
   );
 });
@@ -36,11 +43,11 @@ function MyAlbum(props) {
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
   const mobileRotated = useMediaQuery(theme.breakpoints.down(800));
   const storeBook = useSelector((state) => state?.books?.books?.data[1] || {});
-  const height = 650;
   const width = 550;
+  const height = 650;
   const fullScreen = false;
 
-  console.log("book", book);
+  console.log(page);
 
   useEffect(() => {
     setBook(storeBook);
@@ -99,8 +106,8 @@ function MyAlbum(props) {
       {!zoom ? (
         <div>
           <HTMLFlipBook
-            width={550}
-            height={650}
+            width={width}
+            height={height}
             minWidth={315}
             maxWidth={1000}
             minHeight={420}
@@ -123,7 +130,13 @@ function MyAlbum(props) {
             {listImages.map((item, index) => {
               return (
                 <Page>
-                  <img src={item} alt="" width="100%" height="100%" />
+                  <img
+                    src={item}
+                    alt=""
+                    width="100%"
+                    height="100%"
+                    objectFit="cover"
+                  />
                 </Page>
               );
             })}
@@ -175,6 +188,28 @@ function MyAlbum(props) {
             />
           </motion.div>
         </motion.div>
+      )}
+      {page !== 0 && page !== listImages.length + 5 && (
+        <div
+          style={{
+            position: mobileRotated ? "inherit" : "absolute",
+            width: "70vw",
+            marginTop: mobileRotated ? "10px" : "0px",
+            left: 50,
+            bottom: 20,
+          }}
+        >
+          <p
+            style={{
+              color: "white",
+              fontSize: mobileRotated ? "18px" : "22px",
+              fontWeight: "bold",
+            }}
+          >
+            {i18n.t("modules.books.viewBook.page")} {page}-{page + 1} /{" "}
+            {listImages.length + 4}
+          </p>
+        </div>
       )}
     </div>
   );
