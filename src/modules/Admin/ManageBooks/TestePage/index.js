@@ -2,11 +2,14 @@ import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { HiOutlineMinusSm, HiOutlinePlusSm } from "react-icons/hi";
 import HTMLFlipBook from "react-pageflip";
 import { useSelector } from "react-redux";
 import { Colors } from "../../../../constants/pallette";
 import { useKeyPress } from "../../../../hooks/useKeyPress";
 import { i18n } from "../../../../translations/i18n";
+import { SliderMine } from "./styles";
+
 import "./App.css";
 
 const PageCover = React.forwardRef((props, ref) => {
@@ -220,6 +223,32 @@ function MyAlbum(props) {
 
   return (
     <>
+      {!mobileRotated && (
+        <Box
+          style={{
+            position: "absolute",
+            right: 50,
+            bottom: 10,
+            zIndex: 3000,
+            borderRadius: "10px",
+          }}
+        >
+          <Box display="flex" alignItems="center" width="220px" columnGap={2}>
+            <HiOutlineMinusSm size="60px" color="white" />
+            <SliderMine
+              size="small"
+              value={zoomRatio * 20 - 20}
+              defaultValue={0}
+              aria-label="Small"
+              onChange={(e) => {
+                setZoomRatio(e.target.value / 20 + 1);
+                setZoom(true);
+              }}
+            />
+            <HiOutlinePlusSm size="60px" color="white" />
+          </Box>
+        </Box>
+      )}
       {listImages.length > 1 && !mobileRotated && (
         <Box
           display="flex"
