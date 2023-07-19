@@ -3,8 +3,10 @@ import { motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { HiOutlineMinusSm, HiOutlinePlusSm } from "react-icons/hi";
+import { MdFullscreen } from "react-icons/md";
 import HTMLFlipBook from "react-pageflip";
 import { useSelector } from "react-redux";
+import FullScreenWrapper from "../../../../components/FullScreen/chatgtp";
 import { Colors } from "../../../../constants/pallette";
 import { useKeyPress } from "../../../../hooks/useKeyPress";
 import { i18n } from "../../../../translations/i18n";
@@ -34,7 +36,7 @@ const Page = React.forwardRef((props, ref) => {
   );
 });
 
-function MyAlbum(props) {
+function MyAlbum({ fullScreen, setFullScreen }) {
   const [book, setBook] = useState();
   const [page, setPage] = useState(0);
   const [zoom, setZoom] = useState(true);
@@ -45,12 +47,10 @@ function MyAlbum(props) {
   const rightButton = useKeyPress("ArrowRight");
   const listImages = book?.content || [];
   const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down("sm"));
   const mobileRotated = useMediaQuery(theme.breakpoints.down(800));
   const storeBook = useSelector((state) => state?.books?.books?.data[1] || {});
   const width = 450;
   const height = width * 1.18;
-  const fullScreen = false;
 
   useEffect(() => {
     setBook(storeBook);
@@ -115,6 +115,16 @@ function MyAlbum(props) {
           justifyContent: zoom ? "center" : undefined,
         }}
       >
+        {!fullScreen && !mobileRotated && (
+          <Box style={{ position: "absolute", right: 10, top: 10 }}>
+            <MdFullscreen
+              size={mobileRotated ? "2rem" : "2.5rem"}
+              color={Colors.tealcDark}
+              style={{ cursor: "pointer" }}
+              onClick={() => setFullScreen(true)}
+            />
+          </Box>
+        )}
         {!mobileRotated && page >= 3 && page < listImages.length + 3 && (
           <Box
             style={{
@@ -288,7 +298,13 @@ function MyAlbum(props) {
     );
   };
 
-  return <>{renderBook()}</>;
+  return (
+    <>
+      <FullScreenWrapper fullScreen={fullScreen} setFullScreen={setFullScreen}>
+        {renderBook()}
+      </FullScreenWrapper>
+    </>
+  );
 }
 
 export default MyAlbum;

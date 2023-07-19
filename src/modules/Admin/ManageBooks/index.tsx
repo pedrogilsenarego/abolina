@@ -1,4 +1,5 @@
 import { Box, Card, Divider } from "@mui/material";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import Button from "../../../components/Button";
@@ -17,7 +18,7 @@ const ManageBooks = () => {
   const tableData = useSelector<State, any>(
     (state) => state.books.books.data || []
   );
-
+  const [fullScreen, setFullScreen] = useState<boolean>(false);
   const { handleAction } = useList({ tableData });
 
   return (
@@ -44,7 +45,7 @@ const ManageBooks = () => {
           />
         </Box>
       </Box>
-      <TestePage />
+      <TestePage fullScreen={fullScreen} setFullScreen={setFullScreen} />
     </>
   );
 };
