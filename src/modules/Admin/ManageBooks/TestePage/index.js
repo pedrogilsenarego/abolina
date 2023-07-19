@@ -45,8 +45,8 @@ function MyAlbum(props) {
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
   const mobileRotated = useMediaQuery(theme.breakpoints.down(800));
   const storeBook = useSelector((state) => state?.books?.books?.data[1] || {});
-  const width = 550;
-  const height = 650;
+  const width = 450;
+  const height = width * 1.18;
   const fullScreen = false;
 
   console.log(page);
@@ -234,14 +234,18 @@ function MyAlbum(props) {
         >
           <FiChevronLeft
             size="80px"
-            color={Colors.tealc}
+            color={page > 0 ? Colors.tealc : Colors.greyTransparent}
             style={{ cursor: "pointer" }}
             onClick={() => handleMove("left")}
           />
 
           <FiChevronRight
             size="80px"
-            color={Colors.tealc}
+            color={
+              page < listImages.length + 5
+                ? Colors.tealc
+                : Colors.greyTransparent
+            }
             style={{ cursor: "pointer" }}
             onClick={() => handleMove("right")}
           />
