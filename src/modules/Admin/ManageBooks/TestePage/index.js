@@ -115,7 +115,7 @@ function MyAlbum(props) {
           justifyContent: zoom ? "center" : undefined,
         }}
       >
-        {!mobileRotated && (
+        {!mobileRotated && page >= 3 && page < listImages.length + 3 && (
           <Box
             style={{
               position: "absolute",
@@ -230,11 +230,6 @@ function MyAlbum(props) {
                 placeContent: "center",
                 placeItems: "center",
                 display: "flex",
-                marginTop: mobileRotated
-                  ? "60px"
-                  : fullScreen
-                  ? "30px"
-                  : "60px",
               }}
             >
               <motion.div
@@ -249,7 +244,7 @@ function MyAlbum(props) {
               >
                 <img
                   draggable={false}
-                  src={listImages[page]}
+                  src={listImages[page - 3]}
                   width={width * zoomRatio}
                   height={height * zoomRatio}
                   alt=""
@@ -258,7 +253,7 @@ function MyAlbum(props) {
                 <img
                   draggable={false}
                   alt=""
-                  src={listImages[page + 1]}
+                  src={listImages[page - 2]}
                   width={width * zoomRatio}
                   height={height * zoomRatio}
                   style={{ objectFit: "cover" }}
