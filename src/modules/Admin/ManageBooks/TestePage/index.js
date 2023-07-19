@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import HTMLFlipBook from "react-pageflip";
 import { useSelector } from "react-redux";
 import { useKeyPress } from "../../../../hooks/useKeyPress";
@@ -15,20 +15,21 @@ const PageCover = React.forwardRef((props, ref) => {
 const Page = React.forwardRef((props, ref) => {
   return (
     <div className="page" ref={ref}>
-      <h1>Page Header</h1>
-      <p>{props.children}</p>
-      <p>{props.number}</p>
+      {props.children}
     </div>
   );
 });
 
 function MyAlbum(props) {
   const [book, setBook] = useState();
-
+  const [page, setPage] = useState(0);
+  const [zoom, setZoom] = useState(true);
+  const [zoomRatio, setZoomRatio] = useState(1);
   const [text, setText] = useState("ここに表示されます。");
-
+  const bookRef = useRef();
   const leftButton = useKeyPress("ArrowLeft");
   const rightButton = useKeyPress("ArrowRight");
+  const listImages = book?.content || [];
   const storeBook = useSelector((state) => state?.books?.books?.data[1] || {});
 
   console.log("book", book);
@@ -38,8 +39,36 @@ function MyAlbum(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (leftButton) {
+      handleMove("left");
+    }
+    if (rightButton) {
+      handleMove("right");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [leftButton, rightButton]);
+
+  const handleMove = (direction) => {
+    console.log(page, direction);
+    if (page >= listImages.length / 2 && direction === "right") return;
+    if (page <= 0 && direction === "left") return;
+    setZoom(false);
+    setTimeout(() => {
+      bookRef.current.pageFlip().turnToPage(page);
+    }, [20]);
+    setTimeout(() => {
+      if (direction === "left") {
+        bookRef.current.pageFlip().flipPrev();
+        return;
+      }
+      bookRef.current.pageFlip().flipNext();
+      return;
+    }, [50]);
+  };
+
   return (
-    <div bgcolor="red">
+    <div>
       <div>
         <HTMLFlipBook
           width={550}
@@ -53,23 +82,24 @@ function MyAlbum(props) {
           style={{ margin: "0 auto" }}
           maxShadowOpacity={0.5}
           className="album-web"
+          ref={bookRef}
+          onFlip={(e) => setPage(e.data)}
+          mobileScrollSupport={true}
         >
           <PageCover image={book?.coverPage[0] || ""} />
-          <PageCover></PageCover>
-          <Page number="1">
-            <hr></hr>
-            <p contentEditable="true">ここは編集可能です</p>
+          <PageCover />
+          <Page>
+            <p contentEditable="true">{book?.title}</p>
+            <p contentEditable="true">{book?.author}</p>
           </Page>
-          <Page number="2">
-            <hr></hr>
-            <p>{text}</p>
-          </Page>
-          <Page number="3">
-            <hr></hr>
-          </Page>
-          <Page number="4">
-            <hr></hr>
-          </Page>
+          {listImages.map((item, index) => {
+            return (
+              <Page>
+                <img src={item} alt="" width="100%" height="100%" />
+              </Page>
+            );
+          })}
+          {listImages.length % 2 === 0 && <Page />}
           <PageCover></PageCover>
           <PageCover>see you</PageCover>
         </HTMLFlipBook>
