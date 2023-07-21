@@ -51,7 +51,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
   const storeBook = useSelector((state) => state?.books?.books?.data[1] || {});
 
   const windowSize = useRef([window.innerWidth, window.innerHeight]);
-  const width = (windowSize.current[0] / 3).toFixed(0) || 550;
+  const width = 400; //(windowSize.current[0] / 3).toFixed(0) || 550;
   const height = width * 1.18;
 
   useEffect(() => {
