@@ -16,7 +16,12 @@ import "./App.css";
 
 const PageCover = React.forwardRef((props, ref) => {
   return (
-    <div className="cover" ref={ref} data-density="hard">
+    <div
+      className="cover"
+      ref={ref}
+      data-density="hard"
+      onClick={props.onClick}
+    >
       <img
         src={props.image}
         alt=""
@@ -41,6 +46,8 @@ function MyAlbum({ fullScreen, setFullScreen }) {
   const [page, setPage] = useState(0);
   const [zoom, setZoom] = useState(true);
   const [zoomRatio, setZoomRatio] = useState(1);
+  const [bookState, setBookState] = useState("");
+  const [centerBook, setCenterBook] = useState(true);
   const bookRef = useRef();
   const constraintsRef = useRef(null);
   const leftButton = useKeyPress("ArrowLeft");
@@ -92,6 +99,8 @@ function MyAlbum({ fullScreen, setFullScreen }) {
   const handleMove = (direction) => {
     if (page >= listImages.length / 2 + 6 && direction === "right") return;
     if (page <= 0 && direction === "left") return;
+    setCenterBook(false);
+
     setZoom(false);
     setTimeout(() => {
       bookRef.current.pageFlip().turnToPage(page);
@@ -187,7 +196,17 @@ function MyAlbum({ fullScreen, setFullScreen }) {
           </Box>
         )}
         {!zoom ? (
-          <div>
+          <div
+            style={{
+              transition: "transform 1s ease-in-out",
+              transform:
+                centerBook === "normal"
+                  ? `translate(-${width / 2}px, 0%)`
+                  : centerBook === "inversed"
+                  ? `translate(${width / 2}px, 0%)`
+                  : `translate(0%, 0%)`,
+            }}
+          >
             <HTMLFlipBook
               width={width}
               height={height}
@@ -201,11 +220,24 @@ function MyAlbum({ fullScreen, setFullScreen }) {
               maxShadowOpacity={0.5}
               className="album-web"
               ref={bookRef}
+              onChangeState={(e) => {
+                setBookState(e.data);
+                console.log(e);
+              }}
               onFlip={(e) => setPage(e.data)}
               mobileScrollSupport={true}
             >
-              <PageCover image={book?.coverPage[0] || ""} />
-              <PageCover />
+              <PageCover
+                image={book?.coverPage[0] || ""}
+                onClick={() => {
+                  setCenterBook(false);
+                }}
+              />
+              <PageCover
+                onClick={() => {
+                  setCenterBook("normal");
+                }}
+              />
               <Page>
                 <p>{book?.title}</p>
                 <p>{book?.author}</p>
@@ -224,8 +256,16 @@ function MyAlbum({ fullScreen, setFullScreen }) {
                 );
               })}
               {listImages.length % 2 === 0 && <Page />}
-              <PageCover></PageCover>
-              <PageCover>see you</PageCover>
+              <PageCover
+                onClick={() => {
+                  setCenterBook("inversed");
+                }}
+              ></PageCover>
+              <PageCover
+                onClick={() => {
+                  setCenterBook(false);
+                }}
+              ></PageCover>
             </HTMLFlipBook>
           </div>
         ) : (
