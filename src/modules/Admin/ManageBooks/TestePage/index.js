@@ -55,7 +55,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
   const theme = useTheme();
   const mobileRotated = useMediaQuery(theme.breakpoints.down(800));
   const storeBook = useSelector((state) => state?.books?.books?.data[1] || {});
-
+  console.log(page);
   const windowSize = useRef([window.innerWidth, window.innerHeight]);
   const width = 400; //(windowSize.current[0] / 3).toFixed(0) || 550;
   const height = width * 1.18;
@@ -105,9 +105,13 @@ function MyAlbum({ fullScreen, setFullScreen }) {
     }, [20]);
     setTimeout(() => {
       if (direction === "left") {
+        if (page === 1) setCenterBook("normal");
+        if (page === listImages.length + 5) setCenterBook(false);
         bookRef.current.pageFlip().flipPrev();
         return;
       }
+      if (page === 0) setCenterBook(false);
+      if (page === listImages.length + 3) setCenterBook("inversed");
       bookRef.current.pageFlip().flipNext();
       return;
     }, [50]);
