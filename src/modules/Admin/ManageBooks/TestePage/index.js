@@ -46,7 +46,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
   const [page, setPage] = useState(0);
   const [zoom, setZoom] = useState(true);
   const [zoomRatio, setZoomRatio] = useState(1);
-  const [centerBook, setCenterBook] = useState(true);
+  const [centerBook, setCenterBook] = useState("normal");
   const bookRef = useRef();
   const constraintsRef = useRef(null);
   const leftButton = useKeyPress("ArrowLeft");
