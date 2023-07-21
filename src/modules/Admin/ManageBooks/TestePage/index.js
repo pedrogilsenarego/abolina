@@ -46,7 +46,6 @@ function MyAlbum({ fullScreen, setFullScreen }) {
   const [page, setPage] = useState(0);
   const [zoom, setZoom] = useState(true);
   const [zoomRatio, setZoomRatio] = useState(1);
-  const [bookState, setBookState] = useState("");
   const [centerBook, setCenterBook] = useState(true);
   const bookRef = useRef();
   const constraintsRef = useRef(null);
@@ -99,7 +98,6 @@ function MyAlbum({ fullScreen, setFullScreen }) {
   const handleMove = (direction) => {
     if (page >= listImages.length / 2 + 6 && direction === "right") return;
     if (page <= 0 && direction === "left") return;
-    setCenterBook(false);
 
     setZoom(false);
     setTimeout(() => {
@@ -220,10 +218,6 @@ function MyAlbum({ fullScreen, setFullScreen }) {
               maxShadowOpacity={0.5}
               className="album-web"
               ref={bookRef}
-              onChangeState={(e) => {
-                setBookState(e.data);
-                console.log(e);
-              }}
               onFlip={(e) => setPage(e.data)}
               mobileScrollSupport={true}
             >
