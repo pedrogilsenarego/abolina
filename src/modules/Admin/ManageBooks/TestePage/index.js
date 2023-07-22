@@ -308,20 +308,22 @@ function MyAlbum({ fullScreen, setFullScreen }) {
               >
                 <img
                   draggable={false}
-                  src={listImages[page - 3]}
+                  src={listImages[page]}
                   width={width * zoomRatio}
                   height={height * zoomRatio}
                   alt=""
                   style={{ objectFit: "cover" }}
                 />
-                <img
-                  draggable={false}
-                  alt=""
-                  src={listImages[page - 2]}
-                  width={width * zoomRatio}
-                  height={height * zoomRatio}
-                  style={{ objectFit: "cover" }}
-                />
+                {page !== 0 && (
+                  <img
+                    draggable={false}
+                    alt=""
+                    src={listImages[page + 1]}
+                    width={width * zoomRatio}
+                    height={height * zoomRatio}
+                    style={{ objectFit: "cover" }}
+                  />
+                )}
               </motion.div>
             </motion.div>
           </div>
