@@ -56,7 +56,6 @@ function MyAlbum({ fullScreen, setFullScreen }) {
   const theme = useTheme();
   const mobileRotated = useMediaQuery(theme.breakpoints.down(800));
   const storeBook = useSelector((state) => state?.books?.books?.data[1] || {});
-
   const windowSize = useRef([window.innerWidth, window.innerHeight]);
   const width = 400; //(windowSize.current[0] / 3).toFixed(0) || 550;
   const height = width * 1.18;
@@ -107,12 +106,12 @@ function MyAlbum({ fullScreen, setFullScreen }) {
     setTimeout(() => {
       if (direction === "left") {
         if (page === 1) setCenterBook("normal");
-        if (page === listImages.length + 5) setCenterBook(false);
+        if (page === listImages.length - 1) setCenterBook(false);
         bookRef.current.pageFlip().flipPrev();
         return;
       }
       if (page === 0) setCenterBook(false);
-      if (page === listImages.length + 3) setCenterBook("inversed");
+      if (page === listImages.length - 3) setCenterBook("inversed");
       bookRef.current.pageFlip().flipNext();
       return;
     }, [50]);
@@ -139,7 +138,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
             />
           </Box>
         )}
-        {!mobileRotated && page >= 3 && page < listImages.length + 3 && (
+        {!mobileRotated && (
           <Box
             style={{
               position: "absolute",
@@ -227,45 +226,58 @@ function MyAlbum({ fullScreen, setFullScreen }) {
               onInit={() => setIsMounted(true)}
               mobileScrollSupport={true}
             >
-              <PageCover
-                image={book?.coverPage[0] || ""}
-                onClick={() => {
-                  setCenterBook(false);
-                }}
-              />
-              <PageCover
-                onClick={() => {
-                  setCenterBook("normal");
-                }}
-              />
-              <Page>
-                <p>{book?.title}</p>
-                <p>{book?.author}</p>
-              </Page>
               {listImages.map((item, index) => {
-                return (
-                  <Page>
-                    <img
-                      src={item}
-                      alt=""
-                      width="100%"
-                      height="100%"
-                      objectFit="cover"
-                    />
-                  </Page>
-                );
+                switch (index) {
+                  case 0:
+                    return (
+                      <PageCover
+                        image={item}
+                        onClick={() => {
+                          setCenterBook(false);
+                        }}
+                      />
+                    );
+                  case 1:
+                    return (
+                      <PageCover
+                        image={item}
+                        onClick={() => {
+                          setCenterBook("normal");
+                        }}
+                      />
+                    );
+                  case listImages.length - 2:
+                    return (
+                      <PageCover
+                        image={item}
+                        onClick={() => {
+                          setCenterBook("inversed");
+                        }}
+                      />
+                    );
+                  case listImages.length - 1:
+                    return (
+                      <PageCover
+                        image={item}
+                        onClick={() => {
+                          setCenterBook(false);
+                        }}
+                      />
+                    );
+                  default:
+                    return (
+                      <Page>
+                        <img
+                          src={item}
+                          alt=""
+                          width="100%"
+                          height="100%"
+                          objectFit="cover"
+                        />
+                      </Page>
+                    );
+                }
               })}
-              {listImages.length % 2 === 0 && <Page />}
-              <PageCover
-                onClick={() => {
-                  setCenterBook("inversed");
-                }}
-              ></PageCover>
-              <PageCover
-                onClick={() => {
-                  setCenterBook(false);
-                }}
-              ></PageCover>
             </HTMLFlipBook>
           </div>
         ) : (
@@ -314,7 +326,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
             </motion.div>
           </div>
         )}
-        {page !== 0 && page !== listImages.length + 5 && (
+        {page !== 0 && page !== listImages.length && (
           <div
             style={{
               position: mobileRotated ? "inherit" : "absolute",
@@ -331,8 +343,8 @@ function MyAlbum({ fullScreen, setFullScreen }) {
                 fontWeight: "bold",
               }}
             >
-              {i18n.t("modules.books.viewBook.page")} {page}-{page + 1} /{" "}
-              {listImages.length + 4}
+              {i18n.t("modules.books.viewBook.page")} {page - 1}-{page} /{" "}
+              {listImages.length - 4}
             </p>
           </div>
         )}
