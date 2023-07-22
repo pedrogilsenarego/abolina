@@ -88,6 +88,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
   useEffect(() => {
     if (zoomRatio === 1) {
       setZoom(false);
+      setIsMounted(false);
       setTimeout(() => {
         bookRef.current.pageFlip().turnToPage(page);
       }, [10]);
