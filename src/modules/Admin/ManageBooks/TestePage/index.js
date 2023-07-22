@@ -303,7 +303,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
                 style={{
                   height: height * zoomRatio,
                   width: width * 2 * zoomRatio,
-                  position: "bsolute",
+                  position: "absolute",
                 }}
               >
                 <img
