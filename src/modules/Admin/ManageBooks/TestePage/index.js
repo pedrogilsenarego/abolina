@@ -47,6 +47,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
   const [zoom, setZoom] = useState(true);
   const [zoomRatio, setZoomRatio] = useState(1);
   const [centerBook, setCenterBook] = useState("normal");
+  const [isMounted, setIsMounted] = useState(false);
   const bookRef = useRef();
   const constraintsRef = useRef(null);
   const leftButton = useKeyPress("ArrowLeft");
@@ -200,7 +201,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
         {!zoom ? (
           <div
             style={{
-              transition: "transform 1s ease-in-out",
+              transition: !isMounted ? "none" : "transform 1s ease-in-out",
               transform:
                 centerBook === "normal"
                   ? `translate(-${width / 2}px, 0%)`
@@ -223,6 +224,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
               className="album-web"
               ref={bookRef}
               onFlip={(e) => setPage(e.data)}
+              onInit={() => setIsMounted(true)}
               mobileScrollSupport={true}
             >
               <PageCover
