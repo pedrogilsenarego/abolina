@@ -303,7 +303,10 @@ function MyAlbum({ fullScreen, setFullScreen }) {
                 display="flex"
                 style={{
                   height: height * zoomRatio,
-                  width: width * 2 * zoomRatio,
+                  width:
+                    width *
+                    (page === 0 || page === listImages.length - 1 ? 1 : 2) *
+                    zoomRatio,
                   position: "absolute",
                 }}
               >
