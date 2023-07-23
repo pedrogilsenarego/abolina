@@ -99,7 +99,7 @@ const useAbsoluteCarousel = ({ automaticSlide, mobile }: IProps) => {
     setSlides(slidesT);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [itemsCarousel]);
 
   const updateMiniIndex = (direction: "right" | "left") => {
     setMiniIndex((prevMiniIndex) => {
