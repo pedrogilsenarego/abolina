@@ -9,6 +9,7 @@ const Textfield = ({
   placeholder = "",
   name,
   label,
+  disabled = false,
   fullWidth = false,
   password = false,
   multiline = false,
@@ -49,6 +50,7 @@ const Textfield = ({
         <Typography>{label}</Typography>
 
         <Styled.TextField
+          disabled={disabled}
           type={showPassword || !password ? "text" : "password"}
           maxWidth
           multiline={multiline ? multiline : null}

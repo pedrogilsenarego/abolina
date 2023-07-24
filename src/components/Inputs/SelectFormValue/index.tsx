@@ -1,15 +1,15 @@
-import { MenuItem, Box, Typography } from "@mui/material";
-import { useField, } from "formik";
-import * as Styled from "./styles";
+import { Box, MenuItem, SelectProps, Typography } from "@mui/material";
+import { useField } from "formik";
 import { useState } from "react";
 import Loader from "../../Loader";
+import * as Styled from "./styles";
 
-interface Props {
+interface Props extends SelectProps {
   options: Option[];
   label: string;
   name: string;
   getvalue?: (value: string) => void;
-  initialValue?: string
+  initialValue?: string;
   loading?: boolean;
 }
 interface Option {
@@ -21,11 +21,18 @@ interface Config {
   helperText?: string;
   fullWidth?: boolean;
   select: boolean;
-  onChange: any
-
+  onChange: any;
 }
 
-const SelectWrapper = ({ name, options, label, loading, getvalue, initialValue, ...otherProps }: Props) => {
+const SelectWrapper = ({
+  name,
+  options,
+  label,
+  loading,
+  getvalue,
+  initialValue,
+  ...otherProps
+}: Props) => {
   const [field, meta, helper] = useField({
     name: name || "name",
     defaultValue: "",
@@ -35,14 +42,13 @@ const SelectWrapper = ({ name, options, label, loading, getvalue, initialValue, 
   const handleChange = (evt: any) => {
     const { value } = evt.target;
     setSelected(value);
-    helper.setValue(value)
-
+    helper.setValue(value);
   };
   const configSelect: Config = {
     ...otherProps,
     fullWidth: true,
     select: true,
-    onChange: handleChange
+    onChange: handleChange,
   };
 
   if (meta && meta.touched && meta.error) {
@@ -54,23 +60,22 @@ const SelectWrapper = ({ name, options, label, loading, getvalue, initialValue, 
     getvalue(meta.value);
   }
 
-
-
   return (
     <>
       {loading ? (
-        <Loader />) :
-        (<div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
-          <Box display='flex' justifyContent='start'>
+        <Loader />
+      ) : (
+        <div
+          style={{ display: "flex", flexDirection: "column", width: "100%" }}
+        >
+          <Box display="flex" justifyContent="start">
             <Typography>{label}</Typography>
           </Box>
           <Styled.TextField
             {...configSelect}
-            variant='outlined'
+            variant="outlined"
             InputLabelProps={{ shrink: false }}
             value={selected}
-
-
           >
             {Object.keys(options).map((item: any, pos) => {
               return (
@@ -80,7 +85,9 @@ const SelectWrapper = ({ name, options, label, loading, getvalue, initialValue, 
               );
             })}
           </Styled.TextField>
-        </div>)}</>
+        </div>
+      )}
+    </>
   );
 };
 

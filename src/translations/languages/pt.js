@@ -142,6 +142,7 @@ export const content = {
           couponsSettings: "Códigos de oferta",
           general: {
             name: "Nome Utilizador",
+            edit: "Editar",
             submit: "Salvar",
             changePassword: "Mude aqui a sua chave de acesso",
             changePasswordTitle: "Mudar chave de acesso",

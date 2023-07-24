@@ -234,6 +234,7 @@ export const content = {
           couponsSettings: "Offer Codes",
           general: {
             name: "User Name",
+            edit: "Edit",
             submit: "Save Settings",
             changePassword: "Change here the password",
             changePasswordTitle: "Change Password",

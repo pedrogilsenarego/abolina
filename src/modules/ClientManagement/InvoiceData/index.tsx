@@ -6,6 +6,7 @@ import { i18n } from "../../../translations/i18n";
 import { FORM_VALIDATION } from "./validation";
 
 import { Grid } from "@mui/material";
+import { useState } from "react";
 import SelectWrapper from "../../../components/Inputs/SelectFormValue";
 import { countryList } from "../../../constants/forms";
 import { State } from "../../../slicer/types";
@@ -14,6 +15,7 @@ import { CurrentUser, InvoiceSettings } from "../../../slicer/user/user.types";
 import * as Styled from "../../../styles";
 
 const InvoiceData = () => {
+  const [disableForm, setDisableForm] = useState<boolean>(true);
   const currentUser = useSelector<State, CurrentUser>(
     (state) => state.user.currentUser
   );
@@ -29,6 +31,7 @@ const InvoiceData = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values: InvoiceSettings) => {
+    if (disableForm) return;
     const payload = {
       userFields: {
         invoiceSettings: { ...values },
@@ -51,18 +54,21 @@ const InvoiceData = () => {
           <Grid container columnSpacing="20px" rowSpacing="20px" mt="20px">
             <Grid item xs={6}>
               <TextField
+                disabled={disableForm}
                 label={i18n.t("modules.clientManagement.invoice.name")}
                 name="name"
               />
             </Grid>
             <Grid item xs={6}>
               <TextField
+                disabled={disableForm}
                 label={i18n.t("modules.clientManagement.invoice.surname")}
                 name="surname"
               />
             </Grid>
             <Grid item xs={12}>
               <SelectWrapper
+                disabled={disableForm}
                 initialValue={currentUser?.invoiceSettings?.country || ""}
                 options={countryList}
                 label={i18n.t("modules.clientManagement.invoice.country")}
@@ -71,24 +77,28 @@ const InvoiceData = () => {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                disabled={disableForm}
                 label={i18n.t("modules.clientManagement.invoice.address")}
                 name="address"
               />
             </Grid>
             <Grid item xs={6}>
               <TextField
+                disabled={disableForm}
                 label={i18n.t("modules.clientManagement.invoice.postalCode")}
                 name="postalCode"
               />
             </Grid>
             <Grid item xs={6}>
               <TextField
+                disabled={disableForm}
                 label={i18n.t("modules.clientManagement.invoice.city")}
                 name="city"
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
+                disabled={disableForm}
                 label={i18n.t("modules.clientManagement.invoice.taxId")}
                 name="taxId"
               />
@@ -99,8 +109,13 @@ const InvoiceData = () => {
               style={{
                 display: "flex",
                 justifyContent: "start",
+                columnGap: "20px",
               }}
             >
+              <Button
+                onClick={() => setDisableForm(false)}
+                label={i18n.t("modules.clientManagement.general.edit")}
+              />
               <Button
                 formik
                 label={i18n.t("modules.clientManagement.general.submit")}

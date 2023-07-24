@@ -314,6 +314,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
                   draggable={false}
                   src={listImages[page]}
                   width={width * zoomRatio}
+                  
                   height={height * zoomRatio}
                   alt=""
                   style={{ objectFit: "cover" }}

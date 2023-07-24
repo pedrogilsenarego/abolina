@@ -22,6 +22,7 @@ interface FORM {
 }
 
 const GeneralData = () => {
+  const [disableForm, setDisableForm] = useState<boolean>(true);
   const currentUser = useSelector<State, CurrentUser>(
     (state) => state.user.currentUser
   );
@@ -93,15 +94,27 @@ const GeneralData = () => {
             }}
           >
             <TextField
+              disabled={disableForm}
               fullWidth
               label={i18n.t("modules.clientManagement.general.name")}
               name="displayName"
             />
-
-            <Button
-              formik
-              label={i18n.t("modules.clientManagement.general.submit")}
-            />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "start",
+                columnGap: "20px",
+              }}
+            >
+              <Button
+                onClick={() => setDisableForm(false)}
+                label={i18n.t("modules.clientManagement.general.edit")}
+              />
+              <Button
+                formik
+                label={i18n.t("modules.clientManagement.general.submit")}
+              />
+            </div>
           </div>
           <Typography
             onClick={() => setChangePassword(true)}
