@@ -23,7 +23,7 @@ const Cart = () => {
   const cartItems = useSelector<State, CartProduct[]>(
     (state) => state.cart.cartItems
   );
-  const [sliderPosition, setSliderPosition] = useState<0 | 1>(1);
+  const [sliderPosition, setSliderPosition] = useState<0 | 1>(0);
   const theme = useTheme();
   const navigate = useNavigate();
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));

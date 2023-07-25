@@ -1,26 +1,32 @@
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
-import "./index.css";
 import { useEffect, useState } from "react";
 import { Colors } from "../../constants/pallette";
+import "./index.css";
 
 interface Props {
   minimumOne?: boolean;
   initialValue?: number;
   updateValue?: (value: number) => void;
-  maxValue?: number
-  forceSetValue?: number
+  maxValue?: number;
+  forceSetValue?: number;
 }
 
-const Incrementor = ({ minimumOne, initialValue, updateValue, maxValue, forceSetValue }: Props) => {
+const Incrementor = ({
+  minimumOne,
+  initialValue,
+  updateValue,
+  maxValue,
+  forceSetValue,
+}: Props) => {
   const [value, setValue] = useState<number>(initialValue || 0);
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
     if (forceSetValue) {
-      setValue(forceSetValue)
+      setValue(forceSetValue);
     }
-  }, [forceSetValue])
+  }, [forceSetValue]);
 
   const handleValue = (signal: "minus" | "plus") => {
     let newValue = value;
@@ -29,8 +35,7 @@ const Incrementor = ({ minimumOne, initialValue, updateValue, maxValue, forceSet
     } else if (signal === "plus") {
       if (!maxValue) {
         newValue += 1;
-      }
-      else if (maxValue > value) newValue += 1;
+      } else if (maxValue > value) newValue += 1;
     }
 
     setValue(newValue);
@@ -47,7 +52,7 @@ const Incrementor = ({ minimumOne, initialValue, updateValue, maxValue, forceSet
   }, [initialValue]);
 
   return (
-    <Box display='flex' columnGap={1}>
+    <Box display="flex" columnGap={mobile ? "0px" : "10px"}>
       <Box
         style={{
           cursor: value === (minimumOne ? 1 : 0) ? "default" : "pointer",
@@ -58,38 +63,46 @@ const Incrementor = ({ minimumOne, initialValue, updateValue, maxValue, forceSet
 
           width: "25px",
           height: "25px",
-          backgroundColor: value === (minimumOne ? 1 : 0)
-            ? "lightGrey"
-            : Colors.tealc,
+          backgroundColor:
+            value === (minimumOne ? 1 : 0) ? "lightGrey" : Colors.tealc,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          borderRadius: "3px"
+          borderRadius: "3px",
         }}
-        className='box'
+        className="box"
         onClick={(e) => {
           e.preventDefault();
           handleValue("minus");
         }}
       >
-        <Typography color="white" fontSize={mobile ? "0.6rem" : "1rem"}>-</Typography>
-      </Box>
-      <Box style={{
-        width: "25px",
-        height: "25px",
-
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-
-
-      }}>
-        {" "}
-        <Typography style={{ paddingTop: "2px" }} color="black" fontSize={mobile ? "0.6rem" : "1.2rem"}>{value}</Typography>
+        <Typography color="white" fontSize={mobile ? "0.6rem" : "1rem"}>
+          -
+        </Typography>
       </Box>
       <Box
         style={{
-          cursor: "pointer", width: "25px",
+          width: "25px",
+          height: "25px",
+
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {" "}
+        <Typography
+          style={{ paddingTop: "2px" }}
+          color="black"
+          fontSize={mobile ? "0.8rem" : "1.2rem"}
+        >
+          {value}
+        </Typography>
+      </Box>
+      <Box
+        style={{
+          cursor: "pointer",
+          width: "25px",
           height: "25px",
           border:
             value === maxValue
@@ -99,19 +112,18 @@ const Incrementor = ({ minimumOne, initialValue, updateValue, maxValue, forceSet
           justifyContent: "center",
           alignItems: "center",
           borderRadius: "3px",
-          backgroundColor: value === maxValue
-            ? "lightGrey"
-            : Colors.tealc,
+          backgroundColor: value === maxValue ? "lightGrey" : Colors.tealc,
         }}
-
         onClick={(e) => {
           e.preventDefault();
           handleValue("plus");
         }}
       >
-        <Typography color="white" fontSize={mobile ? "0.6rem" : "1rem"}>+</Typography>
+        <Typography color="white" fontSize={mobile ? "0.6rem" : "1rem"}>
+          +
+        </Typography>
       </Box>
-    </Box >
+    </Box>
   );
 };
 

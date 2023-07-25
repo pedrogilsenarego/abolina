@@ -347,6 +347,7 @@ const Element = ({ item, pos, sliderPosition, setSliderPosition }: Props) => {
               }}
             >
               <Carousel
+                forOffer={forOffer}
                 sliderPosition={sliderPosition}
                 setSliderPosition={setSliderPosition}
                 item={item}
@@ -385,29 +386,7 @@ const Element = ({ item, pos, sliderPosition, setSliderPosition }: Props) => {
                 </div>
               }
             />
-            {(item?.value > 1 || forOffer) && (
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  columnGap: "5px",
-                }}
-              >
-                <Typography style={{ fontSize: "14px" }}>
-                  {forOffer ? item.value : item.value - 1}
-                </Typography>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <Typography color={Pallette.primary}>
-                    {i18n.t("modules.cart.table.offer")}
-                  </Typography>
-                </div>
-              </div>
-            )}
+
             <RiDeleteBinLine
               style={{
                 cursor: "pointer",
