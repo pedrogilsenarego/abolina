@@ -1,45 +1,46 @@
-import { Container, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { i18n } from "../../translations/i18n";
-import { Colors } from "../../constants/pallette";
-import { useSelector } from "react-redux";
-import { State } from "../../slicer/types";
-import { CartProduct } from "../../slicer/cart/cart.types";
-import Element from "./Element";
-import TextField from "../../components/Inputs/TextField";
-import Button from "../../components/Button";
-import { getTotalValue } from "./Utils";
-import { ROUTE_PATHS } from "../../constants/routes";
-import { useNavigate } from "react-router";
+import {
+  Container,
+  Grid,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import { useState } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import Button from "../../components/Button";
+import TextField from "../../components/Inputs/TextField";
+import { Colors } from "../../constants/pallette";
+import { ROUTE_PATHS } from "../../constants/routes";
+import { CartProduct } from "../../slicer/cart/cart.types";
+import { State } from "../../slicer/types";
+import { i18n } from "../../translations/i18n";
+import Element from "./Element";
+import { getTotalValue } from "./Utils";
 
 const Cart = () => {
   const cartItems = useSelector<State, CartProduct[]>(
     (state) => state.cart.cartItems
   );
-  const theme = useTheme()
-  const navigate = useNavigate()
-  const mobile = useMediaQuery(theme.breakpoints.down("sm"))
+  const [sliderPosition, setSliderPosition] = useState<0 | 1>(1);
+  const theme = useTheme();
+  const navigate = useNavigate();
+  const mobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const renderMobile = () => {
     return (
-      <Container maxWidth='lg'>
+      <Container maxWidth="lg">
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div
-            onClick={() =>
-              navigate(ROUTE_PATHS.BOOKS)
-            }
+            onClick={() => navigate(ROUTE_PATHS.BOOKS)}
             style={{
               display: "flex",
               columnGap: "5px",
               alignItems: "center",
-
             }}
           >
-            <AiOutlineArrowLeft
-              color={Colors.tealc}
-              size='0.8rem'
-
-            />
+            <AiOutlineArrowLeft color={Colors.tealc} size="0.8rem" />
             <Typography
               style={{
                 paddingTop: "5px",
@@ -53,17 +54,13 @@ const Cart = () => {
             </Typography>
           </div>
           <div
-            onClick={() =>
-              navigate(ROUTE_PATHS.CHECKOUT)
-            }
+            onClick={() => navigate(ROUTE_PATHS.CHECKOUT)}
             style={{
               display: "flex",
               columnGap: "5px",
               alignItems: "center",
-
             }}
           >
-
             <Typography
               style={{
                 paddingTop: "5px",
@@ -75,11 +72,7 @@ const Cart = () => {
             >
               {i18n.t("modules.cart.finalize")}
             </Typography>
-            <AiOutlineArrowRight
-              color={Colors.tealc}
-              size='0.8rem'
-
-            />
+            <AiOutlineArrowRight color={Colors.tealc} size="0.8rem" />
           </div>
         </div>
         <Grid container style={{ marginTop: "40px" }}>
@@ -97,7 +90,11 @@ const Cart = () => {
               }}
             >
               <Typography
-                style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
+                style={{
+                  fontSize: mobile ? "12px" : "18px",
+                  color: Colors.tealc,
+                  fontWeight: 800,
+                }}
               >
                 {i18n.t("modules.cart.table.product")}
               </Typography>
@@ -112,7 +109,11 @@ const Cart = () => {
               }}
             >
               <Typography
-                style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
+                style={{
+                  fontSize: mobile ? "12px" : "18px",
+                  color: Colors.tealc,
+                  fontWeight: 800,
+                }}
               >
                 {i18n.t("modules.cart.table.price")}
               </Typography>
@@ -127,7 +128,11 @@ const Cart = () => {
               }}
             >
               <Typography
-                style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
+                style={{
+                  fontSize: mobile ? "12px" : "18px",
+                  color: Colors.tealc,
+                  fontWeight: 800,
+                }}
               >
                 {i18n.t("modules.cart.table.quantity")}
               </Typography>
@@ -143,7 +148,11 @@ const Cart = () => {
               }}
             >
               <Typography
-                style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
+                style={{
+                  fontSize: mobile ? "12px" : "18px",
+                  color: Colors.tealc,
+                  fontWeight: 800,
+                }}
               >
                 {i18n.t("modules.cart.table.subtotal")}
               </Typography>
@@ -151,8 +160,16 @@ const Cart = () => {
           </Grid>
         </Grid>
         {cartItems?.map((item, pos) => {
-          return <Element item={item} pos={pos} />;
+          return (
+            <Element
+              item={item}
+              pos={pos}
+              sliderPosition={sliderPosition}
+              setSliderPosition={setSliderPosition}
+            />
+          );
         })}
+
         <div
           style={{
             display: "flex",
@@ -163,12 +180,23 @@ const Cart = () => {
           }}
         >
           <div
-            style={{ display: "flex", columnGap: "30px", alignItems: "center", justifyContent: "end" }}
+            style={{
+              display: "flex",
+              columnGap: "30px",
+              alignItems: "center",
+              justifyContent: "end",
+            }}
           >
             <TextField label={i18n.t("modules.cart.discountCuppon")} />
             <Button label={i18n.t("modules.cart.applyDiscount")} />
           </div>
-          <div style={{ display: "flex", columnGap: "20px", justifyContent: "end" }}>
+          <div
+            style={{
+              display: "flex",
+              columnGap: "20px",
+              justifyContent: "end",
+            }}
+          >
             <Typography
               style={{
                 fontSize: "18px",
@@ -176,35 +204,45 @@ const Cart = () => {
                 color: Colors.tealc,
                 marginBottom: "16px",
                 textAlign: "right",
-                borderBottom: `solid 2px ${Colors.tealc}`
+                borderBottom: `solid 2px ${Colors.tealc}`,
               }}
             >
               {i18n.t("modules.cart.total")}
             </Typography>
-            <Typography style={{
-              fontSize: "18px",
-              fontWeight: 800,
-              color: Colors.tealc,
-
-            }}>
+            <Typography
+              style={{
+                fontSize: "18px",
+                fontWeight: 800,
+                color: Colors.tealc,
+              }}
+            >
               €{getTotalValue(cartItems)}
             </Typography>
           </div>
         </div>
-        <div style={{ width: "100%", display: "flex", justifyContent: "end", marginTop: "30px" }}>
-          <Button onClick={() => navigate(ROUTE_PATHS.CHECKOUT)} label={i18n.t("modules.cart.finalize")} />
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "end",
+            marginTop: "30px",
+          }}
+        >
+          <Button
+            onClick={() => navigate(ROUTE_PATHS.CHECKOUT)}
+            label={i18n.t("modules.cart.finalize")}
+          />
         </div>
-      </Container>)
-  }
+      </Container>
+    );
+  };
 
   const renderLaptop = () => {
     return (
-      <Container maxWidth='lg'>
+      <Container maxWidth="lg">
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div
-            onClick={() =>
-              navigate(ROUTE_PATHS.BOOKS)
-            }
+            onClick={() => navigate(ROUTE_PATHS.BOOKS)}
             style={{
               display: "flex",
               columnGap: "5px",
@@ -214,7 +252,7 @@ const Cart = () => {
           >
             <AiOutlineArrowLeft
               color={Colors.tealc}
-              size='0.8rem'
+              size="0.8rem"
               style={{ position: "absolute", left: "-15px" }}
             />
             <Typography
@@ -230,9 +268,7 @@ const Cart = () => {
             </Typography>
           </div>
           <div
-            onClick={() =>
-              navigate(ROUTE_PATHS.CHECKOUT)
-            }
+            onClick={() => navigate(ROUTE_PATHS.CHECKOUT)}
             style={{
               display: "flex",
               columnGap: "5px",
@@ -240,7 +276,6 @@ const Cart = () => {
               position: "relative",
             }}
           >
-
             <Typography
               style={{
                 paddingTop: "5px",
@@ -254,7 +289,7 @@ const Cart = () => {
             </Typography>
             <AiOutlineArrowRight
               color={Colors.tealc}
-              size='0.8rem'
+              size="0.8rem"
               style={{ position: "absolute", right: "-15px" }}
             />
           </div>
@@ -274,7 +309,11 @@ const Cart = () => {
               }}
             >
               <Typography
-                style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
+                style={{
+                  fontSize: mobile ? "12px" : "18px",
+                  color: Colors.tealc,
+                  fontWeight: 800,
+                }}
               >
                 {i18n.t("modules.cart.table.product")}
               </Typography>
@@ -289,7 +328,11 @@ const Cart = () => {
               }}
             >
               <Typography
-                style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
+                style={{
+                  fontSize: mobile ? "12px" : "18px",
+                  color: Colors.tealc,
+                  fontWeight: 800,
+                }}
               >
                 {i18n.t("modules.cart.table.price")}
               </Typography>
@@ -304,7 +347,11 @@ const Cart = () => {
               }}
             >
               <Typography
-                style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
+                style={{
+                  fontSize: mobile ? "12px" : "18px",
+                  color: Colors.tealc,
+                  fontWeight: 800,
+                }}
               >
                 {i18n.t("modules.cart.table.quantity")}
               </Typography>
@@ -320,7 +367,11 @@ const Cart = () => {
               }}
             >
               <Typography
-                style={{ fontSize: mobile ? "12px" : "18px", color: Colors.tealc, fontWeight: 800 }}
+                style={{
+                  fontSize: mobile ? "12px" : "18px",
+                  color: Colors.tealc,
+                  fontWeight: 800,
+                }}
               >
                 {i18n.t("modules.cart.table.subtotal")}
               </Typography>
@@ -352,28 +403,40 @@ const Cart = () => {
                 color: Colors.tealc,
 
                 marginBottom: "16px",
-                borderBottom: `solid 2px ${Colors.tealc}`
+                borderBottom: `solid 2px ${Colors.tealc}`,
               }}
             >
               {i18n.t("modules.cart.total")}
             </Typography>
-            <Typography style={{
-              fontSize: "18px",
-              fontWeight: 800,
-              color: Colors.tealc,
-
-            }}>
+            <Typography
+              style={{
+                fontSize: "18px",
+                fontWeight: 800,
+                color: Colors.tealc,
+              }}
+            >
               €{getTotalValue(cartItems)}
             </Typography>
           </div>
         </div>
-        <div style={{ width: "100%", display: "flex", justifyContent: "end", marginTop: "100px" }}>
-          <Button onClick={() => navigate(ROUTE_PATHS.CHECKOUT)} label={i18n.t("modules.cart.finalize")} />
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "end",
+            marginTop: "100px",
+          }}
+        >
+          <Button
+            onClick={() => navigate(ROUTE_PATHS.CHECKOUT)}
+            label={i18n.t("modules.cart.finalize")}
+          />
         </div>
-      </Container>)
-  }
+      </Container>
+    );
+  };
 
-  return mobile ? renderMobile() : renderLaptop()
+  return mobile ? renderMobile() : renderLaptop();
 };
 
 export default Cart;

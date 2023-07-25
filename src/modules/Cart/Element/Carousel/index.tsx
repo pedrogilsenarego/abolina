@@ -1,12 +1,7 @@
 import { Typography } from "@mui/material";
-import {
-  ButtonBack,
-  ButtonNext,
-  CarouselProvider,
-  Slide,
-  Slider,
-} from "pure-react-carousel";
+import { CarouselProvider, Slide, Slider } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
+import { useRef } from "react";
 import Incrementor from "../../../../components/Incrementor";
 import { CartProduct } from "../../../../slicer/cart/cart.types";
 
@@ -14,24 +9,28 @@ interface Props {
   item: CartProduct;
   price: number;
   handleUpdateSubtotal: (price: number) => void;
+  sliderPosition: any;
+  setSliderPosition: any;
 }
 
-const Carousel = ({ item, price, handleUpdateSubtotal }: Props) => {
+const Carousel = ({
+  item,
+  price,
+  handleUpdateSubtotal,
+  sliderPosition,
+  setSliderPosition,
+}: Props) => {
   return (
     <CarouselProvider
       naturalSlideHeight={100}
       naturalSlideWidth={150}
       totalSlides={2}
+      currentSlide={sliderPosition}
+      touchEnabled={false}
     >
-      <Slider
-        style={{ border: "solid 2px blue", height: "100%", width: "59vw" }}
-      >
+      <Slider style={{ height: "100%", width: "59vw" }}>
         <Slide index={0}>
-          <div
-            style={{
-              backgroundColor: "red",
-            }}
-          >
+          <div>
             <Typography style={{ fontSize: 18, fontWeight: "bold" }}>
               {item.product.title}
             </Typography>
@@ -43,7 +42,6 @@ const Carousel = ({ item, price, handleUpdateSubtotal }: Props) => {
           {" "}
           <div
             style={{
-              backgroundColor: "yellow",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",

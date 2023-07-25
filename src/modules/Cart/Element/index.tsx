@@ -29,9 +29,11 @@ import Carousel from "./Carousel";
 interface Props {
   item: CartProduct;
   pos: number;
+  sliderPosition?: 0 | 1 | undefined;
+  setSliderPosition?: (sliderPosition: 0 | 1) => void | undefined;
 }
 
-const Element = ({ item, pos }: Props) => {
+const Element = ({ item, pos, sliderPosition, setSliderPosition }: Props) => {
   const [forOffer, setForOffer] = useState<boolean>(item?.onlyOffer || false);
   const [checkBoxDisabled, setCheckBoxDisabled] = useState<boolean>(false);
   const [numberOffer, setNumberOffer] = useState<number>(0);
@@ -286,12 +288,25 @@ const Element = ({ item, pos }: Props) => {
       <div
         key={pos}
         style={{
+          position: "relative",
           width: "92vw",
           paddingTop: "10px",
           paddingBottom: "5px",
           borderBottom: `solid 2px ${Colors.tealc}`,
         }}
       >
+        <div
+          onClick={() => {
+            if (setSliderPosition)
+              setSliderPosition(sliderPosition === 1 ? 0 : 1);
+          }}
+          style={{
+            position: "absolute",
+            width: "50px",
+            height: "50px",
+            backgroundColor: "red",
+          }}
+        ></div>
         <div>
           <Grid
             container
@@ -327,13 +342,13 @@ const Element = ({ item, pos }: Props) => {
               item
               xs={8}
               style={{
-                backgroundColor: "green",
-                border: "solid 2px black",
                 height: "100%",
                 display: "flex",
               }}
             >
               <Carousel
+                sliderPosition={sliderPosition}
+                setSliderPosition={setSliderPosition}
                 item={item}
                 price={price}
                 handleUpdateSubtotal={handleUpdateSubtotal}
