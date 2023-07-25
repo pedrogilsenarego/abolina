@@ -68,7 +68,7 @@ const Carousel = ({
                 justifyContent: "center",
                 alignItems: "center",
 
-                columnGap: "20px",
+                columnGap: "22px",
               }}
             >
               <Typography>€{price}</Typography>

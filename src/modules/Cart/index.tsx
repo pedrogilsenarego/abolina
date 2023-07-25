@@ -87,7 +87,7 @@ const Cart = () => {
               <Typography
                 style={{
                   fontSize: mobile ? "12px" : "18px",
-                  color: Colors.tealc,
+                  color: mobile ? "transparent" : Colors.tealc,
                   fontWeight: 800,
                 }}
               >
@@ -111,7 +111,8 @@ const Cart = () => {
                   transform: `translate(${
                     sliderPosition === 0 ? "100vw" : "0px"
                   }, 0px)`,
-                  transition: "all 0.3s ease-in",
+                  transition:
+                    "all 0.45s cubic-bezier(0.645, 0.045, 0.355, 1.000)",
                 }}
               >
                 <Typography
