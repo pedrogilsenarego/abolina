@@ -5,25 +5,26 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { CartProduct } from "../../../slicer/cart/cart.types";
-import { Colors, Pallette } from "../../../constants/pallette";
-import { AiOutlineClose } from "react-icons/ai";
-import CheckBox from "../../../components/Inputs/CheckBox";
-import { i18n } from "../../../translations/i18n";
-import { CgSmartphone } from "react-icons/cg";
-import Incrementor from "../../../components/Incrementor";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { AiOutlineClose } from "react-icons/ai";
+import { CgSmartphone } from "react-icons/cg";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
+import Incrementor from "../../../components/Incrementor";
+import CheckBox from "../../../components/Inputs/CheckBox";
+import Tooltip from "../../../components/Tooltip/Tooltip";
+import { Colors, Pallette } from "../../../constants/pallette";
 import {
   deleteProductCart,
   onlyOfferToggle,
   updateCart,
 } from "../../../slicer/cart/cart.actions";
-import Tooltip from "../../../components/Tooltip/Tooltip";
+import { CartProduct } from "../../../slicer/cart/cart.types";
 import { State } from "../../../slicer/types";
 import { CurrentUser } from "../../../slicer/user/user.types";
+import { i18n } from "../../../translations/i18n";
+import Carousel from "./Carousel";
 
 interface Props {
   item: CartProduct;
@@ -65,11 +66,11 @@ const Element = ({ item, pos }: Props) => {
   const price = !item?.product?.discount
     ? Number(item?.product?.price)
     : Number(
-      (
-        Number(item?.product.price) *
-        (1 - item?.product?.discount / 100)
-      ).toFixed(2)
-    );
+        (
+          Number(item?.product.price) *
+          (1 - item?.product?.discount / 100)
+        ).toFixed(2)
+      );
 
   const renderLaptop = () => {
     return (
@@ -119,13 +120,14 @@ const Element = ({ item, pos }: Props) => {
                 left: "-70px",
               }}
               onClick={handleDeleteCartProduct}
-              size='1.5rem'
+              size="1.5rem"
               color={Colors.darkGrey}
             />
             <img
               style={{
                 height: "200px",
-                objectFit: "contain",
+                width: "200px",
+                objectFit: "cover",
               }}
               src={item.product.coverPage}
               alt={item.product.title}
@@ -137,7 +139,12 @@ const Element = ({ item, pos }: Props) => {
               setValue={setForOffer}
               label={
                 <div>
-                  <Typography style={{ fontSize: "18px", color: checkBoxDisabled ? "lightgray" : "inherit" }}>
+                  <Typography
+                    style={{
+                      fontSize: "18px",
+                      color: checkBoxDisabled ? "lightgray" : "inherit",
+                    }}
+                  >
                     {i18n.t("modules.cart.table.offerThisBook")}
                   </Typography>
                   <Typography
@@ -176,7 +183,7 @@ const Element = ({ item, pos }: Props) => {
               }}
             >
               <CgSmartphone
-                size='2rem'
+                size="2rem"
                 color={Colors.tealc}
                 style={{ marginLeft: "-8px" }}
               />
@@ -189,11 +196,11 @@ const Element = ({ item, pos }: Props) => {
               >
                 {i18n.t("modules.cart.table.readOnApp")}
               </Typography>
-              <Tooltip title='teste'>
+              <Tooltip title="teste">
                 <IconButton>
                   <IoMdInformationCircleOutline
                     color={Pallette.primary}
-                    size='1rem'
+                    size="1rem"
                     style={{ marginTop: "-3px", cursor: "pointer" }}
                   />
                 </IconButton>
@@ -250,7 +257,7 @@ const Element = ({ item, pos }: Props) => {
                   <IconButton>
                     <IoMdInformationCircleOutline
                       color={Pallette.primary}
-                      size='1rem'
+                      size="1rem"
                       style={{ marginTop: "-3px", cursor: "pointer" }}
                     />
                   </IconButton>
@@ -286,70 +293,53 @@ const Element = ({ item, pos }: Props) => {
         }}
       >
         <div>
-          <div
+          <Grid
+            container
+            columnSpacing="10px"
+            alignItems="center"
             style={{
-              overflow: "scroll",
-              display: "flex",
               width: "auto",
-              columnGap: "40px",
+              height: "150px",
               backgroundColor: "whiteSmoke",
-              padding: "10px",
             }}
           >
-            <img
+            <Grid
+              item
+              xs={4}
               style={{
-                height: "120px",
-                objectFit: "contain",
-              }}
-              src={item.product.coverPage}
-              alt={item.product.title}
-            />
-            <div
-              style={{
+                height: "100%",
                 display: "flex",
-                flexDirection: "column",
+                alignItems: "center",
                 justifyContent: "center",
-                alignItems: "start",
               }}
             >
-              <Typography style={{ fontSize: 18, fontWeight: "bold" }}>
-                {item.product.title}
-              </Typography>
-              <Typography>{item.product.collections}</Typography>
-              <Typography>Nº{item.product.number}</Typography>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "start",
-                alignItems: "center",
-              }}
-            >
-              <Typography>€{price}</Typography>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "start",
-                alignItems: "center",
-              }}
-            >
-              <Incrementor
-                key={item.product.documentID}
-                initialValue={item.value}
-                updateValue={handleUpdateSubtotal}
+              <img
+                style={{
+                  aspectRatio: 1,
+                  width: "100%",
+                  objectFit: "cover",
+                }}
+                src={item.product.coverPage}
+                alt={item.product.title}
               />
-            </div>
-            <div
+            </Grid>
+            <Grid
+              item
+              xs={8}
               style={{
+                backgroundColor: "green",
+                border: "solid 2px black",
+                height: "100%",
                 display: "flex",
-                justifyContent: "start",
-                alignItems: "center",
               }}
             >
-              <Typography>€{(item.value * price).toFixed(2)}</Typography>
-            </div>
-          </div>
+              <Carousel
+                item={item}
+                price={price}
+                handleUpdateSubtotal={handleUpdateSubtotal}
+              />
+            </Grid>
+          </Grid>
           <div
             style={{
               display: "flex",
@@ -408,7 +398,7 @@ const Element = ({ item, pos }: Props) => {
                 cursor: "pointer",
               }}
               onClick={handleDeleteCartProduct}
-              size='1.5rem'
+              size="1.5rem"
               color={Colors.darkGrey}
             />
           </div>

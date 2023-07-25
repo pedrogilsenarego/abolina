@@ -1,19 +1,19 @@
 import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { FiShoppingCart } from "react-icons/fi";
+import { useState } from "react";
 import { BiUser } from "react-icons/bi";
-import useChangeLang from "../../../../hooks/usechangeLang";
+import { BsCheckLg } from "react-icons/bs";
+import { FiShoppingCart } from "react-icons/fi";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import BasicPopover from "../../../../components/Popover";
 import { LANG } from "../../../../constants/lang";
+import { Colors } from "../../../../constants/pallette";
+import { ROUTE_PATHS } from "../../../../constants/routes";
+import useChangeLang from "../../../../hooks/usechangeLang";
+import { CartProduct } from "../../../../slicer/cart/cart.types";
 import { State } from "../../../../slicer/types";
 import { CurrentUser } from "../../../../slicer/user/user.types";
-import { useSelector } from "react-redux";
-import { ROUTE_PATHS } from "../../../../constants/routes";
-import { useNavigate } from "react-router";
-import { CartProduct } from "../../../../slicer/cart/cart.types";
-import { Colors } from "../../../../constants/pallette";
-import BasicPopover from "../../../../components/Popover";
-import { useState } from "react";
 import UserPopoverContent from "./UserPopoverContent";
-import { BsCheckLg } from "react-icons/bs";
 
 const Right = () => {
   const { changeLanguage } = useChangeLang();
@@ -55,18 +55,14 @@ const Right = () => {
   }
 
   const handleUser = (e: any) => {
-
-    handleClickPopover(e)
-  }
-
-
+    handleClickPopover(e);
+  };
 
   return (
     <>
       <Grid
-
         container
-        alignItems='center'
+        alignItems="center"
         justifyContent={mobile ? "center" : "start"}
         columnGap={1.5}
       >
@@ -74,9 +70,23 @@ const Right = () => {
           <>
             <Grid
               item
-              style={{ display: "flex", alignItems: "center", cursor: "pointer", position: "relative" }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                cursor: "pointer",
+                position: "relative",
+              }}
             >
-              <BiUser size='1.5rem' color='white' onClick={() => { if (!currentUser) navigate(ROUTE_PATHS.LOGIN) }} onMouseEnter={(e: any) => { if (currentUser) handleUser(e) }} />
+              <BiUser
+                size="1.5rem"
+                color="white"
+                onClick={() => {
+                  if (!currentUser) navigate(ROUTE_PATHS.LOGIN);
+                }}
+                onMouseEnter={(e: any) => {
+                  if (currentUser) handleUser(e);
+                }}
+              />
               {currentUser && (
                 <div
                   style={{
@@ -90,7 +100,6 @@ const Right = () => {
                     aspectRatio: 1,
                     borderRadius: "50%",
                     backgroundColor: Colors.tealc,
-
                   }}
                 >
                   <BsCheckLg size="0.7rem" color="white" />
@@ -107,7 +116,7 @@ const Right = () => {
                 position: "relative",
               }}
             >
-              <FiShoppingCart size='1.5rem' color='white' />
+              <FiShoppingCart size="1.5rem" color="white" />
               {cart.length !== 0 && (
                 <div
                   style={{
@@ -125,7 +134,12 @@ const Right = () => {
                   }}
                 >
                   <Typography
-                    style={{ color: Colors.tealc, fontSize: "12px", fontWeight: 800, marginTop: "2px" }}
+                    style={{
+                      color: Colors.tealc,
+                      fontSize: "12px",
+                      fontWeight: 800,
+                      marginTop: "0px",
+                    }}
                   >
                     {getCartTotal()}
                   </Typography>
@@ -146,7 +160,7 @@ const Right = () => {
           <Box>
             <Typography
               fontSize={mobile ? "24px" : "12px"}
-              color='white'
+              color="white"
               fontWeight={800}
               onClick={() => {
                 changeLanguage(LANG.pt);
@@ -157,7 +171,7 @@ const Right = () => {
             </Typography>
             <Typography
               fontSize={mobile ? "24px" : "12px"}
-              color='white'
+              color="white"
               fontWeight={800}
               onClick={() => {
                 changeLanguage(LANG.en);
@@ -168,9 +182,8 @@ const Right = () => {
             </Typography>
           </Box>
         </Grid>
-
       </Grid>
-      <BasicPopover isOpen={isOpen} anchorEl={anchorEl} onClose={handleClose} >
+      <BasicPopover isOpen={isOpen} anchorEl={anchorEl} onClose={handleClose}>
         <UserPopoverContent handleClose={handleClose} />
       </BasicPopover>
     </>
