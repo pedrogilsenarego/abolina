@@ -76,11 +76,6 @@ const Cart = () => {
           </div>
         </div>
         <Grid container style={{ marginTop: "40px" }}>
-          <Grid
-            item
-            xs={1}
-            style={{ borderBottom: `solid 2px ${Colors.tealc}` }}
-          ></Grid>
           <Grid item xs={5}>
             <div
               style={{
@@ -100,64 +95,61 @@ const Cart = () => {
               </Typography>
             </div>
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={6}>
             <div
               style={{
-                display: "flex",
                 borderBottom: `solid 2px ${Colors.tealc}`,
                 width: "100%",
               }}
             >
-              <Typography
+              <div
                 style={{
-                  fontSize: mobile ? "12px" : "18px",
-                  color: Colors.tealc,
-                  fontWeight: 800,
+                  display: "flex",
+
+                  width: "100%",
+                  justifyContent: "space-between",
+                  transform: `translate(${
+                    sliderPosition === 0 ? "100vw" : "0px"
+                  }, 0px)`,
+                  transition: "all 0.3s ease-in",
                 }}
               >
-                {i18n.t("modules.cart.table.price")}
-              </Typography>
+                <Typography
+                  style={{
+                    fontSize: mobile ? "12px" : "18px",
+
+                    color: Colors.tealc,
+                    fontWeight: 800,
+                  }}
+                >
+                  {i18n.t("modules.cart.table.price")}
+                </Typography>
+                <Typography
+                  style={{
+                    fontSize: mobile ? "12px" : "18px",
+                    color: Colors.tealc,
+                    fontWeight: 800,
+                  }}
+                >
+                  {i18n.t("modules.cart.table.quantity")}
+                </Typography>
+                <Typography
+                  style={{
+                    fontSize: mobile ? "12px" : "18px",
+                    color: Colors.tealc,
+                    fontWeight: 800,
+                  }}
+                >
+                  {i18n.t("modules.cart.table.subtotal")}
+                </Typography>
+              </div>
             </div>
           </Grid>
-          <Grid item xs={2}>
-            <div
-              style={{
-                display: "flex",
-                borderBottom: `solid 2px ${Colors.tealc}`,
-                width: "100%",
-              }}
-            >
-              <Typography
-                style={{
-                  fontSize: mobile ? "12px" : "18px",
-                  color: Colors.tealc,
-                  fontWeight: 800,
-                }}
-              >
-                {i18n.t("modules.cart.table.quantity")}
-              </Typography>
-            </div>
-          </Grid>
-          <Grid item xs={2}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "end",
-                borderBottom: `solid 2px ${Colors.tealc}`,
-                width: "100%",
-              }}
-            >
-              <Typography
-                style={{
-                  fontSize: mobile ? "12px" : "18px",
-                  color: Colors.tealc,
-                  fontWeight: 800,
-                }}
-              >
-                {i18n.t("modules.cart.table.subtotal")}
-              </Typography>
-            </div>
-          </Grid>
+          <Grid
+            item
+            xs={1}
+            style={{ borderBottom: `solid 2px ${Colors.tealc}` }}
+          ></Grid>
         </Grid>
         {cartItems?.map((item, pos) => {
           return (
