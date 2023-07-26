@@ -229,7 +229,8 @@ const Element = ({ item, pos }: Props) => {
                     color={Colors.tealc}
                     style={{ lineHeight: "16px" }}
                   >
-                    {item.value} {i18n.t("modules.checkout.forOffer")}
+                    {item.onlyOffer ? item.value : item.value - 1}{" "}
+                    {i18n.t("modules.checkout.forOffer")}
                   </Typography>
                 </div>
                 <div
