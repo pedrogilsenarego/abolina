@@ -6,9 +6,10 @@ interface Props {
   label: string;
   onClick?: () => void;
   invertColors?: boolean;
+  children?: any;
 }
 
-const Button = ({ formik, label, onClick, invertColors }: Props) => {
+const Button = ({ formik, label, onClick, invertColors, children }: Props) => {
   const RenderButtonFormik = () => {
     const { submitForm } = useFormikContext();
 

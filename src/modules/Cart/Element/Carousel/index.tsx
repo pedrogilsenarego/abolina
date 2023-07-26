@@ -1,8 +1,9 @@
 import { Typography } from "@mui/material";
 import { CarouselProvider, Slide, Slider } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
+import { CgSmartphone } from "react-icons/cg";
 import Incrementor from "../../../../components/Incrementor";
-import { Pallette } from "../../../../constants/pallette";
+import { Colors, Pallette } from "../../../../constants/pallette";
 import { CartProduct } from "../../../../slicer/cart/cart.types";
 import { i18n } from "../../../../translations/i18n";
 
@@ -48,6 +49,25 @@ const Carousel = ({
             </Typography>
             <Typography fontSize="12px">{item.product.collections}</Typography>
             <Typography fontSize="12px">Nº{item.product.number}</Typography>
+            <div
+              style={{
+                display: "flex",
+
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <CgSmartphone size="1.2rem" color={Colors.tealc} />
+              <Typography
+                style={{
+                  textTransform: "uppercase",
+                  color: Colors.tealc,
+                  fontSize: "10px",
+                }}
+              >
+                {i18n.t("modules.cart.table.readOnApp")}
+              </Typography>
+            </div>
           </div>
         </Slide>
         <Slide index={1} style={{}}>
