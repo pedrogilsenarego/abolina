@@ -303,7 +303,7 @@ const Element = ({ item, pos, sliderPosition, setSliderPosition }: Props) => {
             style={{
               width: "auto",
               height: "150px",
-              backgroundColor: "whiteSmoke",
+              backgroundColor: "white",
             }}
           >
             <Grid
