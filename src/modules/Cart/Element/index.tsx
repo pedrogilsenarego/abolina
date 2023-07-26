@@ -6,7 +6,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { CgSmartphone } from "react-icons/cg";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { RiDeleteBinLine } from "react-icons/ri";
@@ -295,18 +295,6 @@ const Element = ({ item, pos, sliderPosition, setSliderPosition }: Props) => {
           borderBottom: `solid 2px ${Colors.tealc}`,
         }}
       >
-        <div
-          onClick={() => {
-            if (setSliderPosition)
-              setSliderPosition(sliderPosition === 1 ? 0 : 1);
-          }}
-          style={{
-            position: "absolute",
-            width: "50px",
-            height: "50px",
-            backgroundColor: "red",
-          }}
-        ></div>
         <div>
           <Grid
             container
@@ -386,15 +374,36 @@ const Element = ({ item, pos, sliderPosition, setSliderPosition }: Props) => {
                 </div>
               }
             />
-
-            <RiDeleteBinLine
-              style={{
-                cursor: "pointer",
-              }}
-              onClick={handleDeleteCartProduct}
-              size="1.5rem"
-              color={Colors.darkGrey}
-            />
+            <div style={{ display: "flex", columnGap: "10px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  columnGap: "0px",
+                  cursor: "pointer",
+                  alignItems: "center",
+                }}
+                onClick={() => {
+                  if (setSliderPosition)
+                    setSliderPosition(sliderPosition === 0 ? 1 : 0);
+                }}
+              >
+                {sliderPosition === 1 && <AiOutlineLeft color={Colors.tealc} />}
+                <Typography color={Colors.tealc}>
+                  {sliderPosition === 0 ? "Details" : "Back"}
+                </Typography>
+                {sliderPosition === 0 && (
+                  <AiOutlineRight color={Colors.tealc} />
+                )}
+              </div>
+              <RiDeleteBinLine
+                style={{
+                  cursor: "pointer",
+                }}
+                onClick={handleDeleteCartProduct}
+                size="1.5rem"
+                color={Colors.darkGrey}
+              />
+            </div>
           </div>
         </div>
       </div>

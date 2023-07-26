@@ -100,12 +100,13 @@ const Cart = () => {
               style={{
                 borderBottom: `solid 2px ${Colors.tealc}`,
                 width: "100%",
+                overflowX: "hidden",
               }}
             >
               <div
                 style={{
                   display: "flex",
-
+                  overflowX: "hidden",
                   width: "100%",
                   justifyContent: "space-between",
                   transform: `translate(${
