@@ -290,8 +290,7 @@ const Element = ({ item, pos, sliderPosition, setSliderPosition }: Props) => {
         style={{
           position: "relative",
           width: "92vw",
-          paddingTop: "10px",
-          paddingBottom: "5px",
+
           borderBottom: `solid 2px ${Colors.tealc}`,
         }}
       >
@@ -350,6 +349,7 @@ const Element = ({ item, pos, sliderPosition, setSliderPosition }: Props) => {
               columnGap: "30px",
               justifyContent: "space-between",
               alignItems: "center",
+              borderTop: `solid 1px ${Colors.greyTransparent}`,
             }}
           >
             <CheckBox
@@ -401,7 +401,7 @@ const Element = ({ item, pos, sliderPosition, setSliderPosition }: Props) => {
                 }}
                 onClick={handleDeleteCartProduct}
                 size="1.5rem"
-                color={Colors.darkGrey}
+                color={Colors.tealc}
               />
             </div>
           </div>

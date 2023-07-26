@@ -1,10 +1,6 @@
 import { Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { useState } from "react";
-import { AiOutlineClose } from "react-icons/ai";
 import { CgSmartphone } from "react-icons/cg";
 import { useDispatch, useSelector } from "react-redux";
-import Incrementor from "../../../components/Incrementor";
-import CheckBox from "../../../components/Inputs/CheckBox";
 import { Colors } from "../../../constants/pallette";
 import { updateCart } from "../../../slicer/cart/cart.actions";
 import { CartProduct } from "../../../slicer/cart/cart.types";
@@ -136,8 +132,7 @@ const Element = ({ item, pos }: Props) => {
         key={pos}
         style={{
           width: "92vw",
-          paddingTop: "10px",
-          paddingBottom: "5px",
+
           borderBottom: `solid 2px ${Colors.tealc}`,
         }}
       >
@@ -177,60 +172,63 @@ const Element = ({ item, pos }: Props) => {
               xs={8}
               style={{
                 display: "flex",
+
+                height: "100%",
+                padding: "20px 10px",
                 flexDirection: "column",
-                rowGap: "5px",
+                justifyContent: "space-between",
               }}
             >
-              <div>
+              <div style={{}}>
                 <Typography
                   style={{
-                    fontSize: "18px",
+                    fontSize: "14px",
                     fontWeight: "bold",
                     textAlign: "left",
                   }}
                 >
                   {item.product.title}
                 </Typography>
-                <Typography style={{ textAlign: "left" }}>
+                <Typography style={{ textAlign: "left", fontSize: "12px" }}>
                   {item.product.collections}
                 </Typography>
-                <Typography style={{ textAlign: "left" }}>
+                <Typography style={{ textAlign: "left", fontSize: "12px" }}>
                   Nº{item.product.number}
                 </Typography>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <div>
+                  <Typography>teste</Typography>
+                </div>
                 <div
                   style={{
                     display: "flex",
-                    justifyContent: "space-between",
+
+                    justifyContent: "center",
                     alignItems: "center",
                   }}
                 >
-                  <div>
-                    <Typography>teste</Typography>
-                  </div>
-                  <div
+                  <CgSmartphone size="1.2rem" color={Colors.grey} />
+                  <Typography
                     style={{
-                      display: "flex",
-
-                      justifyContent: "center",
-                      alignItems: "center",
+                      textTransform: "uppercase",
+                      color: Colors.grey,
+                      fontSize: "10px",
                     }}
                   >
-                    <CgSmartphone size="1.2rem" color={Colors.darkGrey} />
-                    <Typography
-                      style={{
-                        textTransform: "uppercase",
-                        color: Colors.darkGrey,
-                        fontSize: "10px",
-                      }}
-                    >
-                      {i18n.t("modules.cart.table.readOnApp")}
-                    </Typography>
-                  </div>
-                  <div>
-                    <Typography fontWeight={800}>
-                      €{item?.product?.price}
-                    </Typography>
-                  </div>
+                    {i18n.t("modules.cart.table.readOnApp")}
+                  </Typography>
+                </div>
+                <div>
+                  <Typography fontWeight={800}>
+                    €{item?.product?.price}
+                  </Typography>
                 </div>
               </div>
             </Grid>
