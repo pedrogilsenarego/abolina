@@ -44,11 +44,17 @@ const Carousel = ({
               justifyContent: "center",
             }}
           >
-            <Typography style={{ fontSize: 14, fontWeight: "bold" }}>
+            <Typography
+              style={{ fontSize: 14, fontWeight: "bold", lineHeight: "14px" }}
+            >
               {item.product.title}
             </Typography>
-            <Typography fontSize="12px">{item.product.collections}</Typography>
-            <Typography fontSize="12px">Nº{item.product.number}</Typography>
+            <Typography style={{ lineHeight: "14px" }} fontSize="12px">
+              {item.product.collections}
+            </Typography>
+            <Typography style={{ lineHeight: "14px" }} fontSize="12px">
+              Nº{item.product.number}
+            </Typography>
             <div
               style={{
                 display: "flex",

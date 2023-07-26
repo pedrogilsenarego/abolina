@@ -73,6 +73,8 @@ export const content = {
           invoiceDetails: "Invoice Details",
           paymentMethods: "Payment Methods",
           backCart: "Back to Cart",
+          books: "Book(s)",
+          forOffer: "for offer",
         },
         cart: {
           title: "Shopping Cart",

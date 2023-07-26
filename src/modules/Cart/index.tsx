@@ -169,7 +169,7 @@ const Cart = () => {
             display: "flex",
             flexDirection: "column",
             rowGap: "30px",
-
+            padding: "0px 10px",
             marginTop: "50px",
           }}
         >
@@ -177,6 +177,7 @@ const Cart = () => {
             style={{
               display: "flex",
               columnGap: "30px",
+
               alignItems: "center",
               justifyContent: "end",
             }}
@@ -187,6 +188,7 @@ const Cart = () => {
           <div
             style={{
               display: "flex",
+              padding: "0px 10px",
               columnGap: "20px",
               justifyContent: "end",
             }}
@@ -218,6 +220,7 @@ const Cart = () => {
           style={{
             width: "100%",
             display: "flex",
+            padding: "0px 10px",
             justifyContent: "end",
             marginTop: "30px",
           }}

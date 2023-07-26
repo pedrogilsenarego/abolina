@@ -96,6 +96,7 @@ const Checkout = () => {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
+                padding: "0px 10px",
                 marginTop: "20px",
               }}
             >
@@ -119,6 +120,7 @@ const Checkout = () => {
             <div
               style={{
                 display: "flex",
+                padding: "0px 10px",
                 justifyContent: "space-between",
                 marginTop: "20px",
               }}
@@ -142,6 +144,7 @@ const Checkout = () => {
             <div
               style={{
                 display: "flex",
+                padding: "0px 10px",
                 justifyContent: "space-between",
                 marginTop: "20px",
               }}

@@ -1,25 +1,25 @@
-import { Form, Formik } from "formik";
-import { FORM_VALIDATION } from "./validation";
 import { Box, Typography } from "@mui/material";
-import { i18n } from "../../../translations/i18n";
-import ButtonForm from "../../../components/Button";
-import Textfield from "../../../components/Inputs/TextFieldForm";
-import { useDispatch, useSelector } from "react-redux";
-import { State } from "../../../slicer/types";
-import { CartProduct } from "../../../slicer/cart/cart.types";
-import { clearCart } from "../../../slicer/cart/cart.actions";
-import { stripeLocal, stripeProduction } from "../../../constants/stripe";
-import { updateSuccessNotification } from "../../../slicer/general/general.actions";
-import SelectWrapper from "../../../components/Inputs/SelectFormValue";
-import { countryList } from "../../../constants/forms";
+import { Form, Formik } from "formik";
 import { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
+import ButtonForm from "../../../components/Button";
+import SelectWrapper from "../../../components/Inputs/SelectFormValue";
+import Textfield from "../../../components/Inputs/TextFieldForm";
+import { countryList } from "../../../constants/forms";
+import { stripeLocal, stripeProduction } from "../../../constants/stripe";
+import { clearCart } from "../../../slicer/cart/cart.actions";
+import { CartProduct } from "../../../slicer/cart/cart.types";
+import { updateSuccessNotification } from "../../../slicer/general/general.actions";
+import { State } from "../../../slicer/types";
 import { CurrentUser, InvoiceSettings } from "../../../slicer/user/user.types";
+import { i18n } from "../../../translations/i18n";
+import { FORM_VALIDATION } from "./validation";
 
 interface FormProps extends InvoiceSettings {
   email: string;
   phone: string;
-  userId: string
+  userId: string;
 }
 
 const CheckoutForm = () => {
@@ -36,7 +36,7 @@ const CheckoutForm = () => {
     postalCode: currentUser?.invoiceSettings?.postalCode || "",
     country: currentUser?.invoiceSettings?.country || "",
     taxId: currentUser?.invoiceSettings?.taxId || "",
-    userId: currentUser?.id
+    userId: currentUser?.id,
   };
 
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ const CheckoutForm = () => {
       amount: number;
       quantity: number;
       onlyOffer: boolean;
-      documentId: string
+      documentId: string;
     }[] = [];
 
     cartProducts.forEach((item: CartProduct) => {
@@ -62,7 +62,7 @@ const CheckoutForm = () => {
         amount: item.product.price * 100,
         quantity: item.value,
         onlyOffer: item.onlyOffer,
-        documentId: item.product.documentID
+        documentId: item.product.documentID,
       });
     });
 
@@ -95,6 +95,8 @@ const CheckoutForm = () => {
       <div
         style={{
           display: "flex",
+          marginTop: "60px",
+          padding: "0px 10px",
           justifyContent: "space-between",
           cursor: "pointer",
         }}
@@ -106,9 +108,9 @@ const CheckoutForm = () => {
           {i18n.t("modules.checkout.contactDetails")}
         </Typography>
         {openForm ? (
-          <IoIosArrowUp size='1.5rem' />
+          <IoIosArrowUp size="1.5rem" />
         ) : (
-          <IoIosArrowDown size='1.5rem' />
+          <IoIosArrowDown size="1.5rem" />
         )}
       </div>
 
@@ -124,19 +126,19 @@ const CheckoutForm = () => {
           <>
             <Box
               rowGap={2}
-              display='flex'
-              flexDirection='column'
-              sx={{ mt: "20px", pb: "20px" }}
+              display="flex"
+              flexDirection="column"
+              sx={{ mt: "20px", pb: "20px", padding: "0px 10px" }}
             >
               {openForm && (
                 <>
                   <Textfield
                     label={i18n.t("forms.checkout.email")}
-                    name='email'
+                    name="email"
                   />
                   <Textfield
                     label={i18n.t("forms.checkout.phone")}
-                    name='phone'
+                    name="phone"
                   />
                 </>
               )}
@@ -158,40 +160,56 @@ const CheckoutForm = () => {
                   {i18n.t("modules.checkout.invoiceDetails")}
                 </Typography>
                 {openInvoiceDetails ? (
-                  <IoIosArrowUp size='1.5rem' />
+                  <IoIosArrowUp size="1.5rem" />
                 ) : (
-                  <IoIosArrowDown size='1.5rem' />
+                  <IoIosArrowDown size="1.5rem" />
                 )}
               </div>
               {openInvoiceDetails && (
                 <>
                   {" "}
-                  <div style={{ display: "flex", columnGap: "20px", justifyContent: "space-between" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      columnGap: "20px",
+                      justifyContent: "space-between",
+                    }}
+                  >
                     <Textfield
                       style={{ width: "100" }}
                       label={i18n.t("modules.clientManagement.invoice.name")}
-                      name='name'
+                      name="name"
                     />
                     <Textfield
                       style={{ width: "100" }}
                       label={i18n.t("modules.clientManagement.invoice.surname")}
-                      name='surname'
+                      name="surname"
                     />
                   </div>
                   <SelectWrapper
                     initialValue={currentUser?.invoiceSettings?.country || ""}
                     options={countryList}
-                    name='country'
+                    name="country"
                     label={i18n.t("forms.checkout.country")}
                   />
-                  <Textfield label={i18n.t("modules.clientManagement.invoice.address")}
-                    name='address' />
-                  <Textfield label={i18n.t("modules.clientManagement.invoice.postalCode")}
-                    name='postalCode' />
-                  <Textfield label={i18n.t("modules.clientManagement.invoice.city")}
-                    name='city' />
-                  <Textfield label={i18n.t("modules.clientManagement.invoice.taxId")}
-                    name='taxId' />
+                  <Textfield
+                    label={i18n.t("modules.clientManagement.invoice.address")}
+                    name="address"
+                  />
+                  <Textfield
+                    label={i18n.t(
+                      "modules.clientManagement.invoice.postalCode"
+                    )}
+                    name="postalCode"
+                  />
+                  <Textfield
+                    label={i18n.t("modules.clientManagement.invoice.city")}
+                    name="city"
+                  />
+                  <Textfield
+                    label={i18n.t("modules.clientManagement.invoice.taxId")}
+                    name="taxId"
+                  />
                 </>
               )}
             </Box>
@@ -199,6 +217,8 @@ const CheckoutForm = () => {
           <div
             style={{
               display: "flex",
+              marginTop: "60px",
+              padding: "0px 10px",
               justifyContent: "space-between",
               cursor: "pointer",
             }}
@@ -210,13 +230,15 @@ const CheckoutForm = () => {
               {i18n.t("modules.checkout.paymentMethods")}
             </Typography>
             {openPaymentMethods ? (
-              <IoIosArrowUp size='1.5rem' />
+              <IoIosArrowUp size="1.5rem" />
             ) : (
-              <IoIosArrowDown size='1.5rem' />
+              <IoIosArrowDown size="1.5rem" />
             )}
           </div>
           {openPaymentMethods && (
-            <ButtonForm formik label="Pay now" />
+            <div style={{ marginTop: "60px" }}>
+              <ButtonForm formik label="Pay now" />
+            </div>
           )}
         </Form>
       </Formik>

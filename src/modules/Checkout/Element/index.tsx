@@ -174,7 +174,7 @@ const Element = ({ item, pos }: Props) => {
                 display: "flex",
 
                 height: "100%",
-                padding: "20px 10px",
+                padding: "26px 10px",
                 flexDirection: "column",
                 justifyContent: "space-between",
               }}
@@ -185,14 +185,27 @@ const Element = ({ item, pos }: Props) => {
                     fontSize: "14px",
                     fontWeight: "bold",
                     textAlign: "left",
+                    lineHeight: "14px",
                   }}
                 >
                   {item.product.title}
                 </Typography>
-                <Typography style={{ textAlign: "left", fontSize: "12px" }}>
+                <Typography
+                  style={{
+                    textAlign: "left",
+                    fontSize: "12px",
+                    lineHeight: "14px",
+                  }}
+                >
                   {item.product.collections}
                 </Typography>
-                <Typography style={{ textAlign: "left", fontSize: "12px" }}>
+                <Typography
+                  style={{
+                    textAlign: "left",
+                    fontSize: "12px",
+                    lineHeight: "14px",
+                  }}
+                >
                   Nº{item.product.number}
                 </Typography>
               </div>
@@ -204,7 +217,20 @@ const Element = ({ item, pos }: Props) => {
                 }}
               >
                 <div>
-                  <Typography>teste</Typography>
+                  <Typography
+                    fontSize="16px"
+                    fontWeight={800}
+                    style={{ lineHeight: "16px" }}
+                  >
+                    {item.value} {i18n.t("modules.checkout.books")}
+                  </Typography>
+                  <Typography
+                    fontSize="12px"
+                    color={Colors.tealc}
+                    style={{ lineHeight: "16px" }}
+                  >
+                    {item.value} {i18n.t("modules.checkout.forOffer")}
+                  </Typography>
                 </div>
                 <div
                   style={{
