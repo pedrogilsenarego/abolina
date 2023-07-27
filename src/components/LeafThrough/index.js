@@ -48,7 +48,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
   const [book, setBook] = useState();
   const [page, setPage] = useState(0);
   const [zoom, setZoom] = useState(true);
-  const [dragging, setDragging] = useState(false);
+  const [state, setState] = useState("");
   const [zoomRatio, setZoomRatio] = useState(1);
   const [centerBook, setCenterBook] = useState("normal");
   const [isMounted, setIsMounted] = useState(false);
@@ -233,6 +233,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
               minHeight={420}
               maxHeight={1350}
               showCover={true}
+              onChangeState={(e) => setState(e.data)}
               flippingTime={1200}
               style={{ margin: "0 auto" }}
               maxShadowOpacity={0.5}
@@ -251,7 +252,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
                       <PageCover
                         image={item}
                         onClick={() => {
-                          if (!dragging) {
+                          if (state !== "flipping") {
                             setCenterBook(false);
                           }
                         }}
