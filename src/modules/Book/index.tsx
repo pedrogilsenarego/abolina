@@ -1,29 +1,27 @@
-import { Container, Box, useTheme, useMediaQuery } from "@mui/material";
+import { Box, Container, useMediaQuery, useTheme } from "@mui/material";
 import * as GStyled from "../../styles";
 import { i18n } from "../../translations/i18n";
 
-import Roster from "./Roster";
-import livroOndas from "../../assets/images/livroOndas.svg";
-import Popup from "../../components/Popup";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-
-  fetchBookThenCollection,
-} from "../../slicer/books/books.actions";
 import { useParams } from "react-router";
+import livroOndas from "../../assets/images/livroOndas.svg";
+import MyAlbum from "../../components/LeafThrough";
+import Loader from "../../components/Loader";
+import Popup from "../../components/Popup";
+import { Colors } from "../../constants/pallette";
+import { fetchBookThenCollection } from "../../slicer/books/books.actions";
 import { Book } from "../../slicer/books/books.types";
 import { State } from "../../slicer/types";
 import LeafThrough from "./LeafThrough";
-import TheHistory from "./TheHistory";
-import { Colors } from "../../constants/pallette";
-import TheCollection from "./TheCollection";
 import PeekDigital from "./PeekDigital";
-import Loader from "../../components/Loader";
+import Roster from "./Roster";
+import TheCollection from "./TheCollection";
+import TheHistory from "./TheHistory";
 
 const BookC = () => {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState<boolean>(true)
+  const [loading, setLoading] = useState<boolean>(true);
   const [openViewBook, setOpenViewBook] = useState<boolean>(false);
   const [openPeekDigital, setOpenPeekDigital] = useState<boolean>(false);
   const [infoState, setInfoState] = useState<"story" | "collection">("story");
@@ -37,7 +35,9 @@ const BookC = () => {
   );
 
   const book = useSelector<State, Book>((state) => state.books.book || {});
-
+  const lang = useSelector<State, string>(
+    (state) => state.general.lang || "PT"
+  );
 
   useEffect(() => {
     dispatch(fetchBookThenCollection(id));
@@ -45,9 +45,8 @@ const BookC = () => {
   }, [id]);
 
   useEffect(() => {
-    if (book.documentID === id || id === "preview") setLoading(false)
-  }, [book.documentID, id])
-
+    if (book.documentID === id || id === "preview") setLoading(false);
+  }, [book.documentID, id]);
 
   const renderPopup = () => {
     return (
@@ -56,16 +55,18 @@ const BookC = () => {
         setOpenPopup={setOpenViewBook}
         onClose={() => setOpenViewBook(false)}
         fullScreen={fullScreen}
-      // actions={
-      //   [
-      //     {
-      //       title: "Close Book",
-      //       onClick: () => setOpenViewBook(false)
-      //     }
-      //   ]
-      // }
+        title={lang === "PT" ? book?.title : book?.titleEN}
+        // actions={
+        //   [
+        //     {
+        //       title: "Close Book",
+        //       onClick: () => setOpenViewBook(false)
+        //     }
+        //   ]
+        //<LeafThrough fullScreen={fullScreen} setFullScreen={setFullScreen} />
+        // }
       >
-        <LeafThrough fullScreen={fullScreen} setFullScreen={setFullScreen} />
+        <MyAlbum fullScreen={fullScreen} setFullScreen={setFullScreen} />
       </Popup>
     );
   };
@@ -77,15 +78,15 @@ const BookC = () => {
         setOpenPopup={setOpenPeekDigital}
         onClose={() => setOpenPeekDigital(false)}
         fullScreen={fullScreen}
-
-
       >
         <PeekDigital fullScreen={fullScreen} setFullScreen={setFullScreen} />
       </Popup>
     );
   };
 
-  return loading ? <Loader customMessage={i18n.t("modules.books.book.loading")} /> :
+  return loading ? (
+    <Loader customMessage={i18n.t("modules.books.book.loading")} />
+  ) : (
     <>
       <Box
         mt={vertical ? "0px" : "20px"}
@@ -94,18 +95,22 @@ const BookC = () => {
           paddingRight: vertical ? "8px" : "0px",
         }}
       >
-        <Container maxWidth='md'>
-          <Roster book={book} setOpenViewBook={setOpenViewBook} setOpenPeekDigital={setOpenPeekDigital} />
+        <Container maxWidth="md">
+          <Roster
+            book={book}
+            setOpenViewBook={setOpenViewBook}
+            setOpenPeekDigital={setOpenPeekDigital}
+          />
           <Box
-            display='flex'
-            justifyContent='start'
-            mt='40px'
+            display="flex"
+            justifyContent="start"
+            mt="40px"
             style={{ columnGap: "20px" }}
           >
             <GStyled.Title
               onClick={() => setInfoState("story")}
               color={infoState === "story" ? Colors.tealc : "black"}
-              fontSize='24px'
+              fontSize="24px"
               style={{
                 fontWeight: 700,
                 cursor: "pointer",
@@ -118,7 +123,7 @@ const BookC = () => {
               <GStyled.Title
                 onClick={() => setInfoState("collection")}
                 color={infoState === "collection" ? Colors.tealc : "black"}
-                fontSize='24px'
+                fontSize="24px"
                 style={{
                   fontWeight: 700,
                   cursor: "pointer",
@@ -156,7 +161,7 @@ const BookC = () => {
       {renderPopup()}
       {renderPeekDigital()}
     </>
-
+  );
 };
 
 export default BookC;

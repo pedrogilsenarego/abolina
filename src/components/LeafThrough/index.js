@@ -6,10 +6,10 @@ import { HiOutlineMinusSm, HiOutlinePlusSm } from "react-icons/hi";
 import { MdFullscreen } from "react-icons/md";
 import HTMLFlipBook from "react-pageflip";
 import { useSelector } from "react-redux";
-import FullScreenWrapper from "../../../../components/FullScreen/chatgtp";
-import { Colors } from "../../../../constants/pallette";
-import { useKeyPress } from "../../../../hooks/useKeyPress";
-import { i18n } from "../../../../translations/i18n";
+import { Colors } from "../../constants/pallette";
+import { useKeyPress } from "../../hooks/useKeyPress";
+import { i18n } from "../../translations/i18n";
+import FullScreenWrapper from "../FullScreen/chatgtp";
 import { SliderMine } from "./styles";
 
 import "./App.css";
@@ -122,7 +122,8 @@ function MyAlbum({ fullScreen, setFullScreen }) {
     return (
       <div
         style={{
-          padding: "200px 0px",
+          width: "100%",
+          height: "100%",
           position: "relative",
           backgroundColor: "lightblue",
           display: zoom ? "flex" : undefined,
@@ -314,7 +315,6 @@ function MyAlbum({ fullScreen, setFullScreen }) {
                   draggable={false}
                   src={listImages[page]}
                   width={width * zoomRatio}
-                  
                   height={height * zoomRatio}
                   alt=""
                   style={{ objectFit: "cover" }}
