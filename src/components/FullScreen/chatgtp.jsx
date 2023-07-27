@@ -42,7 +42,14 @@ const FullScreenWrapper = ({ children, fullScreen, setFullScreen }) => {
   }, [fullScreen, setFullScreen]);
 
   return (
-    <div style={{ width: "100%", height: "100%", border: "solid 2px blue" }}>
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+
+        margin: 0,
+      }}
+    >
       {children}
     </div>
   );
