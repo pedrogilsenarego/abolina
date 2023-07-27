@@ -1,0 +1,1 @@
+quando se arraste o livro mas nao se mexe ate ao fim ele muda a posicao do livro na mesma, porque assume o click

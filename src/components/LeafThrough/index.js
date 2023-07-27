@@ -19,6 +19,9 @@ const PageCover = React.forwardRef((props, ref) => {
     <div
       className="cover"
       ref={ref}
+      onMouseDown={props.onMouseDown}
+      onMouseUp={props.onMouseUp}
+      onMouseMove={props.onMouseMove}
       data-density="hard"
       onClick={props.onClick}
     >
@@ -45,6 +48,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
   const [book, setBook] = useState();
   const [page, setPage] = useState(0);
   const [zoom, setZoom] = useState(true);
+  const [dragging, setDragging] = useState(false);
   const [zoomRatio, setZoomRatio] = useState(1);
   const [centerBook, setCenterBook] = useState("normal");
   const [isMounted, setIsMounted] = useState(false);
@@ -117,6 +121,15 @@ function MyAlbum({ fullScreen, setFullScreen }) {
       return;
     }, [50]);
   };
+
+  useEffect(() => {
+    if (isMounted) {
+      if (page === 0) setCenterBook("normal");
+      if (page === listImages.length) setCenterBook("inversed");
+      if (page > 0 && page < listImages.length) setCenterBook(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page]);
 
   const renderBook = () => {
     return (
@@ -225,7 +238,9 @@ function MyAlbum({ fullScreen, setFullScreen }) {
               maxShadowOpacity={0.5}
               className="album-web"
               ref={bookRef}
-              onFlip={(e) => setPage(e.data)}
+              onFlip={(e) => {
+                setPage(e.data);
+              }}
               onInit={() => setIsMounted(true)}
               mobileScrollSupport={true}
             >
@@ -236,7 +251,9 @@ function MyAlbum({ fullScreen, setFullScreen }) {
                       <PageCover
                         image={item}
                         onClick={() => {
-                          setCenterBook(false);
+                          if (!dragging) {
+                            setCenterBook(false);
+                          }
                         }}
                       />
                     );
