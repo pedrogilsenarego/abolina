@@ -75,19 +75,13 @@ const Popup = ({
             overflow: "hidden",
             msOverflowStyle: "none",
             scrollbarWidth: "none",
+            border: "solid 2px black",
+            display: "flex",
+            alignItems: "center",
           }}
         >
-          <Box
-            style={{
-              width: "100%",
+          {children}
 
-              display: "flex",
-              justifyContent: "center",
-              backgroundColor: "red",
-            }}
-          >
-            {children}
-          </Box>
           {actions && (
             <>
               <Divider

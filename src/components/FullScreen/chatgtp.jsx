@@ -36,13 +36,16 @@ const FullScreenWrapper = ({ children, fullScreen, setFullScreen }) => {
         document.removeEventListener("MSFullscreenChange", exitHandler, false);
       };
     } else {
-      if (fullScreen)
-        document.exitFullscreen();
+      if (fullScreen) document.exitFullscreen();
       else return;
     }
   }, [fullScreen, setFullScreen]);
 
-  return <div className='full-screen-wrapper'>{children}</div>;
+  return (
+    <div style={{ width: "100%", height: "100%", border: "solid 2px blue" }}>
+      {children}
+    </div>
+  );
 };
 
 export default FullScreenWrapper;

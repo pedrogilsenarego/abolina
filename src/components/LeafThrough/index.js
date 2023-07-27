@@ -55,9 +55,9 @@ function MyAlbum({ fullScreen, setFullScreen }) {
   const listImages = book?.content || [];
   const theme = useTheme();
   const mobileRotated = useMediaQuery(theme.breakpoints.down(800));
-  const storeBook = useSelector((state) => state?.books?.books?.data[1] || {});
+  const storeBook = useSelector((state) => state?.books?.book || {});
   const windowSize = useRef([window.innerWidth, window.innerHeight]);
-  const width = 400; //(windowSize.current[0] / 3).toFixed(0) || 550;
+  const width = (windowSize.current[0] / 4.5).toFixed(0) || 400;
   const height = width * 1.18;
 
   useEffect(() => {
@@ -124,8 +124,9 @@ function MyAlbum({ fullScreen, setFullScreen }) {
         style={{
           width: "100%",
           height: "100%",
+          padding: "80px 0px",
           position: "relative",
-          backgroundColor: "lightblue",
+
           display: zoom ? "flex" : undefined,
           justifyContent: zoom ? "center" : undefined,
         }}
@@ -360,11 +361,9 @@ function MyAlbum({ fullScreen, setFullScreen }) {
   };
 
   return (
-    <>
-      <FullScreenWrapper fullScreen={fullScreen} setFullScreen={setFullScreen}>
-        {renderBook()}
-      </FullScreenWrapper>
-    </>
+    <FullScreenWrapper fullScreen={fullScreen} setFullScreen={setFullScreen}>
+      {renderBook()}
+    </FullScreenWrapper>
   );
 }
 
