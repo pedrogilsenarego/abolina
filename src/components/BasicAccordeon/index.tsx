@@ -12,7 +12,13 @@ const BasicAccordeon = ({ title, children }: Props) => {
   return (
     <>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <Typography onClick={() => setOpen(!open)}>{title}</Typography>
+        <Typography
+          fontSize="18px"
+          fontWeight="bold"
+          onClick={() => setOpen(!open)}
+        >
+          {title}
+        </Typography>
         {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
       </div>
       {open && children}
