@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import React, { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { Colors } from "../../constants/pallette";
 
 type Props = {
   title: string;
@@ -19,7 +20,11 @@ const BasicAccordeon = ({ title, children }: Props) => {
         >
           {title}
         </Typography>
-        {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
+        {open ? (
+          <IoIosArrowUp color={Colors.tealc} />
+        ) : (
+          <IoIosArrowDown color={Colors.tealc} />
+        )}
       </div>
       {open && children}
     </>
