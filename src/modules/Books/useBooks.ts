@@ -1,19 +1,23 @@
-import { useDispatch, useSelector } from "react-redux";
-import { State } from "../../slicer/types";
-import { Book, Collection } from "../../slicer/books/books.types";
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router";
+import { fetchCollectionByName } from "../../services/books/booksServices";
 import { fetchBooks } from "../../slicer/books/books.actions";
-import { organizeBooks } from "./utilsBooks";
+import { Book, Collection } from "../../slicer/books/books.types";
 import { addProductToCart } from "../../slicer/cart/cart.actions";
 import { updateSuccessNotification } from "../../slicer/general/general.actions";
+import { State } from "../../slicer/types";
 import { i18n } from "../../translations/i18n";
-import { useLocation } from "react-router";
-import { useQuery } from "react-query";
-import { fetchCollectionByName } from "../../services/books/booksServices";
+import { organizeBooks } from "./utilsBooks";
 
 const useBooks = () => {
-  const location = useLocation()
-  const [collection, setCollection] = useState<string>(location?.state?.collection|| "");
+  const location = useLocation();
+  const [collection, setCollection] = useState<string>(
+    location?.state?.collection || ""
+  );
+  const [openCollectionsDrawer, setOpenCollectionsDrawer] =
+    useState<boolean>(false);
   const dispatch = useDispatch();
   const initialBooks = useSelector<State, Book[]>(
     (state) => state.books.books.data || []
@@ -43,18 +47,14 @@ const useBooks = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  
-
   const {
     isLoading: loadingCollectionData,
     error: errorCollectionData,
     data: collectionData,
   } = useQuery<Collection>(["collection", collection], fetchCollectionByName, {
-    enabled: collection!=="",
+    enabled: collection !== "",
     staleTime: 600000, // 600 seconds (in milliseconds)
   });
-
-  
 
   return {
     filteredBooks,
@@ -63,7 +63,9 @@ const useBooks = () => {
     handleAddToCart,
     setCollection,
     collection,
-    collectionData
+    collectionData,
+    openCollectionsDrawer,
+    setOpenCollectionsDrawer,
   };
 };
 

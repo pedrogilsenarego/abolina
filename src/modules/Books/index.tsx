@@ -1,14 +1,17 @@
 import { Container, Grid, useMediaQuery, useTheme } from "@mui/material";
+import { FiSliders } from "react-icons/fi";
+import { HiOutlineInformationCircle } from "react-icons/hi";
+import { useSelector } from "react-redux";
+import DrawerMine from "../../components/Drawer";
+import Tag from "../../components/Tags";
+import { Colors } from "../../constants/pallette";
+import { Book } from "../../slicer/books/books.types";
+import { State } from "../../slicer/types";
 import { Title } from "../../styles";
 import { i18n } from "../../translations/i18n";
-import useBooks from "./useBooks";
-import CollectionsItem from "./CollectionsItem";
-
-import { Book } from "../../slicer/books/books.types";
-import { useSelector } from "react-redux";
-import { State } from "../../slicer/types";
 import BookComponent from "./Book";
-import Tag from "../../components/Tags";
+import CollectionsItem from "./CollectionsItem";
+import useBooks from "./useBooks";
 
 const Books = () => {
   const theme = useTheme();
@@ -22,15 +25,42 @@ const Books = () => {
     setCollection,
     collection,
     collectionData,
+    openCollectionsDrawer,
+    setOpenCollectionsDrawer,
   } = useBooks();
 
   return (
     <>
       <Container>
+        {vertical && (
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "end",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                columnGap: "6px",
+              }}
+            >
+              <FiSliders
+                color={Colors.tealc}
+                onClick={() => setOpenCollectionsDrawer(true)}
+              />
+              <HiOutlineInformationCircle color={Colors.tealc} />
+            </div>
+          </div>
+        )}
         <Grid
           container
-          justifyContent='center'
-          columnSpacing='50px'
+          justifyContent="center"
+          columnSpacing="50px"
           style={{
             marginTop: vertical ? "20px" : "60px",
             paddingLeft: vertical ? "8px" : "0px",
@@ -72,8 +102,8 @@ const Books = () => {
 
           <Grid
             container
-            columnSpacing='0px'
-            rowSpacing='0px'
+            columnSpacing="0px"
+            rowSpacing="0px"
             item
             xs={vertical ? 12 : 7}
           >
@@ -110,6 +140,15 @@ const Books = () => {
           </Grid>
           <Grid container item xs={2.5}></Grid>
         </Grid>
+        {vertical && (
+          <DrawerMine
+            position="bottom"
+            openDrawer={openCollectionsDrawer}
+            setOpenDrawer={setOpenCollectionsDrawer}
+          >
+            teste
+          </DrawerMine>
+        )}
       </Container>
     </>
   );
