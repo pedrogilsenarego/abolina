@@ -8,9 +8,10 @@ import { Colors } from "../../constants/pallette";
 import { Book } from "../../slicer/books/books.types";
 import { State } from "../../slicer/types";
 import { Title } from "../../styles";
-import { i18n } from "../../translations/i18n";
+
 import BookComponent from "./Book";
-import CollectionsItem from "./CollectionsItem";
+import Collections from "./Collections";
+
 import useBooks from "./useBooks";
 
 const Books = () => {
@@ -69,34 +70,11 @@ const Books = () => {
         >
           {!vertical && (
             <Grid container item xs={2.5}>
-              <div style={{ width: "100%" }}>
-                <Title
-                  style={{ textDecoration: "underline", textAlign: "left" }}
-                >
-                  {i18n.t("modules.books.collections")}
-                </Title>
-                <div
-                  style={{
-                    width: "100%",
-                    marginTop: "20px",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "end",
-                    rowGap: "10px",
-                  }}
-                >
-                  {collections.map((item, pos) => {
-                    return (
-                      <CollectionsItem
-                        pos={pos}
-                        item={item}
-                        collection={collection}
-                        setCollection={setCollection}
-                      />
-                    );
-                  })}
-                </div>
-              </div>
+              <Collections
+                collection={collection}
+                setCollection={setCollection}
+                collections={collections}
+              />
             </Grid>
           )}
 
@@ -146,7 +124,13 @@ const Books = () => {
             openDrawer={openCollectionsDrawer}
             setOpenDrawer={setOpenCollectionsDrawer}
           >
-            teste
+            <div style={{ marginBottom: "50px", padding: "0px 10px" }}>
+              <Collections
+                collection={collection}
+                setCollection={setCollection}
+                collections={collections}
+              />
+            </div>
           </DrawerMine>
         )}
       </Container>
