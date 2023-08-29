@@ -40,7 +40,6 @@ const GeneralData = () => {
     return (
       <Popup
         openPopup={changePassword}
-        setOpenPopup={setChangePassword}
         onClose={() => setChangePassword(false)}
       >
         <div

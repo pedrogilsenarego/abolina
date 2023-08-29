@@ -92,7 +92,9 @@ const Books = () => {
                 rowGap: "5px",
               }}
             >
-              <Title style={{}}>{collection}</Title>
+              <Title style={{ color: Colors.darkGrey, fontWeight: "bold" }}>
+                {collection}
+              </Title>
               <div style={{ display: "flex", columnGap: "10px" }}>
                 {collectionData?.caracteristics?.map(
                   (item: string, pos: number) => {

@@ -289,6 +289,15 @@ export const content = {
             "Please verify first your email to login with your account",
         },
       },
+      popups: {
+        readOnApp: {
+          title: "Read on App",
+          first: "Available on App",
+          second: "My library Àbolina",
+          third: "More information",
+          forth: "here",
+        },
+      },
       constants: {
         languages: {
           portuguese: "Portuguese",

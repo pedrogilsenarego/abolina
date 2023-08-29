@@ -256,6 +256,15 @@ export const content = {
           },
         },
       },
+      popups: {
+        readOnApp: {
+          title: "Leitura na App",
+          first: "Disponível apenas na App",
+          second: "A minha Biblioteca Àbolina",
+          third: "Mais informação",
+          forth: "aqui",
+        },
+      },
       notifications: {
         success: {
           newBook: "Livro adicionado com sucesso",

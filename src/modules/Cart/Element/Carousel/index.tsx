@@ -6,6 +6,7 @@ import Incrementor from "../../../../components/Incrementor";
 import { Colors, Pallette } from "../../../../constants/pallette";
 import { CartProduct } from "../../../../slicer/cart/cart.types";
 import { i18n } from "../../../../translations/i18n";
+import ReadOnApp from "../ReadOnApp";
 
 interface Props {
   item: CartProduct;
@@ -55,25 +56,7 @@ const Carousel = ({
             <Typography style={{ lineHeight: "14px" }} fontSize="12px">
               Nº{item.product.number}
             </Typography>
-            <div
-              style={{
-                display: "flex",
-
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <CgSmartphone size="1.2rem" color={Colors.tealc} />
-              <Typography
-                style={{
-                  textTransform: "uppercase",
-                  color: Colors.tealc,
-                  fontSize: "10px",
-                }}
-              >
-                {i18n.t("modules.cart.table.readOnApp")}
-              </Typography>
-            </div>
+            <ReadOnApp />
           </div>
         </Slide>
         <Slide index={1} style={{}}>

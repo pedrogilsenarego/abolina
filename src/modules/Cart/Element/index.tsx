@@ -25,6 +25,7 @@ import { State } from "../../../slicer/types";
 import { CurrentUser } from "../../../slicer/user/user.types";
 import { i18n } from "../../../translations/i18n";
 import Carousel from "./Carousel";
+import ReadOnApp from "./ReadOnApp";
 
 interface Props {
   item: CartProduct;
@@ -177,37 +178,7 @@ const Element = ({ item, pos, sliderPosition, setSliderPosition }: Props) => {
             </Typography>
             <Typography>{item.product.collections}</Typography>
             <Typography>Nº{item.product.number}</Typography>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "start",
-                alignItems: "center",
-              }}
-            >
-              <CgSmartphone
-                size="2rem"
-                color={Colors.tealc}
-                style={{ marginLeft: "-8px" }}
-              />
-              <Typography
-                style={{
-                  textTransform: "uppercase",
-                  color: Colors.tealc,
-                  fontSize: "12px",
-                }}
-              >
-                {i18n.t("modules.cart.table.readOnApp")}
-              </Typography>
-              <Tooltip title="teste">
-                <IconButton>
-                  <IoMdInformationCircleOutline
-                    color={Pallette.primary}
-                    size="1rem"
-                    style={{ marginTop: "-3px", cursor: "pointer" }}
-                  />
-                </IconButton>
-              </Tooltip>
-            </div>
+            <ReadOnApp />
           </div>
         </Grid>
         <Grid item xs={2} style={{ display: "flex", alignItems: "center" }}>

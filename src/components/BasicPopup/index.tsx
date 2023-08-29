@@ -1,74 +1,79 @@
 import {
+  Box,
   Dialog,
   DialogContent,
   DialogTitle,
-  Typography,
   Divider,
-  useTheme,
-  useMediaQuery,
   Grid,
-  Box,
+  Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
-import { Actions } from "./types";
-import Button from "./ButtonPopup";
 import { Colors } from "../../constants/pallette";
+import Button from "./ButtonPopup";
+import { Actions } from "./types";
 
 interface Props {
   children: JSX.Element;
   title?: string;
   openPopup: boolean;
-  setOpenPopup?: (openPopup: boolean) => void;
-
   actions?: Actions[];
   onClose?: () => void;
-  fullScreen?: boolean
 }
 
 const Popup = ({
   title,
   children,
   openPopup,
-  setOpenPopup,
+
   actions,
   onClose,
-  fullScreen
 }: Props) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <div >
+    <div>
       <Dialog
         open={openPopup}
-        style={{ color: "white", }}
+        style={{ color: "white" }}
         PaperProps={{
           style: {
             backgroundColor: "white",
-
-
+            borderRadius: "20px",
           },
         }}
         onClose={onClose}
-
       >
-        {title && (<DialogTitle>
-          <div style={{ textAlign: "center" }}>
-            <Typography
-
-              component='div'
-              style={{
-                fontSize: "28px",
-                color: Colors.tealc,
-                fontWeight: 700,
-                letterSpacing: "3px",
-              }}
-            >
-              {title}
-            </Typography>
-          </div>
-        </DialogTitle>)}
-        <DialogContent dividers style={{ color: "white", overflow: "hidden", msOverflowStyle: "none", scrollbarWidth: "none" }}>
-          <Box style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+        {title && (
+          <DialogTitle>
+            <div style={{ textAlign: "center" }}>
+              <Typography
+                component="div"
+                style={{
+                  fontSize: "28px",
+                  color: Colors.tealc,
+                  fontWeight: 700,
+                  letterSpacing: "3px",
+                }}
+              >
+                {title}
+              </Typography>
+            </div>
+          </DialogTitle>
+        )}
+        <DialogContent
+          dividers
+          style={{
+            color: "white",
+            overflow: "hidden",
+            msOverflowStyle: "none",
+            scrollbarWidth: "none",
+          }}
+        >
+          <Box
+            style={{ width: "100%", display: "flex", justifyContent: "center" }}
+          >
             {children}
           </Box>
           {actions && (
@@ -82,7 +87,7 @@ const Popup = ({
               />
               <Grid
                 container
-                justifyContent='flex-end'
+                justifyContent="flex-end"
                 style={{ marginTop: "10px" }}
               >
                 {actions?.map((item, pos) => {
@@ -96,11 +101,11 @@ const Popup = ({
                   );
                 })}
               </Grid>
-            </>)}
-
+            </>
+          )}
         </DialogContent>
       </Dialog>
-    </div >
+    </div>
   );
 };
 export default Popup;
