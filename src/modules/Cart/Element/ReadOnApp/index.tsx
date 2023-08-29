@@ -78,9 +78,9 @@ const ReadOnApp = () => {
         <div
           style={{
             display: "flex",
-            padding: "10px 20px",
+            padding: "10px 30px",
             flexDirection: "column",
-            rowGap: "15px",
+            rowGap: "5px",
             justifyContent: "center",
           }}
         >
