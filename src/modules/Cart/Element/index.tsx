@@ -1,20 +1,11 @@
-import {
-  Grid,
-  IconButton,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 import { AiOutlineClose, AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
-import { CgSmartphone } from "react-icons/cg";
-import { IoMdInformationCircleOutline } from "react-icons/io";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import Incrementor from "../../../components/Incrementor";
 import CheckBox from "../../../components/Inputs/CheckBox";
-import Tooltip from "../../../components/Tooltip/Tooltip";
-import { Colors, Pallette } from "../../../constants/pallette";
+import { Colors } from "../../../constants/pallette";
 import {
   deleteProductCart,
   onlyOfferToggle,
@@ -25,6 +16,7 @@ import { State } from "../../../slicer/types";
 import { CurrentUser } from "../../../slicer/user/user.types";
 import { i18n } from "../../../translations/i18n";
 import Carousel from "./Carousel";
+import Offer from "./Offer";
 import ReadOnApp from "./ReadOnApp";
 
 interface Props {
@@ -212,30 +204,7 @@ const Element = ({ item, pos, sliderPosition, setSliderPosition }: Props) => {
               <Typography style={{ fontSize: "18px" }}>
                 {forOffer ? item.value : item.value - 1}
               </Typography>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  paddingLeft: "20px",
-                  columnGap: "5px",
-                }}
-              >
-                <Typography
-                  color={Pallette.primary}
-                  style={{ marginTop: "-2px" }}
-                >
-                  {i18n.t("modules.cart.table.offer")}
-                </Typography>
-                <Tooltip title={i18n.t("modules.cart.table.offerTooltip")}>
-                  <IconButton>
-                    <IoMdInformationCircleOutline
-                      color={Pallette.primary}
-                      size="1rem"
-                      style={{ marginTop: "-3px", cursor: "pointer" }}
-                    />
-                  </IconButton>
-                </Tooltip>
-              </div>
+              <Offer />
             </div>
           )}
         </Grid>

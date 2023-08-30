@@ -297,6 +297,10 @@ export const content = {
           third: "More information",
           forth: "here",
         },
+        offer: {
+          title: "Offer",
+          first: "An offer code will be generated for each book offered",
+        },
       },
       constants: {
         languages: {

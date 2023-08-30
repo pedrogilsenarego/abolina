@@ -19,13 +19,14 @@ interface Props {
   openPopup: boolean;
   actions?: Actions[];
   onClose?: () => void;
+  maxWidth?: string;
 }
 
 const Popup = ({
   title,
   children,
   openPopup,
-
+  maxWidth,
   actions,
   onClose,
 }: Props) => {
@@ -39,6 +40,7 @@ const Popup = ({
         style={{ color: "white" }}
         PaperProps={{
           style: {
+            maxWidth: maxWidth || undefined,
             backgroundColor: "white",
             borderRadius: "20px",
           },

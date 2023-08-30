@@ -264,6 +264,11 @@ export const content = {
           third: "Mais informação",
           forth: "aqui",
         },
+        offer: {
+          title: "Oferta",
+          first:
+            "Será gerado um código de oferta por cada livro que pretenda oferecer",
+        },
       },
       notifications: {
         success: {

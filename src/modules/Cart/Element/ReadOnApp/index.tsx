@@ -1,4 +1,4 @@
-import { IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useState } from "react";
 import { CgSmartphone } from "react-icons/cg";
 import { IoMdInformationCircleOutline } from "react-icons/io";
@@ -36,14 +36,7 @@ const ReadOnApp = () => {
         >
           {i18n.t("modules.cart.table.readOnApp")}
         </Typography>
-
-        <IconButton>
-          <IoMdInformationCircleOutline
-            color={Pallette.primary}
-            size="1rem"
-            style={{ marginTop: "-3px", cursor: "pointer" }}
-          />
-        </IconButton>
+        <IoMdInformationCircleOutline color={Pallette.primary} size="1rem" />
       </div>
     );
   };
@@ -102,7 +95,7 @@ const ReadOnApp = () => {
                 color: Colors.tealc,
                 textAlign: "center",
                 fontWeight: "bold",
-                lineHeight: "20px",
+                lineHeight: "18px",
               }}
             >
               {i18n.t("popups.readOnApp.second")}
