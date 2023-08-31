@@ -1,11 +1,9 @@
 import { Typography } from "@mui/material";
 import { CarouselProvider, Slide, Slider } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import { CgSmartphone } from "react-icons/cg";
 import Incrementor from "../../../../components/Incrementor";
-import { Colors, Pallette } from "../../../../constants/pallette";
 import { CartProduct } from "../../../../slicer/cart/cart.types";
-import { i18n } from "../../../../translations/i18n";
+import Offer from "../Offer";
 import ReadOnApp from "../ReadOnApp";
 
 interface Props {
@@ -91,32 +89,7 @@ const Carousel = ({
               <Typography>€{(item.value * price).toFixed(1)}</Typography>
             </div>
             {(item?.value > 1 || forOffer) && (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  columnGap: "5px",
-                  position: "absolute",
-
-                  right: "5px",
-                  bottom: "15px",
-                }}
-              >
-                <Typography style={{ fontSize: "12px" }}>
-                  {forOffer ? item.value : item.value - 1}
-                </Typography>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <Typography color={Pallette.primary} fontSize="12px">
-                    {i18n.t("modules.cart.table.offer")}
-                  </Typography>
-                </div>
-              </div>
+              <Offer value={item.value} forOffer={forOffer} />
             )}
           </div>
         </Slide>

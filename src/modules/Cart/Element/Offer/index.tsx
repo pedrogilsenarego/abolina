@@ -1,15 +1,22 @@
-import { Typography } from "@mui/material";
+import { Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useState } from "react";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import Popup from "../../../../components/BasicPopup";
-import { Colors, Pallette } from "../../../../constants/pallette";
+import { Pallette } from "../../../../constants/pallette";
 import { Title } from "../../../../styles";
 import { i18n } from "../../../../translations/i18n";
 
-const Offer = () => {
+interface Props {
+  value?: number;
+  forOffer?: boolean;
+}
+
+const Offer = ({ value = 0, forOffer }: Props) => {
   const [openOfferPopup, setOpenOfferPopup] = useState<boolean>(false);
-  return (
-    <>
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const renderLaptop = () => {
+    return (
       <div
         onClick={() => setOpenOfferPopup(true)}
         style={{
@@ -25,6 +32,43 @@ const Offer = () => {
         </Typography>
         <IoMdInformationCircleOutline color={Pallette.primary} size="1rem" />
       </div>
+    );
+  };
+
+  const renderMobile = () => {
+    return (
+      <div
+        onClick={() => setOpenOfferPopup(true)}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          columnGap: "5px",
+          position: "absolute",
+
+          right: "5px",
+          bottom: "15px",
+        }}
+      >
+        <Typography style={{ fontSize: "12px" }}>
+          {forOffer ? value : value - 1}
+        </Typography>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <Typography color={Pallette.primary} fontSize="12px">
+            {i18n.t("modules.cart.table.offer")}
+          </Typography>
+        </div>
+      </div>
+    );
+  };
+  return (
+    <>
+      {mobile ? renderMobile() : renderLaptop()}
       <Popup
         maxWidth="300px"
         openPopup={openOfferPopup}
