@@ -1,12 +1,12 @@
-import { Divider, Typography } from "@mui/material";
-import { i18n } from "../../../../../translations/i18n";
+import { Box, Divider, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { signOutUserStart } from "../../../../../slicer/user/user.actions";
-import { State } from "../../../../../slicer/types";
-import { CurrentUser } from "../../../../../slicer/user/user.types";
 import { useNavigate } from "react-router";
-import { ROUTE_PATHS } from "../../../../../constants/routes";
 import { Colors } from "../../../../../constants/pallette";
+import { ROUTE_PATHS } from "../../../../../constants/routes";
+import { State } from "../../../../../slicer/types";
+import { signOutUserStart } from "../../../../../slicer/user/user.actions";
+import { CurrentUser } from "../../../../../slicer/user/user.types";
+import { i18n } from "../../../../../translations/i18n";
 
 const UserPopoverContent = ({ handleClose }: any) => {
   const dispatch = useDispatch();
@@ -22,30 +22,103 @@ const UserPopoverContent = ({ handleClose }: any) => {
         padding: "20px",
         display: "flex",
         flexDirection: "column",
-        rowGap: "10px",
+        rowGap: "6px",
         minWidth: "200px",
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "start",
       }}
     >
       <Typography
-        onClick={() => navigate(ROUTE_PATHS.CLIENT_MANAGEMENT)}
-        style={{ cursor: "pointer", color: Colors.tealc, fontWeight: 800, textTransform: "uppercase" }}
+        style={{
+          cursor: "pointer",
+          fontWeight: 800,
+          textTransform: "uppercase",
+        }}
       >
-        {i18n.t("menuBar.userPopover.user")}
+        {currentUser.displayName}
       </Typography>
-
+      <Divider style={{ width: "100%" }} />
+      <Box>
+        <Typography
+          onClick={() => navigate(ROUTE_PATHS.CLIENT_MANAGEMENT)}
+          style={{
+            cursor: "pointer",
+            color: Colors.tealc,
+            fontWeight: 800,
+            textTransform: "uppercase",
+          }}
+        >
+          {i18n.t("menuBar.userPopover.user")}
+        </Typography>
+        <Box style={{ marginLeft: "14px" }}>
+          <Typography
+            onClick={() => navigate(ROUTE_PATHS.CLIENT_MANAGEMENT)}
+            style={{
+              cursor: "pointer",
+              color: Colors.tealc,
+              fontSize: "12px",
+              fontWeight: "bold",
+              textTransform: "uppercase",
+            }}
+          >
+            {i18n.t("modules.clientManagement.generalSettings")}
+          </Typography>
+          <Typography
+            onClick={() =>
+              navigate(ROUTE_PATHS.CLIENT_MANAGEMENT, {
+                state: "invoiceData",
+              })
+            }
+            style={{
+              cursor: "pointer",
+              color: Colors.tealc,
+              fontSize: "12px",
+              fontWeight: "bold",
+              textTransform: "uppercase",
+            }}
+          >
+            {i18n.t("modules.clientManagement.invoiceSettings")}
+          </Typography>
+          <Typography
+            onClick={() =>
+              navigate(ROUTE_PATHS.CLIENT_MANAGEMENT, {
+                state: "couponsAvailable",
+              })
+            }
+            style={{
+              cursor: "pointer",
+              color: Colors.tealc,
+              fontSize: "12px",
+              fontWeight: "bold",
+              textTransform: "uppercase",
+            }}
+          >
+            {i18n.t("modules.clientManagement.couponsSettings")}
+          </Typography>
+        </Box>
+      </Box>
+      <Divider style={{ width: "100%" }} />
       <Typography
-        style={{ cursor: "pointer", color: Colors.tealc, fontWeight: 800, textTransform: "uppercase" }}
+        style={{
+          cursor: "pointer",
+          color: Colors.tealc,
+          fontWeight: 800,
+          textTransform: "uppercase",
+        }}
         onClick={() => dispatch(signOutUserStart())}
       >
         {i18n.t("menuBar.userPopover.logout")}
       </Typography>
       {currentUser?.userRoles?.includes("admin") && (
         <>
-          <Divider style={{ width: "90%" }} />
+          <Divider style={{ width: "100%" }} />
           <Typography
-            style={{ cursor: "pointer", color: Colors.tealc, fontWeight: 800, textTransform: "uppercase" }}
+            style={{
+              cursor: "pointer",
+              color: Colors.tealc,
+              fontWeight: 800,
+              textTransform: "uppercase",
+            }}
             onClick={() => navigate(ROUTE_PATHS.ADMIN)}
           >
             Admin

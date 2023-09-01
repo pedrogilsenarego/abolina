@@ -7,7 +7,8 @@ import {
 } from "@mui/material";
 import { i18n } from "../../translations/i18n";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 import BasicAccordeon from "../../components/BasicAccordeon";
 import { Colors } from "../../constants/pallette";
 import CouponsAvailable from "./CouponsAvailable";
@@ -20,6 +21,13 @@ const ClientManagement = () => {
   >("generalData");
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state) setMode(location.state);
+    return;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const renderMode = () => {
     switch (mode) {

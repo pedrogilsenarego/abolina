@@ -1,16 +1,20 @@
-import * as React from 'react';
-import Popover from '@mui/material/Popover';
-import { Colors } from '../../constants/pallette';
+import Popover from "@mui/material/Popover";
+import * as React from "react";
 
 interface BasicPopoverProps {
   isOpen: boolean;
   anchorEl: HTMLElement | null;
   onClose: () => void;
-  children: any
+  children: any;
 }
 
-const BasicPopover: React.FC<BasicPopoverProps> = ({ isOpen, anchorEl, onClose, children }) => {
-  const id = isOpen ? 'simple-popover' : undefined;
+const BasicPopover: React.FC<BasicPopoverProps> = ({
+  isOpen,
+  anchorEl,
+  onClose,
+  children,
+}) => {
+  const id = isOpen ? "simple-popover" : undefined;
 
   return (
     <div>
@@ -20,14 +24,19 @@ const BasicPopover: React.FC<BasicPopoverProps> = ({ isOpen, anchorEl, onClose, 
         anchorEl={anchorEl}
         onClose={onClose}
         anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
+          vertical: "bottom",
+          horizontal: "left",
         }}
         transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
+          vertical: "top",
+          horizontal: "left",
         }}
-        sx={{ marginTop: '32px', cursor: "pointer" }}
+        sx={{
+          marginLeft: "-30px",
+          marginTop: "12px",
+          cursor: "pointer",
+        }}
+        PaperProps={{ sx: { borderRadius: "14px" } }}
       >
         {children}
       </Popover>
