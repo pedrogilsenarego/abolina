@@ -8,6 +8,7 @@ import { FORM_VALIDATION } from "./validation";
 import { Typography } from "@mui/material";
 import { useState } from "react";
 import Popup from "../../../components/BasicPopup";
+import { Icons } from "../../../components/Icons";
 import { State } from "../../../slicer/types";
 import {
   mutateUserSettings,
@@ -106,10 +107,12 @@ const GeneralData = () => {
               }}
             >
               <Button
+                leftIcon={<Icons.Edit />}
                 onClick={() => setDisableForm(false)}
                 label={i18n.t("modules.clientManagement.general.edit")}
               />
               <Button
+                leftIcon={<Icons.Save />}
                 formik
                 label={i18n.t("modules.clientManagement.general.submit")}
               />

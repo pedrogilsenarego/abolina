@@ -1,4 +1,5 @@
 import { useFormikContext } from "formik";
+import { CSSProperties } from "react";
 import ButtonComponent from "./ButtonComponent";
 
 interface Props {
@@ -7,14 +8,27 @@ interface Props {
   onClick?: () => void;
   invertColors?: boolean;
   children?: any;
+  leftIcon?: React.ReactElement<{
+    color: string;
+    size: string;
+    style: CSSProperties;
+  }>;
 }
 
-const Button = ({ formik, label, onClick, invertColors, children }: Props) => {
+const Button = ({
+  formik,
+  label,
+  onClick,
+  invertColors,
+  children,
+  leftIcon,
+}: Props) => {
   const RenderButtonFormik = () => {
     const { submitForm } = useFormikContext();
 
     return (
       <ButtonComponent
+        leftIcon={leftIcon}
         onClick={submitForm}
         label={label}
         invertColors={invertColors}
@@ -25,6 +39,7 @@ const Button = ({ formik, label, onClick, invertColors, children }: Props) => {
   const RenderButton = () => {
     return (
       <ButtonComponent
+        leftIcon={leftIcon}
         onClick={onClick}
         label={label}
         invertColors={invertColors}

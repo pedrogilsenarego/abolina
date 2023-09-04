@@ -7,6 +7,7 @@ import { FORM_VALIDATION } from "./validation";
 
 import { Grid } from "@mui/material";
 import { useState } from "react";
+import { Icons } from "../../../components/Icons";
 import SelectWrapper from "../../../components/Inputs/SelectFormValue";
 import { countryList } from "../../../constants/forms";
 import { State } from "../../../slicer/types";
@@ -113,10 +114,12 @@ const InvoiceData = () => {
               }}
             >
               <Button
+                leftIcon={<Icons.Edit />}
                 onClick={() => setDisableForm(false)}
                 label={i18n.t("modules.clientManagement.general.edit")}
               />
               <Button
+                leftIcon={<Icons.Save />}
                 formik
                 label={i18n.t("modules.clientManagement.general.submit")}
               />

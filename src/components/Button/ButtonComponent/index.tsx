@@ -1,12 +1,17 @@
 import { Button as MuiButton, Typography } from "@mui/material";
+import React, { CSSProperties, useState } from "react";
 import { Pallette } from "../../../constants/pallette";
-import { useState } from "react";
 
 interface Props {
   label: string;
   onClick?: () => void;
   borderRadius?: string;
   invertColors?: boolean;
+  leftIcon?: React.ReactElement<{
+    color: string;
+    size: string;
+    style: CSSProperties;
+  }>;
 }
 
 const ButtonComponent = ({
@@ -14,6 +19,7 @@ const ButtonComponent = ({
   onClick,
   borderRadius,
   invertColors,
+  leftIcon,
 }: Props) => {
   const [hover, setHover] = useState<boolean>(false);
   return (
@@ -29,10 +35,19 @@ const ButtonComponent = ({
           paddingLeft: "20px",
           paddingRight: "20px",
           border: `solid 2px ${Pallette.primary}`,
-
         }}
         onClick={onClick}
       >
+        {leftIcon &&
+          React.cloneElement(leftIcon, {
+            size: "20px",
+            style: {
+              height: "20px",
+              marginRight: "10px",
+              color:
+                hover || invertColors ? Pallette.constrast : Pallette.primary,
+            },
+          })}
         <Typography
           style={{
             fontSize: "12px",

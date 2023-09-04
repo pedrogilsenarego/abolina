@@ -1,10 +1,4 @@
-import {
-  Card,
-  Container,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Container, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { i18n } from "../../translations/i18n";
 
 import { useEffect, useState } from "react";
@@ -44,7 +38,7 @@ const ClientManagement = () => {
 
   const renderLaptop = () => {
     return (
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <div
           style={{
             display: "flex",
@@ -63,6 +57,8 @@ const ClientManagement = () => {
               fontWeight: 800,
               color: Colors.tealc,
               textAlign: "start",
+
+              borderBottom: `solid 2px ${Colors.tealc}`,
             }}
           >
             {i18n.t("modules.clientManagement.title")}
@@ -70,7 +66,10 @@ const ClientManagement = () => {
           <div style={{ display: "flex", columnGap: "20px", width: "100%" }}>
             <div
               style={{
-                width: "30%",
+                width: "15%",
+                display: "flex",
+                flexDirection: "column",
+                rowGap: "15px",
               }}
             >
               <Typography
@@ -106,7 +105,7 @@ const ClientManagement = () => {
             </div>
             <div
               style={{
-                width: "70%",
+                width: "85%",
                 paddingLeft: "30px",
                 paddingRight: "30px",
                 justifyContent: "center",
