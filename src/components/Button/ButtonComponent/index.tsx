@@ -23,15 +23,16 @@ const ButtonComponent = ({
 }: Props) => {
   const [hover, setHover] = useState<boolean>(false);
   return (
-    <div style={{ display: "inline-block" }}>
+    <div style={{ display: "inline-block", width: "100%" }}>
       <MuiButton
+        fullWidth
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         style={{
           backgroundColor:
             hover || invertColors ? Pallette.primary : Pallette.constrast,
 
-          borderRadius: borderRadius || "6px",
+          borderRadius: borderRadius || "10px",
           paddingLeft: "20px",
           paddingRight: "20px",
           border: `solid 2px ${Pallette.primary}`,

@@ -88,7 +88,7 @@ const GeneralData = () => {
             style={{
               display: "flex",
               flexDirection: "column",
-              rowGap: "20px",
+              rowGap: "10px",
               alignItems: "start",
               marginTop: "20px",
             }}
@@ -99,16 +99,28 @@ const GeneralData = () => {
               label={i18n.t("modules.clientManagement.general.name")}
               name="displayName"
             />
+            <Typography
+              onClick={() => setChangePassword(true)}
+              style={{
+                cursor: "pointer",
+                textAlign: "left",
+                fontWeight: "bold",
+              }}
+            >
+              {i18n.t("modules.clientManagement.general.changePassword")}
+            </Typography>
             <div
               style={{
                 display: "flex",
                 justifyContent: "start",
-                columnGap: "20px",
+                columnGap: "25px",
+
+                width: "100%",
               }}
             >
               <Button
                 leftIcon={<Icons.Edit />}
-                onClick={() => setDisableForm(false)}
+                onClick={() => setDisableForm(!disableForm)}
                 label={i18n.t("modules.clientManagement.general.edit")}
               />
               <Button
@@ -118,12 +130,6 @@ const GeneralData = () => {
               />
             </div>
           </div>
-          <Typography
-            onClick={() => setChangePassword(true)}
-            style={{ cursor: "pointer", textAlign: "left", marginTop: "20px" }}
-          >
-            {i18n.t("modules.clientManagement.general.changePassword")}
-          </Typography>
         </Form>
       </Formik>
       {changePasswordPopup()}

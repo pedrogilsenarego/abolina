@@ -52,7 +52,7 @@ const InvoiceData = () => {
           <Styled.SubTitle style={{ fontWeight: 800 }}>
             {i18n.t("modules.clientManagement.invoiceSettings")}
           </Styled.SubTitle>
-          <Grid container columnSpacing="20px" rowSpacing="20px" mt="20px">
+          <Grid container columnSpacing="20px" rowSpacing="10px" mt="20px">
             <Grid item xs={6}>
               <TextField
                 disabled={disableForm}
@@ -110,12 +110,13 @@ const InvoiceData = () => {
               style={{
                 display: "flex",
                 justifyContent: "start",
-                columnGap: "20px",
+                columnGap: "25px",
+                marginTop: "15px",
               }}
             >
               <Button
                 leftIcon={<Icons.Edit />}
-                onClick={() => setDisableForm(false)}
+                onClick={() => setDisableForm(!disableForm)}
                 label={i18n.t("modules.clientManagement.general.edit")}
               />
               <Button

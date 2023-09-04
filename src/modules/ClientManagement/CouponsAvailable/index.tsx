@@ -26,7 +26,7 @@ const CouponsAvailable = () => {
         style={{
           display: "flex",
           flexDirection: "column",
-          rowGap: "20px",
+          rowGap: "10px",
           marginTop: "20px",
         }}
       >
