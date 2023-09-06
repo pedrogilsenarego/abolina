@@ -1,9 +1,10 @@
 import { Typography } from "@mui/material";
 import { BiCopy } from "react-icons/bi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Colors, Pallette } from "../../../constants/pallette";
 import { ROUTE_PATHS } from "../../../constants/routes";
+import { updateSuccessNotification } from "../../../slicer/general/general.actions";
 import { State } from "../../../slicer/types";
 import { Coupons, CurrentUser } from "../../../slicer/user/user.types";
 import * as Styled from "../../../styles";
@@ -15,6 +16,7 @@ const CouponsAvailable = () => {
   );
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -57,6 +59,11 @@ const CouponsAvailable = () => {
                   const handleClick = async () => {
                     try {
                       await navigator.clipboard.writeText(coupon);
+                      dispatch(
+                        updateSuccessNotification(
+                          i18n.t("modules.clientManagement.coupons.tooltipCopy")
+                        )
+                      );
                     } catch (error) {
                       console.error("Failed to copy text: ", error);
                     }

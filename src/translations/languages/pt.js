@@ -163,7 +163,7 @@ export const content = {
           },
           coupons: {
             title: "Cupões Disponíveis",
-            tooltipCopy: "Copiar o cupão",
+            tooltipCopy: "Conteudo copiado",
           },
         },
         books: {

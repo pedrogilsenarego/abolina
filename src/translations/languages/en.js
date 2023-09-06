@@ -255,7 +255,7 @@ export const content = {
           },
           coupons: {
             title: "Coupons Available",
-            tooltipCopy: "Copy to clipboard",
+            tooltipCopy: "Content copied to the clipboard",
           },
         },
       },
