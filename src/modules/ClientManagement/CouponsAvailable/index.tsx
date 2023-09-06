@@ -1,8 +1,7 @@
-import { IconButton, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { BiCopy } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import ToolTip from "../../../components/Tooltip/Tooltip";
 import { Colors, Pallette } from "../../../constants/pallette";
 import { ROUTE_PATHS } from "../../../constants/routes";
 import { State } from "../../../slicer/types";
@@ -51,7 +50,7 @@ const CouponsAvailable = () => {
                   display: "flex",
                   flexDirection: "column",
                   rowGap: "10px",
-                  marginTop: "10px",
+                  marginTop: "5px",
                 }}
               >
                 {item?.couponId?.map((coupon: string, pos: number) => {
@@ -71,7 +70,7 @@ const CouponsAvailable = () => {
                         justifyContent: "space-between",
                         border: `solid 2px ${Colors.darkGrey}`,
                         borderRadius: "12px",
-                        paddingLeft: "10px",
+                        padding: "4px 10px 4px 10px",
                       }}
                     >
                       <Typography
@@ -86,20 +85,12 @@ const CouponsAvailable = () => {
                       >
                         {coupon}
                       </Typography>
-
-                      <ToolTip
-                        title={i18n.t(
-                          "modules.clientManagement.coupons.tooltipCopy"
-                        )}
-                      >
-                        <IconButton onClick={handleClick}>
-                          <BiCopy
-                            color={Pallette.text}
-                            size="1.2rem"
-                            style={{ cursor: "pointer" }}
-                          />
-                        </IconButton>
-                      </ToolTip>
+                      <BiCopy
+                        onClick={handleClick}
+                        color={Pallette.primaryTransparent}
+                        size="1.2rem"
+                        style={{ cursor: "pointer" }}
+                      />
                     </div>
                   );
                 })}
