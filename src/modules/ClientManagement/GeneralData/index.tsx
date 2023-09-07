@@ -119,11 +119,13 @@ const GeneralData = () => {
               }}
             >
               <Button
+                fullWidth
                 leftIcon={<Icons.Edit />}
                 onClick={() => setDisableForm(!disableForm)}
                 label={i18n.t("modules.clientManagement.general.edit")}
               />
               <Button
+                fullWidth
                 leftIcon={<Icons.Save />}
                 formik
                 label={i18n.t("modules.clientManagement.general.submit")}

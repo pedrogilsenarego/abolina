@@ -5,6 +5,7 @@ import ButtonComponent from "./ButtonComponent";
 interface Props {
   formik?: boolean;
   label: string;
+  fullWidth?: boolean;
   onClick?: () => void;
   invertColors?: boolean;
   children?: any;
@@ -20,6 +21,7 @@ const Button = ({
   label,
   onClick,
   invertColors,
+  fullWidth,
   children,
   leftIcon,
 }: Props) => {
@@ -28,6 +30,7 @@ const Button = ({
 
     return (
       <ButtonComponent
+        fullWidth={fullWidth}
         leftIcon={leftIcon}
         onClick={submitForm}
         label={label}
@@ -39,6 +42,7 @@ const Button = ({
   const RenderButton = () => {
     return (
       <ButtonComponent
+        fullWidth={fullWidth}
         leftIcon={leftIcon}
         onClick={onClick}
         label={label}

@@ -7,6 +7,7 @@ interface Props {
   onClick?: () => void;
   borderRadius?: string;
   invertColors?: boolean;
+  fullWidth?: boolean;
   leftIcon?: React.ReactElement<{
     color: string;
     size: string;
@@ -20,12 +21,13 @@ const ButtonComponent = ({
   borderRadius,
   invertColors,
   leftIcon,
+  fullWidth,
 }: Props) => {
   const [hover, setHover] = useState<boolean>(false);
   return (
     <div style={{ display: "inline-block", width: "100%" }}>
       <MuiButton
-        fullWidth
+        fullWidth={fullWidth}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         style={{

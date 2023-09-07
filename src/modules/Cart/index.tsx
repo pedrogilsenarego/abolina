@@ -150,8 +150,49 @@ const Cart = () => {
           <Grid
             item
             xs={1}
-            style={{ borderBottom: `solid 2px ${Colors.tealc}` }}
-          ></Grid>
+            style={{
+              borderBottom: `solid 2px ${Colors.tealc}`,
+              position: "relative",
+            }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                bottom: -7,
+                right: -2,
+                padding: "2px",
+                backgroundColor: "white",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                zIndex: 10,
+              }}
+            >
+              <div
+                style={{
+                  borderRadius: "4px",
+                  width: "230px",
+                  height: "8px",
+                  backgroundColor: Colors.grey,
+                }}
+              >
+                <div
+                  style={{
+                    width: "50%",
+                    height: "100%",
+                    backgroundColor: Colors.tealc,
+                    borderRadius: "4px",
+                    transform:
+                      sliderPosition === 1
+                        ? "translateX(0%)"
+                        : "translateX(100%)",
+                    transition:
+                      "all 0.45s cubic-bezier(0.645, 0.045, 0.355, 1.000)",
+                  }}
+                />
+              </div>
+            </div>
+          </Grid>
         </Grid>
         {cartItems?.map((item, pos) => {
           return (
