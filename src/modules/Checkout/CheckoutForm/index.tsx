@@ -4,9 +4,12 @@ import { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import ButtonForm from "../../../components/Button";
+import { Icons } from "../../../components/Icons";
+import CheckBox from "../../../components/Inputs/CheckBox";
 import SelectWrapper from "../../../components/Inputs/SelectFormValue";
 import Textfield from "../../../components/Inputs/TextFieldForm";
 import { countryList } from "../../../constants/forms";
+import { Colors } from "../../../constants/pallette";
 import { stripeLocal, stripeProduction } from "../../../constants/stripe";
 import { clearCart } from "../../../slicer/cart/cart.actions";
 import { CartProduct } from "../../../slicer/cart/cart.types";
@@ -95,7 +98,6 @@ const CheckoutForm = () => {
       <div
         style={{
           display: "flex",
-          marginTop: "60px",
           padding: "0px 10px",
           justifyContent: "space-between",
           cursor: "pointer",
@@ -236,8 +238,32 @@ const CheckoutForm = () => {
             )}
           </div>
           {openPaymentMethods && (
-            <div style={{ marginTop: "60px" }}>
-              <ButtonForm formik label="Pay now" />
+            <div
+              style={{
+                marginTop: "60px",
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "end",
+                rowGap: "30px",
+              }}
+            >
+              <div
+                style={{
+                  cursor: "pointer",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  width: "100%",
+                  alignItems: "center",
+                  border: `solid 2px ${Colors.grey}`,
+                  padding: "0px 20px",
+                }}
+              >
+                <CheckBox value={true} color={Colors.darkGrey} />
+                <Icons.Stripe color={Colors.darkGrey} size="50px" />
+              </div>
+              <ButtonForm fullWidth formik label="Pay now" />
             </div>
           )}
         </Form>

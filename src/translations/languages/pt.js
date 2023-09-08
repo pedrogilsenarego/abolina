@@ -73,6 +73,7 @@ export const content = {
           invoiceDetails: "Detalhes de Faturação",
           paymentMethods: "Métodos de Pagamento",
           backCart: "Voltar ao Carrinho",
+          checkout: "Finalizar",
           books: "Livro(s)",
           forOffer: "para oferta",
         },

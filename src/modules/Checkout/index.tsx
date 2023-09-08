@@ -8,7 +8,7 @@ import { i18n } from "../../translations/i18n";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useState } from "react";
-import { AiOutlineArrowLeft } from "react-icons/ai";
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useNavigate } from "react-router";
 import { ROUTE_PATHS } from "../../constants/routes";
@@ -166,7 +166,7 @@ const Checkout = () => {
               </Typography>
             </div>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} style={{ marginTop: "60px" }}>
             {" "}
             <Elements stripe={stripePromise}>
               <CheckoutForm />
@@ -181,34 +181,55 @@ const Checkout = () => {
     return (
       <Container maxWidth="lg">
         <div
-          onClick={() => navigate(ROUTE_PATHS.CART)}
           style={{
             display: "flex",
-            columnGap: "5px",
-            alignItems: "center",
-            position: "relative",
+            justifyContent: "space-between",
+            width: "100%",
           }}
         >
-          <AiOutlineArrowLeft
-            color={Colors.tealc}
-            size="0.8rem"
-            style={{ position: "absolute", left: "-15px" }}
-          />
-          <Typography
+          <div
+            onClick={() => navigate(ROUTE_PATHS.CART)}
             style={{
-              paddingTop: "5px",
-              textAlign: "start",
-              textTransform: "uppercase",
-              fontSize: "18px",
-              cursor: "pointer",
+              display: "flex",
+              columnGap: "5px",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
-            {i18n.t("modules.checkout.backCart")}
-          </Typography>
+            <AiOutlineArrowLeft color={Colors.tealc} size="0.8rem" />
+            <Typography
+              style={{
+                textAlign: "start",
+                textTransform: "uppercase",
+                fontSize: "18px",
+                cursor: "pointer",
+              }}
+            >
+              {i18n.t("modules.checkout.backCart")}
+            </Typography>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              columnGap: "5px",
+              alignItems: "center",
+            }}
+          >
+            <Typography
+              style={{
+                textAlign: "start",
+                textTransform: "uppercase",
+                fontSize: "18px",
+                cursor: "pointer",
+              }}
+            >
+              {i18n.t("modules.checkout.checkout")}
+            </Typography>
+            <AiOutlineArrowRight color={Colors.tealc} size="0.8rem" />
+          </div>
         </div>
         <Grid container columnSpacing="60px" style={{ marginTop: "20px" }}>
           <Grid item xs={6}>
-            {" "}
             <Elements stripe={stripePromise}>
               <CheckoutForm />
             </Elements>

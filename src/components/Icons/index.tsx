@@ -10,7 +10,7 @@ import {
 } from "react-icons/ai";
 import { BiErrorCircle, BiPlayCircle, BiTimeFive } from "react-icons/bi";
 import { BsCheck } from "react-icons/bs";
-import { FaRegUser } from "react-icons/fa";
+import { FaRegUser, FaStripe } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
 import { GoHome } from "react-icons/go";
 
@@ -48,4 +48,5 @@ export const Icons = {
   RightArrow: (props: IconBaseProps) => <TiArrowRight {...props} />,
   LeftArrow: (props: IconBaseProps) => <TiArrowLeft {...props} />,
   Checked: (props: IconBaseProps) => <BsCheck {...props} />,
+  Stripe: (props: IconBaseProps) => <FaStripe {...props} />,
 };
