@@ -25,7 +25,12 @@ const ButtonComponent = ({
 }: Props) => {
   const [hover, setHover] = useState<boolean>(false);
   return (
-    <div style={{ display: "inline-block", width: "100%" }}>
+    <div
+      style={{
+        display: fullWidth ? "inline-block" : undefined,
+        width: fullWidth ? "100%" : undefined,
+      }}
+    >
       <MuiButton
         fullWidth={fullWidth}
         onMouseEnter={() => setHover(true)}

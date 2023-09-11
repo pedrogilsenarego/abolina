@@ -9,6 +9,7 @@ import { Typography } from "@mui/material";
 import { useState } from "react";
 import Popup from "../../../components/BasicPopup";
 import { Icons } from "../../../components/Icons";
+import { Colors } from "../../../constants/pallette";
 import { State } from "../../../slicer/types";
 import {
   mutateUserSettings,
@@ -44,23 +45,48 @@ const GeneralData = () => {
         onClose={() => setChangePassword(false)}
       >
         <div
-          style={{ display: "flex", flexDirection: "column", rowGap: "30px" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            rowGap: "20px",
+          }}
         >
-          <Title>
+          <Title align="center" fontSize="20px" fontWeight="bold">
             {i18n.t("modules.clientManagement.general.changePasswordTitle")}
           </Title>
-          <Typography>
+          <Typography
+            style={{
+              color: Colors.darkGrey,
+              fontWeight: "bold",
+              textAlign: "center",
+            }}
+          >
             {i18n.t(
               "modules.clientManagement.general.changePasswordHelperText"
             )}
-            <b>{currentUser.email}</b>
-          </Typography>
-          <Button
-            onClick={handleChangePassword}
-            label={i18n.t(
-              "modules.clientManagement.general.confirmChangePassword"
+            <b style={{ color: Colors.tealc, textDecoration: "underline" }}>
+              {currentUser.email}
+            </b>
+            {i18n.t(
+              "modules.clientManagement.general.changePasswordHelperText2"
             )}
-          />
+          </Typography>
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Button
+              onClick={handleChangePassword}
+              label={i18n.t(
+                "modules.clientManagement.general.confirmChangePassword"
+              )}
+            />
+          </div>
         </div>
       </Popup>
     );

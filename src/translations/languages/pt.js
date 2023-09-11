@@ -148,10 +148,11 @@ export const content = {
             edit: "Editar",
             submit: "Salvar",
             changePassword: "Mude aqui a sua chave de acesso",
-            changePasswordTitle: "Mudar chave de acesso",
+            changePasswordTitle: "Confirmação de password",
             confirmChangePassword: "Confirmar",
-            changePasswordHelperText:
-              "Siga as instruções que serão enviadas para o email: ",
+            changePasswordHelperText: "Será enviado um email a ",
+            changePasswordHelperText2:
+              " para recuperar a password por favor siga as instruções que recebeu no email.",
           },
           invoice: {
             name: "Nome",
