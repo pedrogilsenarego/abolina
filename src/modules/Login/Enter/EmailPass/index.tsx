@@ -38,7 +38,7 @@ const EmailPass = ({ setMode }: Props) => {
             style={{
               display: "flex",
               flexDirection: "column",
-              rowGap: "20px",
+              rowGap: "15px",
               marginTop: "-10px",
             }}
           >

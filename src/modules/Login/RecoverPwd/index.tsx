@@ -1,17 +1,16 @@
 import { useMediaQuery, useTheme } from "@mui/material";
 import { Form, Formik } from "formik";
-import { FORM_VALIDATION } from "./validation";
+import Button from "../../../components/Button";
 import TextField from "../../../components/Inputs/TextFieldForm";
 import { i18n } from "../../../translations/i18n";
-import Button from "../../../components/Button";
+import { FORM_VALIDATION } from "./validation";
 
 import { useDispatch } from "react-redux";
 import { recoverPassword } from "../../../slicer/user/user.actions";
 
 const RecoverPwd = () => {
-
-  const theme = useTheme()
-  const mobile = useMediaQuery(theme.breakpoints.down("sm"))
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   interface FORM {
     email: string;
@@ -20,15 +19,13 @@ const RecoverPwd = () => {
   const INITIAL_STATE: FORM = {
     email: "",
   };
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleSubmit = (values: FORM) => {
-    dispatch(recoverPassword(values.email))
+    dispatch(recoverPassword(values.email));
   };
-
 
   return (
     <div style={{ display: "flex", flexDirection: "column", rowGap: "40px" }}>
-
       <Formik
         initialValues={{ ...INITIAL_STATE }}
         onSubmit={(values) => handleSubmit(values)}
@@ -36,19 +33,13 @@ const RecoverPwd = () => {
       >
         <Form>
           <div
-            style={{ display: "flex", flexDirection: "column", rowGap: "20px" }}
+            style={{ display: "flex", flexDirection: "column", rowGap: "15px" }}
           >
-            <TextField label={i18n.t("modules.login.email")} name='email' />
-            <Button
-              formik
-              label={i18n.t("modules.login.retrievePassword")}
-            />
+            <TextField label={i18n.t("modules.login.email")} name="email" />
+            <Button formik label={i18n.t("modules.login.retrievePassword")} />
           </div>
         </Form>
       </Formik>
-
-
-
     </div>
   );
 };

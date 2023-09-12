@@ -27,7 +27,7 @@ const Enter = ({ setMode }: Props) => {
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", rowGap: "40px" }}>
+    <div style={{ display: "flex", flexDirection: "column", rowGap: "30px" }}>
       <div
         style={{
           width: mobile ? "90vw" : "450px",

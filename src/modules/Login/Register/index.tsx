@@ -50,7 +50,7 @@ const Register = () => {
       >
         <Form>
           <div
-            style={{ display: "flex", flexDirection: "column", rowGap: "20px" }}
+            style={{ display: "flex", flexDirection: "column", rowGap: "15px" }}
           >
             <ValidationHelper mobile={mobile} />
             <TextField label={i18n.t("modules.login.name")} name="name" />
