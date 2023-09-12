@@ -1,12 +1,19 @@
 import { Button, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { BsGoogle } from "react-icons/bs";
-import { FaFacebookF } from "react-icons/fa"
-import { i18n } from "../../../translations/i18n";
+import { FaFacebookF } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { googleSignInStart, facebookSignInStart } from "../../../slicer/user/user.actions";
+import {
+  facebookSignInStart,
+  googleSignInStart,
+} from "../../../slicer/user/user.actions";
+import { i18n } from "../../../translations/i18n";
 import EmailPass from "./EmailPass";
 
-const Enter = () => {
+interface Props {
+  setMode: (mode: "enter" | "register" | "recoverPwd") => void;
+}
+
+const Enter = ({ setMode }: Props) => {
   const dispatch = useDispatch();
 
   const handleGoogleSigniIn = () => {
@@ -16,8 +23,8 @@ const Enter = () => {
     dispatch(facebookSignInStart());
   };
 
-  const theme = useTheme()
-  const mobile = useMediaQuery(theme.breakpoints.down("sm"))
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <div style={{ display: "flex", flexDirection: "column", rowGap: "40px" }}>
@@ -40,7 +47,7 @@ const Enter = () => {
             width: "100%",
           }}
         >
-          <BsGoogle color='white' size={"1.8em"} /> &nbsp;
+          <BsGoogle color="white" size={"1.8em"} /> &nbsp;
           <Typography
             style={{
               color: "white",
@@ -63,7 +70,7 @@ const Enter = () => {
             width: "100%",
           }}
         >
-          <FaFacebookF color='white' size={"1.8em"} /> &nbsp;
+          <FaFacebookF color="white" size={"1.8em"} /> &nbsp;
           <Typography
             style={{
               color: "white",
@@ -76,14 +83,24 @@ const Enter = () => {
           </Typography>
         </Button>
       </div>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <div style={{ height: "1px", width: "45%", backgroundColor: "#00000066" }} />
-        <Typography>{i18n.t("modules.login.or")}</Typography>
-        <div style={{ height: "1px", width: "45%", backgroundColor: "#00000066" }} />
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <div
+          style={{ height: "1px", width: "45%", backgroundColor: "#00000066" }}
+        />
+        <Typography style={{ fontWeight: "bold" }}>
+          {i18n.t("modules.login.or")}
+        </Typography>
+        <div
+          style={{ height: "1px", width: "45%", backgroundColor: "#00000066" }}
+        />
       </div>
-      <EmailPass />
-
-
+      <EmailPass setMode={setMode} />
     </div>
   );
 };

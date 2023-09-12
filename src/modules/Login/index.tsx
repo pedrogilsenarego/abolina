@@ -1,14 +1,16 @@
 import { Box, Typography } from "@mui/material";
 import { i18n } from "../../translations/i18n";
 
-import { Colors } from "../../constants/pallette";
 import { useState } from "react";
+import { Colors } from "../../constants/pallette";
 import Enter from "./Enter";
-import Register from "./Register";
 import RecoverPwd from "./RecoverPwd";
+import Register from "./Register";
 
 const Login = () => {
-  const [mode, setMode] = useState<"enter" | "register" | "recoverPwd">("enter");
+  const [mode, setMode] = useState<"enter" | "register" | "recoverPwd">(
+    "enter"
+  );
 
   return (
     <div
@@ -20,7 +22,6 @@ const Login = () => {
         rowGap: "40px",
         paddingLeft: "16px",
         paddingRight: "16px",
-
       }}
     >
       <Typography
@@ -62,9 +63,13 @@ const Login = () => {
           {i18n.t("modules.login.register")}
         </Typography>
       </Box>
-      {mode === "enter" ? <Enter /> : mode === "register" ? <Register /> : <RecoverPwd />}
-      {mode !== "recoverPwd" && (<Typography onClick={() => setMode("recoverPwd")} style={{ cursor: "pointer" }}>{i18n.t("modules.login.retrievePassword")}</Typography>)}
-
+      {mode === "enter" ? (
+        <Enter setMode={setMode} />
+      ) : mode === "register" ? (
+        <Register />
+      ) : (
+        <RecoverPwd />
+      )}
     </div>
   );
 };

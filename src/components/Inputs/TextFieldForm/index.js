@@ -47,7 +47,9 @@ const Textfield = ({
         justifyContent="start"
         width={fullWidth ? "100%" : "inherit"}
       >
-        <Typography>{label}</Typography>
+        <Typography style={{ marginLeft: "6px", fontWeight: "bold" }}>
+          {label}
+        </Typography>
 
         <Styled.TextField
           disabled={disabled}

@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import { Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import Button from "../../../../components/Button";
@@ -12,7 +13,11 @@ interface FORM {
   password: string;
 }
 
-const EmailPass = () => {
+interface Props {
+  setMode: (mode: "enter" | "register" | "recoverPwd") => void;
+}
+
+const EmailPass = ({ setMode }: Props) => {
   const INITIAL_STATE: FORM = {
     email: "",
     password: "",
@@ -30,7 +35,12 @@ const EmailPass = () => {
       >
         <Form>
           <div
-            style={{ display: "flex", flexDirection: "column", rowGap: "20px" }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              rowGap: "20px",
+              marginTop: "-10px",
+            }}
           >
             <TextField label={i18n.t("modules.login.email")} name="email" />
             <TextField
@@ -38,7 +48,25 @@ const EmailPass = () => {
               label={i18n.t("modules.login.password")}
               name="password"
             />
-            <Button formik label={i18n.t("modules.login.startSession")} />
+            <Typography
+              onClick={() => setMode("recoverPwd")}
+              style={{
+                cursor: "pointer",
+                color: Colors.tealc,
+                fontSize: "14px",
+                fontStyle: "italic",
+                fontWeight: "bold",
+                textAlign: "left",
+                marginTop: "-10px",
+              }}
+            >
+              {i18n.t("modules.login.retrievePassword")}
+            </Typography>
+            <Button
+              fullWidth
+              formik
+              label={i18n.t("modules.login.startSession")}
+            />
           </div>
         </Form>
       </Formik>
