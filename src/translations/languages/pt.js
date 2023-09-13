@@ -110,6 +110,8 @@ export const content = {
           createAccount: "Criar Conta",
           acceptTerms: "Aceitar os termos e condições",
           retrievePassword: "Recuperar a Palavra-passe",
+          recoverPwdInfo:
+            "(Receberá um link por e-mail para criar uma palavra-passe)",
         },
         home: {
           mainTextBtn: "LEIA MAIS",

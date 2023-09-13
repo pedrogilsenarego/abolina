@@ -1,4 +1,4 @@
-import { useMediaQuery, useTheme } from "@mui/material";
+import { Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Form, Formik } from "formik";
 import Button from "../../../components/Button";
 import TextField from "../../../components/Inputs/TextFieldForm";
@@ -33,10 +33,29 @@ const RecoverPwd = () => {
       >
         <Form>
           <div
-            style={{ display: "flex", flexDirection: "column", rowGap: "15px" }}
+            style={{
+              width: mobile ? "90vw" : "450px",
+              display: "flex",
+              flexDirection: "column",
+              rowGap: "25px",
+            }}
           >
             <TextField label={i18n.t("modules.login.email")} name="email" />
-            <Button formik label={i18n.t("modules.login.retrievePassword")} />
+            <Typography
+              style={{
+                fontSize: "14px",
+                fontWeight: "bold",
+                textAlign: "left",
+                marginTop: "-12px",
+              }}
+            >
+              {i18n.t("modules.login.recoverPwdInfo")}
+            </Typography>
+            <Button
+              fullWidth
+              formik
+              label={i18n.t("modules.login.retrievePassword")}
+            />
           </div>
         </Form>
       </Formik>
