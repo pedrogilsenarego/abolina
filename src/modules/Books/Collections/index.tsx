@@ -10,8 +10,21 @@ type Props = {
 
 const Collections = ({ collections, collection, setCollection }: Props) => {
   return (
-    <div style={{ width: "100%" }}>
-      <Title style={{ textDecoration: "underline", textAlign: "left" }}>
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "end",
+      }}
+    >
+      <Title
+        style={{
+          textDecoration: "underline",
+          textAlign: "left",
+          marginRight: "20%",
+        }}
+      >
         {i18n.t("modules.books.collections")}
       </Title>
       <div

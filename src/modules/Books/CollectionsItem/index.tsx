@@ -1,10 +1,10 @@
 import { Typography } from "@mui/material";
-import { Collection } from "../utilsBooks";
-import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
-import { Colors } from "../../../constants/pallette";
 import { useEffect, useState } from "react";
-import { ROUTE_PATHS } from "../../../constants/routes";
+import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
 import { useNavigate } from "react-router";
+import { Colors } from "../../../constants/pallette";
+import { ROUTE_PATHS } from "../../../constants/routes";
+import { Collection } from "../utilsBooks";
 
 interface Props {
   pos: number;
@@ -25,9 +25,9 @@ const CollectionsItem = ({ pos, item, setCollection, collection }: Props) => {
   };
 
   useEffect(() => {
-    if (collection !== item.name) setOpen(false)
+    if (collection !== item.name) setOpen(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [collection])
+  }, [collection]);
 
   return (
     <div style={{ width: "100%" }}>
@@ -40,60 +40,72 @@ const CollectionsItem = ({ pos, item, setCollection, collection }: Props) => {
           width: "100%",
 
           display: "flex",
-          columnGap: "20px",
-          alignItems: "center",
+
+          alignItems: "start",
           cursor: "pointer",
           justifyContent: "space-between",
         }}
       >
-        <Typography
+        <div
           style={{
-            fontSize: "18px",
-            textAlign: "left",
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            fontWeight: 800
+            display: "flex",
+            flexDirection: "column",
+
+            width: "80%",
+            justifyContent: "end",
           }}
         >
-          {item.name}
-        </Typography>
-        {open ? (
-          <RiArrowUpSLine
-            color={Colors.tealc}
-            size='1rem'
-            style={{ cursor: "pointer" }}
-          />
-        ) : (
-          <RiArrowDownSLine
-            color={Colors.tealc}
-            size='1rem'
-            style={{ cursor: "pointer" }}
-          />
-        )}
+          <Typography
+            style={{
+              fontSize: "18px",
+              textAlign: "right",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              fontWeight: 800,
+            }}
+          >
+            {item.name}
+          </Typography>
+          {open &&
+            item?.books.map((item, pos) => {
+              return (
+                <Typography
+                  onClick={() =>
+                    navigate(ROUTE_PATHS.BOOKS_BOOK.replace(":id", item.id))
+                  }
+                  key={pos}
+                  style={{
+                    width: "100%",
+                    textAlign: "right",
+                    marginRight: "40px",
+                    cursor: "pointer",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
+                >
+                  {item.title}
+                </Typography>
+              );
+            })}
+        </div>
+        <div style={{ marginTop: "-10px" }}>
+          {open ? (
+            <RiArrowUpSLine
+              color={Colors.tealc}
+              size="1rem"
+              style={{ cursor: "pointer" }}
+            />
+          ) : (
+            <RiArrowDownSLine
+              color={Colors.tealc}
+              size="1rem"
+              style={{ cursor: "pointer" }}
+            />
+          )}
+        </div>
       </div>
-      {open &&
-        item?.books.map((item, pos) => {
-          return (
-            <Typography
-              onClick={() =>
-                navigate(ROUTE_PATHS.BOOKS_BOOK.replace(":id", item.id))
-              }
-              key={pos}
-              style={{
-                width: "100%",
-                textAlign: "left",
-                marginRight: "40px",
-                cursor: "pointer",
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-              }}
-            >
-              {item.title}
-            </Typography>
-          );
-        })}
     </div>
   );
 };
