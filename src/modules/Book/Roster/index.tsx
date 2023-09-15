@@ -1,22 +1,22 @@
-import { Grid, Box, Typography, useTheme, useMediaQuery } from "@mui/material";
-import * as GStyled from "../../../styles";
-import { i18n } from "../../../translations/i18n";
-import CardMedia from "../../../components/CardMedia";
-import { Colors } from "../../../constants/pallette";
-import { useDispatch, useSelector } from "react-redux";
-import { State } from "../../../slicer/types";
+import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { useState } from "react";
+import { AiOutlineArrowLeft } from "react-icons/ai";
+import { BsBook, BsPlayCircle, BsStars } from "react-icons/bs";
 import { FiShoppingCart } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import Button from "../../../components/Button";
+import CardMedia from "../../../components/CardMedia";
+import Tag from "../../../components/Tags";
+import { caracteristics } from "../../../constants/admin";
+import { Colors } from "../../../constants/pallette";
+import { ROUTE_PATHS } from "../../../constants/routes";
 import { Book } from "../../../slicer/books/books.types";
 import { addProductToCart } from "../../../slicer/cart/cart.actions";
 import { updateSuccessNotification } from "../../../slicer/general/general.actions";
-import { BsBook, BsPlayCircle } from "react-icons/bs";
-import { BsStars } from "react-icons/bs";
-import { useState } from "react";
-import { caracteristics } from "../../../constants/admin";
-import { AiOutlineArrowLeft } from "react-icons/ai";
-import { useNavigate } from "react-router";
-import { ROUTE_PATHS } from "../../../constants/routes";
-import Tag from "../../../components/Tags";
+import { State } from "../../../slicer/types";
+import * as GStyled from "../../../styles";
+import { i18n } from "../../../translations/i18n";
 
 interface Props {
   setOpenViewBook: (openViewBook: boolean) => void;
@@ -65,7 +65,7 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
         >
           <AiOutlineArrowLeft
             color={Colors.tealc}
-            size='0.8rem'
+            size="0.8rem"
             style={{ position: "absolute", left: "-15px" }}
           />
           <Typography
@@ -82,7 +82,7 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
         </div>
         {vertical && (
           <GStyled.Title
-            fontSize='18px'
+            fontSize="18px"
             style={{ fontWeight: 700, textAlign: "start", marginTop: "6px" }}
           >
             {(lang === "PT" ? book?.title : book?.titleEN) || ""}
@@ -95,9 +95,9 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
         style={{ marginTop: vertical ? "0px" : "20px" }}
       >
         <Grid item xs={12} md={8}>
-          <Box display='flex' justifyContent='end'>
+          <Box display="flex" justifyContent="end">
             {!mobile && (
-              <Box width='20%' style={{ position: "relative" }}>
+              <Box width="20%" style={{ position: "relative" }}>
                 <Box
                   style={{
                     display: "flex",
@@ -115,7 +115,7 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                     boxShadow: "2px 2px 2px #00000066",
                   }}
                 >
-                  <BsBook size='1.2rem' color='white' />
+                  <BsBook size="1.2rem" color="white" />
                   <Typography
                     onClick={() => setOpenViewBook(true)}
                     style={{
@@ -128,37 +128,37 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                     {i18n.t("modules.books.book.bookBrowser")}
                   </Typography>
                 </Box>
-                {book?.peekDigital && (<Box
-                  onClick={() => setOpenPeekDigital(true)}
-                  style={{
-                    backgroundColor: Colors.tealc,
-                    position: "absolute",
-                    top: "20%",
-                    zIndex: 900,
-                    right: "-5px",
-                    padding: "8px",
-                    borderRadius: "3px",
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    columnGap: "5px",
-                    boxShadow: "2px 2px 2px #00000066",
-                  }}
-                >
-                  <BsPlayCircle size='1.2rem' color='white' />
-                  <Typography
-
+                {book?.peekDigital && (
+                  <Box
+                    onClick={() => setOpenPeekDigital(true)}
                     style={{
-                      color: "white",
-                      fontSize: "14px",
-                      whiteSpace: "pre-line",
-                      lineHeight: "14px",
+                      backgroundColor: Colors.tealc,
+                      position: "absolute",
+                      top: "20%",
+                      zIndex: 900,
+                      right: "-5px",
+                      padding: "8px",
+                      borderRadius: "3px",
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      columnGap: "5px",
+                      boxShadow: "2px 2px 2px #00000066",
                     }}
                   >
-                    {i18n.t("modules.books.book.peakDigital")}
-                  </Typography>
-                </Box>)}
-
+                    <BsPlayCircle size="1.2rem" color="white" />
+                    <Typography
+                      style={{
+                        color: "white",
+                        fontSize: "14px",
+                        whiteSpace: "pre-line",
+                        lineHeight: "14px",
+                      }}
+                    >
+                      {i18n.t("modules.books.book.peakDigital")}
+                    </Typography>
+                  </Box>
+                )}
               </Box>
             )}
 
@@ -171,7 +171,6 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
             >
               {mobile && (
                 <Box
-
                   style={{
                     position: "absolute",
                     top: -24,
@@ -179,7 +178,6 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                     zIndex: 1000,
                     display: "flex",
                     columnGap: "15px",
-
                   }}
                 >
                   <Box
@@ -194,7 +192,7 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                       boxShadow: "2px 2px 2px #00000066",
                     }}
                   >
-                    <BsBook size='1.2rem' color='white' />
+                    <BsBook size="1.2rem" color="white" />
                     <Typography
                       onClick={() => setOpenViewBook(true)}
                       style={{
@@ -220,7 +218,7 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                       boxShadow: "2px 2px 2px #00000066",
                     }}
                   >
-                    <BsPlayCircle size='1.2rem' color='white' />
+                    <BsPlayCircle size="1.2rem" color="white" />
                     <Typography
                       onClick={() => setOpenViewBook(true)}
                       style={{
@@ -250,8 +248,8 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                   }}
                 >
                   <BsStars
-                    size='1.2rem'
-                    color='yellow'
+                    size="1.2rem"
+                    color="yellow"
                     style={{ position: "absolute", left: "-10%", top: "-40%" }}
                   />
                   <Typography style={{ color: "white", fontSize: "12px" }}>
@@ -261,7 +259,7 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                   </Typography>
                 </Box>
               )}
-              <CardMedia image={book?.coverPage} height='auto' />
+              <CardMedia image={book?.coverPage} height="auto" />
             </Box>
           </Box>
         </Grid>
@@ -269,12 +267,12 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
           item
           xs={12}
           md={4}
-          textAlign='start'
+          textAlign="start"
           style={{ display: "flex", flexDirection: "column" }}
         >
           {!vertical && (
             <GStyled.Title
-              fontSize='18px'
+              fontSize="18px"
               style={{ fontWeight: 700, marginTop: mobile ? "20px" : "0px" }}
             >
               {(lang === "PT" ? book?.title : book?.titleEN) || ""}
@@ -282,11 +280,11 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
           )}
           {format === "papper" && (
             <Box
-              display='flex'
-              flexDirection='row'
+              display="flex"
+              flexDirection="row"
               columnGap={1}
-              alignItems='center'
-              mt='10px'
+              alignItems="center"
+              mt="10px"
             >
               <GStyled.SubTitle style={{ fontWeight: 700 }}>
                 {i18n.t("modules.books.book.price")}
@@ -297,7 +295,7 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                 }}
               >
                 €{book?.price}
-              </Typography >
+              </Typography>
               {book?.discount !== 0 && book?.discount && (
                 <div
                   style={{
@@ -307,10 +305,10 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                   }}
                 >
                   <Typography style={{ color: Colors.tealc, fontWeight: 800 }}>
-                    €{(Number(book?.price) * (1 - book?.discount / 100)).toFixed(
+                    €
+                    {(Number(book?.price) * (1 - book?.discount / 100)).toFixed(
                       2
                     )}
-
                   </Typography>
                   <div
                     style={{
@@ -329,8 +327,8 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                     }}
                   >
                     <BsStars
-                      size='1.2rem'
-                      color='yellow'
+                      size="1.2rem"
+                      color="yellow"
                       style={{
                         position: "absolute",
                         left: "-10%",
@@ -347,11 +345,11 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
           )}
           {format === "digital" && (
             <Box
-              display='flex'
-              flexDirection='row'
+              display="flex"
+              flexDirection="row"
               columnGap={1}
-              alignItems='center'
-              mt='10px'
+              alignItems="center"
+              mt="10px"
             >
               <GStyled.SubTitle style={{ fontWeight: 700 }}>
                 {i18n.t("modules.books.book.price")}
@@ -374,11 +372,11 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                   }}
                 >
                   <Typography style={{ color: Colors.tealc, fontWeight: 800 }}>
-                    €{(
+                    €
+                    {(
                       Number(book?.digitalPrice) *
                       (1 - book?.discountDigital / 100)
                     ).toFixed(2)}{" "}
-
                   </Typography>
                   <div
                     style={{
@@ -397,8 +395,8 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                     }}
                   >
                     <BsStars
-                      size='1.2rem'
-                      color='yellow'
+                      size="1.2rem"
+                      color="yellow"
                       style={{
                         position: "absolute",
                         left: "-10%",
@@ -415,10 +413,11 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
           )}
 
           <Box
-            display='flex'
-            flexDirection='row'
+            display="flex"
+            flexDirection="row"
             columnGap={1}
-            alignItems='center'
+            alignItems="center"
+            mt="20px"
           >
             <GStyled.SubTitle style={{ fontWeight: 700 }}>
               {i18n.t("modules.books.book.text")}
@@ -426,10 +425,10 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
             <Typography>{book?.author}</Typography>
           </Box>
           <Box
-            display='flex'
-            flexDirection='row'
+            display="flex"
+            flexDirection="row"
             columnGap={1}
-            alignItems='center'
+            alignItems="center"
           >
             <GStyled.SubTitle style={{ fontWeight: 700 }}>
               {i18n.t("modules.books.book.design")}
@@ -437,10 +436,10 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
             <Typography>{book?.designer}</Typography>
           </Box>
           <Box
-            display='flex'
-            flexDirection='row'
+            display="flex"
+            flexDirection="row"
             columnGap={1}
-            alignItems='center'
+            alignItems="center"
           >
             <GStyled.SubTitle style={{ fontWeight: 700 }}>
               {i18n.t("modules.books.book.translation")}
@@ -449,10 +448,10 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
           </Box>
           {format === "papper" && book?.pages && (
             <Box
-              display='flex'
-              flexDirection='row'
+              display="flex"
+              flexDirection="row"
               columnGap={1}
-              alignItems='center'
+              alignItems="center"
             >
               <GStyled.SubTitle style={{ fontWeight: 700 }}>
                 {i18n.t("modules.books.book.pages")}
@@ -462,22 +461,23 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
           )}
 
           <Box
-            display='flex'
-            flexDirection='row'
+            display="flex"
+            flexDirection="row"
             columnGap={1}
-            alignItems='center'
+            alignItems="center"
           >
             <GStyled.SubTitle style={{ fontWeight: 700 }}>
               {i18n.t("modules.books.book.language")}
             </GStyled.SubTitle>
             <Typography>{book?.language}</Typography>
           </Box>
+
           {format === "papper" && book?.weight && (
             <Box
-              display='flex'
-              flexDirection='row'
+              display="flex"
+              flexDirection="row"
               columnGap={1}
-              alignItems='center'
+              alignItems="center"
             >
               <GStyled.SubTitle style={{ fontWeight: 700 }}>
                 {i18n.t("modules.books.book.size")}
@@ -488,32 +488,64 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
 
           {book?.caracteristics?.length > 0 && (
             <Box
-              display='flex'
-              flexDirection='row'
+              display="flex"
+              flexDirection="row"
               columnGap={1}
-              alignItems='center'
+              alignItems="center"
             >
               <GStyled.SubTitle style={{ fontWeight: 700 }}>
                 {i18n.t("modules.books.book.caracteristics")}
               </GStyled.SubTitle>
-              <div style={{ display: "flex", columnGap: "8px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  columnGap: "8px",
+                }}
+              >
                 {book?.caracteristics?.map((item, pos) => (
-                  <div
-                    key={pos}
-
-                  >
-                    <Tag label={lang === "EN"
-                      ? caracteristics.find((obj: any) => obj["value"] === item)
-                        ?.title || ""
-                      : caracteristics.find((obj: any) => obj["value"] === item)
-                        ?.titlePT || ""} />
-
+                  <div key={pos}>
+                    <Tag
+                      inverted
+                      label={
+                        lang === "EN"
+                          ? caracteristics.find(
+                              (obj: any) => obj["value"] === item
+                            )?.title || ""
+                          : caracteristics.find(
+                              (obj: any) => obj["value"] === item
+                            )?.titlePT || ""
+                      }
+                    />
                   </div>
                 ))}
               </div>
             </Box>
           )}
-
+          <div style={{ marginTop: "40px" }}>
+            {format === "papper" ? (
+              <div
+                style={{
+                  padding: "20px",
+                  border: `dashed 2px black`,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: "6px",
+                  marginTop: "20px",
+                }}
+              >
+                <Typography style={{ fontSize: "20px", fontWeight: 800 }}>
+                  {i18n.t("modules.books.book.availableStores")}
+                </Typography>
+              </div>
+            ) : (
+              <Button
+                label={i18n.t("modules.books.book.addToCart")}
+                onClick={handleAddToCart}
+                leftIcon={<FiShoppingCart size="1.5rem" color="white" />}
+              />
+            )}
+          </div>
           <div
             style={{ display: "flex", marginTop: "20px", columnGap: "10px" }}
           >
@@ -546,47 +578,6 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
               </Typography>
             )}
           </div>
-          {format === "papper" ? (
-            <div
-              style={{
-                padding: "20px",
-                border: `dashed 2px black`,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: "6px",
-                marginTop: "20px"
-              }}
-            >
-              <Typography style={{ fontSize: "20px", fontWeight: 800 }}>
-                {i18n.t("modules.books.book.availableStores")}
-              </Typography>
-            </div>
-          ) : (
-            <div
-              onClick={handleAddToCart}
-              style={{
-                cursor: "pointer",
-                marginTop: "30px",
-                columnGap: "10px",
-                justifyContent: "center",
-                textAlign: "center",
-                display: "flex",
-                color: "white",
-                backgroundColor: Colors.tealc,
-                borderRadius: "10px",
-                padding: "10px",
-              }}
-            >
-              <FiShoppingCart size='1.5rem' color='white' />
-              <Typography
-                fontSize='18px'
-                style={{ textTransform: "uppercase", fontWeight: 800, color: "white" }}
-              >
-                {i18n.t("modules.books.book.addToCart")}
-              </Typography>
-            </div>
-          )}
         </Grid>
       </Grid>
     </div>
