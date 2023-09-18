@@ -262,6 +262,10 @@ export const content = {
             tooltipCopy: "Content copied to the clipboard",
           },
         },
+        buySuccess: {
+          title: "Your buying process was successfull!",
+          text: "Good reading! You will receive by e-mail any existent offer code",
+        },
       },
       notifications: {
         success: {

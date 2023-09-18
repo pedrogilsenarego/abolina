@@ -259,6 +259,10 @@ export const content = {
             imagesDelete: "Imagens para apagar",
           },
         },
+        buySuccess: {
+          title: "Compra efectuada com sucesso!",
+          text: "Boa leitura! Receberá por e-mail todo e qualquer código de oferta",
+        },
       },
       popups: {
         readOnApp: {
