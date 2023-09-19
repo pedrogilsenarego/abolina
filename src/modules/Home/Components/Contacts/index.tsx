@@ -1,19 +1,22 @@
+import { Box, Container } from "@mui/material";
+import { Form, Formik } from "formik";
+import { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import ButtonForm from "../../../../components/Button";
+import Textfield from "../../../../components/Inputs/TextFieldForm";
+import Loader from "../../../../components/Loader";
+import { api } from "../../../../constants/backend";
+import { Colors } from "../../../../constants/pallette";
+import {
+  disableLoading,
+  enableLoading,
+  scrollToContacts,
+  updateFailNotification,
+} from "../../../../slicer/general/general.actions";
+import { State } from "../../../../slicer/types";
 import * as GStyled from "../../../../styles";
 import { i18n } from "../../../../translations/i18n";
-import { Container, Box } from "@mui/material";
-import Textfield from "../../../../components/Inputs/TextFieldForm";
-import { Form, Formik } from "formik";
 import { FORM_VALIDATION } from "./validation";
-import ButtonForm from "../../../../components/Button";
-import { useEffect, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { State } from "../../../../slicer/types";
-import { scrollToContacts, updateFailNotification } from "../../../../slicer/general/general.actions";
-import { Colors } from "../../../../constants/pallette";
-import { api } from "../../../../constants/backend";
-import { enableLoading } from "../../../../slicer/general/general.actions";
-import { disableLoading } from "../../../../slicer/general/general.actions";
-import Loader from "../../../../components/Loader";
 
 const Contacts = () => {
   const INITIAL_FORM_STATE = {
@@ -27,7 +30,7 @@ const Contacts = () => {
   const scrollToContactsL = useSelector<State>(
     (state) => state.general.scrollToContacts
   );
-  const loading = useSelector<State, boolean>((state) => state.general.loading)
+  const loading = useSelector<State, boolean>((state) => state.general.loading);
   const handleScrollToContacts = () => {
     if (null !== contactsRef.current) {
       window.scrollTo({
@@ -46,7 +49,7 @@ const Contacts = () => {
   }, [scrollToContactsL]);
 
   const handleSubmit = async (values: any) => {
-    dispatch(enableLoading())
+    dispatch(enableLoading());
     await fetch(api.sendEmailLocal, {
       method: "POST",
       headers: {
@@ -58,75 +61,77 @@ const Contacts = () => {
         return res.json();
       })
       .catch((error) => {
-        dispatch(updateFailNotification("Error Sending the message"))
-        dispatch(disableLoading())
+        dispatch(updateFailNotification("Error Sending the message"));
+        dispatch(disableLoading());
         console.error("Error:", error);
       })
       .finally(() => {
-        dispatch(disableLoading())
-      })
+        dispatch(disableLoading());
+      });
   };
 
   return (
     <Container
-      maxWidth='md'
+      maxWidth="md"
       style={{ justifyContent: "center" }}
       ref={contactsRef}
     >
-      <GStyled.Title>
+      <GStyled.Title style={{ textAlign: "center" }}>
         {i18n.t("modules.home.contacts.contactsTitle")}
       </GStyled.Title>
       <Formik
         initialValues={{ ...INITIAL_FORM_STATE }}
         onSubmit={(values, { resetForm }) => {
           handleSubmit(values);
-          resetForm()
+          resetForm();
         }}
         validationSchema={FORM_VALIDATION}
       >
-        {loading ? <Loader color="white" customMessage="Sending the message" /> : <Form>
-          <Box
-            rowGap={2}
-            display='flex'
-            flexDirection='column'
-            sx={{ mt: "20px" }}
-          >
-            <Box>
-              <Textfield
-                label={i18n.t("modules.home.contacts.form.name")}
-                name='name'
+        {loading ? (
+          <Loader color="white" customMessage="Sending the message" />
+        ) : (
+          <Form>
+            <Box
+              rowGap={2}
+              display="flex"
+              flexDirection="column"
+              sx={{ mt: "20px" }}
+            >
+              <Box>
+                <Textfield
+                  label={i18n.t("modules.home.contacts.form.name")}
+                  name="name"
+                />
+              </Box>
+              <Box>
+                <Textfield
+                  label={i18n.t("modules.home.contacts.form.email")}
+                  name="email"
+                />
+              </Box>
+              <Box>
+                <Textfield
+                  label={i18n.t("modules.home.contacts.form.subject")}
+                  name="subject"
+                />
+              </Box>
+              <Box>
+                <Textfield
+                  label={i18n.t("modules.home.contacts.form.description")}
+                  name="description"
+                  multiline
+                  rows={6}
+                />
+              </Box>
+            </Box>
+            <Box display="flex" justifyContent="start" sx={{ mt: "20px" }}>
+              <ButtonForm
+                formik
+                label={i18n.t("modules.home.contacts.form.send")}
               />
             </Box>
-            <Box>
-              <Textfield
-                label={i18n.t("modules.home.contacts.form.email")}
-                name='email'
-              />
-            </Box>
-            <Box>
-              <Textfield
-                label={i18n.t("modules.home.contacts.form.subject")}
-                name='subject'
-              />
-            </Box>
-            <Box>
-              <Textfield
-                label={i18n.t("modules.home.contacts.form.description")}
-                name='description'
-                multiline
-                rows={6}
-              />
-            </Box>
-          </Box>
-          <Box display='flex' justifyContent='start' sx={{ mt: "20px" }}>
-            <ButtonForm
-              formik
-
-              label={i18n.t("modules.home.contacts.form.send")}
-            />
-          </Box>
-        </Form>}
-
+          </Form>
+        )}
       </Formik>
     </Container>
   );

@@ -1,37 +1,49 @@
+import {
+  Box,
+  Container,
+  Grid,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import { useSelector } from "react-redux";
+import sobreOndas from "../../assets/images/sobreOndas.svg";
+import { Colors } from "../../constants/pallette";
+import { State } from "../../slicer/types";
 import * as GStyled from "../../styles";
 import { i18n } from "../../translations/i18n";
-import {
-  Typography,
-  Container,
-  Box,
-  Grid,
-  useTheme,
-  useMediaQuery,
-} from "@mui/material";
-import sobreOndas from "../../assets/images/sobreOndas.svg";
 import CardMine from "./CardMine";
-import { Colors } from "../../constants/pallette";
-import { useSelector } from "react-redux";
-import { State } from "../../slicer/types";
 
 const About = () => {
   const Theme = useTheme();
   const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
-  const vertical = useSelector<State, boolean>((state) => state.general.positionVertical)
+  const vertical = useSelector<State, boolean>(
+    (state) => state.general.positionVertical
+  );
 
   return (
-    <Box style={{ position: "relative", paddingBottom: "15vh", paddingLeft: vertical ? "8px" : "0px", paddingRight: vertical ? "8px" : "0px", }}>
+    <Box
+      style={{
+        position: "relative",
+        paddingBottom: "20vh",
+        paddingLeft: vertical ? "8px" : "0px",
+        paddingRight: vertical ? "8px" : "0px",
+      }}
+    >
       <Container>
-        <Box display='flex' justifyContent='start'>
-          <Typography color={Colors.tealc} fontSize='28px' fontWeight={800}>
+        <Box display="flex" justifyContent="start">
+          <Typography color={Colors.tealc} fontSize="28px" fontWeight={800}>
             {i18n.t("menuBar.about")}
           </Typography>
         </Box>
-        <Typography align="justify" style={{ marginTop: "20px", whiteSpace: "pre-line" }}>
+        <Typography
+          align="justify"
+          style={{ marginTop: "20px", whiteSpace: "pre-line" }}
+        >
           {i18n.t("modules.about.mainText")}
         </Typography>
         <Container
-          maxWidth='lg'
+          maxWidth="lg"
           style={{
             paddingLeft: mobile ? "0px" : "80px",
             paddingRight: mobile ? "0px" : "80px",
@@ -40,13 +52,16 @@ const About = () => {
           <Grid
             container
             columnSpacing={8}
-            alignItems='top'
+            alignItems="top"
             rowSpacing={4}
             style={{ marginTop: "40px" }}
           >
             <Grid item xs={12} md={4}>
               <CardMine duration={0.3}>
-                <GStyled.Title fontSize='16px' style={{ fontWeight: 700 }}>
+                <GStyled.Title
+                  fontSize="16px"
+                  style={{ fontWeight: 700, textAlign: "center" }}
+                >
                   {i18n.t("modules.about.secondTitle")}
                 </GStyled.Title>
                 <Typography style={{ marginTop: "10px" }}>
@@ -57,7 +72,10 @@ const About = () => {
 
             <Grid item xs={12} md={4}>
               <CardMine duration={0.5}>
-                <GStyled.Title fontSize='16px' style={{ fontWeight: 700 }}>
+                <GStyled.Title
+                  fontSize="16px"
+                  style={{ fontWeight: 700, textAlign: "center" }}
+                >
                   {i18n.t("modules.about.thirdTitle")}
                 </GStyled.Title>
                 <Typography
@@ -69,7 +87,10 @@ const About = () => {
             </Grid>
             <Grid item xs={12} md={4}>
               <CardMine duration={0.7}>
-                <GStyled.Title fontSize='16px' style={{ fontWeight: 700 }}>
+                <GStyled.Title
+                  fontSize="16px"
+                  style={{ fontWeight: 700, textAlign: "center" }}
+                >
                   {i18n.t("modules.about.forthTitle")}
                 </GStyled.Title>
                 <Typography
@@ -86,7 +107,8 @@ const About = () => {
         style={{
           position: "absolute",
           zIndex: -10,
-          bottom: 0,
+          bottom: "-5%",
+
           width: "100%",
           backgroundImage: `url(${sobreOndas})`,
           backgroundSize: "cover",

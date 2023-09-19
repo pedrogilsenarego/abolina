@@ -1,22 +1,22 @@
 import {
   Box,
-  Grid,
   Container,
-  useTheme,
-  useMediaQuery,
+  Grid,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
+import { useState } from "react";
 import { FiMenu } from "react-icons/fi";
+import { useSelector } from "react-redux";
+import { LANG } from "../../../constants/lang";
 import { Colors } from "../../../constants/pallette";
+import useChangeLang from "../../../hooks/usechangeLang";
+import { State } from "../../../slicer/types";
 import Left from "./Left";
-import Right from "./Right";
 import Middle from "./Middle";
 import MobileMainDrawer from "./MobileMainDrawer";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { State } from "../../../slicer/types";
-import { LANG } from "../../../constants/lang";
-import useChangeLang from "../../../hooks/usechangeLang";
+import Right from "./Right";
 
 const Menu = () => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
@@ -34,14 +34,14 @@ const Menu = () => {
         sx={{
           flexGrow: 1,
           backgroundColor: Colors.tealc,
-          boxShadow: `0px 8px 8px #00000033`,
+          boxShadow: `0px 8px 14px #00000033`,
         }}
       >
         <Container>
           <Grid
             container
-            justifyContent='space-between'
-            alignItems='center'
+            justifyContent="space-between"
+            alignItems="center"
             style={{ height: "80px" }}
           >
             <Grid item>
@@ -77,24 +77,24 @@ const Menu = () => {
           <Grid
             container
             columnSpacing={1}
-            justifyContent='center'
-            alignItems='center'
+            justifyContent="center"
+            alignItems="center"
             style={{ height: "65px" }}
           >
             <Grid item xs={2}>
               <Box display="flex">
                 <FiMenu
-                  size='2em'
-                  color='white'
+                  size="2em"
+                  color="white"
                   onClick={() => setOpenDrawer(!openDrawer)}
                 />
               </Box>
             </Grid>
             <Grid item xs={8}>
-              <Left height='auto' />
+              <Left height="auto" />
             </Grid>
-            <Grid item xs={2} textAlign='right' onClick={handleChangeLang}>
-              <Typography color='whitesmoke' fontSize='18px' fontWeight={700}>
+            <Grid item xs={2} textAlign="right" onClick={handleChangeLang}>
+              <Typography color="whitesmoke" fontSize="18px" fontWeight={700}>
                 {lang}
               </Typography>
             </Grid>

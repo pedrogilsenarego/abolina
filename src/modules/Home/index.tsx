@@ -54,7 +54,7 @@ const Home = () => {
             position: "absolute",
             zIndex: -10,
             width: "100%",
-            bottom: mobile ? "-55%" : "-40%",
+            bottom: mobile ? "-55%" : "-50%",
             backgroundImage: `url(${homeOndas1})`,
             backgroundSize: mobile ? "320%" : "100%",
             backgroundPosition: "center center",

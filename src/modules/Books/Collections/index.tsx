@@ -23,6 +23,7 @@ const Collections = ({ collections, collection, setCollection }: Props) => {
           textDecoration: "underline",
           textAlign: "left",
           marginRight: "20%",
+          textTransform: "uppercase",
         }}
       >
         {i18n.t("modules.books.collections")}

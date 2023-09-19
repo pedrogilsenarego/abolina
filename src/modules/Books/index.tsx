@@ -63,7 +63,7 @@ const Books = () => {
           justifyContent="center"
           columnSpacing="50px"
           style={{
-            marginTop: vertical ? "20px" : "60px",
+            marginTop: vertical ? "20px" : "40px",
             paddingLeft: vertical ? "8px" : "0px",
             paddingRight: vertical ? "8px" : "0px",
           }}
