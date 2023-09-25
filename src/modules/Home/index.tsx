@@ -67,7 +67,7 @@ const Home = () => {
         <Container maxWidth="lg" style={{ justifyContent: "center" }}>
           <Box
             sx={{
-              mt: mobile ? "30px" : "140px",
+              mt: mobile ? "50px" : "140px",
               paddingLeft: vertical ? "8px" : "0px",
               paddingRight: vertical ? "8px" : "0px",
             }}
