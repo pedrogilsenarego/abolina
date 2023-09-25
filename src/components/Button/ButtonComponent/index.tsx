@@ -42,7 +42,9 @@ const ButtonComponent = ({
           borderRadius: borderRadius || "10px",
           paddingLeft: "20px",
           paddingRight: "20px",
-          border: `solid 2px ${Pallette.primary}`,
+          border: hover
+            ? `solid 2px ${Pallette.constrast}`
+            : `solid 2px ${Pallette.primary}`,
         }}
         onClick={onClick}
       >

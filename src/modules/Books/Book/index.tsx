@@ -1,16 +1,16 @@
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { Book } from "../../../slicer/books/books.types";
+import { useState } from "react";
 import { BsCartPlus, BsStars } from "react-icons/bs";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import CardMedia from "../../../components/CardMedia";
+import Icon from "../../../components/Icon";
+import { Colors } from "../../../constants/pallette";
+import { ROUTE_PATHS } from "../../../constants/routes";
+import { Book } from "../../../slicer/books/books.types";
 import { State } from "../../../slicer/types";
 import { i18n } from "../../../translations/i18n";
-import CardMedia from "../../../components/CardMedia";
-import { useNavigate } from "react-router";
-import { ROUTE_PATHS } from "../../../constants/routes";
-import { Colors } from "../../../constants/pallette";
 import useBooks from "../useBooks";
-import { useState } from "react";
-import Icon from "../../../components/Icon";
 
 interface Props {
   book: Book;
@@ -58,8 +58,8 @@ const BookComponent = ({ book }: Props) => {
           }}
         >
           <BsStars
-            size='1.2rem'
-            color='yellow'
+            size="1.2rem"
+            color="yellow"
             style={{
               position: "absolute",
               left: "-10%",
@@ -75,7 +75,7 @@ const BookComponent = ({ book }: Props) => {
       )}
       <CardMedia
         height={mobile ? "170" : "200"}
-        borderRadius='0px'
+        borderRadius="0px"
         image={book?.coverPage}
         onClick={() =>
           navigate(
@@ -89,7 +89,7 @@ const BookComponent = ({ book }: Props) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "start",
-          padding: mobile ? "5px" : "10px",
+          padding: mobile ? "5px" : "4px 10px",
           position: "relative",
         }}
       >
@@ -129,22 +129,25 @@ const BookComponent = ({ book }: Props) => {
         >
           Nº {book?.number}
         </Typography>
-        <Typography style={{
-          width: "100%",
-          fontWeight: 800, textAlign: "left", whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-        }}>
+        <Typography
+          style={{
+            width: "100%",
+            fontWeight: 800,
+            textAlign: "left",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
           {(lang === "PT" ? book?.title : book?.titleEN) || ""}
         </Typography>
         <div
           style={{
-            marginTop: "0px",
+            marginTop: "-10px",
+            marginBottom: "-8px",
             display: "flex",
             width: "100%",
             justifyContent: "space-between",
-            alignItems: "center",
-            minHeight: mobile ? "0px" : "50px",
           }}
         >
           <div
@@ -184,7 +187,7 @@ const BookComponent = ({ book }: Props) => {
                 fontWeight: 800,
                 fontSize: mobile ? "10px" : "12px",
                 marginLeft: "-5px",
-                marginTop: "3px"
+                marginTop: "3px",
               }}
             >
               {i18n.t("modules.books.book.digital")}

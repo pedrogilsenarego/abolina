@@ -1,3 +1,4 @@
+import { Colors } from "../../../constants/pallette";
 import { Title } from "../../../styles";
 import { i18n } from "../../../translations/i18n";
 import CollectionsItem from "../CollectionsItem";
@@ -15,19 +16,25 @@ const Collections = ({ collections, collection, setCollection }: Props) => {
         width: "100%",
         display: "flex",
         flexDirection: "column",
-        alignItems: "end",
+        alignItems: "start",
       }}
     >
-      <Title
+      <div
         style={{
-          textDecoration: "underline",
-          textAlign: "left",
-          marginRight: "20%",
-          textTransform: "uppercase",
+          borderBottom: `solid 2px ${Colors.tealc}`,
+          marginRight: "30%",
         }}
       >
-        {i18n.t("modules.books.collections")}
-      </Title>
+        <Title
+          style={{
+            textAlign: "left",
+            marginBottom: "-5px",
+            textTransform: "uppercase",
+          }}
+        >
+          {i18n.t("modules.books.collections")}
+        </Title>
+      </div>
       <div
         style={{
           width: "100%",

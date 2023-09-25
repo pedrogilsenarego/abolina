@@ -107,8 +107,7 @@ const About = () => {
         style={{
           position: "absolute",
           zIndex: -10,
-          bottom: "-5%",
-
+          bottom: "0%",
           width: "100%",
           backgroundImage: `url(${sobreOndas})`,
           backgroundSize: "cover",

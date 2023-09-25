@@ -34,7 +34,7 @@ const Menu = () => {
         sx={{
           flexGrow: 1,
           backgroundColor: Colors.tealc,
-          boxShadow: `0px 8px 14px #00000033`,
+          boxShadow: `0px 12px 18px #00000033`,
         }}
       >
         <Container>

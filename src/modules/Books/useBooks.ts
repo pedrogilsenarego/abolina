@@ -28,6 +28,12 @@ const useBooks = () => {
 
   const collections = organizeBooks(initialBooks);
 
+  useEffect(() => {
+    setCollection(collections[0].name);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const filterBooks = (): Book[] => {
     if (collection === "") return initialBooks;
     return initialBooks.filter((book) => book.collections === collection);

@@ -26,7 +26,7 @@ const TopBar = () => {
         style={{ padding: vertical ? "5px 0px 5px 0px" : "6px 0px 6px 0px" }}
       >
         <Grid item>
-          <Typography fontSize={mobile ? "12px" : "14px"} color={Colors.tealc}>
+          <Typography fontSize={mobile ? "12px" : "16px"} color={Colors.tealc}>
             {i18n.t("topBar.memory")}
           </Typography>
         </Grid>
@@ -39,7 +39,7 @@ const TopBar = () => {
           }}
         />
         <Grid item>
-          <Typography fontSize={mobile ? "12px" : "14px"} color={Colors.tealc}>
+          <Typography fontSize={mobile ? "12px" : "16px"} color={Colors.tealc}>
             {i18n.t("topBar.hope")}
           </Typography>
         </Grid>
@@ -52,7 +52,7 @@ const TopBar = () => {
           }}
         />
         <Grid item>
-          <Typography fontSize={mobile ? "12px" : "14px"} color={Colors.tealc}>
+          <Typography fontSize={mobile ? "12px" : "16px"} color={Colors.tealc}>
             {i18n.t("topBar.audacity")}
           </Typography>
         </Grid>

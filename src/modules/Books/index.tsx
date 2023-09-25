@@ -38,7 +38,7 @@ const Books = () => {
             style={{
               width: "100%",
               display: "flex",
-              justifyContent: "end",
+              justifyContent: "start",
               alignItems: "center",
             }}
           >
@@ -61,9 +61,9 @@ const Books = () => {
         <Grid
           container
           justifyContent="center"
-          columnSpacing="50px"
+          columnSpacing="30px"
           style={{
-            marginTop: vertical ? "20px" : "40px",
+            marginTop: vertical ? "20px" : "0px",
             paddingLeft: vertical ? "8px" : "0px",
             paddingRight: vertical ? "8px" : "0px",
           }}
@@ -83,6 +83,7 @@ const Books = () => {
             columnSpacing="0px"
             rowSpacing="0px"
             item
+            mt="30px"
             xs={vertical ? 12 : 7}
           >
             <div

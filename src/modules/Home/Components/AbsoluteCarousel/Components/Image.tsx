@@ -47,7 +47,7 @@ const Image = ({ item, pos, onClick, position, width, mobile }: Props) => {
           boxShadow: !mobile
             ? hover && position === "central"
               ? "0 24px 30px 0px #00000026"
-              : "0 4px 16px 0px #00000040"
+              : "0 8px 16px 0px #00000040"
             : "inherit",
           borderRadius: "4px",
           transition: transition,

@@ -26,6 +26,7 @@ const CollectionsItem = ({ pos, item, setCollection, collection }: Props) => {
 
   useEffect(() => {
     if (collection !== item.name) setOpen(false);
+    else setOpen(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [collection]);
 
@@ -51,14 +52,14 @@ const CollectionsItem = ({ pos, item, setCollection, collection }: Props) => {
             display: "flex",
             flexDirection: "column",
 
-            width: "80%",
-            justifyContent: "end",
+            width: "70%",
+            justifyContent: "start",
           }}
         >
           <Typography
             style={{
               fontSize: "18px",
-              textAlign: "right",
+              textAlign: "left",
               whiteSpace: "nowrap",
               overflow: "hidden",
               textOverflow: "ellipsis",
@@ -77,8 +78,8 @@ const CollectionsItem = ({ pos, item, setCollection, collection }: Props) => {
                   key={pos}
                   style={{
                     width: "100%",
-                    textAlign: "right",
-                    marginRight: "40px",
+                    textAlign: "left",
+                    marginLeft: "20px",
                     cursor: "pointer",
                     whiteSpace: "nowrap",
                     overflow: "hidden",
