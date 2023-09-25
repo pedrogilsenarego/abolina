@@ -159,7 +159,7 @@ const Right = () => {
         <Grid item>
           <Box>
             <Typography
-              fontSize={mobile ? "24px" : "12px"}
+              fontSize={mobile ? "24px" : "16px"}
               color="white"
               fontWeight={800}
               onClick={() => {
@@ -170,7 +170,7 @@ const Right = () => {
               PT
             </Typography>
             <Typography
-              fontSize={mobile ? "24px" : "12px"}
+              fontSize={mobile ? "24px" : "16px"}
               color="white"
               fontWeight={800}
               onClick={() => {

@@ -60,7 +60,7 @@ const ButtonComponent = ({
           })}
         <Typography
           style={{
-            fontSize: "12px",
+            fontSize: "16px",
             fontWeight: 700,
             textTransform: "uppercase",
             color:

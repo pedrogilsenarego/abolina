@@ -47,7 +47,7 @@ const Checkout = () => {
             alignItems: "center",
           }}
         >
-          <AiOutlineArrowLeft color={Colors.tealc} size="0.8rem" />
+          <AiOutlineArrowLeft color={Colors.tealc} size="1rem" />
           <Typography
             style={{
               textAlign: "start",
@@ -196,7 +196,7 @@ const Checkout = () => {
               justifyContent: "center",
             }}
           >
-            <AiOutlineArrowLeft color={Colors.tealc} size="0.8rem" />
+            <AiOutlineArrowLeft color={Colors.tealc} size="1rem" />
             <Typography
               style={{
                 textAlign: "start",
@@ -225,7 +225,7 @@ const Checkout = () => {
             >
               {i18n.t("modules.checkout.checkout")}
             </Typography>
-            <AiOutlineArrowRight color={Colors.tealc} size="0.8rem" />
+            <AiOutlineArrowRight color={Colors.tealc} size="1rem" />
           </div>
         </div>
         <Grid container columnSpacing="60px" style={{ marginTop: "20px" }}>

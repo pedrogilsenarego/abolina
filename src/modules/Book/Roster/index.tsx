@@ -65,11 +65,12 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
         >
           <AiOutlineArrowLeft
             color={Colors.tealc}
-            size="0.8rem"
-            style={{ position: "absolute", left: "-15px" }}
+            size="1rem"
+            style={{ position: "absolute", left: "-15px", top: "10px" }}
           />
           <Typography
             style={{
+              marginLeft: "3px",
               paddingTop: "5px",
               textAlign: "start",
               textTransform: "uppercase",
@@ -107,8 +108,9 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                     position: "absolute",
                     padding: "8px",
                     borderRadius: "3px",
+                    justifyContent: "center",
                     right: "-5px",
-
+                    minWidth: "110px",
                     zIndex: 900,
                     cursor: "pointer",
                     alignItems: "center",
@@ -140,6 +142,7 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                       padding: "8px",
                       borderRadius: "3px",
                       cursor: "pointer",
+                      minWidth: "110px",
                       display: "flex",
                       alignItems: "center",
                       columnGap: "5px",
@@ -242,14 +245,14 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                     backgroundColor: Colors.tealc,
                     top: "88%",
                     left: vertical ? "-5px" : "-5px",
-                    padding: "3px 20px 3px 20px",
+                    padding: "1px 10px 1px 10px",
                     borderRadius: "3px",
                     boxShadow: "1px 1px 1px #00000066",
                   }}
                 >
                   <BsStars
                     size="1.2rem"
-                    color="yellow"
+                    color={Colors.brilho}
                     style={{ position: "absolute", left: "-10%", top: "-40%" }}
                   />
                   <Typography style={{ color: "white", fontSize: "12px" }}>
@@ -328,7 +331,7 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                   >
                     <BsStars
                       size="1.2rem"
-                      color="yellow"
+                      color={Colors.brilho}
                       style={{
                         position: "absolute",
                         left: "-10%",
@@ -396,7 +399,7 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                   >
                     <BsStars
                       size="1.2rem"
-                      color="yellow"
+                      color={Colors.brilho}
                       style={{
                         position: "absolute",
                         left: "-10%",

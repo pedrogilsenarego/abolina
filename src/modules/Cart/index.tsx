@@ -40,7 +40,7 @@ const Cart = () => {
               alignItems: "center",
             }}
           >
-            <AiOutlineArrowLeft color={Colors.tealc} size="0.8rem" />
+            <AiOutlineArrowLeft color={Colors.tealc} size="1rem" />
             <Typography
               style={{
                 paddingTop: "5px",
@@ -72,7 +72,7 @@ const Cart = () => {
             >
               {i18n.t("modules.cart.finalize")}
             </Typography>
-            <AiOutlineArrowRight color={Colors.tealc} size="0.8rem" />
+            <AiOutlineArrowRight color={Colors.tealc} size="1rem" />
           </div>
         </div>
         <Grid container style={{ marginTop: "40px" }}>
@@ -290,7 +290,7 @@ const Cart = () => {
           >
             <AiOutlineArrowLeft
               color={Colors.tealc}
-              size="0.8rem"
+              size="1rem"
               style={{ position: "absolute", left: "-15px" }}
             />
             <Typography
@@ -327,7 +327,7 @@ const Cart = () => {
             </Typography>
             <AiOutlineArrowRight
               color={Colors.tealc}
-              size="0.8rem"
+              size="1rem"
               style={{ position: "absolute", right: "-15px" }}
             />
           </div>

@@ -95,7 +95,7 @@ const BookC = () => {
           paddingRight: vertical ? "8px" : "0px",
         }}
       >
-        <Container maxWidth="md">
+        <Container maxWidth="lg">
           <Roster
             book={book}
             setOpenViewBook={setOpenViewBook}

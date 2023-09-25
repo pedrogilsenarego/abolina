@@ -29,7 +29,7 @@ const useBooks = () => {
   const collections = organizeBooks(initialBooks);
 
   useEffect(() => {
-    setCollection(collections[0].name);
+    setCollection(collections[0]?.name || "");
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

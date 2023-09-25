@@ -59,7 +59,7 @@ const About = () => {
             <Grid item xs={12} md={4}>
               <CardMine duration={0.3}>
                 <GStyled.Title
-                  fontSize="16px"
+                  fontSize="24px"
                   style={{ fontWeight: 700, textAlign: "center" }}
                 >
                   {i18n.t("modules.about.secondTitle")}
@@ -73,7 +73,7 @@ const About = () => {
             <Grid item xs={12} md={4}>
               <CardMine duration={0.5}>
                 <GStyled.Title
-                  fontSize="16px"
+                  fontSize="24px"
                   style={{ fontWeight: 700, textAlign: "center" }}
                 >
                   {i18n.t("modules.about.thirdTitle")}
@@ -88,7 +88,7 @@ const About = () => {
             <Grid item xs={12} md={4}>
               <CardMine duration={0.7}>
                 <GStyled.Title
-                  fontSize="16px"
+                  fontSize="24px"
                   style={{ fontWeight: 700, textAlign: "center" }}
                 >
                   {i18n.t("modules.about.forthTitle")}

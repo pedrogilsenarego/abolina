@@ -52,14 +52,14 @@ const BookComponent = ({ book }: Props) => {
             backgroundColor: Colors.tealc,
             top: "10%",
             left: vertical ? "0px" : "-5px",
-            padding: "3px 20px 3px 20px",
+            padding: "1px 10px 1px 10px",
             borderRadius: "3px",
             boxShadow: "1px 1px 1px #00000066",
           }}
         >
           <BsStars
             size="1.2rem"
-            color="yellow"
+            color={Colors.brilho}
             style={{
               position: "absolute",
               left: "-10%",
@@ -139,7 +139,7 @@ const BookComponent = ({ book }: Props) => {
             textOverflow: "ellipsis",
           }}
         >
-          {(lang === "PT" ? book?.title : book?.titleEN) || ""}
+          {(lang === "PT" ? book?.title : book?.titleEN) || "No title"}
         </Typography>
         <div
           style={{
@@ -147,6 +147,8 @@ const BookComponent = ({ book }: Props) => {
             marginBottom: "-8px",
             display: "flex",
             width: "100%",
+
+            minHeight: "40px",
             justifyContent: "space-between",
           }}
         >
@@ -163,6 +165,7 @@ const BookComponent = ({ book }: Props) => {
                   fontSize: mobile ? "12px" : "16px",
                   textDecoration: "line-through",
                   fontWeight: 800,
+                  marginBottom: "-3px",
                 }}
               >
                 €{book?.price}
@@ -188,6 +191,7 @@ const BookComponent = ({ book }: Props) => {
                 fontSize: mobile ? "10px" : "12px",
                 marginLeft: "-5px",
                 marginTop: "3px",
+                marginBottom: "-3px",
               }}
             >
               {i18n.t("modules.books.book.digital")}
@@ -203,7 +207,7 @@ const BookComponent = ({ book }: Props) => {
                 icon={
                   <BsCartPlus
                     color={Colors.darkGrey}
-                    size={mobile ? "1.5rem" : "1.6rem"}
+                    size={mobile ? "1.2rem" : "1.4rem"}
                   />
                 }
               />
