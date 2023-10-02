@@ -3,6 +3,7 @@ import { useState } from "react";
 import { CgSmartphone } from "react-icons/cg";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import Popup from "../../../../components/BasicPopup";
+import Tooltip from "../../../../components/Tooltip/Tooltip";
 import { Colors, Pallette } from "../../../../constants/pallette";
 import { Title } from "../../../../styles";
 import { i18n } from "../../../../translations/i18n";
@@ -13,31 +14,36 @@ const ReadOnApp = () => {
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
   const renderLaptop = () => {
     return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "start",
-          alignItems: "center",
-          cursor: "pointer",
-        }}
-        onClick={() => setOpenReadPopup(true)}
+      <Tooltip
+        title={i18n.t("modules.cart.table.readOnAppTooltip")}
+        placement="bottom"
       >
-        <CgSmartphone
-          size="2rem"
-          color={Colors.tealc}
-          style={{ marginLeft: "-8px" }}
-        />
-        <Typography
+        <div
           style={{
-            textTransform: "uppercase",
-            color: Colors.tealc,
-            fontSize: "12px",
+            display: "flex",
+            justifyContent: "start",
+            alignItems: "center",
+            cursor: "pointer",
           }}
+          onClick={() => setOpenReadPopup(true)}
         >
-          {i18n.t("modules.cart.table.readOnApp")}
-        </Typography>
-        <IoMdInformationCircleOutline color={Pallette.primary} size="1rem" />
-      </div>
+          <CgSmartphone
+            size="2rem"
+            color={Colors.tealc}
+            style={{ marginLeft: "-8px" }}
+          />
+          <Typography
+            style={{
+              textTransform: "uppercase",
+              color: Colors.tealc,
+              fontSize: "12px",
+            }}
+          >
+            {i18n.t("modules.cart.table.readOnApp")}
+          </Typography>
+          <IoMdInformationCircleOutline color={Pallette.primary} size="1rem" />
+        </div>
+      </Tooltip>
     );
   };
   const renderMobile = () => {

@@ -2,6 +2,7 @@ import { Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useState } from "react";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import Popup from "../../../../components/BasicPopup";
+import Tooltip from "../../../../components/Tooltip/Tooltip";
 import { Pallette } from "../../../../constants/pallette";
 import { Title } from "../../../../styles";
 import { i18n } from "../../../../translations/i18n";
@@ -17,21 +18,26 @@ const Offer = ({ value = 0, forOffer }: Props) => {
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
   const renderLaptop = () => {
     return (
-      <div
-        onClick={() => setOpenOfferPopup(true)}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          paddingLeft: "20px",
-          columnGap: "5px",
-          cursor: "pointer",
-        }}
+      <Tooltip
+        title={i18n.t("modules.cart.table.offerTooltip")}
+        placement="bottom"
       >
-        <Typography color={Pallette.primary} style={{ marginTop: "-2px" }}>
-          {i18n.t("modules.cart.table.offer")}
-        </Typography>
-        <IoMdInformationCircleOutline color={Pallette.primary} size="1rem" />
-      </div>
+        <div
+          onClick={() => setOpenOfferPopup(true)}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            paddingLeft: "20px",
+            columnGap: "5px",
+            cursor: "pointer",
+          }}
+        >
+          <Typography color={Pallette.primary} style={{ marginTop: "-2px" }}>
+            {i18n.t("modules.cart.table.offer")}
+          </Typography>
+          <IoMdInformationCircleOutline color={Pallette.primary} size="1rem" />
+        </div>
+      </Tooltip>
     );
   };
 

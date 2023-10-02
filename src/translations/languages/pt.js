@@ -84,6 +84,7 @@ export const content = {
           applyDiscount: "Aplicar",
           total: "Total:",
           finalize: "Prosseguir Compra",
+
           table: {
             product: "Produto",
             price: "Preço",
@@ -94,6 +95,7 @@ export const content = {
             offerThisBook: "Apenas para Oferta",
             offerCode: "(Sem compras para o próprio)",
             readOnApp: "Leitura na App",
+            readOnAppTooltip: "Disponível apenas na app",
           },
         },
         login: {

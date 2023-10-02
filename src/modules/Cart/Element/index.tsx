@@ -1,10 +1,17 @@
-import { Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Button,
+  Grid,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 import { AiOutlineClose, AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import Incrementor from "../../../components/Incrementor";
 import CheckBox from "../../../components/Inputs/CheckBox";
+import Tooltip from "../../../components/Tooltip/Tooltip";
 import { Colors } from "../../../constants/pallette";
 import {
   deleteProductCart,
@@ -170,6 +177,7 @@ const Element = ({ item, pos, sliderPosition, setSliderPosition }: Props) => {
             </Typography>
             <Typography>{item.product.collections}</Typography>
             <Typography>Nº{item.product.number}</Typography>
+
             <ReadOnApp />
           </div>
         </Grid>
