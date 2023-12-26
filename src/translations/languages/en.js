@@ -94,6 +94,7 @@ export const content = {
             offerThisBook: "It is only to offer",
             offerCode: "(Without a copy for yourself)",
             readOnApp: "Read on App",
+            readOnAppTooltip: "Available only on App",
           },
         },
         login: {
