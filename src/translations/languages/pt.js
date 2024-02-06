@@ -64,6 +64,10 @@ export const content = {
       },
       modules: {
         checkout: {
+          haveAccount: "Já tem conta cliente?",
+          start: "Iniciar sessão",
+          or: "ou",
+          createAccount: "Criar Conta",
           resumePurchase: "Resumo da Compra",
           cartItems: "Artigos no Carrinho",
           itemsTotal: "Valor dos Artigos:",

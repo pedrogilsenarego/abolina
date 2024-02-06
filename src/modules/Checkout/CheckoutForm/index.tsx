@@ -3,6 +3,7 @@ import { Form, Formik } from "formik";
 import { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import ButtonForm from "../../../components/Button";
 import { Icons } from "../../../components/Icons";
 import CheckBox from "../../../components/Inputs/CheckBox";
@@ -10,6 +11,7 @@ import SelectWrapper from "../../../components/Inputs/SelectFormValue";
 import Textfield from "../../../components/Inputs/TextFieldForm";
 import { countryList } from "../../../constants/forms";
 import { Colors } from "../../../constants/pallette";
+import { ROUTE_PATHS } from "../../../constants/routes";
 import { stripeLocal, stripeProduction } from "../../../constants/stripe";
 import { clearCart } from "../../../slicer/cart/cart.actions";
 import { CartProduct } from "../../../slicer/cart/cart.types";
@@ -43,6 +45,7 @@ const CheckoutForm = () => {
   };
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [openForm, setOpenForm] = useState<boolean>(true);
   const [openInvoiceDetails, setOpenInvoiceDetails] = useState<boolean>(true);
   const [openPaymentMethods, setOpenPaymentMethods] = useState<boolean>(true);
@@ -142,6 +145,41 @@ const CheckoutForm = () => {
                     label={i18n.t("forms.checkout.phone")}
                     name="phone"
                   />
+                  {!currentUser && (
+                    <Typography
+                      style={{
+                        fontStyle: "italic",
+                        fontWeight: "bold",
+                        fontSize: "16px",
+                      }}
+                    >
+                      {i18n.t("modules.checkout.haveAccount")}{" "}
+                      <span
+                        onClick={() => navigate(ROUTE_PATHS.LOGIN)}
+                        style={{
+                          cursor: "pointer",
+                          color: Colors.tealc,
+                          textDecoration: "underline",
+                        }}
+                      >
+                        {i18n.t("modules.checkout.start")}
+                      </span>
+                      <span onClick={() => navigate(ROUTE_PATHS.LOGIN)}>
+                        {" "}
+                        {i18n.t("modules.checkout.or")}
+                      </span>
+                      <span
+                        style={{
+                          cursor: "pointer",
+                          color: Colors.tealc,
+                          textDecoration: "underline",
+                        }}
+                      >
+                        {" "}
+                        {i18n.t("modules.checkout.createAccount")}
+                      </span>
+                    </Typography>
+                  )}
                 </>
               )}
               <div
