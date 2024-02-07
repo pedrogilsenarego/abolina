@@ -314,6 +314,11 @@ export const content = {
             "Por favor verifique primeiro a sua conta antes de fazer o login",
         },
       },
+      buySuccess: {
+        title: "Compra efectuada com successo!",
+        text: "Boa leitura!",
+        text2: "Não consigo ler o texto pfv enviar imagens melhores ou o texto",
+      },
       constants: {
         languages: {
           portuguese: "Português",

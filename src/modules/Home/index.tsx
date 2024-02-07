@@ -6,11 +6,12 @@ import {
   useTheme,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import homeOndas1 from "../../assets/images/homeOndas1.svg";
 import homeOndas2 from "../../assets/images/homeOndas2.svg";
+import Popup from "../../components/BasicPopup";
 import Button from "../../components/Button";
 import { Colors } from "../../constants/pallette";
 import { ROUTE_PATHS } from "../../constants/routes";
@@ -28,14 +29,60 @@ const Home = () => {
   const vertical = useSelector<State, boolean>(
     (state) => state.general.positionVertical
   );
+  const location = useLocation();
+  const { buySuccess } = location.state || {};
+  const [openPopup, setOpenPopup] = useState(buySuccess);
 
   useEffect(() => {
     dispatch(fetchCarroussell());
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
+      <Popup openPopup={openPopup} onClose={() => setOpenPopup(false)}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            padding: "20px",
+            paddingBottom: "50px",
+          }}
+        >
+          <Typography
+            style={{
+              color: Colors.tealc,
+              fontWeight: "bold",
+              fontSize: "20px",
+              textAlign: "center",
+            }}
+          >
+            {i18n.t("buySuccess.title")}
+          </Typography>
+
+          <Typography
+            style={{
+              marginTop: "30px",
+              fontWeight: "bold",
+              textAlign: "center",
+            }}
+          >
+            {i18n.t("buySuccess.text")}
+          </Typography>
+          <Typography
+            style={{
+              marginTop: "20px",
+              fontWeight: "bold",
+              textAlign: "center",
+            }}
+          >
+            {i18n.t("buySuccess.text2")}
+          </Typography>
+        </div>
+      </Popup>
       <Box style={{ position: "relative" }}>
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}

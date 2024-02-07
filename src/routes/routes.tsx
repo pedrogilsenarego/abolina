@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AppRoute } from "./types";
 import { ROUTE_PATHS } from "../constants/routes";
-import { lazyWithRetryAndLoader } from "../utils/lazyWithRetry";
-import MainLayout from "../layouts/MainLayout";
-import AdminLayout from "../layouts/AdminLayout";
 import WithAdminAuth from "../hoc/withAdminAuth";
 import WithAuth from "../hoc/withAuth";
+import AdminLayout from "../layouts/AdminLayout";
+import MainLayout from "../layouts/MainLayout";
+import { lazyWithRetryAndLoader } from "../utils/lazyWithRetry";
+import { AppRoute } from "./types";
 
 const Home = lazyWithRetryAndLoader(() => import("../modules/Home"));
 const Books = lazyWithRetryAndLoader(() => import("../modules/Books"));
@@ -23,21 +23,27 @@ const AdminBooksSettings = lazyWithRetryAndLoader(
 const AdminCarroussel = lazyWithRetryAndLoader(
   () => import("../modules/Admin/ManageCarroussel")
 );
-const AdminCollections = lazyWithRetryAndLoader(() => import("../modules/Admin/ManageCollections"))
+const AdminCollections = lazyWithRetryAndLoader(
+  () => import("../modules/Admin/ManageCollections")
+);
 const AdminCollectionsCreate = lazyWithRetryAndLoader(
   () => import("../modules/Admin/ManageCollections/CreateCollection")
 );
 const Login = lazyWithRetryAndLoader(() => import("../modules/Login"));
 const Cart = lazyWithRetryAndLoader(() => import("../modules/Cart"));
 const Checkout = lazyWithRetryAndLoader(() => import("../modules/Checkout"));
-const BuySuccess = lazyWithRetryAndLoader(() => import("../modules/BuySuccess"));
-const ClientManagement = lazyWithRetryAndLoader(() => import("../modules/ClientManagement"));
+const BuySuccess = lazyWithRetryAndLoader(
+  () => import("../modules/BuySuccess")
+);
+const ClientManagement = lazyWithRetryAndLoader(
+  () => import("../modules/ClientManagement")
+);
 
 export const routes: AppRoute[] = [
   {
     path: ROUTE_PATHS.HOME,
     component: (
-      <MainLayout marginBottom='0vh'>
+      <MainLayout marginBottom="0vh">
         <Home />
       </MainLayout>
     ),
@@ -53,7 +59,7 @@ export const routes: AppRoute[] = [
   {
     path: ROUTE_PATHS.BOOKS_BOOK,
     component: (
-      <MainLayout marginBottom='0vh'>
+      <MainLayout marginBottom="0vh">
         <Book />
       </MainLayout>
     ),
@@ -61,7 +67,7 @@ export const routes: AppRoute[] = [
   {
     path: ROUTE_PATHS.ABOUT,
     component: (
-      <MainLayout marginBottom='0vh'>
+      <MainLayout marginBottom="0vh">
         <About />
       </MainLayout>
     ),
@@ -89,21 +95,17 @@ export const routes: AppRoute[] = [
   {
     path: ROUTE_PATHS.CART,
     component: (
-
       <MainLayout noUpScroll>
         <Cart />
       </MainLayout>
-
     ),
   },
   {
     path: ROUTE_PATHS.CHECKOUT,
     component: (
-
       <MainLayout noUpScroll>
         <Checkout />
       </MainLayout>
-
     ),
   },
   {
