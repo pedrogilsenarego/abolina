@@ -45,18 +45,68 @@ const Checkout = () => {
             display: "flex",
             columnGap: "5px",
             alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          <AiOutlineArrowLeft color={Colors.tealc} size="1rem" />
           <Typography
             style={{
               textAlign: "start",
               textTransform: "uppercase",
-              fontSize: "14px",
+              fontSize: "18px",
+              fontWeight: "bold",
               cursor: "pointer",
+              color: Colors.grey,
             }}
           >
             {i18n.t("modules.checkout.backCart")}
+          </Typography>
+          <Typography
+            style={{
+              textAlign: "start",
+              textTransform: "uppercase",
+              fontSize: "18px",
+              fontWeight: "bold",
+              cursor: "pointer",
+              color: Colors.grey,
+            }}
+          >
+            {` > `}
+          </Typography>
+          <Typography
+            style={{
+              textAlign: "start",
+              textTransform: "uppercase",
+              fontSize: "20px",
+              fontWeight: "bold",
+              cursor: "pointer",
+              color: Colors.tealc,
+            }}
+          >
+            {i18n.t("modules.checkout.data")}
+          </Typography>
+          <Typography
+            style={{
+              textAlign: "start",
+              textTransform: "uppercase",
+              fontSize: "18px",
+              fontWeight: "bold",
+              cursor: "pointer",
+              color: Colors.tealc,
+            }}
+          >
+            {` > `}
+          </Typography>
+          <Typography
+            style={{
+              textAlign: "start",
+              textTransform: "uppercase",
+              fontSize: "18px",
+              fontWeight: "bold",
+              cursor: "pointer",
+              color: Colors.grey,
+            }}
+          >
+            {i18n.t("modules.checkout.checkout")}
           </Typography>
         </div>
 
@@ -203,6 +253,7 @@ const Checkout = () => {
                 textTransform: "uppercase",
                 fontSize: "18px",
                 cursor: "pointer",
+                fontWeight: "bold",
               }}
             >
               {i18n.t("modules.checkout.backCart")}
@@ -221,6 +272,7 @@ const Checkout = () => {
                 textTransform: "uppercase",
                 fontSize: "18px",
                 cursor: "pointer",
+                fontWeight: "bold",
               }}
             >
               {i18n.t("modules.checkout.checkout")}
@@ -228,7 +280,24 @@ const Checkout = () => {
             <AiOutlineArrowRight color={Colors.tealc} size="1rem" />
           </div>
         </div>
-        <Grid container columnSpacing="60px" style={{ marginTop: "20px" }}>
+        <Typography
+          style={{
+            textAlign: "center",
+            color: Colors.tealc,
+            textTransform: "uppercase",
+            fontSize: "24px",
+            cursor: "pointer",
+            fontWeight: "bolder",
+            width: "100%",
+          }}
+        >
+          {i18n.t("modules.checkout.title")}
+        </Typography>
+        <Grid
+          container
+          columnSpacing="60px"
+          style={{ marginTop: "30px", padding: "0px 50px" }}
+        >
           <Grid item xs={6}>
             <Elements stripe={stripePromise}>
               <CheckoutForm />
@@ -275,7 +344,6 @@ const Checkout = () => {
               <Typography
                 style={{
                   fontSize: "18px",
-                  fontWeight: 800,
                 }}
               >
                 {i18n.t("modules.checkout.itemsTotal")}
@@ -283,7 +351,6 @@ const Checkout = () => {
               <Typography
                 style={{
                   fontSize: "18px",
-                  fontWeight: 800,
                 }}
               >
                 €{getTotalValue(cartItems)}
@@ -293,7 +360,7 @@ const Checkout = () => {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                marginTop: "20px",
+                marginTop: "10px",
               }}
             >
               <Typography
@@ -311,7 +378,7 @@ const Checkout = () => {
                 €0
               </Typography>
             </div>
-            <Divider />
+            <Divider style={{ marginTop: "20px" }} />
             <div
               style={{
                 display: "flex",
@@ -322,6 +389,7 @@ const Checkout = () => {
               <Typography
                 style={{
                   fontSize: "18px",
+                  fontWeight: "bolder",
                 }}
               >
                 {i18n.t("modules.checkout.total")}

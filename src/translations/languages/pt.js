@@ -64,6 +64,8 @@ export const content = {
       },
       modules: {
         checkout: {
+          title: "Dados para Compra",
+          data: "Dados",
           haveAccount: "Já tem conta cliente?",
           start: "Iniciar sessão",
           or: "ou",
@@ -76,7 +78,7 @@ export const content = {
           contactDetails: "Informação de Contacto",
           invoiceDetails: "Detalhes de Faturação",
           paymentMethods: "Métodos de Pagamento",
-          backCart: "Voltar ao Carrinho",
+          backCart: "Carrinho",
           checkout: "Finalizar",
           books: "Livro(s)",
           forOffer: "para oferta",
@@ -317,7 +319,7 @@ export const content = {
       buySuccess: {
         title: "Compra efectuada com successo!",
         text: "Boa leitura!",
-        text2: "Não consigo ler o texto pfv enviar imagens melhores ou o texto",
+        text2: "Recebera por e-mail todo e qualquer código de oferta",
       },
       constants: {
         languages: {
