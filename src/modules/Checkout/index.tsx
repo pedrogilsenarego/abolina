@@ -315,7 +315,7 @@ const Checkout = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                borderBottom: `2px solid ${Colors.tealc}`,
+                borderBottom: `3px solid ${Colors.tealc}`,
                 marginTop: "20px",
                 paddingBottom: "6px",
                 cursor: "pointer",

@@ -19,6 +19,7 @@ const Element = ({ item, pos }: Props) => {
   const vertical = useSelector<State, boolean>(
     (state) => state.general.positionVertical
   );
+
   const handleUpdateSubtotal = (value: number) => {
     dispatch(updateCart(value, item.product.documentID));
   };
@@ -31,7 +32,7 @@ const Element = ({ item, pos }: Props) => {
         style={{
           paddingTop: "40px",
           paddingBottom: "40px",
-          borderBottom: `solid 2px ${Colors.tealc}`,
+          borderBottom: `solid 3px ${Colors.tealc}`,
         }}
       >
         <Grid
@@ -68,7 +69,12 @@ const Element = ({ item, pos }: Props) => {
         <Grid
           item
           xs={vertical ? 8 : 7}
-          style={{ display: "flex", flexDirection: "column", rowGap: "5px" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            rowGap: "5px",
+            padding: "0px 20px",
+          }}
         >
           <div>
             <Typography
@@ -94,7 +100,23 @@ const Element = ({ item, pos }: Props) => {
               marginTop: "30px",
             }}
           >
-            {" "}
+            <div>
+              <Typography style={{ fontWeight: "bold" }}>
+                {item.value}
+                {i18n.t("modules.checkout.books")}
+              </Typography>
+              <Typography
+                style={{
+                  fontWeight: "bold",
+                  fontStyle: "italic",
+                  color: Colors.tealc,
+                  fontSize: "12px",
+                }}
+              >
+                {item.onlyOffer ? item.value : item.value - 1}
+                {i18n.t("modules.checkout.forOffer")}
+              </Typography>
+            </div>
             <div
               style={{
                 display: "flex",
@@ -104,20 +126,20 @@ const Element = ({ item, pos }: Props) => {
             >
               <CgSmartphone
                 size="2rem"
-                color={Colors.tealc}
+                color={Colors.grey}
                 style={{ marginLeft: "-8px" }}
               />
               <Typography
                 style={{
                   textTransform: "uppercase",
-                  color: Colors.tealc,
+                  color: Colors.grey,
                   fontSize: "12px",
                 }}
               >
                 {i18n.t("modules.cart.table.readOnApp")}
               </Typography>
             </div>
-            <Typography style={{ textAlign: "left" }}>
+            <Typography style={{ textAlign: "left", fontWeight: "bold" }}>
               €{item?.product?.price}
             </Typography>
           </div>

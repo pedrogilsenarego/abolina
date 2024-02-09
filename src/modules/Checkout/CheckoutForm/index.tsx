@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import { Form, Formik } from "formik";
 import { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
@@ -49,6 +49,9 @@ const CheckoutForm = () => {
   const [openForm, setOpenForm] = useState<boolean>(true);
   const [openInvoiceDetails, setOpenInvoiceDetails] = useState<boolean>(true);
   const [openPaymentMethods, setOpenPaymentMethods] = useState<boolean>(true);
+  const vertical = useSelector<State, boolean>(
+    (state) => state.general.positionVertical
+  );
   const cartProducts = useSelector<State, CartProduct[]>(
     (state) => state.cart.cartItems
   );
@@ -150,7 +153,7 @@ const CheckoutForm = () => {
                       style={{
                         fontStyle: "italic",
                         fontWeight: "bold",
-                        fontSize: "16px",
+                        fontSize: vertical ? "14px" : "16px",
                       }}
                     >
                       {i18n.t("modules.checkout.haveAccount")}{" "}
@@ -182,6 +185,7 @@ const CheckoutForm = () => {
                   )}
                 </>
               )}
+              <Divider style={{ height: "3px" }} />
               <div
                 style={{
                   display: "flex",
@@ -205,6 +209,7 @@ const CheckoutForm = () => {
                   <IoIosArrowDown size="1.5rem" />
                 )}
               </div>
+
               {openInvoiceDetails && (
                 <>
                   {" "}
@@ -252,12 +257,14 @@ const CheckoutForm = () => {
                   />
                 </>
               )}
+              <Divider style={{ height: "3px", marginTop: "20px" }} />
             </Box>
           </>
+
           <div
             style={{
               display: "flex",
-              marginTop: "60px",
+              marginTop: "30px",
               padding: "0px 10px",
               justifyContent: "space-between",
               cursor: "pointer",
