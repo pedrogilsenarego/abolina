@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 import ButtonForm from "../../../components/Button";
 import { Icons } from "../../../components/Icons";
 import CheckBox from "../../../components/Inputs/CheckBox";
+import CheckBoxForm from "../../../components/Inputs/CheckBoxForm";
 import SelectWrapper from "../../../components/Inputs/SelectFormValue";
 import Textfield from "../../../components/Inputs/TextFieldForm";
 import { countryList } from "../../../constants/forms";
@@ -25,6 +26,7 @@ interface FormProps extends InvoiceSettings {
   email: string;
   phone: string;
   userId: string;
+  terms: boolean;
 }
 
 const CheckoutForm = () => {
@@ -42,6 +44,7 @@ const CheckoutForm = () => {
     country: currentUser?.invoiceSettings?.country || "",
     taxId: currentUser?.invoiceSettings?.taxId || "",
     userId: currentUser?.id,
+    terms: false,
   };
 
   const dispatch = useDispatch();
@@ -255,6 +258,14 @@ const CheckoutForm = () => {
                     label={i18n.t("modules.clientManagement.invoice.taxId")}
                     name="taxId"
                   />
+                  <CheckBoxForm color={Colors.tealc} name="terms">
+                    <Typography style={{}}>
+                      {i18n.t("modules.clientManagement.invoice.accept")}
+                    </Typography>{" "}
+                    <Typography style={{ textDecoration: "underline" }}>
+                      {i18n.t("modules.clientManagement.invoice.terms")}
+                    </Typography>
+                  </CheckBoxForm>
                 </>
               )}
               <Divider style={{ height: "3px", marginTop: "20px" }} />

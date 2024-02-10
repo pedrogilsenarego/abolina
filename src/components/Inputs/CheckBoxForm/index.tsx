@@ -6,8 +6,9 @@ interface Props {
   label?: string;
   color?: string;
   name: string;
+  children?: React.ReactNode;
 }
-const CheckBox = ({ label, color, name }: Props) => {
+const CheckBox = ({ label, color, name, children }: Props) => {
   const [field, meta, helpers] = useField(name ?? "");
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     helpers.setValue(event.target.checked);
@@ -33,6 +34,12 @@ const CheckBox = ({ label, color, name }: Props) => {
             },
           }}
         />
+        <div
+          style={{ cursor: "pointer", display: "flex", columnGap: "4px" }}
+          onClick={() => helpers.setValue(!field.value)}
+        >
+          {children}
+        </div>
         <Typography
           style={{ cursor: "pointer" }}
           onClick={() => helpers.setValue(!field.value)}
@@ -49,7 +56,7 @@ const CheckBox = ({ label, color, name }: Props) => {
         }}
       >
         {meta.touched && meta.error && (
-          <Typography color='error'>{meta.error}</Typography>
+          <Typography color="error">{meta.error}</Typography>
         )}
       </div>
     </div>

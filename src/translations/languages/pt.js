@@ -172,6 +172,8 @@ export const content = {
             postalCode: "Código Postal*",
             city: "Cidade*",
             taxId: "Contribuinte / NIF*",
+            accept: "Aceitar",
+            terms: "termos e condições",
           },
           coupons: {
             title: "Cupões Disponíveis",
