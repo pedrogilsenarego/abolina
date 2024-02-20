@@ -49,9 +49,10 @@ const CheckoutForm = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [openForm, setOpenForm] = useState<boolean>(true);
-  const [openInvoiceDetails, setOpenInvoiceDetails] = useState<boolean>(true);
-  const [openPaymentMethods, setOpenPaymentMethods] = useState<boolean>(true);
+  const [openForm, setOpenForm] = useState<"contact" | "invoice" | "payment">(
+    "contact"
+  );
+
   const vertical = useSelector<State, boolean>(
     (state) => state.general.positionVertical
   );
@@ -111,7 +112,7 @@ const CheckoutForm = () => {
           justifyContent: "space-between",
           cursor: "pointer",
         }}
-        onClick={() => setOpenForm(!openForm)}
+        onClick={() => setOpenForm("contact")}
       >
         <Typography
           style={{ textAlign: "left", fontSize: "24px", fontWeight: 800 }}
@@ -141,7 +142,7 @@ const CheckoutForm = () => {
               flexDirection="column"
               sx={{ mt: "20px", pb: "20px", padding: "0px 10px" }}
             >
-              {openForm && (
+              {openForm === "contact" && (
                 <>
                   <Textfield
                     label={i18n.t("forms.checkout.email")}
@@ -195,7 +196,7 @@ const CheckoutForm = () => {
                   justifyContent: "space-between",
                   cursor: "pointer",
                 }}
-                onClick={() => setOpenInvoiceDetails(!openInvoiceDetails)}
+                onClick={() => setOpenForm("invoice")}
               >
                 <Typography
                   style={{
@@ -206,14 +207,14 @@ const CheckoutForm = () => {
                 >
                   {i18n.t("modules.checkout.invoiceDetails")}
                 </Typography>
-                {openInvoiceDetails ? (
+                {openForm === "invoice" ? (
                   <IoIosArrowUp size="1.5rem" />
                 ) : (
                   <IoIosArrowDown size="1.5rem" />
                 )}
               </div>
 
-              {openInvoiceDetails && (
+              {openForm === "invoice" && (
                 <>
                   {" "}
                   <div
@@ -280,20 +281,20 @@ const CheckoutForm = () => {
               justifyContent: "space-between",
               cursor: "pointer",
             }}
-            onClick={() => setOpenPaymentMethods(!openPaymentMethods)}
+            onClick={() => setOpenForm("payment")}
           >
             <Typography
               style={{ textAlign: "left", fontSize: "24px", fontWeight: 800 }}
             >
               {i18n.t("modules.checkout.paymentMethods")}
             </Typography>
-            {openPaymentMethods ? (
+            {openForm === "payment" ? (
               <IoIosArrowUp size="1.5rem" />
             ) : (
               <IoIosArrowDown size="1.5rem" />
             )}
           </div>
-          {openPaymentMethods && (
+          {openForm === "payment" && (
             <div
               style={{
                 marginTop: "60px",
