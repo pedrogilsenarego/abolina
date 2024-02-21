@@ -66,6 +66,7 @@ const GeneralData = () => {
               "modules.clientManagement.general.changePasswordHelperText"
             )}
             <b style={{ color: Colors.tealc, textDecoration: "underline" }}>
+              {" "}
               {currentUser.email}
             </b>
             {i18n.t(
@@ -128,8 +129,10 @@ const GeneralData = () => {
             <Typography
               onClick={() => setChangePassword(true)}
               style={{
+                color: Colors.tealc,
+                width: "100%",
                 cursor: "pointer",
-                textAlign: "left",
+                textAlign: "right",
                 fontWeight: "bold",
               }}
             >

@@ -242,7 +242,7 @@ export const content = {
             name: "User Name",
             edit: "Edit",
             submit: "Save Settings",
-            changePassword: "Confirmation of password",
+            changePassword: "Change here your password",
             changePasswordTitle: "Change Password",
             confirmChangePassword: "Confirm",
             changePasswordHelperText: "An email will be sent to",
