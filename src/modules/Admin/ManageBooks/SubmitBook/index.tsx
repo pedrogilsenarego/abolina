@@ -47,8 +47,6 @@ const SubmitBook = ({ edit = false }: Props) => {
   const [coverPageValue, setCoverPageValue] = useState<any>(undefined);
   const [touchedContent, setTouchedContent] = useState<boolean>(false);
   const [touchedCoverPage, setTouchedCoverPage] = useState<boolean>(false);
-  const [papperBook, setPapperBook] = useState<boolean>(false);
-  const [digitalBook, setDigitalBook] = useState<boolean>(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loading = useSelector<State, boolean>((state) => state.general.loading);
@@ -432,77 +430,62 @@ const SubmitBook = ({ edit = false }: Props) => {
                         />
                       </Box>
                     </Grid>
-                    <CheckBox
-                      color={Colors.tealc}
-                      value={papperBook}
-                      setValue={setPapperBook}
-                      label={<Typography>Papper Book</Typography>}
-                    />
 
-                    {papperBook && (
-                      <>
-                        <Grid item xs={3}>
-                          <Box>
-                            <Textfield
-                              label={i18n.t(
-                                "modules.admin.manageBooks.submitBook.price"
-                              )}
-                              name="price"
-                            />
-                          </Box>
-                        </Grid>
-                        <Grid item xs={3}>
-                          <Box>
-                            <Textfield
-                              label={i18n.t(
-                                "modules.admin.manageBooks.submitBook.weight"
-                              )}
-                              name="weight"
-                            />
-                          </Box>
-                        </Grid>
-                        <Grid item xs={3}>
-                          <Box>
-                            <Textfield
-                              label={i18n.t(
-                                "modules.admin.manageBooks.submitBook.size"
-                              )}
-                              name="size"
-                            />
-                          </Box>
-                        </Grid>
-
-                        <Grid item xs={3}>
-                          <Box>
-                            <Textfield
-                              label={i18n.t(
-                                "modules.admin.manageBooks.submitBook.pages"
-                              )}
-                              name="pages"
-                            />
-                          </Box>
-                        </Grid>
-                      </>
-                    )}
-                    <CheckBox
-                      color={Colors.tealc}
-                      value={digitalBook}
-                      setValue={setDigitalBook}
-                      label={<Typography>Digital Book</Typography>}
-                    />
-                  </Grid>
-                  {digitalBook && (
                     <>
+                      <Grid item xs={6}>
+                        <Typography>Paper book</Typography>
+                        <Box>
+                          <Textfield
+                            label={i18n.t(
+                              "modules.admin.manageBooks.submitBook.price"
+                            )}
+                            name="price"
+                          />
+                        </Box>
+                      </Grid>
                       <Grid item xs={3}>
                         <Box>
                           <Textfield
-                            label="Digital Price"
-                            name="digitalPrice"
+                            label={i18n.t(
+                              "modules.admin.manageBooks.submitBook.weight"
+                            )}
+                            name="weight"
+                          />
+                        </Box>
+                      </Grid>
+                      <Grid item xs={3}>
+                        <Box>
+                          <Textfield
+                            label={i18n.t(
+                              "modules.admin.manageBooks.submitBook.size"
+                            )}
+                            name="size"
+                          />
+                        </Box>
+                      </Grid>
+
+                      <Grid item xs={3}>
+                        <Box>
+                          <Textfield
+                            label={i18n.t(
+                              "modules.admin.manageBooks.submitBook.pages"
+                            )}
+                            name="pages"
                           />
                         </Box>
                       </Grid>
                     </>
-                  )}
+                  </Grid>
+
+                  <>
+                    <Grid item xs={6}>
+                      <Typography>Digital Book</Typography>
+                      <Box>
+                        <Textfield label="Digital Price" name="digitalPrice" />
+                      </Box>
+                    </Grid>
+                  </>
+
                   <Grid item xs={6}>
                     <Box style={{ width: "350px" }}>
                       <Textfield

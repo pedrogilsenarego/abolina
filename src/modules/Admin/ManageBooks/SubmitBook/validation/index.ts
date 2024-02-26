@@ -18,7 +18,6 @@ const fileSize = (max: number, unit = "MB"): Yup.TestConfig<FileList> => ({
   test: (f: FileList) => f && f[0]?.size <= 1000000 * max,
 });
 
-
 export const FORM_VALIDATION = Yup.object().shape({
   title: Yup.string().required(`${i18n.t("forms.required")}`),
   author: Yup.string().required(`${i18n.t("forms.required")}`),
@@ -29,41 +28,35 @@ export const FORM_VALIDATION = Yup.object().shape({
   language: Yup.string().required(`${i18n.t("forms.required")}`),
   weight: Yup.string(),
   size: Yup.string(),
-  price: Yup.number(),
-  digitalPrice: Yup.number(),
+  price: Yup.number().nullable(),
+  digitalPrice: Yup.number().nullable(),
   resume: Yup.string().required(`${i18n.t("forms.required")}`),
   resumeEN: Yup.string().required(`${i18n.t("forms.required")}`),
-  pages: Yup.number(),
-  coverPage2: Yup
-  .mixed()
-  .required(`${i18n.t("forms.required")}`)
-  .test(fileSize(0.5))
-  .test(
-    onlySpecifiTypes(
-       [
+  pages: Yup.number().nullable(),
+  coverPage2: Yup.mixed()
+    .required(`${i18n.t("forms.required")}`)
+    .test(fileSize(0.5))
+    .test(
+      onlySpecifiTypes([
         // 'image/jpeg',
         // 'image/jpg',
         // 'image/gif',
         // 'image/png',
         // 'image/pdf',
-        "image/webp"
-      ]
-    )
-  ),
-  content: Yup
-  .mixed()
-  .required(`${i18n.t("forms.required")}`)
-  .test(fileSize(0.5))
-  .test(
-    onlySpecifiTypes(
-       [
+        "image/webp",
+      ])
+    ),
+  content: Yup.mixed()
+    .required(`${i18n.t("forms.required")}`)
+    .test(fileSize(0.5))
+    .test(
+      onlySpecifiTypes([
         // 'image/jpeg',
         // 'image/jpg',
         // 'image/gif',
         // 'image/png',
         // 'image/pdf',
-        "image/webp"
-      ]
-    )
-  ),
+        "image/webp",
+      ])
+    ),
 });
