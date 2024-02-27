@@ -237,7 +237,7 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
                 </Box>
               )}
 
-              {book?.newBook !== "undefined" && (
+              {book?.newBook !== "soon" && (
                 <Box
                   style={{
                     position: "absolute",
@@ -524,63 +524,87 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
               </div>
             </Box>
           )}
-          <div style={{ marginTop: "40px" }}>
-            {format === "papper" ? (
+          {book.newBook !== "soon" ? (
+            <>
+              <div style={{ marginTop: "40px" }}>
+                {format === "papper" ? (
+                  <div
+                    style={{
+                      padding: "20px",
+                      border: `dashed 2px black`,
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRadius: "6px",
+                      marginTop: "20px",
+                    }}
+                  >
+                    <Typography style={{ fontSize: "20px", fontWeight: 800 }}>
+                      {i18n.t("modules.books.book.availableStores")}
+                    </Typography>
+                  </div>
+                ) : (
+                  <Button
+                    label={i18n.t("modules.books.book.addToCart")}
+                    onClick={handleAddToCart}
+                    leftIcon={<FiShoppingCart size="1.5rem" color="white" />}
+                  />
+                )}
+              </div>
+
               <div
                 style={{
-                  padding: "20px",
-                  border: `dashed 2px black`,
                   display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderRadius: "6px",
                   marginTop: "20px",
+                  columnGap: "10px",
                 }}
               >
-                <Typography style={{ fontSize: "20px", fontWeight: 800 }}>
-                  {i18n.t("modules.books.book.availableStores")}
-                </Typography>
+                {book?.price && (
+                  <Typography
+                    onClick={() => setFormat("papper")}
+                    style={{
+                      textDecoration:
+                        format === "papper" ? "underline" : "none",
+                      fontSize: "20px",
+                      cursor: "pointer",
+                      color: format === "papper" ? Colors.tealc : "black",
+                      fontWeight: 800,
+                    }}
+                  >
+                    {i18n.t("modules.books.book.papper")}
+                  </Typography>
+                )}
+                {book?.digitalPrice && (
+                  <Typography
+                    onClick={() => setFormat("digital")}
+                    style={{
+                      textDecoration:
+                        format === "digital" ? "underline" : "none",
+                      fontSize: "20px",
+                      cursor: "pointer",
+                      color: format === "digital" ? Colors.tealc : "black",
+                      fontWeight: 800,
+                    }}
+                  >
+                    {i18n.t("modules.books.book.digital")}
+                  </Typography>
+                )}
               </div>
-            ) : (
-              <Button
-                label={i18n.t("modules.books.book.addToCart")}
-                onClick={handleAddToCart}
-                leftIcon={<FiShoppingCart size="1.5rem" color="white" />}
-              />
-            )}
-          </div>
-          <div
-            style={{ display: "flex", marginTop: "20px", columnGap: "10px" }}
-          >
-            {book?.price && (
-              <Typography
-                onClick={() => setFormat("papper")}
-                style={{
-                  textDecoration: format === "papper" ? "underline" : "none",
-                  fontSize: "20px",
-                  cursor: "pointer",
-                  color: format === "papper" ? Colors.tealc : "black",
-                  fontWeight: 800,
-                }}
-              >
-                {i18n.t("modules.books.book.papper")}
-              </Typography>
-            )}
-            {book?.digitalPrice && (
-              <Typography
-                onClick={() => setFormat("digital")}
-                style={{
-                  textDecoration: format === "digital" ? "underline" : "none",
-                  fontSize: "20px",
-                  cursor: "pointer",
-                  color: format === "digital" ? Colors.tealc : "black",
-                  fontWeight: 800,
-                }}
-              >
-                {i18n.t("modules.books.book.digital")}
-              </Typography>
-            )}
-          </div>
+            </>
+          ) : (
+            <div
+              style={{
+                border: `solid 2px ${Colors.tealc}`,
+                marginTop: "20px",
+                borderRadius: "10px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Typography>This book will be ready soon</Typography>
+            </div>
+          )}
         </Grid>
       </Grid>
     </div>

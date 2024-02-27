@@ -13,7 +13,6 @@ import { Colors } from "../../constants/pallette";
 import { fetchBookThenCollection } from "../../slicer/books/books.actions";
 import { Book } from "../../slicer/books/books.types";
 import { State } from "../../slicer/types";
-import LeafThrough from "./LeafThrough";
 import PeekDigital from "./PeekDigital";
 import Roster from "./Roster";
 import TheCollection from "./TheCollection";
