@@ -138,14 +138,13 @@ function MyAlbum({ fullScreen, setFullScreen }) {
           width: "100%",
           height: "100%",
           padding: "120px 0px",
-          position: "relative",
 
           display: zoom ? "flex" : undefined,
           justifyContent: zoom ? "center" : undefined,
         }}
       >
         {!fullScreen && !mobileRotated && (
-          <Box style={{ position: "absolute", right: 10, top: 10 }}>
+          <Box style={{ position: "absolute", right: "20px", top: "90px" }}>
             <MdFullscreen
               size={mobileRotated ? "2rem" : "2.5rem"}
               color={Colors.tealcDark}
