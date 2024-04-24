@@ -147,7 +147,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
           <Box style={{ position: "absolute", right: "20px", top: "90px" }}>
             <MdFullscreen
               size={mobileRotated ? "2rem" : "2.5rem"}
-              color={Colors.tealcDark}
+              color={"#7f7f7f"}
               style={{ cursor: "pointer" }}
               onClick={() => setFullScreen(true)}
             />
