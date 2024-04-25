@@ -52,15 +52,23 @@ const Popup = ({
         onClose={onClose}
       >
         {title && (
-          <DialogTitle>
-            <div style={{ textAlign: "center" }}>
+          <DialogTitle sx={{ padding: "20px 20px 10px 20px" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                textAlign: "center",
+                alignItems: "end",
+              }}
+            >
               <Typography
                 component="div"
                 style={{
-                  fontSize: "28px",
+                  fontSize: "26px",
                   color: Colors.tealc,
                   fontWeight: 700,
-                  letterSpacing: "3px",
+                  letterSpacing: "0px",
+                  lineHeight: "26px",
                 }}
               >
                 {title}
