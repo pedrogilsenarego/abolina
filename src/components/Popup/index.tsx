@@ -12,7 +12,7 @@ import {
 import { Colors } from "../../constants/pallette";
 import Button from "./ButtonPopup";
 import { Actions } from "./types";
-
+import "./index.css";
 interface Props {
   children: JSX.Element;
   title?: string;
@@ -52,7 +52,13 @@ const Popup = ({
         onClose={onClose}
       >
         {title && (
-          <DialogTitle sx={{ padding: "20px 20px 10px 20px" }}>
+          <DialogTitle
+            className="gradient-border"
+            sx={{
+              padding: "20px 20px 10px 20px",
+              borderBottom: "solid 0px #009ca6",
+            }}
+          >
             <div
               style={{
                 display: "flex",
