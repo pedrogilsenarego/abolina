@@ -52,39 +52,35 @@ const Popup = ({
         onClose={onClose}
       >
         {title && (
-          <DialogTitle
+          <div
             className="gradient-border"
-            sx={{
+            style={{
               padding: "20px 20px 10px 20px",
-              borderBottom: "solid 0px #009ca6",
+              borderBottom: "solid 0px #009ca600",
+              display: "flex",
+              justifyContent: "center",
+              textAlign: "center",
+              alignItems: "end",
             }}
           >
-            <div
+            <Typography
+              component="div"
               style={{
-                display: "flex",
-                justifyContent: "center",
-                textAlign: "center",
-                alignItems: "end",
+                fontSize: "26px",
+                color: Colors.tealc,
+                fontWeight: 700,
+                letterSpacing: "0px",
+                lineHeight: "26px",
               }}
             >
-              <Typography
-                component="div"
-                style={{
-                  fontSize: "26px",
-                  color: Colors.tealc,
-                  fontWeight: 700,
-                  letterSpacing: "0px",
-                  lineHeight: "26px",
-                }}
-              >
-                {title}
-              </Typography>
-            </div>
-          </DialogTitle>
+              {title}
+            </Typography>
+          </div>
         )}
         <DialogContent
           dividers
           style={{
+            borderTop: "solid 0px black",
             color: "white",
             overflow: "hidden",
             msOverflowStyle: "none",

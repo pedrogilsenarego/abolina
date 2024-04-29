@@ -189,19 +189,19 @@ function MyAlbum({ fullScreen, setFullScreen }) {
               top: "47%",
               left: "50%",
               transform: "translateX(-50%)",
-              width: width * 2.3,
+              width: "100%",
               zIndex: 1000,
             }}
           >
             <FiChevronLeft
-              size="50px"
+              size="100px"
               color={page > 0 ? Colors.tealc : Colors.greyTransparent}
               style={{ cursor: "pointer" }}
               onClick={() => handleMove("left")}
             />
 
             <FiChevronRight
-              size="50px"
+              size="100px"
               color={
                 page < listImages.length + 5
                   ? Colors.tealc
