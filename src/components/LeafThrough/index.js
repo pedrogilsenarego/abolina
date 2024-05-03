@@ -351,7 +351,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
             </motion.div>
           </div>
         )}
-        {page !== 0 && page !== listImages.length && (
+        {page !== 0 && page !== listImages.length - 1 && (
           <div
             style={{
               position: mobileRotated ? "inherit" : "absolute",
@@ -368,8 +368,8 @@ function MyAlbum({ fullScreen, setFullScreen }) {
                 fontWeight: "bold",
               }}
             >
-              {i18n.t("modules.books.viewBook.page")} {page - 1}-{page} /{" "}
-              {listImages.length - 4}
+              {i18n.t("modules.books.viewBook.page")} {page}-{page + 1} /{" "}
+              {listImages.length - 2}
             </p>
           </div>
         )}
