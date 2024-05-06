@@ -358,7 +358,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
               width: "70vw",
               marginTop: mobileRotated ? "10px" : "0px",
               left: 50,
-              bottom: 20,
+              bottom: 10,
             }}
           >
             <p
