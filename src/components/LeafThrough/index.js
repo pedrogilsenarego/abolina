@@ -115,10 +115,12 @@ function MyAlbum({ fullScreen, setFullScreen }) {
         bookRef.current.pageFlip().flipPrev();
         return;
       }
-      if (page === 0) setCenterBook(false);
-      if (page === listImages.length - 3) setCenterBook("inversed");
-      bookRef.current.pageFlip().flipNext();
-      return;
+      if (direction === "right") {
+        if (page === 0) setCenterBook(false);
+        if (page === listImages.length - 3) setCenterBook("inversed");
+        bookRef.current.pageFlip().flipNext();
+        return;
+      }
     }, [50]);
   };
 
@@ -126,7 +128,8 @@ function MyAlbum({ fullScreen, setFullScreen }) {
     if (isMounted) {
       if (page === 0) setCenterBook("normal");
       if (page === listImages.length) setCenterBook("inversed");
-      if (page > 0 && page < listImages.length) setCenterBook(false);
+
+      if (page > 0 && page < listImages.length - 3) setCenterBook(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
