@@ -61,8 +61,8 @@ function MyAlbum({ fullScreen, setFullScreen }) {
   const mobileRotated = useMediaQuery(theme.breakpoints.down(800));
   const storeBook = useSelector((state) => state?.books?.book || {});
   const windowSize = useRef([window.innerWidth, window.innerHeight]);
-  const width = (windowSize.current[0] / 4.5).toFixed(0) || 400;
-  const height = width * 1.18;
+  const width = 560; //(windowSize.current[0] / 4.5).toFixed(0) || 400;
+  const height = width; //width * 1.18;
 
   useEffect(() => {
     setBook(storeBook);
