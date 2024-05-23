@@ -55,15 +55,6 @@ const BookC = () => {
         onClose={() => setOpenViewBook(false)}
         fullScreen={fullScreen}
         title={lang === "PT" ? book?.title : book?.titleEN}
-        // actions={
-        //   [
-        //     {
-        //       title: "Close Book",
-        //       onClick: () => setOpenViewBook(false)
-        //     }
-        //   ]
-        //<LeafThrough fullScreen={fullScreen} setFullScreen={setFullScreen} />
-        // }
       >
         <MyAlbum fullScreen={fullScreen} setFullScreen={setFullScreen} />
       </Popup>

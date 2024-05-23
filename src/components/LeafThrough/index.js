@@ -61,7 +61,9 @@ function MyAlbum({ fullScreen, setFullScreen }) {
   const mobileRotated = useMediaQuery(theme.breakpoints.down(800));
   const storeBook = useSelector((state) => state?.books?.book || {});
   const windowSize = useRef([window.innerWidth, window.innerHeight]);
-  const width = 560; //(windowSize.current[0] / 4.5).toFixed(0) || 400;
+  const width = mobileRotated
+    ? (windowSize.current[0] / 2.8).toFixed(0) || 400
+    : (windowSize.current[0] / 3.5).toFixed(0) || 560; //(windowSize.current[0] / 4.5).toFixed(0) || 400;
   const height = width; //width * 1.18;
 
   useEffect(() => {
@@ -140,7 +142,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
         style={{
           width: "100%",
           height: "100%",
-          padding: "120px 0px",
+          padding: mobileRotated ? "0px" : "120px 0px",
 
           display: zoom ? "flex" : undefined,
           justifyContent: zoom ? "center" : undefined,
@@ -220,21 +222,21 @@ function MyAlbum({ fullScreen, setFullScreen }) {
             style={{
               transition: !isMounted ? "none" : "transform 1s ease-in-out",
               transform:
-                centerBook === "normal"
+                centerBook === "normal" && !mobileRotated
                   ? `translate(-${width / 2}px, 0%)`
-                  : centerBook === "inversed"
+                  : centerBook === "inversed" && !mobileRotated
                   ? `translate(${width / 2}px, 0%)`
                   : `translate(0%, 0%)`,
             }}
           >
             <HTMLFlipBook
-              width={width}
-              height={height}
+              width={mobileRotated ? width * 2 : width}
+              height={mobileRotated ? height * 2 : height}
               minWidth={315}
               maxWidth={1000}
               minHeight={420}
               maxHeight={1350}
-              showCover={true}
+              showCover={mobileRotated ? false : true}
               onChangeState={(e) => setState(e.data)}
               flippingTime={1200}
               style={{ margin: "0 auto" }}
@@ -247,60 +249,72 @@ function MyAlbum({ fullScreen, setFullScreen }) {
               onInit={() => setIsMounted(true)}
               mobileScrollSupport={true}
             >
-              {listImages.map((item, index) => {
-                switch (index) {
-                  case 0:
-                    return (
-                      <PageCover
-                        image={item}
-                        onClick={() => {
-                          if (state !== "flipping") {
-                            setCenterBook(false);
-                          }
-                        }}
+              {mobileRotated
+                ? listImages.map((item, index) => (
+                    <Page>
+                      <img
+                        src={item}
+                        alt=""
+                        width="100%"
+                        height="100%"
+                        objectFit="cover"
                       />
-                    );
-                  case 1:
-                    return (
-                      <PageCover
-                        image={item}
-                        onClick={() => {
-                          setCenterBook("normal");
-                        }}
-                      />
-                    );
-                  case listImages.length - 2:
-                    return (
-                      <PageCover
-                        image={item}
-                        onClick={() => {
-                          setCenterBook("inversed");
-                        }}
-                      />
-                    );
-                  case listImages.length - 1:
-                    return (
-                      <PageCover
-                        image={item}
-                        onClick={() => {
-                          setCenterBook(false);
-                        }}
-                      />
-                    );
-                  default:
-                    return (
-                      <Page>
-                        <img
-                          src={item}
-                          alt=""
-                          width="100%"
-                          height="100%"
-                          objectFit="cover"
-                        />
-                      </Page>
-                    );
-                }
-              })}
+                    </Page>
+                  ))
+                : listImages.map((item, index) => {
+                    switch (index) {
+                      case 0:
+                        return (
+                          <PageCover
+                            image={item}
+                            onClick={() => {
+                              if (state !== "flipping") {
+                                setCenterBook(false);
+                              }
+                            }}
+                          />
+                        );
+                      case 1:
+                        return (
+                          <PageCover
+                            image={item}
+                            onClick={() => {
+                              setCenterBook("normal");
+                            }}
+                          />
+                        );
+                      case listImages.length - 2:
+                        return (
+                          <PageCover
+                            image={item}
+                            onClick={() => {
+                              setCenterBook("inversed");
+                            }}
+                          />
+                        );
+                      case listImages.length - 1:
+                        return (
+                          <PageCover
+                            image={item}
+                            onClick={() => {
+                              setCenterBook(false);
+                            }}
+                          />
+                        );
+                      default:
+                        return (
+                          <Page>
+                            <img
+                              src={item}
+                              alt=""
+                              width="100%"
+                              height="100%"
+                              objectFit="cover"
+                            />
+                          </Page>
+                        );
+                    }
+                  })}
             </HTMLFlipBook>
           </div>
         ) : (
@@ -310,7 +324,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
               style={{
                 height: height,
 
-                width: width * 2,
+                width: mobileRotated ? width : width * 2,
                 overflow: "hidden",
                 position: "relative",
                 cursor: "grabbing",
@@ -354,7 +368,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
             </motion.div>
           </div>
         )}
-        {page !== 0 && page !== listImages.length - 1 && (
+        {((page !== 0 && page !== listImages.length - 1) || mobileRotated) && (
           <div
             style={{
               position: mobileRotated ? "inherit" : "absolute",
@@ -371,8 +385,9 @@ function MyAlbum({ fullScreen, setFullScreen }) {
                 fontWeight: "bold",
               }}
             >
-              {i18n.t("modules.books.viewBook.page")} {page}-{page + 1} /{" "}
-              {listImages.length - 2}
+              {i18n.t("modules.books.viewBook.page")}{" "}
+              {page + (mobileRotated ? 1 : 0)}
+              {!mobileRotated && `-${page + 1}`} / {listImages.length - 2}
             </p>
           </div>
         )}
