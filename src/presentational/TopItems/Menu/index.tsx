@@ -14,7 +14,8 @@ import Right from "./Right";
 const Menu = () => {
   const [openDrawer, setOpenDrawer] = useState<boolean>(false);
   const Theme = useTheme();
-  const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
+
+  const mobile = useMediaQuery(Theme.breakpoints.down("md"));
   const navigate = useNavigate();
 
   const laptopRender = () => {
