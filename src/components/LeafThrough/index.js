@@ -368,7 +368,8 @@ function MyAlbum({ fullScreen, setFullScreen }) {
             </motion.div>
           </div>
         )}
-        {((page !== 0 && page !== listImages.length - 1) || mobileRotated) && (
+
+        {!mobileRotated && page !== 0 && page !== listImages.length - 1 && (
           <div
             style={{
               position: mobileRotated ? "inherit" : "absolute",
@@ -388,6 +389,29 @@ function MyAlbum({ fullScreen, setFullScreen }) {
               {i18n.t("modules.books.viewBook.page")}{" "}
               {page + (mobileRotated ? 1 : 0)}
               {!mobileRotated && `-${page + 1}`} / {listImages.length - 2}
+            </p>
+          </div>
+        )}
+        {mobileRotated && (
+          <div
+            style={{
+              position: mobileRotated ? "inherit" : "absolute",
+              width: "70vw",
+              marginTop: mobileRotated ? "10px" : "0px",
+              left: 50,
+              bottom: 10,
+            }}
+          >
+            <p
+              style={{
+                color: "white",
+                fontSize: mobileRotated ? "18px" : "22px",
+                fontWeight: "bold",
+              }}
+            >
+              {i18n.t("modules.books.viewBook.page")}{" "}
+              {page + (mobileRotated ? 1 : 0)}
+              {!mobileRotated && `-${page + 1}`} / {listImages.length}
             </p>
           </div>
         )}
