@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import Button from "../../../components/Button";
-import TestePage from "../../../components/LeafThrough";
+
 import TableList from "../../../components/TableList";
 import { ROUTE_PATHS } from "../../../constants/routes";
 import { State } from "../../../slicer/types";
@@ -18,7 +18,7 @@ const ManageBooks = () => {
   const tableData = useSelector<State, any>(
     (state) => state.books.books.data || []
   );
-  const [fullScreen, setFullScreen] = useState<boolean>(false);
+
   const { handleAction } = useList({ tableData });
 
   return (
@@ -45,7 +45,6 @@ const ManageBooks = () => {
           />
         </Box>
       </Box>
-      <TestePage fullScreen={fullScreen} setFullScreen={setFullScreen} />
     </>
   );
 };
