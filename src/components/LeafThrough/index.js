@@ -64,7 +64,9 @@ function MyAlbum({ fullScreen, setFullScreen }) {
   const width = mobileRotated
     ? (windowSize.current[0] / 2.8).toFixed(0) || 400
     : (windowSize.current[0] / 3.5).toFixed(0) || 560; //(windowSize.current[0] / 4.5).toFixed(0) || 400;
-  const height = width; //width * 1.18;
+  //const width = (windowSize.current[0] / 4.5).toFixed(0) || 400;
+  const height = zoom ? width * 1.01 : width; //width * 1.18;
+  //const height = width * 1.18;
 
   useEffect(() => {
     setBook(storeBook);
@@ -107,6 +109,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
     if (page <= 0 && direction === "left") return;
 
     setZoom(false);
+    setZoomRatio(1);
     setTimeout(() => {
       bookRef.current.pageFlip().turnToPage(page);
     }, [20]);
@@ -184,7 +187,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
             </Box>
           </Box>
         )}
-        {listImages.length > 1 && !mobileRotated && !zoom && (
+        {listImages.length > 1 && !mobileRotated && (
           <Box
             display="flex"
             justifyContent="space-between"
