@@ -1,11 +1,13 @@
 .album-web {
   text-align: center;
+  
 }
 
 .page {
   box-shadow: 0 1.5em 3em -1em rgb(70, 69, 69);
   background-color: rgb(245, 243, 239);
   cursor: pointer;
+ 
 }
 
 .cover {

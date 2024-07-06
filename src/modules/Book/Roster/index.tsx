@@ -495,33 +495,28 @@ const Roster = ({ setOpenViewBook, book, setOpenPeekDigital }: Props) => {
               flexDirection="row"
               columnGap={1}
               alignItems="center"
+              flexWrap={"wrap"}
             >
               <GStyled.SubTitle style={{ fontWeight: 700 }}>
                 {i18n.t("modules.books.book.caracteristics")}
               </GStyled.SubTitle>
-              <div
-                style={{
-                  display: "flex",
-                  columnGap: "8px",
-                }}
-              >
-                {book?.caracteristics?.map((item, pos) => (
-                  <div key={pos}>
-                    <Tag
-                      inverted
-                      label={
-                        lang === "EN"
-                          ? caracteristics.find(
-                              (obj: any) => obj["value"] === item
-                            )?.title || ""
-                          : caracteristics.find(
-                              (obj: any) => obj["value"] === item
-                            )?.titlePT || ""
-                      }
-                    />
-                  </div>
-                ))}
-              </div>
+
+              {book?.caracteristics?.map((item, pos) => (
+                <div key={pos}>
+                  <Tag
+                    inverted
+                    label={
+                      lang === "EN"
+                        ? caracteristics.find(
+                            (obj: any) => obj["value"] === item
+                          )?.title || ""
+                        : caracteristics.find(
+                            (obj: any) => obj["value"] === item
+                          )?.titlePT || ""
+                    }
+                  />
+                </div>
+              ))}
             </Box>
           )}
           {book.newBook !== "soon" ? (

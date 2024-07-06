@@ -55,6 +55,10 @@ const BookC = () => {
         onClose={() => setOpenViewBook(false)}
         fullScreen={fullScreen}
         title={lang === "PT" ? book?.title : book?.titleEN}
+        paperStyles={{
+          borderRadius: mobile ? "20px 20px 0px 0px" : undefined,
+          minWidth: mobile ? "100vw" : "80vw",
+        }}
       >
         <MyAlbum fullScreen={fullScreen} setFullScreen={setFullScreen} />
       </Popup>

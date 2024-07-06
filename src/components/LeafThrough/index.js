@@ -243,7 +243,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
               onChangeState={(e) => setState(e.data)}
               flippingTime={1200}
               style={{ margin: "0 auto" }}
-              maxShadowOpacity={0} // for shadows put 0.5
+              maxShadowOpacity={mobileRotated ? 0.5 : 0} // for shadows put 0.5
               className="album-web"
               ref={bookRef}
               onFlip={(e) => {
