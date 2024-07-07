@@ -57,7 +57,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
         flexDirection={mobile ? "column" : "row"}
         justifyContent={mobile ? "start" : "space-between"}
         alignItems={mobile ? "start" : "center"}
-        style={{ paddingTop: mobile ? "80px" : "8px" }}
+        style={{ paddingTop: vertical ? "80px" : "8px" }}
       >
         <Grid item style={{ width: vertical ? "100%" : "auto" }}>
           <Button
@@ -68,7 +68,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
             icon={
               vertical ? (
                 <BiHomeAlt
-                  size='1.5rem'
+                  size="1.5rem"
                   color={
                     loc.pathname === ROUTE_PATHS.HOME ? "whiteSmoke" : "black"
                   }
@@ -86,7 +86,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
             icon={
               vertical ? (
                 <BsBook
-                  size='1.5rem'
+                  size="1.5rem"
                   color={
                     loc.pathname === ROUTE_PATHS.BOOKS ? "whiteSmoke" : "black"
                   }
@@ -104,7 +104,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
             icon={
               vertical ? (
                 <BiSmile
-                  size='1.5rem'
+                  size="1.5rem"
                   color={
                     loc.pathname === ROUTE_PATHS.ABOUT ? "whiteSmoke" : "black"
                   }
@@ -119,7 +119,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
             onClick={handleContacts}
             setOpenDrawer={setOpenDrawer}
             icon={
-              vertical ? <HiOutlineMail size='1.5rem' color='black' /> : null
+              vertical ? <HiOutlineMail size="1.5rem" color="black" /> : null
             }
           />
         </Grid>
@@ -147,12 +147,12 @@ const Middle = ({ setOpenDrawer }: Props) => {
                   : i18n.t("menuBar.userPopover.login")
               }
               setOpenDrawer={setOpenDrawer}
-              icon={vertical ? <BiUser size='1.5rem' color='black' /> : null}
+              icon={vertical ? <BiUser size="1.5rem" color="black" /> : null}
             />
             {!openMyAccountSubMenu && currentUser ? (
-              <RiArrowDownSLine size='1.5rem' />
+              <RiArrowDownSLine size="1.5rem" />
             ) : currentUser ? (
-              <RiArrowUpSLine size='1.5rem' />
+              <RiArrowUpSLine size="1.5rem" />
             ) : null}
           </Grid>
         )}
@@ -172,7 +172,8 @@ const Middle = ({ setOpenDrawer }: Props) => {
                 setOpenDrawer(false);
                 navigate(ROUTE_PATHS.CLIENT_MANAGEMENT);
               }}
-              style={{ fontSize: "20px" }}>
+              style={{ fontSize: "20px" }}
+            >
               {i18n.t("menuBar.userPopover.user")}
             </Typography>
             <Typography
@@ -204,7 +205,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
               icon={
                 vertical ? (
                   <FiShoppingCart
-                    size='1.5rem'
+                    size="1.5rem"
                     color={
                       loc.pathname === ROUTE_PATHS.CART ? "whiteSmoke" : "black"
                     }
@@ -231,12 +232,12 @@ const Middle = ({ setOpenDrawer }: Props) => {
             <Button
               title={i18n.t("menuBar.language")}
               setOpenDrawer={setOpenDrawer}
-              icon={vertical ? <BiWorld size='1.5rem' color='black' /> : null}
+              icon={vertical ? <BiWorld size="1.5rem" color="black" /> : null}
             />
             {!openMyLanguageSubMenu ? (
-              <RiArrowDownSLine size='1.5rem' />
+              <RiArrowDownSLine size="1.5rem" />
             ) : (
-              <RiArrowUpSLine size='1.5rem' />
+              <RiArrowUpSLine size="1.5rem" />
             )}
           </Grid>
         )}
