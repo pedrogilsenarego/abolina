@@ -4,7 +4,7 @@ const sendEmail = (teste) => {
   const { name, email, subject, description } = teste;
 
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    service: "Gmail",
     //host: "smtp.gmail.com",
     //port: 465,
     //secure: true, // true for 465, false for 587
@@ -17,7 +17,7 @@ const sendEmail = (teste) => {
   const mailOptions = {
     from: email || "business2connecting@gmail.com",
     to: "abolinaeditora@abolina.pt",
-    subject: `Feedback from: ${name} - ${subject}`,
+    subject: `Feedback from: ${name} - ${email} - ${subject}`,
     html: `Message: ${description}`,
   };
 
