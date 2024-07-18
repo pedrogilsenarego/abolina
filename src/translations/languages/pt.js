@@ -63,6 +63,47 @@ export const content = {
         back: "Voltar",
       },
       modules: {
+        privacyPolicies: {
+          title: "Política de Privacidade",
+          section1:
+            "A presente Política de Privacidade abrange a forma como a ÀBOLINA EDITORA, UNIPESSOAL LDA, adiante designada ÀBOLINA EDITORA ou simplesmente EDITORA, processa dados pessoais, quer o Cliente interaja com a EDITORA no site, quer através de aplicações ou presencialmente.<br><br>",
+
+          section2:
+            "No âmbito da sua atividade comercial ou de divulgação, neste site, em aplicações móveis, em livrarias, em escolas, em feiras do livro e outras iniciativas de promoção do livro, da língua, da ilustração e da leitura, a ÀBOLINA EDITORA, com sede na Rua dos Gerânios, nº 181, em Cascais, sob o número pessoa coletiva nº 517226987, solicita ao Cliente que disponibilize um conjunto de dados pessoais, isto é, informações fornecidas pelo Cliente que permitam à EDITORA identificá-lo ou contactá-lo.<br><br>",
+
+          section3:
+            "Os dados pessoais são mais frequentemente solicitados no momento do registo ou criação de conta, neste site ou numa aplicação móvel da EDITORA, para venda de um produto ou envio de newsletters.<br><br>",
+
+          section4:
+            "Os dados pessoais recolhidos e tratados restringem-se aos estritamente necessários à entrega ou acesso do Cliente aos produtos comercializados pela EDITORA e à emissão da respetiva fatura e recibo: o nome, a morada, a faixa etária, o email, o número de identificação fiscal, para a comunicação entre o Cliente e a EDITORA para os fins referidos neste parágrafo.<br><br>",
+
+          section5:
+            "A EDITORA poderá ainda coligir informação sobre o hardware e/ou software do Cliente e sobre as páginas acedidas, como o tipo de browser, os tempos de acesso e as hiperligações através das quais o Cliente acedeu ao site ou às aplicações móveis. Esta informação é salvaguardada com o fim de melhorar a qualidade do manuseamento do site e, se for o caso, da utilização das aplicações móveis.<br><br>",
+
+          section6:
+            "A EDITORA compromete-se a tratar os dados pessoais referidos nos termos da lei:<br>• Para dar seguimento a um contrato celebrado ou a celebrar com o Cliente, durante o tempo de vigência desse contrato.<br>• Para a prossecução dos interesses legítimos da ÀBOLINA EDITORA, definidos pelo seu objeto:<br>a) de venda e divulgação de livros e ebooks;<br>b) para o efeito e no decurso de atividades educativas em conjunto com escolas, entidades públicas ou privadas, agremiações ou comunidades, na área da leitura, da língua, da ilustração e da representação, incluindo concursos literários, de ilustração ou de teatro.<br>• E para cumprimento de uma obrigação legal ou jurídica.<br><br>",
+
+          section7:
+            "Para outros efeitos, a EDITORA só recolherá os dados do Cliente com o seu consentimento explícito, isto é, consentimento que por atos ou palavras seja claro e não deixe dúvidas.<br>Qualquer entidade subcontratada pela EDITORA para recolha de dados do Cliente fica obrigada nestes mesmos termos.<br><br>",
+
+          section8:
+            "Os direitos do Cliente e titular dos dados pessoais são os seguintes:<br>1. Direito à informação e acesso aos dados pessoais recolhidos.<br>2. Direito de retificação dos dados pessoais inexatos ou, se incompletos, direito a completá-los.<br>3. Direito de oposição do Cliente ao tratamento de dados nas seguintes situações:<br>• A qualquer momento, quando os dados forem recolhidos para efeitos de comercialização direta.<br>• Relativamente aos dados recolhidos para a prossecução dos interesses legítimos da EDITORA, supra referidos.<br>4. Direito à limitação do tratamento, ou seja, o Cliente pode limitar a utilização dos seus dados em situações especificadas na lei:<br>• Desde o momento em que o Cliente contesta a exatidão dos dados pessoais até ao momento da sua verificação pela EDITORA.<br>• Quando o Cliente solicita à EDITORA os seus dados pessoais para efeito do seu uso num processo judicial.<br>• Quando o Cliente exercer o seu direito de oposição relativamente ao tratamento dos dados recolhidos para a prossecução dos interesses legítimos da EDITORA, até se verificar se o direito do Cliente prevalece ou não sobre os motivos legítimos da EDITORA.<br>• Se o tratamento de dados pessoais não for lícito e o Cliente solicitar a limitação do seu uso em alternativa ao seu apagamento.<br>5. Direito ao apagamento, investindo a EDITORA na obrigação de apagar os dados pessoais, quando:<br>• Os dados deixaram de ser necessários para a finalidade da sua recolha.<br>• Os dados estejam dependentes de consentimento do Cliente e o consentimento seja retirado.<br>• O Cliente exerça o seu direito de oposição, relativamente aos dados recolhidos para a prossecução dos interesses legítimos da EDITORA supra referidos.<br>6. Direitos perante efeitos jurídicos decorrentes de decisões tomadas automaticamente, sem intervenção humana:<br>• o Cliente não fica sujeito a nenhuma decisão tomada exclusivamente com base no tratamento automatizado, a não ser que essa decisão:<br>a) seja necessária à celebração ou execução de um contrato celebrado entre a EDITORA e o Cliente;<br>b) seja autorizada pelo ordenamento jurídico português ou comunitário; ou<br>c) resulte do consentimento explícito do próprio Cliente, ou seja, resulte de forma clara e inequívoca dos atos ou das palavras do Cliente, de modo a não suscitar quaisquer dúvidas.<br><br>",
+
+          section9:
+            "Os direitos do Cliente serão salvaguardados, comprometendo-se a EDITORA a definir e implementar as medidas técnicas e organizativas necessárias e adequadas à proteção dos dados pessoais do Cliente, nos termos legais.<br><br>",
+
+          section10:
+            "Os livros, ebooks e demais material comercializado pela EDITORA são dirigidos maioritariamente ao público infantil e juvenil.<br>Os dados pessoais recolhidos relativos a crianças gozam de especial proteção.<br>Os dados pessoais referentes a menores com idade inferior a 13 anos só serão alvo de tratamento desde que o consentimento seja dado, ou autorizado, pelos seus pais, avós ou tutores. As vendas ou contratos realizados presencialmente com menores de idade inferior a 13 anos requerem esse consentimento expresso.<br>A EDITORA pressupõe que as transações realizadas por meios automáticos indiretos, designadamente com recurso a cartões de débito/crédito, serão realizadas com a intervenção de um adulto responsável, portador dos referidos meios de pagamento.<br><br>",
+
+          section11:
+            "A EDITORA reserva-se o direito de alterar a sua Política de Privacidade a qualquer momento.<br><br>",
+
+          section12:
+            "Tudo o que não estiver expressamente previsto nesta Política de Privacidade, rege-se pelo previsto na Lei nº 58/2019, de 8 de agosto, e no Regulamento (UE), do Parlamento Europeu e do Conselho, de 27 de abril de 2016, designado Regulamento Geral de Proteção de Dados (RGPD), considerando o Cliente e a EDITORA, de comum acordo, para a resolução de conflitos, como tribunal competente o tribunal Cível da Comarca de Cascais, com expressa renúncia a qualquer outro.",
+          title2: "Política de Cookies",
+          sectionb1:
+            "Este site utiliza os cookies estritamente necessários, ou seja, cookies de caráter técnico que permitem o funcionamento do website da ÀBOLINA EDITORA, possibilitando ao utilizador navegar          no website e garantir a prestação de serviços que o utilizador/visitante espera receber, ativando          funções básicas como a navegação nas páginas e o acesso a áreas seguras das mesmas, para          melhor gestão e operação do website. Não é recolhido o consentimento, pois o website não pode          funcionar corretamente sem os mesmos.",
+        },
         checkout: {
           title: "Dados para Compra",
           data: "Dados",

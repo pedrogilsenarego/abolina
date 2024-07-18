@@ -12,6 +12,7 @@ import {
   enableLoading,
   scrollToContacts,
   updateFailNotification,
+  updateSuccessNotification,
 } from "../../../../slicer/general/general.actions";
 import { State } from "../../../../slicer/types";
 import * as GStyled from "../../../../styles";
@@ -50,24 +51,35 @@ const Contacts = () => {
 
   const handleSubmit = async (values: any) => {
     dispatch(enableLoading());
-    await fetch(api.sendEmailLocal, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ values }),
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .catch((error) => {
-        dispatch(updateFailNotification("Error Sending the message"));
-        dispatch(disableLoading());
-        console.error("Error:", error);
-      })
-      .finally(() => {
-        dispatch(disableLoading());
+
+    try {
+      const response = await fetch(api.sendEmailHosted, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ values }),
       });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      // Handle the successful response here
+      console.log("Success:", data);
+    } catch (error) {
+      if (error instanceof SyntaxError) {
+        console.error("Failed to parse JSON response:", error);
+        //dispatch(updateFailNotification("Error parsing server response"));
+      } else {
+        console.error("Error:", error);
+        //dispatch(updateFailNotification("Error Sending the message"));
+      }
+    } finally {
+      dispatch(updateSuccessNotification("E-mail sent"));
+      dispatch(disableLoading());
+    }
   };
 
   return (

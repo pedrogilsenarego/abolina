@@ -38,6 +38,7 @@ const BuySuccess = lazyWithRetryAndLoader(
 const ClientManagement = lazyWithRetryAndLoader(
   () => import("../modules/ClientManagement")
 );
+const Policies = lazyWithRetryAndLoader(() => import("../modules/Policies"));
 
 export const routes: AppRoute[] = [
   {
@@ -105,6 +106,14 @@ export const routes: AppRoute[] = [
     component: (
       <MainLayout noUpScroll>
         <Checkout />
+      </MainLayout>
+    ),
+  },
+  {
+    path: ROUTE_PATHS.POLICIES,
+    component: (
+      <MainLayout>
+        <Policies />
       </MainLayout>
     ),
   },
