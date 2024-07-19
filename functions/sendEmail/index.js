@@ -16,7 +16,7 @@ const sendEmail = (teste) => {
 
   const mailOptions = {
     from: email || "business2connecting@gmail.com",
-    to: "abolinaeditora@abolina.pt",
+    to: "contacto@abolina.pt",
     subject: `Feedback from: ${name} - ${email} - ${subject}`,
     html: `Message: ${description}`,
   };
