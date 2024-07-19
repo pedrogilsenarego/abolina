@@ -7,7 +7,7 @@ const Second = () => {
   return (
     <Box display="flex" flexDirection="column" rowGap={2}>
       <Box display="flex" alignItems="center" columnGap={15}>
-        <Styled.STypography>xxxx@gmail.com</Styled.STypography>
+        <Styled.STypography>contacto@abolina.pt</Styled.STypography>
         <Box display="flex" alignItems="center" columnGap={1}>
           <Styled.STypography>
             {i18n.t("footer.third.first")}
