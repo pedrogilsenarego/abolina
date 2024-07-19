@@ -24,7 +24,7 @@ const CookiePolicy = () => {
   return (
     <DrawerMine
       position={mobile ? "bottom" : "left"}
-      openDrawer={!cookiePolicySignal}
+      openDrawer={cookiePolicySignal}
       fullHeight={!mobile}
       backgroundColor="#f6f7f8;"
       width={mobile ? "100%" : "30vw"}

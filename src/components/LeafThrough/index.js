@@ -328,7 +328,7 @@ function MyAlbum({ fullScreen, setFullScreen }) {
                 height: height,
 
                 width: mobileRotated ? width : width * 2,
-                overflow: "hidden",
+                // overflow: "hidden",
                 position: "relative",
                 cursor: "grabbing",
                 placeContent: "center",
