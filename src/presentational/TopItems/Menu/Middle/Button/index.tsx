@@ -23,36 +23,33 @@ const Button = ({
   selected,
   icon,
 }: Props) => {
-  const vertical = useSelector<State, boolean>(
-    (state) => state.general.positionVertical
-  );
   const navigate = useNavigate();
   const Theme = useTheme();
-  const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
+  const mobile = useMediaQuery(Theme.breakpoints.down("md"));
 
   return (
     <div
       style={{
-        backgroundColor: vertical && selected ? Colors.tealc : "auto",
-        paddingLeft: vertical ? "20px" : "0px",
+        backgroundColor: mobile && selected ? Colors.tealc : "auto",
+        paddingLeft: mobile ? "20px" : "0px",
         display: "flex",
         alignItems: "center",
         columnGap: "10px",
-        height: "45px"
+        height: "45px",
       }}
     >
       {icon}
       <p
         className={
-          !vertical ? (selected ? "menu-text-selected" : "menu-text") : ""
+          !mobile ? (selected ? "menu-text-selected" : "menu-text") : ""
         }
         style={{
-          color: vertical && !selected ? "black" : "whiteSmoke",
+          color: mobile && !selected ? "black" : "whiteSmoke",
           cursor: "pointer",
           fontSize: mobile ? "20px" : "18px",
           fontWeight: 700,
           textTransform: mobile ? "unset" : "uppercase",
-          paddingTop: vertical ? "5px" : "0px",
+          paddingTop: mobile ? "5px" : "0px",
           paddingBottom: "5px",
         }}
         onClick={() => {
@@ -67,7 +64,6 @@ const Button = ({
       >
         {title}
       </p>
-
     </div>
   );
 };

@@ -23,16 +23,14 @@ interface Props {
 
 const Middle = ({ setOpenDrawer }: Props) => {
   const Theme = useTheme();
-  const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
+  const mobile = useMediaQuery(Theme.breakpoints.down("md"));
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loc = useLocation();
   const currentUser = useSelector<State, CurrentUser>(
     (state) => state.user.currentUser
   );
-  const vertical = useSelector<State, boolean>(
-    (state) => state.general.positionVertical
-  );
+
   const [openMyAccountSubMenu, setOpenMyAccountSubMenu] =
     useState<boolean>(false);
   const [openMyLanguageSubMenu, setOpenMyLanguageSubMenu] =
@@ -53,20 +51,20 @@ const Middle = ({ setOpenDrawer }: Props) => {
       <Grid
         container
         rowSpacing={mobile ? 1 : 3}
-        columnGap={vertical ? "0px" : "26px"}
+        columnGap={mobile ? "0px" : "26px"}
         flexDirection={mobile ? "column" : "row"}
         justifyContent={mobile ? "start" : "space-between"}
         alignItems={mobile ? "start" : "center"}
-        style={{ paddingTop: vertical ? "80px" : "8px" }}
+        style={{ paddingTop: mobile ? "80px" : "8px" }}
       >
-        <Grid item style={{ width: vertical ? "100%" : "auto" }}>
+        <Grid item style={{ width: mobile ? "100%" : "auto" }}>
           <Button
             selected={loc.pathname === ROUTE_PATHS.HOME}
             title={i18n.t("menuBar.home")}
             path={ROUTE_PATHS.HOME}
             setOpenDrawer={setOpenDrawer}
             icon={
-              vertical ? (
+              mobile ? (
                 <BiHomeAlt
                   size="1.5rem"
                   color={
@@ -77,14 +75,14 @@ const Middle = ({ setOpenDrawer }: Props) => {
             }
           />
         </Grid>
-        <Grid item style={{ width: vertical ? "100%" : "auto" }}>
+        <Grid item style={{ width: mobile ? "100%" : "auto" }}>
           <Button
             selected={loc.pathname === ROUTE_PATHS.BOOKS}
             title={i18n.t("menuBar.books")}
             path={ROUTE_PATHS.BOOKS}
             setOpenDrawer={setOpenDrawer}
             icon={
-              vertical ? (
+              mobile ? (
                 <BsBook
                   size="1.5rem"
                   color={
@@ -95,14 +93,14 @@ const Middle = ({ setOpenDrawer }: Props) => {
             }
           />
         </Grid>
-        <Grid item style={{ width: vertical ? "100%" : "auto" }}>
+        <Grid item style={{ width: mobile ? "100%" : "auto" }}>
           <Button
             selected={loc.pathname === ROUTE_PATHS.ABOUT}
             title={i18n.t("menuBar.about")}
             path={ROUTE_PATHS.ABOUT}
             setOpenDrawer={setOpenDrawer}
             icon={
-              vertical ? (
+              mobile ? (
                 <BiSmile
                   size="1.5rem"
                   color={
@@ -113,21 +111,19 @@ const Middle = ({ setOpenDrawer }: Props) => {
             }
           />
         </Grid>
-        <Grid item style={{ width: vertical ? "100%" : "auto" }}>
+        <Grid item style={{ width: mobile ? "100%" : "auto" }}>
           <Button
             title={i18n.t("menuBar.contacts")}
             onClick={handleContacts}
             setOpenDrawer={setOpenDrawer}
-            icon={
-              vertical ? <HiOutlineMail size="1.5rem" color="black" /> : null
-            }
+            icon={mobile ? <HiOutlineMail size="1.5rem" color="black" /> : null}
           />
         </Grid>
-        {vertical && (
+        {mobile && (
           <Grid
             item
             style={{
-              width: vertical ? "100%" : "auto",
+              width: mobile ? "100%" : "auto",
               display: "flex",
               alignItems: "center",
               columnGap: "20px",
@@ -147,7 +143,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
                   : i18n.t("menuBar.userPopover.login")
               }
               setOpenDrawer={setOpenDrawer}
-              icon={vertical ? <BiUser size="1.5rem" color="black" /> : null}
+              icon={mobile ? <BiUser size="1.5rem" color="black" /> : null}
             />
             {!openMyAccountSubMenu && currentUser ? (
               <RiArrowDownSLine size="1.5rem" />
@@ -156,7 +152,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
             ) : null}
           </Grid>
         )}
-        {vertical && openMyAccountSubMenu && (
+        {mobile && openMyAccountSubMenu && (
           <Grid
             item
             style={{
@@ -195,15 +191,15 @@ const Middle = ({ setOpenDrawer }: Props) => {
             )}
           </Grid>
         )}
-        {vertical && (
-          <Grid item style={{ width: vertical ? "100%" : "auto" }}>
+        {mobile && (
+          <Grid item style={{ width: mobile ? "100%" : "auto" }}>
             <Button
               selected={loc.pathname === ROUTE_PATHS.CART}
               title={i18n.t("menuBar.cart")}
               path={ROUTE_PATHS.CART}
               setOpenDrawer={setOpenDrawer}
               icon={
-                vertical ? (
+                mobile ? (
                   <FiShoppingCart
                     size="1.5rem"
                     color={
@@ -216,11 +212,11 @@ const Middle = ({ setOpenDrawer }: Props) => {
           </Grid>
         )}
 
-        {vertical && (
+        {mobile && (
           <Grid
             item
             style={{
-              width: vertical ? "100%" : "auto",
+              width: mobile ? "100%" : "auto",
               display: "flex",
               justifyContent: "space-between",
               paddingRight: "20px",
@@ -232,7 +228,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
             <Button
               title={i18n.t("menuBar.language")}
               setOpenDrawer={setOpenDrawer}
-              icon={vertical ? <BiWorld size="1.5rem" color="black" /> : null}
+              icon={mobile ? <BiWorld size="1.5rem" color="black" /> : null}
             />
             {!openMyLanguageSubMenu ? (
               <RiArrowDownSLine size="1.5rem" />
@@ -241,7 +237,7 @@ const Middle = ({ setOpenDrawer }: Props) => {
             )}
           </Grid>
         )}
-        {vertical && openMyLanguageSubMenu && (
+        {mobile && openMyLanguageSubMenu && (
           <Grid
             item
             style={{

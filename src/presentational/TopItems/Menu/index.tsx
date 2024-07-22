@@ -96,7 +96,12 @@ const Menu = () => {
   return (
     <>
       {mobile ? mobileRender() : laptopRender()}
-      <MobileMainDrawer openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
+      {mobile && (
+        <MobileMainDrawer
+          openDrawer={openDrawer}
+          setOpenDrawer={setOpenDrawer}
+        />
+      )}
     </>
   );
 };

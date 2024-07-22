@@ -1,4 +1,11 @@
-import { Box, Grid, useTheme, useMediaQuery, Typography } from "@mui/material";
+import {
+  Box,
+  Grid,
+  useTheme,
+  useMediaQuery,
+  Typography,
+  Container,
+} from "@mui/material";
 import Second from "./Second";
 import Third from "./Third";
 import Forth from "./Forth";
@@ -12,7 +19,7 @@ import { ROUTE_PATHS } from "../../constants/routes";
 
 const Footer = () => {
   const Theme = useTheme();
-  const mobile = useMediaQuery(Theme.breakpoints.down("sm"));
+  const mobile = useMediaQuery(Theme.breakpoints.down("md"));
   const navigate = useNavigate();
 
   const renderLaptop = () => {
@@ -28,21 +35,23 @@ const Footer = () => {
             backgroundRepeat: "no-repeat",
           }}
         >
-          <Grid
-            maxWidth="lg"
-            container
-            style={{ paddingTop: "16px", paddingBottom: "16px" }}
-          >
-            <Grid item xs={4}>
-              <Second />
+          <Container>
+            <Grid
+              maxWidth="lg"
+              container
+              style={{ paddingTop: "16px", paddingBottom: "16px" }}
+            >
+              <Grid item xs={4}>
+                <Second />
+              </Grid>
+              <Grid item xs={4}>
+                <Third />
+              </Grid>
+              <Grid item xs={4}>
+                <Forth />
+              </Grid>
             </Grid>
-            <Grid item xs={4}>
-              <Third />
-            </Grid>
-            <Grid item xs={4}>
-              <Forth />
-            </Grid>
-          </Grid>
+          </Container>
         </Box>
         <Box
           display="flex"
@@ -79,7 +88,7 @@ const Footer = () => {
             paddingBottom: "30px",
           }}
         >
-          <Styled.STypography>xxxx@gmail.com</Styled.STypography>
+          <Styled.STypography>contacto@abolina.pt</Styled.STypography>
           <Box display="flex" alignItems="center" columnGap={2}>
             <Styled.STypography>
               {i18n.t("footer.third.first")}

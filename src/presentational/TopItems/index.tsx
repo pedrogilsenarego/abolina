@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
 import Menu from "./Menu";
 import TopBar from "./TopBar";
-import { useSelector } from "react-redux";
-import { State } from "../../slicer/types";
+
+import { useMediaQuery, useTheme } from "@mui/material";
 
 const TopItems = () => {
   const [navbarVisible, setNavbarVisible] = useState<boolean>(true);
-  const vertical = useSelector<State, boolean>((state) => state.general.positionVertical)
+  const Theme = useTheme();
+
+  const mobile = useMediaQuery(Theme.breakpoints.down("md"));
 
   useEffect(() => {
     let previousScrollPosition = window.pageYOffset;
     const handleScroll = () => {
       let currentScrollPosition = window.pageYOffset;
       if (currentScrollPosition > previousScrollPosition) {
-        if (currentScrollPosition < (vertical ? 80 : 120)) {
+        if (currentScrollPosition < (mobile ? 80 : 120)) {
           setNavbarVisible(true);
         } else {
           setNavbarVisible(false);
@@ -27,7 +29,6 @@ const TopItems = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
   return (
     <div
       style={{
@@ -36,8 +37,8 @@ const TopItems = () => {
         width: "100%",
         transition: "transform 0.5s ease-in-out",
         transform: navbarVisible ? "translateY(0%)" : "translateY(-100%)",
-        zIndex: vertical ? 2000 : 1000,
-        backgroundColor: "white"
+        zIndex: mobile ? 2000 : 1000,
+        backgroundColor: "white",
       }}
     >
       <TopBar />
